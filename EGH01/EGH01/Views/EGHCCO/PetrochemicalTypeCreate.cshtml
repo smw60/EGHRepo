@@ -21,28 +21,38 @@
 
     <div class="box">
         <div class="boxdata">
-
             <p>
-                <label class="boxdata-label-30">Наименование нефтепродутка </label>
+                <label class="boxdata-label-30">Наименование нефтепродукта</label>
                 <input class="boxdata-input-50" type="text" name="Name" value=" " />
             </p>
             <p>
-                <label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С </label>
-                <input class="boxdata-input-50" type="number" name="Boilingtemp" value=" " />
+                <label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С</label>
+                <input class="boxdata-input-50" type="number" step="0.01" name="Boilingtemp" value=" " />
             </p>
             <p>
-                <label class="boxdata-label-30">Плотность, г/см<sup><small>3</small></sup></label>
-                <input class="boxdata-input-50" type="number" name="Density" value=" " />
+                <label class="boxdata-label-30">Плотность, кг/м<sup><small>3</small></sup></label>
+                <input class="boxdata-input-50" type="number" step="0.01" name="Density" value=" " />
             </p>
             <p>
                 <label class="boxdata-label-30">Кинематическая вязкость, мм<sup><small>2</small></sup>/см</label>
-                <input class="boxdata-input-50" type="number" name="Viscosity" value=" " />
+                <input class="boxdata-input-50" type="number" step="0.01" name="Viscosity" value=" " />
             </p>
             <p>
                 <label class="boxdata-label-30">Растворимость, млг/дм<sup><small>2</small></sup></label>
-                <input class="boxdata-input-50" type="number" name="Solubility" value=" " />
+                <input class="boxdata-input-50" type="number" step="0.01" name="Solubility" value=" " />
             </p>
-
+            <p>
+                <label class="boxdata-label-30">Динамическая вязкость, кг/м*с</label>
+                <input class="boxdata-input-50" type="number" step="0.01" name="" value=" " />
+            </p>
+            <p>
+                <label class="boxdata-label-30">Коэф. поверхностного натяжения, кг/с<sup><small>2</small></sup></label>
+                <input class="boxdata-input-50" type="number" step="0.01" name="" value=" " />
+            </p>
+            <p>
+                <label class="boxdata-label-30">Коэф. диффузии, м<sup><small>2</small></sup>/с</label>
+                <input class="boxdata-input-50" type="number" step="0.01" name="" value=" " />
+            </p>
         </div>
 
         @Html.Partial("_TypeLineMenu", create)

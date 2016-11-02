@@ -25,31 +25,39 @@
                 <label class="boxdata-label-30" value="@Model.code_type">Код типа нефтепродукта</label>
                 <label class="boxdata-label-50">@Model.code_type</label>
             </p>
-            <br />
-
             <p>
                 <label class="boxdata-label-30">Наименование нефтепродукта</label>
-                <input class="boxdata-input-50" type="text" name="Name" value="@Model.name" />
+                <input class="boxdata-input-50" type="text" name="Name" value="@Model.name.ToString()" />
             </p>
-            <br />
             <p>
                 <label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С </label>
-                <input class="boxdata-input-50" type="number" name="Boilingtemp" value="@Model.boilingtemp" />
+                <input class="boxdata-input-50" type="number" name="Boilingtemp" value="@Model.boilingtemp.ToString()" />
             </p>
             <p>
                 <label class="boxdata-label-30">Плотность, г/см<sup><small>3</small></sup></label>
-                <input class="boxdata-input-50" type="number" name="Density" value="@Model.density" />
+                <input class="boxdata-input-50" type="number" name="Density" value="@Model.density.ToString()" />
             </p>
             <p>
                 <label class="boxdata-label-30">Кинематическая вязкость, мм<sup><small>2</small></sup>/см</label>
-                <input class="boxdata-input-50" type="number" name="Viscosity" value="@Model.viscosity" />
+                <input class="boxdata-input-50" type="number" name="Viscosity" value="@Model.viscosity.ToString()" />
             </p>
             <p>
                 <label class="boxdata-label-30">Растворимость, млг/дм<sup><small>2</small></sup></label>
-                <input class="boxdata-input-50" type="number" name="Solubility" value="@Model.solubility" />
+                <input class="boxdata-input-50" type="number" name="Solubility" value="@Model.solubility.ToString()" />
+            </p>
+            <p>
+                <label class="boxdata-label-30">Динамическая вязкость, кг/м*с</label>
+                <input class="boxdata-input-50" type="number" name="" value=" " />
+            </p>
+            <p>
+                <label class="boxdata-label-30">Коэф. поверхностного натяжения, кг/с<sup><small>2</small></sup></label>
+                <input class="boxdata-input-50" type="number" name="" value=" " />
+            </p>
+            <p>
+                <label class="boxdata-label-30">Коэф. диффузии, м<sup><small>2</small></sup>/с</label>
+                <input class="boxdata-input-50" type="number" name="" value=" " />
             </p>
             <p><input type="hidden" value="@Model.code_type.ToString()" name="code_type"></p>
-
         </div>
 
         @Html.Partial("_TypeLineMenu", delete)
