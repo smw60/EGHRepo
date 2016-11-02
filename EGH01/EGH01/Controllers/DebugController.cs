@@ -13,7 +13,7 @@ using EGH01DB;
 
 namespace EGH01.Controllers
 {
-    public class DebugController : Controller
+    public partial  class DebugController : Controller
     {
 
         public ActionResult Index()
