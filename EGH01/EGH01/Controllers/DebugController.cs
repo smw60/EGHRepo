@@ -134,8 +134,7 @@ namespace EGH01.Controllers
             }
             return View();
         }
-
-
+       
 
         // проверка процедур District
         public ActionResult District_Create()// есть
@@ -199,8 +198,20 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
+                //List<District> list = new List<District>();
+                //if (Helper.GetListDistrict(db, 2, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult District_listFull() // 
+        {
+            RGEContext db = new RGEContext();
+            {
                 List<District> list = new List<District>();
-                if (Helper.GetListDistrict(db, 2, ref list))
+                if (Helper.GetListDistrict(db, ref list))
                 {
                     int k = 1;
                 };
