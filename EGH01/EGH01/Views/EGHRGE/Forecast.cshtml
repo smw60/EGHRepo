@@ -5,14 +5,14 @@
 @model EGH01DB.RGEContext
 
 @{
-   
+
     Layout = "~/Views/Shared/EGHLayout.cshtml";
     Menu start = new Menu(
-                          new Menu.MenuItem("Прогноз",    "Forecast.Forecast", true),
-                          new Menu.MenuItem("Отказаться", "Forecast.Cancel",   true)
+                          new Menu.MenuItem("Прогноз", "Forecast.Forecast", true),
+                          new Menu.MenuItem("Отказаться", "Forecast.Cancel", true)
                         );
 
-   
+
     List<EGH01DB.Types.PetrochemicalType> ptl = new List<EGH01DB.Types.PetrochemicalType>();
     ViewBag.petrochemicaltype = new List<SelectListItem>();
     if (Model != null)
@@ -23,47 +23,65 @@
         }
     }
 
-   
+
+    Object obj = new { @class = "boxdata-input-30" };
     ViewBag.incidenttype = new List<SelectListItem>();
+
     if (Model != null)
     {
 
         EGH01DB.Types.IncidentTypeList itl = new EGH01DB.Types.IncidentTypeList(Model);
         itl.ForEach(o => ViewBag.incidenttype.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
-        
-        
-        
-    }              
-                                 
- }
+    }
+
+}
 
 @using (Html.BeginForm("Forecast", "EGHRGE"))
 {
 
     <div class="box">
         <div class="boxdata">
-            <p>
-                <label class="boxdata-label-30"> Дата инцидента </label>
-                <input class="boxdata-input-30" type="date" name="date" value=" " />
-            </p>
-            <p>
-                <label class="boxdata-label-30"> Дата регистрации </label>
-                <input class="boxdata-input-30" type="date" name="date_message" value=" " />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Тип нефтепродукта</label>
-                <span  class= "boxdata-input-30"> @Html.DropDownList("petrochemicaltype") </span>
-           </p>
-            <p>
-                <label class="boxdata-label-30">Тип инцидента</label>
-                <span class="boxdata-input-30">  @Html.DropDownList("incidenttype")</span>
-            </p>
+            <label class="boxdata-label-30"> Дата инцидента </label>
+            <input class="boxdata-input-30" type="date" name="date" />
         </div>
-                    
-        @Html.Partial("_TypeLineMenu", start)
+        <div class="boxdata">
+            <label class="boxdata-label-30"> Дата регистрации </label>
+            <input class="boxdata-input-30" type="date" name="date_message" />
+        </div>
+        <div class="boxdata">
+            <label class="boxdata-label-30">Тип нефтепродукта</label>
+            <span class="boxdata-input-30"> @Html.DropDownList("petrochemicaltype") </span>
+        </div>
+        <div class="boxdata">
+            <label class="boxdata-label-30">Тип инцидента</label>
+            @Html.DropDownList("incidenttype")
+        </div>
+        <div class="boxdata">
+            <label class="boxdata-label-30">Объем пролива</label>
+            <input class="boxdata-input-30" type="number" name="volume" min="0.0" max="10000.0" step="0.1" />
+        </div>
+        <div class="box-fieldset">
+            <fieldset style="border:1px solid black; width:95%; margin:5px">
+                <legend style="margin:10px;"></legend>
+                <div class="boxdata">
+                    <label class="boxdata-label-30">Широта</label>
+                    <input class="boxdata-input-30" type="number" name="latitude_grad" min="-90" max="90" step="1" />
+                    <input class="boxdata-input-30" type="number" name="latitude_min" min="0" max="60" step="1" />
+                    <input class="boxdata-input-30" type="number" name="latitude_sec" min="0" max="60" step="0.0001" />
+                </div>
+                <div class="boxdata">
+                    <label class="boxdata-label-30">Долгота</label>
+                    <input class="boxdata-input-30" type="number" name="lngitude_grad" min="-180" max="1800" step="1" />
+                    <input class="boxdata-input-30" type="number" name="lngitude_min" min="0" max="60" step="1" />
+                    <input class="boxdata-input-30" type="number" name="lngitude_sec" min="0" max="60" step="0.0001" />
+                </div>
+            </fieldset>
+        </div>
+
+    @Html.Partial("_TypeLineMenu", start)
      </div>
-       
-    
+
+
 }
 
 <h2>Forecast</h2>
