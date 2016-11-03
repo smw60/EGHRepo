@@ -1,0 +1,80 @@
+﻿@using EGH01.Core;
+@using EGH01.Models.EGH;
+@using EGH01DB.Primitives;
+@using EGH01DB.Types;
+@using EGH01DB.Objects;
+@model List<RiskObject>
+@{
+    Menu menu = new Menu(
+                            new Menu.MenuItem("Удалить", "RiskObject.Delete", true),
+                            new Menu.MenuItem("Изменить", "RiskObject.Update", true)
+                           );
+
+}
+@foreach (RiskObject t in @Model)
+{
+
+    using (Html.BeginForm("RiskObject", "EGHCAI"))
+    {
+      <div class="box">
+            <div class="boxdata">
+                <p><label class="boxdata-label-30">Код объекта</label> @t.id.ToString()</p>
+                <br>
+                <p><label class="boxdata-label-30">Наименование объекта  </label> @t.name</p>
+                <br>
+                <p><label class="boxdata-label-30">Тип объекта</label> @t.type.name.ToString()</p>
+                 <br>
+                <p><label class="boxdata-label-30">Область: </label> @t.region.name</p>
+                <br>
+                <p><label class="boxdata-label-30">Район : </label> @t.district.district</p>
+                <br>
+                <p><label class="boxdata-label-30">Координаты.Широта:</label>@t.coordinates.lat.d.ToString()<label>°</label>@t.coordinates.lat.m.ToString()<label>'</label>@t.coordinates.lat.s.ToString()<label>"</label></p>
+                <br>
+                <p><label class="boxdata-label-30">Координаты. Долгота:</label> @t.coordinates.lngitude.ToString()<label>°</label>@t.coordinates.lng.m.ToString()<label>'</label>@t.coordinates.lng.s.ToString()<label>"</label></p>
+                <br>
+                <p><label class="boxdata-label-30"> Адресс объекта</label> @t.address </p>
+                <br>
+                <p><label class="boxdata-label-30">Телефон </label> @t.phone.ToString()</p>
+                <br>
+                <p><label class="boxdata-label-30">Факс </label> @t.fax.ToString()</p>
+                <br>
+                <p><label class="boxdata-label-30"> </label> </p>
+                <br>
+                <p><label class="boxdata-label-30">Резервуар наземный: </label> @t.groundtank</p>
+                <br>
+                <p><label class="boxdata-label-30">Резервуар подземный: </label> @t.undergroundtank</p>
+                <br>
+                <p><label class="boxdata-label-30">дата ввода в эксплуатацию </label>@t.foundationdate.ToShortDateString()</p>
+                <br>
+                <p><label class="boxdata-label-30">дата последней реконструкции  </label>@t.reconstractiondate.ToShortDateString()</p>
+                <br>
+                <p><label class="boxdata-label-30">Грунт: </label>@t.groundtype.name</p>
+                <br>
+                <p><label class="boxdata-label-30">Высота над уровнем моря (м): </label> @t.height.ToString()</p>
+                <br>
+                <p><label class="boxdata-label-30">Глубина грунтовых вод (м): </label> @t.waterdeep.ToString()</p>
+                <br>
+             
+                <br>
+                @if (@t.watertreatmentcollect == true)
+                {
+
+                    <p><label class="boxdata-label-30">Резервуар для сбора проливов</label></p>
+
+                }
+                <br>
+                @if (@t.watertreatment == true)
+                {
+                    <p><label class="boxdata-label-30">Очистные сооружения для дождевого стока </label></p>
+
+                }
+                <input type="hidden" value="@t.id.ToString()" name="id">
+            
+            </div>
+            @Html.Partial("_TypeLineMenu", menu)
+        </div>
+
+    }
+}
+
+ 
