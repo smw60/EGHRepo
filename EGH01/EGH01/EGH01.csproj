@@ -174,6 +174,7 @@
     <Compile Include="Controllers\EGHRGEController_GroundType.cs" />
     <Compile Include="Controllers\EGHRGEController_IncidentType.cs" />
     <Compile Include="Controllers\EGHRGEController.cs" />
+    <Compile Include="Controllers\EGHRGEController_SreadingCoefficient.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\EGHRGEController_Forecast.cs" />
     <Compile Include="Core\Menu.cs" />
@@ -185,6 +186,7 @@
     <Compile Include="Models\EGHCCO\PetrochemicalTypeView.cs" />
     <Compile Include="Models\EGHRGE\GroundTypeView.cs" />
     <Compile Include="Models\EGHRGE\IncidentTypeView.cs" />
+    <Compile Include="Models\EGHRGE\SreadingCoefficientView.cs" />
     <Compile Include="Models\EGH\TypeViewHeadMenu.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -283,9 +285,12 @@
     <Content Include="Views\EGHRGE\GroundType.cshtml" />
     <Content Include="Views\EGHRGE\GroundTypeCreate.cshtml" />
     <Content Include="Views\EGHRGE\_GroundTypeList.cshtml" />
+    <Content Include="Views\EGHRGE\SreadingCoefficient.cshtml" />
+    <Content Include="Views\EGHRGE\_SreadingCoefficientList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\SreadingCoefficientView\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

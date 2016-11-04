@@ -1,0 +1,34 @@
+﻿@using EGH01DB.Primitives;
+@using EGH01.Core;
+
+@*@model List<SreadingCoefficient>
+@{
+    Menu menu = new Menu(
+                            new Menu.MenuItem("Удалить", "SreadingCoefficient.Delete", true),
+                            new Menu.MenuItem("Изменить", "SreadingCoefficient.Update", true)
+                           );
+
+}
+@foreach (SreadingCoefficient t in @Model)
+{
+
+    using (Html.BeginForm("SreadingCoefficient", "EGHRGE"))
+    {
+
+        <div class="box">
+            <div class="boxdata">
+                <p><label class="boxdata-label-30">Тип нефтепродукта</label>1 </p>
+                <p><label class="boxdata-label-30">Тип грунта</label>1 </p>
+                <p><label class="boxdata-label-30">Диапазон значений объема пролива</label> 1</p>
+                <p><label class="boxdata-label-30">Диапазон значений гидравлического уклона</label>1  </p>
+                <p><label class="boxdata-label-30">Коэффициент разлива</label>1 </p>
+                <input type="hidden" value="@t.type_code.ToString()" name="type_code">
+
+            </div>
+            @Html.Partial("_TypeLineMenu", menu)
+        </div>
+
+    }
+}*@
+
+
