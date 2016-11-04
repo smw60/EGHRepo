@@ -69,10 +69,10 @@ namespace EGH01DB.Types
             this.diffusion = diffusion;
             this.distribution = distribution;
             this.sorption = sorption;
-            this.watercapacity = 0.0f;
-            this.soilmoisture = 0.0f;
-            this.аveryanovfactor = 0.0f;
-            this.permeability = 0.0f;
+            this.watercapacity = -1.0f;
+            this.soilmoisture = -1.0f;
+            this.аveryanovfactor = -1.0f;
+            this.permeability = -1.0f;
         }
         public GroundType(int type_code, 
                             string name, 
@@ -147,6 +147,10 @@ namespace EGH01DB.Types
                         double diffusion = (double)reader["КоэфДиффузии"];
                         double distribution = (double)reader["КоэфРаспределения"];
                         double sorption = (double)reader["КоэфСорбции"];
+                        double watercapacity = (double)reader["КоэфКапВлагоемкости"];
+                        double soilmoisture =(double)reader["ВлажностьГрунта"];
+                        double аveryanovfactor =(double)reader["КоэфАверьянова"];
+                        double permeability = (double)reader["Водопроницаемость"];
                         if (rc = (int)cmd.Parameters["@exitrc"].Value > 0)
                             ground_type = new GroundType((int)type_code,
                                                          (string)name,
@@ -155,7 +159,11 @@ namespace EGH01DB.Types
                                                          (float)waterfilter,
                                                          (float)diffusion,
                                                          (float)distribution,
-                                                         (float)sorption);
+                                                         (float)sorption,
+                                                         (float)watercapacity,
+                                                         (float)soilmoisture,
+                                                         (float)аveryanovfactor,
+                                                         (float)permeability);
                     }
                     reader.Close();
                 }
@@ -250,6 +258,26 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
+                    SqlParameter parm = new SqlParameter("@КоэфКапВлагоемкости", SqlDbType.Float);
+                    parm.Value = ground_type.watercapacity;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ВлажностьГрунта", SqlDbType.Float);
+                    parm.Value = ground_type.soilmoisture;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфАверьянова", SqlDbType.Float);
+                    parm.Value = ground_type.аveryanovfactor;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Водопроницаемость", SqlDbType.Float);
+                    parm.Value = ground_type.permeability;
+                    cmd.Parameters.Add(parm);
+                }
+                {
                     SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
                     parm.Direction = ParameterDirection.ReturnValue;
                     cmd.Parameters.Add(parm);
@@ -270,7 +298,6 @@ namespace EGH01DB.Types
         }
         static public bool Update(EGH01DB.IDBContext dbcontext, GroundType ground_type)
         {
-            // обновление ???
             bool rc = false;
             using (SqlCommand cmd = new SqlCommand("EGH.UpdateGroundType", dbcontext.connection))
             {
@@ -313,6 +340,26 @@ namespace EGH01DB.Types
                 {
                     SqlParameter parm = new SqlParameter("@КоэфСорбции", SqlDbType.Float);
                     parm.Value = ground_type.sorption;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфКапВлагоемкости", SqlDbType.Float);
+                    parm.Value = ground_type.watercapacity;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ВлажностьГрунта", SqlDbType.Float);
+                    parm.Value = ground_type.soilmoisture;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфАверьянова", SqlDbType.Float);
+                    parm.Value = ground_type.аveryanovfactor;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Водопроницаемость", SqlDbType.Float);
+                    parm.Value = ground_type.permeability;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -370,14 +417,18 @@ namespace EGH01DB.Types
              XmlDocument doc = new XmlDocument();
              XmlElement rc = doc.CreateElement("GroundType");
              if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
-             rc.SetAttribute("type_code",      this.type_code.ToString());
-             rc.SetAttribute("name",           this.name);
-             rc.SetAttribute("porosity",       this.porosity.ToString());
-             rc.SetAttribute("holdmigration",  this.holdmigration.ToString());
-             rc.SetAttribute("waterfilter",    this.waterfilter.ToString());
-             rc.SetAttribute("diffusion",      this.diffusion.ToString());
-             rc.SetAttribute("distribution",   this.distribution.ToString());
-             rc.SetAttribute("sorption",       this.sorption.ToString());
+             rc.SetAttribute("type_code",       this.type_code.ToString());
+             rc.SetAttribute("name",            this.name);
+             rc.SetAttribute("porosity",        this.porosity.ToString());
+             rc.SetAttribute("holdmigration",   this.holdmigration.ToString());
+             rc.SetAttribute("waterfilter",     this.waterfilter.ToString());
+             rc.SetAttribute("diffusion",       this.diffusion.ToString());
+             rc.SetAttribute("distribution",    this.distribution.ToString());
+             rc.SetAttribute("sorption",        this.sorption.ToString());
+             rc.SetAttribute("watercapacity",   this.watercapacity.ToString());
+             rc.SetAttribute("soilmoisture",    this.soilmoisture.ToString());
+             rc.SetAttribute("аveryanovfactor", this.аveryanovfactor.ToString());
+             rc.SetAttribute("permeability",    this.permeability.ToString());
              return (XmlNode)rc;
         }
 

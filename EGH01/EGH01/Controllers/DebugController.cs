@@ -477,6 +477,12 @@ namespace EGH01.Controllers
                 //float diffusion = 3.0f;
                 //float distribution = 3.0f;
                 //float sorption = 30.0f;
+
+                //float watercapacity = 50.0f;
+                //float soilmoisture = 3.0f;
+                //float аveryanovfactor = 3.0f;
+                //float permeability = 30.0f;
+
                 //GroundType gt = new GroundType((int)type_code,
                 //                                (string)name,
                 //                                (float)porosity,
@@ -484,7 +490,11 @@ namespace EGH01.Controllers
                 //                                (float)waterfilter,
                 //                                (float)diffusion,
                 //                                (float)distribution,
-                //                                (float)sorption);
+                //                                (float)sorption,
+                //                                (float)watercapacity,
+                //                                (float)soilmoisture,
+                //                                (float)аveryanovfactor,
+                //                                (float)permeability);
                 //if (GroundType.Create(db, gt))
                 {
                     int k = 1;
@@ -504,6 +514,12 @@ namespace EGH01.Controllers
                 //double diffusion = 3.1f;
                 //double distribution = 3.0f;
                 //double sorption = 30.6f;
+
+                //float watercapacity = 200.0f;
+                //float soilmoisture = 13.0f;
+                //float аveryanovfactor = 23.0f;
+                //float permeability = 300.0f;
+
                 //GroundType gt = new GroundType((int)type_code,
                 //                                (string)name,
                 //                                (float)porosity,
@@ -511,7 +527,11 @@ namespace EGH01.Controllers
                 //                                (float)waterfilter,
                 //                                (float)diffusion,
                 //                                (float)distribution,
-                //                                (float)sorption);
+                //                                (float)sorption,
+                //                                (float)watercapacity,
+                //                                (float)soilmoisture,
+                //                                (float)аveryanovfactor,
+                //                                (float)permeability);
                 //if (GroundType.Update(db, gt))
                 {
                     int k = 1;
@@ -524,7 +544,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //List<GroundType> list = new List<GroundType>();
-                // if (Helper.GetListGroundType(db, ref list))    
+                //if (Helper.GetListGroundType(db, ref list))    
                 {
                     int k = 1;
                 };
