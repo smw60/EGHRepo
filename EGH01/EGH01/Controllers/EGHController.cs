@@ -12,6 +12,7 @@ namespace EGH01.Controllers
         // GET: /EGH/
         public ActionResult Index()
         {
+            ViewBag.EGHLayout = "EGH";
             return View();
         }
 	}
