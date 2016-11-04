@@ -43,7 +43,14 @@
 
     }
 
+    List<EGH01DB.Types.District> list_district = new List<EGH01DB.Types.District>();
+    ViewBag.list_district = new List<SelectListItem>();
+    if (@Model != null)
+    {
+        Helper.GetListDistrict(db, ref list_district);
+        list_district.ForEach(o => ViewBag.list_district.Add(new SelectListItem { Text = o.district, Value = o.code.ToString() }));
 
+    }
 
 
 }
@@ -113,9 +120,11 @@
                 <input class="boxdata-input-50" type="text" name="Lng_s" value="@Model.coordinates.lng.s.ToString()" min="-90" max="90" />
             </p>
             <p>
-                <label class="boxdata-label-30">Район(список)</label>  @Html.DropDownList("list_region")
+                <label class="boxdata-label-30">Район</label>  @Html.DropDownList("list_region")
             </p>
-
+            <p>
+                <label class="boxdata-label-30">Область </label>  @Html.DropDownList("list_district")
+            </p>
             <p>
                 <label class="boxdata-label-30"> Адресс объекта </label>
                 <input class="boxdata-input-50" type="text" name="Adress" value="@Model.address" />

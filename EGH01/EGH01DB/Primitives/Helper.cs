@@ -263,6 +263,39 @@ namespace EGH01DB.Primitives
 
             }
         }
+        static public bool GetListDistrict(EGH01DB.IDBContext dbcontext, ref List<District> list_district)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetDistrictListFull", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    list_district = new List<District>();
+                    while (reader.Read())
+                    {
+                        Region region = new Region((int)reader["КодОбласти"], (string)reader["Область"]);
+                        District district = new District((int)reader["КодРайона"], region, (string)reader["Район"]);
+                        list_district.Add(district);
+                    }
+                    rc = list_district.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+
+            }
+        }
         static public bool GetListRiskObjectType(EGH01DB.IDBContext dbcontext, ref List<RiskObjectType> list_type)
         {
             bool rc = false;

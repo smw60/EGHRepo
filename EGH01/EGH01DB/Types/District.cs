@@ -31,7 +31,7 @@ namespace EGH01DB.Types
         }
         public District(int region_code, String name)
         {
-            this.code = 1;
+            this.code = region_code;
             this.region = new Region();
             this.district = name;
         }

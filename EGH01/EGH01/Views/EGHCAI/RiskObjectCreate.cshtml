@@ -43,26 +43,14 @@
 
     }
 
-    //List<EGH01DB.Types.District> list_district = new List<EGH01DB.Types.District>();
-    //ViewBag.list_district = new List<SelectListItem>();
-    //if (@Model != null)
-    //{
-    //    Helper.GetListDistrict(@Model, list_region., ref list_district);
-    //    list_district.ForEach(o => ViewBag.list_region.Add(new SelectListItem { Text = o.district, Value = o.code.ToString() }));
+    List<EGH01DB.Types.District> list_district = new List<EGH01DB.Types.District>();
+    ViewBag.list_district = new List<SelectListItem>();
+    if (@Model != null)
+    {
+        Helper.GetListDistrict(@Model,ref list_district);
+        list_district.ForEach(o => ViewBag.list_district.Add(new SelectListItem { Text = o.district, Value = o.code.ToString() }));
 
-    //}
-
-    //List<EGH01DB.Types.CadastreType> list_cadastreType = new List<EGH01DB.Types.CadastreType>();
-    //ViewBag.list_cadastreType = new List<SelectListItem>();
-    //if (@Model != null)
-    //{
-    //    Helper.GetListCadastreType(@Model, ref list_cadastreType);
-    //    list_cadastreType.ForEach(o => ViewBag.list_cadastreType.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
-
-    //}
-
-
-
+    }
 }
 @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCAI", Action = "RiskObject", Menu = head })
 @using (Html.BeginForm("RiskObjectCreate", "EGHCAI"))
@@ -155,9 +143,9 @@
             <input type="checkbox" class="boxdata-label-30" name="watertreatmentcollect" value="true">Резервуар для сбора проливов
         </p>
         </p>
-        @*<p>
-                <label class="boxdata-label-30">Область(Список)</label>@Html.DropDownList("list_district")
-            </p>*@
+        <p>
+                <label class="boxdata-label-30">Область</label>@Html.DropDownList("list_district")
+            </p>
 
     </div>
         @Html.Partial("_TypeLineMenu", create)
