@@ -85,7 +85,24 @@ namespace EGH01DB.Primitives
                         double diffusion = (double)reader["КоэфДиффузии"];
                         double distribution = (double)reader["КоэфРаспределения"];
                         double sorption = (double)reader["КоэфСорбции"];
-                        list_type.Add(new GroundType((int)code, (string)name, (float)porosity, (float)holdmigration, (float)waterfilter, (float)diffusion, (float)distribution, (float)sorption));
+
+                        double watercapacity = (double)reader["КоэфКапВлагоемкости"];
+                        double soilmoisture = (double)reader["ВлажностьГрунта"];
+                        double аveryanovfactor = (double)reader["КоэфАверьянова"];
+                        double permeability = (double)reader["Водопроницаемость"];
+
+                        list_type.Add(new GroundType((int)code, 
+                                                    (string)name, 
+                                                    (float)porosity, 
+                                                    (float)holdmigration, 
+                                                    (float)waterfilter, 
+                                                    (float)diffusion, 
+                                                    (float)distribution, 
+                                                    (float)sorption,
+                                                    (float)watercapacity,
+                                                    (float)soilmoisture,
+                                                    (float)аveryanovfactor,
+                                                    (float)permeability));
                     }
                     rc = list_type.Count > 0;
                     reader.Close();
@@ -174,7 +191,19 @@ namespace EGH01DB.Primitives
                         double density = (double)reader["Плотность"];
                         double viscosity = (double)reader["КинематическаяВязкость"];
                         double solubility = (double)reader["Растворимость"];
-                        list_type.Add(new PetrochemicalType((int)code, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility));
+                        double tension = (double)reader["КоэфНатяжения"];
+                        double dynamicviscosity = (double)reader["ДинамическаяВязкость"];
+                        double diffusion = (double)reader["КоэфДиффузии"];
+
+                        list_type.Add(new PetrochemicalType((int)code, 
+                                                            (string)name, 
+                                                            (float)boilingtemp, 
+                                                            (float)density, 
+                                                            (float)viscosity, 
+                                                            (float)solubility, 
+                                                            (float)tension,
+                                                            (float)dynamicviscosity,
+                                                            (float)diffusion));
                     }
                     rc = list_type.Count > 0;
                     reader.Close();

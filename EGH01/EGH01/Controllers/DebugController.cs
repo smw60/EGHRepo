@@ -335,8 +335,8 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                // PetrochemicalType pt = new PetrochemicalType();
-                // if (PetrochemicalType.GetByCode(db, 7, ref pt))
+                //PetrochemicalType pt = new PetrochemicalType();
+                //if (PetrochemicalType.GetByCode(db, 7, ref pt))
                 {
                     int k = 1;
                 };
@@ -347,9 +347,9 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                PetrochemicalType pt = new PetrochemicalType();
+                //PetrochemicalType pt = new PetrochemicalType();
                 //int k1 = 0;
-                // if (PetrochemicalType.GetNextCode(db, out k1))
+                //if (PetrochemicalType.GetNextCode(db, out k1))
                 {
                     int k = 1;
                 };
@@ -361,7 +361,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //PetrochemicalType pt = new PetrochemicalType();
-                //if (PetrochemicalType.DeleteByCode(db, 14))  // удален
+                //if (PetrochemicalType.DeleteByCode(db, 9))  // удален
                 {
                     int k = 1;
                 };
@@ -379,7 +379,12 @@ namespace EGH01.Controllers
                 //float density = 30.0f;
                 //float viscosity = 50.0f;
                 //float solubility = 3.0f;
-                //PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility) ;
+                //float tension = 12.4f;
+                //float dynamicviscosity = 0.8f;
+                //float diffusion = 16.2f;
+                //        PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, 
+                //            (float)boilingtemp, (float)density, (float)viscosity, 
+                //            (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion);
                 //if (PetrochemicalType.Create(db, pt))
                 {
                     int k = 1;
@@ -391,13 +396,19 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //int code_type =13;
+                //int code_type = 9;
                 //string name = "test1";
                 //float boilingtemp = 110.0f;
                 //float density = 35.0f;
                 //float viscosity = 50.0f;
                 //float solubility = 3.0f;
-                //PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility);
+                //float tension = 12.4f;
+                //float dynamicviscosity = 0.8f;
+                //float diffusion = 16.2f;
+
+                //PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, 
+                //                                (float)boilingtemp, (float)density, (float)viscosity, (float)solubility,
+                //                                (float)tension, (float)dynamicviscosity, (float)diffusion);
                 //if (PetrochemicalType.Update(db, pt))
                 //{
                 //    int k = 1;
@@ -409,8 +420,8 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //List<PetrochemicalType> list = new List<PetrochemicalType>();
-                //if (Helper.GetListPetrochemicalType(db, ref list))    
+                List<PetrochemicalType> list = new List<PetrochemicalType>();
+                if (Helper.GetListPetrochemicalType(db, ref list))    
                 {
                     int k = 1;
                 };
@@ -543,8 +554,8 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //List<GroundType> list = new List<GroundType>();
-                //if (Helper.GetListGroundType(db, ref list))    
+                List<GroundType> list = new List<GroundType>();
+                if (Helper.GetListGroundType(db, ref list))    
                 {
                     int k = 1;
                 };
