@@ -1,0 +1,112 @@
+﻿@using EGH01.Core;
+@using EGH01.Models.EGH;
+@using EGH01DB.Primitives;
+@using EGH01DB.Types;
+@model EGH01DB.RGEContext
+
+@{
+
+    Layout = "~/Views/Shared/EGHLayout.cshtml";
+    Menu.MenuItem mitem =  new Menu.MenuItem("Географическая точка", "Forecast.Point", true);
+    Menu start = new Menu(
+                          new Menu.MenuItem("Прогноз", "Forecast.Forecast", true),
+                          new Menu.MenuItem("Отказаться", "Forecast.Cancel", true),
+                          mitem 
+                        );
+
+
+    List<EGH01DB.Types.PetrochemicalType> ptl = new List<EGH01DB.Types.PetrochemicalType>();
+    ViewBag.petrochemicaltype = new List<SelectListItem>();
+    if (Model != null)
+    {
+        if (Helper.GetListPetrochemicalType(Model, ref ptl))
+        {
+            ptl.ForEach(o => ViewBag.petrochemicaltype.Add(new SelectListItem { Text = o.name, Value = o.code_type.ToString() }));
+        }
+    }
+
+
+    Object obj = new { @class = "boxdata-input-30" };
+    ViewBag.incidenttype = new List<SelectListItem>();
+
+    if (Model != null)
+    {
+
+        EGH01DB.Types.IncidentTypeList itl = new EGH01DB.Types.IncidentTypeList(Model);
+        itl.ForEach(o => ViewBag.incidenttype.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+    }
+
+}
+
+@using (Html.BeginForm("Forecast", "EGHRGE"))
+{
+
+    <div class="box">
+        <div class="boxdata">
+            <label class="boxdata-label-30"> Дата инцидента </label>
+            <input class="boxdata-input-30" type="date" name="date" />
+        </div>
+        <div class="boxdata">
+            <label class="boxdata-label-30"> Дата регистрации </label>
+            <input class="boxdata-input-30" type="date" name="date_message" />
+        </div>
+        <div class="boxdata">
+            <label class="boxdata-label-30">Тип нефтепродукта</label>
+            <span class="boxdata-input-30"> @Html.DropDownList("petrochemicaltype") </span>
+        </div>
+        <div class="boxdata">
+            <label class="boxdata-label-30">Тип инцидента</label>
+            <span class="boxdata-input-30"> @Html.DropDownList("incidenttype") </span>
+        </div>
+        <div class="boxdata">
+            <label class="boxdata-label-30">Объем пролива</label>
+            <input class="boxdata-input-30" type="number" name="volume" min="0.0" max="10000.0" step="0.1" />
+        </div>
+        @if (!mitem.Value.Equals("Forecast.Point"))
+        { 
+            <div class="box-fieldset">
+                <fieldset style="border:1px solid black; width:95%; margin:5px">
+                    <legend style="margin:10px;"></legend>
+                    <div class="boxdata">
+                        <label class="boxdata-label-30">Широта</label>
+                        <input class="boxdata-input-20" type="number" name="latitude_grad" min="-90" max="90" step="1" />
+                        <input class="boxdata-input-20" type="number" name="latitude_min" min="0" max="60" step="1" />
+                        <input class="boxdata-input-20" type="number" name="latitude_sec" min="0" max="60" step="0.0001" />
+                    </div>
+                        <div class="boxdata">
+                        <label class="boxdata-label-30">Долгота</label>
+                        <input class="boxdata-input-20" type="number" name="lngitude_grad" min="-180" max="1800" step="1" />
+                        <input class="boxdata-input-20" type="number" name="lngitude_min" min="0" max="60" step="1" />
+                        <input class="boxdata-input-20" type="number" name="lngitude_sec" min="0" max="60" step="0.0001" />
+                    </div>
+                </fieldset>
+            </div>
+        }
+        else
+        {
+            <form name="to" action="EGHRGE\Forecast" >
+                <fieldset class="box-fieldset" style="border:1px solid black; width:95%; margin:5px" form="to">
+                    <legend style="margin:10px;">  </legend>
+
+                    <input type="submit" />
+
+                </fieldset>
+            </form>
+
+        }  
+        
+
+       @Html.Partial("_TypeLineMenu", start)
+     </div>
+
+
+}
+<fieldset  style="border:1px solid black;" >
+    <legend style="margin: 10px; color: black; "> xxxx </legend>
+
+    <input type="submit" />
+
+</fieldset>
+
+<h2>Forecast</h2>
+

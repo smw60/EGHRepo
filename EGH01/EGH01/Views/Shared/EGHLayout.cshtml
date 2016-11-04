@@ -27,7 +27,10 @@
               @if (ViewBag.EGHLayout == "RGE")
                 {
                     <h2>Прогноз</h2>
-
+                                  }
+                else if (ViewBag.EGHLayout == "EGH")
+                {
+                    <h2>Экспертная система</h2>
                 }
                 else if (ViewBag.EGHLayout == "CEQ")
                 {
@@ -49,6 +52,10 @@
                 {
                     <h2>Техногенные объекты</h2>
                 }
+              else if (ViewBag.EGHLayout =="RGE.IncidentType")
+                {
+                    <h2>Типы инцидентов</h2>
+                                   }
             </div>
             <div class=" col-xs-3">
                 <!--Главное меню-->
@@ -67,14 +74,9 @@
                     </li>
                 </ul>
             </div>
-            @*<div class="navbar-brand ">
-                <a href="/"><img src="~/Resources/Layout_Mobile_Whiteframe1.png" alt="EGH" /></a>
-                              
-            </div>*@            
-            <!--Главное меню-->
+                        <!--Главное меню-->
             <ul class="navbar-nav nav navbar-right">
                 <li class="dropdown">
-                    @*<a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">Главное меню <span class="caret"></span></a>*@
                     <ul class="dropdown-menu" role="menu">
                         <li>@Html.ActionLink("EGHRGE-Прогноз", "Index", "EGHRGE")  </li>
                         <li>@Html.ActionLink("EGHGEA-Оценка огнозируемого состояния", "Index", "EGHCEQ")  </li>
@@ -108,7 +110,7 @@
                             <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы грунтов", "IncidentType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Категории земли", "IncidentType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Коэффициент растекания", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Коэффициент растекания", "SreadingCoefficient", "EGHRGE")</li>
                         </ul>
                     </li>
 
@@ -161,9 +163,28 @@
             .footer {
                 text-align: right;
             }
+            /*
+                .footer_lnk { 
+                text-align: left; 
+                color: #125213; 
+                float: left; 
+                padding: 0 5px; 
+                   text-decoration: none; 
+                  font-weight: bold; 
+                }*/
+            .footer__lnk {
+                text-align: left;
+                color: #125213;
+                float: left;
+                padding: 0 5px;
+                text-decoration: none;
+                font-weight: bold;
+            }
         </style>
-
+      
         <div id="footer">
+            <a href="Developers_page\developers.html" class="footer__lnk ">Разработчики</a>
+            <a href="Developers_page\shema.html" class="footer__lnk ">Система ЭС</a>
             &copy; Государственное предприятие "НПЦ по геологии"
         </div>
     </div>
@@ -173,58 +194,7 @@
         @RenderSection("scripts", required: false)
 </body>
 </html>
-
 <<<<<<< HEAD
-
-
 =======
->>>>>>> e03cd81df564ad90a7c0343f0fe326d4f7a0b65d
-@*<div class=" container proverka1">
-    @if (ViewBag.EGHLayout == "RGE")
-    {
-         @Html.ActionLink("Прогноз -- ",             "Index", "EGHRGE")
-         @Html.ActionLink("Опорные точки",           "Index", "EGHRGE")
-         @Html.ActionLink("Природоохранные объекты", "Index", "EGHGRE")
-         <article>
-             @Html.ActionLink("Справочники", "Index", "EGHGRE")
-             @Html.ActionLink("---Типы инцидентов", "IncidentType", "EGHRGE")
-         </article>
 
-
-    }
-    @if (ViewBag.EGHLayout == "CCO")
-    {
-       @Html.ActionLink("-Типы нефтепродуктов-", "PetrochemicalType", "EGHCCO")
-    }
-
-    @if (ViewBag.EGHLayout == "CAI")
-    {
-        @Html.ActionLink("---CAI", "RiskObject", "EGHCAI")
-
-    }
-
-
-
-
-
-        @Html.ActionLink("Прогноз -- ", "Index", "EGHRGE")
-        @Html.ActionLink("Опорные точки", "Index", "EGHGRE")
-        @Html.ActionLink("Оптимальные технологии реабилитации", "Index", "EGHGRE")
-        @Html.ActionLink("Типы инцидентов", "Index", "EGHRGE")
-
-
-        <div >
-            <span id="spravochniki" onclick="$('#spravochniki_list').toggle();">Справочники</span>
-            <ul id="spravochniki_list" style="display:none;">
-                <li>@Html.ActionLink("---справочник 1", "IncidentType", "EGHRGE")</li>
-                <li>@Html.ActionLink("---справочник 2", "IncidentType", "EGHRGE")</li>
-                <li>@Html.ActionLink("---справочник 3", "IncidentType", "EGHRGE")</li>
-                <li>@Html.ActionLink("---справочник 3", "IncidentType", "EGHRGE")</li>
-            </ul>
-        </div>
-
-    </div>*@
-<<<<<<< HEAD
-
-=======
->>>>>>> e03cd81df564ad90a7c0343f0fe326d4f7a0b65d
+>>>>>>> 55b123b86a5620f6bd8f300cd0b34898e8b28419

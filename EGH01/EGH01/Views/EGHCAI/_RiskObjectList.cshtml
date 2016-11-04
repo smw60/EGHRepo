@@ -16,14 +16,14 @@
 
     using (Html.BeginForm("RiskObject", "EGHCAI"))
     {
-      <div class="box">
+        <div class="box">
             <div class="boxdata">
                 <p><label class="boxdata-label-30">Код объекта</label> @t.id.ToString()</p>
                 <br>
                 <p><label class="boxdata-label-30">Наименование объекта  </label> @t.name</p>
                 <br>
                 <p><label class="boxdata-label-30">Тип объекта</label> @t.type.name.ToString()</p>
-                 <br>
+                <br>
                 <p><label class="boxdata-label-30">Область: </label> @t.region.name</p>
                 <br>
                 <p><label class="boxdata-label-30">Район : </label> @t.district.district</p>
@@ -54,27 +54,21 @@
                 <br>
                 <p><label class="boxdata-label-30">Глубина грунтовых вод (м): </label> @t.waterdeep.ToString()</p>
                 <br>
-             
+
                 <br>
                 @if (@t.watertreatmentcollect == true)
                 {
-
                     <p><label class="boxdata-label-30">Резервуар для сбора проливов</label></p>
-
                 }
                 <br>
                 @if (@t.watertreatment == true)
                 {
                     <p><label class="boxdata-label-30">Очистные сооружения для дождевого стока </label></p>
-
                 }
                 <input type="hidden" value="@t.id.ToString()" name="id">
-            
+
             </div>
             @Html.Partial("_TypeLineMenu", menu)
         </div>
-
     }
 }
-
- 
