@@ -124,7 +124,9 @@ namespace EGH01.Controllers
                         EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
                         if (EGH01DB.Types.GroundType.GetByCode(db, rs.list_groundType, out type_groud))
                         {
-                            GroundType ground_type = new GroundType(rs.list_groundType, type_groud.name, type_groud.porosity, type_groud.holdmigration, type_groud.waterfilter, type_groud.diffusion, type_groud.distribution, type_groud.diffusion);
+                            GroundType ground_type = 
+            new GroundType(rs.list_groundType, type_groud.name, type_groud.porosity, type_groud.holdmigration, type_groud.waterfilter, type_groud.diffusion,
+            type_groud.distribution, type_groud.sorption,type_groud.watercapacity,type_groud.soilmoisture, type_groud.аveryanovfactor, type_groud.permeability);
                             Point point = new Point(coordinates, ground_type, rs.waterdeep, rs.height);
                             EGH01DB.Types.RiskObjectType type = new EGH01DB.Types.RiskObjectType();
                             if (EGH01DB.Types.RiskObjectType.GetByCode(db, rs.selectlist, out type))
