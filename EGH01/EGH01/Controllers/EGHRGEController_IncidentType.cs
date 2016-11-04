@@ -18,8 +18,8 @@ namespace EGH01.Controllers
 
         public ActionResult IncidentType()
         {
+            ViewBag.EGHLayout = "RGE.IncidentType";
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"]??"Empty";
             try

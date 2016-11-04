@@ -27,7 +27,10 @@
               @if (ViewBag.EGHLayout == "RGE")
                 {
                     <h2>Прогноз</h2>
-
+                                  }
+                else if (ViewBag.EGHLayout == "EGH")
+                {
+                    <h2>Экспертная система</h2>
                 }
                 else if (ViewBag.EGHLayout == "CEQ")
                 {
@@ -49,6 +52,10 @@
                 {
                     <h2>Техногенные объекты</h2>
                 }
+              else if (ViewBag.EGHLayout =="RGE.IncidentType")
+                {
+                    <h2>Типы инцидентов</h2>
+                                   }
             </div>
             <div class=" col-xs-3">
                 <!--Главное меню-->
@@ -67,14 +74,9 @@
                     </li>
                 </ul>
             </div>
-            @*<div class="navbar-brand ">
-                <a href="/"><img src="~/Resources/Layout_Mobile_Whiteframe1.png" alt="EGH" /></a>
-                              
-            </div>*@            
-            <!--Главное меню-->
+                        <!--Главное меню-->
             <ul class="navbar-nav nav navbar-right">
                 <li class="dropdown">
-                    @*<a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">Главное меню <span class="caret"></span></a>*@
                     <ul class="dropdown-menu" role="menu">
                         <li>@Html.ActionLink("EGHRGE-Прогноз", "Index", "EGHRGE")  </li>
                         <li>@Html.ActionLink("EGHGEA-Оценка огнозируемого состояния", "Index", "EGHCEQ")  </li>
@@ -108,7 +110,7 @@
                             <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы грунтов", "IncidentType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Категории земли", "IncidentType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Коэффициент растекания", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Коэффициент растекания", "SreadingCoefficient", "EGHRGE")</li>
                         </ul>
                     </li>
 
@@ -161,9 +163,28 @@
             .footer {
                 text-align: right;
             }
+            /*
+                .footer_lnk { 
+                text-align: left; 
+                color: #125213; 
+                float: left; 
+                padding: 0 5px; 
+                   text-decoration: none; 
+                  font-weight: bold; 
+                }*/
+            .footer__lnk {
+                text-align: left;
+                color: #125213;
+                float: left;
+                padding: 0 5px;
+                text-decoration: none;
+                font-weight: bold;
+            }
         </style>
-
+      
         <div id="footer">
+            <a href="Developers_page\developers.html" class="footer__lnk ">Разработчики</a>
+            <a href="Developers_page\shema.html" class="footer__lnk ">Система ЭС</a>
             &copy; Государственное предприятие "НПЦ по геологии"
         </div>
     </div>
@@ -173,3 +194,7 @@
         @RenderSection("scripts", required: false)
 </body>
 </html>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 55b123b86a5620f6bd8f300cd0b34898e8b28419

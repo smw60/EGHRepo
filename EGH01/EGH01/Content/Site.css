@@ -39,7 +39,7 @@ input[type="checkbox"].input-validation-error {
 }
 .osnova {
     padding-top:10px;
-    background:#f3f3f3;
+    background:#eeffee; /*новый фон*/
 }
 .navbar-brand {
     padding:0px;
@@ -66,23 +66,9 @@ input[type="checkbox"].input-validation-error {
     margin-bottom:25px;
 }
 .carta {
-    background:white;
+    background:#013d02;
     height:500px;
 }
-.footer1{
-    /*min-height*/
-	background:#ffc65e;
-	padding-top:100px;
-	padding-bottom:20px;
-    color:#493F0B;
-    padding: 6px 6px 6px 20px;
-    border-top-width: 4px;
-    border-top-style: solid;
-    border-top-color: #C3C3C3;
-    margin-top:100px;
-    font-size: 80%;
-    color: #666666;
-    }
 /* Wrapper for page content to push down footer */
 #wrap {
 min-height: 100%;
@@ -112,7 +98,7 @@ height: -50px;
     touch-action: manipulation;
     cursor: pointer;
     background-image: none;
-    white-space: nowrap;
+    #013d02-space: nowrap;
     padding: 6px 16px;
     font-size: 13px;
     line-height: 1.846;
@@ -178,7 +164,7 @@ input[type="checkbox"].input-validation-error {
 
 /*заголовок */
 .title h2 {
-    color: white;
+    color: #013d02;
     font-size: 30px;
 	vertical-align:middle;
     font-weight:bold;
@@ -186,7 +172,7 @@ input[type="checkbox"].input-validation-error {
     }
 /*меню*/
 a.dropdown-toggle.btn.btn-link {
-    color: white;
+    color: #013d02;
     font-size: 20px;
 }
 /*второе меню*/
@@ -199,7 +185,7 @@ a.dropdown-toggle.btn.btn-link {
     position:relative;
    }
 
-/*    не трогать   смелов       */
+/**    не трогать   смелов       */
         body {
             color: black;
         }
@@ -215,9 +201,9 @@ a.dropdown-toggle.btn.btn-link {
 
         .boxmenu {
             box-sizing: border-box; /* границу включить в размер .box*/
-            background-color: darkgray;
+            background-color: #fc7a1e; /* беж*/
             overflow: hidden;
-            border: 2px solid darkgray;
+           border: 2px solid #ffbb40; /* светло-зелен.*/
             width: 85%;
             margin: 12px;
             padding: 1px;
@@ -226,9 +212,9 @@ a.dropdown-toggle.btn.btn-link {
 
         .boxconnect, .boxcainfo {
             box-sizing: border-box;
-            background-color: darkgray;
+            background-color: #fc7a1e;
             overflow: hidden;
-            border: 2px solid darkgray;
+           border: 2px solid #75cc72;
             width: 85%;
             margin: 12px;
             padding: 1px;
@@ -236,7 +222,7 @@ a.dropdown-toggle.btn.btn-link {
         }
 
         .boxconnect-boxitem, .boxcainfo-boxitem {
-            border: 2px solid white;
+            border: 2px solid #013d02; /* темно-зеленый*/
             padding: 12px;
         }
 
@@ -252,11 +238,11 @@ a.dropdown-toggle.btn.btn-link {
 
             .boxconnect-boxitem button, .boxcainfo-boxitem button {
                 float: right;
-                background-color: inherit;
-                color: white;
+                background-color: #f2fcbd;
+                color: #013d02;
                 font-weight: bold;
                 padding: 10px;
-                border: 2px solid white;
+                border: 2px solid #013d02;
                 margin: 5px;
             }
 
@@ -277,43 +263,43 @@ a.dropdown-toggle.btn.btn-link {
         }
 
         .boxmenu-buttonlist {
-            border: 2px solid white;
+            border: 2px solid #013d02;
             padding: 5px;
         }
 
         .box-close {
             float: right;
-            /*border:1px solid white;*/
-            background-color: inherit;
+            /*border:1px solid #013d02;*/
+            background-color: #f2fcbd;
             padding: 0px 0px 0px 0px;
             margin: 2px;
             border: none;
         }
 
         .boxmenu button {
-            background-color: inherit;
-            color: white;
+            background-color: #f2fcbd;
+            color: #013d02;
             font-weight: bold;
             margin: 5px;
             padding: 10px;
-            border: 2px solid white;
+            border: 2px solid #013d02;
         }
 
             .boxmenu button[disabled] {
-                background-color: inherit;
+                background-color: #f2fcbd;
                 color: gray;
                 font-weight: bold;
                 margin: 5px;
                 padding: 10px;
-                border: 2px solid white;
+                border: 2px solid #013d02;
             }
 
         .box {
             box-sizing: border-box; /* границу включить в размер .box*/
             overflow: hidden; /* все что вылезает за границу .box  - скрывать*/
-            border: 2px solid white;
+            border: 2px solid #013d02;
             width: 85%;
-            background-color: rgba(196, 183, 183, 0.75);
+            background-color: #f9df86; /**/
             margin: 12px;
             padding: 1px;
             min-width: 800px;
@@ -324,17 +310,17 @@ a.dropdown-toggle.btn.btn-link {
                 width: 100%;
             }
 
-        /*.boxdata label {
+        .boxdata label {
             width: 25%;
             float: left;
-        }*/
+        }
        
         .boxdata-label-30 {
-            width: 30%;
+            width: 1%;
             float: left;
         }
         .boxdata-label-40 {
-            width: 40%;
+            width: 70%;
             float: left;
         }
 
@@ -382,45 +368,45 @@ a.dropdown-toggle.btn.btn-link {
         }
 
         .boxdata input[disabled] {
-            background-color: inherit; /*rgba(196, 183, 183, 0.75);*/
+            background-color: #f2fcbd; /*кнопки светлосалатовые);*/
             color: black;
             border: none;
         }
 
         .boxcontrol {
             margin: 1px;
-            background-color: darkgray;
+            background-color: #fc7a1e;
             padding: 2px;
             text-align: right;
-            border: 1px solid white;
+            border: 1px solid #013d02;
             clear: both;
         }
 
             .boxcontrol input, button {
-                background-color: inherit;
-                color: white;
+                background-color: #f2fcbd;
+                color: #013d02;
                 font-weight: bold;
-                border: 1px solid white;
+                border: 1px solid #013d02;
             }
 
           .boxcontrol input[disabled], button[disabled] {
-                    background-color: inherit;
+                    background-color: #f2fcbd;
                     color: gray;
                     font-weight: bold;
-                    border: 1px solid white;
+                    border: 1px solid #013d02;
                }
 
         .boxmessage {
             display: none;
             margin: 1px;
-            background-color: darkgray;
+            background-color: #fcb86f;
             padding: 2px;
-            border: 1px double white;
+            border: 1px double #013d02;
             /*text-align:right;*/
         }
 
 
-/*    не трогать          */
+/*    не трогать          */*/*/
 
 
 /* Минимально необходимый CSS для footer*/
@@ -432,3 +418,5 @@ a.dropdown-toggle.btn.btn-link {
     background: #f9d675; /* Цвет фона */
     color: #0e210b; /* Цвет текста */
     width: 100%; /* Ширина слоя */
+
+    
