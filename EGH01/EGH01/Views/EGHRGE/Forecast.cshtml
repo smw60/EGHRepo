@@ -7,9 +7,11 @@
 @{
 
     Layout = "~/Views/Shared/EGHLayout.cshtml";
+    Menu.MenuItem mitem =  new Menu.MenuItem("Географическая точка", "Forecast.Point", true);
     Menu start = new Menu(
                           new Menu.MenuItem("Прогноз", "Forecast.Forecast", true),
-                          new Menu.MenuItem("Отказаться", "Forecast.Cancel", true)
+                          new Menu.MenuItem("Отказаться", "Forecast.Cancel", true),
+                          mitem 
                         );
 
 
@@ -54,35 +56,57 @@
         </div>
         <div class="boxdata">
             <label class="boxdata-label-30">Тип инцидента</label>
-            @Html.DropDownList("incidenttype")
+            <span class="boxdata-input-30"> @Html.DropDownList("incidenttype") </span>
         </div>
         <div class="boxdata">
             <label class="boxdata-label-30">Объем пролива</label>
             <input class="boxdata-input-30" type="number" name="volume" min="0.0" max="10000.0" step="0.1" />
         </div>
-        <div class="box-fieldset">
-            <fieldset style="border:1px solid black; width:95%; margin:5px">
-                <legend style="margin:10px;"></legend>
-                <div class="boxdata">
-                    <label class="boxdata-label-30">Широта</label>
-                    <input class="boxdata-input-30" type="number" name="latitude_grad" min="-90" max="90" step="1" />
-                    <input class="boxdata-input-30" type="number" name="latitude_min" min="0" max="60" step="1" />
-                    <input class="boxdata-input-30" type="number" name="latitude_sec" min="0" max="60" step="0.0001" />
-                </div>
-                <div class="boxdata">
-                    <label class="boxdata-label-30">Долгота</label>
-                    <input class="boxdata-input-30" type="number" name="lngitude_grad" min="-180" max="1800" step="1" />
-                    <input class="boxdata-input-30" type="number" name="lngitude_min" min="0" max="60" step="1" />
-                    <input class="boxdata-input-30" type="number" name="lngitude_sec" min="0" max="60" step="0.0001" />
-                </div>
-            </fieldset>
-        </div>
+        @if (!mitem.Value.Equals("Forecast.Point"))
+        { 
+            <div class="box-fieldset">
+                <fieldset style="border:1px solid black; width:95%; margin:5px">
+                    <legend style="margin:10px;"></legend>
+                    <div class="boxdata">
+                        <label class="boxdata-label-30">Широта</label>
+                        <input class="boxdata-input-20" type="number" name="latitude_grad" min="-90" max="90" step="1" />
+                        <input class="boxdata-input-20" type="number" name="latitude_min" min="0" max="60" step="1" />
+                        <input class="boxdata-input-20" type="number" name="latitude_sec" min="0" max="60" step="0.0001" />
+                    </div>
+                        <div class="boxdata">
+                        <label class="boxdata-label-30">Долгота</label>
+                        <input class="boxdata-input-20" type="number" name="lngitude_grad" min="-180" max="1800" step="1" />
+                        <input class="boxdata-input-20" type="number" name="lngitude_min" min="0" max="60" step="1" />
+                        <input class="boxdata-input-20" type="number" name="lngitude_sec" min="0" max="60" step="0.0001" />
+                    </div>
+                </fieldset>
+            </div>
+        }
+        else
+        {
+            <form name="to" action="EGHRGE\Forecast" >
+                <fieldset class="box-fieldset" style="border:1px solid black; width:95%; margin:5px" form="to">
+                    <legend style="margin:10px;">  </legend>
 
-    @Html.Partial("_TypeLineMenu", start)
+                    <input type="submit" />
+
+                </fieldset>
+            </form>
+
+        }  
+        
+
+       @Html.Partial("_TypeLineMenu", start)
      </div>
 
 
 }
+<fieldset  style="border:1px solid black;" >
+    <legend style="margin: 10px; color: black; "> xxxx </legend>
+
+    <input type="submit" />
+
+</fieldset>
 
 <h2>Forecast</h2>
 
