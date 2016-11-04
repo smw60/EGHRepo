@@ -44,7 +44,7 @@ namespace EGH01.Controllers
                             EGH01DB.Types.GroundType gt = new EGH01DB.Types.GroundType();
                             if (EGH01DB.Types.GroundType.GetByCode(db, c, out gt))
                             {
-                                view = View("GroudTypeDelete", gt);
+                                view = View("GroundTypeDelete", gt);
                             }
                         }
                     }
@@ -146,7 +146,35 @@ namespace EGH01.Controllers
             return view;
         }
 
+        [HttpPost]
+        public ActionResult GroundTypeDelete(int type_code)
+        {
+            RGEContext db = null;
+            ViewBag.EGHLayout = "RGE";
+            ActionResult view = View("Index");
+            string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
+            try
+            {
+                db = new RGEContext();
 
+                if (menuitem.Equals("GroundType.Delete.Delete"))
+                {
+                    if (EGH01DB.Types.GroundType.DeleteByCode(db, type_code)) view = View("GroundType", db);
+                }
+                else if (menuitem.Equals("GroundType.Delete.Cancel")) view = View("GroundType", db);
+
+            }
+            catch (RGEContext.Exception e)
+            {
+                ViewBag.msg = e.message;
+            }
+            catch (Exception e)
+            {
+                ViewBag.msg = e.Message;
+            }
+
+            return view;
+        }
 
 
 
