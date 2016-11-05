@@ -12,10 +12,17 @@
                           new Menu.MenuItem("Отказаться", "GroundType.Cancel", true)
                         );
 
+    Menu create = new Menu(
+                          new Menu.MenuItem("Создать", "GroundType.Create.Create", true),
+                          new Menu.MenuItem("Отказаться", "GroundType.Create.Cancel", true)
+                        );
+
 }
 
-@using (Html.BeginForm("GroundType", "EGHRGE"))
+@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHRGE", Action = "GroundType", Menu = start})
+@using (Html.BeginForm("GroundTypeCreate", "EGHRGE"))
 {
+
 
     <div class="box">
         <div class="boxdata">
@@ -28,29 +35,29 @@
         </div>
         <div class="boxdata">
             <label class="boxdata-label-30">Влажность</label>
-            <input class="boxdata-input-30" type="number" name="porosity" step="0.01" />
+            <input class="boxdata-input-30" type="number" name="soilmoisture" step="0.1" />
         </div>
         <div class="boxdata">
             <label class="boxdata-label-30">Влагоемкость</label>
-            <input class="boxdata-input-30" type="number" name="porosity" step="0.01" />
+            <input class="boxdata-input-30" type="number" name="watercapacity" step="0.1" />
         </div>
         <div class="boxdata">
             <label class="boxdata-label-30">Коэффициент фильтрации</label>
-            <input class="boxdata-input-30" type="number" name="waterfilter" step="0.01" />
+            <input class="boxdata-input-30" type="number" name="waterfilter" step="0.1" />
         </div>
         <div class="boxdata">
             <label class="boxdata-label-30">Коэффициент Аверьянова</label>
-            <input class="boxdata-input-30" type="number" name="porosity" step="0.01" />
+            <input class="boxdata-input-30" type="number" name="аveryanovfactor" step="0.1" />
         </div>
         <div class="boxdata">
             <label class="boxdata-label-30">Коэффициент задержки нефтепродукта</label>
-            <input class="boxdata-input-30" type="number" name="waterfilter" step="0.01" />
+            <input class="boxdata-input-30" type="number" name="holdmigration" step="0.1" />
         </div>
 
 
-        @Html.Partial("_TypeLineMenu", start)
+        
     </div>
-
+    @Html.Partial("_TypeLineMenu", create)
 
 }
 

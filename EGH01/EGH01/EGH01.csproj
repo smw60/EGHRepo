@@ -287,6 +287,7 @@
     <Content Include="Views\EGHRGE\_GroundTypeList.cshtml" />
     <Content Include="Views\EGHRGE\SreadingCoefficient.cshtml" />
     <Content Include="Views\EGHRGE\_SreadingCoefficientList.cshtml" />
+    <Content Include="Views\EGHRGE\GroundTypeDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

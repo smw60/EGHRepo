@@ -21,19 +21,19 @@
 
     <div class="box">
         <div class="boxdata">
-            <p>
+            <div class="boxdata">
                 <label class="boxdata-label-30">Код типа нефтепродукта</label>
-                <label>@Model.code_type.ToString()</label>
-            </p>
-            <p>
+                @Model.code_type.ToString()
+                <input type="hidden" value="@Model.code_type.ToString()" name="type_code">
+            </div>
+            <div class="boxdata">
                 <label class="boxdata-label-30">Наименование нефтепродукта</label>
-                <label>@Model.name</label>
-            </p>
-            <input type="hidden" value="@Model.code_type.ToString()" name="type_code">
-        </div>
+                @Model.name
+            </div>
+         </div>
 
         @Html.Partial("_TypeLineMenu", delete)
 
-    </div>
+     </div>
 }
 
