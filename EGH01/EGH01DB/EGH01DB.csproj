@@ -49,6 +49,7 @@
     <Compile Include="Points\AnchorPoint.cs" />
     <Compile Include="Points\SpreadPoint.cs" />
     <Compile Include="Primitives\Coordinates.cs" />
+    <Compile Include="Primitives\Helper1.cs" />
     <Compile Include="Types\CadastreType.cs" />
     <Compile Include="Types\District.cs" />
     <Compile Include="Types\EcoObjectType.cs" />

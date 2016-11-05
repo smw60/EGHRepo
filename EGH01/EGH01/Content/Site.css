@@ -186,11 +186,13 @@ a.dropdown-toggle.btn.btn-link {
    }
 
 /**    не трогать   смелов       */
+      
         body {
             color: black;
         }
 
-        *::after {
+      
+          *::after {
             content: "";
         }
 

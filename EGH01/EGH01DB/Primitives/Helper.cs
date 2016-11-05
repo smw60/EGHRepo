@@ -14,7 +14,7 @@ using EGH01DB.Points;
 
 namespace EGH01DB.Primitives
 {
-    public class Helper
+    public partial class Helper
     {
 
         static public bool GetListIncidentType(EGH01DB.IDBContext dbcontext, ref List<IncidentType> list_type)
