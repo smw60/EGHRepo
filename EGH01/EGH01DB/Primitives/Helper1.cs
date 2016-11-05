@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Xml;
+using System.Globalization;
 using EGH01DB.Types;
 using EGH01DB.Objects;
 using EGH01DB.Points;
@@ -15,6 +16,12 @@ namespace EGH01DB.Primitives
     public partial class  Helper
     {
 
+        static public bool FloatTryParse(string s, out float f)
+        {
+
+            return float.TryParse(s, NumberStyles.Any, new CultureInfo("en-US"), out f); 
+        }
+        
          // smw60 - не законченный код 
         static public bool GetListRiskObjectByLike(EGH01DB.IDBContext dbcontext, string findstring, ref List<RiskObject> list_type)
         {

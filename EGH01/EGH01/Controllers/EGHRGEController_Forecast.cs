@@ -22,7 +22,7 @@ namespace EGH01.Controllers
             string strvolume = this.HttpContext.Request.Params["volume"] ?? "Empty";
             float volume = 0.1f;
 
-            if (!float.TryParse(strvolume, NumberStyles.Any, new CultureInfo("en-US"), out volume))
+            if (!Helper.FloatTryParse(strvolume,  out volume))
             {
                 volume = 0.0f;
             }
