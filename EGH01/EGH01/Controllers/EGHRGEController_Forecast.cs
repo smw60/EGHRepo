@@ -9,7 +9,7 @@ using System.Xml.Linq;
 using EGH01DB;
 using EGH01DB.Primitives;
 using EGH01DB.Types;
-
+using System.Globalization;
 namespace EGH01.Controllers
 {
     public partial  class EGHRGEController: Controller
@@ -19,6 +19,14 @@ namespace EGH01.Controllers
             RGEContext db = null;
             ActionResult view = View("Index");
             ViewBag.EGHLayout = "RGE.Forecast";
+            string strvolume = this.HttpContext.Request.Params["volume"] ?? "Empty";
+            float volume = 0.1f;
+
+            if (!float.TryParse(strvolume, NumberStyles.Any, new CultureInfo("en-US"), out volume))
+            {
+                volume = 0.0f;
+            }
+
             try
             {
                 db = new RGEContext();
