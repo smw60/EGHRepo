@@ -1,10 +1,10 @@
 use EGH;
 go
 
-if OBJECT_ID('dbo.Область_Район_ТехногенныйОбъект') is not null  drop function dbo.Область_Район_ТехногенныйОбъект;
+if OBJECT_ID('EGH.Область_Район_ТехногенныйОбъект') is not null  drop function EGH.Область_Район_ТехногенныйОбъект;
 go
 
-create function dbo.Область_Район_ТехногенныйОбъект(@p nvarchar(200))
+create function EGH.Область_Район_ТехногенныйОбъект(@p nvarchar(200))
 returns table as
 return (
 	     with likefind as 
@@ -34,24 +34,24 @@ go
 --select Область, Район, IdТехногенногоОбъекта  from dbo.Область_Район_ТехногенныйОбъект('%Бар%Брест%азс%') 
 --select Область, Район, IdТехногенногоОбъекта  from dbo.Область_Район_ТехногенныйОбъект('%Бар%%')
 
-if OBJECT_ID('dbo.GetRiskObjectListByLike') is not null  drop function dbo.GetRiskObjectListByLike;
+if OBJECT_ID('EGH.GetRiskObjectListByLike') is not null  drop procedure EGH.GetRiskObjectListByLike;
 go
-create procedure GetRiskObjectListByLike
+create procedure EGH.GetRiskObjectListByLike
    @findstring nvarchar(200)
 as begin
    declare @p nvarchar(200) = concat('%', replace(rtrim(ltrim(@findstring)), ' ', '%'), '%');  
    
    select Область, Район, IdТехногенногоОбъекта 
-   from dbo.Область_Район_ТехногенныйОбъект(concat('%', replace(rtrim(ltrim(@findstring)), ' ', '%'), '%'));
+   from EGH.Область_Район_ТехногенныйОбъект(concat('%', replace(rtrim(ltrim(@findstring)), ' ', '%'), '%'));
    
    return @@rowcount;  
 end;     
 go
 
 --declare @rc int = -1;   
---exec @rc = GetRiskObjectListByLike 'Брест';
+--exec @rc = EGH.GetRiskObjectListByLike 'Брест';
 --select @rc
---exec @rc = GetRiskObjectListByLike 'азс';
+--exec @rc = EGH.GetRiskObjectListByLike 'азс';
 --select @rc
 --go
 
