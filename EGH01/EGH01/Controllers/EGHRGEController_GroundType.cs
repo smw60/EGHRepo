@@ -10,6 +10,7 @@ using EGH01.Models.EGHRGE;
 using EGH01DB;
 using EGH01DB.Primitives;
 using EGH01DB.Types;
+using System.Globalization;
 
 namespace EGH01.Controllers
 {
@@ -112,18 +113,23 @@ namespace EGH01.Controllers
                     //if (EGH01DB.Types.GroundType.GetNextCode(db, out type_code))
                     //{
 
-                        float diffusion = 1;
-                        float distribution = 1;
-                        float sorption = 1;
-                        float permeability = 1;
-                        String name = gt.name;
-                        float porosity = gt.porosity;
-                        float soilmoisture = gt.soilmoisture;
-                        float watercapacity = gt.watercapacity;
-                        float holdmigration = gt.holdmigration;
-                        float waterfilter = gt.waterfilter;
-                        float аveryanovfactor = gt.аveryanovfactor;
-                        EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor,permeability);
+                    float diffusion = 0.2f;
+                    float distribution = 0.2f;
+                    float sorption = 0.2f;
+                    float permeability = 0.2f;
+                    String name = gt.name;
+                    string strporosity = this.HttpContext.Request.Params["porosity"] ?? "Empty";
+                    float porosity = 0.1f;
+                    if (!float.TryParse(strporosity, NumberStyles.Any, new CultureInfo("en-US"), out porosity))
+                    {
+                        porosity = 0.0f;
+                    }
+                    float soilmoisture = 0.2f;
+                    float watercapacity = 0.2f;
+                    float holdmigration = 0.2f;
+                    float waterfilter = 0.2f;
+                    float аveryanovfactor = 0.2f;
+                    EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor,permeability);
 
                         if (EGH01DB.Types.GroundType.Create(db, ground_type))
                         {
