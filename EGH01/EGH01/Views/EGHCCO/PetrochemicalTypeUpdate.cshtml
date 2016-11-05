@@ -18,48 +18,47 @@
 
 @using (Html.BeginForm("PetrochemicalTypeUpdate", "EGHCCO"))
 {
-    
+
     <div class="box">
         <div class="boxdata">
-            <p>
-                <label class="boxdata-label-30" value="@Model.code_type">Код типа нефтепродукта</label>
-                <label class="boxdata-label-50">@Model.code_type</label>
-            </p>
-            <p>
+            <div class="boxdata">
+                <label class="boxdata-label-30">Код типа нефтепродукта</label>
+                @Model.code_type
+                <input type="hidden" value="@Model.code_type.ToString()" name="code_type">
+            </div>
+            <div class="boxdata">
                 <label class="boxdata-label-30">Наименование нефтепродукта</label>
                 <input class="boxdata-input-50" type="text" name="Name" value="@Model.name.ToString()" />
-            </p>
-            <p>
+            </div>
+            <div class="boxdata">
                 <label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С </label>
-                <input class="boxdata-input-50" type="number" name="Boilingtemp" value="@Model.boilingtemp.ToString()" />
-            </p>
-            <p>
+                <input class="boxdata-input-50" type="number" step="any" name="Boilingtemp" value="@Model.boilingtemp.ToString()" />
+            </div>
+            <div class="boxdata">
                 <label class="boxdata-label-30">Плотность, г/см<sup><small>3</small></sup></label>
-                <input class="boxdata-input-50" type="number" name="Density" value="@Model.density.ToString()" />
-            </p>
-            <p>
+                <input class="boxdata-input-50" type="number" step="any" name="Density" value="@Model.density.ToString()" />
+            </div>
+            <div class="boxdata">
                 <label class="boxdata-label-30">Кинематическая вязкость, мм<sup><small>2</small></sup>/см</label>
-                <input class="boxdata-input-50" type="number" name="Viscosity" value="@Model.viscosity.ToString()" />
-            </p>
-            <p>
+                <input class="boxdata-input-50" type="number" step="any" name="Viscosity" value="@Model.viscosity.ToString()" />
+            </div>
+            <div class="boxdata">
                 <label class="boxdata-label-30">Растворимость, млг/дм<sup><small>2</small></sup></label>
-                <input class="boxdata-input-50" type="number" name="Solubility" value="@Model.solubility.ToString()" />
-            </p>
-            <p>
+                <input class="boxdata-input-50" type="number" step="any" name="Solubility" value="@Model.solubility.ToString()" />
+            </div>
+            <div class="boxdata">
                 <label class="boxdata-label-30">Динамическая вязкость, кг/м*с</label>
-                <input class="boxdata-input-50" type="number" name="" value=" " />
-            </p>
-            <p>
+                <input class="boxdata-input-50" type="number" step="any" name="Dynamicviscosity" value="@Model.dynamicviscosity.ToString()" />
+            </div>
+            <div class="boxdata">
                 <label class="boxdata-label-30">Коэф. поверхностного натяжения, кг/с<sup><small>2</small></sup></label>
-                <input class="boxdata-input-50" type="number" name="" value=" " />
-            </p>
-            <p>
+                <input class="boxdata-input-50" type="number" step="any" name="Tension" value="@Model.tension.ToString()" />
+            </div>
+            <div class="boxdata">
                 <label class="boxdata-label-30">Коэф. диффузии, м<sup><small>2</small></sup>/с</label>
-                <input class="boxdata-input-50" type="number" name="" value=" " />
-            </p>
-            <p><input type="hidden" value="@Model.code_type.ToString()" name="code_type"></p>
+                <input class="boxdata-input-50" type="number" step="any" name="Diffusion" value="@Model.diffusion.ToString()" />
+            </div>
         </div>
-
         @Html.Partial("_TypeLineMenu", delete)
 
     </div>

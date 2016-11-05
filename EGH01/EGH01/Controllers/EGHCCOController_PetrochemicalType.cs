@@ -108,14 +108,18 @@ namespace EGH01.Controllers
                     int id = -1;
                     if (EGH01DB.Types.PetrochemicalType.GetNextCode(db, out id))
                     {
-                        int type_code = ptv.code_type;
+                        int    type_code = ptv.code_type;
                         string name = ptv.name;
-                        float boilingtemp = ptv.boilingtemp;
-                        float density = ptv.density;
-                        float viscosity = ptv.viscosity;
-                        float solubility =ptv.solubility;
+                        float  boilingtemp = ptv.boilingtemp;
+                        float  density = ptv.density;
+                        float  viscosity = ptv.viscosity;
+                        float  solubility = ptv.solubility;
+                        float  tension = ptv.tension;          
+                        float  dynamicviscosity = ptv.dynamicviscosity;
+                        float  diffusion = ptv.diffusion;          
                         //PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility) ;// закрыла пустышкой
-                        PetrochemicalType pt = new PetrochemicalType((int)type_code);
+                        PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, 
+                            (float)viscosity, (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion);
                         if (EGH01DB.Types.PetrochemicalType.Create(db, pt))
                         {
                             view = View("PetrochemicalType", db);
@@ -179,16 +183,17 @@ namespace EGH01.Controllers
                 if (menuitem.Equals("PetrochemicalType.Update.Update"))
                 {
 
-
                     int type_code = ptv.code_type;
                     string name = ptv.name;
                     float boilingtemp = ptv.boilingtemp;
                     float density = ptv.density;
                     float viscosity = ptv.viscosity;
                     float solubility = ptv.solubility;
+                    float tension = ptv.tension;
+                    float dynamicviscosity = ptv.dynamicviscosity;
+                    float diffusion = ptv.diffusion;     
                     //PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility);// закрыла пустышкой
-                    PetrochemicalType pt = new PetrochemicalType((int)type_code);
-
+                    PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion);
                     if (EGH01DB.Types.PetrochemicalType.Update(db, pt))
                         view = View("PetrochemicalType", db);
                 }
