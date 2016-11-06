@@ -37,28 +37,28 @@
             </p>
             <p>
                 <label class="boxdata-label-30">Пористость</label>
-                <input class="boxdata-input-50" type="text" name="porosity" value="@Model.porosity.ToString()" min="0" max="1" step="0.1" />
+                <input class="boxdata-input-50" type="number" name="porosity" value="@Model.porosity.ToString().Replace(',' , '.')" min="0" max="1" step="0.1" />
             </p>
             <p>
                 <label class="boxdata-label-30">Влажность</label>
-                <input class="boxdata-input-50" type="text" name="soilmoisture" value="@Model.soilmoisture.ToString()"step="0.1" />
+                <input class="boxdata-input-50" type="number" name="soilmoisture" value="@Model.soilmoisture.ToString().Replace(',' , '.')"step="0.1" />
             </p>
             <p>
                 <label class="boxdata-label-30">Влагоемкость</label>
-                <input class="boxdata-input-50" type="text" name="watercapacity" value="@Model.watercapacity.ToString()" step="0.1" />
+                <input class="boxdata-input-50" type="number" name="watercapacity" value="@Model.watercapacity.ToString().Replace(',' , '.')" step="0.1" />
             </p>
             <p>
                 <label class="boxdata-label-30">Коэффициент фильтрации</label>
-                <input class="boxdata-input-50" type="text" name="waterfilter" value="@Model.waterfilter.ToString()" step="0.1" />
+                <input class="boxdata-input-50" type="number" name="waterfilter" value="@Model.waterfilter.ToString().Replace(',' , '.')" step="0.1" />
             </p>
             <p>
                 <label class="boxdata-label-30">Коэффициент Аверьянова</label>
-                <input class="boxdata-input-50" type="text" name="аveryanovfactor" value="@Model.аveryanovfactor.ToString()" step="0.1" />
+                <input class="boxdata-input-50" type="number" name="аveryanovfactor" value="@Model.аveryanovfactor.ToString().Replace(',' , '.')" step="0.1" />
             </p>
 
             <p>
                 <label class="boxdata-label-30">Коэффициент задержки нефтепродукта</label>
-                <input class="boxdata-input-50" type="text" name="holdmigration" value="@Model.holdmigration.ToString()" step="0.1" />
+                <input class="boxdata-input-50" type="number" name="holdmigration" value="@Model.holdmigration.ToString().Replace(',' , '.')" step="0.1" />
             </p>
 
         </div>
