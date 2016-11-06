@@ -28,9 +28,11 @@
                 <br>
                 <p><label class="boxdata-label-30">Район : </label> @t.district.name</p>
                 <br>
-                <p><label class="boxdata-label-30">Координаты.Широта:</label>@t.coordinates.lat.d.ToString()<label>°</label>@t.coordinates.lat.m.ToString()<label>'</label>@t.coordinates.lat.s.ToString()<label>"</label></p>
-                <br>
-                <p><label class="boxdata-label-30">Координаты. Долгота:</label> @t.coordinates.lngitude.ToString()<label>°</label>@t.coordinates.lng.m.ToString()<label>'</label>@t.coordinates.lng.s.ToString()<label>"</label></p>
+           
+                 <p><label class="boxdata-label-30">Координаты. Широта:</label>@t.coordinates.lat.d.ToString() ° <label> </label>@t.coordinates.lat.m.ToString() ' <label> </label>@t.coordinates.lat.s.ToString() " </p>
+          <br>    
+                    <p><label class="boxdata-label-30">Координаты. Долгота:</label>@t.coordinates.lng.d.ToString() ° <label> </label>@t.coordinates.lng.m.ToString() ' <label> </label>@t.coordinates.lng.s.ToString() " </p>
+             
                 <br>
                 <p><label class="boxdata-label-30"> Адресс объекта</label> @t.address </p>
                 <br>
@@ -71,4 +73,4 @@
             @Html.Partial("_TypeLineMenu", menu)
         </div>
     }
-}
+            }
