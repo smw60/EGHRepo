@@ -6,22 +6,27 @@
     EGH01DB.RGEContext rge = (EGH01DB.RGEContext)Model;
     ChoiceRiskObjectContext context = (ChoiceRiskObjectContext)Model.GetViewContext("_ChoiceRiskObject");
     if (context == null) { Model.SaveViewContext("_ChoiceRiskObject", context = new ChoiceRiskObjectContext()); };
+    List<SelectListItem> riskobjectlist = null;
     if (context.Regim == ChoiceRiskObjectContext.REGIM.CHOICE)
     {
 
-        List<RiskObject> rol = new List<RiskObject>(); 
+        List<RiskObject> rol = new List<RiskObject>();
         
         if (RiskObjectsList.GetListRiskObjectByLike(Model, "Брест", ref rol))
         {
-            //ViewBag.riskobjectlist = new List<SelectListItem>();
-            //rol.ForEach(o =>st ViewBag.riskobjectli.Add(new SelectListItem {Text = o.name, Value = o.id.ToString()})); 
-            string[] a = new string[rol.Count];
-            for (int i = 0; i < a.Length; i++)
-            {
-                a[i] =  String.Format("{0} {1} {2}",  rol[i].region.name, rol[i].district.district, rol[i].name);
-            }
-
-                ViewBag.riskobjectlist = new MultiSelectList(a);
+            ViewBag.riskobjectlist = new List<SelectListItem>();
+            riskobjectlist = new List<SelectListItem>();
+            rol.ForEach(o =>riskobjectlist.Add(new SelectListItem {Text = o.name, Value = o.id.ToString()})); 
+            //string[] a = new string[rol.Count];
+            //   v = new string[rol.Count]; 
+            
+            //for (int i = 0; i < a.Length; i++)
+            //{
+            //    a[i] =  String.Format("{0} {1} {2}",  rol[i].region.name, rol[i].district.name, rol[i].name);
+            //    v[i] = rol[i].id.ToString();
+            //}
+           
+            //ViewBag.riskobjectlist = new MultiSelectList(a,v);
                 //rol.ForEach(o => ViewBag.riskobjectlist.Add(new SelectListItem { Text = o.name, Value = o.id.ToString() })); 
             
         }
@@ -48,10 +53,9 @@
         else if (context.Regim == ChoiceRiskObjectContext.REGIM.CHOICE)
         {
              <h2> CHOICE</h2>
-
-            @*@Html.DropDownList("riskobjectlist");*@
-            @Html.ListBox("riskobjectlist")
-            
+             @Html.ListBox("riskobjectlist", riskobjectlist, new { size = riskobjectlist.Count, width="85%"})
+            <section>
+            </section>
 
         }
         else if (context.Regim == ChoiceRiskObjectContext.REGIM.SET)

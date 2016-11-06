@@ -23,7 +23,7 @@ namespace EGH01.Controllers
             ViewBag.EGHLayout = "RGE.Forecast";
             string strvolume = this.HttpContext.Request.Params["volume"] ?? "Empty";
             string startfind = this.HttpContext.Request.Params["startfind"] ?? "Empty";
-
+            string riskobjectlist = this.HttpContext.Request.Params["riskobjectlist"] ?? "Empty";
             try
             {
                 context = new RGEContext(this);
