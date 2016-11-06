@@ -14,32 +14,32 @@ namespace EGH01DB.Types
     {
         public int            code   {get; private set; }   // код района
         public Region         region   {get; private set; }   // область
-        public string         district { get; private set; }   // наименование района
+        public string         name { get; private set; }   // наименование района
         static public District defaulttype {get { return new District(0, "Не определен");}}  // выдавать при ошибке  
       
         public District()
         {
             this.code = -1;
             this.region = new Region();
-            this.district = string.Empty;
+            this.name = string.Empty;
         }
         public District(int code)
         {
             this.code = code;
             this.region = new Region();
-            this.district = "";
+            this.name = "";
         }
         public District(int region_code, String name)
         {
             this.code = region_code;
             this.region = new Region();
-            this.district = name;
+            this.name = name;
         }
         public District(int code, Region region, String name)    
         {
             this.code = code;
             this.region = region;
-            this.district = name;
+            this.name = name;
         }
         static public bool Create(EGH01DB.IDBContext dbcontext, District district)
         {
@@ -56,7 +56,7 @@ namespace EGH01DB.Types
                 }
                 {
                     SqlParameter parm = new SqlParameter("@Район", SqlDbType.NVarChar);
-                    parm.Value = district.district;
+                    parm.Value = district.name;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -97,7 +97,7 @@ namespace EGH01DB.Types
                 }
                 {
                     SqlParameter parm = new SqlParameter("@Район", SqlDbType.NVarChar); 
-                    parm.Value = district.district;
+                    parm.Value = district.name;
                     cmd.Parameters.Add(parm);
                 }
 

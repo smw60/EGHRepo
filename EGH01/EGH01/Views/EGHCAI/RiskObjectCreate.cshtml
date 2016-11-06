@@ -48,7 +48,7 @@
     if (@Model != null)
     {
         Helper.GetListDistrict(@Model,ref list_district);
-        list_district.ForEach(o => ViewBag.list_district.Add(new SelectListItem { Text = o.district, Value = o.code.ToString() }));
+        list_district.ForEach(o => ViewBag.list_district.Add(new SelectListItem { Text = o.name, Value = o.code.ToString() }));
 
     }
 }

@@ -10,10 +10,20 @@
     {
 
         List<RiskObject> rol = new List<RiskObject>(); 
+        
         if (RiskObjectsList.GetListRiskObjectByLike(Model, "Брест", ref rol))
         {
-            ViewBag.riskobjectlist = new List<SelectListItem>();
-            rol.ForEach(o => ViewBag.riskobjectlist.Add(new SelectListItem {Text = o.name, Value = o.id.ToString()})); 
+            //ViewBag.riskobjectlist = new List<SelectListItem>();
+            //rol.ForEach(o =>st ViewBag.riskobjectli.Add(new SelectListItem {Text = o.name, Value = o.id.ToString()})); 
+            string[] a = new string[rol.Count];
+            for (int i = 0; i < a.Length; i++)
+            {
+                a[i] =  String.Format("{0} {1} {2}",  rol[i].region.name, rol[i].district.district, rol[i].name);
+            }
+
+                ViewBag.riskobjectlist = new MultiSelectList(a);
+                //rol.ForEach(o => ViewBag.riskobjectlist.Add(new SelectListItem { Text = o.name, Value = o.id.ToString() })); 
+            
         }
         
         
@@ -39,7 +49,9 @@
         {
              <h2> CHOICE</h2>
 
-            @Html.DropDownList("riskobjectlist");
+            @*@Html.DropDownList("riskobjectlist");*@
+            @Html.ListBox("riskobjectlist")
+            
 
         }
         else if (context.Regim == ChoiceRiskObjectContext.REGIM.SET)

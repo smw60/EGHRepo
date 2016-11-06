@@ -136,7 +136,7 @@ namespace EGH01.Controllers
                                 EGH01DB.Types.District risk_district = new EGH01DB.Types.District();
                                 if (EGH01DB.Types.District.GetByCode(db, rs.list_district, out risk_district))
                                 {
-                                    District district = new District(rs.list_district, risk_district.district);
+                                    District district = new District(rs.list_district, risk_district.name);
                                     EGH01DB.Types.Region risk_region = new EGH01DB.Types.Region();
                                     if (EGH01DB.Types.Region.GetByCode(db, rs.list_region, out risk_region))
                                     {
@@ -256,7 +256,7 @@ namespace EGH01.Controllers
                             EGH01DB.Types.District risk_district = new EGH01DB.Types.District();
                             if (EGH01DB.Types.District.GetByCode(db, itv.list_district, out risk_district))
                             {
-                                District district = new District(itv.list_district, risk_district.district); 
+                                District district = new District(itv.list_district, risk_district.name); 
                                 EGH01DB.Types.Region risk_region = new EGH01DB.Types.Region();
                                 if (EGH01DB.Types.Region.GetByCode(db, itv.list_region, out risk_region))
                                 {
