@@ -221,61 +221,65 @@ namespace EGH01.Controllers
                 if (menuitem.Equals("GroundType.Update.Update"))
                 {
 
-                    int type_code = -1;
-                    if (EGH01DB.Types.GroundType.GetNextCode(db, out type_code))
-                   {
-
-                    float diffusion = 0.2f;
-                    float distribution = 0.2f;
-                    float sorption = 0.2f;
-                    float permeability = 0.2f;
-                    String name = gt.name;
-                    string strporosity = this.HttpContext.Request.Params["porosity"] ?? "Empty";
-                    float porosity = 0.1f;
-                    if (!Helper.FloatTryParse(strporosity, out porosity))
-                    {
-                        porosity = 0.0f;
-                    }
-                    string strsoilmoisture = this.HttpContext.Request.Params["soilmoisture"] ?? "Empty";
-                    float soilmoisture = 0.1f;//влажность
-                    if (!Helper.FloatTryParse(strsoilmoisture, out soilmoisture))
-                    {
-                        soilmoisture = 0.0f;
-                    }
-                    string strwatercapacity = this.HttpContext.Request.Params["watercapacity"] ?? "Empty";
-                    float watercapacity = 0.1f;//влагоемкость
-                    if (!Helper.FloatTryParse(strwatercapacity, out watercapacity))
-                    {
-                        watercapacity = 0.0f;
-                    }
-                    string strholdmigration = this.HttpContext.Request.Params["holdmigration"] ?? "Empty";
-                    float holdmigration = 0.1f;//задержки
-                    if (!Helper.FloatTryParse(strholdmigration, out holdmigration))
-                    {
-                        holdmigration = 0.0f;
-                    }
-                    string strwaterfilter = this.HttpContext.Request.Params["waterfilter"] ?? "Empty";
-                    float waterfilter = 0.1f;//фильтрации
-                    if (!Helper.FloatTryParse(strwaterfilter, out waterfilter))
-                    {
-                        waterfilter = 0.0f;
-                    }
+                        int type_code = gt.type_code;
+                        float diffusion = 0.2f;
+                        float distribution = 0.2f;
+                        float sorption = 0.2f;
+                        float permeability = 0.2f;
+                        String name = gt.name;
+                        string strporosity = this.HttpContext.Request.Params["porosity"] ?? "Empty";
+                        float porosity = 0.1f;
+                        if (!Helper.FloatTryParse(strporosity, out porosity))
+                        {
+                            porosity = 0.0f;
+                        }
+                        string strsoilmoisture = this.HttpContext.Request.Params["soilmoisture"] ?? "Empty";
+                        float soilmoisture = 0.1f;//влажность
+                        if (!Helper.FloatTryParse(strsoilmoisture, out soilmoisture))
+                        {
+                            soilmoisture = 0.0f;
+                        }
+                        string strwatercapacity = this.HttpContext.Request.Params["watercapacity"] ?? "Empty";
+                        float watercapacity = 0.1f;//влагоемкость
+                        if (!Helper.FloatTryParse(strwatercapacity, out watercapacity))
+                        {
+                            watercapacity = 0.0f;
+                        }
+                        string strholdmigration = this.HttpContext.Request.Params["holdmigration"] ?? "Empty";
+                        float holdmigration = 0.1f;//задержки
+                        if (!Helper.FloatTryParse(strholdmigration, out holdmigration))
+                        {
+                            holdmigration = 0.0f;
+                        }
+                        string strwaterfilter = this.HttpContext.Request.Params["waterfilter"] ?? "Empty";
+                        float waterfilter = 0.1f;//фильтрации
+                        if (!Helper.FloatTryParse(strwaterfilter, out waterfilter))
+                        {
+                            waterfilter = 0.0f;
+                        }
                     string strаveryanovfactor = this.HttpContext.Request.Params["аveryanovfactor"] ?? "Empty";
                     float аveryanovfactor = 0.1f;//аверьянова коэф
                     if (!Helper.FloatTryParse(strаveryanovfactor, out аveryanovfactor))
                     {
                         аveryanovfactor = 0.0f;
                     }
-                    EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability);
-
-
-                    if (EGH01DB.Types.GroundType.Update(db, ground_type))
+                    GroundType gti = new GroundType((int)type_code,
+                                                    (string)name,
+                                                    (float)porosity,
+                                                    (float)holdmigration,
+                                                    (float)waterfilter,
+                                                    (float)diffusion,
+                                                    (float)distribution,
+                                                    (float)sorption,
+                                                    (float)watercapacity,
+                                                    (float)soilmoisture,
+                                                    (float)аveryanovfactor,
+                                                    (float)permeability);
+                    if (EGH01DB.Types.GroundType.Update(db, gti))
                     {
                         view = View("GroundType", db);
                     }
                 }
-
-              }
                 else if (menuitem.Equals("GroundType.Update.Cancel")) view = View("GroundType", db);
             }
             catch (RGEContext.Exception e)
