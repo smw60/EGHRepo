@@ -32,31 +32,32 @@
             </div>
             <div class="boxdata">
                 <label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С </label>
-                <input class="boxdata-input-50" type="number" step="any" name="Boilingtemp" value="@Model.boilingtemp.ToString()" />
+                <input class="boxdata-input-50" type="number" step="0.1" name="Boilingtemp" value="@Model.boilingtemp.ToString("F")" />
+                @*@Html.EditorFor(model => model.boilingtemp)*@
             </div>
             <div class="boxdata">
                 <label class="boxdata-label-30">Плотность, г/см<sup><small>3</small></sup></label>
-                <input class="boxdata-input-50" type="number" step="any" name="Density" value="@Model.density.ToString()" />
+                <input class="boxdata-input-50" type="number" step="0.1" name="Density" value="@Model.density.ToString()" />
             </div>
             <div class="boxdata">
                 <label class="boxdata-label-30">Кинематическая вязкость, мм<sup><small>2</small></sup>/см</label>
-                <input class="boxdata-input-50" type="number" step="any" name="Viscosity" value="@Model.viscosity.ToString()" />
+                <input class="boxdata-input-50" type="number" step="0.1" name="Viscosity" value="@Model.viscosity.ToString()" />
             </div>
             <div class="boxdata">
                 <label class="boxdata-label-30">Растворимость, млг/дм<sup><small>2</small></sup></label>
-                <input class="boxdata-input-50" type="number" step="any" name="Solubility" value="@Model.solubility.ToString()" />
+                <input class="boxdata-input-50" type="number" step="0.1" name="Solubility" value="@Model.solubility.ToString()" />
             </div>
             <div class="boxdata">
                 <label class="boxdata-label-30">Динамическая вязкость, кг/м*с</label>
-                <input class="boxdata-input-50" type="number" step="any" name="Dynamicviscosity" value="@Model.dynamicviscosity.ToString()" />
+                <input class="boxdata-input-50" type="number" step="0.1" name="Dynamicviscosity" value="@Model.dynamicviscosity.ToString()" />
             </div>
             <div class="boxdata">
                 <label class="boxdata-label-30">Коэф. поверхностного натяжения, кг/с<sup><small>2</small></sup></label>
-                <input class="boxdata-input-50" type="number" step="any" name="Tension" value="@Model.tension.ToString()" />
+                <input class="boxdata-input-50" type="number" step="0.1" name="Tension" value="@Model.tension.ToString()" />
             </div>
             <div class="boxdata">
                 <label class="boxdata-label-30">Коэф. диффузии, м<sup><small>2</small></sup>/с</label>
-                <input class="boxdata-input-50" type="number" step="any" name="Diffusion" value="@Model.diffusion.ToString()" />
+                <input class="boxdata-input-50" type="number" step="0.1" name="Diffusion" value="@Model.diffusion.ToString()" />
             </div>
         </div>
         @Html.Partial("_TypeLineMenu", delete)
