@@ -26,6 +26,7 @@ namespace EGH01.Models.EGHCAI
         public DateTime reconstractiondate { get; set; }
         public string phone { get; set; }
         public string fax { get; set; }
+        public string email { get; set; }
         public int groundtank { get; set; }
         public int undergroundtank { get; set; }
         public float waterdeep { get; set; }   // глубина грунтовых вод    (м)

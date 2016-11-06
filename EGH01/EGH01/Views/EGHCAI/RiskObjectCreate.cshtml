@@ -77,6 +77,16 @@
             <input class="boxdata-input-50" type="number" name="undergroundtank" value=" " min="0" />
         </p>
         <p>
+            <label class="boxdata-label-30">Очистные сооружения</label>
+            <br>
+            <br>
+            <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="true">&emsp; <label>&emsp;Для дождевого стока</label>
+        </p>
+        <p>
+            <input type="checkbox" class="boxdata-label-30" name="watertreatmentcollect" value="true">&emsp; <label>&emsp;Резервуар для сбора проливов</label>
+        </p>
+       
+        <p>
             <label class="boxdata-label-30">дата ввода в эксплуатацию  </label>
             <input class="boxdata-input-50" type="date" name="foundationdate" value=" " />
         </p>
@@ -84,11 +94,7 @@
             <label class="boxdata-label-30">дата послежней реконструкции  </label>
             <input class="boxdata-input-50" type="date" name="reconstractiondate" value=" " />
         </p>
-        <p>
-            <label class="boxdata-label-30">Геологические данные</label>
-
-        <p>
-            <label class="boxdata-label-30">Грунт</label> @Html.DropDownList("list_groundType")
+        <p>    <label class="boxdata-label-30">Геологические данные. Грунт</label> @Html.DropDownList("list_groundType")
         </p>
 
         <p>
@@ -119,6 +125,13 @@
             <label class="boxdata-label-30">КАРТА!</label>
         </p>
         <input type="button" value="Загрузить карту" style="margin:10px" />
+        <br>
+        <p><label>Адрес объекта </label></p>
+        <br>
+        <br>
+        <p>
+            <label class="boxdata-label-30">Область</label>@Html.DropDownList("list_district")
+        </p>
         <p>
             <label class="boxdata-label-30">Район(список)</label>  @Html.DropDownList("list_region")
         </p>
@@ -127,6 +140,10 @@
             <input class="boxdata-input-50" type="text" name="Adress" value=" " />
         </p>
 
+        <br>
+        <label>Контакты</label>
+        <br>
+        <br>
         <p>
             <label class="boxdata-label-30"> Телефон</label>
             <input class="boxdata-input-50" type="text" name="phone" value=" " />
@@ -136,16 +153,10 @@
             <input class="boxdata-input-50" type="text" name="fax" value=" " />
         </p>
         <p>
-            <label class="boxdata-label-30">Очистные сооружения</label>
-            <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="true">Для дождевого стока
+            <label class="boxdata-label-30">Электронный адрес</label>
+            <input class="boxdata-input-50" type="text" name="email" value=" " />
         </p>
-        <p>
-            <input type="checkbox" class="boxdata-label-30" name="watertreatmentcollect" value="true">Резервуар для сбора проливов
-        </p>
-        </p>
-        <p>
-                <label class="boxdata-label-30">Область</label>@Html.DropDownList("list_district")
-            </p>
+       
 
     </div>
         @Html.Partial("_TypeLineMenu", create)

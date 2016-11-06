@@ -61,95 +61,132 @@
 
     <div class="box">
         <div class="boxdata">
+                <div class="boxdata">
+                    <input type="hidden" value="@Model.id.ToString()" name="type_code">
+                </div>
 
-            <p><label class="boxdata-label-30" value="@Model.id.ToString()">Код типа </label></p>
-            <p>
 
-                <label class="boxdata-label-30">Наименование объекта</label>
-                <input class="boxdata-input-50" type="text" name="Name" value="@Model.name" />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Типа объекта </label>   @Html.DropDownList("selectlist").
-            </p>
-            <p>
-                <label class="boxdata-label-30">Объем резервуаров для хранения нефтепродутов (м3)</label>
+                <p>
+                    <label class="boxdata-label-30">Наименование объекта</label>
+                    <input class="boxdata-input-50" type="text" name="Name" value="@Model.name" />
+                </p>
 
+                <p>
+                    <label class="boxdata-label-30">Тип объекта</label>@Html.DropDownList("selectlist")
+          
+                </p>
+            <br>
             <p>
-                <label class="boxdata-label-30"> наземные</label>
-                <input class="boxdata-input-50" type="number" name="groundtank" value="@Model.groundtank.ToString()" min="0"/>
+                    <label class="boxdata-label-30">Объем резервуаров для хранения нефтепродутов (м3)</label>
             </p>
+            <br>
+            <br>
+            <br>
             <p>
-                <label class="boxdata-label-30"> подземные</label>
-                <input class="boxdata-input-50" type="number" name="undergroundtank" value="@Model.undergroundtank.ToString()" min="0"/>
+                <label class="boxdata-label-30">Наземные</label>
+                <input class="boxdata-input-50" type="number" name="groundtank" value="@Model.groundtank.ToString()" min="0" />
+              </p>
+            <br>
+            <p>
+                <label class="boxdata-label-30">Подземные</label>
+                <input class="boxdata-input-50" type="number" name="undergroundtank" value="@Model.undergroundtank.ToString()" min="0" />
             </p>
-            <p>
-                <label class="boxdata-label-30">дата ввода в эксплуатацию  </label>
-                <input class="boxdata-input-50" type="text" name="foundationdate" value="@Model.foundationdate.Date.ToShortDateString()" />
-            </p>
-            <p>
-                <label class="boxdata-label-30">дата послежней реконструкции  </label>
-                <input class="boxdata-input-50" type="text" name="reconstractiondate" value="@Model.reconstractiondate.ToShortDateString()" />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Геологические данные</label>
+            <br>
+                <p>
+                    <label class="boxdata-label-30">Наличие очистных сооружений</label>
+                    <br>
+                    <br>
+                    <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="true">&emsp; <label>&emsp;Для дождевого стока</label>
+</p>
+            <br>
+            <br>
+       
+             <p>
+                    <input type="checkbox" class="boxdata-label-30" name="watertreatmentcollect" value="true">&emsp; <label>&emsp;Резервуар для сбора проливов</label>
+                </p>
+            <br>
+            <br>
+                <p>
+                    <label class="boxdata-label-30">Дата ввода в эксплуатацию</label>
+                    <input class="boxdata-input-50" type="text" name="foundationdate" value="@Model.foundationdate.ToShortDateString()" />
+                </p>
+            <br>
+                <p>
+                    <label class="boxdata-label-30">Дата послежней реконструкции</label>
+                    <input class="boxdata-input-50" type="text" name="reconstractiondate" value="@Model.reconstractiondate.ToShortDateString()" />
+                </p>
+            <br>
+                <p>
+                    <label class="boxdata-label-30">Геологические данные. Грунт </label>@Html.DropDownList("list_groundType")
+                </p>
+            <br>
 
-            <p>
-                <label class="boxdata-label-30">Грунт</label> @Html.DropDownList("list_groundType")
-            </p>
-            <p>
-                <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
-                <input class="boxdata-input-50" type="number" name="waterdeep" value="@Model.waterdeep.ToString()" />
-            </p>
+                <p>
+                    <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
+                    <input class="boxdata-input-50" type="number" name="waterdeep" value="@Model.waterdeep.ToString()" min="0" />
+                </p>
+            <br>
+                <p>
+                    <label class="boxdata-label-30">Высота над уровнем моря (м)</label>
+                    <input class="boxdata-input-50" type="number" name="height" value="@Model.height.ToString()" min="0" />
+                </p>
+            <br>
+                <p>
+                    <label class="boxdata-label-30">Широта </label>
 
-            <p>
-                <label class="boxdata-label-30">Высота над уровнем моря (м)</label>
-                <input class="boxdata-input-50" type="number" name="height" value="@Model.height.ToString()" />
-            </p>
-            <p>
-                <label class="boxdata-label-30"> Широта: </label>
+                    <input class="boxdata-input-50" type="number" name="Latitude" value="@Model.coordinates.lat.d.ToString()" min="-90" max="90" />
+                    <input class="boxdata-input-50" type="number" name="Lat_m" value="@Model.coordinates.lat.m.ToString()" min="-90" max="90" />
+                    <input class="boxdata-input-50" type="number" name="Lat_s" value="@Model.coordinates.lat.s.ToString("0.000").Replace(',' , '.')" min="0" max="60" step="0.001" />
+                </p>
+            <br>
+                <p>
+                    <label class="boxdata-label-30">Долгота</label>
 
-                <input class="boxdata-input-50" type="number" name="Latitude" value="@Model.coordinates.lat.d.ToString()" min="-90" max="90" />
-                <input class="boxdata-input-50" type="number" name="Lat_m" value="@Model.coordinates.lat.m.ToString()" min="-90" max="90" />
-                <input class="boxdata-input-50" type="number"name="Lat_s" value="@Model.coordinates.lat.s.ToString("0.000").Replace(',' , '.')" min="0" max="60" step="0.001"/>
-            </p>
-            <p>
-                <label class="boxdata-label-30">Долгота</label>
+                    <input class="boxdata-input-50" type="number" name="Lngitude" value="@Model.coordinates.lng.d.ToString()" max="180" min="0" />
+                    <input class="boxdata-input-50" type="number" name="Lng_m" value="@Model.coordinates.lng.m.ToString()" min="-90" max="90" />
+                    <input class="boxdata-input-50" type="number" name="Lng_s" value="@Model.coordinates.lng.s.ToString("0.000").Replace(',' , '.')" min="0" max="60" step="0.001" />
+                </p>
+            <br>
+                <p><label>Адрес объекта </label></p>
+            <br>
+            <br>
+                <p>
+                    <label class="boxdata-label-30">Область </label>  @Html.DropDownList("list_district")
+                </p>
+            <br>
 
-                <input class="boxdata-input-50" type="number" name="Lngitude" value="@Model.coordinates.lng.d.ToString()" max="180" min="0" />
-                <input class="boxdata-input-50" type="number" name="Lng_m" value="@Model.coordinates.lng.m.ToString()" min="-90" max="90" />
-                <input class="boxdata-input-50" type="number" name="Lng_s" value="@Model.coordinates.lng.s.ToString("0.000").Replace(',' , '.')" min="0" max="60" step="0.001" />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Район</label>  @Html.DropDownList("list_region")
-            </p>
-            <p>
-                <label class="boxdata-label-30">Область </label>  @Html.DropDownList("list_district")
-            </p>
-            <p>
-                <label class="boxdata-label-30"> Адресс объекта </label>
-                <input class="boxdata-input-50" type="text" name="Adress" value="@Model.address" />
-            </p>
-            <p>
-                <label class="boxdata-label-30"> Телефон</label>
-                <input class="boxdata-input-50" type="text" name="phone" value="@Model.phone" />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Факс</label>
-                <input class="boxdata-input-50" type="text" name="fax" value="@Model.fax" />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Очистные сооружения</label>
-                <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="true">Для дождевого стока
-            </p>
-            <p>
-                <input type="checkbox" class="boxdata-label-30" name="watertreatmentcollect" value="true">Резервуар для сбора проливов
-            </p>
-            </p>
-            <input type="hidden" value="@Model.id.ToString()" name="type_code">
+                <p>
+                    <label class="boxdata-label-30">Район</label>  @Html.DropDownList("list_region")
+                </p>
+            <br>
+                <p>
+                    <label class="boxdata-label-30">Город(населенный пункт),улица,дом</label>
+                    <input class="boxdata-input-50" type="text" name="Adress" value="@Model.address" />
+                </p>
+
+            <br>
+             <label>Контакты</label>
+            <br> 
+            <br>
+                <p>
+                    <label class="boxdata-label-30">Телефон</label>
+                    <input class="boxdata-input-50" type="text" name="phone" value="@Model.phone" />
+                </p>
+            <br>
+                <p>
+                    <label class="boxdata-label-30">Факс</label>
+                    <input class="boxdata-input-50" type="text" name="fax" value="@Model.fax" />
+                </p>
+            <br>
+            @*<p>
+                <label class="boxdata-label-30">Электронный адрес</label>
+                <input class="boxdata-input-50" type="text" name="email" value="@Model.email" />
+            </p>*@
+                @*<input type="hidden" value="@Model.id.ToString()" name="type_code">*@
+
+            </div>
+
+            @Html.Partial("_TypeLineMenu", delete)
 
         </div>
-
-        @Html.Partial("_TypeLineMenu", delete)
-
-    </div>
-}
+        }
