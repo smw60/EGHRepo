@@ -91,19 +91,19 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //GroundType gr = new GroundType(1);
-                //SpreadingCoefficient sc = new SpreadingCoefficient(gr, 20.0f, 40.0f, 1.5f, 4.6f, 0.0f);
+                //SpreadingCoefficient sc = new SpreadingCoefficient(gr, (float)20.0f, (float)40.0f, (float)1.5f, (float)4.6f, (float)0.0f);
                 //float koeff = SpreadingCoefficient.Get(db, sc);
                 
             }
             return View();
         }
-        public ActionResult SC_GetByData()// нет
+        public ActionResult SC_GetByData()// есть
         {
             RGEContext db = new RGEContext();
             {
-                //GroundType gr = new GroundType(1);
-                //SpreadingCoefficient sc = new SpreadingCoefficient(gr, 20.0f, 40.0f, 1.5f, 4.6f, 2.0f);
-                //float koeff = SpreadingCoefficient.GetByData(db, gr, 25.0f, 2.3f);
+                GroundType gr = new GroundType(1);
+                SpreadingCoefficient sc = new SpreadingCoefficient(gr, 20.0f, 40.0f, 1.5f, 4.6f, 2.0f);
+                float koeff = SpreadingCoefficient.GetByData(db, gr, 25.0f, 2.3f);
 
             }
             return View();
