@@ -178,7 +178,7 @@
     <Compile Include="Controllers\EGHRGEController_GroundType.cs" />
     <Compile Include="Controllers\EGHRGEController_IncidentType.cs" />
     <Compile Include="Controllers\EGHRGEController.cs" />
-    <Compile Include="Controllers\EGHRGEController_SreadingCoefficient.cs" />
+    <Compile Include="Controllers\EGHRGEController_SpreadingCoefficient.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\EGHRGEController_Forecast.cs" />
     <Compile Include="Core\Menu.cs" />
@@ -289,8 +289,8 @@
     <Content Include="Views\EGHRGE\GroundType.cshtml" />
     <Content Include="Views\EGHRGE\GroundTypeCreate.cshtml" />
     <Content Include="Views\EGHRGE\_GroundTypeList.cshtml" />
-    <Content Include="Views\EGHRGE\SreadingCoefficient.cshtml" />
-    <Content Include="Views\EGHRGE\_SreadingCoefficientList.cshtml" />
+    <Content Include="Views\EGHRGE\SpreadingCoefficient.cshtml" />
+    <Content Include="Views\EGHRGE\_SpreadingCoefficientList.cshtml" />
     <Content Include="Views\EGHRGE\GroundTypeDelete.cshtml" />
     <Content Include="Views\Debug\RGECalc.cshtml" />
     <Content Include="Views\Shared\_ChoiceRiskObject.cshtml" />
