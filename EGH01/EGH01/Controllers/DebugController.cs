@@ -65,6 +65,50 @@ namespace EGH01.Controllers
             return View();
         }
 
+        // проверка процедур Spreading Coefficient
+        public ActionResult SC_Create()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int t = 1;
+                //GroundType g = new GroundType(t);
+                //double v1 = 20;
+                //double v2 = 50;
+                //double a1 = 0.7;
+                //double a2 = 4.6;
+                //double k = 20.0;
+                //SpreadingCoefficient sc = new SpreadingCoefficient(g, (float)v1, (float)v2, (float)a1, (float)a2, (float)k);
+              
+                //if (SpreadingCoefficient.Create(db, sc))
+                //{
+                //    int k1 = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SC_Get()// нет
+        {
+            RGEContext db = new RGEContext();
+            {
+                //GroundType gr = new GroundType(1);
+                //SpreadingCoefficient sc = new SpreadingCoefficient(gr, 20.0f, 40.0f, 1.5f, 4.6f, 0.0f);
+                //float koeff = SpreadingCoefficient.Get(db, sc);
+                
+            }
+            return View();
+        }
+        public ActionResult SC_GetByData()// нет
+        {
+            RGEContext db = new RGEContext();
+            {
+                //GroundType gr = new GroundType(1);
+                //SpreadingCoefficient sc = new SpreadingCoefficient(gr, 20.0f, 40.0f, 1.5f, 4.6f, 2.0f);
+                //float koeff = SpreadingCoefficient.GetByData(db, gr, 25.0f, 2.3f);
+
+            }
+            return View();
+        }
+
         // проверка процедур Region
         public ActionResult Region_Create()// есть
         {
