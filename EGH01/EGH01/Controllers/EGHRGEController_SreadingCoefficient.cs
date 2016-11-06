@@ -9,6 +9,7 @@ using EGH01DB;
 using EGH01DB.Primitives;
 using EGH01DB.Types;
 
+
 namespace EGH01.Controllers
 {
     public partial class EGHRGEController : Controller
