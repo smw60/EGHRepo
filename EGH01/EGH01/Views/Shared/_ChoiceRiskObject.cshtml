@@ -1,0 +1,55 @@
+﻿@model EGH01DB.RGEContext
+@using EGH01DB.Objects;
+@using EGH01.Models.EGHRGE;
+@{
+    
+    EGH01DB.RGEContext rge = (EGH01DB.RGEContext)Model;
+    ChoiceRiskObjectContext context = (ChoiceRiskObjectContext)Model.GetViewContext("_ChoiceRiskObject");
+    if (context == null) { Model.SaveViewContext("_ChoiceRiskObject", context = new ChoiceRiskObjectContext()); };
+    if (context.Regim == ChoiceRiskObjectContext.REGIM.CHOICE)
+    {
+
+        List<RiskObject> rol = new List<RiskObject>(); 
+        if (RiskObjectsList.GetListRiskObjectByLike(Model, "Брест", ref rol))
+        {
+            ViewBag.riskobjectlist = new List<SelectListItem>();
+            rol.ForEach(o => ViewBag.riskobjectlist.Add(new SelectListItem {Text = o.name, Value = o.id.ToString()})); 
+        }
+        
+        
+    }
+    
+    
+}
+
+@using (Html.BeginForm("Forecast", "EGHRGE"))
+{
+<div class="box-fieldset">
+               
+    <fieldset style="padding:20px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+    <legend style="width: auto; font: inherit; border:none;"> Техногенный объект </legend>
+        @if (context.Regim == ChoiceRiskObjectContext.REGIM.INIT)
+        {
+
+            <input type="search"  name="findtemplate" style="max-width:none" size="100" />
+            <button type="submit" name="startfind" value="ChoiceRiskObject.startfind">Поиск</button>
+            
+        }
+        else if (context.Regim == ChoiceRiskObjectContext.REGIM.CHOICE)
+        {
+             <h2> CHOICE</h2>
+
+            @Html.DropDownList("riskobjectlist");
+
+        }
+        else if (context.Regim == ChoiceRiskObjectContext.REGIM.SET)
+        {
+
+            <h2> SET</h2>
+
+        }
+
+    </fieldset>       
+       
+ </div>
+}

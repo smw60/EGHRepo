@@ -84,16 +84,7 @@
         }
         else
         {
-            <div class="box-fieldset">
-                <form name="ChoiseRiskObject" action="EGHRGE\ChoiseRiskObject">
-                    <fieldset style="padding:20px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
-                        <legend style="width: auto; font: inherit; border:none;"> Техногенный объект </legend>
-                        <input type="search" name="findtemplate"   style="max-width:none"  size="100"  />
-                        <input type="submit"  />
-
-                    </fieldset>
-                </form>
-            </div>
+            @Html.Action("ChoiceRiskObject", "EGHRGE", new {controller = "EGHRGE", action ="Forecast"});
         }  
         
 
@@ -102,12 +93,7 @@
 
 
 }
-@*<fieldset  style="border:1px solid;" >
-    <legend style="width:auto; margin: 10px;">xxxx</legend>
 
-    <input type="submit" />*@
-
-</fieldset>
 
 <h2>Forecast</h2>
 

@@ -147,37 +147,7 @@ namespace EGH01DB.Objects
             this.groundtank = 0;
             this.undergroundtank = 0;
         }
-        public class RiskObjectList : List<RiskObject>
-        {
-           List<EGH01DB.Objects.RiskObject> list_rick = new List<EGH01DB.Objects.RiskObject>();
-            public RiskObjectList()
-            {
-
-            }
-            public RiskObjectList(List<RiskObject> list) : base(list)
-            {
-              
-            }
-            public RiskObjectList(EGH01DB.IDBContext dbcontext) : base(Helper.GetListRiskObject(dbcontext))
-            {
-
-            }
-            public XmlNode toXmlNode(string comment = "")
-            {
-
-                XmlDocument doc = new XmlDocument();
-                XmlElement rc = doc.CreateElement("RiskObjectList");
-                if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
-
-                this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
-
-             //   rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
-                //rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
-                return (XmlNode)rc;
-            }
-
-
-        }
+       
         static public bool Create(EGH01DB.IDBContext dbcontext, RiskObject risk_object)
         {
             bool rc = false;
@@ -634,111 +604,223 @@ namespace EGH01DB.Objects
         }
 
 
-        public class RiskObjectsList : List<RiskObject>      // список объектов  с координатами , расстояние считается по теореме Пифагора :)
+       
+    }
+
+
+    //public class RiskObjectList : List<RiskObject>
+    //{
+    //    List<EGH01DB.Objects.RiskObject> list_rick = new List<EGH01DB.Objects.RiskObject>();
+    //    public RiskObjectList()
+    //    {
+
+    //    }
+    //    public RiskObjectList(List<RiskObject> list)
+    //        : base(list)
+    //    {
+
+    //    }
+    //    public RiskObjectList(EGH01DB.IDBContext dbcontext)
+    //        : base(Helper.GetListRiskObject(dbcontext))
+    //    {
+
+    //    }
+    //    public XmlNode toXmlNode(string comment = "")
+    //    {
+
+    //        XmlDocument doc = new XmlDocument();
+    //        XmlElement rc = doc.CreateElement("RiskObjectList");
+    //        if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+
+    //        this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+
+    //        //   rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
+    //        //rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
+    //        return (XmlNode)rc;
+    //    }
+
+
+    //}
+    public class RiskObjectsList : List<RiskObject>      // список объектов  с координатами , расстояние считается по теореме Пифагора :)
+    {
+       List<EGH01DB.Objects.RiskObject> list_rick = new List<EGH01DB.Objects.RiskObject>();
+        public RiskObjectsList()
         {
-            public static bool CreateRiskObjectsList(EGH01DB.IDBContext dbcontext, Point center, float distance, ref RiskObjectsList risk_object_list)
-            {
-                bool rc = false;
-                
-                using (SqlCommand cmd = new SqlCommand("EGH.GetListRiskObjectOnDistanceLessThanD", dbcontext.connection))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    {
-                        SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Float);
-                        parm.Value = center.coordinates.latitude;
-                        cmd.Parameters.Add(parm);
-                    }
-                    {
-                        SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Float);
-                        parm.Value = center.coordinates.lngitude;
-                        cmd.Parameters.Add(parm);
-                    }
-                    {
-                        SqlParameter parm = new SqlParameter("@Расстояние", SqlDbType.Float);
-                        parm.Value = distance;
-                        cmd.Parameters.Add(parm);
-                    }
-                    try
-                    {
-                        cmd.ExecuteNonQuery();
-                        SqlDataReader reader = cmd.ExecuteReader();
-                        risk_object_list = new RiskObjectsList();
-                        while (reader.Read())
-                        {
-                            int id = (int)reader["IdТехногенногоОбъекта"];
-                            double x = (double)reader["ШиротаГрад"];
-                            double y = (double)reader["ДолготаГрад"];
-                            Coordinates coordinates = new Coordinates((float)x, (float)y);
-                            Point point = new Point(coordinates);
-                            //delta = (float)reader["Расстояние"];
-                            RiskObject  risk_object = new RiskObject(id, point);
-                            risk_object_list.Add(risk_object);
-                        }
-                        rc = risk_object_list.Count > 0;
-                        reader.Close();
-                    }
-                    catch (Exception e)
-                    {
-                        rc = false;
-                    };
-                    return rc;
-                }
-            }
-
-            public static bool CreateRiskObjectsList(EGH01DB.IDBContext dbcontext, Point center, float distance1, float distance2, ref RiskObjectsList risk_object_list)
-            {
-                bool rc = false;
-                using (SqlCommand cmd = new SqlCommand("EGH.GetListRiskObjectOnDistanceLessThanD2MoreThanD1", dbcontext.connection))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    {
-                        SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Float);
-                        parm.Value = center.coordinates.latitude;
-                        cmd.Parameters.Add(parm);
-                    }
-                    {
-                        SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Float);
-                        parm.Value = center.coordinates.lngitude;
-                        cmd.Parameters.Add(parm);
-                    }
-                    {
-                        SqlParameter parm = new SqlParameter("@Расстояние1", SqlDbType.Float);
-                        parm.Value = distance1;
-                        cmd.Parameters.Add(parm);
-                    }
-                    {
-                        SqlParameter parm = new SqlParameter("@Расстояние2", SqlDbType.Float);
-                        parm.Value = distance2;
-                        cmd.Parameters.Add(parm);
-                    }
-                    try
-                    {
-                        cmd.ExecuteNonQuery();
-                        SqlDataReader reader = cmd.ExecuteReader();
-                        risk_object_list = new RiskObjectsList();
-                        while (reader.Read())
-                        {
-                            int id = (int)reader["IdТехногенногоОбъекта"];
-                            double x = (double)reader["ШиротаГрад"];
-                            double y = (double)reader["ДолготаГрад"];
-                            Coordinates coordinates = new Coordinates((float)x, (float)y);
-                            Point point = new Point(coordinates);
-                            //delta = (float)reader["Расстояние"];
-                            RiskObject  risk_object = new RiskObject(id, point);
-                            risk_object_list.Add(risk_object);
-                        }
-                        rc = risk_object_list.Count > 0;
-                        reader.Close();
-                    }
-                    catch (Exception e)
-                    {
-                        rc = false;
-                    };
-                    return rc;
-                }
-            }
-
 
         }
+        public RiskObjectsList(List<RiskObject> list)
+            : base(list)
+        {
+
+        }
+        public RiskObjectsList(EGH01DB.IDBContext dbcontext)
+            : base(Helper.GetListRiskObject(dbcontext))
+        {
+
+        }
+        public XmlNode toXmlNode(string comment = "")
+        {
+
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("RiskObjectList");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+
+            this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+
+            //   rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
+            //rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
+            return (XmlNode)rc;
+        }
+        
+        public static bool CreateRiskObjectsList(EGH01DB.IDBContext dbcontext, Point center, float distance, ref RiskObjectsList risk_object_list)
+        {
+            bool rc = false;
+
+            using (SqlCommand cmd = new SqlCommand("EGH.GetListRiskObjectOnDistanceLessThanD", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Float);
+                    parm.Value = center.coordinates.latitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Float);
+                    parm.Value = center.coordinates.lngitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Расстояние", SqlDbType.Float);
+                    parm.Value = distance;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    risk_object_list = new RiskObjectsList();
+                    while (reader.Read())
+                    {
+                        int id = (int)reader["IdТехногенногоОбъекта"];
+                        double x = (double)reader["ШиротаГрад"];
+                        double y = (double)reader["ДолготаГрад"];
+                        Coordinates coordinates = new Coordinates((float)x, (float)y);
+                        Point point = new Point(coordinates);
+                        //delta = (float)reader["Расстояние"];
+                        RiskObject risk_object = new RiskObject(id, point);
+                        risk_object_list.Add(risk_object);
+                    }
+                    rc = risk_object_list.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+
+        public static bool CreateRiskObjectsList(EGH01DB.IDBContext dbcontext, Point center, float distance1, float distance2, ref RiskObjectsList risk_object_list)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetListRiskObjectOnDistanceLessThanD2MoreThanD1", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Float);
+                    parm.Value = center.coordinates.latitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Float);
+                    parm.Value = center.coordinates.lngitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Расстояние1", SqlDbType.Float);
+                    parm.Value = distance1;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Расстояние2", SqlDbType.Float);
+                    parm.Value = distance2;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    risk_object_list = new RiskObjectsList();
+                    while (reader.Read())
+                    {
+                        int id = (int)reader["IdТехногенногоОбъекта"];
+                        double x = (double)reader["ШиротаГрад"];
+                        double y = (double)reader["ДолготаГрад"];
+                        Coordinates coordinates = new Coordinates((float)x, (float)y);
+                        Point point = new Point(coordinates);
+                        //delta = (float)reader["Расстояние"];
+                        RiskObject risk_object = new RiskObject(id, point);
+                        risk_object_list.Add(risk_object);
+                    }
+                    rc = risk_object_list.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+        public static bool GetListRiskObjectByLike(EGH01DB.IDBContext dbcontext, string findstring, ref List<RiskObject> listobj)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetRiskObjectListByLike", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                {
+                    SqlParameter parm = new SqlParameter("@findstring", SqlDbType.VarChar);
+                    parm.Value = findstring;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    List<int> listid = new List<int>();
+                    while (reader.Read()) listid.Add((int)reader["IdТехногенногоОбъекта"]);
+                    reader.Close();
+
+                    if (rc = listid.Count > 0)
+                    {
+                        RiskObject o = null;
+                        foreach (int id in listid)
+                        {
+                            if (RiskObject.GetById(dbcontext, id, ref o))
+                            {
+                                listobj.Add(o);
+                            }
+                        }
+                        rc = (listid.Count == listobj.Count());
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+
+            }
+
+        }
+
     }
+
 }

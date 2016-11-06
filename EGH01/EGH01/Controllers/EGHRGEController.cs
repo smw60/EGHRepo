@@ -315,9 +315,9 @@ namespace EGH01.Controllers
             //else ViewBag.msg = "соединение  c БД  не установлено";
            
 
-            EGH01DB.RGEContext.Report report = new EGH01DB.RGEContext.Report();
+            //EGH01DB.RGEContext.Report report = new EGH01DB.RGEContext.Report();
 
-            return View(report);
+            return View();
         }
 
 

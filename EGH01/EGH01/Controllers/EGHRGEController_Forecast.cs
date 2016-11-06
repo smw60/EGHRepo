@@ -10,27 +10,29 @@ using EGH01DB;
 using EGH01DB.Primitives;
 using EGH01DB.Types;
 using System.Globalization;
+using EGH01.Models.EGHRGE;
 namespace EGH01.Controllers
 {
     public partial  class EGHRGEController: Controller
     {
         public ActionResult Forecast()
         {
-            RGEContext db = null;
+            RGEContext context = null;
+            ChoiceRiskObjectContext viewcontext = null;
             ActionResult view = View("Index");
             ViewBag.EGHLayout = "RGE.Forecast";
             string strvolume = this.HttpContext.Request.Params["volume"] ?? "Empty";
-            float volume = 0.1f;
-
-            if (!Helper.FloatTryParse(strvolume,  out volume))
-            {
-                volume = 0.0f;
-            }
+            string startfind = this.HttpContext.Request.Params["startfind"] ?? "Empty";
 
             try
             {
-                db = new RGEContext();
-            
+                context = new RGEContext(this);
+               
+                if (startfind.Equals("ChoiceRiskObject.startfind"))
+                {
+                    viewcontext = context.GetViewContext("_ChoiceRiskObject") as ChoiceRiskObjectContext;
+                    if (viewcontext != null) viewcontext.Regim = ChoiceRiskObjectContext.REGIM.CHOICE;
+                }
             
             }
             catch (RGEContext.Exception e)
@@ -42,8 +44,36 @@ namespace EGH01.Controllers
                 ViewBag.msg = e.Message;
             }
             
-         return View(db);
+         return View(context);
         }
+        
+        [ChildActionOnly]
+        public ActionResult ChoiceRiskObject()
+        {
+            RGEContext context = null;
+            ChoiceRiskObjectContext viewcontext = null;
+            try
+            {
+                context = new RGEContext(this);
+               
+               // "_ChoiceRiskObject.startchoice"
+                
+                //context.SaveViewContext("_ChoiceRiskObject", new Models.EGHRGE.ChoiceRiskObjectViewContext());
+
+            }
+            catch (RGEContext.Exception e)
+            {
+                ViewBag.msg = e.message;
+            }
+            catch (Exception e)
+            {
+                ViewBag.msg = e.Message;
+            }
+
+            return PartialView("_ChoiceRiskObject",context);
+
+        }
+
 
 
 

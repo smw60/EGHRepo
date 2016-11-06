@@ -184,6 +184,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EGHCAI\RiskObject.cs" />
     <Compile Include="Models\EGHCCO\PetrochemicalTypeView.cs" />
+    <Compile Include="Models\EGHRGE\ChoiceRiskObjectViewContext.cs" />
     <Compile Include="Models\EGHRGE\GroundTypeView.cs" />
     <Compile Include="Models\EGHRGE\IncidentTypeView.cs" />
     <Compile Include="Models\EGHRGE\SreadingCoefficientView.cs" />
@@ -255,7 +256,6 @@
     <Content Include="Views\EGHCEQ\Report.cshtml" />
     <Content Include="Views\EGHGEA\Report.cshtml" />
     <Content Include="Views\EGHORT\Report.cshtml" />
-    <Content Include="Views\Debug\XML.cshtml" />
     <Content Include="Views\EGHRGE\Index.cshtml" />
     <Content Include="Views\EGHRGE\IncidentType.cshtml" />
     <Content Include="Views\Shared\_TypeHeadMenu.cshtml" />
@@ -288,6 +288,8 @@
     <Content Include="Views\EGHRGE\SreadingCoefficient.cshtml" />
     <Content Include="Views\EGHRGE\_SreadingCoefficientList.cshtml" />
     <Content Include="Views\EGHRGE\GroundTypeDelete.cshtml" />
+    <Content Include="Views\Debug\RGECalc.cshtml" />
+    <Content Include="Views\Shared\_ChoiceRiskObject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

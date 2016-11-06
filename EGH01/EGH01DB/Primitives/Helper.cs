@@ -53,13 +53,13 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
-        static public EGH01DB.Objects.RiskObject.RiskObjectList GetListRiskObject(EGH01DB.IDBContext dbcontext)
+        static public EGH01DB.Objects.RiskObjectsList GetListRiskObject(EGH01DB.IDBContext dbcontext)
         {
             List<RiskObject> list = new List<RiskObject>();
-            EGH01DB.Objects.RiskObject.RiskObjectList rc = new EGH01DB.Objects.RiskObject.RiskObjectList(list);
+            EGH01DB.Objects.RiskObjectsList rc = new EGH01DB.Objects.RiskObjectsList(list);
             if (Helper.GetListRiskObject(dbcontext, ref list))
             {
-                rc = new EGH01DB.Objects.RiskObject.RiskObjectList(list);
+                rc = new EGH01DB.Objects.RiskObjectsList(list);
             }
             return rc;
         }
