@@ -294,6 +294,7 @@
     <Content Include="Views\EGHRGE\GroundTypeDelete.cshtml" />
     <Content Include="Views\Debug\RGECalc.cshtml" />
     <Content Include="Views\Shared\_ChoiceRiskObject.cshtml" />
+    <Content Include="Views\EGHRGE\GroundTypeUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
