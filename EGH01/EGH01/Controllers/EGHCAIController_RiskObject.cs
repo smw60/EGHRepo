@@ -120,7 +120,19 @@ namespace EGH01.Controllers
                         Byte[] map = new byte[2];
                         int groundtank = rs.groundtank;
                         int undergroundtank = rs.undergroundtank;
-                        Coordinates coordinates = new Coordinates(rs.latitude, rs.lat_m, rs.lat_s, rs.lngitude, rs.lng_m, rs.lng_s);
+                        string strlat_s = this.HttpContext.Request.Params["lat_s"] ?? "Empty";
+                        string strlng_s = this.HttpContext.Request.Params["lng_s"] ?? "Empty";
+                        float lat_s = 0.0f;
+                        float lng_s = 0.0f;
+                        if (!Helper.FloatTryParse(strlat_s, out lat_s))
+                        {
+                            lat_s = 0.0f;
+                        }
+                        if (!Helper.FloatTryParse(strlng_s, out lng_s))
+                        {
+                            lng_s = 0.0f;
+                        }
+                        Coordinates coordinates = new Coordinates(rs.latitude, rs.lat_m, lat_s, rs.lngitude, rs.lng_m, lng_s);
                         EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
                         if (EGH01DB.Types.GroundType.GetByCode(db, rs.list_groundType, out type_groud))
                         {
@@ -242,7 +254,19 @@ namespace EGH01.Controllers
                     Byte[] map = new byte[2];
                     int groundtank = itv.groundtank;
                     int undergroundtank = itv.undergroundtank;
-                    Coordinates coordinates = new Coordinates(itv.latitude, itv.lat_m, itv.lat_s, itv.lngitude, itv.lng_m, itv.lng_s);
+                    string strlat_s = this.HttpContext.Request.Params["lat_s"] ?? "Empty";
+                    string strlng_s = this.HttpContext.Request.Params["lng_s"] ?? "Empty";
+                    float lat_s = 0.0f;
+                    float lng_s = 0.0f;
+                    if (!Helper.FloatTryParse(strlat_s, out lat_s))
+                    {
+                        lat_s = 0.0f;
+                    }
+                    if (!Helper.FloatTryParse(strlng_s, out lng_s))
+                    {
+                        lng_s = 0.0f;
+                    }
+                    Coordinates coordinates = new Coordinates(itv.latitude, itv.lat_m, lat_s, itv.lngitude, itv.lng_m, lng_s);
                     EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
                     if (EGH01DB.Types.GroundType.GetByCode(db, itv.list_groundType, out type_groud))
                     {

@@ -76,11 +76,11 @@
 
             <p>
                 <label class="boxdata-label-30"> наземные</label>
-                <input class="boxdata-input-50" type="number" name="groundtank" value="@Model.groundtank.ToString()" />
+                <input class="boxdata-input-50" type="number" name="groundtank" value="@Model.groundtank.ToString()" min="0"/>
             </p>
             <p>
                 <label class="boxdata-label-30"> подземные</label>
-                <input class="boxdata-input-50" type="number" name="undergroundtank" value="@Model.undergroundtank.ToString()" />
+                <input class="boxdata-input-50" type="number" name="undergroundtank" value="@Model.undergroundtank.ToString()" min="0"/>
             </p>
             <p>
                 <label class="boxdata-label-30">дата ввода в эксплуатацию  </label>
@@ -88,7 +88,7 @@
             </p>
             <p>
                 <label class="boxdata-label-30">дата послежней реконструкции  </label>
-                <input class="boxdata-input-50" type="date" name="reconstractiondate" value="@Model.reconstractiondate.ToShortDateString()" />
+                <input class="boxdata-input-50" type="text" name="reconstractiondate" value="@Model.reconstractiondate.ToShortDateString()" />
             </p>
             <p>
                 <label class="boxdata-label-30">Геологические данные</label>
@@ -110,14 +110,14 @@
 
                 <input class="boxdata-input-50" type="number" name="Latitude" value="@Model.coordinates.lat.d.ToString()" min="-90" max="90" />
                 <input class="boxdata-input-50" type="number" name="Lat_m" value="@Model.coordinates.lat.m.ToString()" min="-90" max="90" />
-                <input class="boxdata-input-50" type="d  "name="Lat_s" value="@Model.coordinates.lat.s.ToString()" min="-90" max="90" />
+                <input class="boxdata-input-50" type="number"name="Lat_s" value="@Model.coordinates.lat.s.ToString("0.000").Replace(',' , '.')" min="0" max="60" step="0.001"/>
             </p>
             <p>
                 <label class="boxdata-label-30">Долгота</label>
 
                 <input class="boxdata-input-50" type="number" name="Lngitude" value="@Model.coordinates.lng.d.ToString()" max="180" min="0" />
                 <input class="boxdata-input-50" type="number" name="Lng_m" value="@Model.coordinates.lng.m.ToString()" min="-90" max="90" />
-                <input class="boxdata-input-50" type="text" name="Lng_s" value="@Model.coordinates.lng.s.ToString()" min="-90" max="90" />
+                <input class="boxdata-input-50" type="number" name="Lng_s" value="@Model.coordinates.lng.s.ToString("0.000").Replace(',' , '.')" min="0" max="60" step="0.001" />
             </p>
             <p>
                 <label class="boxdata-label-30">Район</label>  @Html.DropDownList("list_region")

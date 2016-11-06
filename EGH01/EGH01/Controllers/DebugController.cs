@@ -534,9 +534,9 @@ namespace EGH01.Controllers
                 //float sorption = 0.2f;
                 //GroundType gt = new GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption);
                 //if (GroundType.GetByCode(db, 1, out gt))
-                {
-                    int k = 1;
-                };
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
