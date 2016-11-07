@@ -363,7 +363,7 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
                     parm.Direction = ParameterDirection.ReturnValue;
                     cmd.Parameters.Add(parm);
                 }
