@@ -64,6 +64,77 @@ namespace EGH01.Controllers
 
             return View();
         }
+        // проверка процедур  Anchor point
+        public ActionResult Anchor_Point_list() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<AnchorPoint> list = new List<AnchorPoint>();
+                //if (Helper.GetListAnchorPoint(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Anchor_Point_Obj() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //AnchorPoint ap = new AnchorPoint();
+                //if (AnchorPoint.GetById(db, 4, ref ap))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Anchor_Point_DeleteById() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //if (AnchorPoint.DeleteById(db, 3)) // удалена
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Anchor_Point_Create()// yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int id = 0;
+                //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 1.0f, 20.0f);
+                //CadastreType cadastretype = new CadastreType(1);
+                //AnchorPoint ap = new AnchorPoint(id, point, cadastretype);
+                //if (AnchorPoint.Create(db, ap))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Anchor_Point_Update() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int id = 4;
+                //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 150.0f, 20.0f);
+                //CadastreType cad = new CadastreType(1);
+
+                //AnchorPoint ap = new AnchorPoint(id, point, cad);
+
+                //if (AnchorPoint.Update(db, ap))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+ 
+
 
         // проверка процедур Spreading Coefficient
         public ActionResult SC_Create()// есть
@@ -124,11 +195,19 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
+<<<<<<< HEAD
 
                 GroundType gr = new GroundType(1);
                 //SpreadingCoefficient sc = new SpreadingCoefficient(gr, 20.0f, 40.0f, 1.5f, 4.6f, 2.0f);
                 float koeff = SpreadingCoefficient.GetByData(db, gr, 25.0f, 2.3f);
                 int k = 1;
+=======
+                //GroundType gr = new GroundType(1);
+                ////SpreadingCoefficient sc = new SpreadingCoefficient(gr, 20.0f, 40.0f, 1.5f, 4.6f, 2.0f);
+                //float koeff = SpreadingCoefficient.GetByData(db, gr, 25.0f, 2.3f);
+                //int k = 1;
+
+>>>>>>> 4b0e48abde09628e5ff8c9f08d3cbcc7700b535e
                 //int ground_type_code = 2;
                 //GroundType ground_type = new GroundType(ground_type_code);
               
@@ -314,8 +393,8 @@ namespace EGH01.Controllers
         }
 
 
-        // проверка процедур Risk Object, раскомментить нужные области
-        public ActionResult Risk_Obj_list() // есть
+        // проверка процедур Risk Object, раскомментить нужные области,  перепроверить после внесения обновлений в процедуры
+        public ActionResult Risk_Obj_list() 
         {
             RGEContext db = new RGEContext();
             {

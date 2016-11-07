@@ -171,7 +171,6 @@ namespace EGH01DB.Primitives
                 return rc;
             }
         }
-
         static public bool GetListPetrochemicalType(EGH01DB.IDBContext dbcontext, ref List<PetrochemicalType> list_type) 
         { 
             bool rc = false;
@@ -215,18 +214,6 @@ namespace EGH01DB.Primitives
                 return rc;
             }
         }
-
-        //static public PetrochemicalTypeList GetListPetrochemicalType(EGH01DB.IDBContext dbcontext)
-        //{
-        //    List<PetrochemicalType> list = new List<PetrochemicalType>();
-        //    PetrochemicalTypeList pt = new PetrochemicalTypeList(list);
-        //    if (Helper.GetListPetrochemicalType(dbcontext, ref list))
-        //    {
-        //        pt = new PetrochemicalTypeList(list);
-        //    }
-        //    return pt;
-        //}
-
         static public bool GetListRegion(EGH01DB.IDBContext dbcontext, ref List<Region> list_region)
         {
             bool rc = false;
@@ -253,7 +240,6 @@ namespace EGH01DB.Primitives
 
             }
         }
-
         static public bool GetListDistrict(EGH01DB.IDBContext dbcontext, int region_code, ref List<District> list_district)
         {
             bool rc = false;
@@ -351,7 +337,6 @@ namespace EGH01DB.Primitives
                 return rc;
             }
         }
-
         static public bool GetListRiskObject(EGH01DB.IDBContext dbcontext, ref List<RiskObject> risk_objects)
         {
             bool rc = false;
@@ -441,7 +426,6 @@ namespace EGH01DB.Primitives
                 return rc;
             }
         }
-
         static public bool GetListSpreadingCoefficient(EGH01DB.IDBContext dbcontext, ref List<SpreadingCoefficient> spreading_coefficient)
         {
             bool rc = false;
@@ -505,7 +489,70 @@ namespace EGH01DB.Primitives
 
             }
         }
+        static public bool GetListAnchorPoint(EGH01DB.IDBContext dbcontext, ref List<AnchorPoint> anchor_points)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetAnchorPointList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
 
+                    anchor_points = new List<AnchorPoint>();
+                    while (reader.Read())
+                    {
+                        int id = (int)reader["IdОпорнойГеологическойТочки"];
+                        double x = (double)reader["ШиротаГрад"];
+                        double y = (double)reader["ДолготаГрад"];
+                        Coordinates coordinates = new Coordinates((float)x, (float)y);
+
+                        string ground_type_name = (string)reader["НаименованиеТипаГрунта"];
+                        double porosity = (double)reader["КоэфПористости"];
+                        double holdmigration = (double)reader["КоэфЗадержкиМиграции"];
+                        double waterfilter = (double)reader["КоэфФильтрацииВоды"];
+                        double diffusion = (double)reader["КоэфДиффузии"];
+                        double distribution = (double)reader["КоэфРаспределения"];
+                        double sorption = (double)reader["КоэфСорбции"];
+                        double watercapacity = (double)reader["КоэфКапВлагоемкости"];
+                        double soilmoisture = (double)reader["ВлажностьГрунта"];
+                        double аveryanovfactor = (double)reader["КоэфАверьянова"];
+                        double permeability = (double)reader["Водопроницаемость"];
+
+                        GroundType ground_type = new GroundType((int)reader["ТипГрунта"],
+                                                                    (string)ground_type_name,
+                                                                    (float)porosity,
+                                                                    (float)holdmigration,
+                                                                    (float)waterfilter,
+                                                                    (float)diffusion,
+                                                                    (float)distribution,
+                                                                    (float)sorption,
+                                                                    (float)watercapacity,
+                                                                    (float)soilmoisture,
+                                                                    (float)аveryanovfactor,
+                                                                    (float)permeability);
+                        double waterdeep = (double)reader["ГлубинаГрунтовыхВод"];
+                        double height = (double)reader["ВысотаУровнемМоря"];
+                        Point point = new Point(coordinates, ground_type, (float)waterdeep, (float)height);
+
+                        string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
+                        int pdk = (int)reader["ПДК"];
+                        CadastreType cadastre_type = new CadastreType((int)reader["КодНазначенияЗемель"], (string)cadastre_type_name, (int)pdk);
+                        AnchorPoint anchor_point = new AnchorPoint(id, point, cadastre_type);
+
+                        anchor_points.Add(anchor_point);
+                    }
+                    rc = anchor_points.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+        
         static public float GetFloatAttribute(XmlNode n, string name, float errorvalue = 0.0f)
         {
             float rc = errorvalue;
