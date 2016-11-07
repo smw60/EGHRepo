@@ -141,28 +141,28 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                ////int t = 1;
-                ////GroundType g = new GroundType(t);
-                ////double v1 = 20;
-                ////double v2 = 50;
-                ////double a1 = 0.7;
-                ////double a2 = 4.6;
-                ////double k = 20.0;
-                ////SpreadingCoefficient sc = new SpreadingCoefficient(g, (float)v1, (float)v2, (float)a1, (float)a2, (float)k);
+                //int t = 2;
+                //GroundType g = new GroundType(t);
+                //float v1 = 10.01f;
+                //float v2 = 50.0f;
+                //float a1 = 0.0f;
+                //float a2 = 50.0f;
+                //float k = 20.0f;
+                //SpreadingCoefficient sc = new SpreadingCoefficient(g, (float)v1, (float)v2, (float)a1, (float)a2, (float)k);
 
-                ////if (SpreadingCoefficient.Create(db, sc))
-                ////{
-                ////    int k1 = 1;
-                ////};
+                //if (SpreadingCoefficient.Create(db, sc))
+                //{
+                //    int k1 = 1;
+                //};
             }
             return View();
         }
-        public ActionResult SC_Get()// нет
+        public ActionResult SC_Get()// есть!
         {
             RGEContext db = new RGEContext();
             {
-                //GroundType gr = new GroundType(1);
-                //SpreadingCoefficient sc = new SpreadingCoefficient(gr, (float)20.0f, (float)40.0f, (float)1.5f, (float)4.6f, (float)0.0f);
+                //GroundType gr = new GroundType(2);
+                //SpreadingCoefficient sc = new SpreadingCoefficient(gr, (float)10.0f, (float)50.0f, (float)0.0f, (float)50.0f, (float)0.0f);
                 //float koeff = SpreadingCoefficient.Get(db, sc);
                 
             }
@@ -191,31 +191,12 @@ namespace EGH01.Controllers
             }
             return View();
         } 
-        public ActionResult SC_Update()// нет
+        public ActionResult SC_Update()// есть
         {
-            RGEContext db = new RGEContext();
+           RGEContext db = new RGEContext();
             {
-
-
-                GroundType gr = new GroundType(1);
-                //SpreadingCoefficient sc = new SpreadingCoefficient(gr, 20.0f, 40.0f, 1.5f, 4.6f, 2.0f);
-                float koeff = SpreadingCoefficient.GetByData(db, gr, 25.0f, 2.3f);
-                int k = 1;
-                //GroundType gr = new GroundType(1);
-                ////SpreadingCoefficient sc = new SpreadingCoefficient(gr, 20.0f, 40.0f, 1.5f, 4.6f, 2.0f);
-                //float koeff = SpreadingCoefficient.GetByData(db, gr, 25.0f, 2.3f);
-                //int k = 1;
-
-
-                //int ground_type_code = 2;
-                //GroundType ground_type = new GroundType(ground_type_code);
-              
-                //double v1 = 20;
-                //double v2 = 50;
-                //double a1 = 0.7;
-                //double a2 = 4.6;
-                //double k = 30.0;
-                //SpreadingCoefficient sc = new SpreadingCoefficient(ground_type, (float)v1, (float)v2, (float)a1, (float)a2, (float)k);
+                //GroundType gr = new GroundType(2);
+                //SpreadingCoefficient sc = new SpreadingCoefficient(gr, (float)10.0f, (float)50.0f, (float)0.0f, (float)50.0f, (float)34.0f);
                 //if (SpreadingCoefficient.Update(db, sc))
                 //{
                 //    int k1 = 1;
@@ -223,12 +204,13 @@ namespace EGH01.Controllers
             }
             return View();
         }
-        public ActionResult SC_Delete()  // нет
+        public ActionResult SC_Delete()  // есть
         {
             RGEContext db = new RGEContext();
             {
-                //SpreadingCoefficient r = new SpreadingCoefficient();
-                //if (SpreadingCoefficient.Delete(db, 8))  // 
+                //GroundType gr = new GroundType(2);
+                //SpreadingCoefficient sc = new SpreadingCoefficient(gr, (float)10.0f, (float)50.0f, (float)0.0f, (float)50.0f, (float)0.0f);
+                //if (SpreadingCoefficient.Delete(db, sc))  // 
                 //{
                 //    int k = 1;
                 //};
@@ -393,15 +375,15 @@ namespace EGH01.Controllers
 
 
         // проверка процедур Risk Object, раскомментить нужные области,  перепроверить после внесения обновлений в процедуры
-        public ActionResult Risk_Obj_list() 
+        public ActionResult Risk_Obj_list() // есть
         {
             RGEContext db = new RGEContext();
             {
-                //List<RiskObject> list = new List<RiskObject>();
-                //if (Helper.GetListRiskObject(db, ref list))
-                //{
-                //    int k = 1;
-                //};
+            //    List<RiskObject> list = new List<RiskObject>();
+            //    if (Helper.GetListRiskObject(db, ref list))
+            //    {
+            //        int k = 1;
+            //    };
             }
             return View();
         }
@@ -410,7 +392,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //RiskObject rs = new RiskObject();
-                //if (RiskObject.GetById(db, 8, ref rs))
+                //if (RiskObject.GetById(db, 4, ref rs))
                 //{
                 //    int k = 1;
                 //};
@@ -421,11 +403,11 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //  RiskObject rs = new RiskObject();
-                //if (RiskObject.DeleteById(db, 13)) // удалена
-                //  {
-                //      int k = 1;
-                //  };
+                //RiskObject rs = new RiskObject();
+                //if (RiskObject.DeleteById(db, 2)) // удалена
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -433,7 +415,7 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //int id = 78;
+                //int id = 7;
                 //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 0.0f, 0.0f);
                 //RiskObjectType type = new RiskObjectType(1);
                 //CadastreType cad = new CadastreType(1);
@@ -442,9 +424,11 @@ namespace EGH01.Controllers
                 //DateTime date1 = DateTime.Now;
                 //DateTime date2 = DateTime.Now;
                 //byte[] map = new byte[0];
-                //RiskObject rs = new RiskObject(id, point, type, cad, "new", district, region, "address1", "OOO nexttime", "375290000000", "375290000000", date1, date2, 100, 40000, false, false, map, 200, 300);
+
+                //RiskObject rs = new RiskObject(id, point, type, cad, "new", district, region, "address1", "OOO nexttime", "375290000000", "375290000000", "r@33.com",date1, date2, 100, 40000, false, false, map, 200, 300, "fuel", 0,0.0f, 0.0f, "geo" );
                 //if (RiskObject.Create(db, rs))
                 //{
+                    
                 //    int k = 1;
                 //};
             }
@@ -454,8 +438,7 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-
-                //int id = 8;
+                 //int id = 7;
                 //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 0.0f, 0.0f);
                 //Region region = new Region(2);
                 //District district = new District(2);
@@ -464,7 +447,7 @@ namespace EGH01.Controllers
                 //DateTime date1 = DateTime.Now;
                 //DateTime date2 = DateTime.Now;
                 //byte[] map = new byte[0];
-                //RiskObject rs = new RiskObject(id, point, type, cad, "update", district, region, "address1", "OOO nexttime", "375290000000", "375290000000", date1, date2, 100, 40000, false, false, map, 20, 30);
+                //RiskObject rs = new RiskObject(id, point, type, cad, "new up", district, region, "address1", "OOO nexttime", "375290000000", "375290000000", "r@33.com",date1, date2, 100, 40000, false, false, map, 200, 300, "fuelfuel", 0,1.0f, 0.0f, "geo" );
                 //if (RiskObject.Update(db, rs))
                 //{
                 //    int k = 1;

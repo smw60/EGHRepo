@@ -59,7 +59,8 @@ namespace EGH01DB.Primitives
         // круглое пятно: грунт, объем, угол наклона 
         public static float Get(EGH01DB.IDBContext dbcontext, SpreadingCoefficient spreading_coefficient) // получить коэффициент растекания, -1 - такого нет
         {
-            float rc = -1.0f;
+            int rc = -1;
+            float koefficient = 0.0f;
             using (SqlCommand cmd = new SqlCommand("EGH.GetSpreadingCoefficientByDelta", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -69,28 +70,23 @@ namespace EGH01DB.Primitives
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@МинПролива", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@МинПролива", SqlDbType.Real);
                     parm.Value = spreading_coefficient.min_volume;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@МаксПролива", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@МаксПролива", SqlDbType.Real);
                     parm.Value = spreading_coefficient.max_volume;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@МинУклона", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@МинУклона", SqlDbType.Real);
                     parm.Value = spreading_coefficient.min_angle;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@МаксУклона", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@МаксУклона", SqlDbType.Real);
                     parm.Value = spreading_coefficient.max_angle;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@КоэффициентРазлива", SqlDbType.Float);
-                    parm.Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -101,17 +97,25 @@ namespace EGH01DB.Primitives
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    //float koefficient = (float)cmd.Parameters["@КоэффициентРазлива"].Value;
-                    if ((int)cmd.Parameters["@exitrc"].Value > 0) rc =  (float)cmd.Parameters["@exitrc"].Value;
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        double kof = (double)reader["КоэффициентРазлива"];
+                        if ((int)cmd.Parameters["@exitrc"].Value > 0)
+                        {
+                            rc = (int)cmd.Parameters["@exitrc"].Value;
+                            koefficient = (float)kof;
+                        }
+                    }
+                    reader.Close();
                 }
                 catch (Exception e)
                 {
                     rc = -1;
                 };
-
             }
-            return rc;
-
+            return koefficient;
         }
         public static float GetByData(EGH01DB.IDBContext dbcontext, GroundType type, float volume, float angle)
         {
@@ -300,11 +304,6 @@ namespace EGH01DB.Primitives
                 {
                     SqlParameter parm = new SqlParameter("@МаксУклона", SqlDbType.Float);
                     parm.Value = spreading_coefficient.max_angle;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@КоэффициентРазлива", SqlDbType.Float);
-                    parm.Value = spreading_coefficient.koef;
                     cmd.Parameters.Add(parm);
                 }
                 {

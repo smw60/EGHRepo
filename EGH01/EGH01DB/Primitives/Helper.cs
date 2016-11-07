@@ -383,6 +383,7 @@ namespace EGH01DB.Primitives
                         string ownership = (string)reader["Принадлежность"];
                         string phone = (string)reader["Телефон"];
                         string fax = (string)reader["Факс"];
+                        string email = (string)reader["EMail"];
 
                         DateTime foundationdate = (DateTime)reader["ДатаВводаЭкспл"];
                         DateTime reconstractiondate = (DateTime)reader["ДатаПоследнейРеконструкции"];
@@ -396,6 +397,12 @@ namespace EGH01DB.Primitives
                         bool watertreatment = (bool)reader["ОчистнДождСток"];
                         bool watertreatmentcollect = (bool)reader["ОчистнСборПроливов"];
 
+                        string fueltype = (string)reader["ТипТоплива"];
+                        int numberofthreads = (int)reader["КоличествоНиток"];
+                        double productivity = (double)reader["Производительность"];
+                        double tubediameter = (double)reader["ДиаметрТрубы"];
+                        string geodescription = (string)reader["ГеографическоеОписание"];
+					
                         byte[] map = new byte[0]; // карта!
 
                         Point point = new Point(coordinates, ground_type, (float)waterdeep, (float)height);
@@ -408,11 +415,11 @@ namespace EGH01DB.Primitives
                         string address = (string)reader["АдресТехногенногоОбъекта"];
                         
                         RiskObject risk_object = new RiskObject(id, point, risk_object_type, cadastre_type,
-                                                                name, district, region, address, ownership, phone, fax,
+                                                                name, district, region, address, ownership, phone, fax, email, 
                                                                 foundationdate, reconstractiondate,
                                                                 numberofrefuel, volume,
                                                                 watertreatment, watertreatmentcollect, map,
-                                                                groundtank, undergroundtank);
+                                                                groundtank, undergroundtank, fueltype, numberofthreads, (float)tubediameter, (float)productivity, geodescription);
                         
                         risk_objects.Add(risk_object);
                     }

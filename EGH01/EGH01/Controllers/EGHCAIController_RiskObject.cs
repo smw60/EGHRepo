@@ -159,30 +159,22 @@ namespace EGH01.Controllers
                                         String phone = rs.phone;
                                         String fax = rs.fax;
                                         string address = rs.adress;
+                                        String email = rs.email;
 
-                                        // EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, district, region, address, ownership, phone, fax, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment, watertreatmentcollect, map);
 
+
+                                        String fueltype = rs.fax;
+                                        String geodescription = rs.fax;
                                         EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name,
-                                            district, region, address, ownership, phone, fax, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
-                                            watertreatmentcollect, map, groundtank, undergroundtank);
+                                            district, region, address, ownership, phone, fax, email, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
+                                            watertreatmentcollect, map, groundtank, undergroundtank,fueltype, 0,0.0f,0.0f, geodescription);
 
                                         if (EGH01DB.Objects.RiskObject.Create(db, risk_object))
                                         {
                                             view = View("RiskObject", db);
                                         }
                                     }
-
-                                    //Coordinates coordinates = new Coordinates(rs.latitude, rs.lngitude);
-                                    //GroundType ground_type = new GroundType(1, "", 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-                                    //Point point = new Point(coordinates, ground_type, 0.0f, 0.0f);
-                                    //RiskObjectType risk_object_type = new RiskObjectType(1, "");
-                                    //CadastreType cadastre_type = new CadastreType(1, "", 0);
-                                    //string name = rs.name;
-                                    //string address = rs.adress;
-                                    // EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, address);
-                                    //EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id);
-
-                                }
+   }
 
                             }
                         }
@@ -190,7 +182,6 @@ namespace EGH01.Controllers
                     }
                 }
             }
-            //}
             catch (RGEContext.Exception e)
             {
                 ViewBag.msg = e.message;
@@ -291,10 +282,14 @@ namespace EGH01.Controllers
                                     String phone = itv.phone;
                                     String fax = itv.fax;
                                     string address = itv.adress;
+                                    String email = itv.email;
+
+                                    String fueltype = itv.fax;
+                                    String geodescription = itv.fax;
 
                                     EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(itv.type_code, point, risk_object_type, cadastre_type, name,
-                                        district, region, address, ownership, phone, fax, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
-                                        watertreatmentcollect, map, groundtank, undergroundtank);
+                                        district, region, address, ownership, phone, fax, email, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
+                                        watertreatmentcollect, map, groundtank, undergroundtank, fueltype, 0, 0.0f, 0.0f, geodescription);
 
                                     if (EGH01DB.Objects.RiskObject.Update(db, risk_object))
                                         view = View("RiskObject", db);

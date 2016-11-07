@@ -59,25 +59,25 @@
 
     <div class="boxdata">
         <p>
-            <label class="boxdata-label-30">Типа объекта </label>   @Html.DropDownList("selectlist")
+            <label class="boxdata-label-30">Тип объекта </label>   @Html.DropDownList("selectlist")
         </p>
         <p>
-            <label class="boxdata-label-30">Наименование типа объекта </label>
+            <label class="boxdata-label-30">Наименование объекта </label>
             <input class="boxdata-input-50" type="text" name="Name" value=" " />
         </p>
         <p>
             <label class="boxdata-label-30">Объем резервуаров для хранения нефтепродутов (м3)</label>
 
         <p>
-            <label class="boxdata-label-30"> наземные</label>
+            <label class="boxdata-label-30">Наземные</label>
             <input class="boxdata-input-50" type="number" name="groundtank" value=" " min="0" />
         </p>
         <p>
-            <label class="boxdata-label-30"> подземные</label>
+            <label class="boxdata-label-30">Подземные</label>
             <input class="boxdata-input-50" type="number" name="undergroundtank" value=" " min="0" />
         </p>
         <p>
-            <label class="boxdata-label-30">Очистные сооружения</label>
+            <label class="boxdata-label-30">Наличие очистных сооружений</label>
             <br>
             <br>
             <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="true">&emsp; <label>&emsp;Для дождевого стока</label>
@@ -87,11 +87,11 @@
         </p>
        
         <p>
-            <label class="boxdata-label-30">дата ввода в эксплуатацию  </label>
+            <label class="boxdata-label-30">Дата ввода в эксплуатацию  </label>
             <input class="boxdata-input-50" type="date" name="foundationdate" value=" " />
         </p>
         <p>
-            <label class="boxdata-label-30">дата послежней реконструкции  </label>
+            <label class="boxdata-label-30">Дата послежней реконструкции  </label>
             <input class="boxdata-input-50" type="date" name="reconstractiondate" value=" " />
         </p>
         <p>    <label class="boxdata-label-30">Геологические данные. Грунт</label> @Html.DropDownList("list_groundType")
@@ -107,7 +107,7 @@
             <input class="boxdata-input-50" type="number" name="height" value=" " min="0" />
         </p>
         <p>
-            <label class="boxdata-label-30"> Широта: </label>
+            <label class="boxdata-label-30">Широта</label>
 
             <input class="boxdata-input-50" type="number" name="Latitude" value=" " min="-90" max="90" />
             <input class="boxdata-input-50" type="number" name="Lat_m" value=" " min="-90" max="90" />
@@ -133,10 +133,10 @@
             <label class="boxdata-label-30">Область</label>@Html.DropDownList("list_district")
         </p>
         <p>
-            <label class="boxdata-label-30">Район(список)</label>  @Html.DropDownList("list_region")
+            <label class="boxdata-label-30">Район</label>  @Html.DropDownList("list_region")
         </p>
         <p>
-            <label class="boxdata-label-30"> Адресс объекта </label>
+            <label class="boxdata-label-30">Город(населенный пункт),улица,дом</label>
             <input class="boxdata-input-50" type="text" name="Adress" value=" " />
         </p>
 
