@@ -147,7 +147,15 @@ namespace EGH01DB.Objects
             this.groundtank = 0;
             this.undergroundtank = 0;
         }
-       
+
+        public string Line { get 
+                               { return 
+                                     this.name.TrimStart().PadRight(40,' ')           
+                                   + this.region.name.TrimStart().PadRight(30, ' ')   
+                                   + this.district.name.TrimStart().PadRight(30, ' ');
+                               }
+                            }
+
         static public bool Create(EGH01DB.IDBContext dbcontext, RiskObject risk_object)
         {
             bool rc = false;
@@ -602,6 +610,8 @@ namespace EGH01DB.Objects
             }
 
         }
+
+
 
 
        

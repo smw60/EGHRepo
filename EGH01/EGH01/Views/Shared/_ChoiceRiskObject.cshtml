@@ -1,5 +1,6 @@
 ﻿@model EGH01DB.RGEContext
 @using EGH01DB.Objects;
+@using EGH01DB.Primitives;
 @using EGH01.Models.EGHRGE;
 @{
     
@@ -7,33 +8,7 @@
     ChoiceRiskObjectContext context = (ChoiceRiskObjectContext)Model.GetViewContext("_ChoiceRiskObject");
     if (context == null) { Model.SaveViewContext("_ChoiceRiskObject", context = new ChoiceRiskObjectContext()); };
     List<SelectListItem> riskobjectlist = null;
-    if (context.Regim == ChoiceRiskObjectContext.REGIM.CHOICE)
-    {
-
-        List<RiskObject> rol = new List<RiskObject>();
-        
-        if (RiskObjectsList.GetListRiskObjectByLike(Model, "Брест", ref rol))
-        {
-            ViewBag.riskobjectlist = new List<SelectListItem>();
-            riskobjectlist = new List<SelectListItem>();
-            rol.ForEach(o =>riskobjectlist.Add(new SelectListItem {Text = o.name, Value = o.id.ToString()})); 
-            //string[] a = new string[rol.Count];
-            //   v = new string[rol.Count]; 
-            
-            //for (int i = 0; i < a.Length; i++)
-            //{
-            //    a[i] =  String.Format("{0} {1} {2}",  rol[i].region.name, rol[i].district.name, rol[i].name);
-            //    v[i] = rol[i].id.ToString();
-            //}
-           
-            //ViewBag.riskobjectlist = new MultiSelectList(a,v);
-                //rol.ForEach(o => ViewBag.riskobjectlist.Add(new SelectListItem { Text = o.name, Value = o.id.ToString() })); 
-            
-        }
-        
-        
-    }
-    
+  
     
 }
 
@@ -41,27 +16,68 @@
 {
 <div class="box-fieldset">
                
-    <fieldset style="padding:20px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
-    <legend style="width: auto; font: inherit; border:none;"> Техногенный объект </legend>
+    <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+        <legend style="width: auto; font: inherit; border:none;"> Техногенный объект </legend>
         @if (context.Regim == ChoiceRiskObjectContext.REGIM.INIT)
         {
-
-            <input type="search"  name="findtemplate" style="max-width:none" size="100" />
-            <button type="submit" name="startfind" value="ChoiceRiskObject.startfind">Поиск</button>
+           {
+                Model.SaveViewContext("_ChoiceRiskObject", context = new ChoiceRiskObjectContext());
+           }
             
-        }
-        else if (context.Regim == ChoiceRiskObjectContext.REGIM.CHOICE)
-        {
-             <h2> CHOICE</h2>
-             @Html.ListBox("riskobjectlist", riskobjectlist, new { size = riskobjectlist.Count, width="85%"})
-            <section>
-            </section>
+          <input type="search" name="ChoiceRiskObject.template" style="max-width:none" size="100" />
+          <button type="submit" name="ChoiceRiskObject.choicefind" value="choice">Поиск</button>
 
         }
-        else if (context.Regim == ChoiceRiskObjectContext.REGIM.SET)
+        else if (context.Regim == ChoiceRiskObjectContext.REGIM.CHOICE && !string.IsNullOrEmpty(context.Template))
         {
+            {       
+                List<RiskObject> rol = new List<RiskObject>();
+                if (RiskObjectsList.GetListRiskObjectByLike(Model, context.Template, ref rol))
+                {
+                    riskobjectlist = new List<SelectListItem>();
+                    rol.ForEach(o => riskobjectlist.Add(new SelectListItem { Text = o.Line, Value = o.id.ToString(), Selected = false }));
+                    if (riskobjectlist.Count > 0) { riskobjectlist[0].Selected = true; }
+             
+                    @Html.DropDownList("ChoiceRiskObject.id", riskobjectlist, new { size = riskobjectlist.Count, style = "max-width:none; width:90%; white-space:pre; font-family: 'Courier New', Courier, monospace;" })
+                    <button type="submit" name="ChoiceRiskObject.choicefind" value="set">Получить</button>
+                }
+                else
+                { 
+                  <label class="boxdata-label-40" > Нет объектов соответсвующих  введенному запросу </label>
+                }
+                <button type="submit" name="ChoiceRiskObject.choicefind" value="init">Повторить поиск </button>
 
-            <h2> SET</h2>
+            }
+
+
+        }
+        else if (context.Regim == ChoiceRiskObjectContext.REGIM.SET && context.RiskObjectID > 0)
+        {
+            {
+                RiskObject riskobject = null;
+                if (RiskObject.GetById(Model, context.RiskObjectID, ref riskobject))
+                {
+                  Coordinates c = new Coordinates(riskobject.coordinates);     
+                  <div class="boxdata">
+                    <p><label class="boxdata-label-30">Идентификатор </label> <label style="width:70%">   @riskobject.id.ToString().PadRight(10)</label> </p>
+                    <p><label class="boxdata-label-30">Наименование  </label>  <label style="width:70%">  @riskobject.name.PadRight(20)       </label>   </p>
+                    <p><label class="boxdata-label-30">Адрес         </label>  <label style="width:70%">  @riskobject.address.PadRight(50)    </label>   </p>
+                    <p><label class="boxdata-label-30">Координаты    </label>  
+                       <label style="width:70%"> 
+                            @( 
+                               " широта:  "+ c.lat.d.ToString() + " " + c.lat.m.ToString() + " " +c.lat.s.ToString()
+                              +" долгота: "+ c.lng.d.ToString() + " " + c.lng.m.ToString() + " " +c.lng.s.ToString()
+                             ) 
+                       </label>  
+                    </p>
+
+                 </div>
+                 <button type="submit" name="ChoiceRiskObject.choicefind" value="init">Повторить поиск </button>
+                }
+            }
+
+                        
+            
 
         }
 

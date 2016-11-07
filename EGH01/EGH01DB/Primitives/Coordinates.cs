@@ -10,6 +10,8 @@ namespace EGH01DB.Primitives
 {
     public class Coordinates
     {
+
+        //   секунды округлить до 2 знаков после запятой   это точность 0.3 м 
         // широта:   0 - 90   - северная широта, -90 - 0 - южная широта 
         // долгота:  0 - 180  - восточная долгота, -180 - 0 - западная долгота 
         //comment
@@ -53,6 +55,14 @@ namespace EGH01DB.Primitives
             this.latitude = dms_to_d(lat.d, lat.m, lat.s);
             this.lngitude = dms_to_d(lng.d, lng.m, lng.s);
         }
+        public Coordinates(Coordinates c)
+        {
+            
+            this.latitude = c.latitude;
+            this.lngitude = c.lngitude;
+        }
+        
+        
         public Coordinates(XmlNode node)
         {
             this.latitude = Helper.GetFloatAttribute(node, "latitude", 0.0f);

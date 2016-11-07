@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,24 +16,70 @@ namespace EGH01.Controllers
 {
     public partial  class EGHRGEController: Controller
     {
-        public ActionResult Forecast()
+        private bool ChoiceRiskObject(RGEContext context,  NameValueCollection parms)
+        {
+            bool rc = false;  
+            ChoiceRiskObjectContext viewcontext = null;
+            string choicefind  =  parms["ChoiceRiskObject.choicefind"];
+            if (!string.IsNullOrEmpty(choicefind))
+            {
+                                 
+                if ((viewcontext = context.GetViewContext("_ChoiceRiskObject") as ChoiceRiskObjectContext)!= null)
+                {
+                    if (rc = choicefind.Equals("init"))
+                    {
+                        viewcontext.Regim = ChoiceRiskObjectContext.REGIM.INIT;
+                    }
+                    else if (rc = choicefind.Equals("choice"))
+                    {
+                        string template = parms["ChoiceRiskObject.template"];
+                        if (!string.IsNullOrEmpty(template)) 
+                        {
+                            viewcontext.Regim = ChoiceRiskObjectContext.REGIM.CHOICE;
+                            viewcontext.Template = template;
+                        }
+                       
+                    }
+                    else if (rc = choicefind.Equals("set"))
+                    {
+                        int id = 0;
+                        string formid = parms["ChoiceRiskObject.id"];
+                        if (!string.IsNullOrEmpty(formid) && int.TryParse(formid, out id))
+                        {
+                            viewcontext.Regim = ChoiceRiskObjectContext.REGIM.SET;
+                            viewcontext.RiskObjectID = id;                   
+                        }
+                    }
+                    
+                }
+               
+             }
+            return rc;
+        }
+
+         public ActionResult Forecast( )
         {
             RGEContext context = null;
-            ChoiceRiskObjectContext viewcontext = null;
+            
             ActionResult view = View("Index");
             ViewBag.EGHLayout = "RGE.Forecast";
             string strvolume = this.HttpContext.Request.Params["volume"] ?? "Empty";
-            string startfind = this.HttpContext.Request.Params["startfind"] ?? "Empty";
-            string riskobjectlist = this.HttpContext.Request.Params["riskobjectlist"] ?? "Empty";
+           
             try
             {
                 context = new RGEContext(this);
-               
-                if (startfind.Equals("ChoiceRiskObject.startfind"))
+
+                if (!ChoiceRiskObject(context, this.HttpContext.Request.Params))
                 {
-                    viewcontext = context.GetViewContext("_ChoiceRiskObject") as ChoiceRiskObjectContext;
-                    if (viewcontext != null) viewcontext.Regim = ChoiceRiskObjectContext.REGIM.CHOICE;
+                
+                
+                
                 }
+
+
+                
+
+                
             
             }
             catch (RGEContext.Exception e)
@@ -51,15 +98,10 @@ namespace EGH01.Controllers
         public ActionResult ChoiceRiskObject()
         {
             RGEContext context = null;
-            ChoiceRiskObjectContext viewcontext = null;
             try
             {
                 context = new RGEContext(this);
                
-               // "_ChoiceRiskObject.startchoice"
-                
-                //context.SaveViewContext("_ChoiceRiskObject", new Models.EGHRGE.ChoiceRiskObjectViewContext());
-
             }
             catch (RGEContext.Exception e)
             {
