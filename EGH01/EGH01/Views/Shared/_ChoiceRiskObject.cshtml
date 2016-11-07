@@ -59,6 +59,7 @@
                 {
                   Coordinates c = new Coordinates(riskobject.coordinates);     
                   <div class="boxdata">
+                    <input type="hidden" name="riskobjectid" value="@riskobject.id.ToString()" />
                     <p><label class="boxdata-label-30">Идентификатор </label> <label style="width:70%">   @riskobject.id.ToString().PadRight(10)</label> </p>
                     <p><label class="boxdata-label-30">Наименование  </label>  <label style="width:70%">  @riskobject.name.PadRight(20)       </label>   </p>
                     <p><label class="boxdata-label-30">Адрес         </label>  <label style="width:70%">  @riskobject.address.PadRight(50)    </label>   </p>

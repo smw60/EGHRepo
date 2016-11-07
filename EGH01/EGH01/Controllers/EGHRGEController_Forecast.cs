@@ -16,71 +16,38 @@ namespace EGH01.Controllers
 {
     public partial  class EGHRGEController: Controller
     {
-        private bool ChoiceRiskObject(RGEContext context,  NameValueCollection parms)
-        {
-            bool rc = false;  
-            ChoiceRiskObjectContext viewcontext = null;
-            string choicefind  =  parms["ChoiceRiskObject.choicefind"];
-            if (!string.IsNullOrEmpty(choicefind))
-            {
-                                 
-                if ((viewcontext = context.GetViewContext("_ChoiceRiskObject") as ChoiceRiskObjectContext)!= null)
-                {
-                    if (rc = choicefind.Equals("init"))
-                    {
-                        viewcontext.Regim = ChoiceRiskObjectContext.REGIM.INIT;
-                    }
-                    else if (rc = choicefind.Equals("choice"))
-                    {
-                        string template = parms["ChoiceRiskObject.template"];
-                        if (!string.IsNullOrEmpty(template)) 
-                        {
-                            viewcontext.Regim = ChoiceRiskObjectContext.REGIM.CHOICE;
-                            viewcontext.Template = template;
-                        }
-                       
-                    }
-                    else if (rc = choicefind.Equals("set"))
-                    {
-                        int id = 0;
-                        string formid = parms["ChoiceRiskObject.id"];
-                        if (!string.IsNullOrEmpty(formid) && int.TryParse(formid, out id))
-                        {
-                            viewcontext.Regim = ChoiceRiskObjectContext.REGIM.SET;
-                            viewcontext.RiskObjectID = id;                   
-                        }
-                    }
-                    
-                }
-               
-             }
-            return rc;
-        }
-
-         public ActionResult Forecast( )
+       
+        public ActionResult Forecast( )
         {
             RGEContext context = null;
             
             ActionResult view = View("Index");
             ViewBag.EGHLayout = "RGE.Forecast";
-            string strvolume = this.HttpContext.Request.Params["volume"] ?? "Empty";
+            string menuitem = this.HttpContext.Request.Params["menuitem"];
            
             try
             {
                 context = new RGEContext(this);
+                view = View(context);
 
-                if (!ChoiceRiskObject(context, this.HttpContext.Request.Params))
+                if (!ForecastViewConext.Handler(context, this.HttpContext.Request.Params))
                 {
-                
-                
-                
-                }
+                    if (!ChoiceRiskObjectContext.Handler(context, this.HttpContext.Request.Params))
+                    {
+                        if (menuitem != null)
+                        {
+                            if (menuitem.Equals("Forecast.Forecast"))
+                            {
 
-
-                
-
-                
-            
+                                //   Menu start = new Menu(
+                                //new Menu.MenuItem("Прогноз", "Forecast.Forecast", true),
+                                //new Menu.MenuItem("Отказаться", "Forecast.Cancel", true),
+                                //mitem
+                            }
+                            else if (menuitem.Equals("Forecast.Cancel")) view = Redirect("Index");
+                       }
+                   }
+                } 
             }
             catch (RGEContext.Exception e)
             {
@@ -91,9 +58,10 @@ namespace EGH01.Controllers
                 ViewBag.msg = e.Message;
             }
             
-         return View(context);
+         return view;
         }
         
+
         [ChildActionOnly]
         public ActionResult ChoiceRiskObject()
         {
