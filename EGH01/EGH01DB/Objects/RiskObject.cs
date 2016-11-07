@@ -25,6 +25,7 @@ namespace EGH01DB.Objects
         public string ownership { get; private set; }  //  принадлежность организации
         public string phone { get; private set; }  // изменить в следующей версии на набор данных!
         public string fax { get; private set; }  //
+        public string email { get; private set; } 
         public DateTime foundationdate { get; private set; }  // дата ввода в эксплуатацию
         public DateTime reconstractiondate { get; private set; }  // дата последней реконструкции
         public int numberofrefuel { get; private set; }  // количество заправок в сутки // !!!свои поля для каждого вида или всем одинаковые и прятать????
@@ -34,6 +35,12 @@ namespace EGH01DB.Objects
         public byte[] map { get; private set; } // сюда карту?
         public int groundtank { get; private set; }  //  емкость наземного резервуара
         public int undergroundtank { get; private set; } // емкость подземного резервуара
+        public string fueltype { get; private set; } // типы топлива, пока только строкой - в отдельную таблицу, если по ним будет отбор
+        public int numberofthreads { get; private set; } // количество ниток для нефтепровода или участка нефтедобычи
+        public float tubediameter { get; private set; } //  диаметр трубы
+        public float productivity { get; private set; } // производительность тонн в сутки для участка нефтедобычи 
+        public string geodescription { get; private set; } // географическое описание
+        
         // дополнительная инфомация из паспорта объекта 
 
         static public RiskObject defaulttype { get { return new RiskObject(0); } }  // выдавать при ошибке  
@@ -49,6 +56,7 @@ namespace EGH01DB.Objects
             this.ownership = string.Empty;
             this.phone = string.Empty;
             this.fax = string.Empty;
+            this.email = string.Empty;
             this.foundationdate = DateTime.Now;
             this.reconstractiondate = DateTime.Now;
             this.numberofrefuel = -1;
@@ -58,6 +66,11 @@ namespace EGH01DB.Objects
             this.map = new byte[0];
             this.groundtank = 0;
             this.undergroundtank = 0;
+            this.fueltype = string.Empty;
+            this.numberofthreads = -1;
+            this.tubediameter = 0.0f;
+            this.productivity = 0.0f;
+            this.geodescription = string.Empty;
         }
 
         public RiskObject(int id, 
@@ -71,6 +84,7 @@ namespace EGH01DB.Objects
                             string ownership, 
                             string phone, 
                             string fax,
+                            string email,
                             DateTime foundationdate, 
                             DateTime reconstractiondate,
                             int numberofrefuel, 
@@ -79,7 +93,12 @@ namespace EGH01DB.Objects
                             bool watertreatmentcollect,
                             byte[] map,
                             int groundtank,
-                            int undergroundtank)
+                            int undergroundtank,
+                            string fueltype,
+                            int numberofthreads,
+                            float tubediameter,
+                            float productivity,
+                            string geodescription)
             : base(point)
         {
             this.id = id;
@@ -92,6 +111,7 @@ namespace EGH01DB.Objects
             this.ownership = ownership;
             this.phone = phone;
             this.fax = fax;
+            this.email = email;
             this.foundationdate = foundationdate;
             this.reconstractiondate = reconstractiondate;
             this.numberofrefuel = numberofrefuel;
@@ -101,6 +121,11 @@ namespace EGH01DB.Objects
             this.map = new byte[0];
             this.groundtank = groundtank;
             this.undergroundtank = undergroundtank;
+            this.fueltype = fueltype;
+            this.numberofthreads = numberofthreads;
+            this.tubediameter = tubediameter;
+            this.productivity = productivity;
+            this.geodescription = geodescription;
         }
         public RiskObject(int id)
         {
@@ -114,6 +139,7 @@ namespace EGH01DB.Objects
             this.ownership = string.Empty;
             this.phone = string.Empty;
             this.fax = string.Empty;
+            this.email = string.Empty;
             this.foundationdate = DateTime.Now;
             this.reconstractiondate = DateTime.Now;
             this.numberofrefuel = -1;
@@ -123,6 +149,11 @@ namespace EGH01DB.Objects
             this.map = new byte[0];
             this.groundtank = 0;
             this.undergroundtank = 0;
+            this.fueltype = string.Empty;
+            this.numberofthreads = -1;
+            this.tubediameter = 0.0f;
+            this.productivity = 0.0f;
+            this.geodescription = string.Empty;
         }
         public RiskObject(int id, Point point)
             : base(point)
@@ -137,6 +168,7 @@ namespace EGH01DB.Objects
             this.ownership = string.Empty;
             this.phone = string.Empty;
             this.fax = string.Empty;
+            this.email = string.Empty;
             this.foundationdate = DateTime.Now;
             this.reconstractiondate = DateTime.Now;
             this.numberofrefuel = -1;
@@ -146,6 +178,11 @@ namespace EGH01DB.Objects
             this.map = new byte[0];
             this.groundtank = 0;
             this.undergroundtank = 0;
+            this.fueltype = string.Empty;
+            this.numberofthreads = -1;
+            this.tubediameter = 0.0f;
+            this.productivity = 0.0f;
+            this.geodescription = string.Empty;
         }
 
         public string Line { get 
@@ -212,6 +249,11 @@ namespace EGH01DB.Objects
                 {
                     SqlParameter parm = new SqlParameter("@Факс", SqlDbType.VarChar);
                     parm.Value = risk_object.fax;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@EMail", SqlDbType.VarChar);
+                    parm.Value = risk_object.email;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -284,6 +326,32 @@ namespace EGH01DB.Objects
                     parm.Value = risk_object.undergroundtank;
                     cmd.Parameters.Add(parm);
                 }
+                {
+                    SqlParameter parm = new SqlParameter("@ТипТоплива", SqlDbType.NVarChar);
+                    parm.Value = risk_object.fueltype;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоличествоНиток", SqlDbType.Int);
+                    parm.Value = risk_object.numberofthreads;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ДиаметрТрубы", SqlDbType.Float);
+                    parm.Value = risk_object.tubediameter;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Производительность", SqlDbType.Float);
+                    parm.Value = risk_object.productivity;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ГеографическоеОписание", SqlDbType.NVarChar);
+                    parm.Value = risk_object.geodescription;
+                    cmd.Parameters.Add(parm);
+                }
+          
                 {
                     SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
                     parm.Direction = ParameterDirection.ReturnValue;
@@ -394,6 +462,11 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
+                    SqlParameter parm = new SqlParameter("@EMail", SqlDbType.VarChar);
+                    parm.Value = risk_object.email;
+                    cmd.Parameters.Add(parm);
+                }
+                {
                     SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Float);
                     parm.Value = risk_object.coordinates.latitude;
                     cmd.Parameters.Add(parm);
@@ -461,6 +534,31 @@ namespace EGH01DB.Objects
                 {
                     SqlParameter parm = new SqlParameter("@ЕмкостьПодземногоРезервуара", SqlDbType.Int);
                     parm.Value = risk_object.undergroundtank;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ТипТоплива", SqlDbType.NVarChar);
+                    parm.Value = risk_object.fueltype;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоличествоНиток", SqlDbType.Int);
+                    parm.Value = risk_object.numberofthreads;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ДиаметрТрубы", SqlDbType.Float);
+                    parm.Value = risk_object.tubediameter;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Производительность", SqlDbType.Float);
+                    parm.Value = risk_object.productivity;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ГеографическоеОписание", SqlDbType.NVarChar);
+                    parm.Value = risk_object.geodescription;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -589,14 +687,22 @@ namespace EGH01DB.Objects
                         string ownership = (string)reader["Принадлежность"];
                         string phone = (string)reader["Телефон"];
                         string fax = (string)reader["Факс"];
+                        string email = (string)reader["EMail"];
+
                         byte[] map = new byte[0];
 
+                        string fueltype = (string)reader["ТипТоплива"];
+                        int numberofthreads = (int)reader["КоличествоНиток"];
+                        double productivity = (double)reader["Производительность"];
+                        double tubediameter = (double)reader["ДиаметрТрубы"];
+                        string geodescription = (string)reader["ГеографическоеОписание"];
+
                         risk_object = new RiskObject(id, point, risk_object_type, cadastre_type,
-                                                               name, district, region, address, ownership, phone, fax,
+                                                               name, district, region, address, ownership, phone, fax, email, 
                                                                foundationdate, reconstractiondate,
                                                                numberofrefuel, volume,
                                                                watertreatment, watertreatmentcollect, map,
-                                                               groundtank, undergroundtank);
+                                                               groundtank, undergroundtank, fueltype, numberofthreads, (float)tubediameter, (float)productivity, geodescription);
                     }
                     reader.Close();
                     rc = (int)cmd.Parameters["@exitrc"].Value > 0; 

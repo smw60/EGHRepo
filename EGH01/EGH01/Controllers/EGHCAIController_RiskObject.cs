@@ -159,12 +159,16 @@ namespace EGH01.Controllers
                                         String phone = rs.phone;
                                         String fax = rs.fax;
                                         string address = rs.adress;
+                                        // заглушка при смене конструктора - blinova, смотри еще нули в конструкторе
+                                        String email = rs.fax;
+                                        String fueltype = rs.fax;
+                                        String geodescription = rs.fax;
 
                                         // EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, district, region, address, ownership, phone, fax, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment, watertreatmentcollect, map);
 
                                         EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name,
-                                            district, region, address, ownership, phone, fax, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
-                                            watertreatmentcollect, map, groundtank, undergroundtank);
+                                            district, region, address, ownership, phone, fax, email, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
+                                            watertreatmentcollect, map, groundtank, undergroundtank,fueltype, 0,0.0f,0.0f, geodescription);
 
                                         if (EGH01DB.Objects.RiskObject.Create(db, risk_object))
                                         {
@@ -291,10 +295,14 @@ namespace EGH01.Controllers
                                     String phone = itv.phone;
                                     String fax = itv.fax;
                                     string address = itv.adress;
+                                    // заглушка при смене конструктора - blinova, смотри еще нули в конструкторе
+                                    String email = itv.fax;
+                                    String fueltype = itv.fax;
+                                    String geodescription = itv.fax;
 
                                     EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(itv.type_code, point, risk_object_type, cadastre_type, name,
-                                        district, region, address, ownership, phone, fax, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
-                                        watertreatmentcollect, map, groundtank, undergroundtank);
+                                        district, region, address, ownership, phone, fax, email, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
+                                        watertreatmentcollect, map, groundtank, undergroundtank, fueltype, 0, 0.0f, 0.0f, geodescription);
 
                                     if (EGH01DB.Objects.RiskObject.Update(db, risk_object))
                                         view = View("RiskObject", db);
