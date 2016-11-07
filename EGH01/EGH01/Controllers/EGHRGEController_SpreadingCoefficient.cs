@@ -14,17 +14,15 @@ namespace EGH01.Controllers
 {
     public partial class EGHRGEController : Controller
     {
-        //
-        // GET: /EGHRGEController_SreadingCoefficient/
-        public ActionResult SreadingCoefficient()
+
+        public ActionResult SpreadingCoefficient()
         {
             RGEContext db = null;
             ActionResult view = View("Index");
-            ViewBag.EGHLayout = "RGE.SreadingCoefficient";
+            ViewBag.EGHLayout = "RGE.SpreadingCoefficient";
             try
             {
                 db = new RGEContext();
-
 
             }
             catch (RGEContext.Exception e)

@@ -442,6 +442,70 @@ namespace EGH01DB.Primitives
             }
         }
 
+        static public bool GetListSpreadingCoefficient(EGH01DB.IDBContext dbcontext, ref List<SpreadingCoefficient> spreading_coefficient)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetSpreadingCoefficientList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    spreading_coefficient = new List<SpreadingCoefficient>();
+                    while (reader.Read())
+                    {
+                        int ground_type_code = (int)reader["ТипГрунта"];
+                        string ground_type_name = (string)reader["НаименованиеТипаГрунта"];
+
+                        double porosity = (double)reader["КоэфПористости"];
+                        double holdmigration = (double)reader["КоэфЗадержкиМиграции"];
+                        double waterfilter = (double)reader["КоэфФильтрацииВоды"];
+                        double diffusion = (double)reader["КоэфДиффузии"];
+                        double distribution = (double)reader["КоэфРаспределения"];
+                        double sorption = (double)reader["КоэфСорбции"];
+                        double watercapacity = (double)reader["КоэфКапВлагоемкости"];
+                        double soilmoisture = (double)reader["ВлажностьГрунта"];
+                        double аveryanovfactor = (double)reader["КоэфАверьянова"];
+                        double permeability = (double)reader["Водопроницаемость"];
+                        GroundType ground_type = new GroundType ((int)ground_type_code,
+                                                    (string)ground_type_name, 
+                                                    (float)porosity, 
+                                                    (float)holdmigration, 
+                                                    (float)waterfilter, 
+                                                    (float)diffusion, 
+                                                    (float)distribution, 
+                                                    (float)sorption,
+                                                    (float)watercapacity,
+                                                    (float)soilmoisture,
+                                                    (float)аveryanovfactor,
+                                                    (float)permeability);
+           
+                        double min_volume = (double)reader["МинПролива"];
+                        double max_volume = (double)reader["МаксПролива"];
+                        double min_angle = (double)reader["МинУклона"];
+                        double max_angle = (double)reader["МаксУклона"];
+                        double koef = (double)reader["КоэффициентРазлива"];
+
+                        spreading_coefficient.Add(new SpreadingCoefficient(ground_type,
+                                                        (float)min_volume,
+                                                        (float)max_volume,
+                                                        (float)min_angle,
+                                                        (float)max_angle,
+                                                        (float)koef));
+                    }
+                    rc = spreading_coefficient.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+
+            }
+        }
+
         static public float GetFloatAttribute(XmlNode n, string name, float errorvalue = 0.0f)
         {
             float rc = errorvalue;

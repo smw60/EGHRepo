@@ -89,6 +89,11 @@ namespace EGH01DB.Primitives
                     cmd.Parameters.Add(parm);
                 }
                 {
+                    SqlParameter parm = new SqlParameter("@КоэффициентРазлива", SqlDbType.Float);
+                    parm.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
                     SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
                     parm.Direction = ParameterDirection.ReturnValue;
                     cmd.Parameters.Add(parm);
@@ -96,7 +101,8 @@ namespace EGH01DB.Primitives
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    rc = (int)cmd.Parameters["@exitrc"].Value;
+                    //float koefficient = (float)cmd.Parameters["@КоэффициентРазлива"].Value;
+                    if ((int)cmd.Parameters["@exitrc"].Value > 0) rc =  (float)cmd.Parameters["@exitrc"].Value;
                 }
                 catch (Exception e)
                 {
@@ -129,6 +135,11 @@ namespace EGH01DB.Primitives
                     cmd.Parameters.Add(parm);
                 }
                 {
+                    SqlParameter parm = new SqlParameter("@КоэффициентРазлива", SqlDbType.Float);
+                    parm.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
                     SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Float);
                     parm.Direction = ParameterDirection.ReturnValue;
                     cmd.Parameters.Add(parm);
@@ -136,7 +147,7 @@ namespace EGH01DB.Primitives
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    double k = (double)cmd.Parameters["@exitrc"].Value;
+                    double k = (double)cmd.Parameters["@КоэффициентРазлива"].Value;
                     rc = (float)k;
                 }
                 catch (Exception e)

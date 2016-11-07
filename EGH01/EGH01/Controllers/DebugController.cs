@@ -70,19 +70,19 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //int t = 1;
-                //GroundType g = new GroundType(t);
-                //double v1 = 20;
-                //double v2 = 50;
-                //double a1 = 0.7;
-                //double a2 = 4.6;
-                //double k = 20.0;
-                //SpreadingCoefficient sc = new SpreadingCoefficient(g, (float)v1, (float)v2, (float)a1, (float)a2, (float)k);
-              
-                //if (SpreadingCoefficient.Create(db, sc))
-                //{
-                //    int k1 = 1;
-                //};
+                ////int t = 1;
+                ////GroundType g = new GroundType(t);
+                ////double v1 = 20;
+                ////double v2 = 50;
+                ////double a1 = 0.7;
+                ////double a2 = 4.6;
+                ////double k = 20.0;
+                ////SpreadingCoefficient sc = new SpreadingCoefficient(g, (float)v1, (float)v2, (float)a1, (float)a2, (float)k);
+
+                ////if (SpreadingCoefficient.Create(db, sc))
+                ////{
+                ////    int k1 = 1;
+                ////};
             }
             return View();
         }
@@ -91,24 +91,76 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //GroundType gr = new GroundType(1);
-                //SpreadingCoefficient sc = new SpreadingCoefficient(gr, 20.0f, 40.0f, 1.5f, 4.6f, 0.0f);
+                //SpreadingCoefficient sc = new SpreadingCoefficient(gr, (float)20.0f, (float)40.0f, (float)1.5f, (float)4.6f, (float)0.0f);
                 //float koeff = SpreadingCoefficient.Get(db, sc);
                 
             }
             return View();
         }
-        public ActionResult SC_GetByData()// нет
+        public ActionResult SC_GetByData()// есть
+        {
+            //RGEContext db = new RGEContext();
+            //{
+            //    GroundType gr = new GroundType(1);
+            //    SpreadingCoefficient sc = new SpreadingCoefficient(gr, 20.0f, 40.0f, 1.5f, 4.6f, 2.0f);
+            //    float koeff = SpreadingCoefficient.GetByData(db, gr, 25.0f, 2.3f);
+
+            //}
+            return View();
+        }
+        public ActionResult SC_list() // есть
         {
             RGEContext db = new RGEContext();
             {
+                //List<SpreadingCoefficient> list = new List<SpreadingCoefficient>();
+                //if (Helper.GetListSpreadingCoefficient(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        } 
+        public ActionResult SC_Update()// нет
+        {
+            RGEContext db = new RGEContext();
+            {
+<<<<<<< HEAD
                 GroundType gr = new GroundType(1);
                 //SpreadingCoefficient sc = new SpreadingCoefficient(gr, 20.0f, 40.0f, 1.5f, 4.6f, 2.0f);
                 float koeff = SpreadingCoefficient.GetByData(db, gr, 25.0f, 2.3f);
                 int k = 1;
+=======
+>>>>>>> 70ca29adf23248e5766709d03c17ba61d6be1265
 
+                //int ground_type_code = 2;
+                //GroundType ground_type = new GroundType(ground_type_code);
+              
+                //double v1 = 20;
+                //double v2 = 50;
+                //double a1 = 0.7;
+                //double a2 = 4.6;
+                //double k = 30.0;
+                //SpreadingCoefficient sc = new SpreadingCoefficient(ground_type, (float)v1, (float)v2, (float)a1, (float)a2, (float)k);
+                //if (SpreadingCoefficient.Update(db, sc))
+                //{
+                //    int k1 = 1;
+                //};
             }
             return View();
         }
+        public ActionResult SC_Delete()  // нет
+        {
+            RGEContext db = new RGEContext();
+            {
+                //SpreadingCoefficient r = new SpreadingCoefficient();
+                //if (SpreadingCoefficient.Delete(db, 8))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
 
         // проверка процедур Region
         public ActionResult Region_Create()// есть
@@ -489,9 +541,9 @@ namespace EGH01.Controllers
                 //float sorption = 0.2f;
                 //GroundType gt = new GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption);
                 //if (GroundType.GetByCode(db, 1, out gt))
-                {
-                    int k = 1;
-                };
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -563,7 +615,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //int type_code = 2;
-                //string name = "Глинистыйup";
+                //string name = "Глинистый";
                 //double porosity = 0.6f;
                 //double holdmigration = 30.0f;
                 //double waterfilter = 50.0f;
@@ -571,8 +623,8 @@ namespace EGH01.Controllers
                 //double distribution = 3.0f;
                 //double sorption = 30.6f;
 
-                //float watercapacity = 200.0f;
-                //float soilmoisture = 13.0f;
+                //float watercapacity = 20.0f;
+                //float soilmoisture = 173.0f;
                 //float аveryanovfactor = 23.0f;
                 //float permeability = 300.0f;
 
@@ -589,9 +641,9 @@ namespace EGH01.Controllers
                 //                                (float)аveryanovfactor,
                 //                                (float)permeability);
                 //if (GroundType.Update(db, gt))
-                {
-                    int k = 1;
-                };
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
