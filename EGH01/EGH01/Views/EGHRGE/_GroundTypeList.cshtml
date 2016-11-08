@@ -1,0 +1,45 @@
+﻿@using EGH01DB.Types;
+@using EGH01.Core; 
+@model List<GroundType>
+@{
+   Menu menu =  new Menu( 
+                           new Menu.MenuItem("Удалить",  "GroundType.Delete",  true),
+                           new Menu.MenuItem("Изменить", "GroundType.Update",  true)
+                          );   
+    
+}
+@foreach(GroundType t in @Model)
+{
+
+    using(Html.BeginForm("GroundType", "EGHRGE"))
+    {
+
+        <div class="box">
+            <div class="boxdata">
+
+               
+                 <p><label class="boxdata-label-30">Код типа грунта</label> @t.type_code.ToString()</p>
+                <br>
+                <p><label class="boxdata-label-30">Наименование</label> @t.name </p>
+                <br>
+                <p><label class="boxdata-label-30">Пористость</label> @t.porosity.ToString()</p>
+                <br>
+                <p><label class="boxdata-label-30">Влажность</label> @t.soilmoisture.ToString() </p>
+                <br>
+                <p><label class="boxdata-label-30">Влагоемкость</label> @t.watercapacity.ToString() </p>
+                <br>
+                <p><label class="boxdata-label-30">Коэффициент фильтрации</label> @t.waterfilter.ToString()</p>
+                <br>
+                <p><label class="boxdata-label-30">Коэффициент Аверьянова</label> @t.аveryanovfactor.ToString() </p>
+                <br>
+                <p><label class="boxdata-label-30">Коэффициент задержки нефтепродукта</label> @t.holdmigration.ToString()</p>
+                <input type="hidden" value="@t.type_code.ToString()" name="type_code">
+            
+            </div>
+            @Html.Partial("_TypeLineMenu", menu)
+        </div>
+
+    }
+}
+
+ 

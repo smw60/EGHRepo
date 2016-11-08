@@ -4,6 +4,9 @@ using EGH01DB.Types;
 using EGH01.Models.EGHCCO;
 using EGH01DB;
 using System.Xml;
+using System.Globalization;
+using EGH01DB.Primitives;
+
 
 
 namespace EGH01.Controllers
@@ -90,8 +93,6 @@ namespace EGH01.Controllers
         }
 
 
-
-
         [HttpPost]
         public ActionResult PetrochemicalTypeCreate(PetrochemicalTypeView ptv)
         {
@@ -108,14 +109,39 @@ namespace EGH01.Controllers
                     int id = -1;
                     if (EGH01DB.Types.PetrochemicalType.GetNextCode(db, out id))
                     {
-                        int type_code = ptv.code_type;
+                        int    type_code = ptv.code_type;
                         string name = ptv.name;
-                        float boilingtemp = ptv.boilingtemp;
-                        float density = ptv.density;
-                        float viscosity = ptv.viscosity;
-                        float solubility =ptv.solubility;
-                        PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility) ;
 
+                        string strboilingtemp = this.HttpContext.Request.Params["boilingtemp"] ?? "Empty";
+                        float boilingtemp = 0.0f;
+                        Helper.FloatTryParse(strboilingtemp, out boilingtemp);
+
+                        string strdensity = this.HttpContext.Request.Params["density"] ?? "Empty";
+                        float density = 0.0f;
+                        Helper.FloatTryParse(strdensity, out density);
+
+                        string strviscosity = this.HttpContext.Request.Params["viscosity"] ?? "Empty";
+                        float  viscosity = 0.0f;
+                        Helper.FloatTryParse(strviscosity, out viscosity);
+
+                        string strsolubility = this.HttpContext.Request.Params["solubility"] ?? "Empty";
+                        float solubility = 0.0f;
+                        Helper.FloatTryParse(strsolubility, out solubility);
+
+                        string strtension = this.HttpContext.Request.Params["tension"] ?? "Empty";
+                        float tension = 0.0f;
+                        Helper.FloatTryParse(strtension, out tension);
+
+                        string strdynamicviscosity = this.HttpContext.Request.Params["dynamicviscosity"] ?? "Empty";
+                        float dynamicviscosity = 0.0f;
+                        Helper.FloatTryParse(strdynamicviscosity, out dynamicviscosity);
+
+                        string strdiffusion = this.HttpContext.Request.Params["diffusion"] ?? "Empty";
+                        float diffusion = 0.0f;
+                        Helper.FloatTryParse(strdiffusion, out diffusion);
+
+                        PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, 
+                            (float)viscosity, (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion);
                         if (EGH01DB.Types.PetrochemicalType.Create(db, pt))
                         {
                             view = View("PetrochemicalType", db);
@@ -179,16 +205,38 @@ namespace EGH01.Controllers
                 if (menuitem.Equals("PetrochemicalType.Update.Update"))
                 {
 
-
                     int type_code = ptv.code_type;
                     string name = ptv.name;
-                    float boilingtemp = ptv.boilingtemp;
-                    float density = ptv.density;
-                    float viscosity = ptv.viscosity;
-                    float solubility = ptv.solubility;
-                    PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility);
+ 
+                    string strboilingtemp = this.HttpContext.Request.Params["boilingtemp"] ?? "Empty";
+                    float boilingtemp = 0.0f;
+                    Helper.FloatTryParse(strboilingtemp, out boilingtemp);
 
+                    string strdensity = this.HttpContext.Request.Params["density"] ?? "Empty";
+                    float density = 0.0f;
+                    Helper.FloatTryParse(strdensity, out density);
 
+                    string strviscosity = this.HttpContext.Request.Params["viscosity"] ?? "Empty";
+                    float viscosity = 0.0f;
+                    Helper.FloatTryParse(strviscosity, out viscosity);
+
+                    string strsolubility = this.HttpContext.Request.Params["solubility"] ?? "Empty";
+                    float solubility = 0.0f;
+                    Helper.FloatTryParse(strsolubility, out solubility);
+
+                    string strtension = this.HttpContext.Request.Params["tension"] ?? "Empty";
+                    float tension = 0.0f;
+                    Helper.FloatTryParse(strtension, out tension);
+
+                    string strdynamicviscosity = this.HttpContext.Request.Params["dynamicviscosity"] ?? "Empty";
+                    float dynamicviscosity = 0.0f;
+                    Helper.FloatTryParse(strdynamicviscosity, out dynamicviscosity);
+
+                    string strdiffusion = this.HttpContext.Request.Params["diffusion"] ?? "Empty";
+                    float diffusion = 0.0f;
+                    Helper.FloatTryParse(strdiffusion, out diffusion);
+                   
+                    PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion);
                     if (EGH01DB.Types.PetrochemicalType.Update(db, pt))
                         view = View("PetrochemicalType", db);
                 }

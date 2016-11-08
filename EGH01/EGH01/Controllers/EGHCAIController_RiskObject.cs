@@ -69,7 +69,7 @@ namespace EGH01.Controllers
                 }
                 else if (menuitem.Equals("RiskObject.Excel"))
                 {
-                    EGH01DB.Objects.RiskObject.RiskObjectList list = new EGH01DB.Objects.RiskObject.RiskObjectList();
+                    EGH01DB.Objects.RiskObjectsList list = new EGH01DB.Objects.RiskObjectsList();
                     XmlNode node = list.toXmlNode();
                     XmlDocument doc = new XmlDocument();
                     XmlNode nnode = doc.ImportNode(node, true);
@@ -120,11 +120,25 @@ namespace EGH01.Controllers
                         Byte[] map = new byte[2];
                         int groundtank = rs.groundtank;
                         int undergroundtank = rs.undergroundtank;
-                        Coordinates coordinates = new Coordinates(rs.latitude, rs.lat_m, rs.lat_s, rs.lngitude, rs.lng_m, rs.lng_s);
+                        string strlat_s = this.HttpContext.Request.Params["lat_s"] ?? "Empty";
+                        string strlng_s = this.HttpContext.Request.Params["lng_s"] ?? "Empty";
+                        float lat_s = 0.0f;
+                        float lng_s = 0.0f;
+                        if (!Helper.FloatTryParse(strlat_s, out lat_s))
+                        {
+                            lat_s = 0.0f;
+                        }
+                        if (!Helper.FloatTryParse(strlng_s, out lng_s))
+                        {
+                            lng_s = 0.0f;
+                        }
+                        Coordinates coordinates = new Coordinates(rs.latitude, rs.lat_m, lat_s, rs.lngitude, rs.lng_m, lng_s);
                         EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
                         if (EGH01DB.Types.GroundType.GetByCode(db, rs.list_groundType, out type_groud))
                         {
-                            GroundType ground_type = new GroundType(rs.list_groundType, type_groud.name, type_groud.porosity, type_groud.holdmigration, type_groud.waterfilter, type_groud.diffusion, type_groud.distribution, type_groud.diffusion);
+                            GroundType ground_type = 
+            new GroundType(rs.list_groundType, type_groud.name, type_groud.porosity, type_groud.holdmigration, type_groud.waterfilter, type_groud.diffusion,
+            type_groud.distribution, type_groud.sorption,type_groud.watercapacity,type_groud.soilmoisture, type_groud.аveryanovfactor, type_groud.permeability);
                             Point point = new Point(coordinates, ground_type, rs.waterdeep, rs.height);
                             EGH01DB.Types.RiskObjectType type = new EGH01DB.Types.RiskObjectType();
                             if (EGH01DB.Types.RiskObjectType.GetByCode(db, rs.selectlist, out type))
@@ -134,7 +148,7 @@ namespace EGH01.Controllers
                                 EGH01DB.Types.District risk_district = new EGH01DB.Types.District();
                                 if (EGH01DB.Types.District.GetByCode(db, rs.list_district, out risk_district))
                                 {
-                                    District district = new District(rs.list_district, risk_district.district);
+                                    District district = new District(rs.list_district, risk_district.name);
                                     EGH01DB.Types.Region risk_region = new EGH01DB.Types.Region();
                                     if (EGH01DB.Types.Region.GetByCode(db, rs.list_region, out risk_region))
                                     {
@@ -145,30 +159,22 @@ namespace EGH01.Controllers
                                         String phone = rs.phone;
                                         String fax = rs.fax;
                                         string address = rs.adress;
+                                        String email = rs.email;
 
-                                        // EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, district, region, address, ownership, phone, fax, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment, watertreatmentcollect, map);
 
+
+                                        String fueltype = rs.fax;
+                                        String geodescription = rs.fax;
                                         EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name,
-                                            district, region, address, ownership, phone, fax, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
-                                            watertreatmentcollect, map, groundtank, undergroundtank);
+                                            district, region, address, ownership, phone, fax, email, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
+                                            watertreatmentcollect, map, groundtank, undergroundtank,fueltype, 0,0.0f,0.0f, geodescription);
 
                                         if (EGH01DB.Objects.RiskObject.Create(db, risk_object))
                                         {
                                             view = View("RiskObject", db);
                                         }
                                     }
-
-                                    //Coordinates coordinates = new Coordinates(rs.latitude, rs.lngitude);
-                                    //GroundType ground_type = new GroundType(1, "", 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-                                    //Point point = new Point(coordinates, ground_type, 0.0f, 0.0f);
-                                    //RiskObjectType risk_object_type = new RiskObjectType(1, "");
-                                    //CadastreType cadastre_type = new CadastreType(1, "", 0);
-                                    //string name = rs.name;
-                                    //string address = rs.adress;
-                                    // EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, address);
-                                    //EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id);
-
-                                }
+   }
 
                             }
                         }
@@ -176,7 +182,6 @@ namespace EGH01.Controllers
                     }
                 }
             }
-            //}
             catch (RGEContext.Exception e)
             {
                 ViewBag.msg = e.message;
@@ -240,7 +245,19 @@ namespace EGH01.Controllers
                     Byte[] map = new byte[2];
                     int groundtank = itv.groundtank;
                     int undergroundtank = itv.undergroundtank;
-                    Coordinates coordinates = new Coordinates(itv.latitude, itv.lat_m, itv.lat_s, itv.lngitude, itv.lng_m, itv.lng_s);
+                    string strlat_s = this.HttpContext.Request.Params["lat_s"] ?? "Empty";
+                    string strlng_s = this.HttpContext.Request.Params["lng_s"] ?? "Empty";
+                    float lat_s = 0.0f;
+                    float lng_s = 0.0f;
+                    if (!Helper.FloatTryParse(strlat_s, out lat_s))
+                    {
+                        lat_s = 0.0f;
+                    }
+                    if (!Helper.FloatTryParse(strlng_s, out lng_s))
+                    {
+                        lng_s = 0.0f;
+                    }
+                    Coordinates coordinates = new Coordinates(itv.latitude, itv.lat_m, lat_s, itv.lngitude, itv.lng_m, lng_s);
                     EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
                     if (EGH01DB.Types.GroundType.GetByCode(db, itv.list_groundType, out type_groud))
                     {
@@ -254,7 +271,7 @@ namespace EGH01.Controllers
                             EGH01DB.Types.District risk_district = new EGH01DB.Types.District();
                             if (EGH01DB.Types.District.GetByCode(db, itv.list_district, out risk_district))
                             {
-                                District district = new District(itv.list_district, risk_district.district); 
+                                District district = new District(itv.list_district, risk_district.name); 
                                 EGH01DB.Types.Region risk_region = new EGH01DB.Types.Region();
                                 if (EGH01DB.Types.Region.GetByCode(db, itv.list_region, out risk_region))
                                 {
@@ -265,10 +282,14 @@ namespace EGH01.Controllers
                                     String phone = itv.phone;
                                     String fax = itv.fax;
                                     string address = itv.adress;
+                                    String email = itv.email;
+
+                                    String fueltype = itv.fax;
+                                    String geodescription = itv.fax;
 
                                     EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(itv.type_code, point, risk_object_type, cadastre_type, name,
-                                        district, region, address, ownership, phone, fax, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
-                                        watertreatmentcollect, map, groundtank, undergroundtank);
+                                        district, region, address, ownership, phone, fax, email, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
+                                        watertreatmentcollect, map, groundtank, undergroundtank, fueltype, 0, 0.0f, 0.0f, geodescription);
 
                                     if (EGH01DB.Objects.RiskObject.Update(db, risk_object))
                                         view = View("RiskObject", db);

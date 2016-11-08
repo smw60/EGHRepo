@@ -8,6 +8,7 @@ using EGH01DB.Types;
 using EGH01DB.Points;
 using EGH01DB.Primitives;
 
+
 // температура 
 
 namespace EGH01DB.Blurs
@@ -19,8 +20,9 @@ namespace EGH01DB.Blurs
         // радиус для первоначального расчета из предположения
         // что поверхность ровная 
         public float radius { get { return (float)Math.Sqrt(square / Math.PI); } }     // радиус наземного пятна (м)   считаем из площади (sqrt(square/3.14))  
-        public float square { get { return SpreadingCoefficient.get(spreadpoint.groundtype, spreadpoint.volume, 0.0f) * spreadpoint.volume; } }   // площадь наземного пятна (м)  считаем  F * volume (F = 
-        
+        //public float square { get { return SpreadingCoefficient.GetByData(EGH01DB.IDBContext dbcontext, spreadpoint.groundtype, spreadpoint.volume, 0.0f) * spreadpoint.volume; } }   // площадь наземного пятна (м)  считаем  F * volume (F = 
+        // blinova
+        public float square { get; private set;}
         // riskobjecstlist - из БД    pollutionlist - из БД по AnchorList
         public EcoObjectsList ecoobjecstlist     { get; private set; }   // список объектов в т.ч. заглавный которые попали в наземное пятно    
         public GroundPollutionList pollutionlist { get; private set; }   // загрязнение в точках: время движения (дни) до грунтовых вод и концентрация (мл/кг) 

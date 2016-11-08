@@ -97,7 +97,7 @@
                 @if (ViewBag.EGHLayout == "RGE")
                 {
                     <li>@Html.ActionLink("Прогноз", "Index", "EGHRGE")</li>
-                    <li>@Html.ActionLink("Опорные точки", "Index", "EGHRGE")</li>
+                    <li>@Html.ActionLink("Опорные точки", "AnchorPoint", "EGHRGE")</li>
                     <li>@Html.ActionLink("Природоохранные объекты", "Index", "EGHRGE")</li>
                     <li>@Html.ActionLink("Отчеты", "Index", "EGHRGE")</li>
 
@@ -108,9 +108,9 @@
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Типы грунтов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Категории земли", "IncidentType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Коэффициент растекания", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                         </ul>
                     </li>
 
@@ -194,4 +194,7 @@
         @RenderSection("scripts", required: false)
 </body>
 </html>
+<<<<<<< HEAD
+=======
 
+>>>>>>> 55b123b86a5620f6bd8f300cd0b34898e8b28419

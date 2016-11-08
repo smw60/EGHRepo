@@ -186,11 +186,13 @@ a.dropdown-toggle.btn.btn-link {
    }
 
 /**    не трогать   смелов       */
+      
         body {
             color: black;
         }
 
-        *::after {
+      
+          *::after {
             content: "";
         }
 
@@ -406,17 +408,19 @@ a.dropdown-toggle.btn.btn-link {
         }
 
 
-/*    не трогать          */*/*/
+/*    не трогать          */
+* /*/
 
 
 /* Минимально необходимый CSS для footer*/
-
- #footer {
+#footer {
     position: fixed; /* Фиксированное положение */
-    left: 0; bottom: 0; /* Левый нижний угол */
+    left: 0;
+    bottom: 0; /* Левый нижний угол */
     padding: 10px; /* Поля вокруг текста */
     background: #f9d675; /* Цвет фона */
     color: #0e210b; /* Цвет текста */
     width: 100%; /* Ширина слоя */
+}
 
     

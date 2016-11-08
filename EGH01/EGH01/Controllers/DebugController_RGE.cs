@@ -18,8 +18,19 @@ namespace EGH01.Controllers
 
         public ActionResult RGECalc()
         {
+            RGEContext db = new RGEContext();
+            
+            {
+                List<RiskObject> o = new List<RiskObject>(); 
+                
+                if (RiskObjectsList.GetListRiskObjectByLike(db, "Брест", ref o))
+                {
+                    int k = 1;
+                
+                }
 
-
+            }
+             
 
 
 

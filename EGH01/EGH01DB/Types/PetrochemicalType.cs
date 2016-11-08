@@ -19,6 +19,10 @@ namespace EGH01DB.Types
         public float  density     { get; set; }   // плотность (г/см3)
         public float  viscosity   { get; set; }   // кинематическая вязкость (мм2/с)
         public float  solubility  { get; set; }   // растворимость (мг/дм3)
+        public float tension { get; set; }   // коэффициент поверхностного натяжения (кг/с2)
+        public float dynamicviscosity { get; set; }   // динамическая вязкость (кг/м*с)
+        public float diffusion { get; set; }   // коэффициент диффузии (м2/с)
+
         static public PetrochemicalType defaulttype { get { return new PetrochemicalType(0, "Не определен"); } }  // выдавать при ошибке 
 
          public PetrochemicalType()
@@ -29,8 +33,12 @@ namespace EGH01DB.Types
             this.density = 0.0f;
             this.viscosity = 0.0f;
             this.solubility = 0.0f;
+            this.tension =  0.0f;
+            this.dynamicviscosity =  0.0f;
+            this.diffusion = 0.0f;
          }
-         public PetrochemicalType(int code_type, String name, float boilingtemp, float density, float viscosity, float solubility)
+         public PetrochemicalType(int code_type, String name, float boilingtemp, float density, float viscosity, float solubility, 
+                                   float tension, float dynamicviscosity, float diffusion)
          {
             this.code_type = code_type;
             this.name = name;
@@ -38,6 +46,9 @@ namespace EGH01DB.Types
             this.density = density;
             this.viscosity = viscosity;
             this.solubility = solubility;
+            this.tension = tension;
+            this.dynamicviscosity = dynamicviscosity;
+            this.diffusion = diffusion;
          }
          public PetrochemicalType(int code_type, String name)
          {
@@ -47,6 +58,9 @@ namespace EGH01DB.Types
              this.density = 0.0f;
              this.viscosity = 0.0f;
              this.solubility = 0.0f;
+             this.tension = 0.0f;
+             this.dynamicviscosity = 0.0f;
+             this.diffusion = 0.0f;
          }
          public PetrochemicalType(int code_type)
         {
@@ -56,6 +70,9 @@ namespace EGH01DB.Types
             this.density = 0.0f;
             this.viscosity = 0.0f;
             this.solubility = 0.0f;
+            this.tension = 0.0f;
+            this.dynamicviscosity = 0.0f;
+            this.diffusion = 0.0f;
         }
 
         public PetrochemicalType(String name)
@@ -66,6 +83,9 @@ namespace EGH01DB.Types
             this.density = 0.0f;
             this.viscosity = 0.0f;
             this.solubility = 0.0f;
+            this.tension = 0.0f;
+            this.dynamicviscosity = 0.0f;
+            this.diffusion = 0.0f;
         }        
    
         static public bool GetByCode(EGH01DB.IDBContext dbcontext, int type_code, ref PetrochemicalType petrochemical_type)
@@ -96,12 +116,18 @@ namespace EGH01DB.Types
                         double density = (double)reader["Плотность"];
                         double viscosity = (double)reader["КинематическаяВязкость"];
                         double solubility = (double)reader["Растворимость"];
+                        double tension = (double)reader["КоэфНатяжения"];
+                        double dynamicviscosity = (double)reader["ДинамическаяВязкость"];
+                        double diffusion = (double)reader["КоэфДиффузии"];
 
                         if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) petrochemical_type = new PetrochemicalType(type_code, name,
                                                                                                                     (float)boilingtemp,
                                                                                                                     (float)density,
                                                                                                                     (float)viscosity,
-                                                                                                                    (float)solubility);
+                                                                                                                    (float)solubility,
+                                                                                                                    (float)tension,
+                                                                                                                    (float)dynamicviscosity, 
+                                                                                                                    (float)diffusion);
                     }
                     reader.Close();
                 }
@@ -154,11 +180,8 @@ namespace EGH01DB.Types
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
                     SqlParameter parm = new SqlParameter("@КодТипаНефтепродукта", SqlDbType.Int);
-                    if (petrochemical_type.code_type <= 0)
-                    {
-                        int new_petrochemical_type_code = 0;
-                        if (GetNextCode(dbcontext, out new_petrochemical_type_code)) petrochemical_type.code_type = new_petrochemical_type_code;
-                    }
+                    int new_petrochemical_type_code = 0;
+                    if (GetNextCode(dbcontext, out new_petrochemical_type_code)) petrochemical_type.code_type = new_petrochemical_type_code;
                     parm.Value = petrochemical_type.code_type;
                     cmd.Parameters.Add(parm);
                 }
@@ -185,6 +208,21 @@ namespace EGH01DB.Types
                 {
                     SqlParameter parm = new SqlParameter("@Растворимость", SqlDbType.Float);
                     parm.Value = petrochemical_type.solubility;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфНатяжения", SqlDbType.Float);
+                    parm.Value = petrochemical_type.tension;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ДинамическаяВязкость", SqlDbType.Float);
+                    parm.Value = petrochemical_type.dynamicviscosity;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфДиффузии", SqlDbType.Float);
+                    parm.Value = petrochemical_type.diffusion;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -241,6 +279,21 @@ namespace EGH01DB.Types
                 {
                     SqlParameter parm = new SqlParameter("@Растворимость", SqlDbType.Float);
                     parm.Value = petrochemical_type.solubility;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфНатяжения", SqlDbType.Float);
+                    parm.Value = petrochemical_type.tension;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ДинамическаяВязкость", SqlDbType.Float);
+                    parm.Value = petrochemical_type.dynamicviscosity;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфДиффузии", SqlDbType.Float);
+                    parm.Value = petrochemical_type.diffusion;
                     cmd.Parameters.Add(parm);
                 }
                 {
