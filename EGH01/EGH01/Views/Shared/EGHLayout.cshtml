@@ -180,11 +180,14 @@
                 text-decoration: none;
                 font-weight: bold;
             }
+            .footer__lnk img{
+                max-height:25px;
+            }
         </style>
       
         <div id="footer">
-            <a href="Developers_page\developers.html" class="footer__lnk ">Разработчики</a>
-            <a href="Developers_page\shema.html" class="footer__lnk ">Система ЭС</a>
+            <a href="~/Content/Developers_page/developers.html" class="footer__lnk "><img src="~/Resources/logo_bstu_v.png" alt="Разработчики" title="Разработчики" /></a>
+            <a href="~/Content/Developers_page/shema.html" class="footer__lnk "><img src="~/Resources/Layout_Mobile_Whiteframe.png" alt="Система ЭС" title="Система ЭС" /></a>
             &copy; Государственное предприятие "НПЦ по геологии"
         </div>
     </div>
@@ -194,7 +197,4 @@
         @RenderSection("scripts", required: false)
 </body>
 </html>
-<<<<<<< HEAD
-=======
 
->>>>>>> 55b123b86a5620f6bd8f300cd0b34898e8b28419
