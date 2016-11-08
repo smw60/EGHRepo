@@ -206,12 +206,25 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\1.jpg" />
+    <Content Include="Resources\10.jpg" />
+    <Content Include="Resources\11.jpg" />
+    <Content Include="Resources\2.jpg" />
+    <Content Include="Resources\4.jpg" />
+    <Content Include="Resources\5.jpg" />
+    <Content Include="Resources\6.jpg" />
+    <Content Include="Resources\7.jpg" />
+    <Content Include="Resources\8.jpg" />
+    <Content Include="Resources\9.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Resources\Layout_Mobile_Whiteframe.png" />
+    <Content Include="Resources\logo_bstu_v.png" />
+    <Content Include="Resources\map.png" />
     <Content Include="Resources\Layout_Mobile_Whiteframe1.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -228,7 +241,11 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Resources\server.jpg" />
+    <Content Include="Resources\shema.png" />
     <Content Include="Timplet.xml" />
+    <Content Include="Content\Developers_page\developers.html" />
+    <Content Include="Content\Developers_page\shema.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

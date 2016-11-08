@@ -422,5 +422,8 @@ a.dropdown-toggle.btn.btn-link {
     color: #0e210b; /* Цвет текста */
     width: 100%; /* Ширина слоя */
 }
+#footer a img{
+    height:20px;
+}
 
     
