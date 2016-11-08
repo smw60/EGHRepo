@@ -150,10 +150,23 @@
             </p>     
            </div>
         }
-
-
-
-
+        else if (context.Regim == ForecastViewConext.REGIM.RUNERROR)
+        { 
+            <div class="boxdata">
+            <p>
+               Ошибка выполнения 
+            </p>     
+           </div>
+        }
+        else if (context.Regim == ForecastViewConext.REGIM.REPORT)
+        {
+            <div class="boxdata">
+                <p>
+                  ОТЧЕТ-ПРОГНОЗ
+                </p>
+            </div>
+        }
+        
     </div>
 
 

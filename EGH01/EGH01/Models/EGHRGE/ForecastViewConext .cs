@@ -10,7 +10,7 @@ namespace EGH01.Models.EGHRGE
 {
     public class ForecastViewConext
     {
-        public enum REGIM {INIT,START, ERROR};
+        public enum REGIM {INIT,START, ERROR, RUNERROR, REPORT};
         
         public REGIM Regim                        {get; set;}
         public DateTime? Incident_date            {get; set;}
