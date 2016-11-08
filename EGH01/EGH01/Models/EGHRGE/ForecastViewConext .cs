@@ -10,7 +10,7 @@ namespace EGH01.Models.EGHRGE
 {
     public class ForecastViewConext
     {
-        public enum REGIM {INIT,START, ERROR, RUNERROR, REPORT};
+        public enum REGIM {INIT, ERROR, RUNERROR, REPORT};
         
         public REGIM Regim                        {get; set;}
         public DateTime? Incident_date            {get; set;}
@@ -32,16 +32,9 @@ namespace EGH01.Models.EGHRGE
             bool rc = false;
             ForecastViewConext  viewcontext = null;
             string menuitem  = parms["menuitem"];
-
-
             if ((viewcontext = context.GetViewContext("Forecast") as ForecastViewConext) != null)
             {
-                viewcontext.Regim = REGIM.START; ;
-                if (menuitem != null)
-                {
-                    if (menuitem.Equals("Forecast.Forecast"))
-                    {
-
+                        viewcontext.Regim = REGIM.INIT; 
                         string date = parms["date"];
                         if (String.IsNullOrEmpty(date)) viewcontext.Regim = REGIM.ERROR;
                         else
@@ -93,12 +86,12 @@ namespace EGH01.Models.EGHRGE
                             if (int.TryParse(riskobjectid, out id)) viewcontext.RiskObjectId = (int?)id;
                             else viewcontext.Regim = REGIM.ERROR;
                         }
-                        
-                        // если выбран не техногенный объект, 
-                        // а произвольная точка - пока не обрабатывается 
-                        //
-                    }
-                }
+
+                        if (menuitem != null)
+                        {
+                            rc = menuitem.Equals("Forecast.Forecast") || menuitem.Equals("Forecast.Cancel"); 
+                        }
+                        else viewcontext.Regim = REGIM.INIT;
            }       
            return rc;
         }

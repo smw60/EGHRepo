@@ -21,92 +21,69 @@ namespace EGH01.Controllers
        
         public ActionResult Forecast( )
         {
-            RGEContext context = null;
-            
-            ActionResult view = View("Index");
-            ViewBag.EGHLayout = "RGE.Forecast";
-            string menuitem = this.HttpContext.Request.Params["menuitem"];
-           
-            try
-            {
+           RGEContext context = null;
+           ActionResult view = View("Index");
+           ViewBag.EGHLayout = "RGE.Forecast";
+           try
+           {
                 context = new RGEContext(this);
                 view = View(context);
 
                 if (!ForecastViewConext.Handler(context, this.HttpContext.Request.Params))
                 {
-                    if (!ChoiceRiskObjectContext.Handler(context, this.HttpContext.Request.Params))
+                    if (ChoiceRiskObjectContext.Handler(context, this.HttpContext.Request.Params))
                     {
-                        if (menuitem != null)
-                        {
-                            if (menuitem.Equals("Forecast.Forecast"))
+
+                    }
+                }
+                else
+                {
+                    string menuitem = this.HttpContext.Request.Params["menuitem"];
+                    if (menuitem.Equals("Forecast.Forecast"))
+                    {
+                            ForecastViewConext viewcontext = context.GetViewContext("Forecast") as ForecastViewConext;
+                            if (viewcontext != null)
                             {
-                                ForecastViewConext viewcontext = context.GetViewContext("Forecast") as ForecastViewConext;
-                                if (viewcontext != null)
-                                {
                                     RiskObject riskobject = new RiskObject();
                                     if (RiskObject.GetById(context, (int)viewcontext.RiskObjectId, ref riskobject))
                                     {
-                                        PetrochemicalType petrochemicaltype = new PetrochemicalType();
-                                        if( PetrochemicalType.GetByCode(context,(int)viewcontext.Petrochemical_type_code, ref petrochemicaltype))
-                                        {
-                                            SpreadPoint spreadpoint = new SpreadPoint(riskobject, petrochemicaltype, (float)viewcontext.Volume);
-                                            EGH01DB.Types.IncidentType incidenttype = new EGH01DB.Types.IncidentType();
-                                            if (EGH01DB.Types.IncidentType.GetByCode(context, (int)viewcontext.Incident_type_code, out  incidenttype))
+                                            PetrochemicalType petrochemicaltype = new PetrochemicalType();
+                                            if (PetrochemicalType.GetByCode(context, (int)viewcontext.Petrochemical_type_code, ref petrochemicaltype))
                                             {
+                                                    SpreadPoint spreadpoint = new SpreadPoint(riskobject, petrochemicaltype, (float)viewcontext.Volume);
+                                                    EGH01DB.Types.IncidentType incidenttype = new EGH01DB.Types.IncidentType();
+                                                    if (EGH01DB.Types.IncidentType.GetByCode(context, (int)viewcontext.Incident_type_code, out  incidenttype))
+                                                    {
 
-                                                Incident incident = new Incident(
-                                                                                 (DateTime)viewcontext.Incident_date,
-                                                                                 (DateTime)viewcontext.Incident_date_message,
-                                                                                 incidenttype,
-                                                                                 spreadpoint
-                                                                                 );
-                                                RGEContext.ECOForecast ecoforecst = new RGEContext.ECOForecast(incident); 
-                                                viewcontext.Regim = ForecastViewConext.REGIM.REPORT;
-                                             }
+                                                        Incident incident = new Incident(
+                                                                                         (DateTime)viewcontext.Incident_date,
+                                                                                         (DateTime)viewcontext.Incident_date_message,
+                                                                                         incidenttype,
+                                                                                         spreadpoint
+                                                                                         );
+                                                        RGEContext.ECOForecast ecoforecst = new RGEContext.ECOForecast(incident);
+                                                        viewcontext.Regim = ForecastViewConext.REGIM.REPORT;
+                                                    }
+                                                    else viewcontext.Regim = ForecastViewConext.REGIM.RUNERROR;
+                                            }
                                             else viewcontext.Regim = ForecastViewConext.REGIM.RUNERROR;
-                                            
-                                        }
-                                        else viewcontext.Regim = ForecastViewConext.REGIM.RUNERROR;
-                                       
                                     }
                                     else viewcontext.Regim = ForecastViewConext.REGIM.RUNERROR;
-                              
-                                        
-                                        
-                                        
-                                        //  (context,  (int)(viewcontext.RiskObjectId), riskobject))
-                                    
-                                    //RiskObject.GetById(context,  viewcontext.RiskObjectId);
-                                    
-                                    //Incident incident = new Incident(
-                                    //                                viewcontext.Incident_date,
-                                    //                                viewcontext.Incident_date_message,
-                                                                    
-                                    //                                )
-                                
-                                
-                                
-                                }
-                                
-
-
-
                             }
-                            else if (menuitem.Equals("Forecast.Cancel")) view = Redirect("Index");
-                       }
-                   }
-                } 
-            }
-            catch (RGEContext.Exception e)
-            {
+                            else viewcontext.Regim = ForecastViewConext.REGIM.RUNERROR;
+                    }
+                    else if (menuitem.Equals("Forecast.Cancel")) view = Redirect("Index");
+                }
+          }
+          catch (RGEContext.Exception e)
+          {
                 ViewBag.msg = e.message;
-            }
-            catch (Exception e)
-            {
+          }
+          catch (Exception e)
+          {
                 ViewBag.msg = e.Message;
-            }
-            
-         return view;
+          }
+          return view;
         }
         
 
