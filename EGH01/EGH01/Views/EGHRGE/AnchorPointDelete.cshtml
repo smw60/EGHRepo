@@ -23,6 +23,12 @@
             <div class="boxdata">
 
                 <p><label class="boxdata-label-30">Идентификатор</label>@Model.id.ToString()</p>
+                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+                    <legend style="width: auto; font: inherit; border:none;">Координаты</legend>
+                    <p><label class="boxdata-label-30">Координаты. Широта:</label>@Model.coordinates.lat.d.ToString()°&nbsp;@Model.coordinates.lat.m.ToString()'&nbsp;@Model.coordinates.lat.s.ToString("0.000")"</p>
+                    <br>
+                    <p><label class="boxdata-label-30">Координаты. Долгота:</label>@Model.coordinates.lng.d.ToString()°&nbsp;@Model.coordinates.lng.m.ToString()'&nbsp;@Model.coordinates.lng.s.ToString("0.000")"</p>
+                </fieldset>
                 <input type="hidden" value="@Model.id.ToString()" name="id">
             </div>
             
