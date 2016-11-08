@@ -206,7 +206,7 @@ namespace EGH01DB.Types
         {
             bool rc = false;
             type = new IncidentType();
-            using (SqlCommand cmd = new SqlCommand("EGH.GetIncidentTypeByID", dbcontext.connection))
+            using (SqlCommand cmd = new SqlCommand("EGH.GetIncidentTypeByCode", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
