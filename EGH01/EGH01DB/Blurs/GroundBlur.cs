@@ -24,7 +24,8 @@ namespace EGH01DB.Blurs
         public float                totalmass            {get; private set;}       // масса пролива (кг)    
         public float                limitadsorbedmass    {get; private set;}       // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (кг) 
         public float                avgheight            {get; private set;}       // средняя глубина грунтовых вод по опорным точкам (м) 
-            
+       // public float                h    
+       
         public  AnchorPointList     anchorpointlist      {get; private set;}       // список опорных точек, попаших в наземное пятно загрязнения    
 
         public WaterProperties waterproperties { get; private set; }       // физико-химические свойства воды  
@@ -36,7 +37,7 @@ namespace EGH01DB.Blurs
             this.spreadpoint = spreadpoint;
 
 
-            {
+            { // коэф. разлива 
                 SpreadingCoefficient x = new SpreadingCoefficient();
                 this.spreadingcoefficient = x = new SpreadingCoefficient();
                 if (SpreadingCoefficient.GetByParms(this.spreadpoint.groundtype, this.spreadpoint.volume, 0.0f, out x))
@@ -44,9 +45,9 @@ namespace EGH01DB.Blurs
                     this.spreadingcoefficient = x;
                 }
             }
-            {
+            { // свойства воды 
                 WaterProperties x = new WaterProperties();
-                if (WaterProperties.Get(out x))
+                if (WaterProperties.Get(20.0f, out x))
                 {
                     this.waterproperties = x;
                 }
