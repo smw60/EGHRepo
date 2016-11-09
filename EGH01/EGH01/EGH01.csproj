@@ -320,6 +320,7 @@
     <Content Include="Views\EGHRGE\AnchorPointDelete.cshtml" />
     <Content Include="Views\EGHRGE\AnchorPointCreate.cshtml" />
     <Content Include="Views\EGHRGE\AnchorPointUpdate.cshtml" />
+    <Content Include="Views\EGHRGE\SpreadingCoefficientCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
