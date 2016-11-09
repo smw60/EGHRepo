@@ -725,9 +725,10 @@ namespace EGH01.Controllers
             {
                 //List<CadastreType> list = new List<CadastreType>();
                 //if (Helper.GetListCadastreType(db, ref list))
-                {
-                    int k = 1;
-                };
+                //{
+                    
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -736,10 +737,11 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //CadastreType ct = new CadastreType(1);
+                
                 //if (CadastreType.GetByCode(db, 1, out ct))
-                {
-                    int k = 1;
-                };
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -761,10 +763,10 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //CadastreType ct = new CadastreType();
-                //if (CadastreType.DeleteByCode(db, 6))  // 
-                {
-                    int k = 1;
-                };
+                //if (CadastreType.DeleteByCode(db, 10))  // 
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -773,14 +775,14 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
 
-                //int type_code = 8;
+                //int type_code = 6;
                 //string name = "Воздушных путей сообщения";
                 //int pdk = 30;
-                //CadastreType ct = new CadastreType((int)type_code, (string)name, (int)pdk);
+                //CadastreType ct = new CadastreType((int)type_code, (string)name, (int)pdk, 0.3f);
                 //if (CadastreType.Create(db, ct))
-                {
-                    int k = 1;
-                };
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -788,11 +790,11 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //int type_code = 8;
-                //string name = "Железнодорожных путей сообщения";
-                //int pdk = 140;
-                //CadastreType ct = new CadastreType((int)type_code, (string)name, (int)pdk);
-                //if (CadastreType.Update(db, ct))
+                int type_code = 8;
+                string name = "Железнодорожных путей сообщения";
+                int pdk = 140;
+                CadastreType ct = new CadastreType((int)type_code, (string)name, (int)pdk, 0.5f);
+                if (CadastreType.Update(db, ct))
                 {
                     int k = 1;
                 };

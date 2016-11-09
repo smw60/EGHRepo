@@ -671,7 +671,7 @@ namespace EGH01DB.Objects
 
                         string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
                         int pdk = (int)reader["ПДК"];
-                        CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name, (int)pdk);
+                        CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name, (int)pdk, 0.0f);
 
                         string name = (string)reader["НаименованиеТехногенногоОбъекта"];
                         string address = (string)reader["АдресТехногенногоОбъекта"];

@@ -144,7 +144,7 @@ namespace EGH01.Controllers
                             CadastreType cadastre_type = new CadastreType();
                             if (EGH01DB.Types.CadastreType.GetByCode(db, ah.list_cadastre, out cadastre_type))
                             {
-                                CadastreType type_cadastre = new CadastreType(ah.list_cadastre, cadastre_type.name, cadastre_type.pdk_coef);
+                                CadastreType type_cadastre = new CadastreType(ah.list_cadastre, cadastre_type.name, cadastre_type.pdk_coef, 0.0f); //blinova
                                 EGH01DB.Points.AnchorPoint anchor_point = new EGH01DB.Points.AnchorPoint(id, point, type_cadastre);
 
 
@@ -249,7 +249,7 @@ namespace EGH01.Controllers
                         CadastreType cadastre_type = new CadastreType();
                         if (EGH01DB.Types.CadastreType.GetByCode(db, ah.list_cadastre, out cadastre_type))
                         {
-                            CadastreType type_cadastre = new CadastreType(ah.list_cadastre, cadastre_type.name, cadastre_type.pdk_coef);
+                            CadastreType type_cadastre = new CadastreType(ah.list_cadastre, cadastre_type.name, cadastre_type.pdk_coef, 0.0f); //blinova
                             EGH01DB.Points.AnchorPoint anchor_point = new EGH01DB.Points.AnchorPoint(id, point, type_cadastre);
 
 

@@ -270,7 +270,8 @@ namespace EGH01DB.Points
 
                         string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
                         int pdk = (int)reader["ПДК"];
-                        CadastreType cadastre_type = new CadastreType((int)reader["КодНазначенияЗемель"], (string)cadastre_type_name, (int)pdk);
+
+                        CadastreType cadastre_type = new CadastreType((int)reader["КодНазначенияЗемель"], (string)cadastre_type_name, (int)pdk, 0.0f);// blinova
 
                         anchor_point = new AnchorPoint(id, point, cadastre_type);
                     }
