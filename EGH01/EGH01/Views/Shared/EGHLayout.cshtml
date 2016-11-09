@@ -59,7 +59,17 @@
               else if (ViewBag.EGHLayout == "RGE.Forecast")
                 {
                     <h2>Прогноз</h2>
-                }
+              }
+
+              else if (ViewBag.EGHLayout == "RGE.GroundType")
+              {
+                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE")|Типы грунтов</h2>
+              }
+
+              else if (ViewBag.EGHLayout == "RGE.CadastreType")
+              {
+                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE")|Категории земли</h2>
+              }
 
               else if (ViewBag.EGHLayout == "RGE.SpreadingCoefficient")
               {
@@ -119,7 +129,7 @@
                             <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Категории земли", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                         </ul>
                     </li>
@@ -140,7 +150,47 @@
                             <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Категории земли", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
+                        </ul>
+                    </li>
+                }
+                else if (ViewBag.EGHLayout == "RGE.GroundType")
+                {
+                    <li>@Html.ActionLink("Прогноз", "Forecast", "EGHRGE")</li>
+                    <li>@Html.ActionLink("Опорные точки", "AnchorPoint", "EGHRGE")</li>
+                    <li>@Html.ActionLink("Природоохранные объекты", "Index", "EGHRGE")</li>
+                    <li>@Html.ActionLink("Отчеты", "Index", "EGHRGE")</li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Справочники<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
+                        </ul>
+                    </li>
+                }
+                else if (ViewBag.EGHLayout == "RGE.CadastreType")
+                {
+                    <li>@Html.ActionLink("Прогноз", "Forecast", "EGHRGE")</li>
+                    <li>@Html.ActionLink("Опорные точки", "AnchorPoint", "EGHRGE")</li>
+                    <li>@Html.ActionLink("Природоохранные объекты", "Index", "EGHRGE")</li>
+                    <li>@Html.ActionLink("Отчеты", "Index", "EGHRGE")</li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Справочники<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                         </ul>
                     </li>
@@ -160,7 +210,7 @@
                             <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Категории земли", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                         </ul>
                     </li>
@@ -180,7 +230,7 @@
                             <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Категории земли", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                         </ul>
                     </li>

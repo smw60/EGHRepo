@@ -176,6 +176,7 @@
     <Compile Include="Controllers\EGHGEAController.cs" />
     <Compile Include="Controllers\EGHORTController.cs" />
     <Compile Include="Controllers\EGHRGEController_AnchorPoint.cs" />
+    <Compile Include="Controllers\EGHRGEController_CadastreType.cs" />
     <Compile Include="Controllers\EGHRGEController_GroundType.cs" />
     <Compile Include="Controllers\EGHRGEController_IncidentType.cs" />
     <Compile Include="Controllers\EGHRGEController.cs" />
@@ -321,9 +322,12 @@
     <Content Include="Views\EGHRGE\AnchorPointCreate.cshtml" />
     <Content Include="Views\EGHRGE\AnchorPointUpdate.cshtml" />
     <Content Include="Views\EGHRGE\SpreadingCoefficientCreate.cshtml" />
+    <Content Include="Views\EGHRGE\CadastreType.cshtml" />
+    <Content Include="Views\EGHRGE\_CadastreTypeList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\EGHRGEController_CadastreType\" />
     <Folder Include="Views\SreadingCoefficientView\" />
   </ItemGroup>
   <ItemGroup>

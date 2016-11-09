@@ -19,7 +19,7 @@ namespace EGH01.Controllers
         public ActionResult GroundType()
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.GroundType";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
