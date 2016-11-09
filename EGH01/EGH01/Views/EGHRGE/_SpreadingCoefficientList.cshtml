@@ -17,14 +17,22 @@
 
         <div class="box">
             <div class="boxdata">
-                <p><label class="boxdata-label-30">Тип грунта</label>1 </p>  
-                <p><label class="boxdata-label-30">Диапазон значений объема пролива</label> 1</p>
-                <p><label class="boxdata-label-30">Диапазон значений гидравлического уклона</label>1  </p>
-                <p><label class="boxdata-label-30">Коэффициент разлива</label>1 </p>
-
+                <div class="boxdata">
+                    <p><label class="boxdata-label-30">Тип грунта</label>@t.ground_type.name.ToString() </p>
+                </div>
+                <div class="boxdata">
+                    <p><label class="boxdata-label-30">Диапазон значений объема пролива</label>@t.min_volume.ToString() - @t.max_volume.ToString()</p>
+                </div><br />
+                <div class="boxdata">
+                    <p><label class="boxdata-label-30">Диапазон значений гидравлического уклона</label>@t.min_angle.ToString() - @t.max_angle.ToString()</p>
+                </div><br />
+                <div class="boxdata">
+                    <p><label class="boxdata-label-30">Коэффициент разлива</label>@t.koef.ToString()</p>
+                </div>
             </div>
-            @Html.Partial("_TypeLineMenu", menu)
-        </div>
+
+                @Html.Partial("_TypeLineMenu", menu)
+            </div>
 
     }
 }
