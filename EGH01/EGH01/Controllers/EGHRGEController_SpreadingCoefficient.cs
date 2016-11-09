@@ -100,77 +100,71 @@ namespace EGH01.Controllers
         }
 
 
-        //    [HttpPost]
-        //    public ActionResult SpreadingCoefficientCreate(SpreadingCoefficientView scv)
-        //    {
-        //        RGEContext db = null;
-        //        ViewBag.EGHLayout = "RGE";
-        //        ActionResult view = View("Index");
-        //        string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
-        //        try
-        //        {
-        //            db = new RGEContext();
-        //            view = View("SpreadingCoefficient", db);
-        //            if (menuitem.Equals("SpreadingCoefficient.Create.Create"))
-        //            {
-        //                int id = -1;
-        //                if (EGH01DB.Primitives.SpreadingCoefficient.GetNextCode(db, out id))
-        //                {
-        //                    int type_code = scv.code_type;
-        //                    string name = scv.name;
-
-        //                    string strboilingtemp = this.HttpContext.Request.Params["boilingtemp"] ?? "Empty";
-        //                    float boilingtemp = 0.0f;
-        //                    Helper.FloatTryParse(strboilingtemp, out boilingtemp);
-
-        //                    string strdensity = this.HttpContext.Request.Params["density"] ?? "Empty";
-        //                    float density = 0.0f;
-        //                    Helper.FloatTryParse(strdensity, out density);
-
-        //                    string strviscosity = this.HttpContext.Request.Params["viscosity"] ?? "Empty";
-        //                    float viscosity = 0.0f;
-        //                    Helper.FloatTryParse(strviscosity, out viscosity);
-
-        //                    string strsolubility = this.HttpContext.Request.Params["solubility"] ?? "Empty";
-        //                    float solubility = 0.0f;
-        //                    Helper.FloatTryParse(strsolubility, out solubility);
-
-        //                    string strtension = this.HttpContext.Request.Params["tension"] ?? "Empty";
-        //                    float tension = 0.0f;
-        //                    Helper.FloatTryParse(strtension, out tension);
-
-        //                    string strdynamicviscosity = this.HttpContext.Request.Params["dynamicviscosity"] ?? "Empty";
-        //                    float dynamicviscosity = 0.0f;
-        //                    Helper.FloatTryParse(strdynamicviscosity, out dynamicviscosity);
-
-        //                    string strdiffusion = this.HttpContext.Request.Params["diffusion"] ?? "Empty";
-        //                    float diffusion = 0.0f;
-        //                    Helper.FloatTryParse(strdiffusion, out diffusion);
-
-        //                    PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density,
-        //                        (float)viscosity, (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion);
-        //                    if (EGH01DB.Types.PetrochemicalType.Create(db, pt))
-        //                    {
-        //                        view = View("PetrochemicalType", db);
-        //                    }
-        //                    else if (menuitem.Equals("PetrochemicalType.Create.Cancel")) view = View("PetrochemicalType", db);
-        //                }
-        //            }
-        //            else if (menuitem.Equals("PetrochemicalType.Create.Cancel")) view = View("PetrochemicalType", db);
-        //        }
-        //        catch (RGEContext.Exception e)
-        //        {
-        //            ViewBag.msg = e.message;
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            ViewBag.msg = e.Message;
-        //        }
-
-        //        return view;
-        //    }
+        [HttpPost]
+        public ActionResult SpreadingCoefficientCreate(SpreadingCoefficientView scv)
+        {
+            RGEContext db = null;
+            ViewBag.EGHLayout = "RGE";
+            ActionResult view = View("Index");
+            string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
+            try
+            {
+                db = new RGEContext();
+                view = View("SpreadingCoefficient", db);
+                if (menuitem.Equals("SpreadingCoefficient.Create.Create"))
+                {
+                    //int id = -1;
+                    //if (EGH01DB.Primitives.SpreadingCoefficient.GetNextCode(db, out id))
+                    //{
+                        GroundType ground_type = scv.ground_type;
 
 
-        //}
+                        string strmin_angle = this.HttpContext.Request.Params["min_angle"] ?? "Empty";
+                        float min_angle = 0.0f;
+                        Helper.FloatTryParse(strmin_angle, out min_angle);
+
+                        string strmax_angle = this.HttpContext.Request.Params["max_angle"] ?? "Empty";
+                        float max_angle = 0.0f;
+                        Helper.FloatTryParse(strmax_angle, out max_angle);
+
+                        string strmin_volume = this.HttpContext.Request.Params["min_volume"] ?? "Empty";
+                        float min_volume = 0.0f;
+                        Helper.FloatTryParse(strmin_volume, out min_volume);
+
+                        string strmax_volume = this.HttpContext.Request.Params["max_volume "] ?? "Empty";
+                        float max_volume = 0.0f;
+                        Helper.FloatTryParse(strmax_volume, out max_volume);
+
+                        string strkoef = this.HttpContext.Request.Params["koef"] ?? "Empty";
+                        float koef = 0.0f;
+                        Helper.FloatTryParse(strkoef, out koef);
+
+
+
+                        SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient((GroundType)ground_type, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
+                      //  PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density,
+                       //     (float)viscosity, (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion);
+                        if (EGH01DB.Primitives.SpreadingCoefficient.Create(db, sc))
+                        {
+                            view = View("SpreadingCoefficient", db);
+                        }
+                        else if (menuitem.Equals("SpreadingCoefficient.Create.Cancel")) view = View("SpreadingCoefficient", db);
+                    //}
+                }
+                else if (menuitem.Equals("SpreadingCoefficient.Create.Cancel")) view = View("SpreadingCoefficient", db);
+            }
+            catch (RGEContext.Exception e)
+            {
+                ViewBag.msg = e.message;
+            }
+            catch (Exception e)
+            {
+                ViewBag.msg = e.Message;
+            }
+
+            return view;
+        }
+
+
     }
 }

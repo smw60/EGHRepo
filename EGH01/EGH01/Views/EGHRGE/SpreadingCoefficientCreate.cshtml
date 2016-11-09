@@ -45,21 +45,21 @@
                 @*<label class="boxdata-label-30">Тип грунта</label>*@
                @* <input class="boxdata-input-30" type="text" name="ground_type.name" value=" " />*@
                 <label class="boxdata-label-40">Тип грунта</label>@Html.DropDownList("list_groundType")
-            </p><br>
+            </p>
             <p>
                 <label class="boxdata-label-40">Диапазон значений объема пролива, м<sup><small>3</small></sup></label>
                 <input class="boxdata-input-20" type="number" name="min_volume" value=" "/>
                 <input class="boxdata-input-20" type="number" name="max_volume" value=" "/>
-            </p><br>
+            </p>
             <p>
                 <label class="boxdata-label-40">Диапазон значений гидравлического уклона</label>
                 <input class="boxdata-input-20" type="number" name="min_angle" value=" "/>
                 <input class="boxdata-input-20" type="number" name="max_angle" value=" "/>
-            </p><br>
+            </p>
             <p>
                 <label class="boxdata-label-40">Коэффициент разлива, 1/м</label>
                 <input class="boxdata-input-20" type="text" name="koef" value=" " />
-            </p><br>
+            </p>
         </div>
 
         @Html.Partial("_TypeLineMenu", create)
