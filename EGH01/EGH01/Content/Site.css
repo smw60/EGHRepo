@@ -117,7 +117,7 @@ height: -50px;
 }
 
 .navbar{
-	background:#fc7a1e;
+	background:#ef8311;
 }
 body {
     padding-top: 50px;
@@ -147,7 +147,7 @@ textarea {
 }
 
 input.input-validation-error {
-    border: 1px solid #f98d09;
+    border: 1px solid #e3ef9e;
 }
 
 input[type="checkbox"].input-validation-error {
@@ -203,7 +203,7 @@ a.dropdown-toggle.btn.btn-link {
 
         .boxmenu {
             box-sizing: border-box; /* границу включить в размер .box*/
-            background-color: #fc7a1e; /* беж*/
+            background-color: #eff2cd; /* беж*/
             overflow: hidden;
            border: 2px solid #ffbb40; /* светло-зелен.*/
             width: 85%;
@@ -214,7 +214,7 @@ a.dropdown-toggle.btn.btn-link {
 
         .boxconnect, .boxcainfo {
             box-sizing: border-box;
-            background-color: #fc7a1e;
+            background-color: #eff2cd;
             overflow: hidden;
            border: 2px solid #75cc72;
             width: 85%;
@@ -377,7 +377,7 @@ a.dropdown-toggle.btn.btn-link {
 
         .boxcontrol {
             margin: 1px;
-            background-color: #fc7a1e;
+            background-color: #eff2cd;
             padding: 2px;
             text-align: right;
             border: 1px solid #013d02;
@@ -401,7 +401,7 @@ a.dropdown-toggle.btn.btn-link {
         .boxmessage {
             display: none;
             margin: 1px;
-            background-color: #fcb86f;
+            background-color: #f7e19e;
             padding: 2px;
             border: 1px double #013d02;
             /*text-align:right;*/
@@ -425,5 +425,6 @@ a.dropdown-toggle.btn.btn-link {
 #footer a img{
     height:20px;
 }
+
 
     
