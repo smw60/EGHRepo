@@ -15,7 +15,7 @@
     <div class="navbar navbar-default  navbar-fixed-top">
         <div class="container">
             <div class="navbar-brand col-xs-1">
-                <a href="/"><img src="~/Resources/Layout_Mobile_Whiteframe1.png" alt="EGH" /></a>
+                <a href="/"><img src="~/Resources/Layout_Mobile_Whiteframe.png" alt="EGH" /></a>
             </div>
             <!--Заголовок индивидуальный для страниц-->
             <div class="title col-xs-8">
@@ -54,7 +54,7 @@
                 }
               else if (ViewBag.EGHLayout =="RGE.IncidentType")
                 {
-                    <h2>Типы инцидентов</h2>
+                    <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE") | Типы инцидентов</h2>
                 }
               else if (ViewBag.EGHLayout == "RGE.Forecast")
                 {
@@ -63,7 +63,7 @@
 
               else if (ViewBag.EGHLayout == "RGE.SpreadingCoefficient")
               {
-                <h2>Коэффициент растекания</h2>
+                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE")|Коэффициент растекания</h2>
               }
                                    
             </div>

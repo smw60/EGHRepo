@@ -170,6 +170,9 @@ input[type="checkbox"].input-validation-error {
     font-weight:bold;
     margin:10px;
     }
+.title h2 a{
+    color: #316d32;
+    }
 /*меню*/
 a.dropdown-toggle.btn.btn-link {
     color: #013d02;
@@ -313,7 +316,7 @@ a.dropdown-toggle.btn.btn-link {
             }
 
         .boxdata label {
-            width: 25%;
+            width: 55%;
             float: left;
         }
        
