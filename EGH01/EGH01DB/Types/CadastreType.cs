@@ -156,7 +156,7 @@ namespace EGH01DB.Types
                 }
                 {
                     SqlParameter parm = new SqlParameter("@ПДКводы", SqlDbType.Float);
-                    parm.Value = land_type.pdk_coef;
+                    parm.Value = land_type.water_pdk_coef;
                     cmd.Parameters.Add(parm);
                 }
                 {
