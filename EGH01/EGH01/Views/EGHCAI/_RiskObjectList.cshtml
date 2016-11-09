@@ -19,62 +19,34 @@
         <div class="box">
             <div class="boxdata">
                 <p><label class="boxdata-label-30">Код объекта</label> @t.id.ToString()</p>
-                <br>
-                <p><label class="boxdata-label-30">Наименование объекта  </label> @t.name</p>
-                <br>
+                                <p><label class="boxdata-label-30">Наименование объекта  </label> @t.name</p>
+               
                 <p><label class="boxdata-label-30">Тип объекта</label> @t.type.name.ToString()</p>
-                <br>
-                <p><label>Адрес объекта </label></p>
-                <br>
-                <br>
-                <p><label class="boxdata-label-30">Область: </label> @t.region.name</p>
-                <br>
-                <p><label class="boxdata-label-30">Район : </label> @t.district.name</p>
-                <br>
-                <p><label class="boxdata-label-30">Город(населенный пункт),улица,дом</label> @t.address </p>
-                <br>
-                <br>
-                 <p><label class="boxdata-label-30">Координаты. Широта:</label>@t.coordinates.lat.d.ToString()°&nbsp;@t.coordinates.lat.m.ToString()'&nbsp;@t.coordinates.lat.s.ToString("0.000")"</p>
-                 <br>    
-                 <p><label class="boxdata-label-30">Координаты. Долгота:</label>@t.coordinates.lng.d.ToString()°&nbsp;@t.coordinates.lng.m.ToString()'&nbsp;@t.coordinates.lng.s.ToString("0.000")" </p>
-                <br>
-                <p><label class="boxdata-label-30">Контакты </label></p>
-                <br>
-                <br>
-                <p><label class="boxdata-label-30">Телефон </label> @t.phone.ToString()</p>
-                <br>
-                <p><label class="boxdata-label-30">Факс </label> @t.fax.ToString()</p>
-                <br>
-                @if(@t.email.ToString()!=null)
+                                <p><label>Адрес объекта </label></p>
+                                <p><label class="boxdata-label-30">Область: </label> @t.region.name</p>
+                                <p><label class="boxdata-label-30">Район : </label> @t.district.name</p>
+                                <p><label class="boxdata-label-30">Город(населенный пункт),улица,дом</label> @t.address </p>
+                                 <p><label class="boxdata-label-30">Координаты. Широта:</label>@t.coordinates.lat.d.ToString()°&nbsp;@t.coordinates.lat.m.ToString()'&nbsp;@t.coordinates.lat.s.ToString("0.000")"</p>
+                                 <p><label class="boxdata-label-30">Координаты. Долгота:</label>@t.coordinates.lng.d.ToString()°&nbsp;@t.coordinates.lng.m.ToString()'&nbsp;@t.coordinates.lng.s.ToString("0.000")" </p>
+                               <p><label class="boxdata-label-30">Контакты </label></p>
+                               <p><label class="boxdata-label-30">Телефон </label> @t.phone.ToString()</p>
+                               <p><label class="boxdata-label-30">Факс </label> @t.fax.ToString()</p>
+                                @if(@t.email.ToString()!=null)
                 {
                 <p><label class="boxdata-label-30">Электронный адрес </label> @t.email.ToString()</p>
                 }
-                <br>
-                <p><label class="boxdata-label-30"> </label> </p>
-                <br>
-                <p><label class="boxdata-label-30">Резервуар наземный: </label> @t.groundtank</p>
-                <br>
-                <p><label class="boxdata-label-30">Резервуар подземный: </label> @t.undergroundtank</p>
-                <br>
-                <p><label class="boxdata-label-30">дата ввода в эксплуатацию </label>@t.foundationdate.ToShortDateString()</p>
-                <br>
-                <p><label class="boxdata-label-30">дата последней реконструкции  </label>@t.reconstractiondate.ToShortDateString()</p>
-                <br>
-                <p><label class="boxdata-label-30">Грунт: </label>@t.groundtype.name</p>
-                <br>
-                <p><label class="boxdata-label-30">Высота над уровнем моря (м): </label> @t.height.ToString()</p>
-                <br>
-                <p><label class="boxdata-label-30">Глубина грунтовых вод (м): </label> @t.waterdeep.ToString()</p>
-                <br>
-
-                <br>
-                @if (@t.watertreatmentcollect == true)
+                                <p><label class="boxdata-label-30"> </label> </p>
+                                <p><label class="boxdata-label-30">Резервуар наземный: </label> @t.groundtank</p>
+                               <p><label class="boxdata-label-30">Резервуар подземный: </label> @t.undergroundtank</p>
+                                <p><label class="boxdata-label-30">дата ввода в эксплуатацию </label>@t.foundationdate.ToShortDateString()</p>
+                                <p><label class="boxdata-label-30">дата последней реконструкции  </label>@t.reconstractiondate.ToShortDateString()</p>
+                               <p><label class="boxdata-label-30">Грунт: </label>@t.groundtype.name</p>
+                               <p><label class="boxdata-label-30">Высота над уровнем моря (м): </label> @t.height.ToString()</p>
+                              <p><label class="boxdata-label-30">Глубина грунтовых вод (м): </label> @t.waterdeep.ToString()</p>
+                               @if (@t.watertreatmentcollect == true)
                 {
                     <p><label class="boxdata-label-30">Резервуар для сбора проливов</label></p>}
-                <br>
-                
-                <br>
-                @if (@t.watertreatment == true)
+                                @if (@t.watertreatment == true)
                 {
                     <p><label class="boxdata-label-30">Очистные сооружения для дождевого стока </label></p>
                 }

@@ -117,7 +117,7 @@ height: -50px;
 }
 
 .navbar{
-	background:#ef8311;
+	background:#fde779; /*фон верхней основной панели*/
 }
 body {
     padding-top: 50px;
@@ -203,7 +203,7 @@ a.dropdown-toggle.btn.btn-link {
 
         .boxmenu {
             box-sizing: border-box; /* границу включить в размер .box*/
-            background-color: #eff2cd; /* беж*/
+            background-color: #f7e696; /* основные верхние менюшки беж*/
             overflow: hidden;
            border: 2px solid #ffbb40; /* светло-зелен.*/
             width: 85%;
@@ -301,7 +301,7 @@ a.dropdown-toggle.btn.btn-link {
             overflow: hidden; /* все что вылезает за границу .box  - скрывать*/
             border: 2px solid #013d02;
             width: 85%;
-            background-color: #f9df86; /**/
+            background-color: #f2f3e1; /* меню основные*/
             margin: 12px;
             padding: 1px;
             min-width: 800px;
@@ -418,7 +418,7 @@ a.dropdown-toggle.btn.btn-link {
     left: 0;
     bottom: 0; /* Левый нижний угол */
     padding: 10px; /* Поля вокруг текста */
-    background: #f9d675; /* Цвет фона */
+    background: #c8da94; /* Цвет фона */
     color: #0e210b; /* Цвет текста */
     width: 100%; /* Ширина слоя */
 }
