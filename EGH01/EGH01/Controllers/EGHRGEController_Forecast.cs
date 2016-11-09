@@ -61,7 +61,7 @@ namespace EGH01.Controllers
                                                                                          incidenttype,
                                                                                          spreadpoint
                                                                                          );
-                                                        RGEContext.ECOForecast ecoforecst = new RGEContext.ECOForecast(incident);
+                                                        viewcontext.ecoforecast = new RGEContext.ECOForecast(incident);
                                                         viewcontext.Regim = ForecastViewConext.REGIM.REPORT;
                                                     }
                                                     else viewcontext.Regim = ForecastViewConext.REGIM.RUNERROR;
