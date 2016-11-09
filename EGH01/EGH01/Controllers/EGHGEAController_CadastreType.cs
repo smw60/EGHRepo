@@ -15,17 +15,17 @@ using EGH01DB.Points;
 
 namespace EGH01.Controllers
 {
-    public partial class EGHRGEController : Controller
+    public partial class EGHGEAController : Controller
     {
         public ActionResult CadastreType()
         {
-            RGEContext db = null;
-            ViewBag.EGHLayout = "RGE.CadastreType";
+            GEAContext db = null;
+            ViewBag.EGHLayout = "GEA.CadastreType";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new RGEContext();
+                db = new GEAContext();
                 ViewBag.msg = "Соединение с базой данных установлено";
                 view = View("CadastreType", db);
 
@@ -96,97 +96,99 @@ namespace EGH01.Controllers
             return view;
         }
 
-        [HttpPost]
-        public ActionResult CadastreTypeCreate(CadastreTypeView cd)
-        {
-            RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
-            ActionResult view = View("Index");
-            string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
-            try
-            {
-                db = new RGEContext();
-                view = View("CadastreType", db);
-                if (menuitem.Equals("CadastreType.Create.Create"))
-                {
+        //[HttpPost]
+        //public ActionResult CadastreTypeCreate(CadastreTypeView cd)
+        //{
+        //    RGEContext db = null;
+        //    ViewBag.EGHLayout = "RGE";
+        //    ActionResult view = View("Index");
+        //    string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
+        //    try
+        //    {
+        //        db = new RGEContext();
+        //        view = View("CadastreType", db);
+        //        if (menuitem.Equals("CadastreType.Create.Create"))
+        //        {
 
-                    int id = -1;
-                    if (EGH01DB.Types.CadastreType.GetNextCode(db, out id))
-                    {
-                        String name = cd.name;
+        //            int id = -1;
+        //            if (EGH01DB.Types.CadastreType.GetNextCode(db, out id))
+        //            {
+        //                String name = cd.name;
+        //                int pdk_coef = cd.pdk_coef;
 
-                        EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id,name,0);
+        //                EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id, name, pdk_coef);
 
-                                if (EGH01DB.Types.CadastreType.Create(db, cadastre_type))
-                                {
-                                    view = View("CadastreType", db);
-                                }
-                            }
+        //                if (EGH01DB.Types.CadastreType.Create(db, cadastre_type))
+        //                {
+        //                    view = View("CadastreType", db);
+        //                }
+        //            }
 
-                        }
-                        else if (menuitem.Equals("CadastreType.Create.Cancel")) view = View("CadastreType", db);
-                    
-            
-            }
-            catch (RGEContext.Exception e)
-            {
-                ViewBag.msg = e.message;
-            }
-            catch (Exception e)
-            {
-                ViewBag.msg = e.Message;
-            }
+        //        }
+        //        else if (menuitem.Equals("CadastreType.Create.Cancel")) view = View("CadastreType", db);
 
-            return view;
-        }
 
-        [HttpPost]
-        public ActionResult CadastreTypeDelete(int id)
-        {
-            RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
-            ActionResult view = View("Index");
-            string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
-            try
-            {
-                db = new RGEContext();
+        //    }
+        //    catch (RGEContext.Exception e)
+        //    {
+        //        ViewBag.msg = e.message;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ViewBag.msg = e.Message;
+        //    }
 
-                if (menuitem.Equals("CadastreType.Delete.Delete"))
-                {
-                    if (EGH01DB.Types.CadastreType.DeleteByCode(db, id)) view = View("CadastreType", db);
-                }
-                else if (menuitem.Equals("CadastreType.Delete.Cancel")) view = View("CadastreType", db);
+        //    return view;
+        //}
 
-            }
-            catch (RGEContext.Exception e)
-            {
-                ViewBag.msg = e.message;
-            }
-            catch (Exception e)
-            {
-                ViewBag.msg = e.Message;
-            }
+        //[HttpPost]
+        //public ActionResult CadastreTypeDelete(int id)
+        //{
+        //    RGEContext db = null;
+        //    ViewBag.EGHLayout = "RGE";
+        //    ActionResult view = View("Index");
+        //    string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
+        //    try
+        //    {
+        //        db = new RGEContext();
 
-            return view;
-        }
+        //        if (menuitem.Equals("CadastreType.Delete.Delete"))
+        //        {
+        //            if (EGH01DB.Types.CadastreType.DeleteByCode(db, id)) view = View("CadastreType", db);
+        //        }
+        //        else if (menuitem.Equals("CadastreType.Delete.Cancel")) view = View("CadastreType", db);
+
+        //    }
+        //    catch (RGEContext.Exception e)
+        //    {
+        //        ViewBag.msg = e.message;
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        ViewBag.msg = e.Message;
+        //    }
+
+        //    return view;
+        //}
 
         [HttpPost]
         public ActionResult CadastreTypeUpdate(CadastreTypeView cd)
         {
-            RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            GEAContext db = null;
+            ViewBag.EGHLayout = "GEA";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new RGEContext();
+                db = new GEAContext();
                 view = View("CadastreType", db);
                 if (menuitem.Equals("CadastreType.Update.Update"))
                 {
 
                     int id = cd.type_code;
                     String name = cd.name;
-                    EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id, name, 0);
+                    int pdk_coef = cd.pdk_coef;
+                    EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id, name, pdk_coef);
                     if (EGH01DB.Types.CadastreType.Update(db, cadastre_type))
                     {
                         view = View("CadastreType", db);
