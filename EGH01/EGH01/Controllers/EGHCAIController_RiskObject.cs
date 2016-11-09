@@ -144,7 +144,7 @@ namespace EGH01.Controllers
                             if (EGH01DB.Types.RiskObjectType.GetByCode(db, rs.selectlist, out type))
                             {
                                 RiskObjectType risk_object_type = new RiskObjectType(rs.selectlist, type.name);
-                                CadastreType cadastre_type = new CadastreType(1, "", 0);
+                                CadastreType cadastre_type = new CadastreType(1, "", 0,0.0f);  //blinova
                                 EGH01DB.Types.District risk_district = new EGH01DB.Types.District();
                                 if (EGH01DB.Types.District.GetByCode(db, rs.list_district, out risk_district))
                                 {
@@ -267,7 +267,7 @@ namespace EGH01.Controllers
                         if (EGH01DB.Types.RiskObjectType.GetByCode(db, itv.selectlist, out type))
                         {
                             RiskObjectType risk_object_type = new RiskObjectType(itv.selectlist, type.name);
-                            CadastreType cadastre_type = new CadastreType(1, "", 0);
+                            CadastreType cadastre_type = new CadastreType(1, "", 0, 0.0f);  //blinova
                             EGH01DB.Types.District risk_district = new EGH01DB.Types.District();
                             if (EGH01DB.Types.District.GetByCode(db, itv.list_district, out risk_district))
                             {

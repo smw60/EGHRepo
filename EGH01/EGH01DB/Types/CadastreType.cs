@@ -14,26 +14,30 @@ namespace EGH01DB.Types
         public int    type_code { get; private set; }   // код кадастрового типа  (промзона, сельхоз земли, заповедники и пр.  ) 
         public string name     { get; private set; }   // наименование типа 
         public int pdk_coef { get; private set; }       // значение коэффициента ПДК 
-        static public CadastreType defaulttype { get { return new CadastreType(0, "Не определен", 0); } }  // выдавать при ошибке
+        public float water_pdk_coef { get; private set; }  
+        static public CadastreType defaulttype { get { return new CadastreType(0, "Не определен", 0,0.0f); } }  // выдавать при ошибке
         
         public CadastreType()
         {
             this.type_code = -1;
             this.name = string.Empty;
             this.pdk_coef = -1;
+            this.water_pdk_coef = -1;
         }
 
-        public CadastreType(int type_code, String name, int pdk_coef)
+        public CadastreType(int type_code, String name, int pdk_coef, float water_pdk_coef)
         {
             this.type_code = type_code;
             this.name = name;
             this.pdk_coef = pdk_coef;
+            this.water_pdk_coef = water_pdk_coef;
         }
         public CadastreType(int type_code)
         {
             this.type_code = type_code;
             this.name = "";
             this.pdk_coef = 0;
+            this.water_pdk_coef = -1;
         }
 
         public CadastreType(String name)
@@ -41,7 +45,9 @@ namespace EGH01DB.Types
             this.type_code = 0;
             this.name = name;
             this.pdk_coef = 0;
+            this.water_pdk_coef = -1;
         }
+
         public string ToLine()
         {
             return String.Format("{0} {1}", this.type_code, this.name); 
@@ -68,6 +74,11 @@ namespace EGH01DB.Types
                 {
                     SqlParameter parm = new SqlParameter("@ПДК", SqlDbType.Int);
                     parm.Value = land_type.pdk_coef;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ПДКводы", SqlDbType.Float);
+                    parm.Value = land_type.water_pdk_coef;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -141,6 +152,11 @@ namespace EGH01DB.Types
                 {
                     SqlParameter parm = new SqlParameter("@ЗначениеПДК", SqlDbType.Int);
                     parm.Value = land_type.pdk_coef;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ПДКводы", SqlDbType.Float);
+                    parm.Value = land_type.water_pdk_coef;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -223,6 +239,12 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
+                    SqlParameter parm = new SqlParameter("@ПДКводы", SqlDbType.Float);
+                    parm.Direction = ParameterDirection.Output;
+                    parm.Precision = 2;
+                    cmd.Parameters.Add(parm);
+                }
+                {
                     SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
                     parm.Direction = ParameterDirection.ReturnValue;
                     cmd.Parameters.Add(parm);
@@ -232,7 +254,8 @@ namespace EGH01DB.Types
                     cmd.ExecuteNonQuery();
                     string name = (string)cmd.Parameters["@НаименованиеНазначенияЗемель"].Value;
                     int pdk_coef = (int)cmd.Parameters["@ПДК"].Value;
-                    if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) type = new CadastreType(type_code, name, pdk_coef);
+                    double water_pdk_coef = (double)cmd.Parameters["@ПДКводы"].Value;
+                    if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) type = new CadastreType(type_code, name, pdk_coef,(float) water_pdk_coef);
                 }
                 catch (Exception e)
                 {
