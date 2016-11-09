@@ -287,7 +287,7 @@ namespace EGH01DB.Points
 
         }
     }
-    public class AnchorPointList : List<AnchorPoint>   // список точек  с  с координатами и характеристика 
+    public class AnchorPointList : List<AnchorPoint>   // список  опорных точек 
     {
         public AnchorPointList() : base()
         {
@@ -296,11 +296,10 @@ namespace EGH01DB.Points
         //  найти список точек в заданном радиусе 
         public static AnchorPointList CreateNear(Coordinates center, float radius)
         {
-
-            // отладка 
+                         
             return new AnchorPointList()
             {
-
+               new AnchorPoint()
 
             };
 
