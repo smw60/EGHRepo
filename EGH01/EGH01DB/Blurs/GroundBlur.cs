@@ -27,34 +27,45 @@ namespace EGH01DB.Blurs
             
         public  AnchorPointList     anchorpointlist      {get; private set;}       // список опорных точек, попаших в наземное пятно загрязнения    
         
+      //  public WaterProperties      waterproperties      {get; private set;}       // физико-химические свойства воды  
         public EcoObjectsList       ecoobjecstlist       {get; private set; }      // список объектов в т.ч. заглавный которые попали в наземное пятно    
-        public GroundPollutionList pollutionlist { get; private set; }   // загрязнение в точках  
+        public GroundPollutionList pollutionlist         {get; private set; }      // загрязнение в точках  
 
         public GroundBlur(SpreadPoint spreadpoint)
         {
             this.spreadpoint = spreadpoint;
-            
 
-            
-            SpreadingCoefficient  x = null;
-            this.spreadingcoefficient = x = new SpreadingCoefficient();
-            if (SpreadingCoefficient.GetByParms(this.spreadpoint.groundtype,this.spreadpoint.volume, 0.0f, out x))
+
             {
-                this.spreadingcoefficient = x;
+                SpreadingCoefficient x = new SpreadingCoefficient();
+                this.spreadingcoefficient = x = new SpreadingCoefficient();
+                if (SpreadingCoefficient.GetByParms(this.spreadpoint.groundtype, this.spreadpoint.volume, 0.0f, out x))
+                {
+                    this.spreadingcoefficient = x;
+                }
+            }
+            {
+                //WaterProperties x = new WaterProperties();
+                //if (WaterProperties.Get(out x))
+                //{
+                //    this.waterproperties = x;                
+                //}
             }
 
-            this.square = this.spreadpoint.volume * this.spreadingcoefficient.koef;                  // площадь  пятна 
-            
-            this.radius = (float)Math.Sqrt(square/Math.PI);                                           // радиус  пятна 
 
-            this.totalmass  = this.spreadpoint.volume * this.spreadpoint.petrochemicaltype.density;   // масса пролива 
+
+            this.square = this.spreadpoint.volume * this.spreadingcoefficient.koef;                  // площадь  пятна 
+
+            this.radius = (float)Math.Sqrt(square / Math.PI);                                        // радиус  пятна 
+
+            this.totalmass = this.spreadpoint.volume * this.spreadpoint.petrochemicaltype.density;   // масса пролива 
 
             this.limitadsorbedmass = 0.0f;                                                            // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (кг) 
 
             this.avgheight = 0.0f;                                                                   // средняя глубина грунтовых вод по опорным точкам (м) 
 
 
-            this.ecoobjecstlist = EcoObjectsList.CreateEcoObjectsList(spreadpoint,  radius);
+            this.ecoobjecstlist = EcoObjectsList.CreateEcoObjectsList(spreadpoint, radius);
             this.pollutionlist = GroundPollutionList.CreateGroundPollutionList(spreadpoint, radius);
         }
 
