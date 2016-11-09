@@ -26,8 +26,8 @@ namespace EGH01DB.Blurs
         public float                avgheight            {get; private set;}       // средняя глубина грунтовых вод по опорным точкам (м) 
             
         public  AnchorPointList     anchorpointlist      {get; private set;}       // список опорных точек, попаших в наземное пятно загрязнения    
-        
-      //  public WaterProperties      waterproperties      {get; private set;}       // физико-химические свойства воды  
+
+        public WaterProperties waterproperties { get; private set; }       // физико-химические свойства воды  
         public EcoObjectsList       ecoobjecstlist       {get; private set; }      // список объектов в т.ч. заглавный которые попали в наземное пятно    
         public GroundPollutionList pollutionlist         {get; private set; }      // загрязнение в точках  
 
@@ -45,11 +45,11 @@ namespace EGH01DB.Blurs
                 }
             }
             {
-                //WaterProperties x = new WaterProperties();
-                //if (WaterProperties.Get(out x))
-                //{
-                //    this.waterproperties = x;                
-                //}
+                WaterProperties x = new WaterProperties();
+                if (WaterProperties.Get(out x))
+                {
+                    this.waterproperties = x;
+                }
             }
 
 
