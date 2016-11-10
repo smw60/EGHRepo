@@ -56,6 +56,15 @@ namespace EGH01DB.Primitives
             this.koef = koef;
         }
         
+        // заглушка 
+        public static bool GetByParms(GroundType groundtype, float volume, float angle, out SpreadingCoefficient spreadingcoefficient)  
+        {
+            spreadingcoefficient = new SpreadingCoefficient(groundtype, 0.0f, 80.0f, 0.0f, 0.02f, 5.0f);
+
+            return true;
+        }
+
+
         // круглое пятно: грунт, объем, угол наклона 
         public static float Get(EGH01DB.IDBContext dbcontext, SpreadingCoefficient spreading_coefficient) // получить коэффициент растекания, -1 - такого нет
         {

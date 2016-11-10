@@ -117,7 +117,7 @@ height: -50px;
 }
 
 .navbar{
-	background:#fc7a1e;
+	background:#fde779; /*фон верхней основной панели*/
 }
 body {
     padding-top: 50px;
@@ -147,7 +147,7 @@ textarea {
 }
 
 input.input-validation-error {
-    border: 1px solid #f98d09;
+    border: 1px solid #e3ef9e;
 }
 
 input[type="checkbox"].input-validation-error {
@@ -169,6 +169,9 @@ input[type="checkbox"].input-validation-error {
 	vertical-align:middle;
     font-weight:bold;
     margin:10px;
+    }
+.title h2 a{
+    color: #316d32;
     }
 /*меню*/
 a.dropdown-toggle.btn.btn-link {
@@ -203,7 +206,7 @@ a.dropdown-toggle.btn.btn-link {
 
         .boxmenu {
             box-sizing: border-box; /* границу включить в размер .box*/
-            background-color: #fc7a1e; /* беж*/
+            background-color: #f7e696; /* основные верхние менюшки беж*/
             overflow: hidden;
            border: 2px solid #ffbb40; /* светло-зелен.*/
             width: 85%;
@@ -214,7 +217,7 @@ a.dropdown-toggle.btn.btn-link {
 
         .boxconnect, .boxcainfo {
             box-sizing: border-box;
-            background-color: #fc7a1e;
+            background-color: #eff2cd;
             overflow: hidden;
            border: 2px solid #75cc72;
             width: 85%;
@@ -301,7 +304,7 @@ a.dropdown-toggle.btn.btn-link {
             overflow: hidden; /* все что вылезает за границу .box  - скрывать*/
             border: 2px solid #013d02;
             width: 85%;
-            background-color: #f9df86; /**/
+            background-color: #f2f3e1; /* меню основные*/
             margin: 12px;
             padding: 1px;
             min-width: 800px;
@@ -313,7 +316,7 @@ a.dropdown-toggle.btn.btn-link {
             }
 
         .boxdata label {
-            width: 25%;
+            width: 55%;
             float: left;
         }
        
@@ -377,7 +380,7 @@ a.dropdown-toggle.btn.btn-link {
 
         .boxcontrol {
             margin: 1px;
-            background-color: #fc7a1e;
+            background-color: #eff2cd;
             padding: 2px;
             text-align: right;
             border: 1px solid #013d02;
@@ -401,7 +404,7 @@ a.dropdown-toggle.btn.btn-link {
         .boxmessage {
             display: none;
             margin: 1px;
-            background-color: #fcb86f;
+            background-color: #f7e19e;
             padding: 2px;
             border: 1px double #013d02;
             /*text-align:right;*/
@@ -418,12 +421,13 @@ a.dropdown-toggle.btn.btn-link {
     left: 0;
     bottom: 0; /* Левый нижний угол */
     padding: 10px; /* Поля вокруг текста */
-    background: #f9d675; /* Цвет фона */
+    background: #c8da94; /* Цвет фона */
     color: #0e210b; /* Цвет текста */
     width: 100%; /* Ширина слоя */
 }
 #footer a img{
     height:20px;
 }
+
 
     

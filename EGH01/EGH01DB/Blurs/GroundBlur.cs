@@ -17,22 +17,65 @@ namespace EGH01DB.Blurs
     {
         public SpreadPoint spreadpoint {get;  private set;}   //разлив нефтеродута 
         public CoordinatesList bordercoordinateslist { get; private set; }   // координаты граничных точек  пятна
-        // радиус для первоначального расчета из предположения
-        // что поверхность ровная 
-        public float radius { get { return (float)Math.Sqrt(square / Math.PI); } }     // радиус наземного пятна (м)   считаем из площади (sqrt(square/3.14))  
-        //public float square { get { return SpreadingCoefficient.GetByData(EGH01DB.IDBContext dbcontext, spreadpoint.groundtype, spreadpoint.volume, 0.0f) * spreadpoint.volume; } }   // площадь наземного пятна (м)  считаем  F * volume (F = 
-        // blinova
-        public float square { get; private set;}
-        // riskobjecstlist - из БД    pollutionlist - из БД по AnchorList
-        public EcoObjectsList ecoobjecstlist     { get; private set; }   // список объектов в т.ч. заглавный которые попали в наземное пятно    
-        public GroundPollutionList pollutionlist { get; private set; }   // загрязнение в точках: время движения (дни) до грунтовых вод и концентрация (мл/кг) 
+        
+        public SpreadingCoefficient spreadingcoefficient {get; private set;}       // коэффициент разлива (1/м) 
+        public float                square               {get; private set;}       // площадь (м2)     
+        public float                radius               {get; private set;}       // радиус наземного пятна (м)     
+        public float                totalmass            {get; private set;}       // масса пролива (кг)    
+        public float                limitadsorbedmass    {get; private set;}       // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (кг) 
+        public float                avgheight            {get; private set;}       // средняя глубина грунтовых вод по опорным точкам (м) 
+            
+        public  AnchorPointList     anchorpointlist      {get; private set;}       // список опорных точек, попаших в наземное пятно загрязнения    
+
+        public WaterProperties waterproperties { get; private set; }       // физико-химические свойства воды  
+        public EcoObjectsList       ecoobjecstlist       {get; private set; }      // список объектов в т.ч. заглавный которые попали в наземное пятно    
+        public GroundPollutionList pollutionlist         {get; private set; }      // загрязнение в точках  
 
         public GroundBlur(SpreadPoint spreadpoint)
         {
             this.spreadpoint = spreadpoint;
-            this.ecoobjecstlist = EcoObjectsList.CreateEcoObjectsList(spreadpoint,  radius);
+
+
+            {
+                SpreadingCoefficient x = new SpreadingCoefficient();
+                this.spreadingcoefficient = x = new SpreadingCoefficient();
+                if (SpreadingCoefficient.GetByParms(this.spreadpoint.groundtype, this.spreadpoint.volume, 0.0f, out x))
+                {
+                    this.spreadingcoefficient = x;
+                }
+            }
+            {
+                WaterProperties x = new WaterProperties();
+                if (WaterProperties.Get(out x))
+                {
+                    this.waterproperties = x;
+                }
+            }
+
+
+
+            this.square = this.spreadpoint.volume * this.spreadingcoefficient.koef;                  // площадь  пятна 
+
+            this.radius = (float)Math.Sqrt(square / Math.PI);                                        // радиус  пятна 
+
+            this.totalmass = this.spreadpoint.volume * this.spreadpoint.petrochemicaltype.density;   // масса пролива 
+
+            this.limitadsorbedmass = 0.0f;                                                            // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (кг) 
+
+            this.avgheight = 0.0f;                                                                   // средняя глубина грунтовых вод по опорным точкам (м) 
+
+
+            this.ecoobjecstlist = EcoObjectsList.CreateEcoObjectsList(spreadpoint, radius);
             this.pollutionlist = GroundPollutionList.CreateGroundPollutionList(spreadpoint, radius);
         }
+
+        //public float square { get { return SpreadingCoefficient.GetByData(EGH01DB.IDBContext dbcontext, spreadpoint.groundtype, spreadpoint.volume, 0.0f) * spreadpoint.volume; } }   // площадь наземного пятна (м)  считаем  F * volume (F = 
+        // blinova
+        // riskobjecstlist - из БД    pollutionlist - из БД по AnchorList
+    
+        
+        
+        
         private CoordinatesList createbordercoordinateslist() // построение граничных точек пятна загрязнения 
         {
 

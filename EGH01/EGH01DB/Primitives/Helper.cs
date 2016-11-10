@@ -471,11 +471,11 @@ namespace EGH01DB.Primitives
                                                     (float)soilmoisture,
                                                     (float)аveryanovfactor,
                                                     (float)permeability);
-           
-                        double min_volume = (double)reader["МинПролива"];
-                        double max_volume = (double)reader["МаксПролива"];
-                        double min_angle = (double)reader["МинУклона"];
-                        double max_angle = (double)reader["МаксУклона"];
+
+                        float min_volume = (float)reader["МинПролива"];
+                        float max_volume = (float)reader["МаксПролива"];
+                        float min_angle = (float)reader["МинУклона"];
+                        float max_angle = (float)reader["МаксУклона"];
                         double koef = (double)reader["КоэффициентРазлива"];
 
                         spreading_coefficient.Add(new SpreadingCoefficient(ground_type,
