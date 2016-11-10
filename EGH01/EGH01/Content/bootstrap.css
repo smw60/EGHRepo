@@ -164,6 +164,7 @@ select,
 textarea {
   margin: 2px;
   font-family: inherit;
+  font-weight: bold;
   font-size: 100%;
 }
 
