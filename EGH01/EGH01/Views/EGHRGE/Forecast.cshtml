@@ -161,10 +161,70 @@
         else if (context.Regim == ForecastViewConext.REGIM.REPORT)
         {
             <div class="boxdata">
+                <h1> ОТЧЕТ-ПРОГНОЗ  </h1>
+                <h2>Наземное пятно</h2>
                 <p>
-                  ОТЧЕТ-ПРОГНОЗ
+                    <label class="boxdata-label-20 ">Коэффициент разлива (1/м) </label>
+                    @context.ecoforecast.groundblur.spreadingcoefficient.koef
                 </p>
-            </div>
+
+                <p>
+                    <label class="boxdata-label-20 ">Площадь разлива (м2) </label> 
+                    @context.ecoforecast.groundblur.square    
+                </p>
+                
+                <p>
+                    <label class="boxdata-label-20 ">Радиус разлива (м) </label>
+                    @context.ecoforecast.groundblur.radius
+                </p>
+                
+
+
+                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+                    <legend style="width: auto; font: inherit; border:none;"> Максиальная масса НП, кот. может быть адсорбирована грунтом </legend>
+                    <p>
+                        <label class="boxdata-label-30 ">Средняя глубина грунтовых вод (м) </label>
+                        @context.ecoforecast.groundblur.avgheight
+                    </p>
+
+                    <p>
+                        <label class="boxdata-label-30 "> Площадь пролива(м2) </label>
+                        @context.ecoforecast.groundblur.square
+                    </p>
+
+                    <p>
+                        <label class="boxdata-label-30 "> Плотность воды </label>
+                        @context.ecoforecast.groundblur.waterproperties.density
+                    </p>
+                    
+                    <p>
+                        <label class="boxdata-label-30 "> Пористость грунта </label>
+                        @context.ecoforecast.groundblur.spreadpoint.groundtype.porosity
+                     </p>
+                    
+                    <p>
+                        <label class="boxdata-label-30 ">Капилярная влагоемкость грунта </label>
+                        @context.ecoforecast.groundblur.spreadpoint.groundtype.watercapacity
+                    </p>
+                    <p>
+                        <label class="boxdata-label-30 ">Динамическая вязкость нефтепродукта </label>
+                        @context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.dynamicviscosity
+                     </p>
+                     <p>
+                        <label class="boxdata-label-30 ">Коэфициент поверхностного натяжения воды </label>
+                        @context.ecoforecast.groundblur.waterproperties.tension
+                    </p>
+                    <p>
+                        <label class="boxdata-label-30 ">Вязкость воды</label>
+                        @context.ecoforecast.groundblur.waterproperties.viscocity
+                    </p>
+                    <p>
+                        <label class="boxdata-label-30 ">Максиальная масса НП, кот. может быть адсорбирована грунтом (кг) </label>
+                        @context.ecoforecast.groundblur.limitadsorbedmass
+                   </p>
+                </fieldset>
+
+</div>
         }
         
     </div>

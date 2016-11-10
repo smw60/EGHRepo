@@ -28,11 +28,17 @@
             <div class="boxdata">
                 <input type="hidden" value="@Model.type_code" name="type_code">
             </div>
-                <p>
-                    <label class="boxdata-label-30" value="@Model.name">Наименование категории земли</label>@Model.name</p>
-            <p>
-                <label class="boxdata-label-30">ПДК в грунте (мг/кг)</label>
+            <div class="boxdata">
+                <label class="boxdata-label-30">Код типа земли</label>
+            @Model.name
+                <input type="hidden" value="@Model.name.ToString()" name="name">
+            </div>
+               <p> <label class="boxdata-label-30">ПДК в грунте (мг/кг)</label>
                 <input class="boxdata-input-50" type="number" name="pdk_coef" value="@Model.pdk_coef.ToString()" />           
+            </p>
+            <p>
+                <label class="boxdata-label-30">ПДК в воде (мг/дм3)</label>
+                <input class="boxdata-input-50" type="number" name="water_pdk_coef" value="@Model.water_pdk_coef.ToString()" />
             </p>
         </div>
 

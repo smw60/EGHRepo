@@ -115,7 +115,7 @@ namespace EGH01.Controllers
                     {
                         String name = cd.name;
 
-                        EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id,name,0);
+                        EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id,name,0,0.0f);
 
                                 if (EGH01DB.Types.CadastreType.Create(db, cadastre_type))
                                 {
@@ -186,7 +186,7 @@ namespace EGH01.Controllers
 
                     int id = cd.type_code;
                     String name = cd.name;
-                    EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id, name, 0);
+                    EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id, name, 0,0.0f);
                     if (EGH01DB.Types.CadastreType.Update(db, cadastre_type))
                     {
                         view = View("CadastreType", db);

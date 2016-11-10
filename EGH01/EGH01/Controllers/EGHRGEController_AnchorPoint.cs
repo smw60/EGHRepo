@@ -216,36 +216,30 @@ namespace EGH01.Controllers
                 {
 
                     int id = ah.id;
-                    //if (EGH01DB.Points.AnchorPoint.GetById(db, out id))
-                    //{
                     int lat = ah.Lat_d;
-
-                    //float lat = EGH01DB.Primitives.Coordinates.dms_to_d(ah.latitude, ah.lat_m, ah.lat_s);
-                    //float lng = EGH01DB.Primitives.Coordinates.dms_to_d(ah.lngitude, ah.lng_m, ah.lng_s);
                     Coordinates coordinates = new Coordinates(ah.Lat_d, ah.lat_m, ah.lat_s, ah.lngitude, ah.lng_m, ah.lng_s);
-
-                    //EGH01DB.Primitives.Coordinates.d_to_dms(lat, ref lat_d, ref lat_m, ref lat_s);
                     float waterdeep = 0.0f;
                     int list_cadastre = ah.list_cadastre;
-
                     float height = 0.0f;
                     string strheight = this.HttpContext.Request.Params["height"] ?? "Empty";
                     if (!Helper.FloatTryParse(strheight, out height))
                     {
                         height = 0.0f;
                     }
-
                     string strwaterdeep = this.HttpContext.Request.Params["waterdeep"] ?? "Empty";
                     if (!Helper.FloatTryParse(strwaterdeep, out waterdeep))
                     {
                         waterdeep = 0.0f;
                     }
+
                     EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
                     if (EGH01DB.Types.GroundType.GetByCode(db, ah.list_groundType, out type_groud))
                     {
                         GroundType ground_type = new GroundType(ah.list_groundType, type_groud.name, type_groud.porosity, type_groud.holdmigration, type_groud.waterfilter, type_groud.diffusion,
            type_groud.distribution, type_groud.sorption, type_groud.watercapacity, type_groud.soilmoisture, type_groud.аveryanovfactor, type_groud.permeability);
+
                         Point point = new Point(coordinates, ground_type, waterdeep, height);
+
                         CadastreType cadastre_type = new CadastreType();
                         if (EGH01DB.Types.CadastreType.GetByCode(db, ah.list_cadastre, out cadastre_type))
                         {
@@ -260,7 +254,7 @@ namespace EGH01.Controllers
                         }
 
                     }
-                    else if (menuitem.Equals("GroundType.Update.Cancel")) view = View("GroundType", db);
+                    else if (menuitem.Equals("AnchorPoint.Update.Cancel")) view = View("AnchorPoint", db);
                 }
             }
 

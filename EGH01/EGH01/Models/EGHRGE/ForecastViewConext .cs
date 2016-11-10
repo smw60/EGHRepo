@@ -25,6 +25,7 @@ namespace EGH01.Models.EGHRGE
         public int?      Lng_degree               {get; set;}
         public int?      Lng_min                  {get; set;}
         public float?    Lng_sec                  {get; set;}
+        public RGEContext.ECOForecast ecoforecast {get; set;} 
 
 
         public static bool Handler(RGEContext context, NameValueCollection parms)

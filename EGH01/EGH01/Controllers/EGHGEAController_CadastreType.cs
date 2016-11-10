@@ -188,7 +188,8 @@ namespace EGH01.Controllers
                     int id = cd.type_code;
                     String name = cd.name;
                     int pdk_coef = cd.pdk_coef;
-                    EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id, name, pdk_coef);
+                    float water_pdk_coef = cd.water_pdk_coef;
+                    EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id, name, pdk_coef, water_pdk_coef);
                     if (EGH01DB.Types.CadastreType.Update(db, cadastre_type))
                     {
                         view = View("CadastreType", db);

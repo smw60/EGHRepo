@@ -11,8 +11,10 @@ namespace EGH01.Models.EGHRGE
         public int      type_code {get; set;}    
         public string   name { get; set;}       
         public int pdk_coef { get; set; }  
-    
-      
+        public float water_pdk_coef { get; set; }
+
+
+
     }
 
     

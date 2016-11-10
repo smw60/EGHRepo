@@ -290,10 +290,17 @@ namespace EGH01DB.Points
     }
     public class AnchorPointList : List<AnchorPoint>   // список  опорных точек 
     {
+        public float avgheight { get; private set; }   // средняя глубина грунтовых вод
+
         public AnchorPointList() : base()
         {
-
+            if (this.Count() > 0) this.avgheight = this.Average(a => a.height);  // // средняя глубина грунтовых вод
+            else this.avgheight = 0.0f;
+                        
+            this.avgheight = 5.0f;                         // заглушка 
         }
+
+
         //  найти список точек в заданном радиусе 
         public static AnchorPointList CreateNear(Coordinates center, float radius)
         {
@@ -301,7 +308,6 @@ namespace EGH01DB.Points
             return new AnchorPointList()
             {
                new AnchorPoint()
-
             };
 
         }
