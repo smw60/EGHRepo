@@ -41,19 +41,19 @@
             </p>
             <p>
                 <label class="boxdata-label-30">Влажность</label>
-                <input class="boxdata-input-50" type="number" name="soilmoisture" value="@Model.soilmoisture.ToString().Replace(',' , '.')"step="0.1" />
+                <input class="boxdata-input-50" type="number" name="soilmoisture" min="0" max="1" value="@Model.soilmoisture.ToString().Replace(',' , '.')"step="0.1" />
             </p>
             <p>
                 <label class="boxdata-label-30">Влагоемкость</label>
-                <input class="boxdata-input-50" type="number" name="watercapacity" value="@Model.watercapacity.ToString().Replace(',' , '.')" step="0.1" />
+                <input class="boxdata-input-50" type="number" name="watercapacity" min="0" max="1" value="@Model.watercapacity.ToString().Replace(',' , '.')" step="0.1" />
             </p>
             <p>
-                <label class="boxdata-label-30">Коэффициент фильтрации</label>
+                <label class="boxdata-label-30">Коэффициент фильтрации (м/сут)</label>
                 <input class="boxdata-input-50" type="number" name="waterfilter" value="@Model.waterfilter.ToString().Replace(',' , '.')" step="0.1" />
             </p>
             <p>
                 <label class="boxdata-label-30">Коэффициент Аверьянова</label>
-                <input class="boxdata-input-50" type="number" name="аveryanovfactor" value="@Model.аveryanovfactor.ToString().Replace(',' , '.')" step="0.1" />
+                <input class="boxdata-input-50" type="number" name="аveryanovfactor"  min="4" max="9" value="@Model.аveryanovfactor.ToString().Replace(',' , '.')" step="0.1" />
             </p>
 
             <p>

@@ -270,7 +270,8 @@ namespace EGH01DB.Points
 
                         string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
                         int pdk = (int)reader["ПДК"];
-                        CadastreType cadastre_type = new CadastreType((int)reader["КодНазначенияЗемель"], (string)cadastre_type_name, (int)pdk);
+
+                        CadastreType cadastre_type = new CadastreType((int)reader["КодНазначенияЗемель"], (string)cadastre_type_name, (int)pdk, 0.0f);// blinova
 
                         anchor_point = new AnchorPoint(id, point, cadastre_type);
                     }
@@ -287,21 +288,26 @@ namespace EGH01DB.Points
 
         }
     }
-    public class AnchorPointList : List<AnchorPoint>   // список точек  с  с координатами и характеристика 
+    public class AnchorPointList : List<AnchorPoint>   // список  опорных точек 
     {
+        public float avgheight { get; private set; }   // средняя глубина грунтовых вод
+
         public AnchorPointList() : base()
         {
-
+            if (this.Count() > 0) this.avgheight = this.Average(a => a.height);  // // средняя глубина грунтовых вод
+            else this.avgheight = 0.0f;
+                        
+            this.avgheight = 5.0f;                         // заглушка 
         }
+
+
         //  найти список точек в заданном радиусе 
         public static AnchorPointList CreateNear(Coordinates center, float radius)
         {
-
-            // отладка 
+                         
             return new AnchorPointList()
             {
-
-
+               new AnchorPoint()
             };
 
         }

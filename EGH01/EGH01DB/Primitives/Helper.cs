@@ -131,7 +131,8 @@ namespace EGH01DB.Primitives
                     {
                         list_type.Add(new CadastreType((int)reader["КодНазначенияЗемель"], 
                                                         (string)reader["НаименованиеНазначенияЗемель"], 
-                                                        (int)reader["ПДК"]));
+                                                        (int)reader["ПДК"],
+                                                        (float)reader["ПДКВоды"]));
                     }
                     rc = list_type.Count > 0;
                     reader.Close();
@@ -410,7 +411,7 @@ namespace EGH01DB.Primitives
                         RiskObjectType risk_object_type = new RiskObjectType((int)reader["КодТипаТехногенногоОбъекта"], (string)risk_object_type_name);
                         string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
                         int pdk = (int)reader["ПДК"];
-                        CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name, (int)pdk);
+                        CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name, (int)pdk, 0.0f); //blinova
                         string name = (string)reader["НаименованиеТехногенногоОбъекта"];
                         string address = (string)reader["АдресТехногенногоОбъекта"];
                         
@@ -544,7 +545,7 @@ namespace EGH01DB.Primitives
 
                         string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
                         int pdk = (int)reader["ПДК"];
-                        CadastreType cadastre_type = new CadastreType((int)reader["КодНазначенияЗемель"], (string)cadastre_type_name, (int)pdk);
+                        CadastreType cadastre_type = new CadastreType((int)reader["КодНазначенияЗемель"], (string)cadastre_type_name, (int)pdk, 0.0f);
                         AnchorPoint anchor_point = new AnchorPoint(id, point, cadastre_type);
 
                         anchor_points.Add(anchor_point);
