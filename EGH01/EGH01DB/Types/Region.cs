@@ -36,7 +36,11 @@ namespace EGH01DB.Types
             this.region_code = region_code;
             this.name = name;
         }
-        
+        public Region(XmlNode node)
+        {
+            this.region_code = Helper.GetIntAttribute(node, "region_code", -1);
+            this.name = Helper.GetStringAttribute(node, "name", "");
+        }
 
         static public bool Create(EGH01DB.IDBContext dbcontext, Region region)
         {
@@ -182,5 +186,16 @@ namespace EGH01DB.Types
             }
             return rc;
         }
+        
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("Region");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            rc.SetAttribute("region_code", this.region_code.ToString());
+            rc.SetAttribute("name", this.name.ToString());
+            return (XmlNode)rc;
+        }
+
     }
 }

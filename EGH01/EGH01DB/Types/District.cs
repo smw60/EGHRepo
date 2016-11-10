@@ -12,11 +12,11 @@ namespace EGH01DB.Types
 {
     public class District
     {
-        public int            code   {get; private set; }   // код района
-        public Region         region   {get; private set; }   // область
-        public string         name { get; private set; }   // наименование района
-        static public District defaulttype {get { return new District(0, "Не определен");}}  // выдавать при ошибке  
-      
+        public int code { get; private set; }   // код района
+        public Region region { get; private set; }   // область
+        public string name { get; private set; }   // наименование района
+        static public District defaulttype { get { return new District(0, "Не определен"); } }  // выдавать при ошибке  
+
         public District()
         {
             this.code = -1;
@@ -35,11 +35,19 @@ namespace EGH01DB.Types
             this.region = new Region();
             this.name = name;
         }
-        public District(int code, Region region, String name)    
+        public District(int code, Region region, String name)
         {
             this.code = code;
             this.region = region;
             this.name = name;
+        }
+        public District(XmlNode node)
+        {
+            this.code = Helper.GetIntAttribute(node, "code");
+            this.name = Helper.GetStringAttribute(node, "name");
+            XmlNode region = node.SelectSingleNode(".//Region");
+            if (region != null) this.region = new Region(region);
+            else this.region = null;
         }
         static public bool Create(EGH01DB.IDBContext dbcontext, District district)
         {
@@ -77,7 +85,6 @@ namespace EGH01DB.Types
 
             return rc;
         }
-
         static public bool Update(EGH01DB.IDBContext dbcontext, District district) // no
         {
 
@@ -96,7 +103,7 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@Район", SqlDbType.NVarChar); 
+                    SqlParameter parm = new SqlParameter("@Район", SqlDbType.NVarChar);
                     parm.Value = district.name;
                     cmd.Parameters.Add(parm);
                 }
@@ -156,7 +163,7 @@ namespace EGH01DB.Types
 
             return rc;
         }
-        static public bool GetByCode(EGH01DB.IDBContext dbcontext, int code, out District distr) 
+        static public bool GetByCode(EGH01DB.IDBContext dbcontext, int code, out District distr)
         {
             bool rc = false;
             distr = new District();
@@ -186,9 +193,9 @@ namespace EGH01DB.Types
                         string region_name = (string)reader["Область"];
                         Region region = new Region(region_code, region_name);
                         if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) distr = new District(district_code, region, district_name);
-                       
+
                     }
-                   reader.Close();
+                    reader.Close();
                 }
                 catch (Exception e)
                 {
@@ -198,6 +205,16 @@ namespace EGH01DB.Types
             }
             return rc;
         }
-       
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("District");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            rc.SetAttribute("code", this.code.ToString());
+            rc.SetAttribute("name", this.name.ToString());
+            rc.AppendChild(doc.ImportNode(this.region.toXmlNode(), true));
+            return (XmlNode)rc;
+        }
     }
+
 }

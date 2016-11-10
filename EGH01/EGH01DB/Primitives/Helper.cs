@@ -362,6 +362,10 @@ namespace EGH01DB.Primitives
                         double diffusion = (double)reader["КоэфДиффузии"];
                         double distribution = (double)reader["КоэфРаспределения"];
                         double sorption = (double)reader["КоэфСорбции"];
+                        double watercapacity = (double)reader["КоэфКапВлагоемкости"];
+                        double soilmoisture = (double)reader["ВлажностьГрунта"];
+                        double аveryanovfactor = (double)reader["КоэфАверьянова"];
+                        double permeability = (double)reader["Водопроницаемость"];
                         GroundType ground_type = new GroundType((int)reader["ТипГрунта"],
                                                                     (string)ground_type_name,
                                                                     (float)porosity,
@@ -369,7 +373,11 @@ namespace EGH01DB.Primitives
                                                                     (float)waterfilter,
                                                                     (float)diffusion,
                                                                     (float)distribution,
-                                                                    (float)sorption);
+                                                                    (float)sorption,
+                                                                    (float)watercapacity,
+                                                                    (float)soilmoisture,
+                                                                    (float)аveryanovfactor,
+                                                                    (float)permeability);
                         double waterdeep = (double)reader["ГлубинаГрунтовыхВод"];
                         double height = (double)reader["ВысотаУровнемМоря"];
 

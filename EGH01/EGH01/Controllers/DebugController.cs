@@ -18,8 +18,6 @@ namespace EGH01.Controllers
 
         public ActionResult Index()
         {
-
-
             return View();
         }
         public ActionResult XML()
@@ -56,14 +54,63 @@ namespace EGH01.Controllers
                 IncidentTypeList list = new IncidentTypeList(db);
                 XmlNode n = list.toXmlNode();
                 int k = 1;
-
-
             }
-
-
 
             return View();
         }
+        // проверка процедур  XML
+
+        public ActionResult XML_District_Region()
+        {
+            {
+                //Region reg = new Region(2, "Витебская");
+                //XmlNode xmlreg = reg.toXmlNode("Область");
+                //Region reg1 = new Region(xmlreg);
+            
+                //District district = new District(1, reg, "Витебский");
+                //XmlNode xml = district.toXmlNode("test");
+                //District district1 = new District(xml);
+            }
+            return View();
+        }
+        public ActionResult XML_CadastreType()
+        {
+            {
+                //CadastreType cad = new CadastreType(2, "Населенных пунктов, садоводческих товариществ, дач", 127, 0.3f);
+                //XmlNode xmlcad = cad.toXmlNode("Кадастр");
+                //CadastreType cad1 = new CadastreType(xmlcad);
+                
+            }
+            return View();
+        }
+        public ActionResult XML_PetrochemicalType()
+        {
+            {
+                //PetrochemicalType pc = new PetrochemicalType(2, "Сырая нефть", 129.4f, 12.3f, 15.6f, 78.2f, 450.2f, 12.3f, 2.4f);
+                //XmlNode xmlpc = pc.toXmlNode("Petrochemical Type");
+                //PetrochemicalType pc1 = new PetrochemicalType(xmlpc);
+            }
+            return View();
+        }
+        public ActionResult XML_RiskObjectType()
+        {
+            {
+                //RiskObjectType ro = new RiskObjectType(2, "Оборудование нефтеперерабатывающих предприятий");
+                //XmlNode xmlro = ro.toXmlNode("Risk Object Type");
+                //RiskObjectType ro1 = new RiskObjectType(xmlro);
+            }
+            return View();
+        }
+        public ActionResult XML_EcoObjectType()
+        {
+            {
+                //EcoObjectType eo = new EcoObjectType(2, "Заповедник");
+                //XmlNode xmleo = eo.toXmlNode("Eco Object Type");
+                //EcoObjectType eo1 = new EcoObjectType(xmleo);
+            }
+            return View();
+        }
+        
         // проверка процедур  Anchor point
         public ActionResult Anchor_Point_list() // yes
         {
