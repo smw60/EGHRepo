@@ -53,11 +53,10 @@
                 <p>
                     <label class="boxdata-label-30">Широта </label>
 
-                    <input class="boxdata-input-50" type="number" name="Latitude" value="@Model.coordinates.lat.d.ToString()" min="-90" max="90" />
+                    <input class="boxdata-input-50" type="number" name="Lat_d" value="@Model.coordinates.lat.d.ToString()" min="-90" max="90" />
                     <input class="boxdata-input-50" type="number" name="Lat_m" value="@Model.coordinates.lat.m.ToString()" min="-90" max="90" />
                     <input class="boxdata-input-50" type="number" name="Lat_s" value="@Model.coordinates.lat.s.ToString().Replace(',' , '.')" min="0" max="60" step="0.001" />
                 </p>
-                <br>
                 <p>
                     <label class="boxdata-label-30">Долгота</label>
 
@@ -66,8 +65,6 @@
                     <input class="boxdata-input-50" type="number" name="Lng_s" value="@Model.coordinates.lng.s.ToString("0.000").Replace(',' , '.')" min="0" max="60" step="0.001" />
                 </p>
             </fieldset>
-
-            <br>
             <div class="boxdata">
                 <label class="boxdata-label-30">Категория земли</label>@Html.DropDownList("list_cadastre")
             </div>
@@ -80,12 +77,10 @@
                     <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
                     <input class="boxdata-input-50" type="number" name="waterdeep" value="@Model.waterdeep.ToString()" min="0" />
                 </p>
-                <br>
                 <p>
                     <label class="boxdata-label-30">Высота над уровнем моря (м)</label>
                     <input class="boxdata-input-50" type="number" name="height" value="@Model.height.ToString()" min="0" />
                 </p>
-                <br>
 
             </fieldset>
           
