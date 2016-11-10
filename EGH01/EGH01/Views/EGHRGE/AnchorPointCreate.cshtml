@@ -39,45 +39,43 @@
 }
             @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHRGE", Action = "AnchorPoint", Menu = start })
             @using (Html.BeginForm("AnchorPointCreate", "EGHRGE"))
-            {
+{
 
 
-                <div class="box">
-                    <div class="boxdata">
-                        <label class="boxdata-label-30" value="id">Идентификатор</label>@id
-                    </div>
-                    <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
-                        <legend style="width: auto; font: inherit; border:none;">Координаты</legend>
-                        <p>
-                            <label>Широта</label>&nbsp;  <input class="boxdata-input-50" type="number" name="Lat_d" value=" " min="-90" max="90" />&nbsp;<input class="boxdata-input-50" type="number" name="Lat_m" value=" " min="-90" max="90" />&nbsp;<input class="boxdata-input-50" type="number" name="Lat_s" value=" " min="0" max="60" step="0.001" />
-                        </p>
-                        <br>
-                        <p>
-                            <label>Долгота</label>&nbsp;<input class="boxdata-input-50" type="number" name="Lngitude" value=" " max="180" min="0" />&nbsp;<input class="boxdata-input-50" type="number" name="Lng_m" value=" " min="-90" max="90" />&nbsp;<input class="boxdata-input-50" type="number" name="Lng_s" value=" " min="0" max="60" step="0.001" />
-                        </p>
-                    </fieldset>
-
-                    <div class="boxdata">
-                        <label class="boxdata-label-30">Категория земли</label>@Html.DropDownList("list_cadastre")
-                    </div>
-                    <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
-                        <legend style="width: auto; font: inherit; border:none;">Геологические данные</legend>
-                        <div class="boxdata">
-                            <label class="boxdata-label-30">Грунт</label>@Html.DropDownList("list_groundType")
-                        </div>
-                        <div class="boxdata">
-                            <label class="boxdata-label-30">Высота над уровнем моря(м)</label>
-                            <input class="boxdata-input-30" type="number" name="height" step="0.1" min="0" />
-                        </div>
-                        <div class="boxdata">
-                            <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
-                            <input class="boxdata-input-30" type="number" name="waterdeep" step="0.1" min="0" />
-                        </div>
-                    </fieldset>
-
-
-                    @Html.Partial("_TypeLineMenu", create)
-
+    <div class="box">
+        <div class="boxdata">
+            <label class="boxdata-label-30" value="id">Идентификатор</label>@id
+            <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+                <legend style="width: auto; font: inherit; border:none;">Координаты</legend>
+                <p>
+                    <label class="boxdata-label-30">Широта</label>&nbsp;<input class="boxdata-input-10" type="number" name="Lat_d" value=" " min="-90" max="90" />&deg;&nbsp;<input class="boxdata-input-10" type="number" name="Lat_m" value=" " min="-90" max="90" />&acute;&nbsp;<input class="boxdata-input-10" type="number" name="Lat_s" value=" " min="0" max="60" step="0.001" />&quot;
+                </p>
+                <br>
+                <p>
+                    <label class="boxdata-label-30">Долгота</label>&nbsp;<input class="boxdata-input-10" type="number" name="Lngitude" value=" " max="180" min="0" />&deg;&nbsp;<input class="boxdata-input-10" type="number" name="Lng_m" value=" " min="-90" max="90" />&acute;&nbsp;<input class="boxdata-input-10" type="number" name="Lng_s" value=" " min="0" max="60" step="0.001" />&quot;
+                </p>
+            </fieldset>
+            <div class="boxdata">
+                <label class="boxdata-label-30">Категория земли</label>@Html.DropDownList("list_cadastre")
+            </div>
+            <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+                <legend style="width: auto; font: inherit; border:none;">Геологические данные</legend>
+                <div class="boxdata">
+                    <label class="boxdata-label-30">Грунт</label>@Html.DropDownList("list_groundType")
                 </div>
-            }
+                <div class="boxdata">
+                    <label class="boxdata-label-30">Высота над уровнем моря(м)</label>
+                    <input class="boxdata-input-30" type="number" name="height" step="0.1" min="0" />
+                </div>
+                <div class="boxdata">
+                    <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
+                    <input class="boxdata-input-30" type="number" name="waterdeep" step="0.1" min="0" />
+                </div>
+            </fieldset>
+
+            @Html.Partial("_TypeLineMenu", create)
+        </div>
+
+    </div>
+}
 

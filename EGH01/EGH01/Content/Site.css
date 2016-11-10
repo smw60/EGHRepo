@@ -304,7 +304,7 @@ a.dropdown-toggle.btn.btn-link {
             overflow: hidden; /* все что вылезает за границу .box  - скрывать*/
             border: 2px solid #013d02;
             width: 85%;
-            background-color: #f2f3e1; /* меню основные*/
+            background-color:#f0f5ad; /* меню основные в таблицах*/
             margin: 12px;
             padding: 1px;
             min-width: 800px;
@@ -320,10 +320,10 @@ a.dropdown-toggle.btn.btn-link {
             float: left;
         }
        
-        .boxdata-label-30 {
+        /*.boxdata-label-30 {
             width: 1%;
             float: left;
-        }
+        }*/
         .boxdata-label-40 {
             width: 70%;
             float: left;
@@ -367,9 +367,13 @@ a.dropdown-toggle.btn.btn-link {
         .boxdata-input-30 {
             width: 30%;
         }
-
+        
         .boxdata-input-50 {
-            width: 50%;
+            width:30%;
+        }
+        /*Для широты и долготы в 3 текстовых поля*/
+        .boxdata-input-10 {
+            width:10%;
         }
 
         .boxdata input[disabled] {

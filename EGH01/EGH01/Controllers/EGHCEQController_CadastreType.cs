@@ -15,17 +15,17 @@ using EGH01DB.Points;
 
 namespace EGH01.Controllers
 {
-    public partial class EGHGEAController : Controller
+    public partial class EGHCEQController : Controller
     {
         public ActionResult CadastreType()
         {
-            GEAContext db = null;
-            ViewBag.EGHLayout = "GEA.CadastreType";
+            CEQContext db = null;
+            ViewBag.EGHLayout = "CEQ.CadastreType";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new GEAContext();
+                db = new CEQContext();
                 ViewBag.msg = "Соединение с базой данных установлено";
                 view = View("CadastreType", db);
 
@@ -174,13 +174,13 @@ namespace EGH01.Controllers
         [HttpPost]
         public ActionResult CadastreTypeUpdate(CadastreTypeView cd)
         {
-            GEAContext db = null;
-            ViewBag.EGHLayout = "GEA";
+           CEQContext db = null;
+            ViewBag.EGHLayout = "CEQ";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new GEAContext();
+                db = new CEQContext();
                 view = View("CadastreType", db);
                 if (menuitem.Equals("CadastreType.Update.Update"))
                 {
