@@ -174,7 +174,7 @@
     <Compile Include="Controllers\EGHCEQController.cs" />
     <Compile Include="Controllers\EGHController.cs" />
     <Compile Include="Controllers\EGHGEAController.cs" />
-    <Compile Include="Controllers\EGHGEAController_CadastreType.cs" />
+    <Compile Include="Controllers\EGHCEQController_CadastreType.cs" />
     <Compile Include="Controllers\EGHORTController.cs" />
     <Compile Include="Controllers\EGHRGEController_AnchorPoint.cs" />
     <Compile Include="Controllers\EGHRGEController_CadastreType.cs" />
@@ -333,6 +333,9 @@
     <Content Include="Views\EGHGEA\CadastreType.cshtml" />
     <Content Include="Views\EGHGEA\_CadastreTypeList.cshtml" />
     <Content Include="Views\EGHGEA\CadastreTypeUpdate.cshtml" />
+    <Content Include="Views\EGHCEQ\_CadastreTypeList.cshtml" />
+    <Content Include="Views\EGHCEQ\CadastreType.cshtml" />
+    <Content Include="Views\EGHCEQ\CadastreTypeUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
