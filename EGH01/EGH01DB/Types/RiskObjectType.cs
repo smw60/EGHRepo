@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Xml;
+using EGH01DB.Primitives;
 
 namespace EGH01DB.Types
 {
@@ -40,7 +42,11 @@ namespace EGH01DB.Types
         {
             return String.Format("{0} {1}", this.type_code, this.name);
         }
-
+        public RiskObjectType(XmlNode node)
+        {
+            this.type_code = Helper.GetIntAttribute(node, "type_code", -1);
+            this.name = Helper.GetStringAttribute(node, "name", "");
+        }
 
         static public bool Create(EGH01DB.IDBContext dbcontext, RiskObjectType risk_object_type)
         {
@@ -226,6 +232,16 @@ namespace EGH01DB.Types
 
             }
             return rc;
+        }
+
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("RiskObjectType");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            rc.SetAttribute("type_code", this.type_code.ToString());
+            rc.SetAttribute("name", this.name.ToString());
+            return (XmlNode)rc;
         }
     }
 }

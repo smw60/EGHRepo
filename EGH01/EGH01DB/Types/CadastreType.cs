@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
-
+using System.Xml;
+using EGH01DB.Primitives;
 
 namespace EGH01DB.Types
 {
@@ -46,6 +47,13 @@ namespace EGH01DB.Types
             this.name = name;
             this.pdk_coef = 0;
             this.water_pdk_coef = -1;
+        }
+        public CadastreType(XmlNode node)
+        {
+            this.type_code = Helper.GetIntAttribute(node, "type_code", -1);
+            this.name = Helper.GetStringAttribute(node, "name", "");
+            this.pdk_coef = Helper.GetIntAttribute(node, "pdk_coef", -1);
+            this.water_pdk_coef = Helper.GetFloatAttribute(node, "water_pdk_coef", 0.0f);
         }
 
         public string ToLine()
@@ -265,6 +273,16 @@ namespace EGH01DB.Types
             }
             return rc;
         }
-
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("CadastreType");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            rc.SetAttribute("type_code", this.type_code.ToString());
+            rc.SetAttribute("name", this.name.ToString());
+            rc.SetAttribute("pdk_coef", this.pdk_coef.ToString());
+            rc.SetAttribute("water_pdk_coef", this.water_pdk_coef.ToString());
+            return (XmlNode)rc;
+        }
     }
 }

@@ -36,6 +36,14 @@ namespace EGH01.Controllers
                     view = View("SpreadingCoefficientCreate");
 
                 }
+                else if (menuitem.Equals("SpreadingCoefficient.Delete"))
+                {
+                    SpreadingCoefficient sc = new SpreadingCoefficient();
+                    //if (EGH01DB.Primitives.SpreadingCoefficient.GetByData(db, c, ref pt))
+                    //{
+                        view = View("SpreadingCoefficientDelete", sc);
+                    
+                }
                 //else if (menuitem.Equals("SpreadingCoefficient.Delete"))
                 //{
                 //    string type_code_item = this.HttpContext.Request.Params["type_code"];
@@ -52,6 +60,10 @@ namespace EGH01.Controllers
                 //        }
                 //    }
                 //}
+
+
+
+
                 //else if (menuitem.Equals("SpreadingCoefficient.Update"))
                 //{
                 //    string type_code_item = this.HttpContext.Request.Params["type_code"];
@@ -118,6 +130,11 @@ namespace EGH01.Controllers
                     //{
                         GroundType ground_type = scv.ground_type;
 
+                    //string strground_type = this.HttpContext.Request.Params["ground_type"] ?? "Empty";
+                    // EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
+                   // string ground_type_name = ground_type.name.ToString();
+
+                   
 
                         string strmin_angle = this.HttpContext.Request.Params["min_angle"] ?? "Empty";
                         float min_angle = 0.0f;
@@ -135,16 +152,21 @@ namespace EGH01.Controllers
                         float max_volume = 0.0f;
                         Helper.FloatTryParse(strmax_volume, out max_volume);
 
-                        string strkoef = this.HttpContext.Request.Params["koef"] ?? "Empty";
-                        float koef = 0.0f;
-                        Helper.FloatTryParse(strkoef, out koef);
+
+                    string strkoef = this.HttpContext.Request.Params["koef"] ?? "Empty";
+                    float koef = 0.0f;
+                    Helper.FloatTryParse(strkoef, out koef);
+
+                    SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient((GroundType)ground_type, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
+                    //  PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density,
+                    //     (float)viscosity, (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion);
 
 
+                   koef = EGH01DB.Primitives.SpreadingCoefficient.Get(db, sc);
+                    //Helper.FloatTryParse(strkoef, out koef);
 
-                        SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient((GroundType)ground_type, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
-                      //  PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density,
-                       //     (float)viscosity, (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion);
-                        if (EGH01DB.Primitives.SpreadingCoefficient.Create(db, sc))
+
+                    if (EGH01DB.Primitives.SpreadingCoefficient.Create(db, sc))
                         {
                             view = View("SpreadingCoefficient", db);
                         }

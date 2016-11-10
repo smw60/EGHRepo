@@ -128,7 +128,6 @@ namespace EGH01DB.Primitives
     public class CoordinatesList:List<Coordinates>
     {
         
-
         public static CoordinatesList CreateCoordinatesList()
         { 
          return new CoordinatesList();
@@ -142,10 +141,6 @@ namespace EGH01DB.Primitives
             }
             return cl;
         }
-        
-        
-        
-        
         public XmlNode toXmlNode(string comment = "")
         {
             XmlDocument doc = new XmlDocument();
