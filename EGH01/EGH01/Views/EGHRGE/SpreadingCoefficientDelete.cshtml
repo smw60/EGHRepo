@@ -1,0 +1,41 @@
+﻿@using EGH01.Core;
+@using EGH01.Models.EGH;
+@model EGH01DB.Primitives.SpreadingCoefficient
+@{
+    Layout = "~/Views/Shared/EGHLayout.cshtml";
+    Menu head = new Menu(
+                          new Menu.MenuItem("Создать", "SpreadingCoefficient.Create", false),
+                          new Menu.MenuItem("Excel-формат", "SpreadingCoefficient.Excel", false)
+                        );
+
+    Menu delete = new Menu(
+                          new Menu.MenuItem("Удалить", "SpreadingCoefficient.Delete.Delete", true),
+                          new Menu.MenuItem("Отказаться", "SpreadingCoefficient.Delete.Cancel", true)
+                        );
+
+}
+@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCCO", Action = "SpreadingCoefficient", Menu = head })
+
+@using (Html.BeginForm("SpreadingCoefficientDelete", "EGHRGE"))
+{
+
+    <div class="box">
+        <div class="boxdata">
+            <div class="boxdata">
+                <label class="boxdata-label-30">Тип грунта</label>@Model.ground_type.name.ToString()  
+            </div>
+            <div class="boxdata">
+                <p><label class="boxdata-label-30">Диапазон значений объема пролива</label>@Model.min_volume.ToString() - @Model.max_volume.ToString()</p>
+            </div>
+            <div class="boxdata">
+                <p><label class="boxdata-label-30">Диапазон значений гидравлического уклона</label>@Model.min_angle.ToString() - @Model.max_angle.ToString()</p>
+            </div>
+            <div class="boxdata">
+                <p><label class="boxdata-label-30">Коэффициент разлива</label>@Model.koef.ToString()</p>
+            </div>
+        </div>
+
+        @Html.Partial("_TypeLineMenu", delete)
+
+    </div>
+}
