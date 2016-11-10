@@ -231,6 +231,7 @@
     <Content Include="Resources\Layout_Mobile_Whiteframe1.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\EGH.pubxml" />
     <None Include="Properties\PublishProfiles\EGH01.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
