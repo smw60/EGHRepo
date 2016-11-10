@@ -36,7 +36,7 @@ namespace EGH01.Controllers
                 //if (db != null) db.Disconnect();
             }
 
-            return View("CadastreType", db);
+            return View("Index", db);
         }
     }
 }
