@@ -246,6 +246,7 @@ namespace EGH01.Controllers
             try
             {
                 db = new CAIContext();
+                view = View("RiskObject", db);
                 if (menuitem.Equals("RiskObject.Update.Update"))
                 {
 

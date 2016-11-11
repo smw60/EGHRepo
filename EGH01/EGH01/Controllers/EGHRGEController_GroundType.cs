@@ -113,10 +113,30 @@ namespace EGH01.Controllers
                     //if (EGH01DB.Types.GroundType.GetNextCode(db, out type_code))
                     //{
 
-                    float diffusion = 0.2f;
-                    float distribution = 0.2f;
-                    float sorption = 0.2f;
+                    float diffusion;
+                    string strdiffusion = this.HttpContext.Request.Params["diffusion"] ?? "Empty";
+                    if (!Helper.FloatTryParse(strdiffusion, out diffusion))
+                    {
+                        diffusion = 0.0f;
+                    }
+                    float distribution;
+                    string strdistribution = this.HttpContext.Request.Params["distribution"] ?? "Empty";
+                    if (!Helper.FloatTryParse(strdistribution, out distribution))
+                    {
+                        distribution = 0.0f;
+                    }
+                    float sorption = 0.0f;
+                    string strsorption = this.HttpContext.Request.Params["sorption"] ?? "Empty";
+                    if (!Helper.FloatTryParse(strsorption, out sorption))
+                    {
+                        sorption = 0.0f;
+                    }
                     float permeability = 0.2f;
+                    string strpermeability = this.HttpContext.Request.Params["permeability"] ?? "Empty";
+                    if (!Helper.FloatTryParse(strpermeability, out permeability))
+                    {
+                        permeability = 0.0f;
+                    }
                     String name = gt.name;
                     string strporosity = this.HttpContext.Request.Params["porosity"] ?? "Empty";
                     float porosity = 0.1f;
@@ -222,11 +242,31 @@ namespace EGH01.Controllers
                 {
 
                         int type_code = gt.type_code;
-                        float diffusion = 0.2f;
-                        float distribution = 0.2f;
-                        float sorption = 0.2f;
-                        float permeability = 0.2f;
-                        String name = gt.name;
+                    float diffusion;
+                    string strdiffusion = this.HttpContext.Request.Params["diffusion"] ?? "Empty";
+                    if (!Helper.FloatTryParse(strdiffusion, out diffusion))
+                    {
+                        diffusion = 0.0f;
+                    }
+                    float distribution;
+                    string strdistribution = this.HttpContext.Request.Params["distribution"] ?? "Empty";
+                    if (!Helper.FloatTryParse(strdistribution, out distribution))
+                    {
+                        distribution = 0.0f;
+                    }
+                    float sorption = 0.0f;
+                    string strsorption = this.HttpContext.Request.Params["sorption"] ?? "Empty";
+                    if (!Helper.FloatTryParse(strsorption, out sorption))
+                    {
+                        sorption = 0.0f;
+                    }
+                    float permeability = 0.2f;
+                    string strpermeability = this.HttpContext.Request.Params["permeability"] ?? "Empty";
+                    if (!Helper.FloatTryParse(strpermeability, out permeability))
+                    {
+                        permeability = 0.0f;
+                    }
+                    String name = gt.name;
                         string strporosity = this.HttpContext.Request.Params["porosity"] ?? "Empty";
                         float porosity = 0.1f;
                         if (!Helper.FloatTryParse(strporosity, out porosity))
