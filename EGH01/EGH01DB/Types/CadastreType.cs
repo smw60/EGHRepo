@@ -108,7 +108,6 @@ namespace EGH01DB.Types
 
             return rc;
         }
-
         static public bool GetNextCode(EGH01DB.IDBContext dbcontext, out int code)
         {
             bool rc = false;
@@ -139,7 +138,6 @@ namespace EGH01DB.Types
                 return rc;
             }
         }
-
         static public bool Update(EGH01DB.IDBContext dbcontext, CadastreType land_type)
         {
 
@@ -186,7 +184,6 @@ namespace EGH01DB.Types
 
             return rc;
         }
-
         static public bool Delete(EGH01DB.IDBContext dbcontext, CadastreType land_type)
         {
 
@@ -222,7 +219,6 @@ namespace EGH01DB.Types
         {
             return Delete(dbcontext, new CadastreType(code));
         }
-
         static public bool GetByCode(EGH01DB.IDBContext dbcontext, int type_code, out CadastreType type)
         {
             bool rc = false;

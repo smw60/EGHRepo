@@ -33,8 +33,8 @@ namespace EGH01DB.Objects
         public bool watertreatment { get; private set; }  // наличие очистных сооружений для дождевого стока
         public bool watertreatmentcollect { get; private set; } // наличие резервуара для сбора пролива !!! надо бы еще его размер для контроля!!!!
         public byte[] map { get; private set; } // сюда карту?
-        public int groundtank { get; private set; }  //  емкость наземного резервуара
-        public int undergroundtank { get; private set; } // емкость подземного резервуара
+        public float groundtank { get; private set; }  //  емкость наземного резервуара
+        public float undergroundtank { get; private set; } // емкость подземного резервуара
         public string fueltype { get; private set; } // типы топлива, пока только строкой - в отдельную таблицу, если по ним будет отбор
         public int numberofthreads { get; private set; } // количество ниток для нефтепровода или участка нефтедобычи
         public float tubediameter { get; private set; } //  диаметр трубы
@@ -64,8 +64,8 @@ namespace EGH01DB.Objects
             this.watertreatment = false;
             this.watertreatmentcollect = false;
             this.map = new byte[0];
-            this.groundtank = 0;
-            this.undergroundtank = 0;
+            this.groundtank = 0.0f;
+            this.undergroundtank = 0.0f;
             this.fueltype = string.Empty;
             this.numberofthreads = -1;
             this.tubediameter = 0.0f;
@@ -92,8 +92,8 @@ namespace EGH01DB.Objects
                             bool watertreatment, 
                             bool watertreatmentcollect,
                             byte[] map,
-                            int groundtank,
-                            int undergroundtank,
+                            float groundtank,
+                            float undergroundtank,
                             string fueltype,
                             int numberofthreads,
                             float tubediameter,
@@ -147,8 +147,8 @@ namespace EGH01DB.Objects
             this.watertreatment = false;
             this.watertreatmentcollect = false;
             this.map = new byte[0];
-            this.groundtank = 0;
-            this.undergroundtank = 0;
+            this.groundtank = 0.0f;
+            this.undergroundtank = 0.0f;
             this.fueltype = string.Empty;
             this.numberofthreads = -1;
             this.tubediameter = 0.0f;
@@ -176,8 +176,8 @@ namespace EGH01DB.Objects
             this.watertreatment = false;
             this.watertreatmentcollect = false;
             this.map = new byte[0];
-            this.groundtank = 0;
-            this.undergroundtank = 0;
+            this.groundtank = 0.0f;
+            this.undergroundtank = 0.0f;
             this.fueltype = string.Empty;
             this.numberofthreads = -1;
             this.tubediameter = 0.0f;
@@ -317,12 +317,12 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ЕмкостьНаземногоРезервуара", SqlDbType.Int);
+                    SqlParameter parm = new SqlParameter("@ЕмкостьНаземногоРезервуара", SqlDbType.Float);
                     parm.Value = risk_object.groundtank;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ЕмкостьПодземногоРезервуара", SqlDbType.Int);
+                    SqlParameter parm = new SqlParameter("@ЕмкостьПодземногоРезервуара", SqlDbType.Float);
                     parm.Value = risk_object.undergroundtank;
                     cmd.Parameters.Add(parm);
                 }
@@ -527,12 +527,12 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ЕмкостьНаземногоРезервуара", SqlDbType.Int);
+                    SqlParameter parm = new SqlParameter("@ЕмкостьНаземногоРезервуара", SqlDbType.Float);
                     parm.Value = risk_object.groundtank;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ЕмкостьПодземногоРезервуара", SqlDbType.Int);
+                    SqlParameter parm = new SqlParameter("@ЕмкостьПодземногоРезервуара", SqlDbType.Float);
                     parm.Value = risk_object.undergroundtank;
                     cmd.Parameters.Add(parm);
                 }
@@ -669,8 +669,8 @@ namespace EGH01DB.Objects
                         int numberofrefuel = (int)reader["КолВоЗаправокСут"];
                         int volume = (int)reader["ОбъемХранения"];
 
-                        int groundtank = (int)reader["ЕмкостьНаземногоРезервуара"];
-                        int undergroundtank = (int)reader["ЕмкостьПодземногоРезервуара"];
+                        float groundtank = (float)reader["ЕмкостьНаземногоРезервуара"];
+                        float undergroundtank = (float)reader["ЕмкостьПодземногоРезервуара"];
 
                         bool watertreatment = (bool)reader["ОчистнДождСток"];
                         bool watertreatmentcollect = (bool)reader["ОчистнСборПроливов"];

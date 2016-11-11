@@ -53,7 +53,9 @@ namespace EGH01DB.Blurs
             
             { // свойства воды 
                 WaterProperties x = new WaterProperties();
-                if (WaterProperties.Get(20.0f, out x))
+                RGEContext db = new RGEContext();// заглушка, выставить правильный контекст //blinova
+                float delta = 0.0f;
+                if (WaterProperties.Get(db, 20.0f, out x, out delta))
                 {
                     this.waterproperties = x;
                 }

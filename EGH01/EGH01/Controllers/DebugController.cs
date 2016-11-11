@@ -110,7 +110,12 @@ namespace EGH01.Controllers
             }
             return View();
         }
-        
+        // проверка процедур  Water Properties
+
+
+
+
+
         // проверка процедур  Anchor point
         public ActionResult Anchor_Point_list() // yes
         {
