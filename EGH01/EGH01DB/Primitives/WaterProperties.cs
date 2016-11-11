@@ -121,7 +121,7 @@ namespace EGH01DB.Primitives
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    rc = ((int)cmd.Parameters["@exitrc"].Value == 1);
+                    rc = ((int)cmd.Parameters["@exitrc"].Value > 0);
                 }
                 catch (Exception e)
                 {
