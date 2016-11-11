@@ -400,8 +400,8 @@ namespace EGH01DB.Primitives
                         int numberofrefuel = (int)reader["КолВоЗаправокСут"];
                         int volume = (int)reader["ОбъемХранения"];
 
-                        int groundtank = (int)reader["ЕмкостьНаземногоРезервуара"];
-                        int undergroundtank = (int)reader["ЕмкостьПодземногоРезервуара"];
+                        float groundtank = (float)reader["ЕмкостьНаземногоРезервуара"];
+                        float undergroundtank = (float)reader["ЕмкостьПодземногоРезервуара"];
 
                         bool watertreatment = (bool)reader["ОчистнДождСток"];
                         bool watertreatmentcollect = (bool)reader["ОчистнСборПроливов"];

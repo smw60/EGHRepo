@@ -431,11 +431,11 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-            //    List<RiskObject> list = new List<RiskObject>();
-            //    if (Helper.GetListRiskObject(db, ref list))
-            //    {
-            //        int k = 1;
-            //    };
+                //List<RiskObject> list = new List<RiskObject>();
+                //if (Helper.GetListRiskObject(db, ref list))
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
