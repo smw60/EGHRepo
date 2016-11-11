@@ -30,13 +30,13 @@
                     <p><label class="boxdata-label-30">Город(населенный пункт),улица,дом</label> @t.address </p>
                     <p><label class="boxdata-label-30">Телефон </label> @t.phone.ToString()</p>
                     <p><label class="boxdata-label-30">Факс </label> @t.fax.ToString()</p>
-                    @if (@t.email.ToString().Length==0)
+                    @if (!String.IsNullOrWhiteSpace(@t.email.ToString()))
                     {
-                        <p><label class="boxdata-label-30">Электронный адрес ---- </label> -</p>
+                        <p><label class="boxdata-label-30">Электронный адрес</label>@t.email.ToString()</p>
                     }
                     else
 	                {
-                    <p><label class="boxdata-label-30">Электронный адрес </label>@t.email.ToString()</p>
+                    <p><label class="boxdata-label-30">Электронный адрес </label>-</p>
                     }
                 </fieldset>
                 <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
