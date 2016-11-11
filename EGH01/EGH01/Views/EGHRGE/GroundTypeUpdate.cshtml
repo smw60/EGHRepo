@@ -49,7 +49,7 @@
             </p>
             <p>
                 <label class="boxdata-label-30">Коэффициент фильтрации (м/сут)</label>
-                <input class="boxdata-input-50" type="number" name="waterfilter" value="@Model.waterfilter.ToString().Replace(',' , '.')" step="0.1" />
+                <input class="boxdata-input-50" type="number" name="waterfilter" value="@Model.waterfilter.ToString().Replace(',' , '.')" step="0.1" min="0" />
             </p>
             <p>
                 <label class="boxdata-label-30">Коэффициент Аверьянова</label>
@@ -58,7 +58,7 @@
 
             <p>
                 <label class="boxdata-label-30">Коэффициент задержки нефтепродукта</label>
-                <input class="boxdata-input-50" type="number" name="holdmigration" value="@Model.holdmigration.ToString().Replace(',' , '.')" step="0.1" />
+                <input class="boxdata-input-50" type="number" name="holdmigration" value="@Model.holdmigration.ToString().Replace(',' , '.')" step="0.1" min="0" />
             </p>
 
         </div>

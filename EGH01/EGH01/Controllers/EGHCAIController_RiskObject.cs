@@ -122,8 +122,12 @@ namespace EGH01.Controllers
                         int undergroundtank = rs.undergroundtank;
                         string strlat_s = this.HttpContext.Request.Params["lat_s"] ?? "Empty";
                         string strlng_s = this.HttpContext.Request.Params["lng_s"] ?? "Empty";
+                        string strwaterdeep = this.HttpContext.Request.Params["waterdeep"] ?? "Empty";
+                        string strheight = this.HttpContext.Request.Params["height"] ?? "Empty";
                         float lat_s = 0.0f;
                         float lng_s = 0.0f;
+                        float waterdeep = 0.0f;
+                        float height = 0.0f;
                         if (!Helper.FloatTryParse(strlat_s, out lat_s))
                         {
                             lat_s = 0.0f;
@@ -132,6 +136,14 @@ namespace EGH01.Controllers
                         {
                             lng_s = 0.0f;
                         }
+                        if (!Helper.FloatTryParse(strwaterdeep, out waterdeep))
+                        {
+                            waterdeep = 0.0f;
+                        }
+                        if (!Helper.FloatTryParse(strheight, out height))
+                        {
+                            height = 0.0f;
+                        }
                         Coordinates coordinates = new Coordinates(rs.latitude, rs.lat_m, lat_s, rs.lngitude, rs.lng_m, lng_s);
                         EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
                         if (EGH01DB.Types.GroundType.GetByCode(db, rs.list_groundType, out type_groud))
@@ -139,7 +151,7 @@ namespace EGH01.Controllers
                             GroundType ground_type = 
             new GroundType(rs.list_groundType, type_groud.name, type_groud.porosity, type_groud.holdmigration, type_groud.waterfilter, type_groud.diffusion,
             type_groud.distribution, type_groud.sorption,type_groud.watercapacity,type_groud.soilmoisture, type_groud.аveryanovfactor, type_groud.permeability);
-                            Point point = new Point(coordinates, ground_type, rs.waterdeep, rs.height);
+                            Point point = new Point(coordinates, ground_type, waterdeep, height);
                             EGH01DB.Types.RiskObjectType type = new EGH01DB.Types.RiskObjectType();
                             if (EGH01DB.Types.RiskObjectType.GetByCode(db, rs.selectlist, out type))
                             {
@@ -247,8 +259,12 @@ namespace EGH01.Controllers
                     int undergroundtank = itv.undergroundtank;
                     string strlat_s = this.HttpContext.Request.Params["lat_s"] ?? "Empty";
                     string strlng_s = this.HttpContext.Request.Params["lng_s"] ?? "Empty";
+                    string strwaterdeep = this.HttpContext.Request.Params["waterdeep"] ?? "Empty";
+                    string strheight = this.HttpContext.Request.Params["height"] ?? "Empty";
                     float lat_s = 0.0f;
                     float lng_s = 0.0f;
+                    float waterdeep = 0.0f;
+                    float height = 0.0f;
                     if (!Helper.FloatTryParse(strlat_s, out lat_s))
                     {
                         lat_s = 0.0f;
@@ -257,12 +273,20 @@ namespace EGH01.Controllers
                     {
                         lng_s = 0.0f;
                     }
+                    if (!Helper.FloatTryParse(strwaterdeep, out waterdeep))
+                    {
+                        waterdeep = 0.0f;
+                    }
+                    if (!Helper.FloatTryParse(strheight, out height))
+                    {
+                        height = 0.0f;
+                    }
                     Coordinates coordinates = new Coordinates(itv.latitude, itv.lat_m, lat_s, itv.lngitude, itv.lng_m, lng_s);
                     EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
                     if (EGH01DB.Types.GroundType.GetByCode(db, itv.list_groundType, out type_groud))
                     {
                         GroundType ground_type = new GroundType(itv.list_groundType, type_groud.name, type_groud.porosity, type_groud.holdmigration, type_groud.waterfilter, type_groud.diffusion, type_groud.distribution, type_groud.diffusion);
-                        Point point = new Point(coordinates, ground_type, itv.waterdeep, itv.height);
+                        Point point = new Point(coordinates, ground_type, waterdeep, height);
                         EGH01DB.Types.RiskObjectType type = new EGH01DB.Types.RiskObjectType();
                         if (EGH01DB.Types.RiskObjectType.GetByCode(db, itv.selectlist, out type))
                         {
