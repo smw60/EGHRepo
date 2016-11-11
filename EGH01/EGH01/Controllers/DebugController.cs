@@ -269,7 +269,16 @@ namespace EGH01.Controllers
             }
             return View();
         }
- 
+        public ActionResult Anchor_Point_CreateNear() // yes
+        {
+            //RGEContext db = new RGEContext();
+            //{
+            //    Coordinates coord = new Coordinates(553.678f, 27.14f);
+            //    float distance = 10000.0f;
+            //    AnchorPointList apl = AnchorPointList.CreateNear(coord, distance);
+            //}
+            return View();
+        }
 
 
         // проверка процедур Spreading Coefficient

@@ -302,14 +302,60 @@ namespace EGH01DB.Points
 
 
         //  найти список точек в заданном радиусе 
-        public static AnchorPointList CreateNear(Coordinates center, float radius)
+        public static AnchorPointList CreateNear(Coordinates center, float distance)
         {
-                         
-            return new AnchorPointList()
+            bool rc = false;
+            RGEContext db = new RGEContext();
+            AnchorPointList anchor_point_list = new AnchorPointList();
+            using (SqlCommand cmd = new SqlCommand("EGH.GetListAnchorPointOnDistanceLessThanD", db.connection))
             {
-               new AnchorPoint()
-            };
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Float);
+                    parm.Value = center.latitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Float);
+                    parm.Value = center.lngitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Расстояние", SqlDbType.Float);
+                    parm.Value = distance;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int id = (int)reader["IdОпорнойГеологическойТочки"];
+                        double x = (double)reader["ШиротаГрад"];
+                        double y = (double)reader["ДолготаГрад"];
+                        int ground_type_code = (int)reader["ТипГрунта"];
+                        int cadastre_type_code = (int)reader["КодНазначенияЗемель"];
+                        double waterdeep = (double)reader["ГлубинаГрунтовыхВод"];
+                        double height = (double)reader["ВысотаУровнемМоря"];
 
+                        GroundType ground_type = new GroundType(ground_type_code);
+                        Coordinates coordinates = new Coordinates((float)x, (float)y);
+                        CadastreType cadastre_type = new CadastreType (cadastre_type_code);
+                        Point point = new Point(coordinates, ground_type, (float)waterdeep, (float)height);
+                        //delta = (float)reader["Расстояние"];
+                        AnchorPoint anchor_point = new AnchorPoint(id, point, cadastre_type);
+                        anchor_point_list.Add(anchor_point);
+                    }
+                    rc = anchor_point_list.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return anchor_point_list;
+            }
         }
 
         public static AnchorPointList CreateNear(Coordinates center, float radius1, float radius2)

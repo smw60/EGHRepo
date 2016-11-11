@@ -845,7 +845,6 @@ namespace EGH01DB.Objects
                 return rc;
             }
         }
-
         public static bool CreateRiskObjectsList(EGH01DB.IDBContext dbcontext, Point center, float distance1, float distance2, ref RiskObjectsList risk_object_list)
         {
             bool rc = false;
