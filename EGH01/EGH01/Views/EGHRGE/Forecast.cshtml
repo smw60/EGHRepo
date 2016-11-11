@@ -108,7 +108,7 @@
               volume = ((int)context.Volume).ToString();
           }           
           <div class="boxdata">
-               <label class="boxdata-label-30">Объем пролива (т)</label>
+               <label class="boxdata-label-30">Объем пролива (кг3)</label>
                <input class="boxdata-input-30" type="number" name="volume"  value="@volume"  min="0" max="1000000" step="1" />
           </div>
    
@@ -164,22 +164,29 @@
                 <h1> ОТЧЕТ-ПРОГНОЗ  </h1>
                 <h2>Наземное пятно</h2>
                 <p>
-                    <label class="boxdata-label-20 ">Коэффициент разлива (1/м) </label>
+                    <label class="boxdata-label-30 ">Плотность нефтепродукта (@context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.name) (г/см3) </label>
+                    @context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.density
+                </p>
+                <p>
+                    <label class="boxdata-label-30 ">Масса пролива (т) </label>
+                    @context.ecoforecast.groundblur.totalmass
+                </p>
+                
+                <p>
+                    <label class="boxdata-label-30 ">Коэффициент разлива (1/м) </label>
                     @context.ecoforecast.groundblur.spreadingcoefficient.koef
                 </p>
 
                 <p>
-                    <label class="boxdata-label-20 ">Площадь разлива (м2) </label> 
+                    <label class="boxdata-label-30 ">Площадь разлива (м2) </label> 
                     @context.ecoforecast.groundblur.square    
                 </p>
                 
                 <p>
-                    <label class="boxdata-label-20 ">Радиус разлива (м) </label>
+                    <label class="boxdata-label-30 ">Радиус разлива (м) </label>
                     @context.ecoforecast.groundblur.radius
                 </p>
                 
-
-
                 <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
                     <legend style="width: auto; font: inherit; border:none;"> Максиальная масса НП, кот. может быть адсорбирована грунтом </legend>
                     <p>
@@ -219,12 +226,25 @@
                         @context.ecoforecast.groundblur.waterproperties.viscocity
                     </p>
                     <p>
-                        <label class="boxdata-label-30 ">Максиальная масса НП, кот. может быть адсорбирована грунтом (кг) </label>
+                        <label class="boxdata-label-30 ">Максиальная масса НП, кот. может быть адсорбирована грунтом (т) </label>
                         @context.ecoforecast.groundblur.limitadsorbedmass
                    </p>
                 </fieldset>
 
-</div>
+                <p>
+                    <label class="boxdata-label-20 "> Адсорбированная масса нефтепрдукта (т) </label>
+                    @context.ecoforecast.groundblur.adsorbedmass
+                </p>
+                <p>
+                    <label class="boxdata-label-20 ">Масса нефтепродукта достигшая уровня грунтовых вод (т) </label>
+                    @context.ecoforecast.groundblur.restmass
+                </p>
+                <p>
+                <label class="boxdata-label-20 ">Глубина проникновения нефтепродукта в грунтах (м) </label>
+                    @context.ecoforecast.groundblur.depth
+                </p>
+
+            </div>
         }
         
     </div>
