@@ -85,11 +85,11 @@
                 </p>
                 <p>
                     <label class="boxdata-label-30">Телефон</label>
-                    <input class="boxdata-input-50" type="text" name="phone" value="@Model.phone"/>
+                    <input class="boxdata-input-50" type="text" name="phone" value="@Model.phone.ToString()"/>
                 </p>
                 <p>
                     <label class="boxdata-label-30">Факс</label>
-                    <input class="boxdata-input-50" type="text" name="fax" value="@Model.fax"/>
+                    <input class="boxdata-input-50" type="text" name="fax" value="@Model.fax.ToString()"/>
                 </p>
                 <p>
                     <label class="boxdata-label-30">Электронный адрес</label>
@@ -100,11 +100,11 @@
                 <legend style="width: auto; font: inherit; border:none;">Объем резервуаров для хранения нефтепродутов (м3)</legend>
                 <p>
                     <label class="boxdata-label-30">Наземные</label>
-                    <input class="boxdata-input-50" type="number" name="groundtank" value="@Model.groundtank.ToString()" min="0" />
+                    <input class="boxdata-input-50" type="number" name="groundtank" value="@Model.groundtank.ToString()" min="0"  step="0.1"/>
                 </p>
                 <p>
                     <label class="boxdata-label-30">Подземные</label>
-                    <input class="boxdata-input-50" type="number" name="undergroundtank" value="@Model.undergroundtank.ToString()" min="0" />
+                    <input class="boxdata-input-50" type="number" name="undergroundtank" value="@Model.undergroundtank.ToString()" min="0" step="0.1" />
                 </p>
             </fieldset>
             <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
@@ -131,13 +131,13 @@
 
                     <input class="boxdata-input-10" type="number" name="Latitude" value="@Model.coordinates.lat.d.ToString()" min="-90" max="90" />&deg;
                     <input class="boxdata-input-10" type="number" name="Lat_m" value="@Model.coordinates.lat.m.ToString()" min="-90" max="90" />&acute;
-                    <input class="boxdata-input-10" type="number" name="Lat_s" value="@Model.coordinates.lat.s.ToString("0.000").Replace(',' , '.')" min="0" max="60" step="0.001" />&quot;
+                    <input class="boxdata-input-10" type="number" name="Lat_s" value="@Model.coordinates.lat.s.ToString("0.00").Replace(',' , '.')" min="0" max="60" step="0.001" />&quot;
                 </p>
                 <p>
                     <label class="boxdata-label-30">Долгота</label>
                     <input class="boxdata-input-10" type="number" name="Lngitude" value="@Model.coordinates.lng.d.ToString()" max="180" min="0" />&deg;
                     <input class="boxdata-input-10" type="number" name="Lng_m" value="@Model.coordinates.lng.m.ToString()" min="-90" max="90" />&acute;
-                    <input class="boxdata-input-10" type="number" name="Lng_s" value="@Model.coordinates.lng.s.ToString("0.000").Replace(',' , '.')" min="0" max="60" step="0.001" />&quot;
+                    <input class="boxdata-input-10" type="number" name="Lng_s" value="@Model.coordinates.lng.s.ToString("0.00").Replace(',' , '.')" min="0" max="60" step="0.001" />&quot;
                 </p>
                          @*<p>
                 <label class="boxdata-label-30">КАРТА!</label>
@@ -151,11 +151,11 @@
                 </p>
                 <p>
                     <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
-                    <input class="boxdata-input-50" type="number" name="waterdeep" value="@Model.waterdeep.ToString()" min="0" />
+                    <input class="boxdata-input-50" type="number" name="waterdeep" value="@Model.waterdeep.ToString("0.00").Replace(',' , '.')" min="0" step="0.1" />
                 </p>
                 <p>
                     <label class="boxdata-label-30">Высота над уровнем моря (м)</label>
-                    <input class="boxdata-input-50" type="number" name="height" value="@Model.height.ToString()" min="0" />
+                    <input class="boxdata-input-50" type="number" name="height" value="@Model.height.ToString("0.00").Replace(',' , '.')" min="0" step="0.1" />
                 </p>
             </fieldset>
                 @*<input type="hidden" value="@Model.id.ToString()" name="type_code">*@
