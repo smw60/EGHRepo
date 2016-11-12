@@ -205,6 +205,12 @@
                     </p>
                     
                     <p>
+                        <label class="boxdata-label-30 "> Грунт </label>
+                        @context.ecoforecast.groundblur.spreadpoint.groundtype.name
+                    </p>
+
+
+                    <p>
                         <label class="boxdata-label-30 "> Пористость грунта </label>
                         @context.ecoforecast.groundblur.spreadpoint.groundtype.porosity
                      </p>
@@ -243,6 +249,67 @@
                 <label class="boxdata-label-20 ">Глубина проникновения нефтепродукта в грунтах (м) </label>
                     @context.ecoforecast.groundblur.depth
                 </p>
+              
+                
+
+                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+                    <legend style="width: auto; font: inherit; border:none;"> Дата достижения уровня грунтовых вод  нефтепродуктом</legend>
+                    <p>
+                        <label class="boxdata-label-30 "> Коэф. фильтрации воды в грунте </label>
+                        @context.ecoforecast.groundblur.spreadpoint.groundtype.waterfilter
+                    </p>
+                    
+                    <p>
+                        <label class="boxdata-label-30 "> Грунт </label>
+                        @context.ecoforecast.groundblur.spreadpoint.groundtype.name
+                    </p>
+
+                    <p>
+                        <label class="boxdata-label-30 "> Влажность грунта </label>
+                        @context.ecoforecast.groundblur.spreadpoint.groundtype.soilmoisture
+                    </p>
+                    <p>
+                        <label class="boxdata-label-30 "> Влагоемкость грунта </label>
+                        @context.ecoforecast.groundblur.spreadpoint.groundtype.watercapacity
+                    </p>
+                    <p>
+                        <label class="boxdata-label-30 ">  Капилярная влагоемкость грунта </label>
+                        @context.ecoforecast.groundblur.spreadpoint.groundtype.watercapacity                            
+                    </p>
+
+                     <p>
+                        <label class="boxdata-label-30 "> Пористость грунта </label>
+                        @context.ecoforecast.groundblur.spreadpoint.groundtype.porosity
+                    </p>
+
+                    <p>
+                        <label class="boxdata-label-30 ">Вязкость нефтепродукта </label>
+                        @context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.viscosity
+                    </p>  
+                        
+                    <p>
+                        <label class="boxdata-label-30 ">Плотность воды </label>
+                       @context.ecoforecast.groundblur.waterproperties.density                                           
+                    </p>      
+                    <p>
+                        <label class="boxdata-label-30 ">Вязкость воды </label>
+                       @context.ecoforecast.groundblur.waterproperties.viscocity
+                     </p>
+                     
+                    <p>
+                        <label class="boxdata-label-30 ">Плотность нефтепродукта (@context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.name) (г/см3) </label>
+                        @context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.density
+                    </p>
+                    <p>
+                        <label class="boxdata-label-20 ">Время достижения уровня грунтовых вод  нефтепродуктом (сут) </label>
+                        @context.ecoforecast.groundblur.timewatercomletion
+                    </p>
+                    <p>
+                        <label class="boxdata-label-20 "> Дата достижения уровня грунтовых вод  нефтепродуктом </label>
+                        @context.ecoforecast.incident.date.ToShortDateString()
+                    </p>
+                </fieldset>
+
 
             </div>
         }
@@ -252,3 +319,22 @@
 
 }
 
+@*float ka =                                                                       // формула аверьянова
+                           this.spreadpoint.groundtype.waterfilter *                             // коэф. фильтрации воды
+                           (
+                            this.spreadpoint.groundtype.soilmoisture -                           // влажность грунта
+                            this.spreadpoint.groundtype.watercapacity                            // капилярная влагоемкость грунта
+                            ) /
+                            (
+                            this.spreadpoint.groundtype.porosity -                                //  пористость грунта
+                            this.spreadpoint.groundtype.watercapacity                             // капилярная влагоемкость грунта
+                            );
+                float r =                                                                          // коэффициент задержки
+                            (
+                            this.spreadpoint.petrochemicaltype.viscosity *                         // вязкость нефтепродукта
+                            this.waterproperties.density                                           // плотность воды
+                            ) /
+                            (
+                            this.waterproperties.density *                                         // вязкость воды
+                            this.spreadpoint.petrochemicaltype.density                             // плотность нефтепродукта
+                            );*@

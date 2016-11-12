@@ -145,7 +145,36 @@ namespace EGH01DB.Primitives
 
             }
         }
+        static public bool GetListWaterProperties(EGH01DB.IDBContext dbcontext, ref List<WaterProperties> list)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetWaterPropertiesList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
 
+                    list = new List<WaterProperties>();
+                    while (reader.Read())
+                    {
+                        list.Add(new WaterProperties((int)reader["КодПоказателяВоды"],
+                                                        (float)reader["Температура"],
+                                                        (float)reader["Вязкость"],
+                                                        (float)reader["Плотность"],
+                                                       (float)reader["КоэфПовНат"]));
+                    }
+                    rc = list.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+
+            }
+        }
         static public bool GetListEcoObjectType(EGH01DB.IDBContext dbcontext, ref List<EcoObjectType> list_type)
         { 
             bool rc = false;

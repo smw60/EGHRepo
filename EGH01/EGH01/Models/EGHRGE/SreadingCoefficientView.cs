@@ -9,7 +9,7 @@ namespace EGH01.Models.EGHRGE
 {
     public class SpreadingCoefficientView
     {
-        public GroundType ground_type { get; private set; }     // тип грунта 
+        public int list_groundType { get;set; }     // тип грунта 
         public float min_volume { get; private set; }           // нижняя граница диапазона пролива   
         public float max_volume { get; private set; }           // верхняя граница диапазона пролива 
         public float min_angle { get; private set; }            // книжняя граница диапазона углов наклона 
