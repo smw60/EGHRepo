@@ -59,7 +59,6 @@ namespace EGH01.Controllers
             return View();
         }
         // проверка процедур  XML
-
         public ActionResult XML_District_Region()
         {
             {
@@ -110,8 +109,93 @@ namespace EGH01.Controllers
             }
             return View();
         }
+        public ActionResult XML_WaterProperties()
+        {
+            {
+                //WaterProperties wp = new WaterProperties (12, 70.0f, 09.0f, 80.0f, 70.0f);
+                //XmlNode xml_wp = wp.toXmlNode("Water Properties");
+                //WaterProperties wp1 = new WaterProperties(xml_wp);
+            }
+            return View();
+        }
+        
         // проверка процедур  Water Properties
+        public ActionResult Water_Properties_list() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<WaterProperties> list = new List<WaterProperties>();
+                //if (Helper.GetListWaterProperties(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Water_Properties_Obj() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //WaterProperties wp = new WaterProperties();
+                //if (WaterProperties.GetByCode(db, 4, out wp))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Water_Properties_DeleteByCode() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //if (WaterProperties.DeleteByCode(db, 10)) // удалена
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Water_Properties_Create()// yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int id = 0;
+                //WaterProperties ap = new WaterProperties(id, 80.0f, 13.7f, 55.7f, 90.9f);
+                //if (WaterProperties.Create(db, ap))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Water_Properties_Update() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
 
+                //int id = 12;
+                //WaterProperties ap = new WaterProperties(id, 90.0f, 67.9f, 78.0f, 66.6f);
+                //if (WaterProperties.Update(db, ap))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Water_Properties_By_Temp() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //float temp = 64.0f;
+                //float delta = 0.0f;
+                //WaterProperties wp = new WaterProperties();
+                //if (WaterProperties.Get(db, temp, out wp, out delta))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
 
 
 
@@ -185,7 +269,16 @@ namespace EGH01.Controllers
             }
             return View();
         }
- 
+        public ActionResult Anchor_Point_CreateNear() // yes
+        {
+            //RGEContext db = new RGEContext();
+            //{
+            //    Coordinates coord = new Coordinates(553.678f, 27.14f);
+            //    float distance = 10000.0f;
+            //    AnchorPointList apl = AnchorPointList.CreateNear(coord, distance);
+            //}
+            return View();
+        }
 
 
         // проверка процедур Spreading Coefficient
