@@ -338,6 +338,7 @@
     <Content Include="Views\EGHCEQ\CadastreType.cshtml" />
     <Content Include="Views\EGHCEQ\CadastreTypeUpdate.cshtml" />
     <Content Include="Views\EGHRGE\SpreadingCoefficientDelete.cshtml" />
+    <Content Include="Views\EGHRGE\SpreadingCoefficientUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
