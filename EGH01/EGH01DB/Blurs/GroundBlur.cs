@@ -25,13 +25,14 @@ namespace EGH01DB.Blurs
         public float                limitadsorbedmass    {get; private set;}       // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (т) 
         public float                avgheight            {get; private set;}       // средняя глубина грунтовых вод по опорным точкам (м) 
         public float                adsorbedmass         {get; private set;}       // адсобированная масса нефтепрдукта грунтом (т)  
-        public float                restmass             {get; private set;}       //  масса нефтепродукта достигшая грунтовых вод  (т)  
-        public float                depth                {get; private set;}       //  глубина проникновения нефтепродукта в грунт (м)  
-
+        public float                restmass             {get; private set;}       // масса нефтепродукта достигшая грунтовых вод  (т)  
+        public float                depth                {get; private set;}       // глубина проникновения нефтепродукта в грунт (м)  
+        public float                concentrationinsoil  {get; private set;}       // средняя концентрация нефтепродукта в грунт (кг/м3)   
+        public int                  timewatercomletion   {get; private set;}       // время (сут) достижения  нефтепродуктом грунтовых вод   
 
         public  AnchorPointList     anchorpointlist      {get; private set;}       // список опорных точек, попаших в наземное пятно загрязнения    
 
-        public WaterProperties waterproperties           { get; private set; }       // физико-химические свойства воды  
+        public WaterProperties waterproperties           { get; private set;}       // физико-химические свойства воды  
         public EcoObjectsList       ecoobjecstlist       {get; private set; }      // список объектов в т.ч. заглавный которые попали в наземное пятно    
         public GroundPollutionList pollutionlist         {get; private set; }      // загрязнение в точках  
 
@@ -47,10 +48,10 @@ namespace EGH01DB.Blurs
                 {
                     this.spreadingcoefficient = x;
                 }
-               
+
             }
-           
-            
+
+
             { // свойства воды 
                 WaterProperties x = new WaterProperties();
                 RGEContext db = new RGEContext();// заглушка, выставить правильный контекст //blinova
@@ -68,46 +69,77 @@ namespace EGH01DB.Blurs
 
             this.totalmass = this.spreadpoint.volume * this.spreadpoint.petrochemicaltype.density;   // масса пролива 
 
-          
+
             { // средняя глубина грунтовых вод по опорным точкам 
                 this.anchorpointlist = new AnchorPointList();
                 this.anchorpointlist = AnchorPointList.CreateNear(this.spreadpoint.coordinates, this.radius);
                 this.avgheight = anchorpointlist.avgheight;
             }
             {  // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (кг) 
-                this.limitadsorbedmass =                                                                         
-                                     this.avgheight                                                          *  // средняя глубина грутовы вод 
-                                     this.square                                                             *  // площадь пролива 
-                                     this.waterproperties.density                                            *  // плотность воды  
-                                     this.spreadpoint.groundtype.porosity                                    *  // пористость грунта 
-                                     this.spreadpoint.groundtype.watercapacity                               *  // капилярная влагоемкость грунта                                                     // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (кг) 
+                this.limitadsorbedmass =
+                                     this.avgheight *  // средняя глубина грутовы вод 
+                                     this.square *  // площадь пролива 
+                                     this.waterproperties.density *  // плотность воды  
+                                     this.spreadpoint.groundtype.porosity *  // пористость грунта 
+                                     this.spreadpoint.groundtype.watercapacity *  // капилярная влагоемкость грунта                                                     // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (кг) 
                                      (float)Math.Pow(this.spreadpoint.petrochemicaltype.dynamicviscosity, 2) *  // динамическая вязкость ???      
-                                     this.waterproperties.tension                                            /  // коэфициент поверхностного натяжения воды
+                                     this.waterproperties.tension /  // коэфициент поверхностного натяжения воды
                                      (
-                                     this.spreadpoint.petrochemicaltype.tension                              *  // коэфициент поверхностного натяжения нефтепрдукта 
+                                     this.spreadpoint.petrochemicaltype.tension *  // коэфициент поверхностного натяжения нефтепрдукта 
                                      (float)Math.Pow(this.waterproperties.viscocity, 2)                         //  вязкость воды  
                                      );
             }
-            
-            this.adsorbedmass = (limitadsorbedmass >= this.totalmass ? this.totalmass : limitadsorbedmass);      // адсорбированная масса нефтепродукта в грунте  
 
-            this.restmass =    (this.adsorbedmass >= this.totalmass ? 0 : this.totalmass - this.adsorbedmass);  // масса нефтепродукта достигшая грунтовых вод 
+            this.adsorbedmass = (limitadsorbedmass >= this.totalmass ? this.totalmass : limitadsorbedmass);      // адсорбированная масса нефтепродукта в грунте т - М1  
 
-             this.depth =      (this.restmass > 0 ? this.avgheight : this.avgheight * (this.totalmass / this.limitadsorbedmass)); // глубина проникновения нефтепродукта в грунт     
+            this.restmass = (this.adsorbedmass >= this.totalmass ? 0 : this.totalmass - this.adsorbedmass);  // масса нефтепродукта достигшая грунтовых вод 
 
-           
+            this.depth = (this.restmass > 0 ? this.avgheight : this.avgheight * (this.totalmass / this.limitadsorbedmass)); // глубина проникновения нефтепродукта в грунт     
+
+            this.concentrationinsoil = this.adsorbedmass / (this.square * this.depth);   // средняя концентрация нефтепрдуктов в грунте  
+
+
 
             this.ecoobjecstlist = EcoObjectsList.CreateEcoObjectsList(spreadpoint, radius);
             this.pollutionlist = GroundPollutionList.CreateGroundPollutionList(spreadpoint, radius);
+
+            {   // дата достижения нефтепродуктами грунтовых вод  
+                float ka =                                                                       // формула аверьянова
+                           this.spreadpoint.groundtype.waterfilter *                             // коэф. фильтрации воды          
+                           (
+                            this.spreadpoint.groundtype.soilmoisture -                           // влажность грунта 
+                            this.spreadpoint.groundtype.watercapacity                            // капилярная влагоемкость грунта  
+                            ) /
+                            (
+                            this.spreadpoint.groundtype.porosity -                                //  пористость грунта 
+                            this.spreadpoint.groundtype.watercapacity                             // капилярная влагоемкость грунта
+                            ); 
+                float r =                                                                          // коэффициент задержки 
+                            (
+                            this.spreadpoint.petrochemicaltype.viscosity *                         // вязкость нефтепродукта 
+                            this.waterproperties.density                                           // плотность воды                               
+                            ) / 
+                            (
+                            this.waterproperties.viscocity *                                       // вязкость воды
+                            this.spreadpoint.petrochemicaltype.density                             // плотность нефтепродукта 
+                            );
+                this.timewatercomletion = (int)(ka / r);                                          // время продвижения нефтепродукта до грунтовых вод 
+
+            }  
+
         }
+
+
+
+
 
         //public float square { get { return SpreadingCoefficient.GetByData(EGH01DB.IDBContext dbcontext, spreadpoint.groundtype, spreadpoint.volume, 0.0f) * spreadpoint.volume; } }   // площадь наземного пятна (м)  считаем  F * volume (F = 
         // blinova
         // riskobjecstlist - из БД    pollutionlist - из БД по AnchorList
-    
-        
-        
-        
+
+
+
+
         private CoordinatesList createbordercoordinateslist() // построение граничных точек пятна загрязнения 
         {
 
