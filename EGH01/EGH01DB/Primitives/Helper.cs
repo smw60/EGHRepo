@@ -79,17 +79,17 @@ namespace EGH01DB.Primitives
                     {
                         int code = (int)reader["КодТипаГрунта"];
                         string name = (string)reader["НаименованиеТипаГрунта"];
-                        double porosity = (double)reader["КоэфПористости"];
-                        double holdmigration = (double)reader["КоэфЗадержкиМиграции"];
-                        double waterfilter = (double)reader["КоэфФильтрацииВоды"];
-                        double diffusion = (double)reader["КоэфДиффузии"];
-                        double distribution = (double)reader["КоэфРаспределения"];
-                        double sorption = (double)reader["КоэфСорбции"];
+                        float porosity = (float)reader["КоэфПористости"];
+                        float holdmigration = (float)reader["КоэфЗадержкиМиграции"];
+                        float waterfilter = (float)reader["КоэфФильтрацииВоды"];
+                        float diffusion = (float)reader["КоэфДиффузии"];
+                        float distribution = (float)reader["КоэфРаспределения"];
+                        float sorption = (float)reader["КоэфСорбции"];
 
-                        double watercapacity = (double)reader["КоэфКапВлагоемкости"];
-                        double soilmoisture = (double)reader["ВлажностьГрунта"];
-                        double аveryanovfactor = (double)reader["КоэфАверьянова"];
-                        double permeability = (double)reader["Водопроницаемость"];
+                        float watercapacity = (float)reader["КоэфКапВлагоемкости"];
+                        float soilmoisture = (float)reader["ВлажностьГрунта"];
+                        float аveryanovfactor = (float)reader["КоэфАверьянова"];
+                        float permeability = (float)reader["Водопроницаемость"];
 
                         list_type.Add(new GroundType((int)code, 
                                                     (string)name, 
