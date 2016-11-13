@@ -25,12 +25,20 @@
     list_type.ForEach(o => ViewBag.selectlist.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
 
 
+    {
+        List<EGH01DB.Types.GroundType> list_groundType = new List<EGH01DB.Types.GroundType>();
+        List<SelectListItem> list =  ViewBag.list_groundType = new List<SelectListItem>();
 
-    List<EGH01DB.Types.GroundType> list_groundType = new List<EGH01DB.Types.GroundType>();
-    ViewBag.list_groundType = new List<SelectListItem>();
+        Helper.GetListGroundType(db, ref list_groundType);
+        list_groundType.ForEach(o => ViewBag.list_groundType.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
 
-    Helper.GetListGroundType(db, ref list_groundType);
-    list_groundType.ForEach(o => ViewBag.list_groundType.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+        if (Model.groundtype != null)
+        {
+            SelectListItem si = list.FirstOrDefault(s => s.Value == Model.groundtype.type_code.ToString());
+            si.Selected = true;
+        }
+    }
+   
 
 
 
@@ -164,3 +172,28 @@
             @Html.Partial("_TypeLineMenu", delete)
         </div>
         }
+
+
+
+
+
+
+ @*List<egh01db.types.petrochemicaltype>
+    ptl = new List<egh01db.types.petrochemicaltype>
+        ();
+        List<selectlistitem>
+            petrochemicaltype = new List<selectlistitem>
+                ();
+                if (Model != null)
+                {
+                if (Helper.GetListPetrochemicalType(Model, ref ptl))
+                {
+                ptl.ForEach(o => petrochemicaltype.Add(new SelectListItem { Text = o.name, Value = o.code_type.ToString() }));
+                }
+                if (context.Petrochemical_type_code != null)
+                {
+                SelectListItem si = petrochemicaltype.FirstOrDefault(s => s.Value == context.Petrochemical_type_code.ToString());
+                si.Selected = true;
+                }
+
+                }*@
