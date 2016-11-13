@@ -328,7 +328,10 @@ a.dropdown-toggle.btn.btn-link {
             width: 70%;
             float: left;
         }
-
+        .boxdata-label-80 {
+            width: 80%;
+            float: left;
+        }
 
         .box p {
             margin: 1px;
