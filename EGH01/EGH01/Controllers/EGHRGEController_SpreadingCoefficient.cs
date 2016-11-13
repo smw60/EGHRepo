@@ -134,24 +134,23 @@ namespace EGH01.Controllers
 
 
                         string strmin_angle = this.HttpContext.Request.Params["min_angle"] ?? "Empty";
-                        float min_angle = 0.0f;
+                        float min_angle;
                         Helper.FloatTryParse(strmin_angle, out min_angle);
 
                         string strmax_angle = this.HttpContext.Request.Params["max_angle"] ?? "Empty";
-                        float max_angle = 0.0f;
+                        float max_angle;
                         Helper.FloatTryParse(strmax_angle, out max_angle);
 
                         string strmin_volume = this.HttpContext.Request.Params["min_volume"] ?? "Empty";
-                        float min_volume = 0.0f;
+                        float min_volume;
                         Helper.FloatTryParse(strmin_volume, out min_volume);
 
                         string strmax_volume = this.HttpContext.Request.Params["max_volume "] ?? "Empty";
-                        float max_volume = 0.0f;
+                        float max_volume;
                         Helper.FloatTryParse(strmax_volume, out max_volume);
 
-
                         string strkoef = this.HttpContext.Request.Params["koef"] ?? "Empty";
-                        float koef = 0.0f;
+                        float koef;
                         Helper.FloatTryParse(strkoef, out koef);
 
                         SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient(ground_type, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);

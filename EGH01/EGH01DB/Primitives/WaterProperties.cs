@@ -144,7 +144,7 @@ namespace EGH01DB.Primitives
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@Температура", SqlDbType.VarChar);
+                    SqlParameter parm = new SqlParameter("@Температура", SqlDbType.Float);
                     parm.Value = waterproperties.temperature;
                     cmd.Parameters.Add(parm);
                 }
