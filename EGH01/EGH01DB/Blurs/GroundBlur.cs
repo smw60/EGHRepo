@@ -23,7 +23,7 @@ namespace EGH01DB.Blurs
         public float                radius               {get; private set;}       // радиус наземного пятна (м)     
         public float                totalmass            {get; private set;}       // масса пролива (кг)    
         public float                limitadsorbedmass    {get; private set;}       // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (т) 
-        public float                avgheight            {get; private set;}       // средняя глубина грунтовых вод по опорным точкам (м) 
+        public float                avgdeep              {get; private set;}       // средняя глубина грунтовых вод по опорным точкам (м) 
         public float                petrochemicalheight  {get; private set;}       // высота слоя разлитого нефтепродукта (м) 
         public float                adsorbedmass         {get; private set;}       // адсобированная масса нефтепрдукта грунтом (т)  
         public float                restmass             {get; private set;}       // масса нефтепродукта достигшая грунтовых вод  (т)  
@@ -76,19 +76,24 @@ namespace EGH01DB.Blurs
             this.totalmass = this.spreadpoint.volume * this.spreadpoint.petrochemicaltype.density;   // масса пролива 
 
 
-            { // средняя глубина грунтовых вод по опорным точкам 
+            { // средняя глубина грунтовых вод по опорным точкам  и техногенному  объекту
                 this.anchorpointlist = new AnchorPointList();
                 this.anchorpointlist = AnchorPointList.CreateNear(this.spreadpoint.coordinates, this.radius);
-                this.avgheight = anchorpointlist.avgheight;
+                this.avgdeep = 
+                                (
+                                  anchorpointlist.sumwaterdeep + 
+                                  ( this.spreadpoint.riskobject!=null?this.spreadpoint.waterdeep:0.0f)
+                                 ) /
+                                 (anchorpointlist.Count + 1);
             }
             {  // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (кг) 
                 this.limitadsorbedmass =
-                                     this.avgheight *                                                          // средняя глубина грутовы вод 
+                                     this.avgdeep *                                                          // средняя глубина грутовы вод 
                                      this.square *                                                             // площадь пролива 
                                      this.waterproperties.density *                                            // плотность воды  
                                      this.spreadpoint.groundtype.porosity *                                    // пористость грунта 
                                      this.spreadpoint.groundtype.watercapacity *                               // капилярная влагоемкость грунта                                                     // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (кг) 
-                                     (float)Math.Pow(this.spreadpoint.petrochemicaltype.dynamicviscosity, 2) *  // динамическая вязкость ???      
+                                     (float)Math.Pow(this.spreadpoint.petrochemicaltype.viscosity, 2) *         // динамическая вязкость ???      
                                      this.waterproperties.tension /                                             // коэфициент поверхностного натяжения воды
                                      (
                                      this.spreadpoint.petrochemicaltype.tension *                               // коэфициент поверхностного натяжения нефтепрдукта 
@@ -100,7 +105,7 @@ namespace EGH01DB.Blurs
 
             this.restmass = (this.adsorbedmass >= this.totalmass ? 0 : this.totalmass - this.adsorbedmass);                // масса нефтепродукта достигшая грунтовых вод 
 
-            this.depth = (this.restmass > 0 ? this.avgheight : this.avgheight * (this.totalmass / this.limitadsorbedmass)); // глубина проникновения нефтепродукта в грунт     
+            this.depth = (this.restmass > 0 ? this.avgdeep : this.avgdeep * (this.totalmass / this.limitadsorbedmass)); // глубина проникновения нефтепродукта в грунт     
 
             this.concentrationinsoil = this.adsorbedmass / (this.square * this.depth);                                      // средняя концентрация нефтепрдуктов в грунте  
 
@@ -134,7 +139,7 @@ namespace EGH01DB.Blurs
              }
 
             this.timewatercomletion =                                                               // время продвижения нефтепродукта до грунтовых вод 
-                                     this.avgheight /                                               // средняя глубина грунтовых вод по опорным точкам (м) 
+                                     this.avgdeep /                                               // средняя глубина грунтовых вод по опорным точкам (м) 
                                      this.speedvertical;                                            // вертикальная скорость проникновения нефтепродукта в грунт (м/с)   
 
             this.dtimewaxwaterconc =                                                                // время (сек) достижения  максимальной концентрации  нефтепродуктом грунтовых вод  после достиженич границы грунтовых вод
