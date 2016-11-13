@@ -35,7 +35,9 @@
                 <input class="boxdata-input-50" type="number" step="0.1" name="Boilingtemp" value="@Model.boilingtemp.ToString("0.0").Replace(',', '.')" />
             </div>
             <div class="boxdata">
-                <label class="boxdata-label-30">Плотность, кг/м<sup><small>3</small></sup></label>
+
+                <label class="boxdata-label-30">Плотность, г/см<sup><small>3</small></sup></label>
+
                 <input class="boxdata-input-50" type="number" step="0.001" name="Density" value="@Model.density.ToString("0.000").Replace(',', '.')" />
             </div>
             <div class="boxdata">
@@ -44,6 +46,7 @@
             </div>
             <div class="boxdata">
                 <label class="boxdata-label-30">Растворимость, мг/дм<sup><small>2</small></sup></label>
+
                 <input class="boxdata-input-50" type="number" step="0.001" name="Solubility" value="@Model.solubility.ToString("0.000").Replace(',', '.')" />
             </div>
             <div class="boxdata">

@@ -290,14 +290,30 @@ namespace EGH01DB.Points
     }
     public class AnchorPointList : List<AnchorPoint>   // список  опорных точек 
     {
-        public float avgheight { get; private set; }   // средняя глубина грунтовых вод
+        public float avgheight // средняя глубина грунтовых вод
+        {
+          get {return  (this.Count() > 0? this.Average(a => a.height):0); }
+        }
+
+        public float sumheight
+        {
+            get { return (this.Count() > 0 ? this.Sum(a => a.height) : 0); }
+        }
+        public float avgwaterdeep // средняя глубина грунтовых вод
+        {
+            get { return (this.Count() > 0 ? this.Average(a => a.waterdeep) : 0); }
+        }
+
+        public float sumwaterdeep
+        {
+            get { return (this.Count() > 0 ? this.Sum(a => a.waterdeep) : 0); }
+        } 
+
+
 
         public AnchorPointList() : base()
         {
-            if (this.Count() > 0) this.avgheight = this.Average(a => a.height);  // // средняя глубина грунтовых вод
-            else this.avgheight = 0.0f;
-                        
-            this.avgheight = 5.0f;                         // заглушка 
+            
         }
 
 

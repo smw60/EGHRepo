@@ -32,8 +32,8 @@ namespace EGH01DB
                 this.waterblur    = new WaterBlur(this.groundblur);
                 this.date         = DateTime.Now;
 
-              this.datewatercompletion = incident.date.AddDays(this.groundblur.timewatercomletion);
-              this.datemaxwaterconc = incident.date.AddDays(this.groundblur.timewaxwaterconc);   
+              this.datewatercompletion = incident.date.AddSeconds(this.groundblur.timewatercomletion);
+              this.datemaxwaterconc = incident.date.AddSeconds(this.groundblur.timewaxwaterconc);   
 
             }
             public bool toXML()   //  сериализация  в XML 
