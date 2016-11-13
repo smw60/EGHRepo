@@ -183,6 +183,11 @@
                 </p>
                 
                 <p>
+                    <label class="boxdata-label-30 ">Высота слоя пролитого нефтепродукта (м) </label>
+                    @context.ecoforecast.groundblur.petrochemicalheight;
+                </p>
+
+                <p>
                     <label class="boxdata-label-30 ">Радиус разлива (м) </label>
                     @context.ecoforecast.groundblur.radius
                 </p>
@@ -292,21 +297,40 @@
                        @context.ecoforecast.groundblur.waterproperties.density                                           
                     </p>      
                     <p>
-                        <label class="boxdata-label-30 ">Вязкость воды </label>
+                        <label class="boxdata-label-40 ">Вязкость воды </label>
                        @context.ecoforecast.groundblur.waterproperties.viscocity
                      </p>
                      
                     <p>
-                        <label class="boxdata-label-30 ">Плотность нефтепродукта (@context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.name) (г/см3) </label>
+                        <label class="boxdata-label-40 ">Плотность нефтепродукта (@context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.name) (г/см3) </label>
                         @context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.density
                     </p>
                     <p>
-                        <label class="boxdata-label-20 ">Время достижения уровня грунтовых вод  нефтепродуктом (сут) </label>
+                        <label class="boxdata-label-40 ">Скорость проникновенния нефтепрдукта в глубь грунта (м/с) </label>
+                        @context.ecoforecast.groundblur.speedvertical
+                    </p>
+                    <p>
+                        <label class="boxdata-label-30 ">Время достижения уровня грунтовых вод  нефтепродуктом (сек) </label>
                         @context.ecoforecast.groundblur.timewatercomletion
                     </p>
                     <p>
-                        <label class="boxdata-label-20 "> Дата достижения уровня грунтовых вод  нефтепродуктом </label>
-                        @context.ecoforecast.incident.date.ToShortDateString()
+                        <label class="boxdata-label-80 ">Время достижения макс. конц.после дост. ур. грутовых вод  (сек) </label>
+                        @context.ecoforecast.groundblur.dtimewaxwaterconc   
+                    </p>
+                   
+                    <p>
+                        <label class="boxdata-label-40 ">Время достижения макс. конц. на  уровне грутовых вод  (сек) </label>
+                        @context.ecoforecast.groundblur.timewaxwaterconc
+                    </p>
+
+                    <p>
+                        <label class="boxdata-label-40 "> Дата достижения уровня грунтовых вод  нефтепродуктом </label>
+                        @context.ecoforecast.datewatercompletion.ToShortDateString()
+                    </p>
+
+                    <p>
+                        <label class="boxdata-label-40 "> Дата достижения уровня грунтовых вод  нефтепродуктом </label>
+                        @context.ecoforecast.datemaxwaterconc.ToShortDateString()
                     </p>
                 </fieldset>
 
@@ -319,22 +343,13 @@
 
 }
 
-@*float ka =                                                                       // формула аверьянова
-                           this.spreadpoint.groundtype.waterfilter *                             // коэф. фильтрации воды
-                           (
-                            this.spreadpoint.groundtype.soilmoisture -                           // влажность грунта
-                            this.spreadpoint.groundtype.watercapacity                            // капилярная влагоемкость грунта
-                            ) /
-                            (
-                            this.spreadpoint.groundtype.porosity -                                //  пористость грунта
-                            this.spreadpoint.groundtype.watercapacity                             // капилярная влагоемкость грунта
-                            );
-                float r =                                                                          // коэффициент задержки
-                            (
-                            this.spreadpoint.petrochemicaltype.viscosity *                         // вязкость нефтепродукта
-                            this.waterproperties.density                                           // плотность воды
-                            ) /
-                            (
-                            this.waterproperties.density *                                         // вязкость воды
-                            this.spreadpoint.petrochemicaltype.density                             // плотность нефтепродукта
-                            );*@
+ @*
+
+            this.dtimewaxwaterconc =                                                                // время (сек) достижения  максимальной концентрации  нефтепродуктом грунтовых вод  после достиженич границы грунтовых вод
+                                     this.petrochemicalheight /                                     // высота слоя разлитого нефтепродукта (м)
+                                     (
+                                     this.speedvertical *                                           // вертикальная скорость проникновения нефтепродукта в грунт (м/с)
+                                     this.spreadpoint.groundtype.porosity                           // пористость грунта
+                                     );
+
+            this.timewaxwaterconc = this.timewatercomletion + this.dtimewaxwaterconc;                // время*@ 
