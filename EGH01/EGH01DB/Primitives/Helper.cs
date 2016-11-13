@@ -216,13 +216,13 @@ namespace EGH01DB.Primitives
                     {
                         int code = (int)reader["КодТипаНефтепродукта"];
                         string name = (string)reader["НаименованиеТипаНефтепродукта"];
-                        double boilingtemp = (double)reader["ТемператураКипения"];
-                        double density = (double)reader["Плотность"];
-                        double viscosity = (double)reader["КинематическаяВязкость"];
-                        double solubility = (double)reader["Растворимость"];
-                        double tension = (double)reader["КоэфНатяжения"];
-                        double dynamicviscosity = (double)reader["ДинамическаяВязкость"];
-                        double diffusion = (double)reader["КоэфДиффузии"];
+                        float boilingtemp = (float)reader["ТемператураКипения"];
+                        float density = (float)reader["Плотность"];
+                        float viscosity = (float)reader["КинематическаяВязкость"];
+                        float solubility = (float)reader["Растворимость"];
+                        float tension = (float)reader["КоэфНатяжения"];
+                        float dynamicviscosity = (float)reader["ДинамическаяВязкость"];
+                        float diffusion = (float)reader["КоэфДиффузии"];
 
                         list_type.Add(new PetrochemicalType((int)code, 
                                                             (string)name, 

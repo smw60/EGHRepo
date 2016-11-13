@@ -125,13 +125,13 @@ namespace EGH01DB.Types
                     if (reader.Read())
                     {
                         string name = (string)reader["НаименованиеТипаНефтепродукта"];
-                        double boilingtemp = (double)reader["ТемператураКипения"];
-                        double density = (double)reader["Плотность"];
-                        double viscosity = (double)reader["КинематическаяВязкость"];
-                        double solubility = (double)reader["Растворимость"];
-                        double tension = (double)reader["КоэфНатяжения"];
-                        double dynamicviscosity = (double)reader["ДинамическаяВязкость"];
-                        double diffusion = (double)reader["КоэфДиффузии"];
+                        float boilingtemp = (float)reader["ТемператураКипения"];
+                        float density = (float)reader["Плотность"];
+                        float viscosity = (float)reader["КинематическаяВязкость"];
+                        float solubility = (float)reader["Растворимость"];
+                        float tension = (float)reader["КоэфНатяжения"];
+                        float dynamicviscosity = (float)reader["ДинамическаяВязкость"];
+                        float diffusion = (float)reader["КоэфДиффузии"];
 
                         if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) petrochemical_type = new PetrochemicalType(type_code, name,
                                                                                                                     (float)boilingtemp,
@@ -204,37 +204,37 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ТемператураКипения", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ТемператураКипения", SqlDbType.Real);
                     parm.Value = petrochemical_type.boilingtemp;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@Плотность", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@Плотность", SqlDbType.Real);
                     parm.Value = petrochemical_type.density;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КинематическаяВязкость", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КинематическаяВязкость", SqlDbType.Real);
                     parm.Value = petrochemical_type.viscosity;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@Растворимость", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@Растворимость", SqlDbType.Real);
                     parm.Value = petrochemical_type.solubility;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфНатяжения", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфНатяжения", SqlDbType.Real);
                     parm.Value = petrochemical_type.tension;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ДинамическаяВязкость", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ДинамическаяВязкость", SqlDbType.Real);
                     parm.Value = petrochemical_type.dynamicviscosity;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфДиффузии", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфДиффузии", SqlDbType.Real);
                     parm.Value = petrochemical_type.diffusion;
                     cmd.Parameters.Add(parm);
                 }
@@ -275,42 +275,42 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ТемператураКипения", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ТемператураКипения", SqlDbType.Real);
                     parm.Value = petrochemical_type.boilingtemp;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@Плотность", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@Плотность", SqlDbType.Real);
                     parm.Value = petrochemical_type.density;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КинематическаяВязкость", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КинематическаяВязкость", SqlDbType.Real);
                     parm.Value = petrochemical_type.viscosity;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@Растворимость", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@Растворимость", SqlDbType.Real);
                     parm.Value = petrochemical_type.solubility;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфНатяжения", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфНатяжения", SqlDbType.Real);
                     parm.Value = petrochemical_type.tension;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ДинамическаяВязкость", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ДинамическаяВязкость", SqlDbType.Real);
                     parm.Value = petrochemical_type.dynamicviscosity;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфДиффузии", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфДиффузии", SqlDbType.Real);
                     parm.Value = petrochemical_type.diffusion;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Real);
                     parm.Direction = ParameterDirection.ReturnValue;
                     cmd.Parameters.Add(parm);
                 }
