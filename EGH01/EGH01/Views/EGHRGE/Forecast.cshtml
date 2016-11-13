@@ -108,7 +108,7 @@
               volume = ((int)context.Volume).ToString();
           }           
           <div class="boxdata">
-               <label class="boxdata-label-30">Объем пролива (кг3)</label>
+               <label class="boxdata-label-30">Объем пролива (м3)</label>
                <input class="boxdata-input-30" type="number" name="volume"  value="@volume"  min="0" max="1000000" step="1" />
           </div>
    
@@ -164,11 +164,11 @@
                 <h1> ОТЧЕТ-ПРОГНОЗ  </h1>
                 <h2>Наземное пятно</h2>
                 <p>
-                    <label class="boxdata-label-30 ">Плотность нефтепродукта (@context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.name) (г/см3) </label>
+                    <label class="boxdata-label-30 ">Плотность нефтепродукта (@context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.name) (кг/м3) </label>
                     @context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.density
                 </p>
                 <p>
-                    <label class="boxdata-label-30 ">Масса пролива (т) </label>
+                    <label class="boxdata-label-30 ">Масса пролива (кг) </label>
                     @context.ecoforecast.groundblur.totalmass
                 </p>
                 
@@ -184,7 +184,7 @@
                 
                 <p>
                     <label class="boxdata-label-30 ">Высота слоя пролитого нефтепродукта (м) </label>
-                    @context.ecoforecast.groundblur.petrochemicalheight;
+                    @context.ecoforecast.groundblur.petrochemicalheight
                 </p>
 
                 <p>
