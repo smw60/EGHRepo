@@ -170,7 +170,7 @@ namespace EGH01.Controllers
                         SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient(type_groud, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
 
                         koef = EGH01DB.Primitives.SpreadingCoefficient.Get(db, sc);
-
+                        
                         if (EGH01DB.Primitives.SpreadingCoefficient.Create(db, sc))
                         {
                             view = View("SpreadingCoefficient", db);
