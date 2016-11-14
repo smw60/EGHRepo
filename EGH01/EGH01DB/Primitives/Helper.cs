@@ -522,14 +522,14 @@ namespace EGH01DB.Primitives
                                                     (float)аveryanovfactor,
                                                     (float)permeability,
                                                     (float)density);
-
+                        int code = (int)reader["КодКоэффициентаРазлива"];
                         float min_volume = (float)reader["МинПролива"];
                         float max_volume = (float)reader["МаксПролива"];
                         float min_angle = (float)reader["МинУклона"];
                         float max_angle = (float)reader["МаксУклона"];
                         double koef = (double)reader["КоэффициентРазлива"];
 
-                        spreading_coefficient.Add(new SpreadingCoefficient(ground_type,
+                        spreading_coefficient.Add(new SpreadingCoefficient(code, ground_type,
                                                         (float)min_volume,
                                                         (float)max_volume,
                                                         (float)min_angle,

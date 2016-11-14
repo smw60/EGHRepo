@@ -24,6 +24,7 @@ namespace EGH01DB.Primitives
 {
     public class SpreadingCoefficient
     {
+        public int code { get; private set; } 
         public GroundType ground_type { get; private set; }     // тип грунта 
         public float min_volume { get; private set; }           // нижняя граница диапазона пролива   
         public float max_volume { get; private set; }           // верхняя граница диапазона пролива 
@@ -45,6 +46,7 @@ namespace EGH01DB.Primitives
         
         public SpreadingCoefficient()
         {
+            this.code = -1;
             this.ground_type = new GroundType();
             this.min_volume = 0.0f;
             this.max_volume = 0.0f;
@@ -52,8 +54,19 @@ namespace EGH01DB.Primitives
             this.max_angle = 0.0f;
             this.koef = -1.0f;
         }
-        public SpreadingCoefficient(GroundType groundtype, float min_volume, float max_volume, float min_angle, float max_angle, float koef)
+        public SpreadingCoefficient(int code)
         {
+            this.code = code;
+            this.ground_type = new GroundType();
+            this.min_volume = 0.0f;
+            this.max_volume = 0.0f;
+            this.min_angle = 0.0f;
+            this.max_angle = 0.0f;
+            this.koef = -1.0f;
+        }
+        public SpreadingCoefficient(int code, GroundType groundtype, float min_volume, float max_volume, float min_angle, float max_angle, float koef)
+        {
+            this.code = code;
             this.ground_type = groundtype;
             this.min_volume = min_volume;
             this.max_volume = max_volume;
@@ -65,7 +78,7 @@ namespace EGH01DB.Primitives
         // заглушка 
         public static bool GetByParms(GroundType groundtype, float volume, float angle, out SpreadingCoefficient spreadingcoefficient)  
         {
-            spreadingcoefficient = new SpreadingCoefficient(groundtype, 0.0f, 80.0f, 0.0f, 0.02f, 5.0f);
+            spreadingcoefficient = new SpreadingCoefficient(0, groundtype, 0.0f, 80.0f, 0.0f, 0.02f, 5.0f);
 
             return true;
         }
@@ -248,6 +261,11 @@ namespace EGH01DB.Primitives
                     cmd.Parameters.Add(parm);
                 }
                 {
+                    SqlParameter parm = new SqlParameter("@КодКоэффициентаРазлива", SqlDbType.Int);
+                    parm.Value = spreading_coefficient.code;
+                    cmd.Parameters.Add(parm);
+                }
+                {
                     SqlParameter parm = new SqlParameter("@МинПролива", SqlDbType.Real);
                     parm.Value = spreading_coefficient.min_volume;
                     cmd.Parameters.Add(parm);
@@ -298,28 +316,8 @@ namespace EGH01DB.Primitives
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
-                    SqlParameter parm = new SqlParameter("@ТипГрунта", SqlDbType.Int);
-                    parm.Value = spreading_coefficient.ground_type.type_code;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@МинПролива", SqlDbType.Real);
-                    parm.Value = spreading_coefficient.min_volume;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@МаксПролива", SqlDbType.Real);
-                    parm.Value = spreading_coefficient.max_volume;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@МинУклона", SqlDbType.Real);
-                    parm.Value = spreading_coefficient.min_angle;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@МаксУклона", SqlDbType.Real);
-                    parm.Value = spreading_coefficient.max_angle;
+                    SqlParameter parm = new SqlParameter("@КодКоэффициентаРазлива", SqlDbType.Int);
+                    parm.Value = spreading_coefficient.code;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -338,6 +336,10 @@ namespace EGH01DB.Primitives
                 };
             }
             return rc;
+        }
+        static public bool DeleteByCode(EGH01DB.IDBContext dbcontext, int code)
+        {
+            return Delete(dbcontext, new SpreadingCoefficient(code));
         }
 
         // другие методы определения коэффициента  

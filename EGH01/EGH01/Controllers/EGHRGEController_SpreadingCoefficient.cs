@@ -68,7 +68,7 @@ namespace EGH01.Controllers
 
                         float volume = max_volume - min_volume;
                         float angle = max_angle - min_angle;
-                        SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient((GroundType)type_grounde, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
+                        SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient(1, (GroundType)type_grounde, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
 
                     
                         //if (EGH01DB.Primitives.SpreadingCoefficient.GetByData(db, (GroundType)type_grounde,(float)volume,(float)angle))
@@ -167,7 +167,7 @@ namespace EGH01.Controllers
                         float koef;
                         Helper.FloatTryParse(strkoef, out koef);
 
-                        SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient(type_groud, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
+                        SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient(1, type_groud, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
 
                         koef = EGH01DB.Primitives.SpreadingCoefficient.Get(db, sc);
 
