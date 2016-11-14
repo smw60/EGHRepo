@@ -24,8 +24,8 @@
                 Model.SaveViewContext("_ChoiceRiskObject", context = new ChoiceRiskObjectContext());
            }
             
-          <input type="search" name="ChoiceRiskObject.template" style="max-width:none" size="80" />
-          <button type="submit" name="ChoiceRiskObject.choicefind" value="choice">Поиск</button>
+          <input type="search" name="ChoiceRiskObject.template" style="max-width: none; width: auto" size="95" />
+          <button type="submit" name="ChoiceRiskObject.choicefind" value="choice">Поиск</button> 
 
         }
         else if (context.Regim == ChoiceRiskObjectContext.REGIM.CHOICE && !string.IsNullOrEmpty(context.Template))
