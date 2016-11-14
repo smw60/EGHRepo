@@ -286,19 +286,19 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                int t = 2;
-                GroundType g = new GroundType(t);
-                float v1 = 10.01f;
-                float v2 = 50.0f;
-                float a1 = 0.0f;
-                float a2 = 50.0f;
-                float k = 20.0f;
-                SpreadingCoefficient sc = new SpreadingCoefficient(g, (float)v1, (float)v2, (float)a1, (float)a2, (float)k);
+                //int t = 2;
+                //GroundType g = new GroundType(t);
+                //float v1 = 10.01f;
+                //float v2 = 50.0f;
+                //float a1 = 0.0f;
+                //float a2 = 50.0f;
+                //float k = 20.0f;
+                //SpreadingCoefficient sc = new SpreadingCoefficient(g, (float)v1, (float)v2, (float)a1, (float)a2, (float)k);
 
-                if (SpreadingCoefficient.Create(db, sc))
-                {
-                    int k1 = 1;
-                };
+                //if (SpreadingCoefficient.Create(db, sc))
+                //{
+                //    int k1 = 1;
+                //};
             }
             return View();
         }
@@ -306,9 +306,9 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                GroundType gr = new GroundType(1);
-                SpreadingCoefficient sc = new SpreadingCoefficient(gr, (float)20f, (float)40f, (float)1.5f, (float)4.6f, (float)0.0f);
-                float koeff = SpreadingCoefficient.Get(db, sc);
+                //GroundType gr = new GroundType(1);
+                //SpreadingCoefficient sc = new SpreadingCoefficient(gr, (float)20f, (float)40f, (float)1.5f, (float)4.6f, (float)0.0f);
+                //float koeff = SpreadingCoefficient.Get(db, sc);
                 
             }
             return View();
@@ -362,7 +362,18 @@ namespace EGH01.Controllers
             }
             return View();
         }
-
+        public ActionResult SC_DeleteByCode()  // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //SpreadingCoefficient ct = new SpreadingCoefficient();
+                //if (SpreadingCoefficient.DeleteByCode(db, 14))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
 
         // проверка процедур Region
         public ActionResult Region_Create()// есть
