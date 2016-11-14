@@ -462,8 +462,7 @@ namespace EGH01.Controllers
             //        int k = 1;
             //    };
             //}
-<<<<<<< HEAD
-=======
+
 
             RGEContext db = new RGEContext();
             {
@@ -474,7 +473,7 @@ namespace EGH01.Controllers
                 //};
             }
 
->>>>>>> 25818d7671a51dcddaec425d25f6e8d2dada8ec0
+
             return View();
         }
 

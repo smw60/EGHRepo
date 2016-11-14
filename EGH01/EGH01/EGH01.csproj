@@ -179,6 +179,7 @@
     <Compile Include="Controllers\EGHORTController.cs" />
     <Compile Include="Controllers\EGHRGEController_AnchorPoint.cs" />
     <Compile Include="Controllers\EGHRGEController_CadastreType.cs" />
+    <Compile Include="Controllers\EGHRGEController_EcoObject.cs" />
     <Compile Include="Controllers\EGHRGEController_GroundType.cs" />
     <Compile Include="Controllers\EGHRGEController_IncidentType.cs" />
     <Compile Include="Controllers\EGHRGEController.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EGHCAI\RiskObject.cs" />
     <Compile Include="Models\EGHCCO\PetrochemicalTypeView.cs" />
+    <Compile Include="Models\EGHRGE\EcoObjectView.cs" />
     <Compile Include="Models\EGHRGE\ChoiceRiskObjectViewContext.cs" />
     <Compile Include="Models\EGHRGE\ForecastViewConext .cs" />
     <Compile Include="Models\EGHRGE\AnchorPointView.cs" />
@@ -349,6 +351,9 @@
     <Content Include="Views\EGHRGE\WaterPropertiesUpdate.cshtml" />
     <Content Include="Views\EGHRGE\WaterPropertiesDelete.cshtml" />
     <Content Include="Views\Debug\Coord.cshtml" />
+    <Content Include="Views\EGHRGE\_EcoObjectList.cshtml" />
+    <Content Include="Views\EGHRGE\EcoObject.cshtml" />
+    <Content Include="Views\EGHRGE\EcoObjectCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

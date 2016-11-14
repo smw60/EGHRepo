@@ -20,7 +20,7 @@ namespace EGH01.Controllers
         public ActionResult AnchorPoint()
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.AnchorPoint";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
