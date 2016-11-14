@@ -15,17 +15,17 @@ using EGH01DB.Points;
 
 namespace EGH01.Controllers
 {
-    public partial class EGHGEAController : Controller
+    public partial class EGHCEQController : Controller
     {
         public ActionResult CadastreType()
         {
-            GEAContext db = null;
-            ViewBag.EGHLayout = "GEA.CadastreType";
+            CEQContext db = null;
+            ViewBag.EGHLayout = "CEQ.CadastreType";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new GEAContext();
+                db = new CEQContext();
                 ViewBag.msg = "Соединение с базой данных установлено";
                 view = View("CadastreType", db);
 
@@ -174,13 +174,13 @@ namespace EGH01.Controllers
         [HttpPost]
         public ActionResult CadastreTypeUpdate(CadastreTypeView cd)
         {
-            GEAContext db = null;
-            ViewBag.EGHLayout = "GEA";
+           CEQContext db = null;
+            ViewBag.EGHLayout = "CEQ";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new GEAContext();
+                db = new CEQContext();
                 view = View("CadastreType", db);
                 if (menuitem.Equals("CadastreType.Update.Update"))
                 {
@@ -188,7 +188,13 @@ namespace EGH01.Controllers
                     int id = cd.type_code;
                     String name = cd.name;
                     int pdk_coef = cd.pdk_coef;
+
                     float water_pdk_coef = cd.water_pdk_coef;
+                    String strwater_pdk_coef = this.HttpContext.Request.Params["water_pdk_coef"] ?? "Empty"; ;
+                    if (!Helper.FloatTryParse(strwater_pdk_coef, out water_pdk_coef))
+                    {
+                        water_pdk_coef = 0.0f;
+                    }
                     EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id, name, pdk_coef, water_pdk_coef);
                     if (EGH01DB.Types.CadastreType.Update(db, cadastre_type))
                     {

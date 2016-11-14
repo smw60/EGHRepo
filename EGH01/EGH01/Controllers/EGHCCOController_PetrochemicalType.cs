@@ -113,31 +113,31 @@ namespace EGH01.Controllers
                         string name = ptv.name;
 
                         string strboilingtemp = this.HttpContext.Request.Params["boilingtemp"] ?? "Empty";
-                        float boilingtemp = 0.0f;
+                        float boilingtemp;
                         Helper.FloatTryParse(strboilingtemp, out boilingtemp);
 
                         string strdensity = this.HttpContext.Request.Params["density"] ?? "Empty";
-                        float density = 0.0f;
+                        float density;
                         Helper.FloatTryParse(strdensity, out density);
 
                         string strviscosity = this.HttpContext.Request.Params["viscosity"] ?? "Empty";
-                        float  viscosity = 0.0f;
+                        float viscosity;
                         Helper.FloatTryParse(strviscosity, out viscosity);
 
                         string strsolubility = this.HttpContext.Request.Params["solubility"] ?? "Empty";
-                        float solubility = 0.0f;
+                        float solubility;
                         Helper.FloatTryParse(strsolubility, out solubility);
 
                         string strtension = this.HttpContext.Request.Params["tension"] ?? "Empty";
-                        float tension = 0.0f;
+                        float tension;
                         Helper.FloatTryParse(strtension, out tension);
 
                         string strdynamicviscosity = this.HttpContext.Request.Params["dynamicviscosity"] ?? "Empty";
-                        float dynamicviscosity = 0.0f;
+                        float dynamicviscosity;
                         Helper.FloatTryParse(strdynamicviscosity, out dynamicviscosity);
 
                         string strdiffusion = this.HttpContext.Request.Params["diffusion"] ?? "Empty";
-                        float diffusion = 0.0f;
+                        float diffusion;
                         Helper.FloatTryParse(strdiffusion, out diffusion);
 
                         PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, 
@@ -192,6 +192,7 @@ namespace EGH01.Controllers
 
             return view;
         }
+
         [HttpPost]
         public ActionResult PetrochemicalTypeUpdate(PetrochemicalTypeView ptv)
         {
@@ -209,31 +210,31 @@ namespace EGH01.Controllers
                     string name = ptv.name;
  
                     string strboilingtemp = this.HttpContext.Request.Params["boilingtemp"] ?? "Empty";
-                    float boilingtemp = 0.0f;
+                    float boilingtemp;
                     Helper.FloatTryParse(strboilingtemp, out boilingtemp);
 
                     string strdensity = this.HttpContext.Request.Params["density"] ?? "Empty";
-                    float density = 0.0f;
+                    float density;
                     Helper.FloatTryParse(strdensity, out density);
 
                     string strviscosity = this.HttpContext.Request.Params["viscosity"] ?? "Empty";
-                    float viscosity = 0.0f;
+                    float viscosity;
                     Helper.FloatTryParse(strviscosity, out viscosity);
 
                     string strsolubility = this.HttpContext.Request.Params["solubility"] ?? "Empty";
-                    float solubility = 0.0f;
+                    float solubility;
                     Helper.FloatTryParse(strsolubility, out solubility);
 
                     string strtension = this.HttpContext.Request.Params["tension"] ?? "Empty";
-                    float tension = 0.0f;
+                    float tension;
                     Helper.FloatTryParse(strtension, out tension);
 
                     string strdynamicviscosity = this.HttpContext.Request.Params["dynamicviscosity"] ?? "Empty";
-                    float dynamicviscosity = 0.0f;
+                    float dynamicviscosity;
                     Helper.FloatTryParse(strdynamicviscosity, out dynamicviscosity);
 
                     string strdiffusion = this.HttpContext.Request.Params["diffusion"] ?? "Empty";
-                    float diffusion = 0.0f;
+                    float diffusion;
                     Helper.FloatTryParse(strdiffusion, out diffusion);
                    
                     PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion);

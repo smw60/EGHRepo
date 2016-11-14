@@ -17,18 +17,24 @@ namespace EGH01DB
     {
         public class ECOForecast         //  модель прогнозирования 
         {
-            public int           id            {get; private set;}          // идентификатор прогноза 
-            public DateTime      date          {get; private set;}          // дата формирования отчета 
-            public Incident      incident      {get; private set;}          // описание ицидента 
-            public GroundBlur    groundblur    {get; private set;}          // наземное пятно 
-            public WaterBlur     waterblur     {get; private set;}          // пятно  загрязнения грунтвых вод 
+            public int           id                  {get; private set;}          // идентификатор прогноза 
+            public DateTime      date                {get; private set;}          // дата формирования отчета 
+            public Incident      incident            {get; private set;}          // описание ицидента 
+            public GroundBlur    groundblur          {get; private set;}          // наземное пятно 
+            public WaterBlur     waterblur           {get; private set;}          // пятно  загрязнения грунтвых вод 
+            public DateTime      datewatercompletion {get; private set;}          // дата достижения загрянения грунтовых вод 
+            public DateTime      datemaxwaterconc    {get; private set; }         // дата достижения  иаксимального загрянения г на уровне рунтовых вод 
 
             public ECOForecast(Incident incident)
             {
                 this.incident = incident;
                 this.groundblur   = new GroundBlur(this.incident);
                 this.waterblur    = new WaterBlur(this.groundblur);
-                this.date         = DateTime.Now; 
+                this.date         = DateTime.Now;
+
+              this.datewatercompletion = incident.date.AddSeconds(this.groundblur.timewatercomletion);
+              this.datemaxwaterconc = incident.date.AddSeconds(this.groundblur.timewaxwaterconc);   
+
             }
             public bool toXML()   //  сериализация  в XML 
             {

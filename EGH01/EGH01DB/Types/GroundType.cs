@@ -141,16 +141,16 @@ namespace EGH01DB.Types
                     if (reader.Read())
                     {
                         string name = (string)reader["НаименованиеТипаГрунта"];
-                        double porosity = (double)reader["КоэфПористости"];
-                        double holmigration = (double)reader["КоэфЗадержкиМиграции"];
-                        double waterfilter = (double)reader["КоэфФильтрацииВоды"];
-                        double diffusion = (double)reader["КоэфДиффузии"];
-                        double distribution = (double)reader["КоэфРаспределения"];
-                        double sorption = (double)reader["КоэфСорбции"];
-                        double watercapacity = (double)reader["КоэфКапВлагоемкости"];
-                        double soilmoisture =(double)reader["ВлажностьГрунта"];
-                        double аveryanovfactor =(double)reader["КоэфАверьянова"];
-                        double permeability = (double)reader["Водопроницаемость"];
+                        float porosity = (float)reader["КоэфПористости"];
+                        float holmigration = (float)reader["КоэфЗадержкиМиграции"];
+                        float waterfilter = (float)reader["КоэфФильтрацииВоды"];
+                        float diffusion = (float)reader["КоэфДиффузии"];
+                        float distribution = (float)reader["КоэфРаспределения"];
+                        float sorption = (float)reader["КоэфСорбции"];
+                        float watercapacity = (float)reader["КоэфКапВлагоемкости"];
+                        float soilmoisture = (float)reader["ВлажностьГрунта"];
+                        float аveryanovfactor = (float)reader["КоэфАверьянова"];
+                        float permeability = (float)reader["Водопроницаемость"];
                         if (rc = (int)cmd.Parameters["@exitrc"].Value > 0)
                             ground_type = new GroundType((int)type_code,
                                                          (string)name,
@@ -228,52 +228,52 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфПористости", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфПористости", SqlDbType.Real);
                     parm.Value = ground_type.porosity;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфЗадержкиМиграции", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфЗадержкиМиграции", SqlDbType.Real);
                     parm.Value = ground_type.holdmigration;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфФильтрацииВоды", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфФильтрацииВоды", SqlDbType.Real);
                     parm.Value = ground_type.waterfilter;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфДиффузии", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфДиффузии", SqlDbType.Real);
                     parm.Value = ground_type.diffusion;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфРаспределения", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфРаспределения", SqlDbType.Real);
                     parm.Value = ground_type.distribution;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфСорбции", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфСорбции", SqlDbType.Real);
                     parm.Value = ground_type.sorption;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфКапВлагоемкости", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфКапВлагоемкости", SqlDbType.Real);
                     parm.Value = ground_type.watercapacity;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ВлажностьГрунта", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ВлажностьГрунта", SqlDbType.Real);
                     parm.Value = ground_type.soilmoisture;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфАверьянова", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфАверьянова", SqlDbType.Real);
                     parm.Value = ground_type.аveryanovfactor;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@Водопроницаемость", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@Водопроницаемость", SqlDbType.Real);
                     parm.Value = ground_type.permeability;
                     cmd.Parameters.Add(parm);
                 }
@@ -313,52 +313,52 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфПористости", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфПористости", SqlDbType.Real);
                     parm.Value = ground_type.porosity;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфЗадержкиМиграции", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфЗадержкиМиграции", SqlDbType.Real);
                     parm.Value = ground_type.holdmigration;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфФильтрацииВоды", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфФильтрацииВоды", SqlDbType.Real);
                     parm.Value = ground_type.waterfilter;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфДиффузии", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфДиффузии", SqlDbType.Real);
                     parm.Value = ground_type.diffusion;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфРаспределения", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфРаспределения", SqlDbType.Real);
                     parm.Value = ground_type.distribution;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфСорбции", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфСорбции", SqlDbType.Real);
                     parm.Value = ground_type.sorption;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфКапВлагоемкости", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфКапВлагоемкости", SqlDbType.Real);
                     parm.Value = ground_type.watercapacity;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ВлажностьГрунта", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ВлажностьГрунта", SqlDbType.Real);
                     parm.Value = ground_type.soilmoisture;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэфАверьянова", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@КоэфАверьянова", SqlDbType.Real);
                     parm.Value = ground_type.аveryanovfactor;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@Водопроницаемость", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@Водопроницаемость", SqlDbType.Real);
                     parm.Value = ground_type.permeability;
                     cmd.Parameters.Add(parm);
                 }

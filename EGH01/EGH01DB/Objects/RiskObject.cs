@@ -33,8 +33,8 @@ namespace EGH01DB.Objects
         public bool watertreatment { get; private set; }  // наличие очистных сооружений для дождевого стока
         public bool watertreatmentcollect { get; private set; } // наличие резервуара для сбора пролива !!! надо бы еще его размер для контроля!!!!
         public byte[] map { get; private set; } // сюда карту?
-        public int groundtank { get; private set; }  //  емкость наземного резервуара
-        public int undergroundtank { get; private set; } // емкость подземного резервуара
+        public float groundtank { get; private set; }  //  емкость наземного резервуара
+        public float undergroundtank { get; private set; } // емкость подземного резервуара
         public string fueltype { get; private set; } // типы топлива, пока только строкой - в отдельную таблицу, если по ним будет отбор
         public int numberofthreads { get; private set; } // количество ниток для нефтепровода или участка нефтедобычи
         public float tubediameter { get; private set; } //  диаметр трубы
@@ -64,8 +64,8 @@ namespace EGH01DB.Objects
             this.watertreatment = false;
             this.watertreatmentcollect = false;
             this.map = new byte[0];
-            this.groundtank = 0;
-            this.undergroundtank = 0;
+            this.groundtank = 0.0f;
+            this.undergroundtank = 0.0f;
             this.fueltype = string.Empty;
             this.numberofthreads = -1;
             this.tubediameter = 0.0f;
@@ -92,8 +92,8 @@ namespace EGH01DB.Objects
                             bool watertreatment, 
                             bool watertreatmentcollect,
                             byte[] map,
-                            int groundtank,
-                            int undergroundtank,
+                            float groundtank,
+                            float undergroundtank,
                             string fueltype,
                             int numberofthreads,
                             float tubediameter,
@@ -147,8 +147,8 @@ namespace EGH01DB.Objects
             this.watertreatment = false;
             this.watertreatmentcollect = false;
             this.map = new byte[0];
-            this.groundtank = 0;
-            this.undergroundtank = 0;
+            this.groundtank = 0.0f;
+            this.undergroundtank = 0.0f;
             this.fueltype = string.Empty;
             this.numberofthreads = -1;
             this.tubediameter = 0.0f;
@@ -176,8 +176,8 @@ namespace EGH01DB.Objects
             this.watertreatment = false;
             this.watertreatmentcollect = false;
             this.map = new byte[0];
-            this.groundtank = 0;
-            this.undergroundtank = 0;
+            this.groundtank = 0.0f;
+            this.undergroundtank = 0.0f;
             this.fueltype = string.Empty;
             this.numberofthreads = -1;
             this.tubediameter = 0.0f;
@@ -257,12 +257,12 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Real);
                     parm.Value = risk_object.coordinates.latitude;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Real);
                     parm.Value = risk_object.coordinates.lngitude;
                     cmd.Parameters.Add(parm);
                 }
@@ -272,12 +272,12 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ГлубинаГрунтовыхВод", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ГлубинаГрунтовыхВод", SqlDbType.Real);
                     parm.Value = risk_object.waterdeep;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ВысотаУровнемМоря", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ВысотаУровнемМоря", SqlDbType.Real);
                     parm.Value = risk_object.height;
                     cmd.Parameters.Add(parm);
                 }
@@ -317,12 +317,12 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ЕмкостьНаземногоРезервуара", SqlDbType.Int);
+                    SqlParameter parm = new SqlParameter("@ЕмкостьНаземногоРезервуара", SqlDbType.Real);
                     parm.Value = risk_object.groundtank;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ЕмкостьПодземногоРезервуара", SqlDbType.Int);
+                    SqlParameter parm = new SqlParameter("@ЕмкостьПодземногоРезервуара", SqlDbType.Real);
                     parm.Value = risk_object.undergroundtank;
                     cmd.Parameters.Add(parm);
                 }
@@ -337,12 +337,12 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ДиаметрТрубы", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ДиаметрТрубы", SqlDbType.Real);
                     parm.Value = risk_object.tubediameter;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@Производительность", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@Производительность", SqlDbType.Real);
                     parm.Value = risk_object.productivity;
                     cmd.Parameters.Add(parm);
                 }
@@ -467,12 +467,12 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Real);
                     parm.Value = risk_object.coordinates.latitude;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Real);
                     parm.Value = risk_object.coordinates.lngitude;
                     cmd.Parameters.Add(parm);
                 }
@@ -482,12 +482,12 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ГлубинаГрунтовыхВод", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ГлубинаГрунтовыхВод", SqlDbType.Real);
                     parm.Value = risk_object.waterdeep;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ВысотаУровнемМоря", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ВысотаУровнемМоря", SqlDbType.Real);
                     parm.Value = risk_object.height;
                     cmd.Parameters.Add(parm);
                 }
@@ -527,12 +527,12 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ЕмкостьНаземногоРезервуара", SqlDbType.Int);
+                    SqlParameter parm = new SqlParameter("@ЕмкостьНаземногоРезервуара", SqlDbType.Real);
                     parm.Value = risk_object.groundtank;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ЕмкостьПодземногоРезервуара", SqlDbType.Int);
+                    SqlParameter parm = new SqlParameter("@ЕмкостьПодземногоРезервуара", SqlDbType.Real);
                     parm.Value = risk_object.undergroundtank;
                     cmd.Parameters.Add(parm);
                 }
@@ -547,12 +547,12 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ДиаметрТрубы", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ДиаметрТрубы", SqlDbType.Real);
                     parm.Value = risk_object.tubediameter;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@Производительность", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@Производительность", SqlDbType.Real);
                     parm.Value = risk_object.productivity;
                     cmd.Parameters.Add(parm);
                 }
@@ -632,16 +632,20 @@ namespace EGH01DB.Objects
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        double x = (double)reader["ШиротаГрад"];
-                        double y = (double)reader["ДолготаГрад"];
+                        float x = (float)reader["ШиротаГрад"];
+                        float y = (float)reader["ДолготаГрад"];
                         Coordinates coordinates = new Coordinates((float)x, (float)y);
                         string ground_type_name = (string)reader["НаименованиеТипаГрунта"];
-                        double porosity = (double)reader["КоэфПористости"];
-                        double holdmigration = (double)reader["КоэфЗадержкиМиграции"];
-                        double waterfilter = (double)reader["КоэфФильтрацииВоды"];
-                        double diffusion = (double)reader["КоэфДиффузии"];
-                        double distribution = (double)reader["КоэфРаспределения"];
-                        double sorption = (double)reader["КоэфСорбции"];
+                        float porosity = (float)reader["КоэфПористости"];
+                        float holdmigration = (float)reader["КоэфЗадержкиМиграции"];
+                        float waterfilter = (float)reader["КоэфФильтрацииВоды"];
+                        float diffusion = (float)reader["КоэфДиффузии"];
+                        float distribution = (float)reader["КоэфРаспределения"];
+                        float sorption = (float)reader["КоэфСорбции"];
+                        float watercapacity = (float)reader["КоэфКапВлагоемкости"];
+                        float soilmoisture = (float)reader["ВлажностьГрунта"];
+                        float аveryanovfactor = (float)reader["КоэфАверьянова"];
+                        float permeability = (float)reader["Водопроницаемость"];
                         GroundType ground_type = new GroundType((int)reader["ТипГрунта"], 
                                                                     (string)ground_type_name, 
                                                                     (float)porosity, 
@@ -649,9 +653,14 @@ namespace EGH01DB.Objects
                                                                     (float)waterfilter,
                                                                     (float)diffusion,
                                                                     (float)distribution,
-                                                                    (float)sorption);
-                        double waterdeep = (double)reader["ГлубинаГрунтовыхВод"];
-                        double height = (double)reader["ВысотаУровнемМоря"];
+                                                                    (float)sorption,
+                                                                    (float)watercapacity,
+                                                                    (float)soilmoisture,
+                                                                    (float)аveryanovfactor,
+                                                                    (float)permeability);
+
+                        float waterdeep = (float)reader["ГлубинаГрунтовыхВод"];
+                        float height = (float)reader["ВысотаУровнемМоря"];
                         Point point = new Point(coordinates, ground_type, (float)waterdeep, (float)height);
                        
                         DateTime foundationdate = (DateTime)reader["ДатаВводаЭкспл"];
@@ -660,8 +669,8 @@ namespace EGH01DB.Objects
                         int numberofrefuel = (int)reader["КолВоЗаправокСут"];
                         int volume = (int)reader["ОбъемХранения"];
 
-                        int groundtank = (int)reader["ЕмкостьНаземногоРезервуара"];
-                        int undergroundtank = (int)reader["ЕмкостьПодземногоРезервуара"];
+                        float groundtank = (float)reader["ЕмкостьНаземногоРезервуара"];
+                        float undergroundtank = (float)reader["ЕмкостьПодземногоРезервуара"];
 
                         bool watertreatment = (bool)reader["ОчистнДождСток"];
                         bool watertreatmentcollect = (bool)reader["ОчистнСборПроливов"];
@@ -671,7 +680,7 @@ namespace EGH01DB.Objects
 
                         string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
                         int pdk = (int)reader["ПДК"];
-                        CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name, (int)pdk, 0.0f);
+                        CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name, (int)pdk, 0.0f);// !!!!
 
                         string name = (string)reader["НаименованиеТехногенногоОбъекта"];
                         string address = (string)reader["АдресТехногенногоОбъекта"];
@@ -693,8 +702,8 @@ namespace EGH01DB.Objects
 
                         string fueltype = (string)reader["ТипТоплива"];
                         int numberofthreads = (int)reader["КоличествоНиток"];
-                        double productivity = (double)reader["Производительность"];
-                        double tubediameter = (double)reader["ДиаметрТрубы"];
+                        float productivity = (float)reader["Производительность"];
+                        float tubediameter = (float)reader["ДиаметрТрубы"];
                         string geodescription = (string)reader["ГеографическоеОписание"];
 
                         risk_object = new RiskObject(id, point, risk_object_type, cadastre_type,
@@ -796,17 +805,17 @@ namespace EGH01DB.Objects
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
-                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Real);
                     parm.Value = center.coordinates.latitude;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Real);
                     parm.Value = center.coordinates.lngitude;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@Расстояние", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@Расстояние", SqlDbType.Real);
                     parm.Value = distance;
                     cmd.Parameters.Add(parm);
                 }
@@ -818,8 +827,8 @@ namespace EGH01DB.Objects
                     while (reader.Read())
                     {
                         int id = (int)reader["IdТехногенногоОбъекта"];
-                        double x = (double)reader["ШиротаГрад"];
-                        double y = (double)reader["ДолготаГрад"];
+                        float x = (float)reader["ШиротаГрад"];
+                        float y = (float)reader["ДолготаГрад"];
                         Coordinates coordinates = new Coordinates((float)x, (float)y);
                         Point point = new Point(coordinates);
                         //delta = (float)reader["Расстояние"];
@@ -836,7 +845,6 @@ namespace EGH01DB.Objects
                 return rc;
             }
         }
-
         public static bool CreateRiskObjectsList(EGH01DB.IDBContext dbcontext, Point center, float distance1, float distance2, ref RiskObjectsList risk_object_list)
         {
             bool rc = false;
@@ -844,22 +852,22 @@ namespace EGH01DB.Objects
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
-                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Real);
                     parm.Value = center.coordinates.latitude;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Real);
                     parm.Value = center.coordinates.lngitude;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@Расстояние1", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@Расстояние1", SqlDbType.Real);
                     parm.Value = distance1;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@Расстояние2", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@Расстояние2", SqlDbType.Real);
                     parm.Value = distance2;
                     cmd.Parameters.Add(parm);
                 }
@@ -871,8 +879,8 @@ namespace EGH01DB.Objects
                     while (reader.Read())
                     {
                         int id = (int)reader["IdТехногенногоОбъекта"];
-                        double x = (double)reader["ШиротаГрад"];
-                        double y = (double)reader["ДолготаГрад"];
+                        float x = (float)reader["ШиротаГрад"];
+                        float y = (float)reader["ДолготаГрад"];
                         Coordinates coordinates = new Coordinates((float)x, (float)y);
                         Point point = new Point(coordinates);
                         //delta = (float)reader["Расстояние"];

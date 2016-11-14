@@ -36,6 +36,14 @@ namespace EGH01.Controllers
                     view = View("SpreadingCoefficientCreate");
 
                 }
+                else if (menuitem.Equals("SpreadingCoefficient.Delete"))
+                {
+                    SpreadingCoefficient sc = new SpreadingCoefficient();
+                    //if (EGH01DB.Primitives.SpreadingCoefficient.GetByData(db, c, ref pt))
+                    //{
+                        view = View("SpreadingCoefficientDelete", sc);
+                    
+                }
                 //else if (menuitem.Equals("SpreadingCoefficient.Delete"))
                 //{
                 //    string type_code_item = this.HttpContext.Request.Params["type_code"];
@@ -52,6 +60,10 @@ namespace EGH01.Controllers
                 //        }
                 //    }
                 //}
+
+
+
+
                 //else if (menuitem.Equals("SpreadingCoefficient.Update"))
                 //{
                 //    string type_code_item = this.HttpContext.Request.Params["type_code"];
@@ -113,45 +125,47 @@ namespace EGH01.Controllers
                 view = View("SpreadingCoefficient", db);
                 if (menuitem.Equals("SpreadingCoefficient.Create.Create"))
                 {
-                    //int id = -1;
-                    //if (EGH01DB.Primitives.SpreadingCoefficient.GetNextCode(db, out id))
-                    //{
-                        GroundType ground_type = scv.ground_type;
+
+                    EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
+                    if (EGH01DB.Types.GroundType.GetByCode(db, scv.list_groundType, out type_groud))
+                    {
+                        GroundType ground_type = new GroundType(scv.list_groundType, type_groud.name, type_groud.porosity, type_groud.holdmigration, type_groud.waterfilter, type_groud.diffusion,
+                        type_groud.distribution, type_groud.sorption, type_groud.watercapacity, type_groud.soilmoisture, type_groud.аveryanovfactor, type_groud.permeability);
 
 
                         string strmin_angle = this.HttpContext.Request.Params["min_angle"] ?? "Empty";
-                        float min_angle = 0.0f;
+                        float min_angle;
                         Helper.FloatTryParse(strmin_angle, out min_angle);
 
                         string strmax_angle = this.HttpContext.Request.Params["max_angle"] ?? "Empty";
-                        float max_angle = 0.0f;
+                        float max_angle;
                         Helper.FloatTryParse(strmax_angle, out max_angle);
 
                         string strmin_volume = this.HttpContext.Request.Params["min_volume"] ?? "Empty";
-                        float min_volume = 0.0f;
+                        float min_volume;
                         Helper.FloatTryParse(strmin_volume, out min_volume);
 
                         string strmax_volume = this.HttpContext.Request.Params["max_volume "] ?? "Empty";
-                        float max_volume = 0.0f;
+                        float max_volume;
                         Helper.FloatTryParse(strmax_volume, out max_volume);
 
                         string strkoef = this.HttpContext.Request.Params["koef"] ?? "Empty";
-                        float koef = 0.0f;
+                        float koef;
                         Helper.FloatTryParse(strkoef, out koef);
 
+                        SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient(ground_type, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
 
+                        koef = EGH01DB.Primitives.SpreadingCoefficient.Get(db, sc);
 
-                        SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient((GroundType)ground_type, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
-                      //  PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density,
-                       //     (float)viscosity, (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion);
                         if (EGH01DB.Primitives.SpreadingCoefficient.Create(db, sc))
                         {
                             view = View("SpreadingCoefficient", db);
                         }
                         else if (menuitem.Equals("SpreadingCoefficient.Create.Cancel")) view = View("SpreadingCoefficient", db);
-                    //}
+                    }
+
+                    else if (menuitem.Equals("SpreadingCoefficient.Create.Cancel")) view = View("SpreadingCoefficient", db);
                 }
-                else if (menuitem.Equals("SpreadingCoefficient.Create.Cancel")) view = View("SpreadingCoefficient", db);
             }
             catch (RGEContext.Exception e)
             {

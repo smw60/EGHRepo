@@ -79,17 +79,17 @@ namespace EGH01DB.Primitives
                     {
                         int code = (int)reader["КодТипаГрунта"];
                         string name = (string)reader["НаименованиеТипаГрунта"];
-                        double porosity = (double)reader["КоэфПористости"];
-                        double holdmigration = (double)reader["КоэфЗадержкиМиграции"];
-                        double waterfilter = (double)reader["КоэфФильтрацииВоды"];
-                        double diffusion = (double)reader["КоэфДиффузии"];
-                        double distribution = (double)reader["КоэфРаспределения"];
-                        double sorption = (double)reader["КоэфСорбции"];
+                        float porosity = (float)reader["КоэфПористости"];
+                        float holdmigration = (float)reader["КоэфЗадержкиМиграции"];
+                        float waterfilter = (float)reader["КоэфФильтрацииВоды"];
+                        float diffusion = (float)reader["КоэфДиффузии"];
+                        float distribution = (float)reader["КоэфРаспределения"];
+                        float sorption = (float)reader["КоэфСорбции"];
 
-                        double watercapacity = (double)reader["КоэфКапВлагоемкости"];
-                        double soilmoisture = (double)reader["ВлажностьГрунта"];
-                        double аveryanovfactor = (double)reader["КоэфАверьянова"];
-                        double permeability = (double)reader["Водопроницаемость"];
+                        float watercapacity = (float)reader["КоэфКапВлагоемкости"];
+                        float soilmoisture = (float)reader["ВлажностьГрунта"];
+                        float аveryanovfactor = (float)reader["КоэфАверьянова"];
+                        float permeability = (float)reader["Водопроницаемость"];
 
                         list_type.Add(new GroundType((int)code, 
                                                     (string)name, 
@@ -145,7 +145,36 @@ namespace EGH01DB.Primitives
 
             }
         }
+        static public bool GetListWaterProperties(EGH01DB.IDBContext dbcontext, ref List<WaterProperties> list)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetWaterPropertiesList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
 
+                    list = new List<WaterProperties>();
+                    while (reader.Read())
+                    {
+                        list.Add(new WaterProperties((int)reader["КодПоказателяВоды"],
+                                                        (float)reader["Температура"],
+                                                        (float)reader["Вязкость"],
+                                                        (float)reader["Плотность"],
+                                                       (float)reader["КоэфПовНат"]));
+                    }
+                    rc = list.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+
+            }
+        }
         static public bool GetListEcoObjectType(EGH01DB.IDBContext dbcontext, ref List<EcoObjectType> list_type)
         { 
             bool rc = false;
@@ -187,13 +216,13 @@ namespace EGH01DB.Primitives
                     {
                         int code = (int)reader["КодТипаНефтепродукта"];
                         string name = (string)reader["НаименованиеТипаНефтепродукта"];
-                        double boilingtemp = (double)reader["ТемператураКипения"];
-                        double density = (double)reader["Плотность"];
-                        double viscosity = (double)reader["КинематическаяВязкость"];
-                        double solubility = (double)reader["Растворимость"];
-                        double tension = (double)reader["КоэфНатяжения"];
-                        double dynamicviscosity = (double)reader["ДинамическаяВязкость"];
-                        double diffusion = (double)reader["КоэфДиффузии"];
+                        float boilingtemp = (float)reader["ТемператураКипения"];
+                        float density = (float)reader["Плотность"];
+                        float viscosity = (float)reader["КинематическаяВязкость"];
+                        float solubility = (float)reader["Растворимость"];
+                        float tension = (float)reader["КоэфНатяжения"];
+                        float dynamicviscosity = (float)reader["ДинамическаяВязкость"];
+                        float diffusion = (float)reader["КоэфДиффузии"];
 
                         list_type.Add(new PetrochemicalType((int)code, 
                                                             (string)name, 
@@ -352,16 +381,20 @@ namespace EGH01DB.Primitives
                     while (reader.Read())
                     {
                         int id = (int)reader["IdТехногенногоОбъекта"];
-                        double x = (double)reader["ШиротаГрад"];
-                        double y = (double)reader["ДолготаГрад"];
+                        float x = (float)reader["ШиротаГрад"];
+                        float y = (float)reader["ДолготаГрад"];
                         Coordinates coordinates = new Coordinates((float)x, (float)y);
                         string ground_type_name = (string)reader["НаименованиеТипаГрунта"];
-                        double porosity = (double)reader["КоэфПористости"];
-                        double holdmigration = (double)reader["КоэфЗадержкиМиграции"];
-                        double waterfilter = (double)reader["КоэфФильтрацииВоды"];
-                        double diffusion = (double)reader["КоэфДиффузии"];
-                        double distribution = (double)reader["КоэфРаспределения"];
-                        double sorption = (double)reader["КоэфСорбции"];
+                        float porosity = (float)reader["КоэфПористости"];
+                        float holdmigration = (float)reader["КоэфЗадержкиМиграции"];
+                        float waterfilter = (float)reader["КоэфФильтрацииВоды"];
+                        float diffusion = (float)reader["КоэфДиффузии"];
+                        float distribution = (float)reader["КоэфРаспределения"];
+                        float sorption = (float)reader["КоэфСорбции"];
+                        float watercapacity = (float)reader["КоэфКапВлагоемкости"];
+                        float soilmoisture = (float)reader["ВлажностьГрунта"];
+                        float аveryanovfactor = (float)reader["КоэфАверьянова"];
+                        float permeability = (float)reader["Водопроницаемость"];
                         GroundType ground_type = new GroundType((int)reader["ТипГрунта"],
                                                                     (string)ground_type_name,
                                                                     (float)porosity,
@@ -369,9 +402,13 @@ namespace EGH01DB.Primitives
                                                                     (float)waterfilter,
                                                                     (float)diffusion,
                                                                     (float)distribution,
-                                                                    (float)sorption);
-                        double waterdeep = (double)reader["ГлубинаГрунтовыхВод"];
-                        double height = (double)reader["ВысотаУровнемМоря"];
+                                                                    (float)sorption,
+                                                                    (float)watercapacity,
+                                                                    (float)soilmoisture,
+                                                                    (float)аveryanovfactor,
+                                                                    (float)permeability);
+                        float waterdeep = (float)reader["ГлубинаГрунтовыхВод"];
+                        float height = (float)reader["ВысотаУровнемМоря"];
 
                         int district_code = (int)reader["РайонТехногенногоОбъекта"];
                         string district_name = (string)reader["Район"];
@@ -392,16 +429,16 @@ namespace EGH01DB.Primitives
                         int numberofrefuel = (int)reader["КолВоЗаправокСут"];
                         int volume = (int)reader["ОбъемХранения"];
 
-                        int groundtank = (int)reader["ЕмкостьНаземногоРезервуара"];
-                        int undergroundtank = (int)reader["ЕмкостьПодземногоРезервуара"];
+                        float groundtank = (float)reader["ЕмкостьНаземногоРезервуара"];
+                        float undergroundtank = (float)reader["ЕмкостьПодземногоРезервуара"];
 
                         bool watertreatment = (bool)reader["ОчистнДождСток"];
                         bool watertreatmentcollect = (bool)reader["ОчистнСборПроливов"];
 
                         string fueltype = (string)reader["ТипТоплива"];
                         int numberofthreads = (int)reader["КоличествоНиток"];
-                        double productivity = (double)reader["Производительность"];
-                        double tubediameter = (double)reader["ДиаметрТрубы"];
+                        float productivity = (float)reader["Производительность"];
+                        float tubediameter = (float)reader["ДиаметрТрубы"];
                         string geodescription = (string)reader["ГеографическоеОписание"];
 					
                         byte[] map = new byte[0]; // карта!

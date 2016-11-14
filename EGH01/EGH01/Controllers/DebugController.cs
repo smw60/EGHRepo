@@ -18,8 +18,6 @@ namespace EGH01.Controllers
 
         public ActionResult Index()
         {
-
-
             return View();
         }
         public ActionResult XML()
@@ -56,14 +54,152 @@ namespace EGH01.Controllers
                 IncidentTypeList list = new IncidentTypeList(db);
                 XmlNode n = list.toXmlNode();
                 int k = 1;
-
-
             }
-
-
 
             return View();
         }
+        // проверка процедур  XML
+        public ActionResult XML_District_Region()
+        {
+            {
+                //Region reg = new Region(2, "Витебская");
+                //XmlNode xmlreg = reg.toXmlNode("Область");
+                //Region reg1 = new Region(xmlreg);
+            
+                //District district = new District(1, reg, "Витебский");
+                //XmlNode xml = district.toXmlNode("test");
+                //District district1 = new District(xml);
+            }
+            return View();
+        }
+        public ActionResult XML_CadastreType()
+        {
+            {
+                //CadastreType cad = new CadastreType(2, "Населенных пунктов, садоводческих товариществ, дач", 127, 0.3f);
+                //XmlNode xmlcad = cad.toXmlNode("Кадастр");
+                //CadastreType cad1 = new CadastreType(xmlcad);
+                
+            }
+            return View();
+        }
+        public ActionResult XML_PetrochemicalType()
+        {
+            {
+                //PetrochemicalType pc = new PetrochemicalType(2, "Сырая нефть", 129.4f, 12.3f, 15.6f, 78.2f, 450.2f, 12.3f, 2.4f);
+                //XmlNode xmlpc = pc.toXmlNode("Petrochemical Type");
+                //PetrochemicalType pc1 = new PetrochemicalType(xmlpc);
+            }
+            return View();
+        }
+        public ActionResult XML_RiskObjectType()
+        {
+            {
+                //RiskObjectType ro = new RiskObjectType(2, "Оборудование нефтеперерабатывающих предприятий");
+                //XmlNode xmlro = ro.toXmlNode("Risk Object Type");
+                //RiskObjectType ro1 = new RiskObjectType(xmlro);
+            }
+            return View();
+        }
+        public ActionResult XML_EcoObjectType()
+        {
+            {
+                //EcoObjectType eo = new EcoObjectType(2, "Заповедник");
+                //XmlNode xmleo = eo.toXmlNode("Eco Object Type");
+                //EcoObjectType eo1 = new EcoObjectType(xmleo);
+            }
+            return View();
+        }
+        public ActionResult XML_WaterProperties()
+        {
+            {
+                //WaterProperties wp = new WaterProperties (12, 70.0f, 09.0f, 80.0f, 70.0f);
+                //XmlNode xml_wp = wp.toXmlNode("Water Properties");
+                //WaterProperties wp1 = new WaterProperties(xml_wp);
+            }
+            return View();
+        }
+        
+        // проверка процедур  Water Properties
+        public ActionResult Water_Properties_list() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<WaterProperties> list = new List<WaterProperties>();
+                //if (Helper.GetListWaterProperties(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Water_Properties_Obj() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //WaterProperties wp = new WaterProperties();
+                //if (WaterProperties.GetByCode(db, 4, out wp))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Water_Properties_DeleteByCode() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //if (WaterProperties.DeleteByCode(db, 10)) // удалена
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Water_Properties_Create()// yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int id = 0;
+                //WaterProperties ap = new WaterProperties(id, 80.0f, 13.7f, 55.7f, 90.9f);
+                //if (WaterProperties.Create(db, ap))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Water_Properties_Update() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int id = 12;
+                //WaterProperties ap = new WaterProperties(id, 90.0f, 67.9f, 78.0f, 66.6f);
+                //if (WaterProperties.Update(db, ap))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Water_Properties_By_Temp() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //float temp = 64.0f;
+                //float delta = 0.0f;
+                //WaterProperties wp = new WaterProperties();
+                //if (WaterProperties.Get(db, temp, out wp, out delta))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
+
+
+
         // проверка процедур  Anchor point
         public ActionResult Anchor_Point_list() // yes
         {
@@ -133,7 +269,16 @@ namespace EGH01.Controllers
             }
             return View();
         }
- 
+        public ActionResult Anchor_Point_CreateNear() // yes
+        {
+            //RGEContext db = new RGEContext();
+            //{
+            //    Coordinates coord = new Coordinates(553.678f, 27.14f);
+            //    float distance = 10000.0f;
+            //    AnchorPointList apl = AnchorPointList.CreateNear(coord, distance);
+            //}
+            return View();
+        }
 
 
         // проверка процедур Spreading Coefficient
@@ -379,11 +524,11 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-            //    List<RiskObject> list = new List<RiskObject>();
-            //    if (Helper.GetListRiskObject(db, ref list))
-            //    {
-            //        int k = 1;
-            //    };
+                //List<RiskObject> list = new List<RiskObject>();
+                //if (Helper.GetListRiskObject(db, ref list))
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -492,9 +637,9 @@ namespace EGH01.Controllers
             {
                 //PetrochemicalType pt = new PetrochemicalType();
                 //if (PetrochemicalType.GetByCode(db, 7, ref pt))
-                {
-                    int k = 1;
-                };
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -505,9 +650,9 @@ namespace EGH01.Controllers
                 //PetrochemicalType pt = new PetrochemicalType();
                 //int k1 = 0;
                 //if (PetrochemicalType.GetNextCode(db, out k1))
-                {
-                    int k = 1;
-                };
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -516,10 +661,10 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //PetrochemicalType pt = new PetrochemicalType();
-                //if (PetrochemicalType.DeleteByCode(db, 9))  // удален
-                {
-                    int k = 1;
-                };
+                //if (PetrochemicalType.DeleteByCode(db, 10))  // удален
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -528,7 +673,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
 
-                //int code_type = 8;
+                //int code_type = 7;
                 //string name = "test";
                 //float boilingtemp = 100.0f;
                 //float density = 30.0f;
@@ -537,13 +682,13 @@ namespace EGH01.Controllers
                 //float tension = 12.4f;
                 //float dynamicviscosity = 0.8f;
                 //float diffusion = 16.2f;
-                //        PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, 
-                //            (float)boilingtemp, (float)density, (float)viscosity, 
-                //            (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion);
+                //PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name,
+                //    (float)boilingtemp, (float)density, (float)viscosity,
+                //    (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion);
                 //if (PetrochemicalType.Create(db, pt))
-                {
-                    int k = 1;
-                };
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -551,17 +696,17 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //int code_type = 9;
+                //int code_type = 10;
                 //string name = "test1";
                 //float boilingtemp = 110.0f;
                 //float density = 35.0f;
                 //float viscosity = 50.0f;
-                //float solubility = 3.0f;
-                //float tension = 12.4f;
-                //float dynamicviscosity = 0.8f;
-                //float diffusion = 16.2f;
+                //float solubility = 3.000001f;
+                //float tension = 12.4034f;
+                //float dynamicviscosity = 0.87868453f;
+                //float diffusion = 16.23332221f;
 
-                //PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, 
+                //PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name,
                 //                                (float)boilingtemp, (float)density, (float)viscosity, (float)solubility,
                 //                                (float)tension, (float)dynamicviscosity, (float)diffusion);
                 //if (PetrochemicalType.Update(db, pt))

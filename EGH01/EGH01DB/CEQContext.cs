@@ -7,9 +7,38 @@ using System.Data.SqlClient;
 using System.Configuration;
 namespace EGH01DB
 {
-    public class CEQContext
+    public class CEQContext : IDBContext
     {
-        public bool IsConnect { get { return con != null; } }
-        SqlConnection con = DB.Connect();
+
+
+        SqlConnection con = DB.Connect("EGHCEQ");
+
+        public SqlConnection connection { get { return con; } }
+        public CEQContext()
+        {
+            //        if (con == null) throw new RGEContext.Exception(1);
+
+        }
+
+        //public Incident CreateIncident() 
+        //{
+        //    return new Incident();
+        //}     
+
+
+        public void Disconnect()
+        {
+            if (con != null) con.Close();
+            con = null;
+        }
+
+
+
+
     }
+
+
+
+
 }
+

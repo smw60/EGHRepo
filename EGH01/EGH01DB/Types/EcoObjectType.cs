@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Xml;
+using EGH01DB.Primitives;
 
 
 namespace EGH01DB.Types
@@ -37,7 +39,11 @@ namespace EGH01DB.Types
             this.type_code = 0;
             this.name = name;
         }
-
+        public EcoObjectType(XmlNode node)
+        {
+            this.type_code = Helper.GetIntAttribute(node, "type_code", -1);
+            this.name = Helper.GetStringAttribute(node, "name", "");
+        }
         static public bool Create(EGH01DB.IDBContext dbcontext, EcoObjectType ecoobject_type)
         {
 
@@ -220,6 +226,15 @@ namespace EGH01DB.Types
 
             }
             return rc;
+        }
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("EcoObjectType");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            rc.SetAttribute("type_code", this.type_code.ToString());
+            rc.SetAttribute("name", this.name.ToString());
+            return (XmlNode)rc;
         }
     }
 }

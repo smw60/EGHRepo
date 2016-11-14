@@ -59,7 +59,7 @@
     <div class="box">
         <div class="boxdata">
             <p>
-                <label class="boxdata-label-30">Тип техногенного объекта </label>   @Html.DropDownList("selectlist")
+                <label class="boxdata-label-30">Тип техногенного объекта </label>@Html.DropDownList("selectlist")
             </p>
             <p>
                 <label class="boxdata-label-30">Наименование</label>
@@ -89,11 +89,11 @@
                 <legend style="width: auto; font: inherit; border:none;">Объем резервуаров для хранения нефтепродутов (м3)</legend>
                 <p>
                     <label class="boxdata-label-30">Наземные</label>
-                    <input class="boxdata-input-50" type="number" name="groundtank" value=" " min="0" />
+                    <input class="boxdata-input-50" type="number" name="groundtank" value=" " min="0" step="0.1"  />
                 </p>
                 <p>
                     <label class="boxdata-label-30">Подземные</label>
-                    <input class="boxdata-input-50" type="number" name="undergroundtank" value=" " min="0" />
+                    <input class="boxdata-input-50" type="number" name="undergroundtank" value=" " min="0" step="0.1" />
                 </p>
             </fieldset>
             <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
@@ -120,13 +120,13 @@
                     <label class="boxdata-label-30">Широта</label>
                     <input class="boxdata-input-10" type="number" name="Latitude" value=" " min="-90" max="90" />&deg;
                     <input class="boxdata-input-10" type="number" name="Lat_m" value=" " min="-90" max="90" />&acute;
-                    <input class="boxdata-input-10" type="number" name="Lat_s" value=" " min="0" max="60" step="0.001" />&quot;
+                    <input class="boxdata-input-10" type="number" name="Lat_s" value=" " min="0" max="60" step="0.01" />&quot;
                 </p>
                 <p>
                 <label class="boxdata-label-30">Долгота</label>
                     <input class="boxdata-input-10" type="number" name="Lngitude" value=" " max="180" min="0" />&deg;
                     <input class="boxdata-input-10" type="number" name="Lng_m" value=" " min="-90" max="90" />&acute;
-                    <input class="boxdata-input-10" type="number" name="Lng_s" value=" " min="0" max="60" step="0.001" />&quot;
+                    <input class="boxdata-input-10" type="number" name="Lng_s" value=" " min="0" max="60" step="0.01" />&quot;
                 </p>
                 @*<p>
                     <label class="boxdata-label-30">КАРТА!</label>
@@ -141,11 +141,11 @@
                 </p>
                 <p>
                     <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
-                    <input class="boxdata-input-50" type="number" name="waterdeep" value=" " min="0" />
+                    <input class="boxdata-input-50" type="number" name="waterdeep" value=" " min="0"  step="0.1"/>
                 </p>
                 <p>
                     <label class="boxdata-label-30">Высота над уровнем моря (м)</label>
-                    <input class="boxdata-input-50" type="number" name="height" value=" " min="0" />
+                    <input class="boxdata-input-50" type="number" name="height" value=" " min="0" step="0.1" />
                 </p>
 
             </fieldset>
