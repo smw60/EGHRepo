@@ -24,6 +24,7 @@ namespace EGH01DB.Types
         public float soilmoisture { get; private set; }   // влажность грунта (от 0 до 1)
         public float аveryanovfactor { get; private set; }   // коэффициент Аверьянова (от 4 до 9)
         public float permeability { get; private set; }   // водопроницаемость м/с
+        public float density { get; private set; }   // водопроницаемость м/с
 
         public bool    Create()      {return true;}
         public bool    Delete()      {return true;}
@@ -43,6 +44,7 @@ namespace EGH01DB.Types
             this.soilmoisture = 0.0f;
             this.аveryanovfactor = 0.0f;
             this.permeability = 0.0f;
+            this.density = 0.0f;
         }
         public GroundType(int type_code)
         {
@@ -58,6 +60,7 @@ namespace EGH01DB.Types
             this.soilmoisture = 0.0f;
             this.аveryanovfactor = 0.0f;
             this.permeability = 0.0f;
+            this.density = 0.0f;
         }
         public GroundType(int type_code, string name, float porosity, float holdmigration, float waterfilter, float diffusion, float distribution, float sorption)
         {
@@ -73,6 +76,7 @@ namespace EGH01DB.Types
             this.soilmoisture = -1.0f;
             this.аveryanovfactor = -1.0f;
             this.permeability = -1.0f;
+            this.density = 0.0f;
         }
         public GroundType(int type_code, 
                             string name, 
@@ -85,7 +89,8 @@ namespace EGH01DB.Types
                             float watercapacity,
                             float soilmoisture,
                             float аveryanovfactor,
-                            float permeability)
+                            float permeability,
+                            float density)
         {
             this.type_code = type_code;
             this.name = name;
@@ -99,6 +104,7 @@ namespace EGH01DB.Types
             this.soilmoisture = soilmoisture;
             this.аveryanovfactor = аveryanovfactor;
             this.permeability = permeability;
+            this.density = density;
         }
         public GroundType(XmlNode node)
         {
@@ -114,6 +120,7 @@ namespace EGH01DB.Types
             this.soilmoisture =     Helper.GetFloatAttribute(node, "soilmoisture");
             this.аveryanovfactor =  Helper.GetFloatAttribute(node, "аveryanovfactor");
             this.permeability =     Helper.GetFloatAttribute(node, "permeability");
+            this.density   =        Helper.GetFloatAttribute(node, "density");
         }
 
         static public bool GetByCode(EGH01DB.IDBContext dbcontext, int type_code, out GroundType ground_type)
@@ -151,6 +158,7 @@ namespace EGH01DB.Types
                         float soilmoisture = (float)reader["ВлажностьГрунта"];
                         float аveryanovfactor = (float)reader["КоэфАверьянова"];
                         float permeability = (float)reader["Водопроницаемость"];
+                        float density = (float)reader["СредняяПлотностьГрунта"];
                         if (rc = (int)cmd.Parameters["@exitrc"].Value > 0)
                             ground_type = new GroundType((int)type_code,
                                                          (string)name,
@@ -163,7 +171,8 @@ namespace EGH01DB.Types
                                                          (float)watercapacity,
                                                          (float)soilmoisture,
                                                          (float)аveryanovfactor,
-                                                         (float)permeability);
+                                                         (float)permeability,
+                                                         (float)density);
                     }
                     reader.Close();
                 }
@@ -278,6 +287,11 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
+                    SqlParameter parm = new SqlParameter("@СредняяПлотностьГрунта", SqlDbType.Real);
+                    parm.Value = ground_type.density;
+                    cmd.Parameters.Add(parm);
+                }
+                {
                     SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
                     parm.Direction = ParameterDirection.ReturnValue;
                     cmd.Parameters.Add(parm);
@@ -363,6 +377,11 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
+                    SqlParameter parm = new SqlParameter("@СредняяПлотностьГрунта", SqlDbType.Real);
+                    parm.Value = ground_type.density;
+                    cmd.Parameters.Add(parm);
+                }
+                {
                     SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
                     parm.Direction = ParameterDirection.ReturnValue;
                     cmd.Parameters.Add(parm);
@@ -429,10 +448,8 @@ namespace EGH01DB.Types
              rc.SetAttribute("soilmoisture",    this.soilmoisture.ToString());
              rc.SetAttribute("аveryanovfactor", this.аveryanovfactor.ToString());
              rc.SetAttribute("permeability",    this.permeability.ToString());
+             rc.SetAttribute("density",         this.density.ToString());
              return (XmlNode)rc;
         }
-
-
-
     }
 }
