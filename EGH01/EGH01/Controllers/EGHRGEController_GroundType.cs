@@ -171,6 +171,13 @@ namespace EGH01.Controllers
                     {
                         аveryanovfactor = 0.0f;
                     }
+                    string strdensity = this.HttpContext.Request.Params["density"] ?? "Empty";
+                    float density = 0.1f;//аверьянова коэф
+                    if (!Helper.FloatTryParse(strdensity, out density))
+                    {
+                        density = 0.0f;
+                    }
+
                     EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability);
 
 
