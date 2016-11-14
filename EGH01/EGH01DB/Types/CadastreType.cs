@@ -14,8 +14,10 @@ namespace EGH01DB.Types
     {
         public int    type_code { get; private set; }   // код кадастрового типа  (промзона, сельхоз земли, заповедники и пр.  ) 
         public string name     { get; private set; }   // наименование типа 
-        public int pdk_coef { get; private set; }       // значение коэффициента ПДК 
-        public float water_pdk_coef { get; private set; }  
+        public float pdk_coef { get; private set; }       // значение коэффициента ПДК 
+        public float water_pdk_coef { get; private set; }
+        public string ground_doc_name { get; private set; }   // наименование документа по земле 
+        public string water_doc_name { get; private set; }   // наименование документа по воде 
         static public CadastreType defaulttype { get { return new CadastreType(0, "Не определен", 0,0.0f); } }  // выдавать при ошибке
         
         public CadastreType()
@@ -24,6 +26,8 @@ namespace EGH01DB.Types
             this.name = string.Empty;
             this.pdk_coef = -1;
             this.water_pdk_coef = -1;
+            this.ground_doc_name = string.Empty;
+            this.water_doc_name = string.Empty;
         }
 
         public CadastreType(int type_code, String name, int pdk_coef, float water_pdk_coef)
@@ -32,6 +36,8 @@ namespace EGH01DB.Types
             this.name = name;
             this.pdk_coef = pdk_coef;
             this.water_pdk_coef = water_pdk_coef;
+            this.ground_doc_name = string.Empty;
+            this.water_doc_name = string.Empty;
         }
         public CadastreType(int type_code)
         {
@@ -39,6 +45,8 @@ namespace EGH01DB.Types
             this.name = "";
             this.pdk_coef = 0;
             this.water_pdk_coef = -1;
+            this.ground_doc_name = string.Empty;
+            this.water_doc_name = string.Empty;
         }
 
         public CadastreType(String name)
@@ -47,6 +55,17 @@ namespace EGH01DB.Types
             this.name = name;
             this.pdk_coef = 0;
             this.water_pdk_coef = -1;
+            this.ground_doc_name = string.Empty;
+            this.water_doc_name = string.Empty;
+        }
+        public CadastreType(int type_code, String name, float pdk_coef, float water_pdk_coef, string ground_doc_name, string water_doc_name)
+        {
+            this.type_code = type_code;
+            this.name = name;
+            this.pdk_coef = pdk_coef;
+            this.water_pdk_coef = water_pdk_coef;
+            this.ground_doc_name = ground_doc_name;
+            this.water_doc_name = water_doc_name;
         }
         public CadastreType(XmlNode node)
         {
@@ -54,6 +73,9 @@ namespace EGH01DB.Types
             this.name = Helper.GetStringAttribute(node, "name", "");
             this.pdk_coef = Helper.GetIntAttribute(node, "pdk_coef", -1);
             this.water_pdk_coef = Helper.GetFloatAttribute(node, "water_pdk_coef", 0.0f);
+            this.ground_doc_name = Helper.GetStringAttribute(node, "ground_doc_name", "");
+            this.water_doc_name = Helper.GetStringAttribute(node, "water_doc_name", "");
+
         }
 
         public string ToLine()
@@ -75,18 +97,28 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@НаименованиеНазначенияЗемель", SqlDbType.VarChar);
+                    SqlParameter parm = new SqlParameter("@НаименованиеНазначенияЗемель", SqlDbType.NVarChar);
                     parm.Value = land_type.name;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ПДК", SqlDbType.Int);
+                    SqlParameter parm = new SqlParameter("@ПДК", SqlDbType.Real);
                     parm.Value = land_type.pdk_coef;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ПДКводы", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ПДКводы", SqlDbType.Real);
                     parm.Value = land_type.water_pdk_coef;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@НормДокументЗемля", SqlDbType.NVarChar);
+                    parm.Value = land_type.ground_doc_name;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@НормДокументВода", SqlDbType.NVarChar);
+                    parm.Value = land_type.water_doc_name;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -156,13 +188,23 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ЗначениеПДК", SqlDbType.Int);
+                    SqlParameter parm = new SqlParameter("@ЗначениеПДК", SqlDbType.Real);
                     parm.Value = land_type.pdk_coef;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ПДКводы", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ПДКводы", SqlDbType.Real);
                     parm.Value = land_type.water_pdk_coef;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@НормДокументЗемля", SqlDbType.NVarChar);
+                    parm.Value = land_type.ground_doc_name;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@НормДокументВода", SqlDbType.NVarChar);
+                    parm.Value = land_type.water_doc_name;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -232,23 +274,6 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@НаименованиеНазначенияЗемель", SqlDbType.NVarChar);
-                    parm.Size = 100;
-                    parm.Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@ПДК", SqlDbType.Int);
-                    parm.Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@ПДКводы", SqlDbType.Float);
-                    parm.Direction = ParameterDirection.Output;
-                    parm.Precision = 2;
-                    cmd.Parameters.Add(parm);
-                }
-                {
                     SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
                     parm.Direction = ParameterDirection.ReturnValue;
                     cmd.Parameters.Add(parm);
@@ -256,10 +281,18 @@ namespace EGH01DB.Types
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    string name = (string)cmd.Parameters["@НаименованиеНазначенияЗемель"].Value;
-                    int pdk_coef = (int)cmd.Parameters["@ПДК"].Value;
-                    double water_pdk_coef = (double)cmd.Parameters["@ПДКводы"].Value;
-                    if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) type = new CadastreType(type_code, name, pdk_coef,(float) water_pdk_coef);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        string name = (string)reader["@НаименованиеНазначенияЗемель"];
+                        float pdk_coef = (float)reader["@ПДК"];
+                        float water_pdk_coef = (float)reader["@ПДКводы"];
+                        string ground_doc_name = (string)reader["@НормДокументЗемля"];
+                        string water_doc_name = (string)reader["@НормДокументВода"]; 
+                        if (rc = (int)cmd.Parameters["@exitrc"].Value > 0)
+                                type = new CadastreType(type_code, name, (float)pdk_coef, (float)water_pdk_coef, ground_doc_name, water_doc_name); 
+                    }
+                    reader.Close();
                 }
                 catch (Exception e)
                 {
@@ -278,6 +311,8 @@ namespace EGH01DB.Types
             rc.SetAttribute("name", this.name.ToString());
             rc.SetAttribute("pdk_coef", this.pdk_coef.ToString());
             rc.SetAttribute("water_pdk_coef", this.water_pdk_coef.ToString());
+            rc.SetAttribute("ground_doc_name", this.ground_doc_name.ToString());
+            rc.SetAttribute("water_doc_name", this.water_doc_name.ToString());
             return (XmlNode)rc;
         }
     }

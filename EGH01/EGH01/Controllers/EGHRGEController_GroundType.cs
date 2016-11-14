@@ -171,7 +171,7 @@ namespace EGH01.Controllers
                     {
                         аveryanovfactor = 0.0f;
                     }
-                    EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability);
+                    EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability, 0.0f); // blinova
 
 
                     if (EGH01DB.Types.GroundType.Create(db, ground_type))
@@ -311,7 +311,8 @@ namespace EGH01.Controllers
                                                     (float)watercapacity,
                                                     (float)soilmoisture,
                                                     (float)аveryanovfactor,
-                                                    (float)permeability);
+                                                    (float)permeability,
+                                                    0.0f); // blinova
                     if (EGH01DB.Types.GroundType.Update(db, gti))
                     {
                         view = View("GroundType", db);
