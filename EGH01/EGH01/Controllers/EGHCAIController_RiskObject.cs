@@ -159,7 +159,7 @@ namespace EGH01.Controllers
                                     EGH01DB.Types.Region region = new EGH01DB.Types.Region();
                                     if (EGH01DB.Types.Region.GetByCode(db, rs.list_region, out region))
                                     {
-                                        DateTime foundationdate = rs.foundationdate.Date;
+                                        DateTime foundationdate = rs.foundationdate;
                                         DateTime reconstractiondate = rs.reconstractiondate;
                                         string name = rs.name;
                                         String phone = rs.phone;

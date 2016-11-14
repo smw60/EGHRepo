@@ -5,19 +5,20 @@
 @using EGH01DB.Types;
 @model EGH01DB.Objects.RiskObject
 @{
-
+    EGH01DB.CAIContext db = new EGH01DB.CAIContext();
     Layout = "~/Views/Shared/EGHLayout.cshtml";
+    EGH01.Models.EGHCAI.RiskObject context = (EGH01.Models.EGHCAI.RiskObject)db.GetViewContext("RiskObject");
     Menu head = new Menu(
-                          new Menu.MenuItem("Создать", "RiskObject.Create", false),
-                          new Menu.MenuItem("Excel-формат", "RiskObject.Excel", false)
-                        );
+                  new Menu.MenuItem("Создать", "RiskObject.Create", false),
+                  new Menu.MenuItem("Excel-формат", "RiskObject.Excel", false)
+                );
 
     Menu delete = new Menu(
                           new Menu.MenuItem("Изменить", "RiskObject.Update.Update", true),
                           new Menu.MenuItem("Отказаться", "RiskObject.Update.Cancel", true)
                         );
 
-    EGH01DB.CAIContext db = new EGH01DB.CAIContext();
+
 
     {  List<EGH01DB.Types.RiskObjectType> selectlist = new List<EGH01DB.Types.RiskObjectType>();
         List<SelectListItem> listtype = ViewBag.selectlist = new List<SelectListItem>();
@@ -141,52 +142,74 @@
              <input type="checkbox" class="boxdata-label-30" name="watertreatmentcollect" value="true">&emsp; <label>&emsp;Резервуар для сбора проливов</label>
             </p>
             </fieldset>
+@*<p>
+                @{
+
+                    string idate = DateTime.Now.ToString("yyyy-MM-dd");
+                    if (context.foundationdate != null) { idate = ((DateTime)context.foundationdate).ToString("yyyy-MM-dd"); }
+
+                    <div class="boxdata">
+                        <label class="boxdata-label-30"> Дата инцидента </label>
+                        <input class="boxdata-input-30" type="date" name="date" value="@idate" />
+                 </div>
+
+                }
+<p>*@
+
+
                 <p>
                     <label class="boxdata-label-30">Дата ввода в эксплуатацию</label>
                     <input class="boxdata-input-50" type="text" name="foundationdate" value="@Model.foundationdate.ToShortDateString()" />
                 </p>
+
+
+
+
                 <p>
                     <label class="boxdata-label-30">Дата послежней реконструкции</label>
                     <input class="boxdata-input-50" type="text" name="reconstractiondate" value="@Model.reconstractiondate.ToShortDateString()" />
                 </p>
 
-            <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
-                <legend style="width: auto; font: inherit; border:none;">Географические координаты</legend>
-                <p>
-                    <label class="boxdata-label-30">Широта </label>
+                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+                    <legend style="width: auto; font: inherit; border:none;">Географические координаты</legend>
+                    <p>
+                        <label class="boxdata-label-30">Широта </label>
 
-                    <input class="boxdata-input-10" type="number" name="Latitude" value="@Model.coordinates.lat.d.ToString()" min="-90" max="90" />&deg;
-                    <input class="boxdata-input-10" type="number" name="Lat_m" value="@Model.coordinates.lat.m.ToString()" min="-90" max="90" />&acute;
-                    <input class="boxdata-input-10" type="number" name="Lat_s" value="@Model.coordinates.lat.s.ToString("0.00").Replace(',' , '.')" min="0" max="60" step="0.001" />&quot;
+                        <input class="boxdata-input-10" type="number" name="Latitude" value="@Model.coordinates.lat.d.ToString()" min="-90" max="90" />&deg;
+                        <input class="boxdata-input-10" type="number" name="Lat_m" value="@Model.coordinates.lat.m.ToString()" min="-90" max="90" />&acute;
+                        <input class="boxdata-input-10" type="number" name="Lat_s" value="@Model.coordinates.lat.s.ToString("0.00").Replace(',' , '.')" min="0" max="60" step="0.001" />&quot;
+                    </p>
+                    <p>
+                        <label class="boxdata-label-30">Долгота</label>
+                        <input class="boxdata-input-10" type="number" name="Lngitude" value="@Model.coordinates.lng.d.ToString()" max="180" min="0" />&deg;
+                        <input class="boxdata-input-10" type="number" name="Lng_m" value="@Model.coordinates.lng.m.ToString()" min="-90" max="90" />&acute;
+                        <input class="boxdata-input-10" type="number" name="Lng_s" value="@Model.coordinates.lng.s.ToString("0.00").Replace(',' , '.')" min="0" max="60" step="0.001" />&quot;
+                    </p>
+                    @*<p>
+                    <label class="boxdata-label-30">КАРТА!</label>
                 </p>
-                <p>
-                    <label class="boxdata-label-30">Долгота</label>
-                    <input class="boxdata-input-10" type="number" name="Lngitude" value="@Model.coordinates.lng.d.ToString()" max="180" min="0" />&deg;
-                    <input class="boxdata-input-10" type="number" name="Lng_m" value="@Model.coordinates.lng.m.ToString()" min="-90" max="90" />&acute;
-                    <input class="boxdata-input-10" type="number" name="Lng_s" value="@Model.coordinates.lng.s.ToString("0.00").Replace(',' , '.')" min="0" max="60" step="0.001" />&quot;
-                </p>
-                         @*<p>
-                <label class="boxdata-label-30">КАРТА!</label>
-            </p>
-            <input type="button" value="Загрузить карту" style="margin:10px"/>*@
-            </fieldset>
-            <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
-                <legend style="width: auto; font: inherit; border:none;">Геологические данные</legend>
-                <p>
-                    <label class="boxdata-label-30">Грунт</label>@Html.DropDownList("list_groundType")
-                </p>
-                <p>
-                    <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
-                    <input class="boxdata-input-50" type="number" name="waterdeep" value="@Model.waterdeep.ToString("0.00").Replace(',' , '.')" min="0" step="0.1" />
-                </p>
-                <p>
-                    <label class="boxdata-label-30">Высота над уровнем моря (м)</label>
-                    <input class="boxdata-input-50" type="number" name="height" value="@Model.height.ToString("0.00").Replace(',' , '.')" min="0" step="0.1" />
-                </p>
-            </fieldset>
+                <input type="button" value="Загрузить карту" style="margin:10px"/>*@
+                </fieldset>
+                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+                    <legend style="width: auto; font: inherit; border:none;">Геологические данные</legend>
+                    <p>
+                        <label class="boxdata-label-30">Грунт</label>@Html.DropDownList("list_groundType")
+                    </p>
+                    <p>
+                        <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
+                        <input class="boxdata-input-50" type="number" name="waterdeep" value="@Model.waterdeep.ToString("0.00").Replace(',' , '.')" min="0" step="0.1" />
+                    </p>
+                    <p>
+                        <label class="boxdata-label-30">Высота над уровнем моря (м)</label>
+                        <input class="boxdata-input-50" type="number" name="height" value="@Model.height.ToString("0.00").Replace(',' , '.')" min="0" step="0.1" />
+                    </p>
+                </fieldset>
                 @*<input type="hidden" value="@Model.id.ToString()" name="type_code">*@
 
             </div>
+
+
+
             @Html.Partial("_TypeLineMenu", delete)
         </div>
         }
