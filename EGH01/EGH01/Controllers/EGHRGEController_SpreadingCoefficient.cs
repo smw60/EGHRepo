@@ -113,13 +113,10 @@ namespace EGH01.Controllers
                 view = View("SpreadingCoefficient", db);
                 if (menuitem.Equals("SpreadingCoefficient.Create.Create"))
                 {
-
+                   
                     EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
                     if (EGH01DB.Types.GroundType.GetByCode(db, scv.list_groundType, out type_groud))
                     {
-                        //GroundType ground_type = new GroundType(scv.list_groundType, type_groud.name, type_groud.porosity, type_groud.holdmigration, type_groud.waterfilter, type_groud.diffusion,
-                        //type_groud.distribution, type_groud.sorption, type_groud.watercapacity, type_groud.soilmoisture, type_groud.аveryanovfactor, type_groud.permeability);
-
                         int code = scv.code;
 
                         string strmin_angle = this.HttpContext.Request.Params["min_angle"] ?? "Empty";
@@ -139,21 +136,23 @@ namespace EGH01.Controllers
                         Helper.FloatTryParse(strmax_volume, out max_volume);
 
                         string strkoef = this.HttpContext.Request.Params["koef"] ?? "Empty";
-                        float koef;
+                        float koef=1;
                         Helper.FloatTryParse(strkoef, out koef);
 
                         SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient((int)code, type_groud, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
 
                         koef = EGH01DB.Primitives.SpreadingCoefficient.Get(db, sc);
-
+                        sc = new EGH01DB.Primitives.SpreadingCoefficient((int)code, type_groud, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
                         if (EGH01DB.Primitives.SpreadingCoefficient.Create(db, sc))
                         {
                             view = View("SpreadingCoefficient", db);
                         }
-                        else if (menuitem.Equals("SpreadingCoefficient.Create.Cancel")) view = View("SpreadingCoefficient", db);
+                        else if (menuitem.Equals("SpreadingCoefficient.Create.Cancel")) 
+                            view = View("SpreadingCoefficient", db);
                     }
 
-                    else if (menuitem.Equals("SpreadingCoefficient.Create.Cancel")) view = View("SpreadingCoefficient", db);
+                    else if (menuitem.Equals("SpreadingCoefficient.Create.Cancel")) 
+                        view = View("SpreadingCoefficient", db);
                 }
             }
             catch (RGEContext.Exception e)
@@ -200,7 +199,7 @@ namespace EGH01.Controllers
         }
 
         [HttpPost]
-        public ActionResult WaterPropertiesUpdate(SpreadingCoefficientView scv)
+        public ActionResult SpreadingCoefficientUpdate(SpreadingCoefficientView scv)
         {
             RGEContext db = null;
             ViewBag.EGHLayout = "RGE";
@@ -241,8 +240,12 @@ namespace EGH01.Controllers
                          koef = EGH01DB.Primitives.SpreadingCoefficient.Get(db, sc);
 
                          sc = new SpreadingCoefficient((int)code, type_groud, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
-                         if (EGH01DB.Primitives.SpreadingCoefficient.Update(db, sc))
+                         if (EGH01DB.Primitives.SpreadingCoefficient.Update(db, sc)) 
+                         { 
                              view = View("SpreadingCoefficient", db);
+                         }
+                        
+                        
                      }
                 }
                 else if (menuitem.Equals("SpreadingCoefficient.Update.Cancel"))

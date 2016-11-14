@@ -462,22 +462,7 @@ namespace EGH01.Controllers
             //        int k = 1;
             //    };
             //}
-<<<<<<< HEAD
-  
-=======
 
-
-            RGEContext db = new RGEContext();
-            {
-                //SpreadingCoefficient r = new SpreadingCoefficient(1);
-                //if (SpreadingCoefficient.GetByCode(db, 1, out r))
-                //{
-                //    int k = 1;
-                //};
-            }
-
-
->>>>>>> 1d244db58f4d348603a753d2e061315a7e71802d
             return View();
         }
 

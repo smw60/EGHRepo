@@ -23,7 +23,7 @@
         <div class="boxdata">
             <div class="boxdata">
                 <p>
-                    <label class="boxdata-label-30">Код</label>@Model.code.ToString()
+                   @* <label class="boxdata-label-30">Код</label>@Model.code.ToString()*@
                 <p>
                     <label class="boxdata-label-30">Тип грунта</label>@Model.ground_type.name.ToString()
                     <input type="hidden" value="@Model.code.ToString()" name="code">
@@ -35,7 +35,7 @@
                 <p><label class="boxdata-label-30">Диапазон значений гидравлического уклона</label>@Model.min_angle.ToString() - @Model.max_angle.ToString()</p>
             </div>
             <div class="boxdata">
-                <p><label class="boxdata-label-30">Коэффициент разлива</label>@Model.koef.ToString()</p>
+                <p><label class="boxdata-label-30">Коэффициент разлива</label>@Model.koef.ToString("0.00")</p>
             </div>
         </div>
 
