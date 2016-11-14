@@ -384,7 +384,7 @@ namespace EGH01.Controllers
             //        int k = 1;
             //    };
             //}
-            //return View();
+            return View();
         }
 
         // проверка процедур Region
