@@ -197,9 +197,87 @@ namespace EGH01.Controllers
             return View();
         }
 
+        // проверка процедур  EcoObject
+        public ActionResult EcoObject_list() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<EcoObject> list = new List<EcoObject>();
+                //if (Helper.GetListEcoObject(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObject_Obj() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //AnchorPoint ap = new AnchorPoint();
+                //if (AnchorPoint.GetById(db, 4, ref ap))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObject_DeleteById() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //if (AnchorPoint.DeleteById(db, 3)) // удалена
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObject_Create()// yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int id = 0;
+                //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 1.0f, 20.0f);
+                //CadastreType cadastretype = new CadastreType(1);
+                //EcoObjectType ecoobjecttype = new EcoObjectType(1);
+                //EcoObject ap = new EcoObject(id, point, ecoobjecttype, cadastretype, "test", false);
+                //if (EcoObject.Create(db, ap))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObject_Update() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
 
+                //int id = 4;
+                //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 150.0f, 20.0f);
+                //CadastreType cad = new CadastreType(1);
 
+                //AnchorPoint ap = new AnchorPoint(id, point, cad);
 
+                //if (AnchorPoint.Update(db, ap))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObject_CreateNear() // yes
+        {
+            //RGEContext db = new RGEContext();
+            //{
+            //    Coordinates coord = new Coordinates(553.678f, 27.14f);
+            //    float distance = 10000.0f;
+            //    AnchorPointList apl = AnchorPointList.CreateNear(coord, distance);
+            //}
+            return View();
+        }
+        
         // проверка процедур  Anchor point
         public ActionResult Anchor_Point_list() // yes
         {
@@ -306,8 +384,8 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //GroundType gr = new GroundType(2);
-                //SpreadingCoefficient sc = new SpreadingCoefficient(gr, (float)10.0f, (float)50.0f, (float)0.0f, (float)50.0f, (float)0.0f);
+                //GroundType gr = new GroundType(1);
+                //SpreadingCoefficient sc = new SpreadingCoefficient(5, gr, (float)20f, (float)40f, (float)5f, (float)10f, (float)0.0f);
                 //float koeff = SpreadingCoefficient.Get(db, sc);
                 
             }
@@ -362,7 +440,31 @@ namespace EGH01.Controllers
             }
             return View();
         }
+        public ActionResult SC_DeleteByCode()  // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //SpreadingCoefficient ct = new SpreadingCoefficient();
+                //if (SpreadingCoefficient.DeleteByCode(db, 14))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SC_GetByCode()// есть
+        {
+            //RGEContext db = new RGEContext();
+            //{
+            //    SpreadingCoefficient r = new SpreadingCoefficient(1);
+            //    if (SpreadingCoefficient.GetByCode(db, 1, out r))
+            //    {
+            //        int k = 1;
+            //    };
+            //}
 
+            return View();
+        }
 
         // проверка процедур Region
         public ActionResult Region_Create()// есть
@@ -854,11 +956,12 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                List<GroundType> list = new List<GroundType>();
-                if (Helper.GetListGroundType(db, ref list))    
-                {
-                    int k = 1;
-                };
+                //List<GroundType> list = new List<GroundType>();
+                
+                //if (Helper.GetListGroundType(db, ref list))    
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -871,7 +974,7 @@ namespace EGH01.Controllers
                 //List<CadastreType> list = new List<CadastreType>();
                 //if (Helper.GetListCadastreType(db, ref list))
                 //{
-                    
+
                 //    int k = 1;
                 //};
             }
@@ -881,8 +984,8 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //CadastreType ct = new CadastreType(1);
-                
+                CadastreType ct = new CadastreType(1);
+
                 //if (CadastreType.GetByCode(db, 1, out ct))
                 //{
                 //    int k = 1;
@@ -908,7 +1011,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //CadastreType ct = new CadastreType();
-                //if (CadastreType.DeleteByCode(db, 10))  // 
+                //if (CadastreType.DeleteByCode(db, 13))  // 
                 //{
                 //    int k = 1;
                 //};
@@ -935,14 +1038,15 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                int type_code = 8;
-                string name = "Железнодорожных путей сообщения";
-                int pdk = 140;
-                CadastreType ct = new CadastreType((int)type_code, (string)name, (int)pdk, 0.5f);
-                if (CadastreType.Update(db, ct))
-                {
-                    int k = 1;
-                };
+                //int type_code = 8;
+                //string name = "Железнодорожных путей сообщения";
+                //float pdk = 140.0f;
+                //float pdk_w = 0.03f;
+                //CadastreType ct = new CadastreType((int)type_code, (string)name, pdk, pdk_w, "999", "999");
+                //if (CadastreType.Update(db, ct))
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -1028,7 +1132,73 @@ namespace EGH01.Controllers
         }
 
         // проверка процедур EcoObject Type
+        public ActionResult EcoObjectType_list() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<EcoObjectType> list = new List<EcoObjectType>();
+                //if (Helper.GetListEcoObjectType(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObjectType_GetByCode()//есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //EcoObjectType ct = new EcoObjectType(1);
+                //if (EcoObjectType.GetByCode(db, 1, out ct))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObjectType_DeleteByCode()  // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //EcoObjectType ct = new EcoObjectType();
+                //if (EcoObjectType.DeleteByCode(db, 4))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObjectType_Create()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
 
+                //int type_code = 1;
+                //string name = "Заповедник";
+                //EcoObjectType ct = new EcoObjectType((int)type_code, (string)name);
+                //if (EcoObjectType.Create(db, ct))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObjectType_Update() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int type_code = 1;
+                //string name = "Озеро";
+                //EcoObjectType ct = new EcoObjectType((int)type_code, (string)name);
+                //if (EcoObjectType.Update(db, ct))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+       
+        
         // проверка процедур Incident Type
         public ActionResult IncidentType_list() // 
         {

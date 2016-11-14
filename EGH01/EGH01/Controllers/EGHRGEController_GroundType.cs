@@ -110,9 +110,6 @@ namespace EGH01.Controllers
                 {
 
                     int type_code = -1;
-                    //if (EGH01DB.Types.GroundType.GetNextCode(db, out type_code))
-                    //{
-
                     float diffusion;
                     string strdiffusion = this.HttpContext.Request.Params["diffusion"] ?? "Empty";
                     if (!Helper.FloatTryParse(strdiffusion, out diffusion))
@@ -174,7 +171,18 @@ namespace EGH01.Controllers
                     {
                         аveryanovfactor = 0.0f;
                     }
-                    EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability);
+
+                    string strdensity = this.HttpContext.Request.Params["density"] ?? "Empty";
+                    float density = 0.1f;
+                    if (!Helper.FloatTryParse(strdensity, out density))
+                    {
+                        density = 0.0f;
+                    }
+
+               //     EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability);
+
+                    EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability, density); // blinova
+
 
 
                     if (EGH01DB.Types.GroundType.Create(db, ground_type))
@@ -303,6 +311,12 @@ namespace EGH01.Controllers
                     {
                         аveryanovfactor = 0.0f;
                     }
+                    string strdensity = this.HttpContext.Request.Params["density"] ?? "Empty";
+                    float density = 0.1f;
+                    if (!Helper.FloatTryParse(strdensity, out density))
+                    {
+                        density = 0.0f;
+                    }
                     GroundType gti = new GroundType((int)type_code,
                                                     (string)name,
                                                     (float)porosity,
@@ -314,7 +328,8 @@ namespace EGH01.Controllers
                                                     (float)watercapacity,
                                                     (float)soilmoisture,
                                                     (float)аveryanovfactor,
-                                                    (float)permeability);
+                                                    (float)permeability,
+                                                    (float)density); 
                     if (EGH01DB.Types.GroundType.Update(db, gti))
                     {
                         view = View("GroundType", db);

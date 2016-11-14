@@ -20,7 +20,7 @@ namespace EGH01.Controllers
         public ActionResult AnchorPoint()
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.AnchorPoint";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
@@ -113,13 +113,7 @@ namespace EGH01.Controllers
                     int id = -1;
                     if (EGH01DB.Points.AnchorPoint.GetNextId(db, out id))
                     {
-
-
-                        //float lat = EGH01DB.Primitives.Coordinates.dms_to_d(ah.latitude, ah.lat_m, ah.lat_s);
-                        //float lng = EGH01DB.Primitives.Coordinates.dms_to_d(ah.lngitude, ah.lng_m, ah.lng_s);
                         Coordinates coordinates = new Coordinates(ah.Lat_d, ah.lat_m, ah.lat_s, ah.lngitude, ah.lng_m, ah.lng_s);
-
-                        //EGH01DB.Primitives.Coordinates.d_to_dms(lat, ref lat_d, ref lat_m, ref lat_s);
                         float waterdeep = 0.0f;
                         int list_cadastre = ah.list_cadastre;
          
@@ -135,16 +129,13 @@ namespace EGH01.Controllers
                         {
                             waterdeep = 0.0f;
                         }
-                        EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
-                        if (EGH01DB.Types.GroundType.GetByCode(db, ah.list_groundType, out type_groud))
+                        EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType();
+                        if (EGH01DB.Types.GroundType.GetByCode(db, ah.list_groundType, out ground_type))
                         {
-                            GroundType ground_type = new GroundType(ah.list_groundType, type_groud.name, type_groud.porosity, type_groud.holdmigration, type_groud.waterfilter, type_groud.diffusion,
-               type_groud.distribution, type_groud.sorption, type_groud.watercapacity, type_groud.soilmoisture, type_groud.аveryanovfactor, type_groud.permeability);
                             Point point = new Point(coordinates, ground_type, waterdeep, height);
-                            CadastreType cadastre_type = new CadastreType();
-                            if (EGH01DB.Types.CadastreType.GetByCode(db, ah.list_cadastre, out cadastre_type))
+                            CadastreType type_cadastre = new CadastreType();
+                            if (EGH01DB.Types.CadastreType.GetByCode(db, ah.list_cadastre, out type_cadastre))
                             {
-                                CadastreType type_cadastre = new CadastreType(ah.list_cadastre, cadastre_type.name, cadastre_type.pdk_coef, 0.0f); //blinova
                                 EGH01DB.Points.AnchorPoint anchor_point = new EGH01DB.Points.AnchorPoint(id, point, type_cadastre);
 
 
@@ -232,18 +223,15 @@ namespace EGH01.Controllers
                         waterdeep = 0.0f;
                     }
 
-                    EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
-                    if (EGH01DB.Types.GroundType.GetByCode(db, ah.list_groundType, out type_groud))
+                    EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType();
+                    if (EGH01DB.Types.GroundType.GetByCode(db, ah.list_groundType, out ground_type))
                     {
-                        GroundType ground_type = new GroundType(ah.list_groundType, type_groud.name, type_groud.porosity, type_groud.holdmigration, type_groud.waterfilter, type_groud.diffusion,
-           type_groud.distribution, type_groud.sorption, type_groud.watercapacity, type_groud.soilmoisture, type_groud.аveryanovfactor, type_groud.permeability);
 
                         Point point = new Point(coordinates, ground_type, waterdeep, height);
 
-                        CadastreType cadastre_type = new CadastreType();
-                        if (EGH01DB.Types.CadastreType.GetByCode(db, ah.list_cadastre, out cadastre_type))
+                        CadastreType type_cadastre = new CadastreType();
+                        if (EGH01DB.Types.CadastreType.GetByCode(db, ah.list_cadastre, out type_cadastre))
                         {
-                            CadastreType type_cadastre = new CadastreType(ah.list_cadastre, cadastre_type.name, cadastre_type.pdk_coef, 0.0f); //blinova
                             EGH01DB.Points.AnchorPoint anchor_point = new EGH01DB.Points.AnchorPoint(id, point, type_cadastre);
 
 

@@ -16,6 +16,7 @@ namespace EGH01.Models.EGHRGE
         public float holdmigration { get; set; }   // коэфф. задержки миграции нефтепродуктов 
         public float waterfilter { get; set; }   // коэфф. фильтрации воды  
         public float аveryanovfactor { get; set; }   // коэффициент Аверьянова (от 4 до 9)
+        public float density { get; set; } 
     }
 
     

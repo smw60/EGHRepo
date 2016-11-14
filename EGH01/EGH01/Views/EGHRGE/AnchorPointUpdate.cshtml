@@ -17,21 +17,31 @@
                           new Menu.MenuItem("Отказаться", "AnchorPoint.Update.Cancel", true)
                         );
     EGH01DB.RGEContext db = new EGH01DB.RGEContext();
-    List<EGH01DB.Types.CadastreType> list_cadastre = new List<EGH01DB.Types.CadastreType>();
-    ViewBag.list_cadastre = new List<SelectListItem>();
-    if (db != null)
     {
+        List<EGH01DB.Types.CadastreType> list_cadastre = new List<EGH01DB.Types.CadastreType>();
+        List<SelectListItem> listcadastre = ViewBag.list_cadastre = new List<SelectListItem>();
+
         Helper.GetListCadastreType(db, ref list_cadastre);
         list_cadastre.ForEach(o => ViewBag.list_cadastre.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
-    }
+        if (Model.cadastretype != null)
+        {
+            SelectListItem sic = listcadastre.FirstOrDefault(s => s.Value == Model.cadastretype.type_code.ToString());
+            sic.Selected = true;
 
-    List<EGH01DB.Types.GroundType> list_groundType = new List<EGH01DB.Types.GroundType>();
-    ViewBag.list_groundType = new List<SelectListItem>();
-    if (db != null)
+        }
+    }
     {
+        List<EGH01DB.Types.GroundType> list_groundType = new List<EGH01DB.Types.GroundType>();
+        List<SelectListItem> list = ViewBag.list_groundType = new List<SelectListItem>();
+
         Helper.GetListGroundType(db, ref list_groundType);
         list_groundType.ForEach(o => ViewBag.list_groundType.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
 
+        if (Model.groundtype != null)
+        {
+            SelectListItem si = list.FirstOrDefault(s => s.Value == Model.groundtype.type_code.ToString());
+            si.Selected = true;
+        }
     }
 }
 @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHRGE", Action = "AnchorPoint", Menu = head })
@@ -55,18 +65,18 @@
 
                     <input class="boxdata-input-10" type="number" name="Lat_d" value="@Model.coordinates.lat.d.ToString()" min="-90" max="90" />&deg;
                     <input class="boxdata-input-10" type="number" name="Lat_m" value="@Model.coordinates.lat.m.ToString()" min="-90" max="90" />&acute;
-                    <input class="boxdata-input-10" type="number" name="Lat_s" value="@Model.coordinates.lat.s.ToString().Replace(',' , '.')" min="0" max="60" step="0.001" />&quot;
+                    <input class="boxdata-input-10" type="number" name="Lat_s" value="@Model.coordinates.lat.s.ToString("0.00").Replace(',' , '.')" min="0" max="60" step="0.001" />&quot;
                 </p>
                 <p>
                     <label class="boxdata-label-30">Долгота</label>
 
                     <input class="boxdata-input-10" type="number" name="Lngitude" value="@Model.coordinates.lng.d.ToString()" max="180" min="0" />&deg;
                     <input class="boxdata-input-10" type="number" name="Lng_m" value="@Model.coordinates.lng.m.ToString()" min="-90" max="90" />&acute;
-                    <input class="boxdata-input-10" type="number" name="Lng_s" value="@Model.coordinates.lng.s.ToString("0.000").Replace(',' , '.')" min="0" max="60" step="0.001" />&quot;
+                    <input class="boxdata-input-10" type="number" name="Lng_s" value="@Model.coordinates.lng.s.ToString("0.00").Replace(',' , '.')" min="0" max="60" step="0.001" />&quot;
                 </p>
             </fieldset>
             <div class="boxdata">
-                <label class="boxdata-label-30">Категория земли</label>@Html.DropDownList("list_cadastre")
+                <label class="boxdata-label-20">Категория земли</label>@Html.DropDownList("list_cadastre")
             </div>
             <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
                 <legend style="width: auto; font: inherit; border:none;">Геологические данные</legend>

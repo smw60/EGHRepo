@@ -47,12 +47,12 @@ namespace EGH01DB.Points
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Real);
                     parm.Value = anchor_point.coordinates.latitude;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Real);
                     parm.Value = anchor_point.coordinates.lngitude;
                     cmd.Parameters.Add(parm);
                 }
@@ -62,12 +62,12 @@ namespace EGH01DB.Points
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ГлубинаГрунтовыхВод", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ГлубинаГрунтовыхВод", SqlDbType.Real);
                     parm.Value = anchor_point.waterdeep;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ВысотаУровнемМоря", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ВысотаУровнемМоря", SqlDbType.Real);
                     parm.Value = anchor_point.height;
                     cmd.Parameters.Add(parm);
                 }
@@ -168,12 +168,12 @@ namespace EGH01DB.Points
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Real);
                     parm.Value = anchor_point.coordinates.latitude;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Real);
                     parm.Value = anchor_point.coordinates.lngitude;
                     cmd.Parameters.Add(parm);
                 }
@@ -183,12 +183,12 @@ namespace EGH01DB.Points
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ГлубинаГрунтовыхВод", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ГлубинаГрунтовыхВод", SqlDbType.Real);
                     parm.Value = anchor_point.waterdeep;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ВысотаУровнемМоря", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ВысотаУровнемМоря", SqlDbType.Real);
                     parm.Value = anchor_point.height;
                     cmd.Parameters.Add(parm);
                 }
@@ -236,21 +236,22 @@ namespace EGH01DB.Points
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        double x = (double)reader["ШиротаГрад"];
-                        double y = (double)reader["ДолготаГрад"];
+                        float x = (float)reader["ШиротаГрад"];
+                        float y = (float)reader["ДолготаГрад"];
                         Coordinates coordinates = new Coordinates((float)x, (float)y);
 
                         string ground_type_name = (string)reader["НаименованиеТипаГрунта"];
-                        double porosity = (double)reader["КоэфПористости"];
-                        double holdmigration = (double)reader["КоэфЗадержкиМиграции"];
-                        double waterfilter = (double)reader["КоэфФильтрацииВоды"];
-                        double diffusion = (double)reader["КоэфДиффузии"];
-                        double distribution = (double)reader["КоэфРаспределения"];
-                        double sorption = (double)reader["КоэфСорбции"];
-                        double watercapacity = (double)reader["КоэфКапВлагоемкости"];
-                        double soilmoisture = (double)reader["ВлажностьГрунта"];
-                        double аveryanovfactor = (double)reader["КоэфАверьянова"];
-                        double permeability = (double)reader["Водопроницаемость"];
+                        float porosity = (float)reader["КоэфПористости"];
+                        float holdmigration = (float)reader["КоэфЗадержкиМиграции"];
+                        float waterfilter = (float)reader["КоэфФильтрацииВоды"];
+                        float diffusion = (float)reader["КоэфДиффузии"];
+                        float distribution = (float)reader["КоэфРаспределения"];
+                        float sorption = (float)reader["КоэфСорбции"];
+                        float watercapacity = (float)reader["КоэфКапВлагоемкости"];
+                        float soilmoisture = (float)reader["ВлажностьГрунта"];
+                        float аveryanovfactor = (float)reader["КоэфАверьянова"];
+                        float permeability = (float)reader["Водопроницаемость"];
+                        float density = (float)reader["СредняяПлотностьГрунта"];
                         
                         GroundType ground_type = new GroundType((int)reader["ТипГрунта"],
                                                                     (string)ground_type_name,
@@ -263,15 +264,20 @@ namespace EGH01DB.Points
                                                                     (float)watercapacity,
                                                                     (float)soilmoisture,
                                                                     (float)аveryanovfactor,
-                                                                    (float)permeability);
-                        double waterdeep = (double)reader["ГлубинаГрунтовыхВод"];
-                        double height = (double)reader["ВысотаУровнемМоря"];
+                                                                    (float)permeability,
+                                                                    (float)density);
+                        float waterdeep = (float)reader["ГлубинаГрунтовыхВод"];
+                        float height = (float)reader["ВысотаУровнемМоря"];
                         Point point = new Point(coordinates, ground_type, (float)waterdeep, (float)height);
 
                         string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
-                        int pdk = (int)reader["ПДК"];
-
-                        CadastreType cadastre_type = new CadastreType((int)reader["КодНазначенияЗемель"], (string)cadastre_type_name, (int)pdk, 0.0f);// blinova
+                        float pdk = (float)reader["ПДК"];
+                        float water_pdk_coef = (float)reader["ПДКводы"];
+                        string ground_doc_name = (string)reader["НормДокументЗемля"];
+                        string water_doc_name = (string)reader["НормДокументВода"];
+                        CadastreType cadastre_type = new CadastreType((int)reader["КодНазначенияЗемель"], (string)cadastre_type_name,
+                                                        (float)pdk, (float)water_pdk_coef,
+                                                        ground_doc_name, water_doc_name);
 
                         anchor_point = new AnchorPoint(id, point, cadastre_type);
                     }
@@ -327,17 +333,17 @@ namespace EGH01DB.Points
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
-                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Real);
                     parm.Value = center.latitude;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Real);
                     parm.Value = center.lngitude;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@Расстояние", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@Расстояние", SqlDbType.Real);
                     parm.Value = distance;
                     cmd.Parameters.Add(parm);
                 }
@@ -348,12 +354,12 @@ namespace EGH01DB.Points
                     while (reader.Read())
                     {
                         int id = (int)reader["IdОпорнойГеологическойТочки"];
-                        double x = (double)reader["ШиротаГрад"];
-                        double y = (double)reader["ДолготаГрад"];
+                        float x = (float)reader["ШиротаГрад"];
+                        float y = (float)reader["ДолготаГрад"];
                         int ground_type_code = (int)reader["ТипГрунта"];
                         int cadastre_type_code = (int)reader["КодНазначенияЗемель"];
-                        double waterdeep = (double)reader["ГлубинаГрунтовыхВод"];
-                        double height = (double)reader["ВысотаУровнемМоря"];
+                        float waterdeep = (float)reader["ГлубинаГрунтовыхВод"];
+                        float height = (float)reader["ВысотаУровнемМоря"];
 
                         GroundType ground_type = new GroundType(ground_type_code);
                         Coordinates coordinates = new Coordinates((float)x, (float)y);
@@ -379,10 +385,65 @@ namespace EGH01DB.Points
 
             // отладка 
             return new AnchorPointList()
-            {
-
-
+            {               
             };
+            //
+            bool rc = false;
+            RGEContext db = new RGEContext();
+            AnchorPointList anchor_point_list = new AnchorPointList();
+            using (SqlCommand cmd = new SqlCommand("EGH.GetListAnchorPointOnDistanceLessThanD2MoreThanD1", db.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Real);
+                    parm.Value = center.latitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Real);
+                    parm.Value = center.lngitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Расстояние1", SqlDbType.Real);
+                    parm.Value = radius1;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Расстояние2", SqlDbType.Real);
+                    parm.Value = radius2;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int id = (int)reader["IdТехногенногоОбъекта"];
+                        float x = (float)reader["ШиротаГрад"];
+                        float y = (float)reader["ДолготаГрад"];
+                        int ground_type_code = (int)reader["ТипГрунта"];
+                        int cadastre_type_code = (int)reader["КодНазначенияЗемель"];
+                        float waterdeep = (float)reader["ГлубинаГрунтовыхВод"];
+                        float height = (float)reader["ВысотаУровнемМоря"];
+                        GroundType ground_type = new GroundType(ground_type_code);
+                        Coordinates coordinates = new Coordinates((float)x, (float)y);
+                        CadastreType cadastre_type = new CadastreType(cadastre_type_code);
+                        Point point = new Point(coordinates, ground_type, (float)waterdeep, (float)height);
+                        //delta = (float)reader["Расстояние"];
+                        AnchorPoint anchor_point = new AnchorPoint(id, point, cadastre_type);
+                        anchor_point_list.Add(anchor_point);
+                    }
+                    rc = anchor_point_list.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return anchor_point_list;
+            }
 
         }
 

@@ -9,6 +9,7 @@
                             new Menu.MenuItem("Удалить", "RiskObject.Delete", true),
                             new Menu.MenuItem("Изменить", "RiskObject.Update", true)
                            );
+   
 
 }
 @foreach (RiskObject t in @Model)
@@ -16,53 +17,58 @@
 
     using (Html.BeginForm("RiskObject", "EGHCAI"))
     {
+        float latitude = EGH01DB.Primitives.Coordinates.dms_to_d(@t.coordinates.lat.d, @t.coordinates.lat.m, @t.coordinates.lat.s);
+        float lngitude = EGH01DB.Primitives.Coordinates.dms_to_d(@t.coordinates.lng.d, @t.coordinates.lng.m, @t.coordinates.lng.s);
         <div class="box">
             <div class="boxdata">
-
-                <p><label class="boxdata-label-30">Код объекта</label> @t.id.ToString()</p>
-                                <p><label class="boxdata-label-30">Наименование объекта  </label> @t.name</p>
+                
+                <p><label class="boxdata-label-30">Идентификатор объкта</label> @t.id.ToString()</p>
+                <p><label class="boxdata-label-30">Наименование объекта</label> <span class="boxdata-span">@t.name</span></p>
                
                 <p><label class="boxdata-label-30">Тип объекта</label> @t.type.name.ToString()</p>
-                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
-                    @*<legend style="width: auto; font: inherit; border:none;">Адрес объекта</legend>*@
-                    <p><label class="boxdata-label-30">Область: </label> @t.region.name</p>
-                    <p><label class="boxdata-label-30">Район : </label> @t.district.name</p>
+                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="RiskObject">
+                    <p><label class="boxdata-label-30">Область</label> @t.region.name</p>
+                    <p><label class="boxdata-label-30">Район</label> @t.district.name</p>
                     <p><label class="boxdata-label-30">Город(населенный пункт),улица,дом</label> @t.address </p>
-                    <p><label class="boxdata-label-30">Телефон </label> @t.phone.ToString()</p>
-                    <p><label class="boxdata-label-30">Факс </label> @t.fax.ToString()</p>
+                    <p><label class="boxdata-label-30">Телефон</label> @t.phone.ToString()</p>
+                    <p><label class="boxdata-label-30">Факс</label> @t.fax.ToString()</p>
                     @if (!String.IsNullOrWhiteSpace(@t.email.ToString()))
                     {
                         <p><label class="boxdata-label-30">Электронный адрес</label>@t.email.ToString()</p>
                     }
                     else
-	                {
-                    <p><label class="boxdata-label-30">Электронный адрес </label>-</p>
+                    {
+                        <p><label class="boxdata-label-30">Электронный адрес</label>-</p>
                     }
                 </fieldset>
-                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
-                    @*<legend style="width: auto; font: inherit; border:none;">Адрес объекта</legend>*@
-                    <p><label class="boxdata-label-30">Резервуар наземный: </label> @t.groundtank</p>
-                    <p><label class="boxdata-label-30">Резервуар подземный: </label> @t.undergroundtank</p>
-                    <p><label class="boxdata-label-30">дата ввода в эксплуатацию </label>@t.foundationdate.ToShortDateString()</p>
-                    <p><label class="boxdata-label-30">дата последней реконструкции  </label>@t.reconstractiondate.ToShortDateString()</p>
+                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="RiskObject">
+                    <p><label class="boxdata-label-30">Резервуар наземный</label> @t.groundtank</p>
+                    <p><label class="boxdata-label-30">Резервуар подземный</label> @t.undergroundtank</p>
+                    <p><label class="boxdata-label-30">Дата ввода в эксплуатацию</label>@t.foundationdate.ToShortDateString()</p>
+                    <p><label class="boxdata-label-30">Дата последней реконструкции</label>@t.reconstractiondate.ToShortDateString()</p>
+                    <p><label class="boxdata-label-30">Очистные сооружения</label></p>
                     @if (@t.watertreatmentcollect == true)
                     {
-                        <p><label class="boxdata-label-30">Резервуар для сбора проливов</label></p>}
+                        <p>Резервуар для сбора проливов</p>}
                     @if (@t.watertreatment == true)
                     {
-                        <p><label class="boxdata-label-30">Очистные сооружения для дождевого стока </label></p>
+                        <p>Очистные сооружения для дождевого стока</p>
+                    }
+                    @if (@t.watertreatment == false && @t.watertreatmentcollect == false)
+                    {
+                        <p>Отсутствуют</p>
                     }
                 </fieldset>
-                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
-                    @*<legend style="width: auto; font: inherit; border:none;">Адрес объекта</legend>*@
-                    <p><label class="boxdata-label-30">Координаты. Широта:</label>@t.coordinates.lat.d.ToString()°&nbsp;@t.coordinates.lat.m.ToString()'&nbsp;@t.coordinates.lat.s.ToString("0.00")"</p>
-                    <p><label class="boxdata-label-30">Координаты. Долгота:</label>@t.coordinates.lng.d.ToString()°&nbsp;@t.coordinates.lng.m.ToString()'&nbsp;@t.coordinates.lng.s.ToString("0.00")" </p>
+                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="RiskObject">
+                    <p><label class="boxdata-label-30">Координаты. Широта</label>@t.coordinates.lat.d.ToString()°&nbsp;@t.coordinates.lat.m.ToString()'&nbsp;@t.coordinates.lat.s.ToString("0.00")"</p>
+                    <p><label class="boxdata-label-30">Координаты. Долгота</label>@t.coordinates.lng.d.ToString()°&nbsp;@t.coordinates.lng.m.ToString()'&nbsp;@t.coordinates.lng.s.ToString("0.00")" </p>
+                    <p><label class="boxdata-label-30">Координаты в градусах</label>@latitude.ToString()°&nbsp;@lngitude.ToString()°</p>
                 </fieldset> 
-                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
-                    @*<legend style="width: auto; font: inherit; border:none;">Адрес объекта</legend>*@
-                    <p><label class="boxdata-label-30">Грунт: </label>@t.groundtype.name</p>
-                    <p><label class="boxdata-label-30">Высота над уровнем моря (м): </label> @t.height.ToString("0.00")</p>
-                    <p><label class="boxdata-label-30">Глубина грунтовых вод (м): </label> @t.waterdeep.ToString("0.00")</p>
+                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="RiskObject">
+                    <p><label class="boxdata-label-30">Категория земли</label>@t.cadastretype.name</p>
+                    <p><label class="boxdata-label-30">Грунт</label>@t.groundtype.name</p>
+                    <p><label class="boxdata-label-30">Высота над уровнем моря (м)</label> @t.height.ToString("0.00")</p>
+                    <p><label class="boxdata-label-30">Глубина грунтовых вод (м)</label> @t.waterdeep.ToString("0.00")</p>
                 </fieldset>
 
                               

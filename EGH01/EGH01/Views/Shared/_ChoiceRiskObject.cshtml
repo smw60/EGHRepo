@@ -24,8 +24,8 @@
                 Model.SaveViewContext("_ChoiceRiskObject", context = new ChoiceRiskObjectContext());
            }
             
-          <input type="search" name="ChoiceRiskObject.template" style="max-width:none" size="90" />
-          <button type="submit" name="ChoiceRiskObject.choicefind" value="choice">Поиск</button>
+          <input type="search" name="ChoiceRiskObject.template" style="max-width: none; width: auto" size="95" />
+          <button type="submit" name="ChoiceRiskObject.choicefind" value="choice">Поиск</button> 
 
         }
         else if (context.Regim == ChoiceRiskObjectContext.REGIM.CHOICE && !string.IsNullOrEmpty(context.Template))
@@ -38,7 +38,7 @@
                     rol.ForEach(o => riskobjectlist.Add(new SelectListItem { Text = o.Line, Value = o.id.ToString(), Selected = false }));
                     if (riskobjectlist.Count > 0) { riskobjectlist[0].Selected = true; }
              
-                    @Html.DropDownList("ChoiceRiskObject.id", riskobjectlist, new { size = riskobjectlist.Count, style = "max-width:none; white-space:pre; font-family: 'Courier New', Courier, monospace;" })
+                    @Html.DropDownList("ChoiceRiskObject.id", riskobjectlist, new { size = riskobjectlist.Count })
                     <button type="submit" name="ChoiceRiskObject.choicefind" value="set">Получить</button>
                 }
                 else
