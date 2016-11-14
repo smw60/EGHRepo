@@ -25,6 +25,15 @@
 
     }
 
+    List<EGH01DB.Types.CadastreType> list_cadastre = new List<EGH01DB.Types.CadastreType>();
+    ViewBag.list_cadastre = new List<SelectListItem>();
+    if (db != null)
+    {
+        Helper.GetListCadastreType(db, ref list_cadastre);
+        list_cadastre.ForEach(o => ViewBag.list_cadastre.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+
+    }
+    
     List<EGH01DB.Types.GroundType> list_groundType = new List<EGH01DB.Types.GroundType>();
     ViewBag.list_groundType = new List<SelectListItem>();
     if (db != null)
@@ -136,6 +145,9 @@
 
             <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
                 <legend style="width: auto; font: inherit; border:none;">Геологические данные</legend>
+                <p>
+                    <label class="boxdata-label-30">Категория земли</label> @Html.DropDownList("list_cadastre")
+                </p>
                 <p>
                     <label class="boxdata-label-30">Грунт</label> @Html.DropDownList("list_groundType")
                 </p>

@@ -145,7 +145,7 @@ namespace EGH01.Controllers
                             height = 0.0f;
                         }
                         Coordinates coordinates = new Coordinates(rs.latitude, rs.lat_m, lat_s, rs.lngitude, rs.lng_m, lng_s);
-                        float latitude= EGH01DB.Primitives.Coordinates.dms_to_d(rs.latitude,rs.lat_m,rs.lat_s);
+                        float latitude = EGH01DB.Primitives.Coordinates.dms_to_d(rs.latitude, rs.lat_m, rs.lat_s);
                         EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType();
                         if (EGH01DB.Types.GroundType.GetByCode(db, rs.list_groundType, out ground_type))
                         {
@@ -153,39 +153,42 @@ namespace EGH01.Controllers
                             EGH01DB.Types.RiskObjectType risk_object_type = new EGH01DB.Types.RiskObjectType();
                             if (EGH01DB.Types.RiskObjectType.GetByCode(db, rs.selectlist, out risk_object_type))
                             {
-                                CadastreType cadastre_type = new CadastreType(1, "", 0.0f,0.0f,"","");  //blinova
-                                EGH01DB.Types.District district = new EGH01DB.Types.District();
-                                if (EGH01DB.Types.District.GetByCode(db, rs.list_district, out district))
+                                EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType();
+                                if (EGH01DB.Types.CadastreType.GetByCode(db, rs.list_cadastre, out cadastre_type))
                                 {
-                                    EGH01DB.Types.Region region = new EGH01DB.Types.Region();
-                                    if (EGH01DB.Types.Region.GetByCode(db, rs.list_region, out region))
+                                    EGH01DB.Types.District district = new EGH01DB.Types.District();
+                                    if (EGH01DB.Types.District.GetByCode(db, rs.list_district, out district))
                                     {
-                                        DateTime foundationdate = rs.foundationdate;
-                                        DateTime reconstractiondate = rs.reconstractiondate;
-                                        string name = rs.name;
-                                        String phone = rs.phone;
-                                        String fax = rs.fax;
-                                        string address = rs.adress;
-                                        String email = rs.email;
-
-
-
-                                        String fueltype = rs.fax;
-                                        String geodescription = rs.fax;
-                                        EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name,
-                                            district, region, address, ownership, phone, fax, email, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
-                                            watertreatmentcollect, map, groundtank, undergroundtank,fueltype, 0,0.0f,0.0f, geodescription);
-
-                                        if (EGH01DB.Objects.RiskObject.Create(db, risk_object))
+                                        EGH01DB.Types.Region region = new EGH01DB.Types.Region();
+                                        if (EGH01DB.Types.Region.GetByCode(db, rs.list_region, out region))
                                         {
-                                            view = View("RiskObject", db);
+                                            DateTime foundationdate = rs.foundationdate;
+                                            DateTime reconstractiondate = rs.reconstractiondate;
+                                            string name = rs.name;
+                                            String phone = rs.phone;
+                                            String fax = rs.fax;
+                                            string address = rs.adress;
+                                            String email = rs.email;
+
+
+
+                                            String fueltype = rs.fax;
+                                            String geodescription = rs.fax;
+                                            EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name,
+                                                district, region, address, ownership, phone, fax, email, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
+                                                watertreatmentcollect, map, groundtank, undergroundtank, fueltype, 0, 0.0f, 0.0f, geodescription);
+
+                                            if (EGH01DB.Objects.RiskObject.Create(db, risk_object))
+                                            {
+                                                view = View("RiskObject", db);
+                                            }
                                         }
                                     }
-   }
 
+                                }
                             }
+                            else if (menuitem.Equals("RiskObject.Create.Cancel")) view = View("RiskObject", db);
                         }
-                        else if (menuitem.Equals("RiskObject.Create.Cancel")) view = View("RiskObject", db);
                     }
                 }
             }
@@ -281,42 +284,44 @@ namespace EGH01.Controllers
                     EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType();
                     if (EGH01DB.Types.GroundType.GetByCode(db, itv.list_groundType, out ground_type))
                     {
-               
+
                         Point point = new Point(coordinates, ground_type, waterdeep, height);
                         EGH01DB.Types.RiskObjectType risk_object_type = new EGH01DB.Types.RiskObjectType();
                         if (EGH01DB.Types.RiskObjectType.GetByCode(db, itv.selectlist, out risk_object_type))
                         {
-                            CadastreType cadastre_type = new CadastreType(1, "", 0, 0.0f);  //blinova
-                            EGH01DB.Types.District district = new EGH01DB.Types.District();
-                            if (EGH01DB.Types.District.GetByCode(db, itv.list_district, out district))
+                            EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType();
+                            if (EGH01DB.Types.CadastreType.GetByCode(db, itv.list_cadastre, out cadastre_type))
                             {
-                                EGH01DB.Types.Region region = new EGH01DB.Types.Region();
-                                if (EGH01DB.Types.Region.GetByCode(db, itv.list_region, out region))
+                                EGH01DB.Types.District district = new EGH01DB.Types.District();
+                                if (EGH01DB.Types.District.GetByCode(db, itv.list_district, out district))
                                 {
+                                    EGH01DB.Types.Region region = new EGH01DB.Types.Region();
+                                    if (EGH01DB.Types.Region.GetByCode(db, itv.list_region, out region))
+                                    {
 
-                                    DateTime foundationdate = itv.foundationdate;
-                                    DateTime reconstractiondate = itv.reconstractiondate;
-                                    string name = itv.name;
-                                    String phone = itv.phone;
-                                    String fax = itv.fax;
-                                    string address = itv.adress;
-                                    String email = itv.email;
+                                        DateTime foundationdate = itv.foundationdate;
+                                        DateTime reconstractiondate = itv.reconstractiondate;
+                                        string name = itv.name;
+                                        String phone = itv.phone;
+                                        String fax = itv.fax;
+                                        string address = itv.adress;
+                                        String email = itv.email;
 
-                                    String fueltype = itv.fax;
-                                    String geodescription = itv.fax;
+                                        String fueltype = itv.fax;
+                                        String geodescription = itv.fax;
 
-                                    EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(itv.type_code, point, risk_object_type, cadastre_type, name,
-                                        district, region, address, ownership, phone, fax, email, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
-                                        watertreatmentcollect, map, groundtank, undergroundtank, fueltype, 0, 0.0f, 0.0f, geodescription);
+                                        EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(itv.type_code, point, risk_object_type, cadastre_type, name,
+                                            district, region, address, ownership, phone, fax, email, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
+                                            watertreatmentcollect, map, groundtank, undergroundtank, fueltype, 0, 0.0f, 0.0f, geodescription);
 
-                                    if (EGH01DB.Objects.RiskObject.Update(db, risk_object))
-                                        view = View("RiskObject", db);
+                                        if (EGH01DB.Objects.RiskObject.Update(db, risk_object))
+                                            view = View("RiskObject", db);
+                                    }
+                                    else if (menuitem.Equals("RiskObject.Update.Cancel")) view = View("RiskObject", db);
                                 }
-                                else if (menuitem.Equals("RiskObject.Update.Cancel")) view = View("RiskObject", db);
                             }
                         }
                     }
-                    
                 }
             }
             catch (RGEContext.Exception e)
