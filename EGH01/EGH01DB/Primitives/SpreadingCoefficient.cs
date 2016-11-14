@@ -33,6 +33,12 @@ namespace EGH01DB.Primitives
 
         public bool Create()        { return true; }
         public bool Update()        { return true; }
+
+        public static explicit operator bool(SpreadingCoefficient v)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Delete()        { return true; }
         public float Get()          { return -1; }
         public float GetByData()    { return -1; }
