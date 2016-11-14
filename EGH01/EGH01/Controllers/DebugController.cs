@@ -306,9 +306,9 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //GroundType gr = new GroundType(2);
-                //SpreadingCoefficient sc = new SpreadingCoefficient(gr, (float)10.0f, (float)50.0f, (float)0.0f, (float)50.0f, (float)0.0f);
-                //float koeff = SpreadingCoefficient.Get(db, sc);
+                GroundType gr = new GroundType(1);
+                SpreadingCoefficient sc = new SpreadingCoefficient(gr, (float)20f, (float)40f, (float)1.5f, (float)4.6f, (float)0.0f);
+                float koeff = SpreadingCoefficient.Get(db, sc);
                 
             }
             return View();
