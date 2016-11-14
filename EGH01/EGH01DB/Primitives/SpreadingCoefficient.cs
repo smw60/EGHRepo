@@ -341,7 +341,79 @@ namespace EGH01DB.Primitives
         {
             return Delete(dbcontext, new SpreadingCoefficient(code));
         }
+        static public bool GetByCode(EGH01DB.IDBContext dbcontext, int code, out SpreadingCoefficient spreading_coefficient)
+        {
+            bool rc = false;
+            spreading_coefficient = new SpreadingCoefficient();
+            using (SqlCommand cmd = new SqlCommand("EGH.GetSpreadingCoefficientByCode", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@КодКоэффициентаРазлива", SqlDbType.Int);
+                    parm.Value = code;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        int ground_type_code = (int)reader["ТипГрунта"];
+                        string ground_type_name = (string)reader["НаименованиеТипаГрунта"];
 
+                        float porosity = (float)reader["КоэфПористости"];
+                        float holdmigration = (float)reader["КоэфЗадержкиМиграции"];
+                        float waterfilter = (float)reader["КоэфФильтрацииВоды"];
+                        float diffusion = (float)reader["КоэфДиффузии"];
+                        float distribution = (float)reader["КоэфРаспределения"];
+                        float sorption = (float)reader["КоэфСорбции"];
+                        float watercapacity = (float)reader["КоэфКапВлагоемкости"];
+                        float soilmoisture = (float)reader["ВлажностьГрунта"];
+                        float аveryanovfactor = (float)reader["КоэфАверьянова"];
+                        float permeability = (float)reader["Водопроницаемость"];
+                        float density = (float)reader["СредняяПлотностьГрунта"];
+                        GroundType ground_type = new GroundType((int)ground_type_code,
+                                                    (string)ground_type_name,
+                                                    (float)porosity,
+                                                    (float)holdmigration,
+                                                    (float)waterfilter,
+                                                    (float)diffusion,
+                                                    (float)distribution,
+                                                    (float)sorption,
+                                                    (float)watercapacity,
+                                                    (float)soilmoisture,
+                                                    (float)аveryanovfactor,
+                                                    (float)permeability,
+                                                    (float)density);
+                        float min_volume = (float)reader["МинПролива"];
+                        float max_volume = (float)reader["МаксПролива"];
+                        float min_angle = (float)reader["МинУклона"];
+                        float max_angle = (float)reader["МаксУклона"];
+                        double koef = (double)reader["КоэффициентРазлива"];
+                        if (rc = (int)cmd.Parameters["@exitrc"].Value > 0)
+                                spreading_coefficient =new SpreadingCoefficient(code, ground_type,
+                                                                                (float)min_volume,
+                                                                                (float)max_volume,
+                                                                                (float)min_angle,
+                                                                                (float)max_angle,
+                                                                                (float)koef);
+                    }
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+
+            }
+            return rc;
+        }
         // другие методы определения коэффициента  
         //static float get
         // static float get
