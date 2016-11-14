@@ -166,6 +166,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DebugController.cs" />
+    <Compile Include="Controllers\DebugController_Coord.cs" />
     <Compile Include="Controllers\DebugController_RGE.cs" />
     <Compile Include="Controllers\EGHCAIController.cs" />
     <Compile Include="Controllers\EGHCAIController_RiskObject.cs" />
@@ -346,6 +347,7 @@
     <Content Include="Views\EGHRGE\WaterPropertiesCreate.cshtml" />
     <Content Include="Views\EGHRGE\WaterPropertiesUpdate.cshtml" />
     <Content Include="Views\EGHRGE\WaterPropertiesDelete.cshtml" />
+    <Content Include="Views\Debug\Coord.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

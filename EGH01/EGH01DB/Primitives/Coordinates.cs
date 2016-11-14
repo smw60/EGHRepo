@@ -37,8 +37,8 @@ namespace EGH01DB.Primitives
         public float Distance(Coordinates to)
         {
             // проверить 
-            double lat_2 = Math.Pow(EquatorLat1DegreeLength_m * Math.Cos(this.latitude) * (this.lngitude - to.lngitude), 2);
-            double lng_2 =  Math.Pow(Lng1DegreeLength_m * (this.latitude - to.latitude), 2);
+            double lat_2 = Math.Pow(Const.LATM * Math.Cos(this.latitude) * (this.lngitude - to.lngitude), 2);
+            double lng_2 =  Math.Pow(Const.LNGM * (this.latitude - to.latitude), 2);
             return (float)Math.Sqrt(lat_2 + lng_2);
         }
         public Coordinates(int latd, int latm, float lats, int lngd, int lngm, float lngs)
