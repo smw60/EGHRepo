@@ -110,9 +110,6 @@ namespace EGH01.Controllers
                 {
 
                     int type_code = -1;
-                    //if (EGH01DB.Types.GroundType.GetNextCode(db, out type_code))
-                    //{
-
                     float diffusion;
                     string strdiffusion = this.HttpContext.Request.Params["diffusion"] ?? "Empty";
                     if (!Helper.FloatTryParse(strdiffusion, out diffusion))
