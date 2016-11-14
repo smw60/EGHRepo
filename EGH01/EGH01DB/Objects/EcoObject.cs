@@ -61,6 +61,11 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
+                    SqlParameter parm = new SqlParameter("@НаименованиеПриродоохранногоОбъекта", SqlDbType.NVarChar);
+                    parm.Value = ecoobject.name;
+                    cmd.Parameters.Add(parm);
+                }
+                {
                     SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Real);
                     parm.Value = ecoobject.coordinates.latitude;
                     cmd.Parameters.Add(parm);
@@ -86,13 +91,18 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КодНазначенияЗемель", SqlDbType.Int);
+                    SqlParameter parm = new SqlParameter("@КодТипаНазначенияЗемель", SqlDbType.Int);
                     parm.Value = ecoobject.cadastretype.type_code;
                     cmd.Parameters.Add(parm);
                 }
+                  {
+                    SqlParameter parm = new SqlParameter("@КодТипаПриродоохранногоОбъекта", SqlDbType.Int);
+                    parm.Value = ecoobject.ecoobjecttype.type_code;
+                    cmd.Parameters.Add(parm);
+                }
                 {
-                    SqlParameter parm = new SqlParameter("@КодНазначенияЗемель", SqlDbType.Int);
-                    parm.Value = ecoobject.cadastretype.type_code;
+                    SqlParameter parm = new SqlParameter("@Водоохранный", SqlDbType.Bit);
+                    parm.Value = ecoobject.iswaterobject;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -212,6 +222,11 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
+                    SqlParameter parm = new SqlParameter("@Водоохранный", SqlDbType.Bit);
+                    parm.Value = ecoobject.iswaterobject;
+                    cmd.Parameters.Add(parm);
+                }
+                {
                     SqlParameter parm = new SqlParameter("@КодНазначенияЗемель", SqlDbType.Int);
                     parm.Value = ecoobject.cadastretype.type_code;
                     cmd.Parameters.Add(parm);
@@ -304,7 +319,8 @@ namespace EGH01DB.Objects
                                                                         pdk, water_pdk_coef,
                                                                         ground_doc_name, water_doc_name);
                         string ecoobject_name = (string)reader["НаименованиеПриродоохранногоОбъекта"];
-                        bool iswaterobject = false;
+                        bool iswaterobject = (bool)reader["Водоохранный"];
+                        
                         ecoobject = new EcoObject(id, point, ecoobjecttype, cadastre_type, ecoobject_name, iswaterobject);
                     }
                     reader.Close();

@@ -197,9 +197,87 @@ namespace EGH01.Controllers
             return View();
         }
 
+        // проверка процедур  EcoObject
+        public ActionResult EcoObject_list() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<EcoObject> list = new List<EcoObject>();
+                //if (Helper.GetListEcoObject(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObject_Obj() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //AnchorPoint ap = new AnchorPoint();
+                //if (AnchorPoint.GetById(db, 4, ref ap))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObject_DeleteById() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //if (AnchorPoint.DeleteById(db, 3)) // удалена
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObject_Create()// yes
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int id = 0;
+                //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 1.0f, 20.0f);
+                //CadastreType cadastretype = new CadastreType(1);
+                //EcoObjectType ecoobjecttype = new EcoObjectType(1);
+                //EcoObject ap = new EcoObject(id, point, ecoobjecttype, cadastretype, "test", false);
+                //if (EcoObject.Create(db, ap))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObject_Update() // yes
+        {
+            RGEContext db = new RGEContext();
+            {
 
+                //int id = 4;
+                //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 150.0f, 20.0f);
+                //CadastreType cad = new CadastreType(1);
 
+                //AnchorPoint ap = new AnchorPoint(id, point, cad);
 
+                //if (AnchorPoint.Update(db, ap))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObject_CreateNear() // yes
+        {
+            //RGEContext db = new RGEContext();
+            //{
+            //    Coordinates coord = new Coordinates(553.678f, 27.14f);
+            //    float distance = 10000.0f;
+            //    AnchorPointList apl = AnchorPointList.CreateNear(coord, distance);
+            //}
+            return View();
+        }
+        
         // проверка процедур  Anchor point
         public ActionResult Anchor_Point_list() // yes
         {
@@ -932,7 +1010,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //CadastreType ct = new CadastreType();
-                //if (CadastreType.DeleteByCode(db, 10))  // 
+                //if (CadastreType.DeleteByCode(db, 13))  // 
                 //{
                 //    int k = 1;
                 //};
