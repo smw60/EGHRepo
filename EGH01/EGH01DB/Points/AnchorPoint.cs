@@ -67,7 +67,7 @@ namespace EGH01DB.Points
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ВысотаУровнемМоря", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ВысотаУровнемМоря", SqlDbType.Real);
                     parm.Value = anchor_point.height;
                     cmd.Parameters.Add(parm);
                 }
