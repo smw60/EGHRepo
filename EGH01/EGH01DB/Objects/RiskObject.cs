@@ -646,6 +646,7 @@ namespace EGH01DB.Objects
                         float soilmoisture = (float)reader["ВлажностьГрунта"];
                         float аveryanovfactor = (float)reader["КоэфАверьянова"];
                         float permeability = (float)reader["Водопроницаемость"];
+                        float density = (float)reader["СредняяПлотностьГрунта"];
                         GroundType ground_type = new GroundType((int)reader["ТипГрунта"], 
                                                                     (string)ground_type_name, 
                                                                     (float)porosity, 
@@ -657,7 +658,8 @@ namespace EGH01DB.Objects
                                                                     (float)watercapacity,
                                                                     (float)soilmoisture,
                                                                     (float)аveryanovfactor,
-                                                                    (float)permeability);
+                                                                    (float)permeability,
+                                                                    (float)density);
 
                         float waterdeep = (float)reader["ГлубинаГрунтовыхВод"];
                         float height = (float)reader["ВысотаУровнемМоря"];

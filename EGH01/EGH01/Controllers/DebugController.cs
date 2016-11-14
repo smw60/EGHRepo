@@ -854,11 +854,12 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                List<GroundType> list = new List<GroundType>();
-                if (Helper.GetListGroundType(db, ref list))    
-                {
-                    int k = 1;
-                };
+                //List<GroundType> list = new List<GroundType>();
+                
+                //if (Helper.GetListGroundType(db, ref list))    
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -871,7 +872,7 @@ namespace EGH01.Controllers
                 //List<CadastreType> list = new List<CadastreType>();
                 //if (Helper.GetListCadastreType(db, ref list))
                 //{
-                    
+
                 //    int k = 1;
                 //};
             }
