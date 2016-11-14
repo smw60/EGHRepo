@@ -198,7 +198,7 @@ namespace EGH01.Controllers
         }
 
         // проверка процедур  EcoObject
-        public ActionResult EcoObject_list() // yes
+        public ActionResult EcoObject_list() // есть
         {
             RGEContext db = new RGEContext();
             {
@@ -210,30 +210,30 @@ namespace EGH01.Controllers
             }
             return View();
         }
-        public ActionResult EcoObject_Obj() // yes
+        public ActionResult EcoObject_Obj() // есть
         {
             RGEContext db = new RGEContext();
             {
-                //AnchorPoint ap = new AnchorPoint();
-                //if (AnchorPoint.GetById(db, 4, ref ap))
+                //EcoObject ap = new EcoObject();
+                //if (EcoObject.GetById(db, 3, ref ap))
                 //{
                 //    int k = 1;
                 //};
             }
             return View();
         }
-        public ActionResult EcoObject_DeleteById() // yes
+        public ActionResult EcoObject_DeleteById() // есть
         {
             RGEContext db = new RGEContext();
             {
-                //if (AnchorPoint.DeleteById(db, 3)) // удалена
+                //if (EcoObject.DeleteById(db, 3)) // удалена
                 //{
                 //    int k = 1;
                 //};
             }
             return View();
         }
-        public ActionResult EcoObject_Create()// yes
+        public ActionResult EcoObject_Create()// есть
         {
             RGEContext db = new RGEContext();
             {
@@ -241,7 +241,7 @@ namespace EGH01.Controllers
                 //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 1.0f, 20.0f);
                 //CadastreType cadastretype = new CadastreType(1);
                 //EcoObjectType ecoobjecttype = new EcoObjectType(1);
-                //EcoObject ap = new EcoObject(id, point, ecoobjecttype, cadastretype, "test", false);
+                //EcoObject ap = new EcoObject(id, point, ecoobjecttype, cadastretype, "test1", true);
                 //if (EcoObject.Create(db, ap))
                 //{
                 //    int k = 1;
@@ -249,25 +249,24 @@ namespace EGH01.Controllers
             }
             return View();
         }
-        public ActionResult EcoObject_Update() // yes
+        public ActionResult EcoObject_Update() // есть
         {
             RGEContext db = new RGEContext();
             {
 
                 //int id = 4;
                 //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 150.0f, 20.0f);
-                //CadastreType cad = new CadastreType(1);
-
-                //AnchorPoint ap = new AnchorPoint(id, point, cad);
-
-                //if (AnchorPoint.Update(db, ap))
+                //CadastreType cad_type = new CadastreType(1);
+                //EcoObjectType etype = new EcoObjectType(1);
+                //EcoObject ecoobj = new EcoObject(4, point, etype, cad_type, "new", false);
+                //if (EcoObject.Update(db, ecoobj))
                 //{
                 //    int k = 1;
                 //};
             }
             return View();
         }
-        public ActionResult EcoObject_CreateNear() // yes
+        public ActionResult EcoObject_CreateNear() // n
         {
             //RGEContext db = new RGEContext();
             //{
