@@ -10,6 +10,7 @@
     <link href="~/content/site.css" type="text/css" rel="stylesheet" />*@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/JavaScript1.js"></script> 
 </head>
 <body>
     <div class="navbar navbar-default  navbar-fixed-top">
@@ -18,11 +19,18 @@
             </div>
             <!--Заголовок индивидуальный для страниц-->
             <div class="title col-xs-8">
+                @*<div class="date"><?php echo mosCurrentDate(); ?></div>*@
+                 <span id="time"></span>
                 <style>
-                    .title {
+                    #time {
+                        float: right;
+                        padding: 17px 0;
+                    }
+                .title {
                         text-align: left;
                     }
                 </style>
+
               @if (ViewBag.EGHLayout == "RGE")
                 {
                     <h2>Прогноз</h2>
@@ -309,6 +317,13 @@
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/JavaScript")
+    <script type="text/JavaScript1">
+        clock();
+    </script>
+
+        
+   
 </body>
 </html>
 

@@ -403,10 +403,17 @@ a.dropdown-toggle.btn.btn-link {
             color: black;
             border: none;
         }
+        element.style {
+    width: 25%;
+    height:inherit;
+
+}
+
         /*строки без форм*/
         .boxdata span.boxdata-span{
             width:60%;
             display:inline-block;
+
         }
         .boxcontrol {
             margin: 1px;
@@ -442,7 +449,7 @@ a.dropdown-toggle.btn.btn-link {
 
 
 /*    не трогать          */
-* /*/
+
 
 
 /* Минимально необходимый CSS для footer*/
@@ -464,8 +471,8 @@ a.dropdown-toggle.btn.btn-link {
     max-width:none; 
     white-space:pre; 
     font-family: 'Courier New', Courier, monospace;
-    width:65%;
-}
+    width:auto;
+ }
 
 #main_menu:hover{       /*при наведении на главное меню меняется фон*/
     background:#c8da94;
