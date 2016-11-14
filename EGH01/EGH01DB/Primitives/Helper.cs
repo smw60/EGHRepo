@@ -131,8 +131,10 @@ namespace EGH01DB.Primitives
                     {
                         list_type.Add(new CadastreType((int)reader["КодНазначенияЗемель"], 
                                                         (string)reader["НаименованиеНазначенияЗемель"], 
-                                                        (int)reader["ПДК"],
-                                                        (float)reader["ПДКВоды"]));
+                                                        (float)reader["ПДК"],
+                                                        (float)reader["ПДКВоды"],
+                                                        (string)reader["НормДокументЗемля"],
+                                                        (string)reader["НормДокументВода"]));
                     }
                     rc = list_type.Count > 0;
                     reader.Close();

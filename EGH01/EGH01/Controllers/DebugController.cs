@@ -871,7 +871,7 @@ namespace EGH01.Controllers
                 //List<CadastreType> list = new List<CadastreType>();
                 //if (Helper.GetListCadastreType(db, ref list))
                 //{
-                    
+
                 //    int k = 1;
                 //};
             }
