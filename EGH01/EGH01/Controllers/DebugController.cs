@@ -385,7 +385,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //GroundType gr = new GroundType(1);
-                //SpreadingCoefficient sc = new SpreadingCoefficient(gr, (float)20f, (float)40f, (float)1.5f, (float)4.6f, (float)0.0f);
+                //SpreadingCoefficient sc = new SpreadingCoefficient(5, gr, (float)20f, (float)40f, (float)5f, (float)10f, (float)0.0f);
                 //float koeff = SpreadingCoefficient.Get(db, sc);
                 
             }
@@ -1143,7 +1143,73 @@ namespace EGH01.Controllers
         }
 
         // проверка процедур EcoObject Type
+        public ActionResult EcoObjectType_list() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<EcoObjectType> list = new List<EcoObjectType>();
+                //if (Helper.GetListEcoObjectType(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObjectType_GetByCode()//есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //EcoObjectType ct = new EcoObjectType(1);
+                //if (EcoObjectType.GetByCode(db, 1, out ct))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObjectType_DeleteByCode()  // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //EcoObjectType ct = new EcoObjectType();
+                //if (EcoObjectType.DeleteByCode(db, 4))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObjectType_Create()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
 
+                //int type_code = 1;
+                //string name = "Заповедник";
+                //EcoObjectType ct = new EcoObjectType((int)type_code, (string)name);
+                //if (EcoObjectType.Create(db, ct))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EcoObjectType_Update() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int type_code = 1;
+                //string name = "Озеро";
+                //EcoObjectType ct = new EcoObjectType((int)type_code, (string)name);
+                //if (EcoObjectType.Update(db, ct))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+       
+        
         // проверка процедур Incident Type
         public ActionResult IncidentType_list() // 
         {
