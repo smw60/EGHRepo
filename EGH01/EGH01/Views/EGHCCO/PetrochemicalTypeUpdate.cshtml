@@ -30,38 +30,46 @@
                 <label class="boxdata-label-30">Наименование нефтепродукта</label>
                 <input class="boxdata-input-50" type="text" name="Name" value="@Model.name.ToString()" />
             </div>
-            <div class="boxdata">
-                <label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С </label>
-                <input class="boxdata-input-50" type="number" step="0.1" name="Boilingtemp" value="@Model.boilingtemp.ToString("0.0").Replace(',', '.')" />
-            </div>
-            <div class="boxdata">
+            <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="PetrochemicalType">
+                <legend style="width: auto; font: inherit; border:none;">Реально используемые</legend>
+                <div class="boxdata">
 
-                <label class="boxdata-label-30">Плотность, г/см<sup><small>3</small></sup></label>
+                    <label class="boxdata-label-30">Плотность, кг/м<sup><small>3</small></sup></label>
 
-                <input class="boxdata-input-50" type="number" step="0.001" name="Density" value="@Model.density.ToString("0.000").Replace(',', '.')" />
-            </div>
-            <div class="boxdata">
-                <label class="boxdata-label-30">Кинематическая вязкость, мм<sup><small>2</small></sup>/см</label>
-                <input class="boxdata-input-50" type="number" step="0.00001" name="Viscosity" value="@Model.viscosity.ToString("0.00000").Replace(',', '.')" />
-            </div>
-            <div class="boxdata">
-                <label class="boxdata-label-30">Растворимость, мг/дм<sup><small>2</small></sup></label>
+                    <input class="boxdata-input-50" type="number" step="0.001" name="Density" value="@Model.density.ToString("0.000").Replace(',', '.')" />
+                </div>
+                <div class="boxdata">
+                    <label class="boxdata-label-30">Динамическая вязкость, кг/м*с</label>
+                    <input class="boxdata-input-50" type="number" step="0.00001" name="Dynamicviscosity" value="@Model.dynamicviscosity.ToString("0.00000").Replace(',', '.')" />
+                </div>
+                <div class="boxdata">
+                    <label class="boxdata-label-30">Кинематическая вязкость, м<sup><small>2</small></sup>/с</label>
+                    <input class="boxdata-input-50" type="number" step="0.00001" name="Viscosity" value="@Model.viscosity.ToString("0.00000").Replace(',', '.')" />
+                </div>
+                <div class="boxdata">
+                    <label class="boxdata-label-30">Коэф. диффузии, м<sup><small>2</small></sup>/с</label>
+                    <input class="boxdata-input-50" type="number" step="0.001" name="Diffusion" value="@Model.diffusion.ToString("0.000").Replace(',', '.')" />
+                </div>
+            </fieldset>
 
-                <input class="boxdata-input-50" type="number" step="0.001" name="Solubility" value="@Model.solubility.ToString("0.000").Replace(',', '.')" />
-            </div>
-            <div class="boxdata">
-                <label class="boxdata-label-30">Динамическая вязкость, кг/м*с</label>
-                <input class="boxdata-input-50" type="number" step="0.00001" name="Dynamicviscosity" value="@Model.dynamicviscosity.ToString("0.00000").Replace(',', '.')" />
-            </div>
-            <div class="boxdata">
-                <label class="boxdata-label-30">Коэф. поверхностного натяжения, кг/с<sup><small>2</small></sup></label>
-                <input class="boxdata-input-50" type="number" step="0.001" name="Tension" value="@Model.tension.ToString("0.000").Replace(',', '.')" />
-            </div>
-            <div class="boxdata">
-                <label class="boxdata-label-30">Коэф. диффузии, м<sup><small>2</small></sup>/с</label>
-                <input class="boxdata-input-50" type="number" step="0.001" name="Diffusion" value="@Model.diffusion.ToString("0.000").Replace(',', '.')" />
-            </div>
-        </div>
+                <div class="boxdata">
+                    <label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С </label>
+                    <input class="boxdata-input-50" type="number" step="0.1" name="Boilingtemp" value="@Model.boilingtemp.ToString("0.0").Replace(',', '.')" />
+                </div>
+
+
+                <div class="boxdata">
+                    <label class="boxdata-label-30">Растворимость, кг/м<sup><small>2</small></sup></label>
+
+                    <input class="boxdata-input-50" type="number" step="0.001" name="Solubility" value="@Model.solubility.ToString("0.000").Replace(',', '.')" />
+                </div>
+
+                <div class="boxdata">
+                    <label class="boxdata-label-30">Коэф. поверхностного натяжения, кг/с<sup><small>2</small></sup></label>
+                    <input class="boxdata-input-50" type="number" step="0.001" name="Tension" value="@Model.tension.ToString("0.000").Replace(',', '.')" />
+                </div>
+               
+</div>
         @Html.Partial("_TypeLineMenu", delete)
 
     </div>

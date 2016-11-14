@@ -143,7 +143,6 @@ namespace EGH01DB.Types
                 try
                 {
                     cmd.ExecuteNonQuery();
-
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {

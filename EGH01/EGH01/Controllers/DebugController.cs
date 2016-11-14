@@ -893,8 +893,8 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //CadastreType ct = new CadastreType(1);
-                
+                CadastreType ct = new CadastreType(1);
+
                 //if (CadastreType.GetByCode(db, 1, out ct))
                 //{
                 //    int k = 1;

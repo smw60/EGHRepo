@@ -284,11 +284,11 @@ namespace EGH01DB.Types
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        string name = (string)reader["@НаименованиеНазначенияЗемель"];
-                        float pdk_coef = (float)reader["@ПДК"];
-                        float water_pdk_coef = (float)reader["@ПДКводы"];
-                        string ground_doc_name = (string)reader["@НормДокументЗемля"];
-                        string water_doc_name = (string)reader["@НормДокументВода"]; 
+                        string name = (string)reader["НаименованиеНазначенияЗемель"];
+                        float pdk_coef = (float)reader["ПДК"];
+                        float water_pdk_coef = (float)reader["ПДКводы"];
+                        string ground_doc_name = (string)reader["НормДокументЗемля"];
+                        string water_doc_name = (string)reader["НормДокументВода"]; 
                         if (rc = (int)cmd.Parameters["@exitrc"].Value > 0)
                                 type = new CadastreType(type_code, name, (float)pdk_coef, (float)water_pdk_coef, ground_doc_name, water_doc_name); 
                     }
