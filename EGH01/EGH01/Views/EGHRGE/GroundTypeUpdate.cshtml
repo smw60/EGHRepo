@@ -26,62 +26,79 @@
         <div class="boxdata">
 
             <div class="boxdata">
-                @*<label class="boxdata-label-30">Код типа земли</label>
-                @Model.type_code*@
+               
                 <input type="hidden" value="@Model.type_code.ToString()" name="type_code">
             </div>
-            <p>
+            <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="GroundType">
+                <p>
 
-                <label class="boxdata-label-30">Наименование грунта</label>
-                <input class="boxdata-input-50" type="text" name="Name" value="@Model.name" />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Пористость</label>
-                <input class="boxdata-input-50" type="number" name="porosity" value="@Model.porosity.ToString().Replace(',' , '.')" min="0" max="1" step="0.01" />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Коэффициент диффузии (м2/с)</label>
-                <input class="boxdata-input-50" type="number" name="diffusion" value="@Model.diffusion.ToString().Replace(',' , '.')" min="0" max="1" step="0.01" />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Коэффициент распределения</label>
-                <input class="boxdata-input-50" type="number" name="distribution" value="@Model.distribution.ToString().Replace(',' , '.')" min="0" max="1" step="0.01" />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Коэффициент сорбции (1/с)</label>
-                <input class="boxdata-input-50" type="number" name="sorption" value="@Model.sorption.ToString().Replace(',' , '.')" min="0" max="1" step="0.1" />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Водопроницаемость (м/с)</label>
-                <input class="boxdata-input-50" type="number" name="permeability" value="@Model.permeability.ToString().Replace(',' , '.')" min="0" max="1" step="0.01" />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Влажность</label>
-                <input class="boxdata-input-50" type="number" name="soilmoisture" min="0" max="1" value="@Model.soilmoisture.ToString().Replace(',' , '.')"step="0.001" />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Влагоемкость</label>
-                <input class="boxdata-input-50" type="number" name="watercapacity" min="0" max="1" value="@Model.watercapacity.ToString().Replace(',' , '.')" step="0.001" />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Коэффициент фильтрации (м/с)</label>
-                <input class="boxdata-input-50" type="number" name="waterfilter" value="@Model.waterfilter.ToString().Replace(',' , '.')" min="0.0000001" max="1.0" step="0.0000001" />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Коэффициент Аверьянова</label>
-                <input class="boxdata-input-50" type="number" name="аveryanovfactor"  min="3" max="9" value="@Model.аveryanovfactor.ToString().Replace(',' , '.')" step="0.1" />
-            </p>
+                    <label class="boxdata-label-30">Наименование грунта</label>
+                    <input class="boxdata-input-50" type="text" name="Name" value="@Model.name" />
+                </p>
 
-            <p>
-                <label class="boxdata-label-30">Коэффициент задержки нефтепродукта</label>
-                <input class="boxdata-input-50" type="number" name="holdmigration" value="@Model.holdmigration.ToString().Replace(',' , '.')" step="0.1" min="0" />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Средняя плотность грунта (кг/м3)</label>
-                @*<input class="boxdata-input-50" type="number" name="holdmigration" value="@Model.holdmigration.ToString().Replace(',' , '.')" step="0.1" min="0" />*@
-            </p>
+                <p>
+                    <label class="boxdata-label-30">Пористость</label>
+                    <input class="boxdata-input-50" type="number" name="porosity" value="@Model.porosity.ToString().Replace(',' , '.')" min="0" max="1" step="0.01" />
+                </p>
 
-        </div>
+                <p>
+                    <label class="boxdata-label-30">Коэффициент фильтрации (м/с)</label>
+                    <input class="boxdata-input-50" type="number" name="waterfilter" value="@Model.waterfilter.ToString().Replace(',' , '.')" min="0.000001" max="1.0" step="0.0000000001" />
+                </p>
+
+                <p>
+                    <label class="boxdata-label-30">Коэффициент задержки нефтепродукта</label>
+                    <input class="boxdata-input-50" type="number" name="holdmigration" value="@Model.holdmigration.ToString().Replace(',' , '.')" step="0.1" min="0" />
+                </p>
+
+                <p>
+                    <label class="boxdata-label-30">Влажность</label>
+                    <input class="boxdata-input-50" type="number" name="soilmoisture" min="0" max="1" value="@Model.soilmoisture.ToString().Replace(',' , '.')" step="0.001" />
+                </p>
+
+                <p>
+                    <label class="boxdata-label-30">Влагоемкость</label>
+                    <input class="boxdata-input-50" type="number" name="watercapacity" min="0" max="1" value="@Model.watercapacity.ToString().Replace(',' , '.')" step="0.001" />
+                </p>
+
+                <p>
+                    <label class="boxdata-label-30">Коэффициент Аверьянова</label>
+                    <input class="boxdata-input-50" type="number" name="аveryanovfactor" min="3" max="9" value="@Model.аveryanovfactor.ToString().Replace(',' , '.')" step="0.1" />
+                </p>
+
+                <p>
+                    <label class="boxdata-label-30">Средняя плотность грунта (кг/м3)</label>
+                    <input class="boxdata-input-50" type="number" name="density" value="@Model.density.ToString().Replace(',', '.')" step="0.1" min="0" />
+                </p>
+
+            </fieldset>
+          
+            <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="GroundType">
+                <p>
+                    <label class="boxdata-label-30">Коэффициент диффузии (м2/с)</label>
+                    <input class="boxdata-input-50" type="number" name="diffusion" value="@Model.diffusion.ToString().Replace(',' , '.')" min="0" max="1" step="0.01" />
+                </p>
+                <p>
+                    <label class="boxdata-label-30">Коэффициент распределения</label>
+                    <input class="boxdata-input-50" type="number" name="distribution" value="@Model.distribution.ToString().Replace(',' , '.')" min="0" max="1" step="0.01" />
+                </p>
+                <p>
+                    <label class="boxdata-label-30">Коэффициент сорбции (1/с)</label>
+                    <input class="boxdata-input-50" type="number" name="sorption" value="@Model.sorption.ToString().Replace(',' , '.')" min="0" max="1" step="0.1" />
+                </p>
+                <p>
+                    <label class="boxdata-label-30">Водопроницаемость (м/с)</label>
+                    <input class="boxdata-input-50" type="number" name="permeability" value="@Model.permeability.ToString().Replace(',' , '.')" min="0" max="1" step="0.01" />
+                </p>
+            </fieldset>
+
+
+
+
+
+
+
+</div>
 
         @Html.Partial("_TypeLineMenu", delete)
 

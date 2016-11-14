@@ -145,6 +145,7 @@ namespace EGH01.Controllers
                             height = 0.0f;
                         }
                         Coordinates coordinates = new Coordinates(rs.latitude, rs.lat_m, lat_s, rs.lngitude, rs.lng_m, lng_s);
+                        float latitude= EGH01DB.Primitives.Coordinates.dms_to_d(rs.latitude,rs.lat_m,rs.lat_s);
                         EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType();
                         if (EGH01DB.Types.GroundType.GetByCode(db, rs.list_groundType, out ground_type))
                         {
