@@ -19,15 +19,17 @@
             <div class="boxdata">
                 <div class="boxdata">
                     <p><label class="boxdata-label-30">Тип грунта</label>@t.ground_type.name.ToString() </p>
+                    <p><label class="boxdata-label-30">Код</label>@t.code.ToString() </p>
+                    <input type="hidden" value="@t.code.ToString()" name="code">
                 </div>
                 <div class="boxdata">
-                    <p><label class="boxdata-label-30">Диапазон значений объема пролива</label>@t.min_volume.ToString() - @t.max_volume.ToString()</p>
+                    <p><label class="boxdata-label-30">Диапазон значений объема пролива</label>@t.min_volume.ToString("0.0") - @t.max_volume.ToString("0.0")</p>
                 </div>
                 <div class="boxdata">
-                    <p><label class="boxdata-label-30">Диапазон значений гидравлического уклона</label>@t.min_angle.ToString() - @t.max_angle.ToString()</p>
+                    <p><label class="boxdata-label-30">Диапазон значений гидравлического уклона</label>@t.min_angle.ToString("0.0") - @t.max_angle.ToString("0.0")</p>
                 </div>
                 <div class="boxdata">
-                    <p><label class="boxdata-label-30">Коэффициент разлива</label>@t.koef.ToString()</p>
+                    <p><label class="boxdata-label-30">Коэффициент разлива</label>@t.koef.ToString("0.0")</p>
                 </div>
             </div>
 

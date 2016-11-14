@@ -80,6 +80,20 @@
 
         }
     }
+    {
+        List<EGH01DB.Types.CadastreType> list_cadastre = new List<EGH01DB.Types.CadastreType>();
+        List<SelectListItem> listcadastre = ViewBag.list_cadastre = new List<SelectListItem>();
+        
+        Helper.GetListCadastreType(db, ref list_cadastre);
+        list_cadastre.ForEach(o => ViewBag.list_cadastre.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+        
+        if (@Model.cadastretype != null)
+        {
+            SelectListItem sic = listcadastre.FirstOrDefault(s => s.Value == Model.cadastretype.type_code.ToString());
+            sic.Selected = true;
+
+        }
+    }
 
 }
 @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCAI", Action = "RiskObject", Menu = head })
@@ -192,7 +206,11 @@
                 <input type="button" value="Загрузить карту" style="margin:10px"/>*@
                 </fieldset>
                 <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
-                    <legend style="width: auto; font: inherit; border:none;">Геологические данные</legend>
+ <legend style="width: auto; font: inherit; border:none;">Геологические данные</legend>
+                    <p>
+                        <label class="boxdata-label-30">Категория земли</label> @Html.DropDownList("list_cadastre")
+                    </p>
+
                     <p>
                         <label class="boxdata-label-30">Грунт</label>@Html.DropDownList("list_groundType")
                     </p>

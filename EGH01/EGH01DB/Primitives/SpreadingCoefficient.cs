@@ -415,7 +415,7 @@ namespace EGH01DB.Primitives
             return rc;
         }
         // другие методы определения коэффициента  
-        //static float get
+        // static float get
         // static float get
     }
 }

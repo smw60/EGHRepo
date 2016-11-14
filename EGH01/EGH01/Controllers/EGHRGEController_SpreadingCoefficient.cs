@@ -40,56 +40,19 @@ namespace EGH01.Controllers
                 else if (menuitem.Equals("SpreadingCoefficient.Delete"))
                 {
 
-                    //string water_code = this.HttpContext.Request.Params["water_code"];
-                    //if (water_code != null)
-                    //{
-                    //    int c = 0;
-                    //    if (int.TryParse(water_code, out c))
-                    //    {
-                    //        EGH01DB.Primitives.WaterProperties wp = new EGH01DB.Primitives.WaterProperties();
-                    //        if (EGH01DB.Primitives.WaterProperties.GetByCode(db, c, out wp))
-                    //        {
-                    //            view = View("WaterPropertiesDelete", wp);
-                    //        }
-                    //    }
-                    //}
-
-                    //EGH01DB.Types.GroundType type_grounde = new EGH01DB.Types.GroundType();
-                    //if (EGH01DB.Types.GroundType.GetByCode(db, scv.list_groundType, out type_grounde))
-                    //{
-                    //    //GroundType ground_type = new GroundType(scv.list_groundType, type_groud.name, type_groud.porosity, type_groud.holdmigration, type_groud.waterfilter, type_groud.diffusion,
-                    //    //type_groud.distribution, type_groud.sorption, type_groud.watercapacity, type_groud.soilmoisture, type_groud.аveryanovfactor, type_groud.permeability);
-
-                    //    string strmin_angle = this.HttpContext.Request.Params["min_angle"] ?? "Empty";
-                    //    float min_angle;
-                    //    Helper.FloatTryParse(strmin_angle, out min_angle);
-
-                    //    string strmax_angle = this.HttpContext.Request.Params["max_angle"] ?? "Empty";
-                    //    float max_angle;
-                    //    Helper.FloatTryParse(strmax_angle, out max_angle);
-
-                    //    string strmin_volume = this.HttpContext.Request.Params["min_volume"] ?? "Empty";
-                    //    float min_volume;
-                    //    Helper.FloatTryParse(strmin_volume, out min_volume);
-
-                    //    string strmax_volume = this.HttpContext.Request.Params["max_volume "] ?? "Empty";
-                    //    float max_volume;
-                    //    Helper.FloatTryParse(strmax_volume, out max_volume);
-
-                    //    string strkoef = this.HttpContext.Request.Params["koef"] ?? "Empty";
-                    //    float koef;
-                    //    Helper.FloatTryParse(strkoef, out koef);
-
-
-                    //    float volume = max_volume - min_volume;
-                    //    float angle = max_angle - min_angle;
-                    //    SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient(1, (GroundType)type_grounde, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
-
-
-                    //if (EGH01DB.Primitives.SpreadingCoefficient.GetByData(db, (GroundType)type_grounde,(float)volume,(float)angle))
-                    //{
-                    //view = View("SpreadingCoefficientDelete", sc);
-                    //}
+                    string code = this.HttpContext.Request.Params["code"];
+                    if (code != null)
+                    {
+                        int c = 0;
+                        if (int.TryParse(code, out c))
+                        {
+                            EGH01DB.Primitives.SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient();
+                            if (EGH01DB.Primitives.SpreadingCoefficient.GetByCode(db, c, out sc))
+                            {
+                                view = View("SpreadingCoefficientDelete", sc);
+                            }
+                        }
+                    }
 
 
                 }
@@ -97,33 +60,10 @@ namespace EGH01.Controllers
 
                 else if (menuitem.Equals("SpreadingCoefficient.Update"))
                 {
-                    //    string type_code_item = this.HttpContext.Request.Params["type_code"];
-
-                    //    if (type_code_item != null)
-                    //    {
-                    //        int c = 0;
-                    //        if (int.TryParse(type_code_item, out c))
-                    //        {
-                    //            EGH01DB.Primitives.SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient();
-                    //            if (EGH01DB.Primitives.SpreadingCoefficient.GetByData()
-                    //            {
-                    //                view = View("SpreadingCoefficientUpdate", pt);
-                    //            }
-                    //        }
-                    //    }
+                  
                 }
                 else if (menuitem.Equals("SpreadingCoefficient.Excel"))
                 {
-                    //EGH01DB.Types.PetrochemicalType.PetrochemicalTypeList list = new EGH01DB.Types.PetrochemicalType.PetrochemicalTypeList();
-                    //XmlNode node = list.toXmlNode();
-                    //XmlDocument doc = new XmlDocument();
-                    //XmlNode nnode = doc.ImportNode(node, true);
-                    //doc.AppendChild(nnode);
-                    //doc.Save(Server.MapPath("~/App_Data/PetrochemicalType.xml"));
-                    //view = View("Index");
-
-                    //view = File(Server.MapPath("~/App_Data/PetrochemicalType.xml"), "text/plain", "PetrochemicalType.xml");
-
 
                 }
             }
@@ -214,19 +154,18 @@ namespace EGH01.Controllers
         }
 
         [HttpPost]
-        public ActionResult SpreadingCoefficientDelete(SpreadingCoefficient sc)
+        public ActionResult SpreadingCoefficientDelete(int code)
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "CCO";
+            ViewBag.EGHLayout = "RGE";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
                 db = new RGEContext();
-                if (menuitem.Equals("PetrochemicalType.Delete.Delete"))
+                if (menuitem.Equals("SpreadingCoefficient.Delete.Delete"))
                 {
-                    //SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient();
-                    if (EGH01DB.Primitives.SpreadingCoefficient.Delete(db, sc))
+                    if (EGH01DB.Primitives.SpreadingCoefficient.DeleteByCode(db, code))
                         view = View("SpreadingCoefficient", db);
                 }
                 else if (menuitem.Equals("SpreadingCoefficient.Delete.Cancel"))
@@ -246,7 +185,7 @@ namespace EGH01.Controllers
         }
 
         [HttpPost]
-        public ActionResult WaterPropertiesUpdate(SpreadingCoefficient scv)
+        public ActionResult WaterPropertiesUpdate(SpreadingCoefficientView scv)
         {
             RGEContext db = null;
             ViewBag.EGHLayout = "RGE";
@@ -257,28 +196,32 @@ namespace EGH01.Controllers
                 db = new RGEContext();
                 if (menuitem.Equals("SpreadingCoefficient.Update.Update"))
                 {
+                     EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
+                     if (EGH01DB.Types.GroundType.GetByCode(db, scv.list_groundType, out type_groud))
+                     {
+                         int code = scv.code;
 
-                    //int water_code = scv.water_code;
+                         string strmin_volume = this.HttpContext.Request.Params["min_volume"] ?? "Empty";
+                         float min_volume;
+                         Helper.FloatTryParse(strmin_volume, out min_volume);
 
-                    //string strtemperature = this.HttpContext.Request.Params["temperature"] ?? "Empty";
-                    //float temperature;
-                    //Helper.FloatTryParse(strtemperature, out temperature);
+                         string strmax_volume = this.HttpContext.Request.Params["max_volume"] ?? "Empty";
+                         float max_volume;
+                         Helper.FloatTryParse(strmax_volume, out max_volume);
 
-                    //string strviscocity = this.HttpContext.Request.Params["viscocity"] ?? "Empty";
-                    //float viscocity;
-                    //Helper.FloatTryParse(strviscocity, out viscocity);
+                         string strmin_angle = this.HttpContext.Request.Params["min_angle"] ?? "Empty";
+                         float min_angle;
+                         Helper.FloatTryParse(strmin_angle, out min_angle);
 
-                    //string strdensity = this.HttpContext.Request.Params["density"] ?? "Empty";
-                    //float density;
-                    //Helper.FloatTryParse(strdensity, out density);
+                         string strmax_angle = this.HttpContext.Request.Params["max_angle"] ?? "Empty";
+                         float max_angle;
+                         Helper.FloatTryParse(strmax_angle, out max_angle);
+                         float koef=1;
 
-                    //string strtension = this.HttpContext.Request.Params["tension"] ?? "Empty";
-                    //float tension;
-                    //Helper.FloatTryParse(strtension, out tension);
-
-                    //SpreadingCoefficient sc = new SpreadingCoefficient((int)water_code, (float)temperature, (float)viscocity, (float)density, (float)tension);
-                    //if (EGH01DB.Primitives.WaterProperties.Update(db, sc))
-                    //    view = View("SpreadingCoefficient", db);
+                         SpreadingCoefficient sc = new SpreadingCoefficient((int)code, type_groud, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
+                         if (EGH01DB.Primitives.SpreadingCoefficient.Update(db, sc))
+                             view = View("SpreadingCoefficient", db);
+                     }
                 }
                 else if (menuitem.Equals("SpreadingCoefficient.Update.Cancel"))
                     view = View("SpreadingCoefficient", db);

@@ -14,7 +14,7 @@
                         );
 
 }
-@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCCO", Action = "SpreadingCoefficient", Menu = head })
+@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHRGE", Action = "SpreadingCoefficient", Menu = head })
 
 @using (Html.BeginForm("SpreadingCoefficientDelete", "EGHRGE"))
 {
@@ -22,13 +22,17 @@
     <div class="box">
         <div class="boxdata">
             <div class="boxdata">
-                <label class="boxdata-label-30">Тип грунта</label>@Model.ground_type.name.ToString()  
+                <p>
+                    <label class="boxdata-label-30">Код</label>@Model.code.ToString()
+                <p>
+                    <label class="boxdata-label-30">Тип грунта</label>@Model.ground_type.name.ToString()
+                    <input type="hidden" value="@Model.code.ToString()" name="code">
             </div>
             <div class="boxdata">
-                <p><label class="boxdata-label-30">Диапазон значений объема пролива</label>@Model.min_volume.ToString() - @Model.max_volume.ToString()</p>
+                <p><label class="boxdata-label-30">Диапазон значений объема пролива</label>@Model.min_volume.ToString("0.0") - @Model.max_volume.ToString("0.0")</p>
             </div>
             <div class="boxdata">
-                <p><label class="boxdata-label-30">Диапазон значений гидравлического уклона</label>@Model.min_angle.ToString() - @Model.max_angle.ToString()</p>
+                <p><label class="boxdata-label-30">Диапазон значений гидравлического уклона</label>@Model.min_angle.ToString("0.0") - @Model.max_angle.ToString("0.0")</p>
             </div>
             <div class="boxdata">
                 <p><label class="boxdata-label-30">Коэффициент разлива</label>@Model.koef.ToString()</p>
