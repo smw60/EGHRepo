@@ -192,8 +192,8 @@ namespace EGH01DB.Primitives
                     list_type = new List<EcoObjectType>();
                     while (reader.Read())
                     {
-                        list_type.Add(new EcoObjectType((int)reader["КодТипаПриродоохранногоОбъекта"], 
-                                                        (string)reader["Наименование"]));
+                        list_type.Add(new EcoObjectType((int)reader["КодТипаПриродоохранногоОбъекта"],
+                                                        (string)reader["НаименованиеТипаПриродоохранногоОбъекта"]));
                     }
                     rc = list_type.Count > 0;
                     reader.Close();

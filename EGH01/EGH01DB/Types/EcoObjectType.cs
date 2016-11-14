@@ -53,16 +53,13 @@ namespace EGH01DB.Types
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
                     SqlParameter parm = new SqlParameter("@КодТипаПриродоохранногоОбъекта", SqlDbType.Int);
-                    if (ecoobject_type.type_code <= 0)
-                    {
                         int new_ecoobject_type_code = 0;
                         if (GetNextCode(dbcontext, out new_ecoobject_type_code)) ecoobject_type.type_code = new_ecoobject_type_code;
-                    }
                     parm.Value = ecoobject_type.type_code;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@НаименованиеПриродоохранногоОбъекта", SqlDbType.VarChar);
+                    SqlParameter parm = new SqlParameter("@НаименованиеТипаПриродоохранногоОбъекта", SqlDbType.VarChar);
                     parm.Value = ecoobject_type.name;
                     cmd.Parameters.Add(parm);
                 }
@@ -188,12 +185,15 @@ namespace EGH01DB.Types
 
             return rc;
         }
-
+        static public bool DeleteByCode(EGH01DB.IDBContext dbcontext, int code)
+        {
+            return Delete(dbcontext, new EcoObjectType(code));
+        }
         static public bool GetByCode(EGH01DB.IDBContext dbcontext, int type_code, out EcoObjectType type)
         {
             bool rc = false;
             type = new EcoObjectType();
-            using (SqlCommand cmd = new SqlCommand("EGH.GetEcoObjectTypeByID", dbcontext.connection))
+            using (SqlCommand cmd = new SqlCommand("EGH.GetEcoObjectTypeByCode", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 {

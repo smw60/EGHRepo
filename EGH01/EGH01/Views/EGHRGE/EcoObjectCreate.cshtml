@@ -1,0 +1,60 @@
+﻿@using EGH01.Core;
+@using EGH01.Models.EGH;
+@using EGH01DB.Primitives;
+@using EGH01DB.Types;
+@model EGH01DB.RGEContext
+
+@{
+
+    Layout = "~/Views/Shared/EGHLayout.cshtml";
+    Menu start = new Menu(
+                          new Menu.MenuItem("Создать", "EcoObject.Create", true),
+                          new Menu.MenuItem("Отказаться", "EcoObject.Cancel", true)
+                        );
+
+    Menu create = new Menu(
+                          new Menu.MenuItem("Создать", "EcoObject.Create.Create", true),
+                          new Menu.MenuItem("Отказаться", "EcoObject.Create.Cancel", true)
+                        );
+
+
+    List<EGH01DB.Types.CadastreType> list_cadastre = new List<EGH01DB.Types.CadastreType>();
+    ViewBag.list_cadastre = new List<SelectListItem>();
+    if (@Model != null)
+    {
+        Helper.GetListCadastreType(@Model, ref list_cadastre);
+        list_cadastre.ForEach(o => ViewBag.list_cadastre.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+
+    }
+    List<EGH01DB.Types.EcoObjectType> list_ecoType = new List<EGH01DB.Types.EcoObjectType>();
+    ViewBag.list_ecoType = new List<SelectListItem>();
+    if (@Model != null)
+    {
+        Helper.GetListEcoObjectType(@Model, ref list_ecoType);
+        list_ecoType.ForEach(o => ViewBag.list_ecoType.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+
+    }
+}
+
+@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHRGE", Action = "EcoObject", Menu = start })
+@using (Html.BeginForm("EcoObjectCreate", "EGHRGE"))
+{
+    <div class="box">
+        <div class="boxdata">
+            <label class="boxdata-label-30">Наименование природоохранного объекта</label>
+            <input class="boxdata-input-30" type="text" name="name" />
+        </div>
+        <div class="boxdata">
+            <label class="boxdata-label-30">Тип природохранного объекта</label>@Html.DropDownList("list_ecoType")
+        </div>
+        <div class="boxdata">
+            <label class="boxdata-label-30">Кадастровый тип земли</label>@Html.DropDownList("list_cadastre")
+        </div>
+        <p>
+            <input type="checkbox" class="boxdata-label-30" name="iswaterobject" value="true"><label>&emsp;Водный объект</label>
+        </p>
+
+        @Html.Partial("_TypeLineMenu", create)
+    </div>
+}
+
