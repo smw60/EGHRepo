@@ -171,7 +171,7 @@ namespace EGH01.Controllers
                     {
                         аveryanovfactor = 0.0f;
                     }
-<<<<<<< HEAD
+
                     string strdensity = this.HttpContext.Request.Params["density"] ?? "Empty";
                     float density = 0.1f;
                     if (!Helper.FloatTryParse(strdensity, out density))
@@ -179,10 +179,10 @@ namespace EGH01.Controllers
                         density = 0.0f;
                     }
 
-                    EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability);
-=======
+               //     EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability);
+
                     EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability, 0.0f); // blinova
->>>>>>> 26dc600c23c154a247724d1ad1589324445b663d
+
 
 
                     if (EGH01DB.Types.GroundType.Create(db, ground_type))
