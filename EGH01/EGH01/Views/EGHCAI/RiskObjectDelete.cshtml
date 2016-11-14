@@ -22,13 +22,12 @@
     <div class="box">
         <div class="boxdata">
             <div class="boxdata">
-                <label class="boxdata-label-30">Код объекта</label>
-                @Model.id.ToString()
-                <input type="hidden" value="@Model.id.ToString()" name="type_code">
-            </div>
+                <label class="boxdata-label-30">Код объекта</label><span class="boxdata-span">@Model.id.ToString()</span>
+    <input type="hidden" value="@Model.id.ToString()" name="type_code">
+</div>
             <div class="boxdata">
-                <label class="boxdata-label-30">Наименование объекта</label>
-                @Model.name
+                <label class="boxdata-label-30">Наименование объекта</label><span class="boxdata-span">
+    @Model.name</span>
             </div>
         </div>
 

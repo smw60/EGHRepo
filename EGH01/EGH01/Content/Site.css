@@ -413,6 +413,8 @@ a.dropdown-toggle.btn.btn-link {
         .boxdata span.boxdata-span{
             width:60%;
             display:inline-block;
+            text-align:justify;
+
 
         }
         .boxcontrol {
