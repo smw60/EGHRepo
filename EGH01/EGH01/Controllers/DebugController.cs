@@ -376,15 +376,15 @@ namespace EGH01.Controllers
         }
         public ActionResult SC_GetByCode()// есть
         {
-            //RGEContext db = new RGEContext();
-            //{
-            //    SpreadingCoefficient r = new SpreadingCoefficient(1);
-            //    if (SpreadingCoefficient.GetByCode(db, 1, out r))
-            //    {
-            //        int k = 1;
-            //    };
-            //}
-            //return View();
+            RGEContext db = new RGEContext();
+            {
+                //SpreadingCoefficient r = new SpreadingCoefficient(1);
+                //if (SpreadingCoefficient.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
         }
 
         // проверка процедур Region
