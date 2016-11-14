@@ -37,17 +37,26 @@ input[type="checkbox"].input-validation-error {
     padding: 8px 20px;
 
 }
+
+.navbar .dropdown-menu li a:hover{  /*при наведении на пункты меню*/
+    background: #c8da94;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
 .osnova {
     padding-top:10px;
     background:#eeffee; /*новый фон*/
 }
-.navbar-brand {
+.navbar-brand {     /*логотип*/
+    
     padding:0px;
+    height:53px;
 }
 .navbar-brand img{
+    background:#c8da94;
     padding:0px;
     padding-left:15px;
-    height:50px;
+    height:53px;
 }
 .panel-title {
     font-size:25px;
@@ -169,6 +178,7 @@ input[type="checkbox"].input-validation-error {
 	vertical-align:middle;
     font-weight:bold;
     margin:10px;
+    text-align: left;
     }
 .title h2 a{
     color: #316d32;
@@ -393,10 +403,17 @@ a.dropdown-toggle.btn.btn-link {
             color: black;
             border: none;
         }
+        element.style {
+    width: 25%;
+    height:inherit;
+
+}
+
         /*строки без форм*/
         .boxdata span.boxdata-span{
             width:60%;
             display:inline-block;
+
         }
         .boxcontrol {
             margin: 1px;
@@ -432,7 +449,7 @@ a.dropdown-toggle.btn.btn-link {
 
 
 /*    не трогать          */
-* /*/
+
 
 
 /* Минимально необходимый CSS для footer*/
@@ -454,6 +471,10 @@ a.dropdown-toggle.btn.btn-link {
     max-width:none; 
     white-space:pre; 
     font-family: 'Courier New', Courier, monospace;
-    width:65%;
+    width:auto;
+ }
+
+#main_menu:hover{       /*при наведении на главное меню меняется фон*/
+    background:#c8da94;
+    text-decoration: none;
 }
-    
