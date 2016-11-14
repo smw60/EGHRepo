@@ -45,12 +45,17 @@
                     <p><label class="boxdata-label-30">Резервуар подземный</label> @t.undergroundtank</p>
                     <p><label class="boxdata-label-30">Дата ввода в эксплуатацию</label>@t.foundationdate.ToShortDateString()</p>
                     <p><label class="boxdata-label-30">Дата последней реконструкции</label>@t.reconstractiondate.ToShortDateString()</p>
+                    <p><label class="boxdata-label-30">Наличие очистных сооружений</label>@t.reconstractiondate.ToShortDateString()</p>
                     @if (@t.watertreatmentcollect == true)
                     {
                         <p><label class="boxdata-label-30">Резервуар для сбора проливов</label></p>}
                     @if (@t.watertreatment == true)
                     {
                         <p><label class="boxdata-label-30">Очистные сооружения для дождевого стока</label></p>
+                    }
+                    @if (@t.watertreatment.ToString().Length == 0 && @t.watertreatmentcollect.ToString().Length==0)
+                    {
+                        <p><label class="boxdata-label-30">Отсутствуют</label></p>
                     }
                 </fieldset>
                 <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">

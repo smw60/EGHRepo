@@ -187,15 +187,21 @@ namespace EGH01.Controllers
 
                     int id = cd.type_code;
                     String name = cd.name;
-                    int pdk_coef = cd.pdk_coef;
-
+                    float pdk_coef = cd.pdk_coef;
+                    String strpdk_coef = this.HttpContext.Request.Params["pdk_coef"] ?? "Empty"; ;
+                    if (!Helper.FloatTryParse(strpdk_coef, out pdk_coef))
+                    {
+                        pdk_coef = 0.0f;
+                    }
                     float water_pdk_coef = cd.water_pdk_coef;
                     String strwater_pdk_coef = this.HttpContext.Request.Params["water_pdk_coef"] ?? "Empty"; ;
                     if (!Helper.FloatTryParse(strwater_pdk_coef, out water_pdk_coef))
                     {
                         water_pdk_coef = 0.0f;
                     }
-                    EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id, name, pdk_coef, water_pdk_coef);
+                    String water_doc_coef = cd.water_doc_name;
+                    String pdk_doc_coef = cd.ground_doc_name;
+                    EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id, name, pdk_coef, water_pdk_coef,pdk_doc_coef,water_doc_coef);
                     if (EGH01DB.Types.CadastreType.Update(db, cadastre_type))
                     {
                         view = View("CadastreType", db);

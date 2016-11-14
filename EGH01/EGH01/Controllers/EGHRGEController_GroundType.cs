@@ -172,7 +172,7 @@ namespace EGH01.Controllers
                         аveryanovfactor = 0.0f;
                     }
                     string strdensity = this.HttpContext.Request.Params["density"] ?? "Empty";
-                    float density = 0.1f;//аверьянова коэф
+                    float density = 0.1f;
                     if (!Helper.FloatTryParse(strdensity, out density))
                     {
                         density = 0.0f;

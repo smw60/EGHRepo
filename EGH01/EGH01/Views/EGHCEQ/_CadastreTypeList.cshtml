@@ -22,6 +22,8 @@
                 <p><label class="boxdata-label-30">Категория земли</label> @t.name.ToString()</p>
                 <p><label class="boxdata-label-30">ПДК в грунте (мг/кг)</label> @t.pdk_coef.ToString()</p>
                 <p><label class="boxdata-label-30">ПДК в воде (мг/дм3)</label> @t.water_pdk_coef.ToString()</p>
+                <p><label class="boxdata-label-30">Название нормативного документа для почвы</label> @t.ground_doc_name</p>
+                <p><label class="boxdata-label-30">Название нормативного документа для воды</label> @t.water_doc_name</p>
                 <input type="hidden" value="@t.type_code.ToString()" name="type_code">
 
             </div>
