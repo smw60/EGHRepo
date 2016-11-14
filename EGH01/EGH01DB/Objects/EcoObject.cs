@@ -91,6 +91,11 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
+                    SqlParameter parm = new SqlParameter("@КодНазначенияЗемель", SqlDbType.Int);
+                    parm.Value = ecoobject.cadastretype.type_code;
+                    cmd.Parameters.Add(parm);
+                }
+                {
                     SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
                     parm.Direction = ParameterDirection.ReturnValue;
                     cmd.Parameters.Add(parm);
@@ -291,15 +296,16 @@ namespace EGH01DB.Objects
                         int cadastre_type_code = (int)reader["КодНазначенияЗемель"];
                         string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
                         float pdk = (float)reader["ПДК"];
-                        float water_pdk_coef = (float)reader["ПДК"];
+                        float water_pdk_coef = (float)reader["ПДКводы"];
                         string ground_doc_name = (string)reader["НормДокументЗемля"];
                         string water_doc_name = (string)reader["НормДокументВода"];
 
                         CadastreType cadastre_type = new CadastreType(cadastre_type_code, (string)cadastre_type_name,
                                                                         pdk, water_pdk_coef,
                                                                         ground_doc_name, water_doc_name);
-
-                        ecoobject = new EcoObject(id, point, ecoobjecttype, cadastre_type, "",false);//
+                        string ecoobject_name = (string)reader["НаименованиеПриродоохранногоОбъекта"];
+                        bool iswaterobject = false;
+                        ecoobject = new EcoObject(id, point, ecoobjecttype, cadastre_type, ecoobject_name, iswaterobject);
                     }
                     reader.Close();
                     rc = (int)cmd.Parameters["@exitrc"].Value > 0;
