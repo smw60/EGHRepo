@@ -681,8 +681,14 @@ namespace EGH01DB.Objects
                         RiskObjectType risk_object_type = new RiskObjectType((int)reader["КодТипаТехногенногоОбъекта"], (string)risk_object_type_name);
 
                         string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
-                        int pdk = (int)reader["ПДК"];
-                        CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name, (int)pdk, 0.0f);// !!!!
+                        float pdk = (float)reader["ПДК"];
+                        float water_pdk_coef = (float)reader["ПДКводы"];
+                        string ground_doc_name = (string)reader["НормДокументЗемля"];
+                        string water_doc_name = (string)reader["НормДокументВода"];
+
+                        CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name,
+                                                        (float)pdk, (float)water_pdk_coef,
+                                                        ground_doc_name, water_doc_name);
 
                         string name = (string)reader["НаименованиеТехногенногоОбъекта"];
                         string address = (string)reader["АдресТехногенногоОбъекта"];
