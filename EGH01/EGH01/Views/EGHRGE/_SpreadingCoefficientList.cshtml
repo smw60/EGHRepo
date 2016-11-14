@@ -19,6 +19,7 @@
             <div class="boxdata">
                 <div class="boxdata">
                     <p><label class="boxdata-label-30">Тип грунта</label>@t.ground_type.name.ToString() </p>
+                    <input type="hidden" value="@t.code.ToString()" name="code">
                 </div>
                 <div class="boxdata">
                     <p><label class="boxdata-label-30">Диапазон значений объема пролива</label>@t.min_volume.ToString() - @t.max_volume.ToString()</p>

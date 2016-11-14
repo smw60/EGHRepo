@@ -343,7 +343,7 @@ namespace EGH01DB.Primitives
         }
 
         // другие методы определения коэффициента  
-        //static float get
+        // static float get
         // static float get
     }
 }
