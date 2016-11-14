@@ -99,7 +99,7 @@ as begin
 			 оэф ап¬лагоемкости,
 			¬лажность√рунта,
 			 оэфјверь€нова,
-			¬одопроницаемость
+			¬одопроницаемость,
 			—редн€€ѕлотность√рунта
 	from dbo.“ип√рунта where  од“ипа√рунта = @ од“ипа√рунта;  
 	set @rc = @@ROWCOUNT;
@@ -169,7 +169,7 @@ go
 create procedure EGH.GetNextGroundTypeCode(@ од“ипа√рунта int output)
  as begin
 	declare @rc int = -1;
-	set @ од“ипа√рунта = (select max( од“ипа√рунта) from dbo.“ип√рунта) +1;
+	set @ од“ипа√рунта = (select max( од“ипа√рунта)+1 from dbo.“ип√рунта);
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;

@@ -286,19 +286,19 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //int t = 2;
-                //GroundType g = new GroundType(t);
-                //float v1 = 10.01f;
-                //float v2 = 50.0f;
-                //float a1 = 0.0f;
-                //float a2 = 50.0f;
-                //float k = 20.0f;
-                //SpreadingCoefficient sc = new SpreadingCoefficient(g, (float)v1, (float)v2, (float)a1, (float)a2, (float)k);
+                int t = 2;
+                GroundType g = new GroundType(t);
+                float v1 = 10.01f;
+                float v2 = 50.0f;
+                float a1 = 0.0f;
+                float a2 = 50.0f;
+                float k = 20.0f;
+                SpreadingCoefficient sc = new SpreadingCoefficient(g, (float)v1, (float)v2, (float)a1, (float)a2, (float)k);
 
-                //if (SpreadingCoefficient.Create(db, sc))
-                //{
-                //    int k1 = 1;
-                //};
+                if (SpreadingCoefficient.Create(db, sc))
+                {
+                    int k1 = 1;
+                };
             }
             return View();
         }
@@ -936,14 +936,15 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                int type_code = 8;
-                string name = "Железнодорожных путей сообщения";
-                int pdk = 140;
-                CadastreType ct = new CadastreType((int)type_code, (string)name, (int)pdk, 0.5f);
-                if (CadastreType.Update(db, ct))
-                {
-                    int k = 1;
-                };
+                //int type_code = 8;
+                //string name = "Железнодорожных путей сообщения";
+                //float pdk = 140.0f;
+                //float pdk_w = 0.03f;
+                //CadastreType ct = new CadastreType((int)type_code, (string)name, pdk, pdk_w, "999", "999");
+                //if (CadastreType.Update(db, ct))
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
