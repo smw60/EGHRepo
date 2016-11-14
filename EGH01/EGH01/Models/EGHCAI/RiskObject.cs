@@ -27,6 +27,7 @@ namespace EGH01.Models.EGHCAI
         public int list_groundType { get; set; }
         public int list_region { get; set; }
         public int list_district { get; set; }
+        public int list_cadastre { get; set; }
         public DateTime foundationdate { get; set; }
         public DateTime reconstractiondate { get; set; }
         public string phone { get; set; }
