@@ -17,7 +17,8 @@
 
     using (Html.BeginForm("RiskObject", "EGHCAI"))
     {
-        float latitude = EGH01DB.Primitives.Coordinates.dms_to_d(@t.coordinates.lat.d,@t.coordinates.lat.m,@t.coordinates.lat.s);
+        float latitude = EGH01DB.Primitives.Coordinates.dms_to_d(@t.coordinates.lat.d, @t.coordinates.lat.m, @t.coordinates.lat.s);
+        float lngitude = EGH01DB.Primitives.Coordinates.dms_to_d(@t.coordinates.lng.d, @t.coordinates.lng.m, @t.coordinates.lng.s);
         <div class="box">
             <div class="boxdata">
                 
@@ -61,7 +62,7 @@
                 <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
                     <p><label class="boxdata-label-30">Координаты. Широта</label>@t.coordinates.lat.d.ToString()°&nbsp;@t.coordinates.lat.m.ToString()'&nbsp;@t.coordinates.lat.s.ToString("0.00")"</p>
                     <p><label class="boxdata-label-30">Координаты. Долгота</label>@t.coordinates.lng.d.ToString()°&nbsp;@t.coordinates.lng.m.ToString()'&nbsp;@t.coordinates.lng.s.ToString("0.00")" </p>
-                    <p><label class="boxdata-label-30">Координаты в градусах</label>@latitude.ToString()°&nbsp;</p>
+                    <p><label class="boxdata-label-30">Координаты в градусах</label>@latitude.ToString()°&nbsp;@lngitude.ToString()°</p>
                 </fieldset> 
                 <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
                     <p><label class="boxdata-label-30">Грунт</label>@t.groundtype.name</p>
