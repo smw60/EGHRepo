@@ -275,7 +275,7 @@ namespace EGH01DB.Points
                         float water_pdk_coef = (float)reader["ПДКводы"];
                         string ground_doc_name = (string)reader["НормДокументЗемля"];
                         string water_doc_name = (string)reader["НормДокументВода"];
-                        CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name,
+                        CadastreType cadastre_type = new CadastreType((int)reader["КодНазначенияЗемель"], (string)cadastre_type_name,
                                                         (float)pdk, (float)water_pdk_coef,
                                                         ground_doc_name, water_doc_name);
 
