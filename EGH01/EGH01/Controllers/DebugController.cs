@@ -306,9 +306,9 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                GroundType gr = new GroundType(1);
-                SpreadingCoefficient sc = new SpreadingCoefficient(gr, (float)20f, (float)40f, (float)1.5f, (float)4.6f, (float)0.0f);
-                float koeff = SpreadingCoefficient.Get(db, sc);
+                //GroundType gr = new GroundType(1);
+                //SpreadingCoefficient sc = new SpreadingCoefficient(gr, (float)20f, (float)40f, (float)1.5f, (float)4.6f, (float)0.0f);
+                //float koeff = SpreadingCoefficient.Get(db, sc);
                 
             }
             return View();
@@ -362,7 +362,18 @@ namespace EGH01.Controllers
             }
             return View();
         }
-
+        public ActionResult SC_DeleteByCode()  // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //SpreadingCoefficient ct = new SpreadingCoefficient();
+                //if (SpreadingCoefficient.DeleteByCode(db, 14))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
 
         // проверка процедур Region
         public ActionResult Region_Create()// есть
@@ -936,14 +947,15 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                int type_code = 8;
-                string name = "Железнодорожных путей сообщения";
-                int pdk = 140;
-                CadastreType ct = new CadastreType((int)type_code, (string)name, (int)pdk, 0.5f);
-                if (CadastreType.Update(db, ct))
-                {
-                    int k = 1;
-                };
+                //int type_code = 8;
+                //string name = "Железнодорожных путей сообщения";
+                //float pdk = 140.0f;
+                //float pdk_w = 0.03f;
+                //CadastreType ct = new CadastreType((int)type_code, (string)name, pdk, pdk_w, "999", "999");
+                //if (CadastreType.Update(db, ct))
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }

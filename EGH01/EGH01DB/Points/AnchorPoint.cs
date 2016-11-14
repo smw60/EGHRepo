@@ -67,7 +67,7 @@ namespace EGH01DB.Points
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ВысотаУровнемМоря", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ВысотаУровнемМоря", SqlDbType.Real);
                     parm.Value = anchor_point.height;
                     cmd.Parameters.Add(parm);
                 }
@@ -271,9 +271,13 @@ namespace EGH01DB.Points
                         Point point = new Point(coordinates, ground_type, (float)waterdeep, (float)height);
 
                         string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
-                        int pdk = (int)reader["ПДК"];
-
-                        CadastreType cadastre_type = new CadastreType((int)reader["КодНазначенияЗемель"], (string)cadastre_type_name, (int)pdk, 0.0f);// blinova
+                        float pdk = (float)reader["ПДК"];
+                        float water_pdk_coef = (float)reader["ПДКводы"];
+                        string ground_doc_name = (string)reader["НормДокументЗемля"];
+                        string water_doc_name = (string)reader["НормДокументВода"];
+                        CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name,
+                                                        (float)pdk, (float)water_pdk_coef,
+                                                        ground_doc_name, water_doc_name);
 
                         anchor_point = new AnchorPoint(id, point, cadastre_type);
                     }
