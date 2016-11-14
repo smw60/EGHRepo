@@ -376,6 +376,7 @@ namespace EGH01.Controllers
         }
         public ActionResult SC_GetByCode()// есть
         {
+<<<<<<< HEAD
             //RGEContext db = new RGEContext();
             //{
             //    SpreadingCoefficient r = new SpreadingCoefficient(1);
@@ -384,6 +385,16 @@ namespace EGH01.Controllers
             //        int k = 1;
             //    };
             //}
+=======
+            RGEContext db = new RGEContext();
+            {
+                //SpreadingCoefficient r = new SpreadingCoefficient(1);
+                //if (SpreadingCoefficient.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+>>>>>>> 5649670f419f0df3db7f46a341ce490a41956ed2
             return View();
         }
 
