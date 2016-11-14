@@ -35,39 +35,39 @@ namespace EGH01.Controllers
                     view = View("EcoObjectCreate");
 
                 }
-                else if (menuitem.Equals("EcoObject.Delete"))
-                {
-                    string type_code_item = this.HttpContext.Request.Params["type_code"];
-                    if (type_code_item != null)
-                    {
-                        int c = 0;
-                        if (int.TryParse(type_code_item, out c))
-                        {
-                            EGH01DB.Objects.EcoObject eO = new EGH01DB.Objects.EcoObject();
-                            if (EGH01DB.Objects.EcoObject.GetById(db, c, ref eO))
-                            {
-                                view = View("EcoObjectDelete", eO);
-                            }
-                        }
-                    }
-                }
-                else if (menuitem.Equals("EcoObject.Update"))
-                {
-                    string type_code_item = this.HttpContext.Request.Params["type_code"];
+                //else if (menuitem.Equals("EcoObject.Delete"))
+                //{
+                //    string type_code_item = this.HttpContext.Request.Params["type_code"];
+                //    if (type_code_item != null)
+                //    {
+                //        int c = 0;
+                //        if (int.TryParse(type_code_item, out c))
+                //        {
+                //            EGH01DB.Objects.EcoObject eO = new EGH01DB.Objects.EcoObject();
+                //            if (EGH01DB.Objects.EcoObject.GetById(db, c, ref eO))
+                //            {
+                //                view = View("EcoObjectDelete", eO);
+                //            }
+                //        }
+                //    }
+                //}
+                //else if (menuitem.Equals("EcoObject.Update"))
+                //{
+                //    string type_code_item = this.HttpContext.Request.Params["type_code"];
 
-                    if (type_code_item != null)
-                    {
-                        int c = 0;
-                        if (int.TryParse(type_code_item, out c))
-                        {
-                            EGH01DB.Objects.EcoObject eO = new EGH01DB.Objects.EcoObject();
-                            if (EGH01DB.Objects.EcoObject.GetById(db, c, ref eO))
-                            {
-                                view = View("EcoObjectUpdate", eO);
-                            }
-                        }
-                    }
-                }
+                //    if (type_code_item != null)
+                //    {
+                //        int c = 0;
+                //        if (int.TryParse(type_code_item, out c))
+                //        {
+                //            EGH01DB.Objects.EcoObject eO = new EGH01DB.Objects.EcoObject();
+                //            if (EGH01DB.Objects.EcoObject.GetById(db, c, ref eO))
+                //            {
+                //                view = View("EcoObjectUpdate", eO);
+                //            }
+                //        }
+                //    }
+                //}
                 //else if (menuitem.Equals("GroundType.Excel"))
                 //{
                 //    EGH01DB.Objects.RiskObject.RiskObjectList list = new EGH01DB.Objects.RiskObject.RiskObjectList();
@@ -114,25 +114,54 @@ namespace EGH01.Controllers
                     if (EGH01DB.Objects.EcoObject.GetNextId(db, out id))
                     {
                         String name = eo.name;
-                            CadastreType type_cadastre = new CadastreType();
+                        CadastreType type_cadastre = new CadastreType();
                         if (EGH01DB.Types.CadastreType.GetByCode(db, eo.list_cadastre, out type_cadastre))
                         {
                             EcoObjectType eco_type = new EcoObjectType();
                             if (EGH01DB.Types.EcoObjectType.GetByCode(db, eo.list_ecoType, out eco_type))
                             {
                                 bool iswaterobject = eo.iswaterobject;
-                                Point point = new Point();
-                                     EGH01DB.Objects.EcoObject eco_object = new EGH01DB.Objects.EcoObject(id,point,eco_type, type_cadastre,name,iswaterobject);
-                                if (EGH01DB.Objects.EcoObject.Create(db, eco_object))
+                                string strlat_s = this.HttpContext.Request.Params["lat_s"] ?? "Empty";
+                                string strlng_s = this.HttpContext.Request.Params["lng_s"] ?? "Empty";
+                                string strwaterdeep = this.HttpContext.Request.Params["waterdeep"] ?? "Empty";
+                                string strheight = this.HttpContext.Request.Params["height"] ?? "Empty";
+                                float lat_s = 0.0f;
+                                float lng_s = 0.0f;
+                                float waterdeep = 0.0f;
+                                float height = 0.0f;
+                                if (!Helper.FloatTryParse(strlat_s, out lat_s))
                                 {
-                                    view = View("EcoObject", db);
+                                    lat_s = 0.0f;
+                                }
+                                if (!Helper.FloatTryParse(strlng_s, out lng_s))
+                                {
+                                    lng_s = 0.0f;
+                                }
+                                if (!Helper.FloatTryParse(strwaterdeep, out waterdeep))
+                                {
+                                    waterdeep = 0.0f;
+                                }
+                                if (!Helper.FloatTryParse(strheight, out height))
+                                {
+                                    height = 0.0f;
+                                }
+                                Coordinates coordinates = new Coordinates(eo.latitude, eo.lat_m, lat_s, eo.lngitude, eo.lng_m, lng_s);
+                                EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType();
+                                if (EGH01DB.Types.GroundType.GetByCode(db, eo.list_groundType, out ground_type))
+                                {
+                                    Point point = new Point(coordinates, ground_type, waterdeep, height);
+                                    EGH01DB.Objects.EcoObject eco_object = new EGH01DB.Objects.EcoObject(id, point, eco_type, type_cadastre, name, iswaterobject);
+                                    if (EGH01DB.Objects.EcoObject.Create(db, eco_object))
+                                    {
+                                        view = View("EcoObject", db);
+                                    }
                                 }
                             }
                         }
-                        }
                         else if (menuitem.Equals("EcoObject.Create.Cancel")) view = View("EcoObject", db);
                     }
-                
+
+                }
             }
             catch (RGEContext.Exception e)
             {
