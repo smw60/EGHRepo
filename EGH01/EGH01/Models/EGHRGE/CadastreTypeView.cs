@@ -12,6 +12,8 @@ namespace EGH01.Models.EGHRGE
         public string   name { get; set;}       
         public int pdk_coef { get; set; }  
         public float water_pdk_coef { get; set; }
+        public string ground_doc_name { get; set; }   
+        public string water_doc_name { get; set; } 
 
 
 
