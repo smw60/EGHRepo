@@ -358,6 +358,8 @@
     <Content Include="Views\EGHRGE\_EcoObjectList.cshtml" />
     <Content Include="Views\EGHRGE\EcoObject.cshtml" />
     <Content Include="Views\EGHRGE\EcoObjectCreate.cshtml" />
+    <Content Include="Views\EGHRGE\EcoObjectDelete.cshtml" />
+    <Content Include="Views\EGHRGE\EcoObjectUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

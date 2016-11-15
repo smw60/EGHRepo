@@ -35,39 +35,39 @@ namespace EGH01.Controllers
                     view = View("EcoObjectCreate");
 
                 }
-                //else if (menuitem.Equals("EcoObject.Delete"))
-                //{
-                //    string type_code_item = this.HttpContext.Request.Params["type_code"];
-                //    if (type_code_item != null)
-                //    {
-                //        int c = 0;
-                //        if (int.TryParse(type_code_item, out c))
-                //        {
-                //            EGH01DB.Objects.EcoObject eO = new EGH01DB.Objects.EcoObject();
-                //            if (EGH01DB.Objects.EcoObject.GetById(db, c, ref eO))
-                //            {
-                //                view = View("EcoObjectDelete", eO);
-                //            }
-                //        }
-                //    }
-                //}
-                //else if (menuitem.Equals("EcoObject.Update"))
-                //{
-                //    string type_code_item = this.HttpContext.Request.Params["type_code"];
+                else if (menuitem.Equals("EcoObject.Delete"))
+                {
+                    string id = this.HttpContext.Request.Params["type_code"];
+                    if (id != null)
+                    {
+                        int c = 0;
+                        if (int.TryParse(id, out c))
+                        {
+                            EGH01DB.Objects.EcoObject eo = new EGH01DB.Objects.EcoObject();
+                            if (EGH01DB.Objects.EcoObject.GetById(db, c, ref eo))
+                            {
+                                view = View("EcoObjectDelete", eo);
+                            }
+                        }
+                    }
+                }
+                else if (menuitem.Equals("EcoObject.Update"))
+                {
+                    string id = this.HttpContext.Request.Params["type_code"];
 
-                //    if (type_code_item != null)
-                //    {
-                //        int c = 0;
-                //        if (int.TryParse(type_code_item, out c))
-                //        {
-                //            EGH01DB.Objects.EcoObject eO = new EGH01DB.Objects.EcoObject();
-                //            if (EGH01DB.Objects.EcoObject.GetById(db, c, ref eO))
-                //            {
-                //                view = View("EcoObjectUpdate", eO);
-                //            }
-                //        }
-                //    }
-                //}
+                    if (id != null)
+                    {
+                        int c = 0;
+                        if (int.TryParse(id, out c))
+                        {
+                            EGH01DB.Objects.EcoObject eo = new EGH01DB.Objects.EcoObject();
+                            if (EGH01DB.Objects.EcoObject.GetById(db, c, ref eo))
+                            {
+                                view = View("EcoObjectUpdate", eo);
+                            }
+                        }
+                    }
+                }
                 //else if (menuitem.Equals("GroundType.Excel"))
                 //{
                 //    EGH01DB.Objects.RiskObject.RiskObjectList list = new EGH01DB.Objects.RiskObject.RiskObjectList();
@@ -175,101 +175,103 @@ namespace EGH01.Controllers
             return view;
         }
 
-        //[HttpPost]
-        //public ActionResult AnchorPointDelete(int id)
-        //{
-        //    RGEContext db = null;
-        //    ViewBag.EGHLayout = "RGE";
-        //    ActionResult view = View("Index");
-        //    string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
-        //    try
-        //    {
-        //        db = new RGEContext();
+        [HttpPost]
+        public ActionResult EcoObjectDelete(int type_code)
+        {
+            RGEContext db = null;
+            ViewBag.EGHLayout = "RGE";
+            ActionResult view = View("Index");
+            string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
+            try
+            {
+                db = new RGEContext();
 
-        //        if (menuitem.Equals("AnchorPoint.Delete.Delete"))
-        //        {
-        //            if (EGH01DB.Points.AnchorPoint.DeleteById(db, id)) view = View("AnchorPoint", db);
-        //        }
-        //        else if (menuitem.Equals("AnchorPoint.Delete.Cancel")) view = View("AnchorPoint", db);
+                if (menuitem.Equals("EcoObject.Delete.Delete"))
+                {
+                    if (EGH01DB.Objects.EcoObject.DeleteById(db, type_code))
+                        view = View("EcoObject", db);
+                }
+                else if (menuitem.Equals("EcoObject.Delete.Cancel"))
+                    view = View("EcoObject", db);
 
-        //    }
-        //    catch (RGEContext.Exception e)
-        //    {
-        //        ViewBag.msg = e.message;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        ViewBag.msg = e.Message;
-        //    }
+            }
+            catch (RGEContext.Exception e)
+            {
+                ViewBag.msg = e.message;
+            }
+            catch (Exception e)
+            {
+                ViewBag.msg = e.Message;
+            }
 
-        //    return view;
-        //}
+            return view;
+        }
 
-        //[HttpPost]
-        //public ActionResult AnchorPointUpdate(AnchorPointView ah)
-        //{
-        //    RGEContext db = null;
-        //    ViewBag.EGHLayout = "RGE";
-        //    ActionResult view = View("Index");
-        //    string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
-        //    try
-        //    {
-        //        db = new RGEContext();
-        //        view = View("AnchorPoint", db);
-        //        if (menuitem.Equals("AnchorPoint.Update.Update"))
-        //        {
+        [HttpPost]
+        public ActionResult EcoObjectUpdate(EcoObjectView eov)
+        {
+            RGEContext db = null;
+            ViewBag.EGHLayout = "RGE";
+            ActionResult view = View("Index");
+            string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
+            try
+            {
+                db = new RGEContext();
+                view = View("EcoObject", db);
+                if (menuitem.Equals("EcoObject.Update.Update"))
+                {
 
-        //            int id = ah.id;
-        //            int lat = ah.Lat_d;
-        //            Coordinates coordinates = new Coordinates(ah.Lat_d, ah.lat_m, ah.lat_s, ah.lngitude, ah.lng_m, ah.lng_s);
-        //            float waterdeep = 0.0f;
-        //            int list_cadastre = ah.list_cadastre;
-        //            float height = 0.0f;
-        //            string strheight = this.HttpContext.Request.Params["height"] ?? "Empty";
-        //            if (!Helper.FloatTryParse(strheight, out height))
-        //            {
-        //                height = 0.0f;
-        //            }
-        //            string strwaterdeep = this.HttpContext.Request.Params["waterdeep"] ?? "Empty";
-        //            if (!Helper.FloatTryParse(strwaterdeep, out waterdeep))
-        //            {
-        //                waterdeep = 0.0f;
-        //            }
+                    //int id = ah.id;
+                    //int lat = ah.Lat_d;
+                    //Coordinates coordinates = new Coordinates(ah.Lat_d, ah.lat_m, ah.lat_s, ah.lngitude, ah.lng_m, ah.lng_s);
+                    //float waterdeep = 0.0f;
+                    //int list_cadastre = ah.list_cadastre;
+                    //float height = 0.0f;
+                    //string strheight = this.HttpContext.Request.Params["height"] ?? "Empty";
+                    //if (!Helper.FloatTryParse(strheight, out height))
+                    //{
+                    //    height = 0.0f;
+                    //}
+                    //string strwaterdeep = this.HttpContext.Request.Params["waterdeep"] ?? "Empty";
+                    //if (!Helper.FloatTryParse(strwaterdeep, out waterdeep))
+                    //{
+                    //    waterdeep = 0.0f;
+                    //}
 
-        //            EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType();
-        //            if (EGH01DB.Types.GroundType.GetByCode(db, ah.list_groundType, out ground_type))
-        //            {
+                    //EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType();
+                    //if (EGH01DB.Types.GroundType.GetByCode(db, ah.list_groundType, out ground_type))
+                    //{
 
-        //                Point point = new Point(coordinates, ground_type, waterdeep, height);
+                    //    Point point = new Point(coordinates, ground_type, waterdeep, height);
 
-        //                CadastreType type_cadastre = new CadastreType();
-        //                if (EGH01DB.Types.CadastreType.GetByCode(db, ah.list_cadastre, out type_cadastre))
-        //                {
-        //                    EGH01DB.Points.AnchorPoint anchor_point = new EGH01DB.Points.AnchorPoint(id, point, type_cadastre);
+                    //    CadastreType type_cadastre = new CadastreType();
+                    //    if (EGH01DB.Types.CadastreType.GetByCode(db, ah.list_cadastre, out type_cadastre))
+                    //    {
+                    //        EGH01DB.Points.AnchorPoint anchor_point = new EGH01DB.Points.AnchorPoint(id, point, type_cadastre);
 
 
-        //                    if (EGH01DB.Points.AnchorPoint.Update(db, anchor_point))
-        //                    {
-        //                        view = View("AnchorPoint", db);
-        //                    }
-        //                }
+                    //        if (EGH01DB.Points.AnchorPoint.Update(db, anchor_point))
+                    //        {
+                    //            view = View("EcoObject", db);
+                    //        }
+                    //    }
 
-        //            }
-        //            else if (menuitem.Equals("AnchorPoint.Update.Cancel")) view = View("AnchorPoint", db);
-        //        }
-        //    }
+                    //}
+                    //else if (menuitem.Equals("EcoObject.Update.Cancel")) view = View("EcoObject", db);
+                }
+            }
 
-        //    catch (RGEContext.Exception e)
-        //    {
-        //        ViewBag.msg = e.message;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        ViewBag.msg = e.Message;
-        //    }
+            catch (RGEContext.Exception e)
+            {
+                ViewBag.msg = e.message;
+            }
+            catch (Exception e)
+            {
+                ViewBag.msg = e.Message;
+            }
 
-        //    return view;
-        //}
+            return view;
+        }
 
 
     }
