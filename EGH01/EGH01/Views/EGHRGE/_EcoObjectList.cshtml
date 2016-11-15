@@ -14,14 +14,25 @@
 
     using (Html.BeginForm("EcoObject", "EGHRGE"))
     {
+        float latitude = EGH01DB.Primitives.Coordinates.dms_to_d(@t.coordinates.lat.d, @t.coordinates.lat.m, @t.coordinates.lat.s);
+        float lngitude = EGH01DB.Primitives.Coordinates.dms_to_d(@t.coordinates.lng.d, @t.coordinates.lng.m, @t.coordinates.lng.s);
         <div class="box">
             <div class="boxdata">
-
-
+               
                 <p><label class="boxdata-label-30">Идентификатор</label> @t.id.ToString()</p>
                 <p><label class="boxdata-label-20">Наименование природоохранного объекта </label> @t.name</p>
                 <p><label class="boxdata-label-30">Тип природохранного объекта</label> @t.ecoobjecttype.name</p>
                 <p><label class="boxdata-label-30">Кадастровый тип земли</label> @t.cadastretype.name</p>
+                <p><label class="boxdata-label-30">Координаты. Широта</label>@t.coordinates.lat.d.ToString()°&nbsp;@t.coordinates.lat.m.ToString()'&nbsp;@t.coordinates.lat.s.ToString("0.00")"</p>
+                <p><label class="boxdata-label-30">Координаты. Долгота</label>@t.coordinates.lng.d.ToString()°&nbsp;@t.coordinates.lng.m.ToString()'&nbsp;@t.coordinates.lng.s.ToString("0.00")" </p>
+                <p><label class="boxdata-label-30">Координаты в градусах</label>@latitude.ToString()°&nbsp;@lngitude.ToString()°</p>
+                <p><label class="boxdata-label-30">Грунт</label>@t.groundtype.name</p>
+                <p><label class="boxdata-label-30">Высота над уровнем моря (м)</label> @t.height.ToString("0.00")</p>
+                <p><label class="boxdata-label-30">Глубина грунтовых вод (м)</label> @t.waterdeep.ToString("0.00")</p>
+                @if (@t.iswaterobject == true)
+                    {
+                    <p>Водный объект</p>
+                }
                 <input type="hidden" value="@t.id.ToString()" name="type_code">
 
             </div>
