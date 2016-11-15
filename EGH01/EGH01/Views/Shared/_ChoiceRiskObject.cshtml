@@ -14,9 +14,8 @@
 
 @using (Html.BeginForm("Forecast", "EGHRGE"))
 {
-<div class="box-fieldset">
                
-    <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+    <fieldset  form="ChoiseRiskObject">
         <legend style="width: auto; font: inherit; border:none;"> Техногенный объект </legend>
         @if (context.Regim == ChoiceRiskObjectContext.REGIM.INIT)
         {
@@ -24,7 +23,7 @@
                 Model.SaveViewContext("_ChoiceRiskObject", context = new ChoiceRiskObjectContext());
            }
             
-          <input type="search" name="ChoiceRiskObject.template" style="max-width: none; width: auto" size="95" />
+          <input type="search" name="ChoiceRiskObject.template" />
           <button type="submit" name="ChoiceRiskObject.choicefind" value="choice">Поиск</button> 
 
         }
@@ -60,16 +59,14 @@
                   Coordinates c = new Coordinates(riskobject.coordinates);     
                   <div class="boxdata">
                     <input type="hidden" name="riskobjectid" value="@riskobject.id.ToString()" />
-                    <p><label class="boxdata-label-30">Идентификатор </label> <label style="width:70%">   @riskobject.id.ToString().PadRight(10)</label> </p>
-                    <p><label class="boxdata-label-30">Наименование  </label>  <label style="width:70%">  @riskobject.name.PadRight(20)       </label>   </p>
-                    <p><label class="boxdata-label-30">Адрес         </label>  <label style="width:70%">  @riskobject.address.PadRight(50)    </label>   </p>
-                    <p><label class="boxdata-label-30">Координаты    </label>  
-                       <label style="width:70%"> 
+                    <p><label class="boxdata-label-30">Идентификатор </label> @riskobject.id.ToString().PadRight(10) </p>
+                    <p><label class="boxdata-label-30">Наименование  </label> <span class="boxdata-span">@riskobject.name.PadRight(20)</span> </p>
+                    <p><label class="boxdata-label-30">Адрес         </label> @riskobject.address.PadRight(50) </p>
+                    <p><label class="boxdata-label-30">Координаты    </label> 
                             @( 
                                " широта:  "+ c.lat.d.ToString() + " " + c.lat.m.ToString() + " " +c.lat.s.ToString()
                               +" долгота: "+ c.lng.d.ToString() + " " + c.lng.m.ToString() + " " +c.lng.s.ToString()
                              ) 
-                       </label>  
                     </p>
 
                  </div>
@@ -84,5 +81,4 @@
 
     </fieldset>       
        
- </div>
 }

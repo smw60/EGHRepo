@@ -26,7 +26,7 @@
                 <p><label class="boxdata-label-30">Наименование объекта</label> <span class="boxdata-span">@t.name</span></p>
                
                 <p><label class="boxdata-label-30">Тип объекта</label> @t.type.name.ToString()</p>
-                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="RiskObject">
+                <fieldset  form="RiskObject">
                     <p><label class="boxdata-label-30">Область</label> @t.region.name</p>
                     <p><label class="boxdata-label-30">Район</label> @t.district.name</p>
                     <p><label class="boxdata-label-30">Город(населенный пункт),улица,дом</label> @t.address </p>
@@ -41,7 +41,7 @@
                         <p><label class="boxdata-label-30">Электронный адрес</label>-</p>
                     }
                 </fieldset>
-                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="RiskObject">
+                <fieldset  form="RiskObject">
                     <p><label class="boxdata-label-30">Резервуар наземный</label> @t.groundtank</p>
                     <p><label class="boxdata-label-30">Резервуар подземный</label> @t.undergroundtank</p>
                     <p><label class="boxdata-label-30">Дата ввода в эксплуатацию</label>@t.foundationdate.ToShortDateString()</p>
@@ -59,12 +59,12 @@
                         <p>Отсутствуют</p>
                     }
                 </fieldset>
-                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="RiskObject">
+                <fieldset  form="RiskObject">
                     <p><label class="boxdata-label-30">Координаты. Широта</label>@t.coordinates.lat.d.ToString()°&nbsp;@t.coordinates.lat.m.ToString()'&nbsp;@t.coordinates.lat.s.ToString("0.00")"</p>
                     <p><label class="boxdata-label-30">Координаты. Долгота</label>@t.coordinates.lng.d.ToString()°&nbsp;@t.coordinates.lng.m.ToString()'&nbsp;@t.coordinates.lng.s.ToString("0.00")" </p>
                     <p><label class="boxdata-label-30">Координаты в градусах</label>@latitude.ToString()°&nbsp;@lngitude.ToString()°</p>
                 </fieldset> 
-                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="RiskObject">
+                <fieldset  form="RiskObject">
                     <p><label class="boxdata-label-30">Категория земли</label>@t.cadastretype.name</p>
                     <p><label class="boxdata-label-30">Грунт</label>@t.groundtype.name</p>
                     <p><label class="boxdata-label-30">Высота над уровнем моря (м)</label> @t.height.ToString("0.00")</p>
