@@ -13,8 +13,8 @@
                         );
 
     Menu update = new Menu(
-                          new Menu.MenuItem("Создать", "EcoObject.Create.Create", true),
-                          new Menu.MenuItem("Отказаться", "EcoObject.Create.Cancel", true)
+                          new Menu.MenuItem("Создать", "EcoObject.Update.Update", true),
+                          new Menu.MenuItem("Отказаться", "EcoObject.Update.Cancel", true)
                         );
 
     EGH01DB.RGEContext db = new EGH01DB.RGEContext();
@@ -101,11 +101,11 @@
         <p>
             @if (@Model.iswaterobject == true)
             {
-                <input type="checkbox" class="boxdata-label-30" name="iswaterobject" value="@Model.iswaterobject"><label>Водный объект</label>
+                <input type="checkbox" class="boxdata-label-30" name="iswaterobject" checked="checked" value="@Model.iswaterobject"><label>Водный объект</label>
             }
             else
             {
-                <input type="checkbox" class="boxdata-label-30" name="iswaterobject" value="false"><label>Водный объект</label>
+                <input type="checkbox" class="boxdata-label-30" name="iswaterobject" value="@Model.iswaterobject"><label>Водный объект</label>
             }
         </p>
             </div>
