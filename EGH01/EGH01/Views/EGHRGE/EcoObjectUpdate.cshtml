@@ -13,7 +13,7 @@
                         );
 
     Menu update = new Menu(
-                          new Menu.MenuItem("Создать", "EcoObject.Update.Update", true),
+                          new Menu.MenuItem("Изменить", "EcoObject.Update.Update", true),
                           new Menu.MenuItem("Отказаться", "EcoObject.Update.Cancel", true)
                         );
 
@@ -68,6 +68,7 @@
             <p>
                 <label class="boxdata-label-30">Наименование природоохранного объекта</label>
                 <input class="boxdata-input-30" type="text" name="name" value="@Model.name" />
+                <input type="hidden" value="@Model.id" name="id">
             </p>
             <p>
                 <label class="boxdata-label-30">Тип природохранного объекта</label>@Html.DropDownList("list_ecoType")
@@ -79,7 +80,7 @@
                 <label class="boxdata-label-30">Широта</label>
                 <input class="boxdata-input-10" type="number" name="Latitude" value="@Model.coordinates.lat.d.ToString()" min="-90" max="90" />&deg;
                 <input class="boxdata-input-10" type="number" name="Lat_m" value="@Model.coordinates.lat.m.ToString()" min="-90" max="90" />&acute;
-                <input class="boxdata-input-10" type="number" name="Lat_s" value="@Model.coordinates.lat.m.ToString("0.00").Replace(',' , '.')" min="0" max="60" step="0.01" />&quot;
+                <input class="boxdata-input-10" type="number" name="Lat_s" value="@Model.coordinates.lat.s.ToString("0.00").Replace(',' , '.')" min="0" max="60" step="0.01" />&quot;
             </p>
             <p>
                 <label class="boxdata-label-30">Долгота</label>
