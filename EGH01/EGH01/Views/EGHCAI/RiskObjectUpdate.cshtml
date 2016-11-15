@@ -9,10 +9,11 @@
     EGH01DB.CAIContext rge = (EGH01DB.CAIContext)db;
     Layout = "~/Views/Shared/EGHLayout.cshtml";
     EGH01.Models.EGHCAI.RiskObject context = (EGH01.Models.EGHCAI.RiskObject)db.GetViewContext("RiskObject");
+    if (context == null) { db.SaveViewContext("RiskObject", context = new EGH01.Models.EGHCAI.RiskObject()); };
     Menu head = new Menu(
-                  new Menu.MenuItem("Создать", "RiskObject.Create", false),
-                  new Menu.MenuItem("Excel-формат", "RiskObject.Excel", false)
-                );
+          new Menu.MenuItem("Создать", "RiskObject.Create", false),
+          new Menu.MenuItem("Excel-формат", "RiskObject.Excel", false)
+        );
 
     Menu delete = new Menu(
                           new Menu.MenuItem("Изменить", "RiskObject.Update.Update", true),
@@ -178,33 +179,53 @@
                     }
                 </p>
             </fieldset>
-            @*<p>
-                                @{
-
-                                    string idate = DateTime.Now.ToString("yyyy-MM-dd");
-                                    if (context.foundationdate != null) { idate = ((DateTime)context.foundationdate).ToString("yyyy-MM-dd"); }
-
-                                    <div class="boxdata">
-                                        <label class="boxdata-label-30"> Дата инцидента </label>
-                                        <input class="boxdata-input-30" type="date" name="date" value="@idate" />
-                                 </div>
+           
 
                                 }
-                <p>*@
+                <p>
+            @if (@Model.foundationdate.Year != 1900)
+            {
 
+                {
 
-            <p>
+                    string foundationdate = context.foundationdate.ToString("yyyy-MM-dd");
+                    if (context.foundationdate != null) { foundationdate = ((DateTime)@Model.foundationdate).ToString("yyyy-MM-dd"); }
+
+                    <div class="boxdata">
+                        <label class="boxdata-label-30">Дата ввода в эксплуатацию</label>
+                        <input class="boxdata-input-50" type="date" name="foundationdate" value="@foundationdate" />
+                    </div>
+
+                }
+
+                    }
+            @if (@Model.reconstractiondate.Year != 1900)
+            {
+                {
+
+                    string reconstractiondate = context.reconstractiondate.ToString("yyyy-MM-dd");
+                    if (context.reconstractiondate != null) { reconstractiondate = ((DateTime)@Model.reconstractiondate).ToString("yyyy-MM-dd"); }
+
+                    <div class="boxdata">
+                        <label class="boxdata-label-30">Дата послежней реконструкции</label>
+                        <input class="boxdata-input-50" type="date" name="reconstractiondate" value="@reconstractiondate" />
+                    </div>
+
+                }
+            }
+
+            @*<p>
                 <label class="boxdata-label-30">Дата ввода в эксплуатацию</label>
                 <input class="boxdata-input-50" type="text" name="foundationdate" value="@Model.foundationdate.ToShortDateString()" />
-            </p>
+            </p>*@
 
 
 
 
-            <p>
+            @*<p>
                 <label class="boxdata-label-30">Дата послежней реконструкции</label>
                 <input class="boxdata-input-50" type="text" name="reconstractiondate" value="@Model.reconstractiondate.ToShortDateString()" />
-            </p>
+            </p>*@
 
             <fieldset form="ChoiseRiskObject">
                 <legend style="width: auto; font: inherit; border:none;">Географические координаты</legend>
