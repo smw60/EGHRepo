@@ -42,13 +42,21 @@ namespace EGH01DB.Blurs
         public WaterProperties waterproperties            {get; private set;}       // физико-химические свойства воды  
         public EcoObjectsList       ecoobjecstlist        {get; private set;}      // список объектов в т.ч. заглавный которые попали в наземное пятно    
         public GroundPollutionList pollutionlist          {get; private set;}      // загрязнение в точках  
-
+       
+        private string errormssageformat = "GroundBlur: Ошибка в данных. {0}";  
+     
         public GroundBlur(SpreadPoint spreadpoint)
         {
             this.spreadpoint = spreadpoint;
+            RGEContext db = new RGEContext();    // заглушка, выставить правильный контекст //blinova
+
+
+            if (this.spreadpoint.groundtype.watercapacity >=  this.spreadpoint.groundtype.porosity)
+                throw new EGHDBException(string.Format(errormssageformat, "Влагоемкость грунта не может быть  больше или равна  пористости"));
 
 
             { // коэф. разлива 
+
                 SpreadingCoefficient x = new SpreadingCoefficient();
                 this.spreadingcoefficient = x = new SpreadingCoefficient();
                 if (SpreadingCoefficient.GetByParms(this.spreadpoint.groundtype, this.spreadpoint.volume, 0.0f, out x))
@@ -56,12 +64,19 @@ namespace EGH01DB.Blurs
                     this.spreadingcoefficient = x;
                 }
 
-            }
+                float k = SpreadingCoefficient.GetByData(db, this.spreadpoint.groundtype, this.spreadpoint.volume, 0.0f);
+                this.spreadingcoefficient = new SpreadingCoefficient(0, this.spreadpoint.groundtype, 0.0f, this.spreadpoint.volume, 0.0f, 0.02f, k);
 
+              }
 
+            if (this.spreadingcoefficient.koef <= 0.0f)
+                throw new EGHDBException(string.Format(errormssageformat, "Коэффициент разлива не может быть меньше или равен нулю"));
+
+           
+            
             { // свойства воды 
                 WaterProperties x = new WaterProperties();
-                RGEContext db = new RGEContext();// заглушка, выставить правильный контекст //blinova
+               // RGEContext db = new RGEContext();// заглушка, выставить правильный контекст //blinova
                 float delta = 0.0f;
                 if (WaterProperties.Get(db, 20.0f, out x, out delta))
                 {
@@ -122,6 +137,9 @@ namespace EGH01DB.Blurs
             this.ecoobjecstlist = EcoObjectsList.CreateEcoObjectsList(spreadpoint, radius);
             this.pollutionlist = GroundPollutionList.CreateGroundPollutionList(spreadpoint, radius);
 
+
+          
+           
             {   //   вертикальная скорость проникновения нефтепродукта в грунт (м/с) 
                 float ka =                                                                       // формула аверьянова
                            this.spreadpoint.groundtype.waterfilter *                             // коэф. фильтрации воды          
@@ -133,6 +151,7 @@ namespace EGH01DB.Blurs
                             this.spreadpoint.groundtype.porosity -                                //  пористость грунта 
                             this.spreadpoint.groundtype.watercapacity                             // капилярная влагоемкость грунта
                             );
+               
                 float r =                                                                          // коэффициент задержки 
                             (
                             this.spreadpoint.petrochemicaltype.viscosity *                         // вязкость нефтепродукта 
@@ -177,7 +196,7 @@ namespace EGH01DB.Blurs
 
             this.anchorpointlist = AnchorPointList.CreateNear(this.spreadpoint.coordinates, this.radius);
 
-            int k = 1;
+            
         }
 
         

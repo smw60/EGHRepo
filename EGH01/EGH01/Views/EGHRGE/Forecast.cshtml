@@ -12,7 +12,13 @@
     EGH01DB.RGEContext rge = (EGH01DB.RGEContext)Model;
     ForecastViewConext context = (ForecastViewConext)Model.GetViewContext("Forecast");
     if (context == null) { Model.SaveViewContext("Forecast", context = new ForecastViewConext()); };
-        
+
+    if (context.ecoforecast != null && !string.IsNullOrEmpty(context.ecoforecast.errormessage))
+    {
+        context.Regim = ForecastViewConext.REGIM.RUNERROR; 
+    }
+          
+      
     Menu.MenuItem mitem =  new Menu.MenuItem("Географическая точка", "Forecast.Point", false);
     Menu start = new Menu(
                           new Menu.MenuItem("Прогноз",    "Forecast.Forecast", true),
@@ -20,7 +26,7 @@
                           mitem 
                         );
 
-
+     
    
 
     
@@ -150,7 +156,15 @@
         { 
             <div class="boxdata">
             <p>
-               Ошибка выполнения 
+               @if (!string.IsNullOrEmpty(context.ecoforecast.errormessage)) 
+               { 
+                @context.ecoforecast.errormessage
+               } 
+               else
+               {
+                   @:"Ошибка выполнения"
+               } 
+               
             </p>     
            </div>
         }
