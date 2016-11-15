@@ -81,7 +81,6 @@ namespace EGH01DB.Blurs
 
             { // средняя глубина грунтовых вод по опорным точкам  и техногенному  объекту
                 this.anchorpointlist = new AnchorPointList();
-                this.anchorpointlist = AnchorPointList.CreateNear(this.spreadpoint.coordinates, this.radius);
                 this.avgdeep =
                                 (
                                   anchorpointlist.sumwaterdeep +
@@ -176,18 +175,16 @@ namespace EGH01DB.Blurs
             }
 
 
+            this.anchorpointlist = AnchorPointList.CreateNear(this.spreadpoint.coordinates, this.radius);
 
-
+            int k = 1;
         }
 
+        
 
 
 
-
-        //public float square { get { return SpreadingCoefficient.GetByData(EGH01DB.IDBContext dbcontext, spreadpoint.groundtype, spreadpoint.volume, 0.0f) * spreadpoint.volume; } }   // площадь наземного пятна (м)  считаем  F * volume (F = 
-        // blinova
-        // riskobjecstlist - из БД    pollutionlist - из БД по AnchorList
-
+       
 
 
 

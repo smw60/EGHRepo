@@ -349,7 +349,7 @@ namespace EGH01DB.Points
                 }
                 try
                 {
-                    cmd.ExecuteNonQuery();
+                   //cmd.ExecuteNonQuery();
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
