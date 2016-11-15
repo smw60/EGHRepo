@@ -2,12 +2,14 @@
     padding: 0px;
     height: 100%;
 }
+
+
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
 textarea {
     max-width: 280px;
-}
+}*/
 
 /* styles for validation helpers */
 .field-validation-error {
@@ -143,7 +145,21 @@ body {
 input,
 select,
 textarea {
-    max-width: 200px;
+    width:58%;
+    padding:1px;
+}
+input[type="checkbox"]{
+    text-align:left;
+    width:20px;
+}
+fieldset{
+    padding:10px;  border:1px solid black; width:98%; margin:5px 5px
+}
+fieldset legend{
+    margin-bottom:0;
+}
+.boxdata select{
+    height:23.2px;
 }
 
 /* styles for validation helpers */
@@ -333,13 +349,13 @@ a.dropdown-toggle.btn.btn-link {
         .boxdata label.boxdata-label-20{
             width: 16%;
         }
-        #list_cadastre{
+        /*#list_cadastre{
             width:80%;
             max-width:none;
-        }
+        }*/
        
         .boxdata-label-40 {
-            width: 70%;
+            width: 65%;
             float: left;
         }
         .boxdata-label-80 {
@@ -381,14 +397,14 @@ a.dropdown-toggle.btn.btn-link {
             width: 20%;
         }
 
-        .boxdata-input-30 {
-          width: 30%;
+        /*.boxdata-input-30 {
+           width: 50%;
            display: inline-block;
-        }
+        }*/
         
-        .boxdata-input-50 {
-            width:30%;
-        }
+        /*.boxdata-input-50 {
+            width:80%;
+        }*/
         /*Для широты и долготы в 3 текстовых поля*/
         .boxdata-input-10 {
             width:10%;
@@ -473,7 +489,8 @@ a.dropdown-toggle.btn.btn-link {
     max-width:none; 
     white-space:pre; 
     font-family: 'Courier New', Courier, monospace;
-    width:auto;
+    width:100%;
+    overflow:scroll;
  }
 
 #main_menu:hover{       /*при наведении на главное меню меняется фон*/

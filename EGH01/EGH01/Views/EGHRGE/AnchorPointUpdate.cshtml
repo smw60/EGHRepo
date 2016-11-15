@@ -58,7 +58,7 @@
                 <input type="hidden" value="@Model.id.ToString()" name="id">
             </div>
             <br>
-            <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+            <fieldset  form="ChoiseRiskObject">
                 <legend style="width: auto; font: inherit; border:none;">Координаты</legend>
                 <p>
                     <label class="boxdata-label-30">Широта </label>
@@ -76,13 +76,13 @@
                 </p>
             </fieldset>
             <div class="boxdata">
-                <label class="boxdata-label-20">Категория земли</label>@Html.DropDownList("list_cadastre")
+                <label class="boxdata-label-30">Категория земли</label>@Html.DropDownList("list_cadastre")
             </div>
-            <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+            <fieldset  form="ChoiseRiskObject">
                 <legend style="width: auto; font: inherit; border:none;">Геологические данные</legend>
-                <div class="boxdata">
+                <p>
                     <label class="boxdata-label-30">Грунт</label>@Html.DropDownList("list_groundType")
-                </div>
+                </p>
                 <p>
                     <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
                     <input class="boxdata-input-50" type="number" name="waterdeep" value="@Model.waterdeep.ToString()" min="0" />

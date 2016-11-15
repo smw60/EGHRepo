@@ -4,13 +4,14 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>"Экспертная система [EGH] </title>
+    <title>Экспертная система [EGH] </title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
     @*<link href="~/content/bootstrap.css" type="text/css" rel="stylesheet" />
     <link href="~/content/site.css" type="text/css" rel="stylesheet" />*@
+    <script src="~/Scripts/time.js"></script> 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <script src="~/Scripts/JavaScript1.js"></script> 
+   
 </head>
 <body>
     <div class="navbar navbar-default  navbar-fixed-top">
@@ -20,9 +21,9 @@
             <!--Заголовок индивидуальный для страниц-->
             <div class="title col-xs-8">
                 @*<div class="date"><?php echo mosCurrentDate(); ?></div>*@
-                 <span id="time"></span>
+                 <span id="doc_time"></span>
                 <style>
-                    #time {
+                    #doc_time {
                         float: right;
                         padding: 17px 0;
                     }
@@ -64,6 +65,15 @@
                 {
                     <h2>Техногенные объекты</h2>
                 }
+                
+              else if (ViewBag.EGHLayout == "RGE.AnchorPoint")
+              {
+                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE")|Опорные точки</h2>
+              }
+              else if (ViewBag.EGHLayout == "RGE.EcoObject")
+              {
+                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE")|Природоохранные объекты</h2>
+              }
               else if (ViewBag.EGHLayout =="RGE.IncidentType")
                 {
                     <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE") | Типы инцидентов</h2>
@@ -247,6 +257,46 @@
                         </ul>
                     </li>
                 }
+                else if (ViewBag.EGHLayout == "RGE.AnchorPoint")
+                {
+                    <li>@Html.ActionLink("Прогноз", "Forecast", "EGHRGE")</li>
+                    <li>@Html.ActionLink("Опорные точки", "AnchorPoint", "EGHRGE")</li>
+                    <li>@Html.ActionLink("Природоохранные объекты", "EcoObject", "EGHRGE")</li>
+                    <li>@Html.ActionLink("Отчеты", "Index", "EGHRGE")</li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Справочники<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
+                        </ul>
+                    </li>
+                }
+                else if (ViewBag.EGHLayout == "RGE.EcoObject")
+                {
+                    <li>@Html.ActionLink("Прогноз", "Forecast", "EGHRGE")</li>
+                    <li>@Html.ActionLink("Опорные точки", "AnchorPoint", "EGHRGE")</li>
+                    <li>@Html.ActionLink("Природоохранные объекты", "EcoObject", "EGHRGE")</li>
+                    <li>@Html.ActionLink("Отчеты", "Index", "EGHRGE")</li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Справочники<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
+                        </ul>
+                    </li>
+                }
                 else if (ViewBag.EGHLayout == "CEQ")
                 {
                    <li>@Html.ActionLink("Результаты прогнозирования", "Index", "EGHCEQ")</li>
@@ -321,7 +371,7 @@
         @Scripts.Render("~/bundles/JavaScript")
          <script type="text/javascript">
         clock();
-    </script>
+         </script>
 
         
    

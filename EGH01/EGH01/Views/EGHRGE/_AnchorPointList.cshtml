@@ -22,7 +22,7 @@
                
                  <p><label class="boxdata-label-30">Идентификатор</label> @t.id.ToString()</p>
 
-                                 <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+                                 <fieldset  form="ChoiseRiskObject">
                     <legend style="width: auto; max-width: none; font: inherit; border:none;">Координаты</legend>
 
                     <p>
@@ -41,7 +41,7 @@
                                      <p><label class="boxdata-label-30">Координаты в градусах</label>@latitude.ToString()°&nbsp;@lngitude.ToString()°</p>
                  </fieldset>
                                         <p><label class="boxdata-label-20">Категория земли</label> @t.cadastretype.name</p>
-                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="AnchorPoint">
+                <fieldset  form="AnchorPoint">
                     <legend style="width: auto; font: inherit; border:none;">Геологические данные</legend>
                     <p><label class="boxdata-label-30">Грунт</label> @t.groundtype.name </p>
                     <p><label class="boxdata-label-30">Высота над уровнем моря (м)</label> @t.height.ToString()</p>

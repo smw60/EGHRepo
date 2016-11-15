@@ -113,7 +113,7 @@
                 <p>
                     <label class="boxdata-label-30">Тип техногенного объекта</label>@Html.DropDownList("selectlist")
                 </p>
-            <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+            <fieldset  form="ChoiseRiskObject">
                 <legend style="width: auto; font: inherit; border:none;">Адрес</legend>
                 <p>
                     <label class="boxdata-label-30">Область</label>@Html.DropDownList("list_region")
@@ -138,7 +138,7 @@
                     <input class="boxdata-input-50" type="text" name="email" value="@Model.email"/>
                 </p>
             </fieldset>
-            <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+            <fieldset  form="ChoiseRiskObject">
                 <legend style="width: auto; font: inherit; border:none;">Объем резервуаров для хранения нефтепродутов (м3)</legend>
                 <p>
                     <label class="boxdata-label-30">Наземные</label>
@@ -149,7 +149,7 @@
                     <input class="boxdata-input-50" type="number" name="undergroundtank" value="@Model.undergroundtank.ToString()" min="0" step="0.1" />
                 </p>
             </fieldset>
-            <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+            <fieldset  form="ChoiseRiskObject">
                 <legend style="width: auto; font: inherit; border:none;">Наличие очистных сооружений</legend>
              <p>   <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="true">&emsp; <label>&emsp;Для дождевого стока</label>
              </p>
@@ -185,7 +185,7 @@
                     <input class="boxdata-input-50" type="text" name="reconstractiondate" value="@Model.reconstractiondate.ToShortDateString()" />
                 </p>
 
-                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+                <fieldset  form="ChoiseRiskObject">
                     <legend style="width: auto; font: inherit; border:none;">Географические координаты</legend>
                     <p>
                         <label class="boxdata-label-30">Широта </label>
@@ -205,14 +205,14 @@
                 </p>
                 <input type="button" value="Загрузить карту" style="margin:10px"/>*@
                 </fieldset>
-                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+                <fieldset  form="ChoiseRiskObject">
  <legend style="width: auto; font: inherit; border:none;">Геологические данные</legend>
                     <p>
                         <label class="boxdata-label-30">Категория земли</label> @Html.DropDownList("list_cadastre")
                     </p>
 
                     <p>
-                        <label class="boxdata-label-30">Грунт</label>@Html.DropDownList("list_groundType")
+                        <label class="boxdata-label-50">Грунт</label>@Html.DropDownList("list_groundType")
                     </p>
                     <p>
                         <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
