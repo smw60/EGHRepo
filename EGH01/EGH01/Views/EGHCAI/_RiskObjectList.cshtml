@@ -44,8 +44,20 @@
                 <fieldset  form="RiskObject">
                     <p><label class="boxdata-label-30">Резервуар наземный</label> @t.groundtank</p>
                     <p><label class="boxdata-label-30">Резервуар подземный</label> @t.undergroundtank</p>
-                    <p><label class="boxdata-label-30">Дата ввода в эксплуатацию</label>@t.foundationdate.ToShortDateString()</p>
-                    <p><label class="boxdata-label-30">Дата последней реконструкции</label>@t.reconstractiondate.ToShortDateString()</p>
+                    @*<p><label class="boxdata-label-30">Дата ввода в эксплуатацию</label>@t.foundationdate.ToShortDateString()</p>*@
+                    @if (@t.foundationdate.Year != 1900)
+                    {
+
+                        <p><label class="boxdata-label-30">Дата ввода в эксплуатацию</label>@t.foundationdate.ToShortDateString()</p>
+
+                    }
+                    @if (@t.reconstractiondate.Year != 1900)
+                    {
+
+                        <p><label class="boxdata-label-30">Дата последней реконструкции</label>@t.reconstractiondate.ToShortDateString()</p>
+
+                    }
+                     @*<p><label class="boxdata-label-30">Дата последней реконструкции</label>@t.reconstractiondate.ToShortDateString()</p>*@
                     <p><label class="boxdata-label-30">Очистные сооружения</label></p>
                     @if (@t.watertreatmentcollect == true)
                     {
