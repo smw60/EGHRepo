@@ -151,12 +151,32 @@
             </fieldset>
             <fieldset  form="ChoiseRiskObject">
                 <legend style="width: auto; font: inherit; border:none;">Наличие очистных сооружений</legend>
-             <p>   <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="true">&emsp; <label>&emsp;Для дождевого стока</label>
+             @*<p>   <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="true">&emsp; <label>&emsp;Для дождевого стока</label>
              </p>
              <p>
              <input type="checkbox" class="boxdata-label-30" name="watertreatmentcollect" value="true">&emsp; <label>&emsp;Резервуар для сбора проливов</label>
-            </p>
-            </fieldset>
+            </p>*@
+                <p>
+                    @if (@Model.watertreatment == true)
+                {
+                        <input type="checkbox" class="boxdata-label-30" name="watertreatment" checked="checked" value="@Model.watertreatment"><label>Для дождевого стока</label>
+                    }
+                    else
+                    {
+                        <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="@Model.watertreatment"><label>Для дождевого стока</label>
+                    }
+                </p>
+                <p>
+                    @if (@Model.watertreatmentcollect == true)
+                {
+                        <input type="checkbox" class="boxdata-label-30" name="watertreatmentcollect" checked="checked" value="@Model.watertreatmentcollect"><label>Резервуар для сбора проливов</label>
+                    }
+                    else
+                    {
+                        <input type="checkbox" class="boxdata-label-30" name="watertreatmentcollect" value="@Model.watertreatmentcollect"><label>Резервуар для сбора проливов</label>
+                    }
+                </p>
+</fieldset>
 @*<p>
                 @{
 
