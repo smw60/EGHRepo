@@ -54,11 +54,11 @@
 
             <div class="boxdata">
                 @*<label class="boxdata-label-30">Код типа земли</label>
-                @Model.type_code*@
+                    @Model.type_code*@
                 <input type="hidden" value="@Model.id.ToString()" name="id">
             </div>
             <br>
-            <fieldset  form="ChoiseRiskObject">
+            <fieldset form="ChoiseRiskObject">
                 <legend style="width: auto; font: inherit; border:none;">Координаты</legend>
                 <p>
                     <label class="boxdata-label-30">Широта </label>
@@ -78,22 +78,22 @@
             <div class="boxdata">
                 <label class="boxdata-label-30">Категория земли</label>@Html.DropDownList("list_cadastre")
             </div>
-            <fieldset  form="ChoiseRiskObject">
+            <fieldset form="ChoiseRiskObject">
                 <legend style="width: auto; font: inherit; border:none;">Геологические данные</legend>
                 <p>
                     <label class="boxdata-label-30">Грунт</label>@Html.DropDownList("list_groundType")
                 </p>
                 <p>
                     <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
-                    <input class="boxdata-input-50" type="number" name="waterdeep" value="@Model.waterdeep.ToString()" min="0" />
+                    <input class="boxdata-input-50" type="number" name="waterdeep" value="@Model.waterdeep.ToString().Replace(',' , '.')" min="0" step="0.1" />
                 </p>
                 <p>
                     <label class="boxdata-label-30">Высота над уровнем моря (м)</label>
-                    <input class="boxdata-input-50" type="number" name="height" value="@Model.height.ToString()" min="0" />
+                    <input class="boxdata-input-50" type="number" name="height" value="@Model.height.ToString().Replace(',' , '.')" min="0" step="0.1" />
                 </p>
 
             </fieldset>
-          
+
         </div>
 
         @Html.Partial("_TypeLineMenu", delete)
