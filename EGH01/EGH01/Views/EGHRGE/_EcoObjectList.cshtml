@@ -20,9 +20,9 @@
             <div class="boxdata">
                
                 <p><label class="boxdata-label-30">Идентификатор</label> @t.id.ToString()</p>
-                <p><label class="boxdata-label-20">Наименование природоохранного объекта </label> @t.name</p>
-                <p><label class="boxdata-label-30">Тип природохранного объекта</label> @t.ecoobjecttype.name</p>
-                <p><label class="boxdata-label-30">Кадастровый тип земли</label> @t.cadastretype.name</p>
+                <p><label class="boxdata-label-30">Наименование природоохранного объекта </label> <span class="boxdata-span">@t.name</span></p>
+                <p><label class="boxdata-label-30">Тип природохранного объекта</label> <span class="boxdata-span">@t.ecoobjecttype.name</span></p>
+                <p><label class="boxdata-label-30">Кадастровый тип земли</label> <span class="boxdata-span">@t.cadastretype.name</span></p>
                 <p><label class="boxdata-label-30">Координаты. Широта</label>@t.coordinates.lat.d.ToString()°&nbsp;@t.coordinates.lat.m.ToString()'&nbsp;@t.coordinates.lat.s.ToString("0.00")"</p>
                 <p><label class="boxdata-label-30">Координаты. Долгота</label>@t.coordinates.lng.d.ToString()°&nbsp;@t.coordinates.lng.m.ToString()'&nbsp;@t.coordinates.lng.s.ToString("0.00")" </p>
                 <p><label class="boxdata-label-30">Координаты в градусах</label>@latitude.ToString()°&nbsp;@lngitude.ToString()°</p>

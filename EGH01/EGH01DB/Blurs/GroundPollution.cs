@@ -11,54 +11,59 @@ namespace EGH01DB.Blurs
 {
     public class GroundPollution : Point   //загрязнение  в точке 
     {
-       public float watertime                    { get; private set; }          // время достижения грунтовых вод (сутки) от грунта и нефтепродукта 
-       public float concentration                { get; private set; }          // концентрация нефтепрдуктов в грунте    (мл/кг)
+       public float watertime                    { get; private set; }          // время достижения грунтовых вод (с)  
+       public float concentration                { get; private set; }          // концентрация нефтепрдуктов в грунте    (кг/кг)
        public PetrochemicalType petrochemicatype { get; private set; }          // нефтепрдукт
        public CadastreType cadastretype          { get; private set; }          // кадастровый тип земли
+       public float distance                     { get; private set; }          // расстояние до центра разлива 
+       public float angle                        { get; private set; }          // гидравлический угол наклона  
 
-       public GroundPollution(AnchorPoint anchorpoint,  PetrochemicalType petrochemicatype, float concentration, float watertime)
+       public GroundPollution(AnchorPoint anchorpoint,   float distance, float angle, PetrochemicalType petrochemicatype, float concentration = 0.0f, float watertime = 0.0f)
            : base(anchorpoint) 
-       { 
+       {
+
+           this.watertime = watertime;
+           this.concentration = concentration;
+           this.petrochemicatype = petrochemicatype;
+           this.cadastretype = anchorpoint.cadastretype;
+           this.distance = distance;
+           this.angle = angle;
+
        }
        
+
+
+
         
-        public GroundPollution(Incident incident, float concentration, float watertime)
-           : base(incident)   
-       {
-       }
-       public GroundPollution(Point point, CadastreType cadastretype,  PetrochemicalType petrochemicatype, float concentration, float watertime)
-           : base(point)
-       {
-       }  
+       // public GroundPollution(Incident incident, float concentration, float watertime)
+       //    : base(incident)   
+       //{
+       //}
+       //public GroundPollution(Point point, CadastreType cadastretype,  PetrochemicalType petrochemicatype, float concentration, float watertime)
+       //    : base(point)
+       //{
+       //}  
 
     
     }
 
-
-
-
-
-
     public class GroundPollutionList : List<GroundPollution>    //  загрязнение во всех точках   в наземном радиусе
     {
 
-        public static GroundPollutionList CreateGroundPollutionList(SpreadPoint spreadpoint, float radius)
+        public GroundPollutionList(Point center, AnchorPointList list, PetrochemicalType petrochemicaltype, float concentration = 0.0f, float watertime = 0.0f)
         {
+            list.ForEach(p => this.Add(new GroundPollution(p,
+                                                         p.coordinates.Distance(center.coordinates),
+                                                         p.coordinates.Distance(center.coordinates) == 0.0f ? 0 : (center.height - p.height) / p.coordinates.Distance(center.coordinates),
+                                                         petrochemicaltype,
+                                                         concentration,
+                                                         watertime
+                                                         )));
 
-            AnchorPointList anchorpointlist = AnchorPointList.CreateNear(spreadpoint.coordinates, radius);    // все точки в радиусе  radius
-            GroundPollutionList rc = new GroundPollutionList();
-
-            // ???вычислить высоту слоя пятна (volume/pi* radius^2 ) - это осядет в грунт 
-            // вычислить объем грунта goundvolume = (глубина до воды * площадь) 
-            // концентрация к* volume/ groundvolume
-            foreach (AnchorPoint p in anchorpointlist)
-            {
-                // заполнение, вычисляем время достижения воды  и концентрацию в каждой точке  
-                // rc.Add(new GroundPollution());
-            }
-            // максим думает 
-            return rc;
         }
+    
+
+        
 
     }
   

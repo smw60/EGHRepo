@@ -19,7 +19,7 @@
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -229,17 +229,24 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\site.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Layout_Mobile_Whiteframe.png" />
     <Content Include="Resources\logo_bstu_v.png" />
     <Content Include="Resources\map.png" />
     <Content Include="Resources\Layout_Mobile_Whiteframe1.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Properties\PublishProfiles\EGH.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings %284%29.pubxml" />
+    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
+    <None Include="Properties\PublishProfiles\EGH-FileSystem.pubxml" />
     <None Include="Properties\PublishProfiles\EGH01.pubxml" />
+    <None Include="Properties\PublishProfiles\WebDeploy-Prod.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\JavaScript1.js" />
+    <Content Include="Scripts\time.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -354,6 +361,8 @@
     <Content Include="Views\EGHRGE\_EcoObjectList.cshtml" />
     <Content Include="Views\EGHRGE\EcoObject.cshtml" />
     <Content Include="Views\EGHRGE\EcoObjectCreate.cshtml" />
+    <Content Include="Views\EGHRGE\EcoObjectDelete.cshtml" />
+    <Content Include="Views\EGHRGE\EcoObjectUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

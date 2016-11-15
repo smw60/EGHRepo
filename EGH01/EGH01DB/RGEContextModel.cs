@@ -24,16 +24,30 @@ namespace EGH01DB
             public WaterBlur     waterblur           {get; private set;}          // пятно  загрязнения грунтвых вод 
             public DateTime      datewatercompletion {get; private set;}          // дата достижения загрянения грунтовых вод 
             public DateTime      datemaxwaterconc    {get; private set; }         // дата достижения  иаксимального загрянения г на уровне рунтовых вод 
-
+            public string        errormessage        {get; private set; }         // сообщение об ошибке 
             public ECOForecast(Incident incident)
             {
-                this.incident = incident;
-                this.groundblur   = new GroundBlur(this.incident);
-                this.waterblur    = new WaterBlur(this.groundblur);
-                this.date         = DateTime.Now;
+                this.errormessage = string.Empty;
+                try
+                {
 
-              this.datewatercompletion = incident.date.AddSeconds(this.groundblur.timewatercomletion);
-              this.datemaxwaterconc = incident.date.AddSeconds(this.groundblur.timewaxwaterconc);   
+                    this.incident = incident;
+                    this.groundblur = new GroundBlur(this.incident);
+                  //  this.waterblur = new WaterBlur(this.groundblur);
+                    this.date = DateTime.Now;
+                    this.datewatercompletion = incident.date.AddSeconds(this.groundblur.timewatercomletion);
+                    this.datemaxwaterconc = incident.date.AddSeconds(this.groundblur.timewaxwaterconc); 
+                
+                }
+                catch(EGHDBException e )
+                {
+                    this.errormessage = e.ehgmessage;
+                
+                }
+
+                
+
+                
 
             }
             public bool toXML()   //  сериализация  в XML 
