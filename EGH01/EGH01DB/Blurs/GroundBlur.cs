@@ -37,11 +37,11 @@ namespace EGH01DB.Blurs
         public float                ozcorrection          {get; private set;}       // OZ-поправка
 
 
-        public  AnchorPointList     anchorpointlist       {get; private set;}       // список опорных точек, попаших в наземное пятно загрязнения    
-
+        public AnchorPointList     anchorpointlist        {get; private set;}       // список опорных точек, попаших в наземное пятно загрязнения    
+        public GroundPollutionList groundpolutionlist     {get; private set;}      // список точек загрязнения  
         public WaterProperties waterproperties            {get; private set;}       // физико-химические свойства воды  
-        public EcoObjectsList       ecoobjecstlist        {get; private set;}      // список объектов в т.ч. заглавный которые попали в наземное пятно    
-        public GroundPollutionList pollutionlist          {get; private set;}      // загрязнение в точках  
+        public EcoObjectsList       ecoobjecstlist        {get; private set;}       // список объектов в т.ч. заглавный которые попали в наземное пятно    
+        public GroundPollutionList pollutionlist          {get; private set;}       // загрязнение в точках  
        
         private string errormssageformat = "GroundBlur: Ошибка в данных. {0}";  
      
@@ -54,7 +54,11 @@ namespace EGH01DB.Blurs
             if (this.spreadpoint.groundtype.watercapacity >=  this.spreadpoint.groundtype.porosity)
                 throw new EGHDBException(string.Format(errormssageformat, "Влагоемкость грунта не может быть  больше или равна  пористости"));
 
+            if (this.spreadpoint.groundtype.watercapacity >= this.spreadpoint.groundtype.soilmoisture)
+                 throw new EGHDBException(string.Format(errormssageformat, "Влагоемкость грунта не может быть  больше или равна  влажности грунта"));
 
+
+            
             { // коэф. разлива 
 
                 SpreadingCoefficient x = new SpreadingCoefficient();
@@ -95,7 +99,7 @@ namespace EGH01DB.Blurs
 
 
             { // средняя глубина грунтовых вод по опорным точкам  и техногенному  объекту
-                this.anchorpointlist = new AnchorPointList();
+                this.anchorpointlist = AnchorPointList.CreateNear(this.spreadpoint.coordinates, this.radius);
                 this.avgdeep =
                                 (
                                   anchorpointlist.sumwaterdeep +
@@ -118,6 +122,16 @@ namespace EGH01DB.Blurs
                                      );
             }
 
+            {
+                
+                this.groundpolutionlist = new GroundPollutionList(this.spreadpoint, this.anchorpointlist, this.spreadpoint.petrochemicaltype);
+                //this.groundpolutionlist.Add(new GroundPollution()
+
+            }
+           
+
+
+
             this.adsorbedmass = (limitadsorbedmass >= this.totalmass ? this.totalmass : limitadsorbedmass);             // адсорбированная масса нефтепродукта в грунте т - М1  
 
             this.restmass = (this.adsorbedmass >= this.totalmass ? 0 : this.totalmass - this.adsorbedmass);             // масса нефтепродукта достигшая грунтовых вод 
@@ -135,7 +149,7 @@ namespace EGH01DB.Blurs
 
 
             this.ecoobjecstlist = EcoObjectsList.CreateEcoObjectsList(spreadpoint, radius);
-            this.pollutionlist = GroundPollutionList.CreateGroundPollutionList(spreadpoint, radius);
+            
 
 
           
@@ -193,9 +207,7 @@ namespace EGH01DB.Blurs
                     );          
             }
 
-
-            this.anchorpointlist = AnchorPointList.CreateNear(this.spreadpoint.coordinates, this.radius);
-
+                      
             
         }
 
@@ -224,10 +236,10 @@ namespace EGH01DB.Blurs
         {
             return new EcoObjectsList();
         }
-        private GroundPollutionList creategroundpolutionlist() // формирование списка наземных точек загрязнения объектов
-        {
-            return new GroundPollutionList();
-        }
+        //private GroundPollutionList creategroundpolutionlist() // формирование списка наземных точек загрязнения объектов
+        //{
+        //    return new GroundPollutionList();
+        //}
 
     }
 }

@@ -33,7 +33,7 @@ namespace EGH01DB
 
                     this.incident = incident;
                     this.groundblur = new GroundBlur(this.incident);
-                    this.waterblur = new WaterBlur(this.groundblur);
+                  //  this.waterblur = new WaterBlur(this.groundblur);
                     this.date = DateTime.Now;
                     this.datewatercompletion = incident.date.AddSeconds(this.groundblur.timewatercomletion);
                     this.datemaxwaterconc = incident.date.AddSeconds(this.groundblur.timewaxwaterconc); 
