@@ -22,42 +22,27 @@
 
         <div class="box">
             <div class="boxdata">
-                <div class="boxdata">
-                    <p><label class="boxdata-label-30">Код типа нефтепродукта</label>@t.code_type.ToString()</p>
-                    <input type="hidden" value="@t.code_type.ToString()" name="type_code">
-                </div>
-                <div class="boxdata">
-                    <p><label class="boxdata-label-30">Наименование нефтепродукта</label>@t.name</p>
-                </div>
+              
+                <p><label class="boxdata-label-30">Код типа нефтепродукта</label>@t.code_type.ToString()</p>
+                <input type="hidden" value="@t.code_type.ToString()" name="type_code">
+                <p><label class="boxdata-label-30">Наименование нефтепродукта</label>@t.name</p>
+
                 <fieldset  form="PetrochemicalType">
-                    <legend style="width: auto; font: inherit; border:none;">Реально используемые</legend>
-                    <div class="boxdata">
-                        <p><label class="boxdata-label-30">Плотность, кг/м<sup><small>3</small></sup></label>@t.density.ToString("0.000")</p>
-                    </div>
-                    <div class="boxdata">
-                        <p><label class="boxdata-label-30">Динамическая вязкость, кг/м*с</label>@t.dynamicviscosity.ToString("0.00000")</p>
-                    </div>
-                    <div class="boxdata">
-                        <p><label class="boxdata-label-30">Коэф. поверхностного натяжения, кг/с<sup><small>2</small></sup></label>@t.tension.ToString("0.000")</p>
-                    </div>
-                    <div class="boxdata">
-                        <p><label class="boxdata-label-30">Коэф. диффузии, м<sup><small>2</small></sup>/с</label>@t.diffusion.ToString("0.000000000")</p>
-                    </div>
+                  
+                    <p><label class="boxdata-label-30">Плотность, кг/м<sup><small>3</small></sup></label>@t.density.ToString("0.000")</p>
+                    <p><label class="boxdata-label-30">Динамическая вязкость, кг/м*с</label>@t.dynamicviscosity.ToString("0.00000")</p>
+                    <p><label class="boxdata-label-30">Коэф. поверхностного натяжения, кг/с<sup><small>2</small></sup></label>@t.tension.ToString("0.000")</p>
+                    <p><label class="boxdata-label-30">Коэф. диффузии, м<sup><small>2</small></sup>/с</label>@t.diffusion.ToString("0.000000000")</p>
+                  
                 </fieldset>
-                <div class="boxdata">
-                    <p><label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С</label>@t.boilingtemp.ToString("0.0")</p>
-                </div>
-                <div class="boxdata">
-                    <p><label class="boxdata-label-30">Кинематическая вязкость, м<sup><small>2</small></sup>/с</label>@t.viscosity.ToString("0.0000000")</p>
-                </div>
-                <div class="boxdata">
-                    <p><label class="boxdata-label-30">Растворимость, кг/м<sup><small>3</small></sup></label>@t.solubility.ToString("0.000")</p>
-                </div>
-
-
-                </div>
-            @Html.Partial("_TypeLineMenu", menu)
+               
+                <p><label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С</label>@t.boilingtemp.ToString("0.0")</p>
+                <p><label class="boxdata-label-30">Кинематическая вязкость, м<sup><small>2</small></sup>/с</label>@t.viscosity.ToString("0.0000000")</p>
+                <p><label class="boxdata-label-30">Растворимость, кг/м<sup><small>3</small></sup></label>@t.solubility.ToString("0.000")</p>
+            
             </div>
+            @Html.Partial("_TypeLineMenu", menu)
+        </div>
 
     }
 }
