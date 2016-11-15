@@ -160,112 +160,141 @@
         }
         else if (context.Regim == ForecastViewConext.REGIM.REPORT)
         {
-            <div class="boxdata">
+            <div class="">
                 <h1> ОТЧЕТ-ПРОГНОЗ  </h1>
                 <h2>Наземное пятно</h2>
                 <p>
-                    <label class="boxdata-label-30 ">Плотность нефтепродукта (@context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.name) (кг/м3) </label>
+                    <label class="boxdata-label-40 ">Плотность нефтепродукта (@context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.name) (кг/м3) </label>
                     @context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.density
                 </p>
                 <p>
-                    <label class="boxdata-label-30 ">Масса пролива (кг) </label>
+                    <label class="boxdata-label-40 ">Масса пролива (кг) </label>
                     @context.ecoforecast.groundblur.totalmass
                 </p>
                 
                 <p>
-                    <label class="boxdata-label-30 ">Коэффициент разлива (1/м) </label>
+                    <label class="boxdata-label-40 ">Коэффициент разлива (1/м) </label>
                     @context.ecoforecast.groundblur.spreadingcoefficient.koef
                 </p>
 
                 <p>
-                    <label class="boxdata-label-30 ">Площадь разлива (м2) </label> 
+                    <label class="boxdata-label-40 ">Площадь разлива (м2) </label> 
                     @context.ecoforecast.groundblur.square    
                 </p>
                 
                 <p>
-                    <label class="boxdata-label-30 ">Высота слоя пролитого нефтепродукта (м) </label>
+                    <label class="boxdata-label-40 ">Высота слоя пролитого нефтепродукта (м) </label>
                     @context.ecoforecast.groundblur.petrochemicalheight
                 </p>
 
                 <p>
-                    <label class="boxdata-label-30 ">Радиус разлива (м) </label>
+                    <label class="boxdata-label-40 ">Радиус разлива (м) </label>
                     @context.ecoforecast.groundblur.radius
                 </p>
                 
                 <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
                     <legend style="width: auto; font: inherit; border:none;"> Максиальная масса НП, кот. может быть адсорбирована грунтом </legend>
                     <p>
-                        <label class="boxdata-label-30 ">Средняя глубина грунтовых вод (м) </label>
+                        <label class="boxdata-label-40 ">Средняя глубина грунтовых вод (м) </label>
                         @context.ecoforecast.groundblur.avgdeep
                     </p>
                     <p>
-                        <label class="boxdata-label-30 ">Площадь разлива (м2) </label>
+                        <label class="boxdata-label-40 ">Площадь разлива (м2) </label>
                         @context.ecoforecast.groundblur.square
                     </p>
                     <p>
-                        <label class="boxdata-label-30 "> Плотность воды </label>
+                        <label class="boxdata-label-40 "> Плотность воды </label>
                         @context.ecoforecast.groundblur.waterproperties.density
                     </p>
 
                     <p>
-                        <label class="boxdata-label-30 "> Грунт </label>
+                        <label class="boxdata-label-40 "> Грунт </label>
                         @context.ecoforecast.groundblur.spreadpoint.groundtype.name
                     </p>
                     <p>
-                        <label class="boxdata-label-30 "> Пористость грунта </label>
+                        <label class="boxdata-label-40 "> Пористость грунта </label>
                         @context.ecoforecast.groundblur.spreadpoint.groundtype.porosity
                      </p>
                     
                     <p>
-                        <label class="boxdata-label-30 ">Капилярная влагоемкость грунта </label>
+                        <label class="boxdata-label-40 ">Капилярная влагоемкость грунта </label>
                         @context.ecoforecast.groundblur.spreadpoint.groundtype.watercapacity
                     </p>
 
                     <p>
-                        <label class="boxdata-label-30 ">Динамическая вязкость нефтепродукта </label>
+                        <label class="boxdata-label-40 ">Динамическая вязкость нефтепродукта </label>
                         @context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.dynamicviscosity
                      </p>
                      <p>
-                        <label class="boxdata-label-30 ">Коэф. пов.  натяжения воды </label>
+                        <label class="boxdata-label-40 ">Коэф. пов.  натяжения воды </label>
                         @context.ecoforecast.groundblur.waterproperties.tension
                     </p>
                     <p>
-                        <label class="boxdata-label-30 ">Коэф. пов. натяжения нефтепродукта </label>
+                        <label class="boxdata-label-40 ">Коэф. пов. натяжения нефтепродукта </label>
                         @context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.tension
                     </p>
 
                     <p>
-                       <label class="boxdata-label-30 ">Вязкость воды</label>
+                       <label class="boxdata-label-40 ">Вязкость воды</label>
                         @context.ecoforecast.groundblur.waterproperties.viscocity
                     </p>
                     <p>
-                        <label class="boxdata-label-30 ">Макс. масса НП, кот. может быть адсорбирована грунтом (кг) </label>
+                        <label class="boxdata-label-40 ">Макс. масса НП, кот. может быть адсорбирована грунтом (кг) </label>
                         @context.ecoforecast.groundblur.limitadsorbedmass
                    </p>
                 </fieldset>
 
-                <p>
-                    <label class="boxdata-label-20 "> Адсорбированная масса нефтепрдукта (т) </label>
-                    @context.ecoforecast.groundblur.adsorbedmass
-                </p>
-                <p>
-                    <label class="boxdata-label-20 ">Масса нефтепродукта достигшая уровня грунтовых вод (т) </label>
-                    @context.ecoforecast.groundblur.restmass
-                </p>
-                <p>
-                <label class="boxdata-label-20 ">Глубина проникновения нефтепродукта в грунтах (м) </label>
-                    @context.ecoforecast.groundblur.depth
-                </p>
-
                 <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+                    <legend style="width: auto; font: inherit; border:none;"> Проникновение в грунт </legend>
+                    <p>
+                        <label class="boxdata-label-40 "> Адсорбированная масса нефтепрдукта (т) </label>
+                        @context.ecoforecast.groundblur.adsorbedmass
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 ">Масса нефтепродукта достигшая уровня грунтовых вод (кг) </label>
+                        @context.ecoforecast.groundblur.restmass
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 ">Глубина проникновения нефтепродукта в грунтах (м) </label>
+                        @context.ecoforecast.groundblur.depth
+                    </p>
+
+                </fieldset>
+                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+                    <legend style="width: auto; font: inherit; border:none;">Средняя концентация нефтепродукта в грунтах зоны аэрации </legend>
+                    <p>
+                        <label class="boxdata-label-40 "> Адсорбированная масса нефтепрдукта (т) </label>
+                        @context.ecoforecast.groundblur.adsorbedmass
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 ">Глубина проникновения нефтепродукта в грунтах (м) </label>
+                        @context.ecoforecast.groundblur.depth
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 ">Площадь разлива (м2) </label>
+                        @context.ecoforecast.groundblur.square
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 ">Средняя плотность грунта (кг/м3) </label>
+                        @context.ecoforecast.groundblur.spreadpoint.groundtype.density
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 ">Средняя концентация нефтепродукта в грунтах зоны аэрации (кг/кг) </label>
+                        @context.ecoforecast.groundblur.concentrationinsoil
+                    </p>
+
+                </fieldset>
+
+
+                 <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
                     <legend style="width: auto; font: inherit; border:none;"> Скорость проникновенния нефтепрдукта в глубь грунта </legend>
 
                     <p>
-                        <label class="boxdata-label-30 ">Вязкость нефтепродукта </label>
+                        <label class="boxdata-label-40 ">Вязкость нефтепродукта </label>
                         @context.ecoforecast.groundblur.spreadpoint.petrochemicaltype.viscosity
                     </p>
                     <p>
-                        <label class="boxdata-label-30 ">Плотность воды </label>
+                        <label class="boxdata-label-40 ">Плотность воды </label>
                         @context.ecoforecast.groundblur.waterproperties.density
                     </p>
                     <p>
@@ -291,11 +320,11 @@
                         @context.ecoforecast.groundblur.speedvertical  =  @(context.ecoforecast.groundblur.speedvertical * Const.SEC_PER_DAY)  (м/сут)
                     </p>
                     <p>
-                        <label class="boxdata-label-30 ">Средняя глубина грунтовых вод (м) </label>
+                        <label class="boxdata-label-40 ">Средняя глубина грунтовых вод (м) </label>
                         @context.ecoforecast.groundblur.avgdeep
                     </p>
                     <p>
-                        <label class="boxdata-label-30 ">Время  достижения уровня грунтовых вод  нефтепродуктом </label>
+                        <label class="boxdata-label-40 ">Время  достижения уровня грунтовых вод  нефтепродуктом </label>
                         @context.ecoforecast.groundblur.timewatercomletion  =    @(context.ecoforecast.groundblur.timewatercomletion/ Const.SEC_PER_DAY)  (сут)
 
                     </p>
@@ -311,11 +340,11 @@
                     <legend style="width: auto; font: inherit; border:none;"> Дата достижения максимальной концентрации</legend>
 
                     <p>
-                        <label class="boxdata-label-30 ">Высота слоя пролитого нефтепродукта (м) </label>
+                        <label class="boxdata-label-40 ">Высота слоя пролитого нефтепродукта (м) </label>
                         @context.ecoforecast.groundblur.petrochemicalheight
                     </p>
                     <p>
-                        <label class="boxdata-label-30 "> Пористость грунта </label>
+                        <label class="boxdata-label-40 "> Пористость грунта </label>
                         @context.ecoforecast.groundblur.spreadpoint.groundtype.porosity
                     </p>
                     <p>
@@ -328,7 +357,7 @@
                         @context.ecoforecast.groundblur.dtimewaxwaterconc  =  @(context.ecoforecast.groundblur.dtimewaxwaterconc / Const.SEC_PER_DAY)  (сут)
                     </p>
                     <p>
-                        <label class="boxdata-label-30 ">Время  достижения уровня грунтовых вод  нефтепродуктом </label>
+                        <label class="boxdata-label-40 ">Время  достижения уровня грунтовых вод  нефтепродуктом </label>
                         @context.ecoforecast.groundblur.timewatercomletion  =    @(context.ecoforecast.groundblur.timewatercomletion / Const.SEC_PER_DAY)  (сут)
                     </p>
                     <p>
@@ -339,58 +368,40 @@
                         <label class="boxdata-label-40 "> Дата достижения макс. конц. на уровне гр. вод </label>
                         @context.ecoforecast.datemaxwaterconc.ToShortDateString()
                     </p>
+                    
+                </fieldset>
 
-
+               
+                <fieldset style="padding:10px;  border:1px solid black; width:95%; margin:5px 5px" form="ChoiseRiskObject">
+                    <legend style="width: auto; font: inherit; border:none;"> Максимальная концентрация на уровне грунтовых вод</legend>
+                    <p>
+                        <label class="boxdata-label-40 ">Масса пролива (кг) </label>
+                        @context.ecoforecast.groundblur.totalmass
+                    </p>
+                    
+                    <p>
+                        <label class="boxdata-label-40 ">Масса нефтепродукта достигшая уровня грунтовых вод (кг) </label>
+                        @context.ecoforecast.groundblur.restmass
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 ">Радиус разлива (м) </label>
+                        @context.ecoforecast.groundblur.radius
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 ">Высота слоя пролитого нефтепродукта (м) </label>
+                        @context.ecoforecast.groundblur.petrochemicalheight
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 ">OZ-поправка (м)</label>
+                        @context.ecoforecast.groundblur.ozcorrection 
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 ">Максимальная концентрация на уровне грунтовых вод (кг/m3) </label>
+                        @context.ecoforecast.groundblur.maxconcentrationwater
+                    </p>
                 </fieldset>
 
 
-
-                      
-                       @*<p>
-                            <label class="boxdata-label-30 "> Коэф. фильтрации воды в грунте </label>
-                            @context.ecoforecast.groundblur.spreadpoint.groundtype.waterfilter
-                        </p>
-
-
-                        <p>
-                            <label class="boxdata-label-30 "> Влажность грунта </label>
-                            @context.ecoforecast.groundblur.spreadpoint.groundtype.soilmoisture
-                        </p>
-                        <p>
-                            <label class="boxdata-label-30 "> Влагоемкость грунта </label>
-                            @context.ecoforecast.groundblur.spreadpoint.groundtype.watercapacity
-                        </p>
-                        <p>
-                            <label class="boxdata-label-30 ">  Капилярная влагоемкость грунта </label>
-                            @context.ecoforecast.groundblur.spreadpoint.groundtype.watercapacity
-                        </p>
-
-                        
-
-
-
-
-
-
-
-
-                        <p>
-                            <label class="boxdata-label-80 ">Время достижения макс. конц.после дост. ур. грутовых вод  (сек) </label>
-                            @context.ecoforecast.groundblur.dtimewaxwaterconc
-                        </p>
-
-                        <p>
-                            <label class="boxdata-label-40 ">Время достижения макс. конц. на  уровне грутовых вод  (сек) </label>
-                            @context.ecoforecast.groundblur.timewaxwaterconc
-                        </p>
-
-                       
-
-                        <p>
-                            <label class="boxdata-label-40 "> Дата достижения уровня грунтовых вод  нефтепродуктом </label>
-                            @context.ecoforecast.datemaxwaterconc.ToShortDateString()
-                        </p>*@
-                 
 
 
 </div>
