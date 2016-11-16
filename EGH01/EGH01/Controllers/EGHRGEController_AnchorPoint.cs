@@ -96,6 +96,7 @@ namespace EGH01.Controllers
             return view;
         }
 
+
         [HttpPost]
         public ActionResult AnchorPointCreate(EGH01.Models.EGHRGE.AnchorPointView ah)
         {
@@ -113,10 +114,25 @@ namespace EGH01.Controllers
                     int id = -1;
                     if (EGH01DB.Points.AnchorPoint.GetNextId(db, out id))
                     {
-                        Coordinates coordinates = new Coordinates(ah.Lat_d, ah.lat_m, ah.lat_s, ah.lngitude, ah.lng_m, ah.lng_s);
+                        float lat_s = 0.0f;
+                        string strlat_s = this.HttpContext.Request.Params["lat_s"] ?? "Empty";
+                        if (!Helper.FloatTryParse(strlat_s, out lat_s))
+                        {
+                            lat_s = 0.0f;
+                        }
+
+                        float lng_s = 0.0f;
+                        string strlng_s = this.HttpContext.Request.Params["lng_s"] ?? "Empty";
+                        if (!Helper.FloatTryParse(strlng_s, out lng_s))
+                        {
+                            lng_s = 0.0f;
+                        }
+
+
+                        Coordinates coordinates = new Coordinates(ah.Lat_d, ah.lat_m, lat_s, ah.lngitude, ah.lng_m, lng_s);
                         float waterdeep = 0.0f;
                         int list_cadastre = ah.list_cadastre;
-         
+
                         float height = 0.0f;
                         string strheight = this.HttpContext.Request.Params["height"] ?? "Empty";
                         if (!Helper.FloatTryParse(strheight, out height))
@@ -207,8 +223,21 @@ namespace EGH01.Controllers
                 {
 
                     int id = ah.id;
-                    int lat = ah.Lat_d;
-                    Coordinates coordinates = new Coordinates(ah.Lat_d, ah.lat_m, ah.lat_s, ah.lngitude, ah.lng_m, ah.lng_s);
+
+                    float lat_s = 0.0f;
+                    string strlat_s = this.HttpContext.Request.Params["lat_s"] ?? "Empty";
+                    if (!Helper.FloatTryParse(strlat_s, out lat_s))
+                    {
+                        lat_s = 0.0f;
+                    }
+
+                    float lng_s = 0.0f;
+                    string strlng_s = this.HttpContext.Request.Params["lng_s"] ?? "Empty";
+                    if (!Helper.FloatTryParse(strlng_s, out lng_s))
+                    {
+                        lng_s = 0.0f;
+                    }
+                    Coordinates coordinates = new Coordinates(ah.Lat_d, ah.lat_m, lat_s, ah.lngitude, ah.lng_m, lng_s);
                     float waterdeep = 0.0f;
                     int list_cadastre = ah.list_cadastre;
                     float height = 0.0f;
@@ -257,7 +286,5 @@ namespace EGH01.Controllers
 
             return view;
         }
-
-
     }
 }

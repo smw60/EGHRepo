@@ -78,7 +78,7 @@ namespace EGH01DB.Primitives
         // заглушка 
         public static bool GetByParms(GroundType groundtype, float volume, float angle, out SpreadingCoefficient spreadingcoefficient)  
         {
-            spreadingcoefficient = new SpreadingCoefficient(0, groundtype, 0.0f, 80.0f, 0.0f, 0.02f, 5.0f);
+            spreadingcoefficient = new SpreadingCoefficient(0, groundtype, 0.0f, 80.0f, 0.0f, 0.02f, 4.0f);
 
             return true;
         }
@@ -168,7 +168,7 @@ namespace EGH01DB.Primitives
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэффициентРазлива", SqlDbType.Real);
+                    SqlParameter parm = new SqlParameter("@КоэффициентРазлива", SqlDbType.Float);
                     parm.Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(parm);
                 }

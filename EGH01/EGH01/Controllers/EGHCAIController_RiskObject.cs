@@ -163,7 +163,17 @@ namespace EGH01.Controllers
                                         if (EGH01DB.Types.Region.GetByCode(db, rs.list_region, out region))
                                         {
                                             DateTime foundationdate = rs.foundationdate;
+                                            if (foundationdate.Year == 0001) {
+                                                foundationdate = new DateTime(1900,01,01); 
+
+                                            }
+
                                             DateTime reconstractiondate = rs.reconstractiondate;
+                                            if (reconstractiondate.Year == 0001)
+                                            {
+                                                reconstractiondate = new DateTime(1900, 01, 01);
+
+                                            }
                                             string name = rs.name;
                                             String phone = rs.phone;
                                             String fax = rs.fax;
