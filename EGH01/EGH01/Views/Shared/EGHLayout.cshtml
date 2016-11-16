@@ -96,7 +96,11 @@
               {
                 <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE")|Коэффициент растекания</h2>
               }
-                                   
+
+              else if (ViewBag.EGHLayout == "RGE.WaterProperties")
+              {
+                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE")|Свойства воды</h2>
+              }                
             </div>
             <div class=" col-xs-3">
                 <!--Главное меню-->
@@ -283,6 +287,27 @@
                     </li>
                 }
                 else if (ViewBag.EGHLayout == "RGE.EcoObject")
+                {
+                    <li>@Html.ActionLink("Прогноз", "Forecast", "EGHRGE")</li>
+                    <li>@Html.ActionLink("Опорные точки", "AnchorPoint", "EGHRGE")</li>
+                    <li>@Html.ActionLink("Природоохранные объекты", "EcoObject", "EGHRGE")</li>
+                    <li>@Html.ActionLink("Отчеты", "Index", "EGHRGE")</li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Справочники<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>
+                        </ul>
+                    </li>
+                }
+                else if (ViewBag.EGHLayout == "RGE.WaterProperties")
                 {
                     <li>@Html.ActionLink("Прогноз", "Forecast", "EGHRGE")</li>
                     <li>@Html.ActionLink("Опорные точки", "AnchorPoint", "EGHRGE")</li>
