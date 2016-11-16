@@ -3,7 +3,16 @@
 @using EGH01DB.Primitives;
 @using EGH01DB.Types;
 @model EGH01DB.RGEContext
+@if (ViewBag.error != null)
+{
 
+    @ViewBag.error
+    //{
+    //    Html.RenderAction("GroundType", "EGHRGE");
+
+    //}
+
+}
 @{
 
     Layout = "~/Views/Shared/EGHLayout.cshtml";
@@ -82,4 +91,3 @@
             @Html.Partial("_TypeLineMenu", create)
 </div>
 }
-

@@ -179,8 +179,18 @@ namespace EGH01.Controllers
                         density = 0.0f;
                     }
 
-               //     EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability);
+                   if (porosity >= watercapacity) 
+                    { 
+                    ViewBag.Error = "Влагоемкость грунта не может быть больше или равна пористости"; 
+                    view = View("GroundTypeCreate", db);
+                        return view;
+                    // throw new EGHDBException(string.Format(errormssageformat, "Влагоемкость грунта не может быть больше или равна пористости")); 
 
+                    // EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability); 
+                    } 
+                   else
+                    //     EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability);
+                    { 
                     EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability, density); // blinova
 
 
@@ -191,7 +201,7 @@ namespace EGH01.Controllers
                     }
                 }
 
-                //}
+                }
                 else if (menuitem.Equals("GroundType.Create.Cancel")) view = View("GroundType", db);
             }
             catch (RGEContext.Exception e)
