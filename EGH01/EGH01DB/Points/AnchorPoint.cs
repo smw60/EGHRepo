@@ -93,6 +93,78 @@ namespace EGH01DB.Points
                 return rc;
             }
         }
+        static public bool Create(EGH01DB.IDBContext dbcontext, AnchorPoint anchor_point, AnchorPoint new_anchor_point, float angle, float distance)
+        {
+            bool rc = false;
+            int id = -1;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetCoordinatesByAngle", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@lat1", SqlDbType.Real);
+                    parm.Value = anchor_point.coordinates.latitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@lng1", SqlDbType.Real);
+                    parm.Value = anchor_point.coordinates.lngitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@angle", SqlDbType.Real);
+                    parm.Value = angle;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@distance", SqlDbType.Real);
+                    parm.Value = distance;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@lat2", SqlDbType.Real);
+                    parm.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@lng2", SqlDbType.Real);
+                    parm.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                //{
+                //    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                //    parm.Direction = ParameterDirection.ReturnValue;
+                //    cmd.Parameters.Add(parm);
+                //}
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                   // if (rc = ((int)cmd.Parameters["@exitrc"].Value) > 0)
+                   // {
+                        float x = (float)cmd.Parameters["@lat2"].Value;
+                        float y = (float)cmd.Parameters["@lng2"].Value;
+                        Coordinates coordinates = new Coordinates ((float)x, (float)y);
+                        
+                        int new_ground_type_code = anchor_point.groundtype.type_code;
+                        float new_waterdeep = anchor_point.waterdeep;
+                        float new_height = anchor_point.height;
+                        GroundType new_ground_type = new GroundType(new_ground_type_code);
+                        Point point = new Point(coordinates, new_ground_type, new_waterdeep, new_height);
+
+                        int new_cadastre_type_code = anchor_point.cadastretype.type_code;
+                        CadastreType cadastretype = new CadastreType(new_cadastre_type_code);
+
+                        new_anchor_point = new AnchorPoint(id, point, cadastretype);
+                        if (AnchorPoint.Create(dbcontext, new_anchor_point)) rc = true;
+                   // }
+                  
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
         static public bool GetNextId(EGH01DB.IDBContext dbcontext, out int next_id)
         {
             bool rc = false;

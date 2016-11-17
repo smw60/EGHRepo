@@ -328,6 +328,24 @@ namespace EGH01.Controllers
             }
             return View();
         }
+        public ActionResult Anchor_Point_Create_At_Distance()// перегрузка
+        {
+            RGEContext db = new RGEContext();
+            {
+                
+                AnchorPoint ap = new AnchorPoint();
+                if (AnchorPoint.GetById(db, 24, ref ap))
+                {
+                    int k = 1;
+                };
+                AnchorPoint new_anchor_point = new AnchorPoint();
+                if (AnchorPoint.Create(db, ap, new_anchor_point, 30, 1000))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
         public ActionResult Anchor_Point_Update() // yes
         {
             RGEContext db = new RGEContext();
