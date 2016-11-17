@@ -24,7 +24,7 @@ namespace EGH01DB.Blurs
         {
             this.groudblur = groundblur;
             this.ecoobjecstlist = EcoObjectsList.CreateEcoObjectsList(groudblur.spreadpoint, groudblur.radius, radius);
-            this.pollutionlist = WaterPollutionList.CreateWaterPollutionList(groudblur.spreadpoint, groudblur.pollutionlist, groundblur.spreadpoint.petrochemicaltype, groudblur.radius, this.radius);
+            this.pollutionlist = WaterPollutionList.CreateWaterPollutionList(groudblur.spreadpoint, groudblur.groundpolutionlist, groundblur.spreadpoint.petrochemicaltype, groudblur.radius, this.radius);
 
             this.radius = 0; //  sqrt(объем нефтепродукта поступившее в грунтовые воды/ (пористость грунта * водоносный горизонт* pi)) +  groundblur.radius
 

@@ -12,6 +12,7 @@ namespace EGH01DB.Blurs
 {
     public class GroundPollution : Point   //загрязнение  в точке 
     {
+       public enum POINTTYPE{RISK, ANCHOR, ECO}
        public float watertime                    { get; private set; }          // время достижения грунтовых вод (с)  
        public float concentration                { get; private set; }          // концентрация нефтепрдуктов в грунте    (кг/кг)
        public PetrochemicalType petrochemicatype { get; private set; }          // нефтепрдукт
@@ -19,10 +20,15 @@ namespace EGH01DB.Blurs
        public float distance                     { get; private set; }          // расстояние до центра разлива 
        public float angle                        { get; private set; }          // гидравлический угол наклона  
        public string comment                     { get; private set; }          // комментарий 
+       public string name                        { get; private set; }          // наименование 
+       public POINTTYPE  pointtype               { get; private set; }          // тип точки 
+
        private string comment_format = "{0}-{1}:";         // тип-id:              
+       
        public GroundPollution(AnchorPoint anchorpoint,   float distance, float angle, PetrochemicalType petrochemicatype, float concentration = 0.0f, float watertime = 0.0f)
            : base(anchorpoint) 
        {
+           this.pointtype = POINTTYPE.ANCHOR;  
            this.comment = string.Format(comment_format,"ОТ", anchorpoint.id);
            this.watertime = watertime;
            this.concentration = concentration;
@@ -30,11 +36,13 @@ namespace EGH01DB.Blurs
            this.cadastretype = anchorpoint.cadastretype;
            this.distance = distance;
            this.angle = angle;
+           this.name = this.comment;
 
        }
-       public GroundPollution( EcoObject ecojbject, float distance, float angle, PetrochemicalType petrochemicatype, float concentration = 0.0f, float watertime = 0.0f)
+       public GroundPollution(EcoObject ecojbject, float distance, float angle, PetrochemicalType petrochemicatype, float concentration = 0.0f, float watertime = 0.0f)
            : base(ecojbject)
        {
+           this.pointtype = POINTTYPE.ECO; 
            this.comment = string.Format(comment_format, "ПО",  ecojbject.id);
            this.watertime = watertime;
            this.concentration = concentration;
@@ -42,11 +50,12 @@ namespace EGH01DB.Blurs
            this.cadastretype = ecojbject.cadastretype;
            this.distance = distance;
            this.angle = angle;
-
+           this.name = ecojbject.name;
        }
        public GroundPollution(SpreadPoint  spreadpoint, float concentration = 0.0f, float watertime = 0.0f)
            : base(spreadpoint)
        {
+           this.pointtype = POINTTYPE.RISK; 
            this.comment = string.Format(comment_format, "OО", (spreadpoint.isriskobject? spreadpoint.riskobject.id: 0));
            this.watertime = watertime;
            this.concentration = concentration;
@@ -54,22 +63,8 @@ namespace EGH01DB.Blurs
            this.cadastretype = spreadpoint.cadastretype;
            this.distance = 0.0f;
            this.angle = 0.0f;
-
+           this.name = spreadpoint.isriskobject? spreadpoint.riskobject.name: this.comment;
        }
-
-
-
-        
-       // public GroundPollution(Incident incident, float concentration, float watertime)
-       //    : base(incident)   
-       //{
-       //}
-       //public GroundPollution(Point point, CadastreType cadastretype,  PetrochemicalType petrochemicatype, float concentration, float watertime)
-       //    : base(point)
-       //{
-       //}  
-
-    
     }
 
     public class GroundPollutionList : List<GroundPollution>    //  загрязнение во всех точках   в наземном радиусе

@@ -43,7 +43,7 @@ namespace EGH01DB.Blurs
         public GroundPollutionList groundpolutionlist     {get; private set;}       // список точек загрязнения  
         public WaterProperties waterproperties            {get; private set;}       // физико-химические свойства воды  
         public EcoObjectsList       ecoobjecstlist        {get; private set;}       // список объектов в т.ч. заглавный которые попали в наземное пятно    
-        public GroundPollutionList pollutionlist          {get; private set;}       // загрязнение в точках  
+        //public GroundPollutionList pollutionlist          {get; private set;}       // загрязнение в точках  
        
         private string errormssageformat = "GroundBlur: Ошибка в данных. {0}";  
      
@@ -155,7 +155,7 @@ namespace EGH01DB.Blurs
                                                          2.0f * this.radius /                                                     // площадь трубы 
                                                          2.0f *                                                                   // треугольник
                                                          this.waterproperties.density *                                           // плотность воды  
-                                                         (this.spreadpoint.groundtype.porosity / 2.0f) *                            // пористость грунта /2 c водой
+                                                         (this.spreadpoint.groundtype.porosity / 2.0f) *                           // пористость грунта /2 c водой
                                                          this.spreadpoint.groundtype.watercapacity *                              // капилярная влагоемкость грунта                                                      // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (кг) 
                                                          (float)Math.Pow(this.spreadpoint.petrochemicaltype.viscosity, 2) *       // динамическая вязкость ???      
                                                          this.waterproperties.tension /                                           // коэфициент поверхностного натяжения воды
