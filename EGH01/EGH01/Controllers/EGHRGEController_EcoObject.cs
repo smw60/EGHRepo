@@ -229,6 +229,7 @@ namespace EGH01.Controllers
                         if (EGH01DB.Types.EcoObjectType.GetByCode(db, eov.list_ecoType, out eco_type))
                         {
                             bool iswaterobject = eov.iswaterobject;
+
                             string strlat_s = this.HttpContext.Request.Params["lat_s"] ?? "Empty";
                             string strlng_s = this.HttpContext.Request.Params["lng_s"] ?? "Empty";
                             string strwaterdeep = this.HttpContext.Request.Params["waterdeep"] ?? "Empty";
