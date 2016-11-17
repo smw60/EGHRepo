@@ -25,7 +25,7 @@ namespace EGH01DB.Primitives
         
         public Coordinates()
         {
-            this.latitude = this.lngitude = 0;
+            this.latitude = this.lngitude = 0.0f;
         }
         public Coordinates(float latitude, float lngitude)
         {
@@ -37,8 +37,8 @@ namespace EGH01DB.Primitives
         public float Distance(Coordinates to)
         {
             // проверить 
-            double lat_2 = Math.Pow(Const.LATM * Math.Cos(this.latitude) * (this.lngitude - to.lngitude), 2);
-            double lng_2 =  Math.Pow(Const.LNGM * (this.latitude - to.latitude), 2);
+            double lat_2 = Math.Pow((double)Const.LATM * Math.Cos((double)this.latitude*Math.PI/180.0) * ((double)this.lngitude - (double)to.lngitude), 2);
+            double lng_2 =  Math.Pow((double)Const.LNGM * ((double)this.latitude - (double)to.latitude), 2);
             return (float)Math.Sqrt(lat_2 + lng_2);
         }
         public Coordinates(int latd, int latm, float lats, int lngd, int lngm, float lngs)
