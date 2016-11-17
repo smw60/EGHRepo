@@ -286,5 +286,36 @@ namespace EGH01.Controllers
 
             return view;
         }
+
+        [HttpPost]
+        public ActionResult AnchorPointCreatePoint(AnchorPointView ah)
+        {
+            RGEContext db = null;
+            ViewBag.EGHLayout = "RGE";
+         ActionResult view = View("Index");
+            view = View("AnchorPointCreatePoint",db);
+            //string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
+            //try
+            //{
+            //    db = new RGEContext();
+
+
+
+            //}
+            //catch (RGEContext.Exception e)
+            //{
+            //    ViewBag.msg = e.message;
+            //}
+            //catch (Exception e)
+            //{
+            //    ViewBag.msg = e.Message;
+            //}
+
+            return view;
+        }
+
+
+
+
     }
 }
