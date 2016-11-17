@@ -19,8 +19,7 @@
             </div>
             <!--Заголовок индивидуальный для страниц-->
             <div class="title col-xs-8">
-                @*<div class="inTop"><span>GO TO TOP</span></div>*@
-                  <span id="doc_time"></span>
+                <span id="doc_time"></span>
                 <style>
                     #doc_time {
                         float: right;
@@ -67,11 +66,11 @@
                 
               else if (ViewBag.EGHLayout == "RGE.AnchorPoint")
               {
-                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE")|Опорные точки</h2>
+                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE") | Опорные точки</h2>
               }
               else if (ViewBag.EGHLayout == "RGE.EcoObject")
               {
-                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE")|Природоохранные объекты</h2>
+                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE") | Природоохранные объекты</h2>
               }
               else if (ViewBag.EGHLayout =="RGE.IncidentType")
                 {
@@ -84,23 +83,32 @@
 
               else if (ViewBag.EGHLayout == "RGE.GroundType")
               {
-                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE")|Типы грунтов</h2>
+                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE") | Типы грунтов</h2>
               }
 
               else if (ViewBag.EGHLayout == "RGE.CadastreType")
               {
-                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE")|Категории земли</h2>
+                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE") | Категории земли</h2>
               }
 
               else if (ViewBag.EGHLayout == "RGE.SpreadingCoefficient")
               {
-                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE")|Коэффициент растекания</h2>
+                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE") | Коэффициент растекания</h2>
               }
 
               else if (ViewBag.EGHLayout == "RGE.WaterProperties")
               {
-                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE")|Свойства воды</h2>
-              }                
+                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE") | Свойства воды</h2>
+             }
+             else if (ViewBag.EGHLayout == "CEQ.CadastreType")
+             {
+                 <h2>@Html.ActionLink("Оценка прогнозируемого состояния", "Index", "EGHCEQ") | Предельно-допустимые концентрации</h2>
+                   <style>
+                       .title h2{
+                           font-size:24px;
+                       }
+                </style>
+              }      
             </div>
             <div class=" col-xs-3">
                 <!--Главное меню-->
@@ -328,7 +336,14 @@
                         </ul>
                     </li>
                 }
-                else if (ViewBag.EGHLayout == "CEQ")
+                      else if (ViewBag.EGHLayout == "CEQ")
+                {
+                   <li>@Html.ActionLink("Результаты прогнозирования", "Index", "EGHCEQ")</li>
+                   <li>@Html.ActionLink("Оценка прогнозируемого состояния", "Index", "EGHCEQ")</li>
+                   <li>@Html.ActionLink("Предельно-допустимые концентрации", "CadastreType", "EGHCEQ")</li>
+                   <li>@Html.ActionLink("Отчеты", "Index", "EGHCEQ")</li>
+                    }
+                    else if (ViewBag.EGHLayout == "CEQ.CadastreType")
                 {
                    <li>@Html.ActionLink("Результаты прогнозирования", "Index", "EGHCEQ")</li>
                    <li>@Html.ActionLink("Оценка прогнозируемого состояния", "Index", "EGHCEQ")</li>
