@@ -8,10 +8,10 @@
 
 
     Layout = "~/Views/Shared/EGHLayout.cshtml";
-    Menu head = new Menu(
-                          new Menu.MenuItem("Создать", "CadastreType.Create", false),
-                          new Menu.MenuItem("Excel-формат", "CadastreType.Excel", false)
-                        );
+    //Menu head = new Menu(
+    //                      new Menu.MenuItem("Создать", "CadastreType.Create", false),
+    //                      new Menu.MenuItem("Excel-формат", "CadastreType.Excel", false)
+    //                    );
 
     List<CadastreType> list = new List<CadastreType>();
     if (@Model != null) { Helper.GetListCadastreType(@Model, ref list); };
@@ -19,7 +19,7 @@
 }
 
 
-@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCEQ", Action = "CadastreType", Menu = head })
+@*@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCEQ", Action = "CadastreType", Menu = head })*@
 @Html.Partial("_CadastreTypeList", list)
 
 
