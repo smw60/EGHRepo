@@ -35,10 +35,12 @@ namespace EGH01DB.Blurs
         public float                timewaxwaterconc      {get; private set;}       // время (сек) достижения  максимальной концентрации на уровне грунтовых вод
         public float                maxconcentrationwater {get; private set;}       // максимальной концентрация на уровне грунтовых вод кг/м3
         public float                ozcorrection          {get; private set;}       // OZ-поправка
-
+        
+       // public float                watertoobvolume       {get; private set }       // объем  
+        public float                ecoobjectsearchradius {get; private set;}       // радиус поиска  природоохранных объектов 
 
         public AnchorPointList     anchorpointlist        {get; private set;}       // список опорных точек, попаших в наземное пятно загрязнения    
-        public GroundPollutionList groundpolutionlist     {get; private set;}      // список точек загрязнения  
+        public GroundPollutionList groundpolutionlist     {get; private set;}       // список точек загрязнения  
         public WaterProperties waterproperties            {get; private set;}       // физико-химические свойства воды  
         public EcoObjectsList       ecoobjecstlist        {get; private set;}       // список объектов в т.ч. заглавный которые попали в наземное пятно    
         public GroundPollutionList pollutionlist          {get; private set;}       // загрязнение в точках  
@@ -56,9 +58,11 @@ namespace EGH01DB.Blurs
 
             if (this.spreadpoint.groundtype.watercapacity >= this.spreadpoint.groundtype.soilmoisture)
                  throw new EGHDBException(string.Format(errormssageformat, "Влагоемкость грунта не может быть  больше или равна  влажности грунта"));
-
-
             
+            if (this.spreadpoint.petrochemicaltype.tension  <= 0)
+                throw new EGHDBException(string.Format(errormssageformat, "Коэффициент поверностного натяжение нефтеродукта не может быть меньше или равным нулю "));
+            
+
             { // коэф. разлива 
 
                 SpreadingCoefficient x = new SpreadingCoefficient();
@@ -71,10 +75,9 @@ namespace EGH01DB.Blurs
                 float k = SpreadingCoefficient.GetByData(db, this.spreadpoint.groundtype, this.spreadpoint.volume, 0.0f);
                 this.spreadingcoefficient = new SpreadingCoefficient(0, this.spreadpoint.groundtype, 0.0f, this.spreadpoint.volume, 0.0f, 0.02f, k);
 
-              }
-
+            }
             if (this.spreadingcoefficient.koef <= 0.0f)
-                throw new EGHDBException(string.Format(errormssageformat, "Коэффициент разлива не может быть меньше или равен нулю"));
+               throw new EGHDBException(string.Format(errormssageformat, "Коэффициент разлива не может быть меньше или равен нулю"));
 
            
             
@@ -87,6 +90,8 @@ namespace EGH01DB.Blurs
                     this.waterproperties = x;
                 }
             }
+            if (this.waterproperties.viscocity <= 0)
+                throw new EGHDBException(string.Format(errormssageformat, "Вязкость воды  не может быть меньше или равным нулю "));
 
 
             this.square = this.spreadpoint.volume * this.spreadingcoefficient.koef;                  // площадь  пятна 
@@ -100,14 +105,14 @@ namespace EGH01DB.Blurs
 
          
            this.anchorpointlist = AnchorPointList.CreateNear(this.spreadpoint.coordinates, this.radius);
-           this.ecoobjecstlist = EcoObjectsList.CreateEcoObjectsList(db, this.spreadpoint, 3 * this.radius);
+           this.ecoobjecstlist = EcoObjectsList.CreateEcoObjectsList(db, this.spreadpoint, this.radius);
 
            this.groundpolutionlist = new GroundPollutionList(this.spreadpoint);
            this.groundpolutionlist.AddRange(this.spreadpoint, this.anchorpointlist, this.spreadpoint.petrochemicaltype);
            this.groundpolutionlist.AddRange(this.spreadpoint, this.ecoobjecstlist,  this.spreadpoint.petrochemicaltype);
-            
-            
 
+
+           //  переделать как метод this.groundpolutionlist
            this.avgdeep =                                                                               // средняя глубина грунтовых вод по опорным точкам  и техногенному  объекту
                          (
                           anchorpointlist.sumwaterdeep +
@@ -130,10 +135,6 @@ namespace EGH01DB.Blurs
                                      );
             
 
-            {
-              
-
-            }
            
 
 
@@ -141,6 +142,33 @@ namespace EGH01DB.Blurs
             this.adsorbedmass = (limitadsorbedmass >= this.totalmass ? this.totalmass : limitadsorbedmass);             // адсорбированная масса нефтепродукта в грунте т - М1  
 
             this.restmass = (this.adsorbedmass >= this.totalmass ? 0 : this.totalmass - this.adsorbedmass);             // масса нефтепродукта достигшая грунтовых вод 
+
+
+            {
+
+                if (this.restmass > 0)
+                {
+                    this.ecoobjectsearchradius =
+                                                    this.restmass /                                                               // радиус поиска природоохранных объектов 
+                                                     (
+                                                         1.0f *                                                                   // мощность слоя грунтовых вод (1м) 
+                                                         2.0f * this.radius /                                                     // площадь трубы 
+                                                         2.0f *                                                                   // треугольник
+                                                         this.waterproperties.density *                                           // плотность воды  
+                                                         (this.spreadpoint.groundtype.porosity / 2.0f) *                            // пористость грунта /2 c водой
+                                                         this.spreadpoint.groundtype.watercapacity *                              // капилярная влагоемкость грунта                                                      // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (кг) 
+                                                         (float)Math.Pow(this.spreadpoint.petrochemicaltype.viscosity, 2) *       // динамическая вязкость ???      
+                                                         this.waterproperties.tension /                                           // коэфициент поверхностного натяжения воды
+                                                         (
+                                                         this.spreadpoint.petrochemicaltype.tension *                             // коэфициент поверхностного натяжения нефтепрдукта 
+                                                         (float)Math.Pow(this.waterproperties.viscocity, 2)                       //  вязкость воды  
+                                                         )
+                                                      );
+
+                }
+                else this.ecoobjectsearchradius = this.radius;
+            }
+
 
             this.depth = (this.restmass > 0 ? this.avgdeep : this.avgdeep * (this.totalmass / this.limitadsorbedmass)); // глубина проникновения нефтепродукта в грунт     
 
