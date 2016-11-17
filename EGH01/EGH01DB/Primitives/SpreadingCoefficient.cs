@@ -168,7 +168,7 @@ namespace EGH01DB.Primitives
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КоэффициентРазлива", SqlDbType.Real);
+                    SqlParameter parm = new SqlParameter("@КоэффициентРазлива", SqlDbType.Float);
                     parm.Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(parm);
                 }
