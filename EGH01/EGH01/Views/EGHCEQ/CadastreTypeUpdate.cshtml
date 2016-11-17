@@ -7,17 +7,17 @@
 @{
 
     Layout = "~/Views/Shared/EGHLayout.cshtml";
-    Menu head = new Menu(
-                          new Menu.MenuItem("Создать", "CadastreType.Create", false),
-                          new Menu.MenuItem("Excel-формат", "CadastreType.Excel", false)
-                        );
+    //Menu head = new Menu(
+    //                      new Menu.MenuItem("Создать", "CadastreType.Create", false),
+    //                      new Menu.MenuItem("Excel-формат", "CadastreType.Excel", false)
+    //                    );
 
     Menu delete = new Menu(
                           new Menu.MenuItem("Изменить", "CadastreType.Update.Update", true),
                           new Menu.MenuItem("Отказаться", "CadastreType.Update.Cancel", true)
                         );
 }
-@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCEQ", Action = "CadastreType", Menu = head })
+@*@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCEQ", Action = "CadastreType", Menu = head })*@
 
 @using (Html.BeginForm("CadastreTypeUpdate", "EGHCEQ"))
 {
