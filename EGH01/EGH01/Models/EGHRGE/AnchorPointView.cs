@@ -20,6 +20,8 @@ namespace EGH01.Models.EGHRGE
         public int lng_m { get; set; }
         public float lat_s { get; set; }
         public float lng_s { get; set; }
+        public float angel { get; set; }
+        public float distance { get; set; }
     }
 
     
