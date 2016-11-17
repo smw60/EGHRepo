@@ -322,6 +322,71 @@ namespace EGH01.Controllers
                     int id = -1;
                     if (EGH01DB.Points.AnchorPoint.GetNextId(db, out id))
                     {
+                        float lat_s = 0.0f;
+                        string strlat_s = this.HttpContext.Request.Params["lat_s"] ?? "Empty";
+                        if (!Helper.FloatTryParse(strlat_s, out lat_s))
+                        {
+                            lat_s = 0.0f;
+                        }
+
+                        float angel = 0.0f;
+                        string strangel = this.HttpContext.Request.Params["angel"] ?? "Empty";
+                        if (!Helper.FloatTryParse(strangel, out angel))
+                        {
+                            angel = 0.0f;
+                        }
+
+                        float distance = 0.0f;
+                        string strdistance = this.HttpContext.Request.Params["distance"] ?? "Empty";
+                        if (!Helper.FloatTryParse(strdistance, out distance))
+                        {
+                            distance = 0.0f;
+                        }
+
+
+                        float lng_s = 0.0f;
+                        string strlng_s = this.HttpContext.Request.Params["lng_s"] ?? "Empty";
+                        if (!Helper.FloatTryParse(strlng_s, out lng_s))
+                        {
+                            lng_s = 0.0f;
+                        }
+
+
+                        Coordinates coordinates = new Coordinates(ah.Lat_d, ah.lat_m, lat_s, ah.lngitude, ah.lng_m, lng_s);
+                        float waterdeep = 0.0f;
+                        int list_cadastre = ah.list_cadastre;
+
+                        float height = 0.0f;
+                        string strheight = this.HttpContext.Request.Params["height"] ?? "Empty";
+                        if (!Helper.FloatTryParse(strheight, out height))
+                        {
+                            height = 0.0f;
+                        }
+
+                        string strwaterdeep = this.HttpContext.Request.Params["waterdeep"] ?? "Empty";
+                        if (!Helper.FloatTryParse(strwaterdeep, out waterdeep))
+                        {
+                            waterdeep = 0.0f;
+                        }
+                        EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType();
+                        if (EGH01DB.Types.GroundType.GetByCode(db, ah.list_groundType, out ground_type))
+                        {
+                            Point point = new Point(coordinates, ground_type, waterdeep, height);
+                            CadastreType type_cadastre = new CadastreType();
+                            if (EGH01DB.Types.CadastreType.GetByCode(db, ah.list_cadastre, out type_cadastre))
+                            {
+                                EGH01DB.Points.AnchorPoint anchor_point = new EGH01DB.Points.AnchorPoint(id, point, type_cadastre);
+
+
+                                if (EGH01DB.Points.AnchorPoint.Create(db, anchor_point, angel, distance))
+                                {
+                                    view = View("AnchorPoint", db);
+                                }
+                                else if (menuitem.Equals("AnchorPoint.Create.Cancel")) view = View("AnchorPoint", db);
+                                {
+                                }
+                            }
+                        }
                     }
                 }
             }

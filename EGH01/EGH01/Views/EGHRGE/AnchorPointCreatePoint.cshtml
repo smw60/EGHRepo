@@ -14,7 +14,7 @@
 
     Menu create = new Menu(
                           new Menu.MenuItem("Создать", "AnchorPointCreate.Create.Create", true),
-                          new Menu.MenuItem("Отказаться", "AnchorPoint.Create.Cancel", false)
+                          new Menu.MenuItem("Отказаться", "AnchorPoint.Create.Cancel", true)
                         );
     bool rc = false;
     int id = 0;
@@ -57,11 +57,11 @@
             </fieldset>
             <p>
                 <label class="boxdata-label-30">Расстояние</label>&nbsp;
-                <input class="boxdata-input-10" type="number" name="Lngitude" value=" " max="180" min="0" />
+                <input class="boxdata-input-10" type="number" name="distance" value=" " step="0.1" min="0" />
             </p>
             <p>
                 <label class="boxdata-label-30">Угол</label>&nbsp;
-                <input class="boxdata-input-10" type="number" name="Lngitude" value=" " max="180" min="0" />
+                <input class="boxdata-input-10" type="number" name="angel" value=" " step="0.1" min="0" />
             </p>
             <div class="boxdata">
                 <label class="boxdata-label-30">Категория земли</label>@Html.DropDownList("list_cadastre")
