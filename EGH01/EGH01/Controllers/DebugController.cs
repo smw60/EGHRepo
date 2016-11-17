@@ -374,7 +374,44 @@ namespace EGH01.Controllers
             //}
             return View();
         }
+        
+        // проверка процедур Create Near - по углу и расстоянию строить опорные точки для RiskObject и EcoObject
+        public ActionResult Risk_Create_Near()// перегрузка
+        {
+            RGEContext db = new RGEContext();
+            {
 
+                //RiskObject risk_object = new RiskObject();
+                //if (RiskObject.GetById(db, 16, ref risk_object))
+                //{
+                //    int k = 1;
+                //};
+                //AnchorPoint new_anchor_point = new AnchorPoint();
+                //if (RiskObject.CreateNear(db, risk_object, 30, 1000, out new_anchor_point))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Eco_Create_Near()// перегрузка
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //EcoObject eco_object = new EcoObject();
+                //if (EcoObject.GetById(db, 7, ref eco_object))
+                //{
+                //    int k = 1;
+                //};
+                //AnchorPoint new_anchor_point = new AnchorPoint();
+                //if (EcoObject.CreateNear(db, eco_object, 30, 1000, out new_anchor_point))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
 
         // проверка процедур Spreading Coefficient
         public ActionResult SC_Create()// есть

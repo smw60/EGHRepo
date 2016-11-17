@@ -733,7 +733,79 @@ namespace EGH01DB.Objects
             }
 
         }
+        static public bool CreateNear(EGH01DB.IDBContext dbcontext, RiskObject riskobject, float angle, float distance, out AnchorPoint anchor_point)
+        {
+            bool rc = false;
+            int id = -1;
+            anchor_point = new AnchorPoint();
+            using (SqlCommand cmd = new SqlCommand("EGH.GetCoordinatesByAngle", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@lat1", SqlDbType.Real);
+                    parm.Value = riskobject.coordinates.latitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@lng1", SqlDbType.Real);
+                    parm.Value = riskobject.coordinates.lngitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@angle", SqlDbType.Real);
+                    parm.Value = angle;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@distance", SqlDbType.Real);
+                    parm.Value = distance;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@lat2", SqlDbType.Real);
+                    parm.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@lng2", SqlDbType.Real);
+                    parm.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                //{
+                //    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                //    parm.Direction = ParameterDirection.ReturnValue;
+                //    cmd.Parameters.Add(parm);
+                //}
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    // if (rc = ((int)cmd.Parameters["@exitrc"].Value) > 0)
+                    // {
+                    float x = (float)cmd.Parameters["@lat2"].Value;
+                    float y = (float)cmd.Parameters["@lng2"].Value;
+                    Coordinates coordinates = new Coordinates((float)x, (float)y);
 
+                    int new_ground_type_code = riskobject.groundtype.type_code;
+                    float new_waterdeep = riskobject.waterdeep;
+                    float new_height = riskobject.height;
+                    GroundType new_ground_type = new GroundType(new_ground_type_code);
+                    Point point = new Point(coordinates, new_ground_type, new_waterdeep, new_height);
+
+                    int new_cadastre_type_code = riskobject.cadastretype.type_code;
+                    CadastreType cadastretype = new CadastreType(new_cadastre_type_code);
+
+                    anchor_point = new AnchorPoint(id, point, cadastretype);
+                    if (AnchorPoint.Create(dbcontext, anchor_point)) rc = true;
+                    // }
+
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
 
 
 
