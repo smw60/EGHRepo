@@ -10,11 +10,14 @@
     Menu start = new Menu(
                           new Menu.MenuItem("Создать", "AnchorPoint.Create", true),
                           new Menu.MenuItem("Отказаться", "AnchorPoint.Cancel", true)
+                       
                         );
 
     Menu create = new Menu(
                           new Menu.MenuItem("Создать", "AnchorPoint.Create.Create", true),
+                           new Menu.MenuItem("Создать рядом", "AnchorPointCreatePoint.Create", true),
                           new Menu.MenuItem("Отказаться", "AnchorPoint.Create.Cancel", true)
+                         
                         );
 
     bool rc=false;
@@ -72,9 +75,6 @@
                     <input class="boxdata-input-30" type="number" name="waterdeep" step="0.01" min="0" />
                 </div>
             </fieldset>
-       <div>
-       <button formaction="AnchorPointCreatePoint">Создание по точке</button>
-           </div> 
         </div>
             @Html.Partial("_TypeLineMenu", create)
       

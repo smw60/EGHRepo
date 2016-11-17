@@ -35,6 +35,7 @@ namespace EGH01.Controllers
                     view = View("AnchorPointCreate");
 
                 }
+              
                 else if (menuitem.Equals("AnchorPoint.Delete"))
                 {
                     string type_code_item = this.HttpContext.Request.Params["type_code"];
@@ -68,6 +69,12 @@ namespace EGH01.Controllers
                         }
                     }
                 }
+               else if (menuitem.Equals("AnchorPointCrearePoint.Create"))
+                {
+
+                    view = View("AnchorPointCreatePoint");
+
+                }
                 //else if (menuitem.Equals("GroundType.Excel"))
                 //{
                 //    EGH01DB.Objects.RiskObject.RiskObjectList list = new EGH01DB.Objects.RiskObject.RiskObjectList();
@@ -100,14 +107,23 @@ namespace EGH01.Controllers
         [HttpPost]
         public ActionResult AnchorPointCreate(EGH01.Models.EGHRGE.AnchorPointView ah)
         {
+           
             RGEContext db = null;
             ViewBag.EGHLayout = "RGE";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
+            
             try
             {
                 db = new RGEContext();
                 view = View("AnchorPoint", db);
+                if (menuitem.Equals("AnchorPointCreatePoint.Create"))
+                {
+             
+                    view = View("AnchorPointCreatePoint");
+                    return view;
+
+                }
                 if (menuitem.Equals("AnchorPoint.Create.Create"))
                 {
 
@@ -292,24 +308,31 @@ namespace EGH01.Controllers
         {
             RGEContext db = null;
             ViewBag.EGHLayout = "RGE";
-         ActionResult view = View("Index");
-            view = View("AnchorPointCreatePoint",db);
-            //string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
-            //try
-            //{
-            //    db = new RGEContext();
+            ActionResult view = View("Index");
+            string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
 
+            try
+            {
+                db = new RGEContext();
+                view = View("AnchorPoint", db);
 
+                if (menuitem.Equals("AnchorPointCreate.Create.Create"))
+                {
 
-            //}
-            //catch (RGEContext.Exception e)
-            //{
-            //    ViewBag.msg = e.message;
-            //}
-            //catch (Exception e)
-            //{
-            //    ViewBag.msg = e.Message;
-            //}
+                    int id = -1;
+                    if (EGH01DB.Points.AnchorPoint.GetNextId(db, out id))
+                    {
+                    }
+                }
+            }
+            catch (RGEContext.Exception e)
+            {
+                ViewBag.msg = e.message;
+            }
+            catch (Exception e)
+            {
+                ViewBag.msg = e.Message;
+            }
 
             return view;
         }

@@ -93,7 +93,7 @@ namespace EGH01DB.Points
                 return rc;
             }
         }
-        static public bool Create(EGH01DB.IDBContext dbcontext, AnchorPoint anchor_point, AnchorPoint new_anchor_point, float angle, float distance)
+        static public bool Create(EGH01DB.IDBContext dbcontext, AnchorPoint anchor_point, float angle, float distance)
         {
             bool rc = false;
             int id = -1;
@@ -153,7 +153,7 @@ namespace EGH01DB.Points
                         int new_cadastre_type_code = anchor_point.cadastretype.type_code;
                         CadastreType cadastretype = new CadastreType(new_cadastre_type_code);
 
-                        new_anchor_point = new AnchorPoint(id, point, cadastretype);
+                        AnchorPoint new_anchor_point = new AnchorPoint(id, point, cadastretype);
                         if (AnchorPoint.Create(dbcontext, new_anchor_point)) rc = true;
                    // }
                   
