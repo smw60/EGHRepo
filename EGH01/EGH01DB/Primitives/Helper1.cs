@@ -21,6 +21,16 @@ namespace EGH01DB.Primitives
 
             return float.TryParse(s, NumberStyles.Any, new CultureInfo("en-US"), out f); 
         }
+        static public float GeoAngle(Point point1, Point point2)
+        {
+            float rc = 0.0f;
+            float d = point1.coordinates.Distance(point2.coordinates);  // расстояние 
+            if (d > 1.0f) rc = (point1.height - point2.height) / d;     // угол    
+            return rc;
+        }
+        
+
+
         
         //static public bool GetListRiskObjectByLike(EGH01DB.IDBContext dbcontext, string findstring, ref List<RiskObject> listobj)
         //{

@@ -276,10 +276,11 @@ a.dropdown-toggle.btn.btn-link {
                 border: 2px solid #013d02;
                 margin: 5px;
             }
-
+  /*для всех контейнеров fieldset*/
         .box-fieldset {
             display: block;
             margin: 5px;
+            white-space: nowrap;
         }
 
         .boxcainfo-boxitem-fieldset {
@@ -340,10 +341,11 @@ a.dropdown-toggle.btn.btn-link {
                 margin: 5px;
                 width: 100%;
             }
-
+                      
         .boxdata label {
             width: 40%;
             float: left;
+            white-space: nowrap;
         }
         
         .boxdata label.boxdata-label-20{
@@ -397,15 +399,7 @@ a.dropdown-toggle.btn.btn-link {
             width: 20%;
         }
 
-        /*.boxdata-input-30 {
-           width: 50%;
-           display: inline-block;
-        }*/
-        
-        /*.boxdata-input-50 {
-            width:80%;
-        }*/
-        /*Для широты и долготы в 3 текстовых поля*/
+             /*Для широты и долготы в 3 текстовых поля*/
         .boxdata-input-10 {
             width:10%;
         }
@@ -486,14 +480,20 @@ a.dropdown-toggle.btn.btn-link {
 
 /*Для поиска*/
 #ChoiceRiskObject_id{
-    max-width:none; 
+    max-width:none;
+    max-height:none; 
     white-space:pre; 
     font-family: 'Courier New', Courier, monospace;
     width:100%;
-    overflow:scroll;
- }
+    height:100%;
+    /*overflow:scroll;*/
+     }
 
 #main_menu:hover{       /*при наведении на главное меню меняется фон*/
     background:#c8da94;
     text-decoration: none;
 }
+
+
+
+      

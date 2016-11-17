@@ -19,8 +19,8 @@ namespace EGH01DB.Objects
         public int           id             {get; private set;}    // идентификатор 
         public EcoObjectType ecoobjecttype  {get; private set;}    // тип природохранного объекта 
         public CadastreType  cadastretype   {get; private set; }   // кадастровый тип земли
-        public string name { get; private set; }  // наименование природоохранного объекта 
-        public bool iswaterobject { get; private set; }    // является ли водным объектом 
+        public string name                  {get; private set; }  // наименование природоохранного объекта 
+        public bool iswaterobject           {get; private set; }    // является ли водным объектом 
 
         public EcoObject()
         {
@@ -350,15 +350,32 @@ namespace EGH01DB.Objects
 
     public class EcoObjectsList : List<EcoObject>      // список объектов  с координами 
     {
-        public static EcoObjectsList CreateEcoObjectsList(Point center, float distance)
+        public EcoObjectsList()
+        {
+                
+        }
+
+        public EcoObjectsList(List<EcoObject> list)
         {
 
-            return new EcoObjectsList()
-            {
-                // найти все объекты на расстоянии < distance
+            list.ForEach(o => this.Add(o));
+        }
+        
 
-
-            };
+        public static EcoObjectsList CreateEcoObjectsList(EGH01DB.IDBContext dbcontext,  Point center, float distance = float.MaxValue)
+        {
+           EcoObjectsList rc = new EcoObjectsList();
+           List<EcoObject> ecolist = new List<EcoObject>();
+           if (Helper.GetListEcoObject(dbcontext, ref ecolist))
+           {
+                 var selx = ecolist.Where(o => o.coordinates.Distance(center.coordinates) <= distance).AsQueryable();
+                 foreach (EcoObject o in selx)
+                 {
+                     float x = o.coordinates.Distance(center.coordinates);
+                     rc.Add(o);
+                 }
+            }       
+            return rc;
         }
         public static EcoObjectsList CreateEcoObjectsList(Point center, float distance1, float distance2 )
         {

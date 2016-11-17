@@ -28,27 +28,27 @@
                </p>
                <p>
                    <label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С</label>
-                   <input class="boxdata-input-50" type="number" step="0.1" name="Boilingtemp" value=" "/>
+                   <input class="boxdata-input-50" type="number" min="200" max="400" name="Boilingtemp" value=" "/>
                </p>
                <p>
                    <label class="boxdata-label-30">Плотность, кг/м<sup><small>3</small></sup></label>
-                   <input class="boxdata-input-50" type="number" step="0.001" name="Density"  value=" " />
+                   <input class="boxdata-input-50" type="number" step="0.1" min="700" max="960" name="Density"  value=" " />
                </p>
                <p>
-                   <label class="boxdata-label-30">Кинематическая вязкость, мм<sup><small>2</small></sup>/см</label>
-                   <input class="boxdata-input-50" type="number" step="0.0000001" name="Viscosity"  value=" " />
+                   <label class="boxdata-label-30">Кинематическая вязкость, м<sup><small>2</small></sup>/с</label>
+                   <input class="boxdata-input-50" type="number" step="0.000000001" name="Viscosity"  value=" " />
                </p>
                <p>
-                   <label class="boxdata-label-30">Растворимость, мг/дм<sup><small>2</small></sup></label>
-                   <input class="boxdata-input-50" type="number" step="0.001" name="Solubility" value=" " />
+                   <label class="boxdata-label-30">Растворимость, кг/м<sup><small>3</small></sup></label>
+                   <input class="boxdata-input-50" type="number" step="0.0001" min="0.0001" max="0.05" name="Solubility" value=" " />
                </p>
                <p>
                    <label class="boxdata-label-30">Динамическая вязкость, кг/м*с</label>
-                   <input class="boxdata-input-50" type="number" step="0.00001" name="Dynamicviscosity" value=" " />
+                   <input class="boxdata-input-50" type="number" step="0.0000001" min="0.00052" max="3870" name="Dynamicviscosity" value=" " />
                </p>
                <p>
                    <label class="boxdata-label-30">Коэф. поверхностного натяжения, кг/с<sup><small>2</small></sup></label>
-                   <input class="boxdata-input-50" type="number" step="0.001" name="Tension" value=" " />
+                   <input class="boxdata-input-50" type="number" step="0.001" min="0.018" max="0.03" name="Tension" value=" " />
                </p>
                <p>
                    <label class="boxdata-label-30">Коэф. диффузии, м<sup><small>2</small></sup>/с</label>
