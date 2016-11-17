@@ -382,12 +382,6 @@ namespace EGH01DB.Points
 
         public static AnchorPointList CreateNear(Coordinates center, float radius1, float radius2)
         {
-
-            // отладка 
-            return new AnchorPointList()
-            {               
-            };
-            //
             bool rc = false;
             RGEContext db = new RGEContext();
             AnchorPointList anchor_point_list = new AnchorPointList();

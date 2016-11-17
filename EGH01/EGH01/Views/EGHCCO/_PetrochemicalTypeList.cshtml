@@ -29,16 +29,16 @@
 
                 <fieldset  form="PetrochemicalType">
                   
-                    <p><label class="boxdata-label-30">Плотность, кг/м<sup><small>3</small></sup></label>@t.density.ToString("0.000")</p>
-                    <p><label class="boxdata-label-30">Динамическая вязкость, кг/м*с</label>@t.dynamicviscosity.ToString("0.00000")</p>
+                    <p><label class="boxdata-label-30">Плотность, кг/м<sup><small>3</small></sup></label>@t.density.ToString("0.0")</p>
+                    <p><label class="boxdata-label-30">Динамическая вязкость, кг/м*с</label>@t.dynamicviscosity.ToString("0.0000000")</p>
                     <p><label class="boxdata-label-30">Коэф. поверхностного натяжения, кг/с<sup><small>2</small></sup></label>@t.tension.ToString("0.000")</p>
                     <p><label class="boxdata-label-30">Коэф. диффузии, м<sup><small>2</small></sup>/с</label>@t.diffusion.ToString("0.000000000")</p>
                   
                 </fieldset>
                
-                <p><label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С</label>@t.boilingtemp.ToString("0.0")</p>
-                <p><label class="boxdata-label-30">Кинематическая вязкость, м<sup><small>2</small></sup>/с</label>@t.viscosity.ToString("0.0000000")</p>
-                <p><label class="boxdata-label-30">Растворимость, кг/м<sup><small>3</small></sup></label>@t.solubility.ToString("0.000")</p>
+                <p><label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С</label>@t.boilingtemp.ToString("0")</p>
+                <p><label class="boxdata-label-30">Кинематическая вязкость, м<sup><small>2</small></sup>/с</label>@t.viscosity.ToString("0.000000000")</p>
+                <p><label class="boxdata-label-30">Растворимость, кг/м<sup><small>3</small></sup></label>@t.solubility.ToString("0.0000")</p>
             
             </div>
             @Html.Partial("_TypeLineMenu", menu)
