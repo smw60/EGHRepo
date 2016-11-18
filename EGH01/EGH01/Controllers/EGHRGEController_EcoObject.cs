@@ -105,8 +105,16 @@ namespace EGH01.Controllers
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
+               
                 db = new RGEContext();
                 view = View("EcoObject", db);
+                if (menuitem.Equals("EcoObjectCreateEco.Create"))
+                {
+
+                    view = View("EcoObjectCreateEco");
+                    return view;
+
+                }
                 if (menuitem.Equals("EcoObject.Create.Create"))
                 {
 
@@ -327,7 +335,97 @@ namespace EGH01.Controllers
 
             return view;
         }
+        [HttpPost]
+        public ActionResult EcoObjectCreateEco(EGH01.Models.EGHRGE.EcoObjectView eo)
+        {
+            RGEContext db = null;
+            ViewBag.EGHLayout = "RGE";
+            ActionResult view = View("Index");
+            string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
+            try
+            {
+                db = new RGEContext();
+                view = View("EcoObject", db);
+                if (menuitem.Equals("EcoObject.Create.Create"))
+                {
 
+                    int id = -1;
+                    if (EGH01DB.Objects.EcoObject.GetNextId(db, out id))
+                    {
+                        String name = eo.name;
+                        CadastreType type_cadastre = new CadastreType();
+                        if (EGH01DB.Types.CadastreType.GetByCode(db, eo.list_cadastre, out type_cadastre))
+                        {
+                            EcoObjectType eco_type = new EcoObjectType();
+                            if (EGH01DB.Types.EcoObjectType.GetByCode(db, eo.list_ecoType, out eco_type))
+                            {
+                                bool iswaterobject = eo.iswaterobject;
+                                string strlat_s = this.HttpContext.Request.Params["lat_s"] ?? "Empty";
+                                string strlng_s = this.HttpContext.Request.Params["lng_s"] ?? "Empty";
+                                string strwaterdeep = this.HttpContext.Request.Params["waterdeep"] ?? "Empty";
+                                string strheight = this.HttpContext.Request.Params["height"] ?? "Empty";
+                                string strangel = this.HttpContext.Request.Params["angel"] ?? "Empty";
+                                string strdistance = this.HttpContext.Request.Params["distance"] ?? "Empty";
+                                float lat_s = 0.0f;
+                                float angel = 0.0f;
+                                float distance = 0.0f;
+                                float lng_s = 0.0f;
+                                float waterdeep = 0.0f;
+                                float height = 0.0f;
+                                if (!Helper.FloatTryParse(strlat_s, out lat_s))
+                                {
+                                    lat_s = 0.0f;
+                                }
+                                if (!Helper.FloatTryParse(strangel, out angel))
+                                {
+                                    angel = 0.0f;
+                                }
+                                if (!Helper.FloatTryParse(strdistance, out distance))
+                                {
+                                    distance = 0.0f;
+                                }
+                                if (!Helper.FloatTryParse(strlng_s, out lng_s))
+                                {
+                                    lng_s = 0.0f;
+                                }
+                                if (!Helper.FloatTryParse(strwaterdeep, out waterdeep))
+                                {
+                                    waterdeep = 0.0f;
+                                }
+                                if (!Helper.FloatTryParse(strheight, out height))
+                                {
+                                    height = 0.0f;
+                                }
+                                Coordinates coordinates = new Coordinates(eo.latitude, eo.lat_m, lat_s, eo.lngitude, eo.lng_m, lng_s);
+                                EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType();
+                                if (EGH01DB.Types.GroundType.GetByCode(db, eo.list_groundType, out ground_type))
+                                {
+                                    Point point = new Point(coordinates, ground_type, waterdeep, height);
+                                    EGH01DB.Points.AnchorPoint ah = new EGH01DB.Points.AnchorPoint();
+                                    EGH01DB.Objects.EcoObject eco_object = new EGH01DB.Objects.EcoObject(id, point, eco_type, type_cadastre, name, iswaterobject);
+                                    if (EGH01DB.Objects.EcoObject.CreateNear(db, eco_object,angel,distance, out ah))
+                                    {
+                                        view = View("EcoObject", db);
+                                    }
+                                }
+                            }
+                        }
+                        else if (menuitem.Equals("EcoObject.Create.Cancel")) view = View("EcoObject", db);
+                    }
+
+                }
+            }
+            catch (RGEContext.Exception e)
+            {
+                ViewBag.msg = e.message;
+            }
+            catch (Exception e)
+            {
+                ViewBag.msg = e.Message;
+            }
+
+            return view;
+        }
 
     }
 }
