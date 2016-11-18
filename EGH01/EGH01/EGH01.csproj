@@ -169,6 +169,7 @@
     <Compile Include="Controllers\DebugController_Coord.cs" />
     <Compile Include="Controllers\DebugController_RGE.cs" />
     <Compile Include="Controllers\EGHCAIController.cs" />
+    <Compile Include="Controllers\EGHCAIControllerMap.cs" />
     <Compile Include="Controllers\EGHCAIController_RiskObject.cs" />
     <Compile Include="Controllers\EGHCCOController.cs" />
     <Compile Include="Controllers\EGHCCOController_PetrochemicalType.cs" />
@@ -366,6 +367,7 @@
     <Content Include="Views\EGHRGE\EcoObjectUpdate.cshtml" />
     <Content Include="Views\EGHRGE\AnchorPointCreatePoint.cshtml" />
     <Content Include="Views\EGHRGE\EcoObjectCreateEco.cshtml" />
+    <Content Include="Views\EGHCAI\Map.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
