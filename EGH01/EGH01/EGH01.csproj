@@ -365,6 +365,7 @@
     <Content Include="Views\EGHRGE\EcoObjectDelete.cshtml" />
     <Content Include="Views\EGHRGE\EcoObjectUpdate.cshtml" />
     <Content Include="Views\EGHRGE\AnchorPointCreatePoint.cshtml" />
+    <Content Include="Views\EGHRGE\EcoObjectCreateEco.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
