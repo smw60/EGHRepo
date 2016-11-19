@@ -1,0 +1,28 @@
+﻿@using EGH01.Core;
+@using EGH01.Models.EGH;
+@using EGH01DB.Primitives;
+@using EGH01DB.Types;
+@using EGH01DB.Blurs;
+@using EGH01DB.Objects;
+@using EGH01.Models.EGHRGE;
+@model  EGH01.Models.EGHRGE.ForecastViewConext
+
+@{
+
+    EGH01.Models.EGHRGE.ForecastViewConext context = @Model;
+}
+
+<div class="">
+
+    <h2>Водяное пятно</h2>
+    <fieldset form="ChoiseRiskObject">
+        <legend> Природоохранные объекты </legend>
+        <p>
+            <label class="boxdata-label-40 ">Радиус поиска прирооохранных объектов (м) </label>
+            @Math.Round(context.ecoforecast.waterblur.radius, 0)
+        </p>
+    </fieldset>
+
+
+
+</div>

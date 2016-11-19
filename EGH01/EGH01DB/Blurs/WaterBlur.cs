@@ -8,30 +8,37 @@ using EGH01DB.Primitives;
 namespace EGH01DB.Blurs
 {
 
-    public class WaterBlur           //  водное пятно -  пятно нефтеродукта c грунтовыми водами  
-    {
-        public GroundBlur groudblur  { get; private set; }  // пятно по поверхности 
-        public CoordinatesList border { get; private set; }  // координаты граничных точек водного пятна
+    public class WaterBlur              //  водное пятно -  пятно нефтеродукта c грунтовыми водами  
+    { 
+        public GroundBlur groudblur     { get; private set; }  // пятно по поверхности 
+        public CoordinatesList border   { get; private set; }  // координаты граничных точек водного пятна
+        public float radius             { get; private set; }  // радиус водного пятна (м)   -
+        public float toobporosity       { get; private set; }  // пористость водоносного слоя  
+        public float toobheight         { get; private set; }  // высота (мощность) водрносного слоя    
+        
 
-        public float radius { get; private set; }  // радиус водного пятна (м)    - не зннаем как считать !!!!!!!!!!!  
-
-
-        // Объекты и точки вышедшие за пределы GroundBlur.radius, но в пределах radius 
-        public EcoObjectsList ecoobjecstlist { get; private set; }  // список  доп. объектов входящих в водяное пятно      
-        public WaterPollutionList pollutionlist { get; private set; }  // загрязнение в доп точках: время движения (дни)  грунтовых вод  до точек  
-
-        public WaterBlur(GroundBlur groundblur)
+        public WaterBlur( IDBContext db, GroundBlur groundblur)
         {
             this.groudblur = groundblur;
-            this.ecoobjecstlist = EcoObjectsList.CreateEcoObjectsList(groudblur.spreadpoint, groudblur.radius, radius);
-            this.pollutionlist = WaterPollutionList.CreateWaterPollutionList(groudblur.spreadpoint, groudblur.groundpolutionlist, groundblur.spreadpoint.petrochemicaltype, groudblur.radius, this.radius);
+            this.toobporosity = this.groudblur.spreadpoint.groundtype.porosity / 2.0f;    // считаем такой пористость водоносного слоя          
+            this.toobheight = 1.0f;                                                       // считаем мощность водоносного слоя = 1 
 
-            this.radius = 0; //  sqrt(объем нефтепродукта поступившее в грунтовые воды/ (пористость грунта * водоносный горизонт* pi)) +  groundblur.radius
-
-            // водоносный горизонт = 1м  предполагаем 
-            // объем нефтепродукта поступившее в грунтовые воды =  (1 - пористость грунта)* volume 
-
-
+            this.radius = 
+                    this.groudblur.restmass /                                                               // радиус поиска природоохранных объектов 
+                    (
+                        this.toobheight *                                                                    // мощность слоя грунтовых вод (1м) 
+                        2.0f * this.groudblur.radius /                                                       // площадь трубы 
+                        2.0f *                                                                               // треугольник
+                        this.groudblur.waterproperties.density *                                             // плотность воды  
+                        this.groudblur.spreadpoint.groundtype.porosity/2.0f  *                               // пористость грунта /2 c водой
+                        this.groudblur.spreadpoint.groundtype.watercapacity *                                 // капилярная влагоемкость грунта                                                      // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (кг) 
+                        (float)Math.Pow(this.groudblur.spreadpoint.petrochemicaltype.dynamicviscosity, 2) *   // динамическая вязкость ???      
+                        this.groudblur.waterproperties.tension /                                              // коэфициент поверхностного натяжения воды
+                        (
+                        this.groudblur.spreadpoint.petrochemicaltype.tension *                                // коэфициент поверхностного натяжения нефтепрдукта 
+                        (float)Math.Pow(this.groudblur.waterproperties.viscocity, 2)                           //  вязкость воды  
+                        )
+                     );
 
 
 
@@ -39,3 +46,7 @@ namespace EGH01DB.Blurs
         }
     }  
 }
+
+
+//this.ecoobjecstlist = EcoObjectsList.CreateEcoObjectsList(groudblur.spreadpoint, groudblur.radius, radius);
+//this.pollutionlist = WaterPollutionList.CreateWaterPollutionList(groudblur.spreadpoint, groudblur.groundpolutionlist, groundblur.spreadpoint.petrochemicaltype, groudblur.radius, this.radius);
