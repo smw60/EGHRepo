@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 
 namespace EGH01DB
 {
+  [Serializable]
    public  class EGHDBException:Exception
     {
  

@@ -13,7 +13,7 @@ namespace EGH01DB
    
     public partial class RGEContext
     {
-
+       [Serializable]
         public class Exception:System.Exception
         {
             private int code_exception = -1;
