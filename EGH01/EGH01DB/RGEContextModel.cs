@@ -15,7 +15,7 @@ namespace EGH01DB
    
     public partial class RGEContext
     {
-        public class ECOForecast         //  модель прогнозирования 
+        public partial class ECOForecast         //  модель прогнозирования 
         {
             public int           id                      {get; private set;}          // идентификатор прогноза 
             public DateTime      date                    {get; private set;}          // дата формирования отчета 
@@ -26,7 +26,10 @@ namespace EGH01DB
             public DateTime      datewatercompletion     {get; private set;}          // дата достижения загрянения грунтовых вод 
             public DateTime      datemaxwaterconc        {get; private set;}          // дата достижения  иаксимального загрянения г на уровне рунтовых вод 
             public string        errormessage            {get; private set;}          // сообщение об ошибке 
-          
+
+            public ECOForecast()
+            {
+            }
             public ECOForecast(Incident incident)
             {
                 RGEContext db = new RGEContext();

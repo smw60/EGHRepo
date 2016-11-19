@@ -17,10 +17,34 @@
     <h2>Водяное пятно</h2>
     <fieldset form="ChoiseRiskObject">
         <legend> Природоохранные объекты </legend>
-        <p>
+        
+           <p>
+             <label class="boxdata-label-40 ">Средняя глубина грунтовых вод (м) </label>
+              @Math.Round(context.ecoforecast.groundblur.avgdeep, 1)
+           </p>
+           <p>
+              <label class="boxdata-label-40 ">Глубина проникновения нефтепродукта в грунте (м) </label>
+              @Math.Round(context.ecoforecast.groundblur.depth, 2)
+           </p>
+           <p>
+             <label class="boxdata-label-40 ">Максимальная концентрация на уровне грунтовых вод (кг/м3) </label>
+             @context.ecoforecast.groundblur.maxconcentrationwater
+           </p>
+           <p>
             <label class="boxdata-label-40 ">Радиус поиска прирооохранных объектов (м) </label>
-            @Math.Round(context.ecoforecast.waterblur.radius, 0)
-        </p>
+            @if (context.ecoforecast.waterblur.radius > context.ecoforecast.groundblur.radius)
+            {
+                  <span>@Math.Round(context.ecoforecast.groundblur.radius, 0) - </span>  
+                  <span>@Math.Round(context.ecoforecast.waterblur.radius,  0)   </span>   
+            }
+            else
+            {
+               <span>---</span>    
+            }
+           </p>
+        
+
+        
     </fieldset>
 
 
