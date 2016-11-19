@@ -401,9 +401,10 @@ namespace EGH01.Controllers
                                 if (EGH01DB.Types.GroundType.GetByCode(db, eo.list_groundType, out ground_type))
                                 {
                                     Point point = new Point(coordinates, ground_type, waterdeep, height);
-                                    EGH01DB.Points.AnchorPoint ah = new EGH01DB.Points.AnchorPoint();
+                                    //EGH01DB.Points.AnchorPoint ah = new EGH01DB.Points.AnchorPoint(); blinova
                                     EGH01DB.Objects.EcoObject eco_object = new EGH01DB.Objects.EcoObject(id, point, eco_type, type_cadastre, name, iswaterobject);
-                                    if (EGH01DB.Objects.EcoObject.CreateNear(db, eco_object,angel,distance, out ah))
+                                    EGH01DB.Objects.EcoObject new_eco_object = new EGH01DB.Objects.EcoObject(); 
+                                    if (EGH01DB.Objects.EcoObject.CreateNear(db, eco_object, angel, distance, out new_eco_object))
                                     {
                                         view = View("EcoObject", db);
                                     }
