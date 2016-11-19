@@ -346,6 +346,7 @@ a.dropdown-toggle.btn.btn-link {
             width: 40%;
             float: left;
             white-space: nowrap;
+            margin-bottom:0;
         }
         
         .boxdata label.boxdata-label-20{

@@ -366,13 +366,10 @@
     <Content Include="Views\EGHRGE\EcoObjectDelete.cshtml" />
     <Content Include="Views\EGHRGE\EcoObjectUpdate.cshtml" />
     <Content Include="Views\EGHRGE\AnchorPointCreatePoint.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\EGHRGE\_ForecastReportGB.cshtml" />
     <Content Include="Views\EGHRGE\_ForecastReportWB.cshtml" />
-=======
     <Content Include="Views\EGHRGE\EcoObjectCreateEco.cshtml" />
     <Content Include="Views\EGHCAI\Map.cshtml" />
->>>>>>> ee24d74222d8429eba894e072ac208832cfaa3a7
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
