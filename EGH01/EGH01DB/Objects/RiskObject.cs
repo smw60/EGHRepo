@@ -733,7 +733,7 @@ namespace EGH01DB.Objects
             }
 
         }
-        static public bool CreateNear(EGH01DB.IDBContext dbcontext, RiskObject riskobject, float angle, float distance, out AnchorPoint anchor_point)
+        static public bool CreateAPNear(EGH01DB.IDBContext dbcontext, RiskObject riskobject, float angle, float distance, out AnchorPoint anchor_point)
         {
             bool rc = false;
             int id = -1;

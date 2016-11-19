@@ -268,12 +268,12 @@ namespace EGH01.Controllers
         }
         public ActionResult EcoObject_CreateNear() // n
         {
-            //RGEContext db = new RGEContext();
-            //{
-            //    Coordinates coord = new Coordinates(553.678f, 27.14f);
-            //    float distance = 10000.0f;
-            //    AnchorPointList apl = AnchorPointList.CreateNear(coord, distance);
-            //}
+            RGEContext db = new RGEContext();
+            {
+                //Coordinates coord = new Coordinates(553.678f, 27.14f);
+                //float distance = 10000.0f;
+                //AnchorPointList apl = AnchorPointList.CreateNear(coord, distance);
+            }
             return View();
         }
         
@@ -404,8 +404,8 @@ namespace EGH01.Controllers
                 //{
                 //    int k = 1;
                 //};
-                //AnchorPoint new_anchor_point = new AnchorPoint();
-                //if (EcoObject.CreateNear(db, eco_object, 30, 1000, out new_anchor_point))
+                //EcoObject new_eo = new EcoObject();
+                //if (EcoObject.CreateNear(db, eco_object, 30, 1000, out new_eo))
                 //{
                 //    int k = 1;
                 //};

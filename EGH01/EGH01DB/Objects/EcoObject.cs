@@ -345,11 +345,11 @@ namespace EGH01DB.Objects
             }
 
         }
-        static public bool CreateNear(EGH01DB.IDBContext dbcontext, EcoObject ecoobject, float angle, float distance, out AnchorPoint anchor_point)
+        static public bool CreateNear(EGH01DB.IDBContext dbcontext, EcoObject ecoobject, float angle, float distance, out EcoObject eco_object)
         {
             bool rc = false;
             int id = -1;
-            anchor_point = new AnchorPoint();
+            eco_object = new EcoObject();
             using (SqlCommand cmd = new SqlCommand("EGH.GetCoordinatesByAngle", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -404,10 +404,14 @@ namespace EGH01DB.Objects
                     Point point = new Point(coordinates, new_ground_type, new_waterdeep, new_height);
 
                     int new_cadastre_type_code = ecoobject.cadastretype.type_code;
+                    bool iswaterobject = ecoobject.iswaterobject;
+                    string name = ecoobject.name;
+                    int ecoobjecttype_code = ecoobject.ecoobjecttype.type_code;
+                    EcoObjectType ecoobjecttype = new EcoObjectType(ecoobjecttype_code);
                     CadastreType cadastretype = new CadastreType(new_cadastre_type_code);
 
-                    anchor_point = new AnchorPoint(id, point, cadastretype);
-                    if (AnchorPoint.Create(dbcontext, anchor_point)) rc = true;
+                    eco_object = new EcoObject(id, point, ecoobjecttype, cadastretype, name, iswaterobject);
+                    if (EcoObject.Create(dbcontext, eco_object)) rc = true;
                     // }
 
                 }
