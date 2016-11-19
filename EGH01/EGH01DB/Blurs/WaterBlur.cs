@@ -30,7 +30,7 @@ namespace EGH01DB.Blurs
                         2.0f * this.groudblur.radius /                                                       // площадь трубы 
                         2.0f *                                                                               // треугольник
                         this.groudblur.waterproperties.density *                                             // плотность воды  
-                        this.groudblur.spreadpoint.groundtype.porosity/2.0f  *                               // пористость грунта /2 c водой
+                        this.groudblur.spreadpoint.groundtype.porosity  *                                   // пористость грунта /2 c водой
                         this.groudblur.spreadpoint.groundtype.watercapacity *                                 // капилярная влагоемкость грунта                                                      // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (кг) 
                         (float)Math.Pow(this.groudblur.spreadpoint.petrochemicaltype.dynamicviscosity, 2) *   // динамическая вязкость ???      
                         this.groudblur.waterproperties.tension /                                              // коэфициент поверхностного натяжения воды

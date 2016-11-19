@@ -91,6 +91,7 @@
     <Compile Include="Primitives\Coordinates.cs" />
     <Compile Include="Primitives\Helper1.cs" />
     <Compile Include="Primitives\WaterProperties.cs" />
+    <Compile Include="RGEContextModel1.cs" />
     <Compile Include="Types\CadastreType.cs" />
     <Compile Include="Types\District.cs" />
     <Compile Include="Types\EcoObjectType.cs" />
