@@ -74,7 +74,36 @@ namespace EGH01DB.Primitives
             this.max_angle = max_angle;
             this.koef = koef;
         }
-        
+        public SpreadingCoefficient(XmlNode node)
+        {
+            this.code = Helper.GetIntAttribute(node, "code", -1);
+
+            XmlNode g = node.SelectSingleNode(".//GroundType");
+            if (g != null) this.ground_type = new GroundType(g);
+            else this.ground_type = null;
+
+            this.min_volume = Helper.GetIntAttribute(node, "min_volume", -1);
+            this.max_volume = Helper.GetIntAttribute(node, "max_volume", -1);
+            this.min_angle = Helper.GetIntAttribute(node, "min_angle", -1);
+            this.max_angle = Helper.GetIntAttribute(node, "max_angle", -1);
+            this.koef = Helper.GetIntAttribute(node, "koef", -1);
+        }
+
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("SpreadingCoefficient");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            rc.SetAttribute("code", this.code.ToString());
+            rc.AppendChild(doc.ImportNode(this.ground_type.toXmlNode(), true));
+            rc.SetAttribute("min_volume", this.min_volume.ToString());
+            rc.SetAttribute("max_volume", this.max_volume.ToString());
+            rc.SetAttribute("min_angle", this.min_angle.ToString());
+            rc.SetAttribute("max_angle", this.max_angle.ToString());
+            rc.SetAttribute("koef", this.koef.ToString());
+            return (XmlNode)rc;
+        }
+
         // заглушка 
         public static bool GetByParms(GroundType groundtype, float volume, float angle, out SpreadingCoefficient spreadingcoefficient)  
         {

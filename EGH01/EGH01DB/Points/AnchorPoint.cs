@@ -33,6 +33,17 @@ namespace EGH01DB.Points
             this.id = id;
             this.cadastretype = new CadastreType ();
         }
+        public AnchorPoint(XmlNode node)
+        {
+            this.id = Helper.GetIntAttribute(node, "id", -1);
+            //XmlNode c = node.SelectSingleNode(".//Point");
+            //if (c != null) this.point = new Coordinates(c);
+            //else this.coordinates = null;
+
+            XmlNode g = node.SelectSingleNode(".//CadastreType");
+            if (g != null) this.cadastretype = new CadastreType(g);
+            else this.cadastretype = null;
+        }
 
         static public bool Create(EGH01DB.IDBContext dbcontext, AnchorPoint anchor_point)
         {
@@ -366,6 +377,17 @@ namespace EGH01DB.Points
             }
 
         }
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("AnchorPoint");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            rc.SetAttribute("id", this.id.ToString());
+            rc.AppendChild(doc.ImportNode(this.cadastretype.toXmlNode(), true));
+ ////
+            return (XmlNode)rc;
+        }
+
     }
     public class AnchorPointList : List<AnchorPoint>   // список  опорных точек 
     {
