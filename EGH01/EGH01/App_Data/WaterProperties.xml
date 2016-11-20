@@ -10,4 +10,5 @@
   <WaterProperties water_code="10" temperature="80" viscocity="13,7" density="557" tension="90,9" />
   <WaterProperties water_code="11" temperature="80" viscocity="13,7" density="557" tension="90,9" />
   <WaterProperties water_code="12" temperature="90" viscocity="67,9" density="557" tension="66,6" />
+  <WaterProperties water_code="13" temperature="22" viscocity="0,001004" density="998,281" tension="0,1" />
 </WaterPropertiesList>

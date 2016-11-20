@@ -75,7 +75,7 @@ namespace EGH01.Controllers
                     doc.Save(Server.MapPath("~/App_Data/PetrochemicalType.xml"));
                     view = View("Index");
 
-                    view = File(Server.MapPath("~/App_Data/PetrochemicalType.xml"), "text/plain", "Химический состав нефти.xml");
+                    view = File(Server.MapPath("~/App_Data/PetrochemicalType.xml"), "text/plain", "Химический состав нефтей.xml");
 
                 }
             }
