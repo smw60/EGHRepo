@@ -104,7 +104,16 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
-
+        static public EGH01DB.Types.EcoObjectTypeList GetListEcoObjectType(EGH01DB.IDBContext dbcontext)
+        {
+            List<EcoObjectType> list = new List<EcoObjectType>();
+            EGH01DB.Types.EcoObjectTypeList rc = new EGH01DB.Types.EcoObjectTypeList(list);
+            if (Helper.GetListEcoObjectType(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.EcoObjectTypeList(list);
+            }
+            return rc;
+        }
         static public bool GetListGroundType(EGH01DB.IDBContext dbcontext, ref List<GroundType> list_type)
         { 
             bool rc = false;
