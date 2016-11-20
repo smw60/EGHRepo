@@ -309,9 +309,19 @@ namespace EGH01.Controllers
                                     EGH01DB.Types.Region region = new EGH01DB.Types.Region();
                                     if (EGH01DB.Types.Region.GetByCode(db, itv.list_region, out region))
                                     {
-
                                         DateTime foundationdate = itv.foundationdate;
+                                        if (foundationdate.Year == 0001)
+                                        {
+                                            foundationdate = new DateTime(1900, 01, 01);
+
+                                        }
+
                                         DateTime reconstractiondate = itv.reconstractiondate;
+                                        if (reconstractiondate.Year == 0001)
+                                        {
+                                            reconstractiondate = new DateTime(1900, 01, 01);
+
+                                        }
                                         string name = itv.name;
                                         String phone = itv.phone;
                                         String fax = itv.fax;
