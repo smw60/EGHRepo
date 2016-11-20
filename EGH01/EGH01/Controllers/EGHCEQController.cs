@@ -14,7 +14,26 @@ namespace EGH01.Controllers
     public partial class EGHCEQController : Controller
     {
 
-        public ActionResult Index()
+        public ActionResult ChoiceForecastResult()
+        {
+            ViewBag.EGHLayout = "CEQ";
+            CEQContext db = null;
+            try
+            {
+                db = new CEQContext();
+                ViewBag.msg = "CEQ.ChoiceForecatResult.Соединение с базой данных установлено";
+            
+            }
+            catch (RGEContext.Exception e)
+            {
+                ViewBag.msg = e.message;
+            }
+
+            return View(db);
+        }
+
+
+          public ActionResult Index()
         {
             ViewBag.EGHLayout = "CEQ";
             CEQContext db = null;
@@ -22,11 +41,7 @@ namespace EGH01.Controllers
             {
                 db = new CEQContext();
                 ViewBag.msg = "Соединение с базой данных установлено";
-
-
-
-
-            }
+                           }
             catch (RGEContext.Exception e)
             {
                 ViewBag.msg = e.message;
@@ -39,5 +54,9 @@ namespace EGH01.Controllers
             return View("Index", db);
         }
     }
+
 }
+
+
+
 

@@ -370,6 +370,7 @@
     <Content Include="Views\EGHRGE\_ForecastReportWB.cshtml" />
     <Content Include="Views\EGHRGE\EcoObjectCreateEco.cshtml" />
     <Content Include="Views\EGHCAI\Map.cshtml" />
+    <Content Include="Views\EGHCEQ\ChoiceForecastResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
