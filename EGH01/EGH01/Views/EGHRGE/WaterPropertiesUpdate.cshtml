@@ -33,11 +33,11 @@
             </div>
             <div class="boxdata">
                 <label class="boxdata-label-30">Вязкость, кг/м*с</label>
-                <input class="boxdata-input-20" type="number" name="viscocity" step="0.1" value="@Model.viscocity.ToString("0.0").Replace(',', '.')" />
+                <input class="boxdata-input-20" type="number" name="viscocity" step="0.000001" value="@Model.viscocity.ToString("0.000000").Replace(',', '.')" />
             </div>
             <div class="boxdata">
                 <label class="boxdata-label-30">Плотность, кг/м<sup><small>3</small></sup></label>
-                <input class="boxdata-input-20" type="number" name="density" step="0.1" value="@Model.density.ToString("0.0").Replace(',', '.')" />
+                <input class="boxdata-input-20" type="number" name="density" step="0.001" value="@Model.density.ToString("0.000").Replace(',', '.')" />
             </div>
             <div class="boxdata">
                 <label class="boxdata-label-30">Коэффициент поверхностного натяжения, кг/с<sup><small>2</small></sup></label>
