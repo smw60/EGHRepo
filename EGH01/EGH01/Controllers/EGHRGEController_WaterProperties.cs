@@ -68,15 +68,15 @@ namespace EGH01.Controllers
                 }
                 else if (menuitem.Equals("WaterProperties.Excel"))
                 {
-                    //EGH01DB.Types.PetrochemicalType.PetrochemicalTypeList list = new EGH01DB.Types.PetrochemicalType.PetrochemicalTypeList();
-                    //XmlNode node = list.toXmlNode();
-                    //XmlDocument doc = new XmlDocument();
-                    //XmlNode nnode = doc.ImportNode(node, true);
-                    //doc.AppendChild(nnode);
-                    //doc.Save(Server.MapPath("~/App_Data/PetrochemicalType.xml"));
-                    //view = View("Index");
+                    EGH01DB.Primitives.WaterPropertiesList list = new EGH01DB.Primitives.WaterPropertiesList(db);
+                    XmlNode node = list.toXmlNode();
+                    XmlDocument doc = new XmlDocument();
+                    XmlNode nnode = doc.ImportNode(node, true);
+                    doc.AppendChild(nnode);
+                    doc.Save(Server.MapPath("~/App_Data/WaterProperties.xml"));
+                    view = View("Index");
 
-                    //view = File(Server.MapPath("~/App_Data/PetrochemicalType.xml"), "text/plain", "PetrochemicalType.xml");
+                    view = File(Server.MapPath("~/App_Data/WaterProperties.xml"), "text/plain", "Свойства воды.xml");
 
 
                 }
