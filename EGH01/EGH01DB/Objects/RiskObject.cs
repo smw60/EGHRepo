@@ -928,7 +928,7 @@ namespace EGH01DB.Objects
 
             this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
 
-            //   rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
+            //rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
             //rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
             return (XmlNode)rc;
         }
