@@ -17,7 +17,6 @@ namespace EGH01DB
     {
         public partial class ECOForecast         //  модель прогнозирования 
         {
-
             public static bool Create(IDBContext dbcontext, ECOForecast ecoforecast)
             {
                 bool rc = false;
