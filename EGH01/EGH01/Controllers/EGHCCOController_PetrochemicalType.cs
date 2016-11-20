@@ -67,15 +67,15 @@ namespace EGH01.Controllers
                 }
                 else if (menuitem.Equals("PetrochemicalType.Excel"))
                 {
-                    //EGH01DB.Types.PetrochemicalTypeList list = new PetrochemicalType(db);
-                    //XmlNode node = list.toXmlNode();
-                    //XmlDocument doc = new XmlDocument();
-                    //XmlNode nnode = doc.ImportNode(node, true);
-                    //doc.AppendChild(nnode);
-                    //doc.Save(Server.MapPath("~/App_Data/PetrochemicalType.xml"));
-                    //view = View("Index");
+                    EGH01DB.Types.PetrochemicalTypeList list = new PetrochemicalTypeList(db);
+                    XmlNode node = list.toXmlNode();
+                    XmlDocument doc = new XmlDocument();
+                    XmlNode nnode = doc.ImportNode(node, true);
+                    doc.AppendChild(nnode);
+                    doc.Save(Server.MapPath("~/App_Data/PetrochemicalType.xml"));
+                    view = View("Index");
 
-                    //view = File(Server.MapPath("~/App_Data/PetrochemicalType.xml"), "text/plain", "PetrochemicalType.xml");
+                    view = File(Server.MapPath("~/App_Data/PetrochemicalType.xml"), "text/plain", "Химический состав нефти.xml");
 
                 }
             }
