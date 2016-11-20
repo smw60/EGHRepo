@@ -185,7 +185,56 @@ namespace EGH01DB.Objects
             this.productivity = 0.0f;
             this.geodescription = string.Empty;
         }
+        
+        public RiskObject(XmlNode node)
+            : base(new Point(node.SelectSingleNode(".//Point")))
+        {
+            this.id = Helper.GetIntAttribute(node, "id", -1);
 
+            XmlNode cad = node.SelectSingleNode(".//CadastreType");
+            if (cad != null) this.cadastretype = new CadastreType(cad);
+            else this.cadastretype = null;
+
+            XmlNode risk_object_type = node.SelectSingleNode(".//RiskObjectType");
+            if (risk_object_type != null) this.type = new RiskObjectType(risk_object_type);
+            else this.type = null;
+
+            this.name = Helper.GetStringAttribute(node, "name", "");
+            this.address = Helper.GetStringAttribute(node, "address", "");
+
+            XmlNode district = node.SelectSingleNode(".//District");
+            if (district != null) this.district = new District(district);
+            else this.district = null;
+
+            XmlNode region = node.SelectSingleNode(".//Region");
+            if (region != null) this.region = new Region(region);
+            else this.region = null;
+
+            this.ownership = Helper.GetStringAttribute(node, "ownership", "");
+            this.phone = Helper.GetStringAttribute(node, "phone", "");
+            this.fax = Helper.GetStringAttribute(node, "fax", "");
+            this.email = Helper.GetStringAttribute(node, "email", "");
+
+            this.foundationdate = Helper.GetDateTimeAttribute(node, "foundationdate", DateTime.MinValue);
+            this.reconstractiondate = Helper.GetDateTimeAttribute(node, "reconstractiondate", DateTime.MinValue);
+
+            this.numberofrefuel = Helper.GetIntAttribute(node, "numberofrefuel", -1);
+            this.volume = Helper.GetIntAttribute(node, "volume", -1);
+
+            this.watertreatment = Helper.GetBoolAttribute(node, "watertreatment", false);
+            this.watertreatmentcollect = Helper.GetBoolAttribute(node, "watertreatmentcollect", false);
+          
+            // this.map = new byte[0];
+
+            this.groundtank = Helper.GetFloatAttribute(node, "groundtank", 0.0f);
+            this.undergroundtank = Helper.GetFloatAttribute(node, "undergroundtank", 0.0f);
+            this.fueltype = Helper.GetStringAttribute(node, "fueltype", "");
+            this.numberofthreads = Helper.GetIntAttribute(node, "numberofthreads", -1);
+            this.tubediameter = Helper.GetFloatAttribute(node, "tubediameter", 0.0f);
+            this.productivity = Helper.GetFloatAttribute(node, "productivity", 0.0f);
+            this.geodescription = Helper.GetStringAttribute(node, "geodescription", "");
+            
+        }
         public string Line { get 
                                { return 
                                      this.name.TrimStart().PadRight(40,' ')           
@@ -807,47 +856,53 @@ namespace EGH01DB.Objects
                 return rc;
             }
         }
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("RiskObject");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            rc.SetAttribute("id", this.id.ToString());
+            XmlNode n = base.toXmlNode("");
+            rc.AppendChild(doc.ImportNode(n, true));
+            rc.AppendChild(doc.ImportNode(this.type.toXmlNode(), true));
+            rc.AppendChild(doc.ImportNode(this.cadastretype.toXmlNode(), true));
+            rc.SetAttribute("name", this.name.ToString());
+            rc.SetAttribute("address", this.address.ToString());
 
+            rc.AppendChild(doc.ImportNode(this.district.toXmlNode(), true));
+            rc.AppendChild(doc.ImportNode(this.region.toXmlNode(), true));
 
+            rc.SetAttribute("ownership", this.ownership.ToString());
+            rc.SetAttribute("phone", this.phone.ToString());
+            rc.SetAttribute("fax", this.fax.ToString());
+            rc.SetAttribute("email", this.fax.ToString());
 
-       
+            rc.SetAttribute("foundationdate", this.foundationdate.ToString());
+            rc.SetAttribute("reconstractiondate", this.reconstractiondate.ToString());
+            rc.SetAttribute("numberofrefuel", this.numberofrefuel.ToString());
+            rc.SetAttribute("volume", this.volume.ToString());
+
+            rc.SetAttribute("watertreatment", this.watertreatment.ToString());
+            rc.SetAttribute("watertreatmentcollect", this.watertreatmentcollect.ToString());
+            rc.SetAttribute("numberofrefuel", this.numberofrefuel.ToString());
+            rc.SetAttribute("volume", this.volume.ToString());
+
+            //    this.map = new byte[0];
+
+            rc.SetAttribute("groundtank", this.groundtank.ToString());
+            rc.SetAttribute("undergroundtank", this.undergroundtank.ToString());
+            rc.SetAttribute("fueltype", this.fueltype.ToString());
+            rc.SetAttribute("numberofthreads", this.numberofthreads.ToString());
+            rc.SetAttribute("tubediameter", this.tubediameter.ToString());
+            rc.SetAttribute("productivity", this.productivity.ToString());
+            rc.SetAttribute("geodescription", this.geodescription.ToString());
+
+            return (XmlNode)rc;
+        }
     }
 
 
-    //public class RiskObjectList : List<RiskObject>
-    //{
-    //    List<EGH01DB.Objects.RiskObject> list_rick = new List<EGH01DB.Objects.RiskObject>();
-    //    public RiskObjectList()
-    //    {
-
-    //    }
-    //    public RiskObjectList(List<RiskObject> list)
-    //        : base(list)
-    //    {
-
-    //    }
-        //public RiskObjectList(EGH01DB.IDBContext dbcontext)
-        //    : base(Helper.GetListRiskObject(dbcontext))
-        //{
-
-        //}
-        //public XmlNode toXmlNode(string comment = "")
-        //{
-
-        //    XmlDocument doc = new XmlDocument();
-        //    XmlElement rc = doc.CreateElement("RiskObjectList");
-        //    if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
-
-        //    this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
-
-        //    //   rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
-        //    //rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
-        //    return (XmlNode)rc;
-        //}
-
-
-    //}
-    public class RiskObjectsList : List<RiskObject>      // список объектов  с координатами , расстояние считается по теореме Пифагора :)
+    public class RiskObjectsList : List<RiskObject>    
     {
        List<EGH01DB.Objects.RiskObject> list_rick = new List<EGH01DB.Objects.RiskObject>();
         public RiskObjectsList()
