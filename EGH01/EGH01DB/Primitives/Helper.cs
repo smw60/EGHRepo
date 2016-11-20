@@ -73,17 +73,16 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
-        //static public EGH01DB.Types.CadastreTypeList GetListCadastreType(EGH01DB.IDBContext dbcontext)
-        //{
-        //    //List<CadastreType> list = new List<CadastreType>();
-        //    //EGH01DB.Types.CadastreTypeList rc = new EGH01DB.Types.CadastreTypeList(list);
-        //    //if (Helper.GetListCadastreType(dbcontext, ref list))
-        //    //{
-        //    //    rc = new EGH01DB.Types.CadastreTypeList(list); ;
-        //    //}
-        //    //return rc;
-           
-        //}
+        static public EGH01DB.Types.CadastreTypeList GetListCadastreType(EGH01DB.IDBContext dbcontext)
+        {
+            List<CadastreType> list = new List<CadastreType>();
+            EGH01DB.Types.CadastreTypeList rc = new EGH01DB.Types.CadastreTypeList(list);
+            if (Helper.GetListCadastreType(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.CadastreTypeList(list); ;
+            }
+            return rc;
+        }
         static public EGH01DB.Points.AnchorPointList GetListAnchorPoint(EGH01DB.IDBContext dbcontext)
         {
             List<AnchorPoint> list = new List<AnchorPoint>();
@@ -198,6 +197,16 @@ namespace EGH01DB.Primitives
                 return rc;
 
             }
+        }
+        static public EGH01DB.Primitives.WaterPropertiesList GetListWaterProperties(EGH01DB.IDBContext dbcontext)
+        {
+            List<WaterProperties> list = new List<WaterProperties>();
+            EGH01DB.Primitives.WaterPropertiesList rc = new EGH01DB.Primitives.WaterPropertiesList(list);
+            if (Helper.GetListWaterProperties(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Primitives.WaterPropertiesList(list); ;
+            }
+            return rc;
         }
         static public bool GetListWaterProperties(EGH01DB.IDBContext dbcontext, ref List<WaterProperties> list)
         {

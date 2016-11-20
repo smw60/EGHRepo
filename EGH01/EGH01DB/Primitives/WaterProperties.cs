@@ -307,4 +307,31 @@ namespace EGH01DB.Primitives
             return rc;
         }
     }
+
+    public class WaterPropertiesList : List<WaterProperties>
+    {
+        List<EGH01DB.Primitives.WaterProperties> list_petrochemical_type = new List<EGH01DB.Primitives.WaterProperties>();
+        public WaterPropertiesList()
+        {
+
+        }
+        public WaterPropertiesList(List<WaterProperties> list)
+            : base(list)
+        {
+
+        }
+        public WaterPropertiesList(EGH01DB.IDBContext dbcontext)
+            : base(Helper.GetListWaterProperties(dbcontext))
+            {
+
+            }
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("WaterPropertiesList");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+            return (XmlNode)rc;
+        }
+    }
 }

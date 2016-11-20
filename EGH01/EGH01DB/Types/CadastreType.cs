@@ -318,20 +318,21 @@ namespace EGH01DB.Types
     }
     public class CadastreTypeList : List<CadastreType>
     {
-        //List<EGH01DB.Types.CadastreType> list_cadastre_type = new List<EGH01DB.Types.CadastreType>();
-        //public CadastreTypeList()
-        //{
+        List<EGH01DB.Types.CadastreType> list_petrochemical_type = new List<EGH01DB.Types.CadastreType>();
+            public CadastreTypeList()
+            {
 
-        //}
-        //public CadastreTypeList(List<PetrochemicalType> list) : base(list)
-        //{
+            }
+            public CadastreTypeList(List<CadastreType> list)
+                : base(list)
+            {
 
-        //}
-        //public CadastreTypeList(EGH01DB.IDBContext dbcontext)
-        //    : base(Helper.GetListCadastreType(dbcontext))
-        //{
+            }
+            public CadastreTypeList(EGH01DB.IDBContext dbcontext)
+                : base(Helper.GetListCadastreType(dbcontext))
+            {
 
-        //}
+            }
         public XmlNode toXmlNode(string comment = "")
         {
             XmlDocument doc = new XmlDocument();
