@@ -316,4 +316,29 @@ namespace EGH01DB.Types
             return (XmlNode)rc;
         }
     }
+    public class CadastreTypeList : List<CadastreType>
+    {
+        //List<EGH01DB.Types.CadastreType> list_cadastre_type = new List<EGH01DB.Types.CadastreType>();
+        //public CadastreTypeList()
+        //{
+
+        //}
+        //public CadastreTypeList(List<PetrochemicalType> list) : base(list)
+        //{
+
+        //}
+        //public CadastreTypeList(EGH01DB.IDBContext dbcontext)
+        //    : base(Helper.GetListCadastreType(dbcontext))
+        //{
+
+        //}
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("CadastreTypeList");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+            return (XmlNode)rc;
+        }
+    }
 }

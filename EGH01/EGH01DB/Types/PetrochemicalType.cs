@@ -13,19 +13,19 @@ namespace EGH01DB.Types
 {
     public class PetrochemicalType   // нефтепродукт 
     {
-        public int code_type      { get; set; }   // код   
-        public string name        { get; set; }   // название типа нефтепродукта
-        public float  boilingtemp { get; set; }   // температура кипения (С)
-        public float  density     { get; set; }   // плотность (г/см3)
-        public float  viscosity   { get; set; }   // кинематическая вязкость (мм2/с)
-        public float  solubility  { get; set; }   // растворимость (мг/дм3)
-        public float tension      { get; set; }   // коэффициент поверхностного натяжения (кг/с2)
+        public int code_type { get; set; }   // код   
+        public string name { get; set; }   // название типа нефтепродукта
+        public float boilingtemp { get; set; }   // температура кипения (С)
+        public float density { get; set; }   // плотность (г/см3)
+        public float viscosity { get; set; }   // кинематическая вязкость (мм2/с)
+        public float solubility { get; set; }   // растворимость (мг/дм3)
+        public float tension { get; set; }   // коэффициент поверхностного натяжения (кг/с2)
         public float dynamicviscosity { get; set; }   // динамическая вязкость (кг/м*с)
         public float diffusion { get; set; }   // коэффициент диффузии (м2/с)
 
         static public PetrochemicalType defaulttype { get { return new PetrochemicalType(0, "Не определен"); } }  // выдавать при ошибке 
 
-         public PetrochemicalType()
+        public PetrochemicalType()
         {
             this.code_type = -1;
             this.name = string.Empty;
@@ -33,13 +33,13 @@ namespace EGH01DB.Types
             this.density = 0.0f;
             this.viscosity = 0.0f;
             this.solubility = 0.0f;
-            this.tension =  0.0f;
-            this.dynamicviscosity =  0.0f;
+            this.tension = 0.0f;
+            this.dynamicviscosity = 0.0f;
             this.diffusion = 0.0f;
-         }
-         public PetrochemicalType(int code_type, String name, float boilingtemp, float density, float viscosity, float solubility, 
-                                   float tension, float dynamicviscosity, float diffusion)
-         {
+        }
+        public PetrochemicalType(int code_type, String name, float boilingtemp, float density, float viscosity, float solubility,
+                                  float tension, float dynamicviscosity, float diffusion)
+        {
             this.code_type = code_type;
             this.name = name;
             this.boilingtemp = boilingtemp;
@@ -49,20 +49,20 @@ namespace EGH01DB.Types
             this.tension = tension;
             this.dynamicviscosity = dynamicviscosity;
             this.diffusion = diffusion;
-         }
-         public PetrochemicalType(int code_type, String name)
-         {
-             this.code_type = code_type;
-             this.name = name;
-             this.boilingtemp = 0.0f;
-             this.density = 0.0f;
-             this.viscosity = 0.0f;
-             this.solubility = 0.0f;
-             this.tension = 0.0f;
-             this.dynamicviscosity = 0.0f;
-             this.diffusion = 0.0f;
-         }
-         public PetrochemicalType(int code_type)
+        }
+        public PetrochemicalType(int code_type, String name)
+        {
+            this.code_type = code_type;
+            this.name = name;
+            this.boilingtemp = 0.0f;
+            this.density = 0.0f;
+            this.viscosity = 0.0f;
+            this.solubility = 0.0f;
+            this.tension = 0.0f;
+            this.dynamicviscosity = 0.0f;
+            this.diffusion = 0.0f;
+        }
+        public PetrochemicalType(int code_type)
         {
             this.code_type = code_type;
             this.name = "";
@@ -100,7 +100,7 @@ namespace EGH01DB.Types
             this.diffusion = Helper.GetFloatAttribute(node, "diffusion", 0.0f);
 
         }
-   
+
         static public bool GetByCode(EGH01DB.IDBContext dbcontext, int type_code, ref PetrochemicalType petrochemical_type)
         {
             bool rc = false;
@@ -139,7 +139,7 @@ namespace EGH01DB.Types
                                                                                                                     (float)viscosity,
                                                                                                                     (float)solubility,
                                                                                                                     (float)tension,
-                                                                                                                    (float)dynamicviscosity, 
+                                                                                                                    (float)dynamicviscosity,
                                                                                                                     (float)diffusion);
                     }
                     reader.Close();
@@ -257,7 +257,7 @@ namespace EGH01DB.Types
 
             return rc;
         }
-        
+
         static public bool Update(EGH01DB.IDBContext dbcontext, PetrochemicalType petrochemical_type)
         {
             bool rc = false;
@@ -377,26 +377,30 @@ namespace EGH01DB.Types
             return (XmlNode)rc;
         }
 
-
-        //public class PetrochemicalTypeList : List<PetrochemicalType>
-        //{
-        //    public PetrochemicalTypeList()
-        //    {
-
-        //    }
-        //    public PetrochemicalTypeList(List<PetrochemicalType> list) : base(list)
-        //    {
-
-        //    }
-        //    public PetrochemicalTypeList(EGH01DB.IDBContext dbcontext) : base(Helper.GetListPetrochemicalType(dbcontext))
-        //    {
-
-        //    }
-
-        //    public XmlNode toXmlNode()
-        //    {
-        //        throw new NotImplementedException();
-        //    }
-        //}
     }
+    public class PetrochemicalTypeList : List<PetrochemicalType>
+        {
+            List<EGH01DB.Types.PetrochemicalType> list_petrochemical_type = new List<EGH01DB.Types.PetrochemicalType>();
+            public PetrochemicalTypeList()
+            {
+
+            }
+            public PetrochemicalTypeList(List<PetrochemicalType> list) : base(list)
+            {
+
+            }
+            public PetrochemicalTypeList(EGH01DB.IDBContext dbcontext) : base(Helper.GetListPetrochemicalType(dbcontext))
+            {
+
+            }
+            public XmlNode toXmlNode(string comment = "")
+            {
+                XmlDocument doc = new XmlDocument();
+                XmlElement rc = doc.CreateElement("PetrochemicalTypeList");
+                if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+                this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+                return (XmlNode)rc;
+            }
+        }
+    
 }

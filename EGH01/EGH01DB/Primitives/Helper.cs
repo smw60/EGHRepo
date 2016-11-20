@@ -63,6 +63,27 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
+        static public EGH01DB.Types.PetrochemicalTypeList GetListPetrochemicalType(EGH01DB.IDBContext dbcontext)
+        {
+            List<PetrochemicalType> list = new List<PetrochemicalType>();
+            EGH01DB.Types.PetrochemicalTypeList rc = new EGH01DB.Types.PetrochemicalTypeList(list);
+            if (Helper.GetListPetrochemicalType(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.PetrochemicalTypeList(list); ;
+            }
+            return rc;
+        }
+        //static public EGH01DB.Types.CadastreTypeList GetListCadastreType(EGH01DB.IDBContext dbcontext)
+        //{
+        //    //List<CadastreType> list = new List<CadastreType>();
+        //    //EGH01DB.Types.CadastreTypeList rc = new EGH01DB.Types.CadastreTypeList(list);
+        //    //if (Helper.GetListCadastreType(dbcontext, ref list))
+        //    //{
+        //    //    rc = new EGH01DB.Types.CadastreTypeList(list); ;
+        //    //}
+        //    //return rc;
+           
+        //}
         static public EGH01DB.Points.AnchorPointList GetListAnchorPoint(EGH01DB.IDBContext dbcontext)
         {
             List<AnchorPoint> list = new List<AnchorPoint>();
