@@ -13,7 +13,7 @@ using EGH01DB.Primitives;
 
 namespace EGH01DB.Blurs
 {
-    public class GroundBlur              //  пятно  наземное нефтеродукта  
+    public partial class GroundBlur              //  пятно  наземное нефтеродукта  
     {
         public SpreadPoint spreadpoint {get;  private set;}   //разлив нефтеродута 
         public CoordinatesList bordercoordinateslist { get; private set; }   // координаты граничных точек  пятна

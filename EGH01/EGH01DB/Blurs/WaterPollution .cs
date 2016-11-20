@@ -9,7 +9,7 @@ using EGH01DB.Primitives;
 using EGH01DB.Points;
 namespace EGH01DB.Blurs
 {
-    public class WaterPollution : Point   //загрязнение в точке
+    public partial  class WaterPollution : Point   //загрязнение в точке
     {
 
         public PetrochemicalType petrochemicatype { get; private set; }          // нефтепрдукт

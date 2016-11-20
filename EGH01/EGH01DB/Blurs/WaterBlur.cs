@@ -8,7 +8,7 @@ using EGH01DB.Primitives;
 namespace EGH01DB.Blurs
 {
 
-    public class WaterBlur              //  водное пятно -  пятно нефтеродукта c грунтовыми водами  
+    public partial class WaterBlur              //  водное пятно -  пятно нефтеродукта c грунтовыми водами  
     { 
         public GroundBlur groudblur                 {get; private set;}  // пятно по поверхности 
         public CoordinatesList border               {get; private set;}  // координаты граничных точек водного пятна

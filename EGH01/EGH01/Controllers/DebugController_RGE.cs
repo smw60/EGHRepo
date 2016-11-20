@@ -18,28 +18,31 @@ namespace EGH01.Controllers
 
         public ActionResult RGECalc()
         {
-            RGEContext db = new RGEContext();
-
-
 
             {
-                Coordinates c1 = new Coordinates(53.663388f, 27.143777f);
-                Coordinates c2 = new Coordinates(53.663229f, 27.143831f);
-                Coordinates c3 = new Coordinates(53.663267f, 27.143574f);
-                Coordinates c4 = new Coordinates(53.663394f, 27.143552f);
-            
+                RGEContext db = new RGEContext();
+                RGEContext.ECOForecast f = new RGEContext.ECOForecast();
+                int k = 1;
             }
 
-            {
-                List<RiskObject> o = new List<RiskObject>();
+            //{
+            //    Coordinates c1 = new Coordinates(53.663388f, 27.143777f);
+            //    Coordinates c2 = new Coordinates(53.663229f, 27.143831f);
+            //    Coordinates c3 = new Coordinates(53.663267f, 27.143574f);
+            //    Coordinates c4 = new Coordinates(53.663394f, 27.143552f);
 
-                if (RiskObjectsList.GetListRiskObjectByLike(db, "Брест", ref o))
-                {
-                    int k = 1;
+            //}
 
-                }
+            //{
+            //    List<RiskObject> o = new List<RiskObject>();
 
-            }
+            //    if (RiskObjectsList.GetListRiskObjectByLike(db, "Брест", ref o))
+            //    {
+            //        int k = 1;
+
+            //    }
+
+            //}
 
 
 

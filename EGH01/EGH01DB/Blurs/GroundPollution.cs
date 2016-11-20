@@ -10,7 +10,7 @@ using EGH01DB.Primitives;
 
 namespace EGH01DB.Blurs
 {
-    public class GroundPollution : Point   //загрязнение  в точке 
+    public  partial class GroundPollution : Point   //загрязнение  в точке 
     {
        
        public float watertime                    { get; private set; }          // время достижения грунтовых вод (с)  

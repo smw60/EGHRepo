@@ -29,6 +29,8 @@ namespace EGH01DB
 
             public ECOForecast()
             {
+                RGEContext db = new RGEContext();
+                Init(db, new Incident()); 
             }
             public ECOForecast(Incident incident)
             {

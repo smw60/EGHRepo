@@ -78,7 +78,7 @@ namespace EGH01.Controllers
                 //CadastreType cad = new CadastreType(2, "Населенных пунктов, садоводческих товариществ, дач", 127, 0.3f);
                 //Point p = new Point(new Coordinates(53.1000f, 27.2345f), new GroundType(2, "ground", 120f, 2.7f, 3.8f, 4.0f, 5.7f, 6.2f), 4, 200.0f);
                 //XmlNode xml = p.toXmlNode("test");
-<<<<<<< HEAD
+
                 
                  
                  AnchorPoint ap = new AnchorPoint( );
@@ -89,7 +89,7 @@ namespace EGH01.Controllers
 
                 //Point point_from_xml = new Point(xml_ap);
                 //AnchorPoint ap_from_xml = new AnchorPoint(xml_ap, point_from_xml);
-=======
+
 
                 //AnchorPoint ap = new AnchorPoint(2, p, cad);
                 //XmlNode xml_ap = ap.toXmlNode("Опорная точка");
@@ -99,7 +99,7 @@ namespace EGH01.Controllers
                 //AnchorPoint ap = new AnchorPoint();
                 //XmlNode xml_ap = ap.toXmlNode ("Опорная точка");
                 //AnchorPoint ap1 = new AnchorPoint(xml_ap);
->>>>>>> 4424657fb9ca9d04fb239c0fed6996eb3ddb5a36
+
             }
             return View();
         }
