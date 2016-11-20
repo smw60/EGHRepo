@@ -78,8 +78,13 @@ namespace EGH01.Controllers
                 //Point p = new Point(new Coordinates(53.1000f, 27.2345f), new GroundType(2, "ground", 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f), 4, 200.0f);
                 //XmlNode xml = p.toXmlNode("test");
                 
-                //AnchorPoint ap = new AnchorPoint(2, p, cad);
-                //XmlNode xml_ap = ap.toXmlNode("Опорная точка");
+                 
+                 AnchorPoint ap = new AnchorPoint( );
+                 XmlNode xml_ap = ap.toXmlNode("Опорная точка");
+
+                 AnchorPoint ap1 = new AnchorPoint(xml_ap);
+
+
                 //Point point_from_xml = new Point(xml_ap);
                 //AnchorPoint ap_from_xml = new AnchorPoint(xml_ap, point_from_xml);
             }

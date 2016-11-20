@@ -21,7 +21,7 @@ namespace EGH01DB.Points
         public Point()
         {
             this.coordinates = new Coordinates();
-            this.groundtype = null;
+            this.groundtype =new GroundType();
             this.waterdeep = 0.0f;
             this.height = 0.0f;
 
@@ -73,7 +73,7 @@ namespace EGH01DB.Points
             rc.SetAttribute("waterdeep", this.waterdeep.ToString());
 
             rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
-            rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
+             rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
 
             return (XmlNode)rc;
         }
