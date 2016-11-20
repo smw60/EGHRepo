@@ -63,6 +63,16 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
+        static public EGH01DB.Points.AnchorPointList GetListAnchorPoint(EGH01DB.IDBContext dbcontext)
+        {
+            List<AnchorPoint> list = new List<AnchorPoint>();
+            EGH01DB.Points.AnchorPointList rc = new EGH01DB.Points.AnchorPointList(list);
+            if (Helper.GetListAnchorPoint(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Points.AnchorPointList(list);
+            }
+            return rc;
+        }
 
         static public bool GetListGroundType(EGH01DB.IDBContext dbcontext, ref List<GroundType> list_type)
         { 

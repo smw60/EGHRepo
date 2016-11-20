@@ -69,7 +69,8 @@ namespace EGH01.Controllers
                 }
                 else if (menuitem.Equals("RiskObject.Excel"))
                 {
-                    EGH01DB.Objects.RiskObjectsList list = new EGH01DB.Objects.RiskObjectsList();
+
+                    EGH01DB.Objects.RiskObjectsList list = new EGH01DB.Objects.RiskObjectsList(db);
                     XmlNode node = list.toXmlNode();
                     XmlDocument doc = new XmlDocument();
                     XmlNode nnode = doc.ImportNode(node, true);

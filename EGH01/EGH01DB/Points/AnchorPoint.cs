@@ -374,6 +374,7 @@ namespace EGH01DB.Points
             }
 
         }
+
         public XmlNode toXmlNode(string comment = "")
         {
             XmlDocument doc = new XmlDocument();
@@ -385,8 +386,8 @@ namespace EGH01DB.Points
             rc.AppendChild(doc.ImportNode(this.cadastretype.toXmlNode(), true));
             return (XmlNode)rc;
         }
-
     }
+
     public class AnchorPointList : List<AnchorPoint>   // список  опорных точек 
     {
         public float avgheight // средняя глубина грунтовых вод
@@ -414,8 +415,29 @@ namespace EGH01DB.Points
         {
             
         }
+        public AnchorPointList(List<AnchorPoint> list)
+            : base(list)
+        {
 
+        }
+        public AnchorPointList(EGH01DB.IDBContext dbcontext)
+            : base(Helper.GetListAnchorPoint(dbcontext))
+        {
 
+        }
+        public XmlNode toXmlNode(string comment = "")
+        {
+
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("AnchorPointList");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+
+            this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+
+            //   rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
+            //rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
+            return (XmlNode)rc;
+        }
         //  найти список точек в заданном радиусе 
         public static AnchorPointList CreateNear(Coordinates center, float distance)
         {
