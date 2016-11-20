@@ -30,6 +30,36 @@
                 <label class="boxdata-label-30">Наименование нефтепродукта</label>
                 @Model.name
             </p>
+            <p>
+                <label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С</label>
+                @Model.boilingtemp
+            </p>
+            <p>
+                <label class="boxdata-label-30">Плотность, кг/м<sup><small>3</small></sup></label>
+                @Model.density
+            </p>
+            <p>
+                <label class="boxdata-label-30">Кинематическая вязкость, м<sup><small>2</small></sup>/с</label>
+                @Model.viscosity
+            </p>
+            <p>
+                <label class="boxdata-label-30">Растворимость, кг/м<sup><small>3</small></sup></label>
+                @Model.solubility
+            </p>
+            <p>
+                <label class="boxdata-label-30">Динамическая вязкость, кг/м*с</label>
+                @Model.dynamicviscosity
+            </p>
+            <p>
+                <label class="boxdata-label-30">Коэф. поверхностного натяжения, кг/с<sup><small>2</small></sup></label>
+                @Model.tension
+            </p>
+            <p>
+                <label class="boxdata-label-30">Коэф. диффузии, м<sup><small>2</small></sup>/с</label>
+                @Model.diffusion
+            </p>
+
+          
          </div>
 
         @Html.Partial("_TypeLineMenu", delete)
