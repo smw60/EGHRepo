@@ -53,11 +53,11 @@ namespace EGH01DB
                    
                     this.date = DateTime.Now;
                     
-                    if (!Const.isINFINITY(this.groundblur.timewatercomletion) && !Const.isINFINITY(this.groundblur.timewaxwaterconc))
+                    if (!Const.isINFINITY(this.groundblur.timewatercomletion) && !Const.isINFINITY(this.groundblur.timemaxwaterconc))
                     {
 
                         this.datewatercompletion = (new DateTime(incident.date.Ticks)).AddSeconds(this.groundblur.timewatercomletion);
-                        this.datemaxwaterconc = (new DateTime(incident.date.Ticks)).AddSeconds(this.groundblur.timewaxwaterconc);
+                        this.datemaxwaterconc = (new DateTime(incident.date.Ticks)).AddSeconds(this.groundblur.timemaxwaterconc);
                     }
                     else
                     {
@@ -73,6 +73,12 @@ namespace EGH01DB
                     {
                         this.dateconcentrationinsoil = Const.DATE_INFINITY;
                     }
+
+                    foreach (WaterPollution p in this.waterblur.watepollutionlist)
+                    {
+                        if (!Const.isINFINITY(p.timemaxconcentration)) p.datemaxconcentration = this.incident.date.AddSeconds(p.timemaxconcentration);
+                    }
+
                 }
                 catch (EGHDBException e)
                 {

@@ -21,7 +21,7 @@ namespace EGH01DB.Objects
         public CadastreType  cadastretype   {get; private set; }   // кадастровый тип земли
         public string name                  {get; private set; }  // наименование природоохранного объекта 
         public bool iswaterobject           {get; private set; }    // является ли водным объектом 
-
+        public static  readonly string PREFIX = "ПО";       
         public EcoObject()
         {
             this.id = -1;
@@ -454,20 +454,23 @@ namespace EGH01DB.Objects
             }       
             return rc;
         }
-        public static EcoObjectsList CreateEcoObjectsList(Point center, float distance1, float distance2 )
+        public static EcoObjectsList CreateEcoObjectsList(EGH01DB.IDBContext dbcontext, Point center, float distance1 = 0.0f, float distance2 = float.MaxValue)
         {
 
-            return new EcoObjectsList()
+            EcoObjectsList rc = new EcoObjectsList();
+            List<EcoObject> ecolist = new List<EcoObject>();
+            if (Helper.GetListEcoObject(dbcontext, ref ecolist))
             {
-                // найти все объекты на расстоянии > distance1 и <  distance2
-
-
-            };
+                var selx = ecolist.Where(o =>o.coordinates.Distance(center.coordinates) >= distance1 && 
+                                             o.coordinates.Distance(center.coordinates) <= distance2).AsQueryable();
+                foreach (EcoObject o in selx)
+                {
+                    float x = o.coordinates.Distance(center.coordinates);
+                    rc.Add(o);
+                }
+            }
+            return rc;
         }
-
-
     }
-
-
 
 }

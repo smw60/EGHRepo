@@ -32,8 +32,8 @@ namespace EGH01DB.Blurs
         public float                timeconcentrationinsoil {get; private set;}       // время (сек) достижения усредненной концентрации  нефтепрдукта в грунте      
         public float                speedvertical           {get; private set;}       // вертикальная скорость проникновения нефтепродукта в грунт (м/с)   
         public float                timewatercomletion      {get; private set;}       // время (сек) достижения  нефтепродуктом грунтовых вод   
-        public float                dtimewaxwaterconc       {get; private set;}       // время (сек) достижения  максимальной концентрации  нефтепродуктом грунтовых вод  после достиженич границы грунтовых вод 
-        public float                timewaxwaterconc        {get; private set;}       // время (сек) достижения  максимальной концентрации на уровне грунтовых вод
+        public float                dtimemaxwaterconc       {get; private set;}       // время (сек) достижения  максимальной концентрации  нефтепродуктом грунтовых вод  после достиженич границы грунтовых вод 
+        public float                timemaxwaterconc        {get; private set;}       // время (сек) достижения  максимальной концентрации на уровне грунтовых вод
         public float                maxconcentrationwater   {get; private set;}       // максимальной концентрация на уровне грунтовых вод кг/м3
         public float                ozcorrection            {get; private set;}       // OZ-поправка
         
@@ -233,20 +233,20 @@ namespace EGH01DB.Blurs
                                      this.avgdeep /                                                 // средняя глубина грунтовых вод по опорным точкам (м) 
                                      this.speedvertical;                                            // вертикальная скорость проникновения нефтепродукта в грунт (м/с)   
 
-                this.dtimewaxwaterconc =                                                                // время (сек) достижения  максимальной концентрации  нефтепродуктом грунтовых вод  после достиженич границы грунтовых вод
+                this.dtimemaxwaterconc =                                                                // время (сек) достижения  максимальной концентрации  нефтепродуктом грунтовых вод  после достиженич границы грунтовых вод
                                          this.petrochemicalheight /                                     // высота слоя разлитого нефтепродукта (м)  
                                          (
                                          this.speedvertical *                                           // вертикальная скорость проникновения нефтепродукта в грунт (м/с)   
                                          this.spreadpoint.groundtype.porosity                           // пористость грунта 
                                          );
 
-                this.timewaxwaterconc = this.timewatercomletion + this.dtimewaxwaterconc;                // время (сек) достижения  максимальной концентрации на уровне грунтовых вод
+                this.timemaxwaterconc = this.timewatercomletion + this.dtimemaxwaterconc;                // время (сек) достижения  максимальной концентрации на уровне грунтовых вод
             }
             else
             {
                 this.timewatercomletion = Const.TIME_INFINITY;                                         // никогда 
-                this.dtimewaxwaterconc = Const.TIME_INFINITY;                                          // никогда
-                this.timewaxwaterconc =   Const.TIME_INFINITY;                                         // никогда         
+                this.dtimemaxwaterconc = Const.TIME_INFINITY;                                          // никогда
+                this.timemaxwaterconc =   Const.TIME_INFINITY;                                         // никогда         
             }
             
 

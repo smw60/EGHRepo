@@ -290,9 +290,9 @@
 
         <p>
             <label class="boxdata-label-40 "> Время   довытекания нефтепродукта в грунт (сек) </label>
-            @if (context.ecoforecast.groundblur.dtimewaxwaterconc < Const.TIME_INFINITY)
+            @if (context.ecoforecast.groundblur.dtimemaxwaterconc < Const.TIME_INFINITY)
             {
-                <span> @context.ecoforecast.groundblur.dtimewaxwaterconc  =  @(context.ecoforecast.groundblur.dtimewaxwaterconc / Const.SEC_PER_DAY)  (сут)</span>
+                <span> @context.ecoforecast.groundblur.dtimemaxwaterconc  =  @(context.ecoforecast.groundblur.dtimemaxwaterconc / Const.SEC_PER_DAY)  (сут)</span>
             }
             else
             {
@@ -314,7 +314,7 @@
             <label class="boxdata-label-40 ">Время достижения макс. конц. на  уровне грутовых вод  (сек) </label>
             @if (context.ecoforecast.groundblur.timewatercomletion < Const.TIME_INFINITY)
             {
-                <span>@context.ecoforecast.groundblur.timewaxwaterconc = @( context.ecoforecast.groundblur.timewaxwaterconc / Const.SEC_PER_DAY)  (сут)</span>
+                <span>@context.ecoforecast.groundblur.timemaxwaterconc = @( context.ecoforecast.groundblur.timemaxwaterconc / Const.SEC_PER_DAY)  (сут)</span>
             }
             else
             {

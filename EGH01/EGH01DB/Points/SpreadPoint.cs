@@ -46,7 +46,8 @@ namespace EGH01DB.Points
         {
             this.petrochemicaltype = spreadpoint.petrochemicaltype;
             this.volume = spreadpoint.volume;
-            this.riskobject = spreadpoint.riskobject;    
+            this.riskobject = spreadpoint.riskobject;   
+          
         }
 
 
