@@ -468,8 +468,30 @@ namespace EGH01DB.Objects
 
             list.ForEach(o => this.Add(o));
         }
-        
 
+        //public EcoObjectsList(List<EcoObject> list_xml)
+        //    : base(list_xml)
+        //{
+
+        //}
+        public EcoObjectsList(EGH01DB.IDBContext dbcontext)
+            : base(Helper.GetListEcoObject(dbcontext))
+        {
+
+        }
+        public XmlNode toXmlNode(string comment = "")
+        {
+
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("EcoObjectList");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+
+            this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+
+            //   rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
+            //rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
+            return (XmlNode)rc;
+        }
         public static EcoObjectsList CreateEcoObjectsList(EGH01DB.IDBContext dbcontext,  Point center, float distance = float.MaxValue)
         {
            EcoObjectsList rc = new EcoObjectsList();

@@ -73,6 +73,16 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
+        static public EGH01DB.Objects.EcoObjectsList GetListEcoObject(EGH01DB.IDBContext dbcontext)
+        {
+            List<EcoObject> list = new List<EcoObject>();
+            EGH01DB.Objects.EcoObjectsList rc = new EGH01DB.Objects.EcoObjectsList(list);
+            if (Helper.GetListEcoObject(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Objects.EcoObjectsList(list);
+            }
+            return rc;
+        }
 
         static public bool GetListGroundType(EGH01DB.IDBContext dbcontext, ref List<GroundType> list_type)
         { 
