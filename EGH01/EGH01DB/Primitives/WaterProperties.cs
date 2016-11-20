@@ -310,7 +310,7 @@ namespace EGH01DB.Primitives
 
     public class WaterPropertiesList : List<WaterProperties>
     {
-        List<EGH01DB.Primitives.WaterProperties> list_petrochemical_type = new List<EGH01DB.Primitives.WaterProperties>();
+        List<EGH01DB.Primitives.WaterProperties> list_water_properties = new List<EGH01DB.Primitives.WaterProperties>();
         public WaterPropertiesList()
         {
 

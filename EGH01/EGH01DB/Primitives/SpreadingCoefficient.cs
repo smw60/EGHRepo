@@ -220,7 +220,6 @@ namespace EGH01DB.Primitives
             }
             return koefficient;
         }
-
         public static bool Create(EGH01DB.IDBContext dbcontext, SpreadingCoefficient spreading_coefficient)
         {
             bool rc = false;
@@ -278,7 +277,7 @@ namespace EGH01DB.Primitives
 
 
         }
-        static public bool Update(EGH01DB.IDBContext dbcontext, SpreadingCoefficient spreading_coefficient)
+        public static bool Update(EGH01DB.IDBContext dbcontext, SpreadingCoefficient spreading_coefficient)
         {
             bool rc = false;
             using (SqlCommand cmd = new SqlCommand("EGH.UpdateSpreadingCoefficient", dbcontext.connection))
@@ -337,7 +336,7 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
-        static public bool Delete(EGH01DB.IDBContext dbcontext, SpreadingCoefficient spreading_coefficient)
+        public static bool Delete(EGH01DB.IDBContext dbcontext, SpreadingCoefficient spreading_coefficient)
         {
 
             bool rc = false;
@@ -366,11 +365,11 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
-        static public bool DeleteByCode(EGH01DB.IDBContext dbcontext, int code)
+        public static bool DeleteByCode(EGH01DB.IDBContext dbcontext, int code)
         {
             return Delete(dbcontext, new SpreadingCoefficient(code));
         }
-        static public bool GetByCode(EGH01DB.IDBContext dbcontext, int code, out SpreadingCoefficient spreading_coefficient)
+        public static bool GetByCode(EGH01DB.IDBContext dbcontext, int code, out SpreadingCoefficient spreading_coefficient)
         {
             bool rc = false;
             spreading_coefficient = new SpreadingCoefficient();
@@ -446,5 +445,31 @@ namespace EGH01DB.Primitives
         // другие методы определения коэффициента  
         // static float get
         // static float get
+    }
+
+    public class SpreadingCoefficientList : List<SpreadingCoefficient>
+    {
+        List<EGH01DB.Primitives.SpreadingCoefficient> list_spreading_coefficients = new List<EGH01DB.Primitives.SpreadingCoefficient>();
+        public SpreadingCoefficientList()
+        {
+
+        }
+        public SpreadingCoefficientList(List<SpreadingCoefficient> list) : base(list)
+        {
+
+        }
+        public SpreadingCoefficientList(EGH01DB.IDBContext dbcontext)
+            : base(Helper.GetListSpreadingCoefficient(dbcontext))
+        {
+
+        }
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("SpreadingCoefficientList");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+            return (XmlNode)rc;
+        }
     }
 }
