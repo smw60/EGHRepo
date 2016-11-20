@@ -78,7 +78,7 @@ namespace EGH01.Controllers
                     doc.Save(Server.MapPath("~/App_Data/EcoObject.xml"));
                     view = View("Index");
 
-                    view = File(Server.MapPath("~/App_Data/EcoObject.xml"), "text/plain", "EcoObject.xml");
+                    view = File(Server.MapPath("~/App_Data/EcoObject.xml"), "text/plain", "Природоохранные объекты.xml");
 
 
                 }

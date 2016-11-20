@@ -78,7 +78,7 @@ namespace EGH01.Controllers
                     doc.Save(Server.MapPath("~/App_Data/RiskObject.xml"));
                     view = View("Index");
 
-                    view = File(Server.MapPath("~/App_Data/RiskObject.xml"), "text/plain", "RiskObject.xml");
+                    view = File(Server.MapPath("~/App_Data/RiskObject.xml"), "text/plain", "Техногенный объект.xml");
 
 
                 }

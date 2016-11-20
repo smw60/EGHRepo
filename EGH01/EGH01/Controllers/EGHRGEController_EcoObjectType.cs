@@ -65,16 +65,16 @@ namespace EGH01.Controllers
                  }
                 else if (menuitem.Equals("EcoObjectType.Excel"))
                 {
-                    //EGH01DB.Types.EcoObjectTypeList list = new EcoObjectTypeList(db);
-                    //XmlNode node = list.toXmlNode();
-                    //XmlDocument doc = new XmlDocument();
-                    //XmlNode nnode=  doc.ImportNode(node, true);
-                    //doc.AppendChild(nnode);
-                    //doc.Save(Server.MapPath("~/App_Data/EcoObjectType.xml"));
-                    //view =  View("Index");
+                    EGH01DB.Types.EcoObjectTypeList list = new EcoObjectTypeList(db);
+                    XmlNode node = list.toXmlNode();
+                    XmlDocument doc = new XmlDocument();
+                    XmlNode nnode = doc.ImportNode(node, true);
+                    doc.AppendChild(nnode);
+                    doc.Save(Server.MapPath("~/App_Data/EcoObjectType.xml"));
+                    view = View("Index");
 
-                    //view = File(Server.MapPath("~/App_Data/EcoObjectType.xml"), "text/plain", "Типы природоохранных объектов.xml");
-                   
+                    view = File(Server.MapPath("~/App_Data/EcoObjectType.xml"), "text/plain", "Типы природоохранных объектов.xml");
+
 
                 }
 
