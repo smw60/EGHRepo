@@ -10,7 +10,6 @@ using EGH01DB.Points;
 using EGH01DB.Objects;
 using EGH01DB;
 
-
 namespace EGH01.Controllers
 {
     public partial  class DebugController : Controller
@@ -72,6 +71,20 @@ namespace EGH01.Controllers
             }
             return View();
         }
+        public ActionResult XML_AnchorPoint()
+        {
+            {
+                //CadastreType cad = new CadastreType(2, "Населенных пунктов, садоводческих товариществ, дач", 127, 0.3f);
+                //Point p = new Point(new Coordinates(53.1000f, 27.2345f), new GroundType(2, "ground", 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f), 4, 200.0f);
+                //XmlNode xml = p.toXmlNode("test");
+                
+                //AnchorPoint ap = new AnchorPoint(2, p, cad);
+                //XmlNode xml_ap = ap.toXmlNode("Опорная точка");
+                //Point point_from_xml = new Point(xml_ap);
+                //AnchorPoint ap_from_xml = new AnchorPoint(xml_ap, point_from_xml);
+            }
+            return View();
+        }
         public ActionResult XML_CadastreType()
         {
             {
@@ -118,8 +131,22 @@ namespace EGH01.Controllers
             }
             return View();
         }
-        
 
+        // проверка процедур  Ecoforecast
+        public ActionResult EF_Create()// 
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int id = 0;
+
+                //db.ECOForecast ap = new Ecoforecast(id);
+                //if (EcoForecast.Create())
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
 
         // проверка процедур  Water Properties
         public ActionResult Water_Properties_list() // yes

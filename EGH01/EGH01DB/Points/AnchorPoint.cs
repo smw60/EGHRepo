@@ -32,15 +32,12 @@ namespace EGH01DB.Points
             this.id = id;
             this.cadastretype = new CadastreType ();
         }
-        public AnchorPoint(XmlNode node)
+        public AnchorPoint(XmlNode node, Point point):base(point) 
         {
             this.id = Helper.GetIntAttribute(node, "id", -1);
-            //XmlNode c = node.SelectSingleNode(".//Point");
-            //if (c != null) this.point = new Coordinates(c);
-            //else this.coordinates = null;
-
-            XmlNode g = node.SelectSingleNode(".//CadastreType");
-            if (g != null) this.cadastretype = new CadastreType(g);
+           
+            XmlNode cad = node.SelectSingleNode(".//CadastreType");
+            if (cad != null) this.cadastretype = new CadastreType(cad);
             else this.cadastretype = null;
         }
 
@@ -383,7 +380,9 @@ namespace EGH01DB.Points
             if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
             rc.SetAttribute("id", this.id.ToString());
             rc.AppendChild(doc.ImportNode(this.cadastretype.toXmlNode(), true));
- ////
+            rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
+            rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
+            
             return (XmlNode)rc;
         }
 
