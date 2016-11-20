@@ -21,7 +21,7 @@ namespace EGH01DB.Points
         public Point()
         {
             this.coordinates = new Coordinates();
-            this.groundtype = null;
+            this.groundtype = new GroundType ();
             this.waterdeep = 0.0f;
             this.height = 0.0f;
 
