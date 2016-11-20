@@ -99,7 +99,7 @@ namespace EGH01.Controllers
         public ActionResult GroundTypeCreate(EGH01.Models.EGHRGE.GroundTypeView gt)
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.GroundType";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
@@ -179,28 +179,32 @@ namespace EGH01.Controllers
                         density = 0.0f;
                     }
 
-                   if (porosity >= watercapacity) 
-                    { 
-                    ViewBag.Error = "Влагоемкость грунта не может быть больше или равна пористости"; 
-                    view = View("GroundTypeCreate", db);
-                        return view;
-                    // throw new EGHDBException(string.Format(errormssageformat, "Влагоемкость грунта не может быть больше или равна пористости")); 
 
-                    // EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability); 
-                    } 
-                   else
+                    //ViewBag.Error = "Влагоемкость грунта не может быть больше или равна пористости";
+                    //   view = View("GroundType", db);
+                    //return view;
+
+                    else
                     //     EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability);
-                    { 
-                    EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability, density); // blinova
-
-
-
-                    if (EGH01DB.Types.GroundType.Create(db, ground_type))
                     {
-                        view = View("GroundType", db);
-                    }
-                }
+                        EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability, density); // blinova
 
+
+                        if ((watercapacity < porosity) && (soilmoisture >= watercapacity) && (soilmoisture <= porosity))
+                        {
+                            if (EGH01DB.Types.GroundType.Create(db, ground_type))
+                            {
+                                view = View("GroundType", db);
+                            }
+                        }
+                        else
+                        {
+                            ViewBag.Error = "Влагоемкость грунта не может быть больше или равна пористости";
+                            view = View("GroundTypeCreate", db);
+                            return view;
+                        }
+
+                    }
                 }
                 else if (menuitem.Equals("GroundType.Create.Cancel")) view = View("GroundType", db);
             }
@@ -220,7 +224,7 @@ namespace EGH01.Controllers
         public ActionResult GroundTypeDelete(int type_code)
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.GroundType";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
@@ -249,7 +253,7 @@ namespace EGH01.Controllers
         public ActionResult GroundTypeUpdate(GroundTypeView gt)
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.GroundType";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try

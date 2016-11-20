@@ -68,10 +68,10 @@ namespace EGH01.Controllers
                         }
                     }
                 }
-                //else if (menuitem.Equals("GroundType.Excel"))
+                //else if (menuitem.Equals("CadastreType.Excel"))
                 //{
-                //    EGH01DB.Objects.RiskObject.RiskObjectList list = new EGH01DB.Objects.RiskObject.RiskObjectList();
-                //    XmlNode node = list.toXmlNode();
+                   
+                //    XmlNode node = list
                 //    XmlDocument doc = new XmlDocument();
                 //    XmlNode nnode = doc.ImportNode(node, true);
                 //    doc.AppendChild(nnode);
@@ -100,7 +100,7 @@ namespace EGH01.Controllers
         public ActionResult CadastreTypeCreate(CadastreTypeView cd)
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.CadastreType";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
@@ -144,7 +144,7 @@ namespace EGH01.Controllers
         public ActionResult CadastreTypeDelete(int id)
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.CadastreType";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
@@ -174,7 +174,7 @@ namespace EGH01.Controllers
         public ActionResult CadastreTypeUpdate(CadastreTypeView cd)
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.CadastreType";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
