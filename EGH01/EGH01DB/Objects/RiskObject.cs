@@ -40,7 +40,8 @@ namespace EGH01DB.Objects
         public float tubediameter { get; private set; } //  диаметр трубы
         public float productivity { get; private set; } // производительность тонн в сутки для участка нефтедобычи 
         public string geodescription { get; private set; } // географическое описание
-        
+        public static readonly string PREFIX = "OО"; 
+
         // дополнительная инфомация из паспорта объекта 
 
         static public RiskObject defaulttype { get { return new RiskObject(0); } }  // выдавать при ошибке  

@@ -4,6 +4,8 @@
 @using EGH01DB.Types;
 @using EGH01DB.Blurs;
 @using EGH01DB.Objects;
+@using EGH01DB.Primitives;
+@using EGH01DB.Points;
 @using EGH01.Models.EGHRGE;
 @model  EGH01.Models.EGHRGE.ForecastViewConext
 
@@ -43,6 +45,49 @@
             }
            </p>
         
+        @foreach (WaterPollution o in context.ecoforecast.waterblur.watepollutionlist)
+        {
+            if (o.pointtype == Point.POINTTYPE.ECO)
+            {
+                <fieldset form="ChoiseRiskObject">
+                    <legend>@o.comment @o.name </legend>
+                    <p>
+                        <label class="boxdata-label-40 "> Координаты </label>
+                        @Math.Round(o.coordinates.latitude, 6) @Math.Round(o.coordinates.lngitude, 6)
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 ">Расстояние (м)</label>
+                        @Math.Round(o.distance, 0)
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 ">Высота (м)</label>
+                        @Math.Round(o.height, 0)
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 "> Угол</label>
+                        @Math.Round(o.angle, 1)
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 ">Глубина грунтовых вод (м)</label>
+                        @Math.Round(o.waterdeep, 1)
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 ">Максимальная концентрация нефтепродукта (кг/кг) </label>
+                        @o.maxconcentration
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 ">Время достижения максимальной концентрации (c) </label>
+                        @o.timemaxconcentration  = @(o.timemaxconcentration/Const.SEC_PER_DAY) (сут)
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 ">Дата достижения максимальной концкнтрации </label>
+                        @o.datemaxconcentration.ToShortDateString()
+                    </p>
+                   
+                </fieldset>
+            }
+
+        }
 
         
     </fieldset>

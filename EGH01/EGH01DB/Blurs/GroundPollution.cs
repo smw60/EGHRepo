@@ -12,7 +12,7 @@ namespace EGH01DB.Blurs
 {
     public class GroundPollution : Point   //загрязнение  в точке 
     {
-       public enum POINTTYPE{RISK, ANCHOR, ECO}
+       
        public float watertime                    { get; private set; }          // время достижения грунтовых вод (с)  
        public float concentration                { get; private set; }          // концентрация нефтепрдуктов в грунте    (кг/кг)
        public PetrochemicalType petrochemicatype { get; private set; }          // нефтепрдукт
@@ -23,13 +23,13 @@ namespace EGH01DB.Blurs
        public string name                        { get; private set; }          // наименование 
        public POINTTYPE  pointtype               { get; private set; }          // тип точки 
 
-       private string comment_format = "{0}-{1}:";         // тип-id:              
+       private readonly string comment_format = "{0}-{1}:";         // тип-id:              
        
        public GroundPollution(AnchorPoint anchorpoint,   float distance, float angle, PetrochemicalType petrochemicatype, float concentration = 0.0f, float watertime = 0.0f)
            : base(anchorpoint) 
        {
            this.pointtype = POINTTYPE.ANCHOR;  
-           this.comment = string.Format(comment_format,"ОТ", anchorpoint.id);
+           this.comment = string.Format(comment_format,AnchorPoint.PREFIX, anchorpoint.id);
            this.watertime = watertime;
            this.concentration = concentration;
            this.petrochemicatype = petrochemicatype;
@@ -43,7 +43,7 @@ namespace EGH01DB.Blurs
            : base(ecojbject)
        {
            this.pointtype = POINTTYPE.ECO; 
-           this.comment = string.Format(comment_format, "ПО",  ecojbject.id);
+           this.comment = string.Format(comment_format, EcoObject.PREFIX,  ecojbject.id);
            this.watertime = watertime;
            this.concentration = concentration;
            this.petrochemicatype = petrochemicatype;
@@ -56,7 +56,7 @@ namespace EGH01DB.Blurs
            : base(spreadpoint)
        {
            this.pointtype = POINTTYPE.RISK; 
-           this.comment = string.Format(comment_format, "OО", (spreadpoint.isriskobject? spreadpoint.riskobject.id: 0));
+           this.comment = string.Format(comment_format, RiskObject.PREFIX, (spreadpoint.isriskobject? spreadpoint.riskobject.id: 0));
            this.watertime = watertime;
            this.concentration = concentration;
            this.petrochemicatype = spreadpoint.petrochemicaltype;

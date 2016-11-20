@@ -4,68 +4,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EGH01DB.Types;
-using EGH01DB.Blurs;
+using EGH01DB.Objects;
+using EGH01DB.Primitives;
 using EGH01DB.Points;
 namespace EGH01DB.Blurs
 {
-    public class WaterPollution:   Point   //загрязнение в точке
+    public class WaterPollution : Point   //загрязнение в точке
     {
-       public CadastreType cadastretype       {get; private set;}           // кадастровый тип земли
-        
-       public WaterPollution()
-       { 
-       
-       }
 
-      
-
-        
-        
-        
-        //public float pointtime { get; private set; }                     // время достижения точки грунтовыми водами (сутки) 
-        //public float concentration { get; private set; }                 // концентрация нефтепрдуктов в воде   (мл/дм3)
-
-        // pointtime =  (пористость * расстояние) / (коэффициент фильтрации воды * гидравлический уклон)
-        // пористость и коэффициент фильтрации воды берем из GroundType
-        // concentration = зависит от коэффициентов диффузии, распределения, сорбции, пористости (из GroundType) и pointtime
-        // ГИДРАВЛИЧЕСКИЙ УКЛОН - под вопросом!!!!!
-
-    }
+        public PetrochemicalType petrochemicatype { get; private set; }          // нефтепрдукт
+        public CadastreType cadastretype { get; private set; }          // кадастровый тип земли
+        public float distance { get; private set; }          // расстояние до центра разлива 
+        public float maxconcentration { get; set; }                  // максимальная концентрация нефтепродукта
+        public float timemaxconcentration { get; private set; }          // время достижения  максимальной концентрация нефтепродукта
+        public DateTime datemaxconcentration { get; set; }                  // дата достижения  максимальной концентрация нефтепродукта
+        public float speedhorizontal { get; private set; }          // горизонтальная скорость 
+        public float angle { get; private set; }          // гидравлический угол наклона  
+        public string comment { get; private set; }          // комментарий 
+        public string name { get; private set; }          // наименование 
 
 
 
-
-    public class WaterPollutionList : List<WaterPollution>    //  загрязнение во всех точках  в  водном радиусе 
-    {
-        // WaterPollutionList  строится на основе:
-        //  - списка GroundPollutionList
-        //  - списка PointList - список точек, вошедших в 
+        public POINTTYPE pointtype { get; private set; }          // тип точки 
 
 
-        public static WaterPollutionList CreateWaterPollutionList(Point center, GroundPollutionList pollutionlist, PetrochemicalType petrochemical, float groundradius, float waterradius)
+        private readonly string comment_format = "{0}-{1}:";         // тип-id:
+
+
+        public WaterPollution()
         {
 
-            WaterPollutionList rc = new WaterPollutionList();
-           
-            foreach (GroundPollution  gp in pollutionlist) 
-            {
-                // добавить в список rc новый элемент на основе gp
-            }
+        }
+        public WaterPollution(EcoObject ecojbject, float distance, float angle, PetrochemicalType petrochemicatype, float speedhorizontal, float maxconcentration = 0.0f, float timemaxconcentration = 0.0f)
+            : base(ecojbject)
+        {
+            this.pointtype = POINTTYPE.ECO;
+            this.comment = string.Format(comment_format, EcoObject.PREFIX, ecojbject.id);
+            this.petrochemicatype = petrochemicatype;
+            this.cadastretype = ecojbject.cadastretype;
+            this.distance = distance;
+            this.angle = angle;
+            this.name = ecojbject.name;
+            this.speedhorizontal = speedhorizontal;
+            this.maxconcentration = maxconcentration;
+            this.timemaxconcentration = timemaxconcentration;
+            this.datemaxconcentration = Const.DATE_INFINITY;
 
-            
-            AnchorPointList anchorpointlist = AnchorPointList.CreateNear(center.coordinates, groundradius, waterradius);
-            foreach (AnchorPoint an in anchorpointlist)
-            {
-                // добавить в список rc новый элемент на основе an
-            
-            }
-
-            return rc;            
         }
 
-
-
     }
+    public class WaterPollutionList : List<WaterPollution>    //  загрязнение во всех точках  в  водном радиусе 
+    {
+          public bool Add(WaterPollution waterpollution)
+          {
+               base.Add(waterpollution);
+               return true;
+           }
 
+      }
     
 }

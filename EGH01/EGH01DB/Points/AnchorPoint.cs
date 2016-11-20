@@ -14,6 +14,7 @@ namespace EGH01DB.Points
 {
     public class AnchorPoint:Point   // опорная геологическая точка   
     {
+        public static readonly string PREFIX = "ОT"; 
         public int          id           {get; private set;}  
         public CadastreType cadastretype {get; private set;}   // кадастровый тип земли
 
