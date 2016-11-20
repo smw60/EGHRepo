@@ -372,6 +372,7 @@
     <Content Include="Views\EGHRGE\_ForecastReportWB.cshtml" />
     <Content Include="Views\EGHRGE\EcoObjectCreateEco.cshtml" />
     <Content Include="Views\EGHCAI\Map.cshtml" />
+    <Content Include="Views\EGHCEQ\ChoiceForecastResult.cshtml" />
     <Content Include="Views\EGHRGE\_EcoObjectTypeList.cshtml" />
     <Content Include="Views\EGHRGE\EcoObjectType.cshtml" />
     <Content Include="Views\EGHRGE\EcoObjectTypeUpdate.cshtml" />
