@@ -10,7 +10,7 @@
 ---- Получение списка отчетов по цепочке от потомка к предку
 
 -----------------------------------------------------------------------------
-drop procedure EGH.GetNextReportCode;
+drop procedure EGH.GetNextReportId;
 drop procedure EGH.CreateReport;
 drop procedure EGH.DeleteReport; 
 drop procedure EGH.UpdateReport;
@@ -82,7 +82,7 @@ end;
 go
 
 -- Получение следующего ID отчета 
-create procedure EGH.GetNextReportCode(@IdОтчета int output)
+create procedure EGH.GetNextReportId(@IdОтчета int output)
  as begin
 	declare @rc int = -1;
 	
@@ -94,6 +94,17 @@ create procedure EGH.GetNextReportCode(@IdОтчета int output)
 	end;
 	else
 		set @rc = @@ROWCOUNT;
+	return @rc;    
+end;
+go
+-- Обновление типа природоохранных комментария отчета по Id 
+create  procedure EGH.UpdateReport(@IdОтчета int, @Комментарий nvarchar(MAX)) 
+as begin 
+    declare @rc int = -1;
+	update  dbo.Отчет 
+	set Комментарий = @Комментарий 
+	where IdОтчета = @IdОтчета;  
+	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
 go

@@ -387,7 +387,6 @@ namespace EGH01DB.Points
             return (XmlNode)rc;
         }
     }
-
     public class AnchorPointList : List<AnchorPoint>   // список  опорных точек 
     {
         public float avgheight // средняя глубина грунтовых вод

@@ -160,18 +160,16 @@ namespace EGH01.Controllers
         // проверка процедур  Ecoforecast
         public ActionResult EF_Create()// 
         {
-            //RGEContext.ECOForecast f = new RGEContext.ECOForecast 
-            {
-                //int id = 0;
-
-                //db.ECOForecast ap = new Ecoforecast(id);
-                //if (EcoForecast.Create())
-                //{
-                //    int k = 1;
-                //};
-            }
+            RGEContext db = new RGEContext();
+            string comment = "";
+            RGEContext.ECOForecast f = new RGEContext.ECOForecast();
+            if (RGEContext.ECOForecast.GetById(db, 1, out f, out comment))
+                {
+                    int k = 1;
+                };
             return View();
         }
+
 
         // проверка процедур  Water Properties
         public ActionResult Water_Properties_list() // yes

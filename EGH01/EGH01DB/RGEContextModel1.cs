@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 using EGH01DB.Points;
 using EGH01DB.Types;
 using EGH01DB.Primitives;
-using System.Data.SqlClient;
 using System.Data;
 using System.Xml;
+using System.Data.SqlClient;
+using System.Configuration;
+using EGH01DB.Objects;
+using EGH01DB.Blurs;
 
 namespace EGH01DB
 {
@@ -49,12 +52,13 @@ namespace EGH01DB
                 }
                 {
                     SqlParameter parm = new SqlParameter("@ТекстОтчета", SqlDbType.Xml);
-                    parm.IsNullable = true; // сериализация!
-                    parm.Value = null;
+                    parm.IsNullable = true;
+                    parm.Value = ecoforecast.toXmlNode();
                     cmd.Parameters.Add(parm);
                 }
                 {
                     SqlParameter parm = new SqlParameter("@Комментарий", SqlDbType.NVarChar);
+                    parm.IsNullable = true;
                     parm.Value = comment;
                     cmd.Parameters.Add(parm);
                 }
@@ -70,7 +74,6 @@ namespace EGH01DB
                 };
                 return rc;
             }
-
             }
             static public bool GetNextId(EGH01DB.IDBContext dbcontext, out int next_id)
             {
@@ -102,35 +105,116 @@ namespace EGH01DB
                     return rc;
                 }
             }
-            public static bool GetById(IDBContext db, int id, out  ECOForecast ecoforecast, out string comment)
+            static public bool GetById(EGH01DB.IDBContext dbcontext, int id, out ECOForecast ecoforecast, out string comment)
             {
+                bool rc = false;
                 ecoforecast = new ECOForecast();
-                comment = "Комментарий";
+                comment = "";
+                using (SqlCommand cmd = new SqlCommand("EGH.GetReportbyId", dbcontext.connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    {
+                        SqlParameter parm = new SqlParameter("@IdОтчета", SqlDbType.Int);
+                        parm.Value = id;
+                        cmd.Parameters.Add(parm);
+                    }
+                    {
+                        SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                        parm.Direction = ParameterDirection.ReturnValue;
+                        cmd.Parameters.Add(parm);
+                    }
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        if (reader.Read())
+                        {
+                            DateTime date = (DateTime)reader["ДатаОтчета"];
+                            string stage = (string)reader["Стадия"];
+                            // int predator = (int)reader["Родитель"];
+                            comment = (string)reader["Комментарий"];
+                            XmlNode forecast_report = (XmlNode)reader["ТекстОтчета"];
+                            if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) ecoforecast = new ECOForecast(forecast_report);
+                        }
+                        reader.Close();
+                    }
+                    catch (Exception e)
+                    {
+                        rc = false;
+                    };
 
-                return true;
+                }
+                return rc;
             }
-
-            
-            public static bool DeleteById(IDBContext db, int id)
+            static public bool Delete(EGH01DB.IDBContext dbcontext, ECOForecast ecoforecast)
             {
-              
-                return true;
+                bool rc = false;
+                using (SqlCommand cmd = new SqlCommand("EGH.DeleteReport", dbcontext.connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    {
+                        SqlParameter parm = new SqlParameter("@IdОтчета", SqlDbType.Int);
+                        parm.Value = ecoforecast.id;
+                        cmd.Parameters.Add(parm);
+                    }
+                    {
+                        SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                        parm.Direction = ParameterDirection.ReturnValue;
+                        cmd.Parameters.Add(parm);
+                    }
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        rc = (int)cmd.Parameters["@exitrc"].Value > 0;
+                    }
+                    catch (Exception e)
+                    {
+                        rc = false;
+                    };
+                }
+                return rc;
             }
-
+            static public bool DeleteById(EGH01DB.IDBContext dbcontext, int id)
+            {
+                return Delete(dbcontext, new ECOForecast(id));
+            }
             public static bool UpdateCommentById(IDBContext db, int id, string comment)
             {
-
-                return true;
+                bool rc = false;
+                using (SqlCommand cmd = new SqlCommand("EGH.GetReportbyId", db.connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    {
+                        SqlParameter parm = new SqlParameter("@IdОтчета", SqlDbType.Int);
+                        parm.Value = id;
+                        cmd.Parameters.Add(parm);
+                    }
+                    {
+                        SqlParameter parm = new SqlParameter("@Комментарий", SqlDbType.NVarChar);
+                        parm.Value = comment;
+                        cmd.Parameters.Add(parm);
+                    }
+                    {
+                        SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                        parm.Direction = ParameterDirection.ReturnValue;
+                        cmd.Parameters.Add(parm);
+                    }
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        rc = (int)cmd.Parameters["@exitrc"].Value > 0;
+                    }
+                    catch (Exception e)
+                    {
+                        rc = false;
+                    };
+                }
+                return rc;
             }
-
-
-                    
         }
 
-       
         public class ECOForecastlist : List<ECOForecast>
         {
-
             public static bool Get(       //  получить списки ECOForecastlist и соотв. комментов 
                                    IDBContext db, 
                                    string stage,                                // стадия  
@@ -143,7 +227,14 @@ namespace EGH01DB
               
               return true;
           }
-
+            public XmlNode toXmlNode(string comment = "")
+            {
+                XmlDocument doc = new XmlDocument();
+                XmlElement rc = doc.CreateElement("ECOForecastList");
+                if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+                this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+                return (XmlNode)rc;
+            }
           
         
         }
