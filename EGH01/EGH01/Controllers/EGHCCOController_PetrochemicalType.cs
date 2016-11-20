@@ -67,7 +67,7 @@ namespace EGH01.Controllers
                 }
                 else if (menuitem.Equals("PetrochemicalType.Excel"))
                 {
-                    //EGH01DB.Types.PetrochemicalType.PetrochemicalTypeList list = new EGH01DB.Types.PetrochemicalType.PetrochemicalTypeList();
+                    //EGH01DB.Types.PetrochemicalTypeList list = new PetrochemicalType(db);
                     //XmlNode node = list.toXmlNode();
                     //XmlDocument doc = new XmlDocument();
                     //XmlNode nnode = doc.ImportNode(node, true);
@@ -76,7 +76,6 @@ namespace EGH01.Controllers
                     //view = View("Index");
 
                     //view = File(Server.MapPath("~/App_Data/PetrochemicalType.xml"), "text/plain", "PetrochemicalType.xml");
-
 
                 }
             }

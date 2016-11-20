@@ -47,6 +47,22 @@ namespace EGH01DB.Objects
             this.name = name;
             this.iswaterobject = iswaterobject;
         }
+        public EcoObject(XmlNode node)
+            : base(new Point(node.SelectSingleNode(".//Point")))
+        {
+            this.id = Helper.GetIntAttribute(node, "id", -1);
+           
+            XmlNode cad = node.SelectSingleNode(".//CadastreType");
+            if (cad != null) this.cadastretype = new CadastreType(cad);
+            else this.cadastretype = null;
+
+            XmlNode eco_object_type = node.SelectSingleNode(".//EcoObjectType");
+            if (eco_object_type != null) this.ecoobjecttype = new EcoObjectType(eco_object_type);
+            else this.ecoobjecttype = null;
+
+            this.name = Helper.GetStringAttribute(node, "name", "");
+            this.iswaterobject = Helper.GetBoolAttribute(node, "iswaterobject", false);
+        }
         static public bool Create(EGH01DB.IDBContext dbcontext, EcoObject ecoobject)
         {
             bool rc = false;
@@ -421,6 +437,21 @@ namespace EGH01DB.Objects
                 };
                 return rc;
             }
+        }
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("EcoObject");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            rc.SetAttribute("id", this.id.ToString());
+            XmlNode n = base.toXmlNode("");
+            rc.AppendChild(doc.ImportNode(n, true));
+            rc.AppendChild(doc.ImportNode(this.ecoobjecttype.toXmlNode(), true));
+            rc.AppendChild(doc.ImportNode(this.cadastretype.toXmlNode(), true));
+            rc.SetAttribute("name", this.name.ToString());
+            rc.SetAttribute("iswaterobject", this.iswaterobject.ToString());
+           
+            return (XmlNode)rc;
         }
     }
      

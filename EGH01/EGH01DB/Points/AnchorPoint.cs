@@ -33,27 +33,14 @@ namespace EGH01DB.Points
             this.id = id;
             this.cadastretype = new CadastreType ();
         }
-        //public AnchorPoint(XmlNode node):base(new Point (node.SelectSingleNode(".//Point")))
-        //{
-        //    this.id = Helper.GetIntAttribute(node, "id", -1);
-        //    XmlNode cad = node.SelectSingleNode(".//CadastreType");
-        //    if (cad != null) this.cadastretype = new CadastreType(cad);
-        //    else this.cadastretype = null;
-        //}
-
         public AnchorPoint(XmlNode node)
-            : base(new Point( node.SelectSingleNode(".//Point")))
+            : base(new Point(node.SelectSingleNode(".//Point")))
         {
-            int k = 1;
-
-            //this.id = Helper.GetIntAttribute(node, "id", -1);
-
-            //XmlNode cad = node.SelectSingleNode(".//CadastreType");
-            //if (cad != null) this.cadastretype = new CadastreType(cad);
-            //else this.cadastretype = null;
+            this.id = Helper.GetIntAttribute(node, "id", -1);
+            XmlNode cad = node.SelectSingleNode(".//CadastreType");
+            if (cad != null) this.cadastretype = new CadastreType(cad);
+            else this.cadastretype = null;
         }
-
-
 
         static public bool Create(EGH01DB.IDBContext dbcontext, AnchorPoint anchor_point)
         {
@@ -393,15 +380,9 @@ namespace EGH01DB.Points
             XmlElement rc = doc.CreateElement("AnchorPoint");
             if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
             rc.SetAttribute("id", this.id.ToString());
-
-
-           
-
             XmlNode n = base.toXmlNode("");
             rc.AppendChild(doc.ImportNode(n, true));
             rc.AppendChild(doc.ImportNode(this.cadastretype.toXmlNode(), true));
-                
-            
             return (XmlNode)rc;
         }
 

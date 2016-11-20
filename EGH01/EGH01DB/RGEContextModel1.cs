@@ -17,8 +17,7 @@ namespace EGH01DB
     {
         public partial class ECOForecast         //  модель прогнозирования 
         {
-
-            public static bool Create(IDBContext dbcontext, ECOForecast ecoforecast)
+            public static bool Create(IDBContext dbcontext, ECOForecast ecoforecast, string comment = "")
             {
                 bool rc = false;
                 using (SqlCommand cmd = new SqlCommand("EGH.CreateReport", dbcontext.connection))
@@ -56,7 +55,7 @@ namespace EGH01DB
                 }
                 {
                     SqlParameter parm = new SqlParameter("@Комментарий", SqlDbType.NVarChar);
-                    parm.Value = "";
+                    parm.Value = comment;
                     cmd.Parameters.Add(parm);
                 }
                 
@@ -103,35 +102,49 @@ namespace EGH01DB
                     return rc;
                 }
             }
-            public static bool GetById(IDBContext db, int id, out  ECOForecast ecoforecast)
+            public static bool GetById(IDBContext db, int id, out  ECOForecast ecoforecast, out string comment)
             {
                 ecoforecast = new ECOForecast();
+                comment = "Комментарий";
 
                 return true;
             }
+
+            
             public static bool DeleteById(IDBContext db, int id)
             {
               
                 return true;
             }
-          
+
+            public static bool UpdateCommentById(IDBContext db, int id, string comment)
+            {
+
+                return true;
+            }
+
+
                     
         }
 
        
         public class ECOForecastlist : List<ECOForecast>
         {
-         
-          public static  bool  Get(IDBContext db, out ECOForecastlist ecoforecastlist)
+
+            public static bool Get(       //  получить списки ECOForecastlist и соотв. комментов 
+                                   IDBContext db, 
+                                   string stage,                                // стадия  
+                                   out ECOForecastlist ecoforecastlist,         // список объектов 
+                                   out List<string> comments                    // список комментов соотв. списку объектов 
+                                  )
           {
               ecoforecastlist = new ECOForecastlist();
-
-
+              comments = new List<string>();
+              
               return true;
           }
 
           
-
         
         }
      }

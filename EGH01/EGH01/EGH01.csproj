@@ -181,6 +181,7 @@
     <Compile Include="Controllers\EGHRGEController_AnchorPoint.cs" />
     <Compile Include="Controllers\EGHRGEController_CadastreType.cs" />
     <Compile Include="Controllers\EGHRGEController_EcoObject.cs" />
+    <Compile Include="Controllers\EGHRGEController_EcoObjectType.cs" />
     <Compile Include="Controllers\EGHRGEController_GroundType.cs" />
     <Compile Include="Controllers\EGHRGEController_IncidentType.cs" />
     <Compile Include="Controllers\EGHRGEController.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EGHCAI\RiskObject.cs" />
     <Compile Include="Models\EGHCCO\PetrochemicalTypeView.cs" />
+    <Compile Include="Models\EGHRGE\EcoObjectTypeView.cs" />
     <Compile Include="Models\EGHRGE\EcoObjectView.cs" />
     <Compile Include="Models\EGHRGE\ChoiceRiskObjectViewContext.cs" />
     <Compile Include="Models\EGHRGE\ForecastViewConext .cs" />
@@ -371,9 +373,15 @@
     <Content Include="Views\EGHRGE\EcoObjectCreateEco.cshtml" />
     <Content Include="Views\EGHCAI\Map.cshtml" />
     <Content Include="Views\EGHCEQ\ChoiceForecastResult.cshtml" />
+    <Content Include="Views\EGHRGE\_EcoObjectTypeList.cshtml" />
+    <Content Include="Views\EGHRGE\EcoObjectType.cshtml" />
+    <Content Include="Views\EGHRGE\EcoObjectTypeUpdate.cshtml" />
+    <Content Include="Views\EGHRGE\EcoObjectTypeDelete.cshtml" />
+    <Content Include="Views\EGHRGE\EcoObjectTypeCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\EcoObjectTypeView\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

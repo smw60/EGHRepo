@@ -95,6 +95,10 @@
               {
                 <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE") | Коэффициент растекания</h2>
               }
+              else if (ViewBag.EGHLayout == "RGE.EcoObjectType")
+              {
+                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE") | Типы природоохранных объектов</h2>
+              }
 
               else if (ViewBag.EGHLayout == "RGE.WaterProperties")
               {
@@ -159,7 +163,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Типы природоохранных объектов", "Index", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы природоохранных объектов", "EcoObjectType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
@@ -181,7 +185,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы природоохранных объектов", "EcoObjectType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
@@ -202,7 +206,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы природоохранных объектов", "EcoObjectType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
@@ -223,7 +227,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы природоохранных объектов", "EcoObjectType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
@@ -244,7 +248,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы природоохранных объектов", "EcoObjectType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
@@ -265,7 +269,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы природоохранных объектов", "EcoObjectType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
@@ -286,7 +290,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы природоохранных объектов", "EcoObjectType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
@@ -307,7 +311,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы природоохранных объектов", "EcoObjectType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
@@ -328,7 +332,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Типы природоохранных объектов", "IncidentType", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Типы природоохранных объектов", "EcoObjectType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>

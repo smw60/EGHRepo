@@ -9,7 +9,7 @@ using System.Xml;
 using EGH01DB.Types;
 using EGH01DB.Objects;
 using EGH01DB.Points;
-//using EGH01DB.Types.PetrochemicalType;
+using EGH01DB.Primitives;
 
 
 namespace EGH01DB.Primitives
@@ -713,8 +713,18 @@ namespace EGH01DB.Primitives
             if (n.Attributes[name] != null) rc = n.Attributes[name].Value;
             return rc;
         }
-
-
+        static public bool GetBoolAttribute(XmlNode n, string name, bool errorvalue = false)
+        {
+            bool rc = errorvalue;
+            if (n.Attributes[name] != null) if (!bool.TryParse(n.Attributes[name].Value, out rc)) rc = errorvalue;
+            return rc;
+        }
+        static public DateTime GetDateTimeAttribute(XmlNode n, string name, DateTime errorvalue)
+        {
+            DateTime rc = errorvalue;
+            if (n.Attributes[name] != null) if (!DateTime.TryParse(n.Attributes[name].Value, out rc)) rc = errorvalue;
+            return rc;
+        }
         
     }
 }

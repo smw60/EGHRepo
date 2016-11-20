@@ -75,31 +75,38 @@ namespace EGH01.Controllers
         public ActionResult XML_AnchorPoint()
         {
             {
+                //int id = 1;
                 //CadastreType cad = new CadastreType(2, "Населенных пунктов, садоводческих товариществ, дач", 127, 0.3f);
-                //Point p = new Point(new Coordinates(53.1000f, 27.2345f), new GroundType(2, "ground", 120f, 2.7f, 3.8f, 4.0f, 5.7f, 6.2f), 4, 200.0f);
-                //XmlNode xml = p.toXmlNode("test");
-
-                
-                 
-                 AnchorPoint ap = new AnchorPoint( );
-                 XmlNode xml_ap = ap.toXmlNode("Опорная точка");
-
-                 AnchorPoint ap1 = new AnchorPoint(xml_ap);
-
-
-                //Point point_from_xml = new Point(xml_ap);
-                //AnchorPoint ap_from_xml = new AnchorPoint(xml_ap, point_from_xml);
-
-
-                //AnchorPoint ap = new AnchorPoint(2, p, cad);
+                //Point p = new Point(new Coordinates(53.1000f, 27.2345f), new GroundType(3, "ground", 120f, 2.7f, 3.8f, 4.0f, 5.7f, 6.2f), 4, 200.0f);
+  
+                //AnchorPoint ap = new AnchorPoint(id, p, cad);
                 //XmlNode xml_ap = ap.toXmlNode("Опорная точка");
-                
+
                 //AnchorPoint ap_from_xml = new AnchorPoint(xml_ap);
+            }
+            return View();
+        }
+        public ActionResult XML_RiskObject()
+        {
+            RGEContext db = new RGEContext();
+            {
+                //RiskObject ro = new RiskObject();
+                //RiskObject.GetById(db, 4, ref ro);
+                //XmlNode xml_ro = ro.toXmlNode("Техногенный объект");
 
-                //AnchorPoint ap = new AnchorPoint();
-                //XmlNode xml_ap = ap.toXmlNode ("Опорная точка");
-                //AnchorPoint ap1 = new AnchorPoint(xml_ap);
+                //RiskObject ro_from_xml = new RiskObject(xml_ro);
+            }
+            return View();
+        }
+        public ActionResult XML_EcoObject()
+        {
+            RGEContext db = new RGEContext();
+            {
+                //EcoObject eco = new EcoObject();
+                //EcoObject.GetById(db, 9, ref eco);
+                //XmlNode xml_eco = eco.toXmlNode("Природоохранный объект");
 
+                //EcoObject eco_from_xml = new EcoObject(xml_eco);
             }
             return View();
         }
