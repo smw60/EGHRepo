@@ -67,20 +67,20 @@ namespace EGH01.Controllers
                         }
                     }
                 }
-                //else if (menuitem.Equals("GroundType.Excel"))
-                //{
-                //    EGH01DB.Objects.RiskObject.RiskObjectList list = new EGH01DB.Objects.RiskObject.RiskObjectList();
-                //    XmlNode node = list.toXmlNode();
-                //    XmlDocument doc = new XmlDocument();
-                //    XmlNode nnode = doc.ImportNode(node, true);
-                //    doc.AppendChild(nnode);
-                //    doc.Save(Server.MapPath("~/App_Data/RiskObject.xml"));
-                //    view = View("Index");
+                else if (menuitem.Equals("GroundType.Excel"))
+                {
+                    EGH01DB.Types.GroundTypeList list = new EGH01DB.Types.GroundTypeList(db);
+                    XmlNode node = list.toXmlNode();
+                    XmlDocument doc = new XmlDocument();
+                    XmlNode nnode = doc.ImportNode(node, true);
+                    doc.AppendChild(nnode);
+                    doc.Save(Server.MapPath("~/App_Data/GroundType.xml"));
+                    view = View("Index");
 
-                //    view = File(Server.MapPath("~/App_Data/RiskObject.xml"), "text/plain", "RiskObject.xml");
+                    view = File(Server.MapPath("~/App_Data/GroundType.xml"), "text/plain", "Типы грунтов.xml");
 
 
-                //}
+                }
 
             }
             catch (RGEContext.Exception e)

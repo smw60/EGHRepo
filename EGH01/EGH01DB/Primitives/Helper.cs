@@ -114,6 +114,16 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
+        static public EGH01DB.Types.GroundTypeList GetListGroundType(EGH01DB.IDBContext dbcontext)
+        {
+            List<GroundType> list = new List<GroundType>();
+            EGH01DB.Types.GroundTypeList rc = new EGH01DB.Types.GroundTypeList(list);
+            if (Helper.GetListGroundType(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.GroundTypeList(list);
+            }
+            return rc;
+        }
         static public bool GetListGroundType(EGH01DB.IDBContext dbcontext, ref List<GroundType> list_type)
         { 
             bool rc = false;
