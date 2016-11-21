@@ -111,7 +111,7 @@ namespace EGH01.Controllers
         public ActionResult SpreadingCoefficientCreate(SpreadingCoefficientView scv)
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.SpreadingCoefficient";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
@@ -179,7 +179,7 @@ namespace EGH01.Controllers
         public ActionResult SpreadingCoefficientDelete(int code)
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.SpreadingCoefficient";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
@@ -210,7 +210,7 @@ namespace EGH01.Controllers
         public ActionResult SpreadingCoefficientUpdate(SpreadingCoefficientView scv)
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.SpreadingCoefficient";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try

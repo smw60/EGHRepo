@@ -95,7 +95,7 @@ namespace EGH01.Controllers
         public ActionResult EcoObjectTypeCreate(EcoObjectTypeView itv)
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.EcoObjectType";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"]??"Empty";
             try
@@ -128,7 +128,7 @@ namespace EGH01.Controllers
         public ActionResult EcoObjectTypeDelete(int type_code)
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.EcoObjectType";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
@@ -156,7 +156,7 @@ namespace EGH01.Controllers
         public ActionResult EcoObjectTypeUpdate(EcoObjectTypeView itv)
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.EcoObjectType";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
