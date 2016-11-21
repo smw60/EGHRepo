@@ -22,16 +22,17 @@
 @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHRGE", Action = "CadastreType", Menu = start })
 @using (Html.BeginForm("CadastreTypeCreate", "EGHRGE"))
 {
-
-
-    <div class="box">
-        <div class="boxdata">
-            <label class="boxdata-label-30"> Наименование категории земли</label>
-            <input class="boxdata-input-30" type="text" name="name" />
-        </div>
-
-
-        @Html.Partial("_TypeLineMenu", create)
-    </div>
+        <div class="box">
+        <fieldset form="CadastreType">
+            <div class="boxdata">
+                <p>
+                    <label class="boxdata-label-30"> Наименование категории земли</label>
+                    <input class="boxdata-input-30" type="text" name="name" />
+                </p>
+</div>
+        </fieldset>
+            @Html.Partial("_TypeLineMenu", create)
+</div>
 }
+
 

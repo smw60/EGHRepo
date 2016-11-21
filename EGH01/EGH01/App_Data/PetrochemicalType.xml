@@ -10,4 +10,5 @@
   <PetrochemicalType code_type="11" name="Нефть сырая казахская" boilingtemp="60" density="850" viscosity="0,0186" solubility="50" tension="0,026" dynamicviscosity="0,04545" diffusion="1E-07" />
   <PetrochemicalType code_type="12" name=" Нефть сырая белорусская" boilingtemp="60" density="830" viscosity="0,01605" solubility="50" tension="0,026" dynamicviscosity="0,04545" diffusion="1E-07" />
   <PetrochemicalType code_type="13" name="Тест1 Бензин" boilingtemp="110" density="750" viscosity="4,3E-07" solubility="0,009" tension="0,021" dynamicviscosity="0,00052" diffusion="1E-07" />
+  <PetrochemicalType code_type="14" name="Тест1 Нефть " boilingtemp="200" density="850" viscosity="6,1E-06" solubility="0,05" tension="0,026" dynamicviscosity="0,0178" diffusion="1E-07" />
 </PetrochemicalTypeList>

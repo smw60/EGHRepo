@@ -110,7 +110,7 @@
             </div>
             <p>
                 <label class="boxdata-label-30">Наименование</label>
-                <input class="boxdata-input-50" type="text" name="Name" value="@Model.name" />
+                <textarea class="boxdata-input-50" name="Name" >@Model.name</textarea>
             </p>
             <p>
                 <label class="boxdata-label-30">Тип техногенного объекта</label>@Html.DropDownList("selectlist")
@@ -207,7 +207,7 @@
                     if (context.reconstractiondate != null) { reconstractiondate = ((DateTime)@Model.reconstractiondate).ToString("yyyy-MM-dd"); }
 
                     <div class="boxdata">
-                        <label class="boxdata-label-30">Дата послежней реконструкции</label>
+                        <label class="boxdata-label-30">Дата последней реконструкции</label>
                         <input class="boxdata-input-50" type="date" name="reconstractiondate" value="@reconstractiondate" />
                     </div>
 

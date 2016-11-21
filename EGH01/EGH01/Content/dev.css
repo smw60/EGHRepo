@@ -16,7 +16,7 @@ body
 }
 .logo
 {
-    width: 60px;
+    width: 56px;
     float: right;
 }
 
@@ -428,4 +428,17 @@ body
     {
         font-size: 1em;
     }
+}
+.navbar-brand {     /*логотип*/
+    
+    position:fixed;
+    left:0;
+    top:0;
+    padding:0px;
+    height:53px;
+}
+.navbar-brand img{
+    padding:0px;
+    padding-left:15px;
+    height:53px;
 }
