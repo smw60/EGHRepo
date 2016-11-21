@@ -147,8 +147,8 @@ namespace EGH01.Controllers
                         float koef;
                         Helper.FloatTryParse(strkoef, out koef);
 
-                        SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient((int)code, type_groud, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
-
+                        SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient((int)code, type_groud, new PetrochemicalType(), (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
+                        // исправить тип нефтепродукта
                         //koef = EGH01DB.Primitives.SpreadingCoefficient.Get(db, sc);
                         //sc = new EGH01DB.Primitives.SpreadingCoefficient((int)code, type_groud, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
                         if (EGH01DB.Primitives.SpreadingCoefficient.Create(db, sc))
@@ -243,8 +243,8 @@ namespace EGH01.Controllers
                          float koef;
                          Helper.FloatTryParse(strkoef, out koef);
 
-                         SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient((int)code, type_groud, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
-
+                         SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient((int)code, type_groud, new PetrochemicalType(), (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
+                         // исправить тип нефтепродукта
                          //koef = EGH01DB.Primitives.SpreadingCoefficient.Get(db, sc);
 
                          //sc = new SpreadingCoefficient((int)code, type_groud, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
