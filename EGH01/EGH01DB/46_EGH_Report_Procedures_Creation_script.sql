@@ -14,7 +14,7 @@ drop procedure EGH.GetNextReportId;
 drop procedure EGH.CreateReport;
 drop procedure EGH.DeleteReport; 
 drop procedure EGH.UpdateReport;
-drop procedure EGH.GetReportByCode;
+drop procedure EGH.GetReportById;
 drop procedure EGH.GetReportList;
 go
 ------------------------------------
@@ -52,7 +52,7 @@ as begin
 end; 
 go
 -- Получение отчета по ID 
-create  procedure EGH.GetReportByCode(@IdОтчета int) 
+create  procedure EGH.GetReportById(@IdОтчета int) 
 as begin 
     declare @rc int = -1;
 	select IdОтчета,

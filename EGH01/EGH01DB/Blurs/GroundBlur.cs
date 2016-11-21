@@ -7,7 +7,7 @@ using EGH01DB.Objects;
 using EGH01DB.Types;
 using EGH01DB.Points;
 using EGH01DB.Primitives;
-
+using System.Xml;
 
 // температура 
 
@@ -46,8 +46,33 @@ namespace EGH01DB.Blurs
         public EcoObjectsList       ecoobjecstlist          {get; private set;}       // список объектов в т.ч. заглавный которые попали в наземное пятно    
         //public GroundPollutionList pollutionlist          {get; private set;}       // загрязнение в точках  
        
-        private string errormssageformat = "GroundBlur: Ошибка в данных. {0}";  
-     
+        private string errormssageformat = "GroundBlur: Ошибка в данных. {0}";
+        
+        public GroundBlur(XmlNode node)
+        {
+            this.square = Helper.GetFloatAttribute(node, "square", 0.0f);
+            this.radius = Helper.GetFloatAttribute(node, "radius", 0.0f);
+            this.totalmass = Helper.GetFloatAttribute(node, "totalmass", 0.0f);
+            this.limitadsorbedmass = Helper.GetFloatAttribute(node, "limitadsorbedmass", 0.0f);
+
+            this.avgdeep = Helper.GetFloatAttribute(node, "avgdeep", 0.0f);
+            this.petrochemicalheight = Helper.GetFloatAttribute(node, "petrochemicalheight", 0.0f);
+            this.adsorbedmass = Helper.GetFloatAttribute(node, "adsorbedmass", 0.0f);
+            this.restmass = Helper.GetFloatAttribute(node, "restmass", 0.0f);
+
+            this.depth = Helper.GetFloatAttribute(node, "depth", 0.0f);
+            this.concentrationinsoil = Helper.GetFloatAttribute(node, "concentrationinsoil", 0.0f);
+            this.timeconcentrationinsoil = Helper.GetFloatAttribute(node, "timeconcentrationinsoil", 0.0f);
+            this.speedvertical = Helper.GetFloatAttribute(node, "speedvertical", 0.0f);
+
+            this.timewatercomletion = Helper.GetFloatAttribute(node, "timewatercomletion", 0.0f);
+            this.dtimemaxwaterconc = Helper.GetFloatAttribute(node, "dtimemaxwaterconc", 0.0f);
+            this.timemaxwaterconc = Helper.GetFloatAttribute(node, "timemaxwaterconc", 0.0f);
+            this.maxconcentrationwater = Helper.GetFloatAttribute(node, "maxconcentrationwater", 0.0f);
+            this.ozcorrection = Helper.GetFloatAttribute(node, "ozcorrection", 0.0f);
+            this.ecoobjectsearchradius = Helper.GetFloatAttribute(node, "ecoobjectsearchradius", 0.0f);
+
+        }
         public GroundBlur(SpreadPoint spreadpoint)
         {
             this.spreadpoint = spreadpoint;
@@ -68,13 +93,13 @@ namespace EGH01DB.Blurs
 
                 SpreadingCoefficient x = new SpreadingCoefficient();
                 this.spreadingcoefficient = x = new SpreadingCoefficient();
-                if (SpreadingCoefficient.GetByParms(this.spreadpoint.groundtype, this.spreadpoint.volume, 0.0f, out x))
+                if (SpreadingCoefficient.GetByParms(this.spreadpoint.groundtype, this.spreadpoint.petrochemicaltype, this.spreadpoint.volume, 0.0f, out x))
                 {
                     this.spreadingcoefficient = x;
                 }
 
-                float k = SpreadingCoefficient.GetByData(db, this.spreadpoint.groundtype, this.spreadpoint.volume, 0.0f);
-                this.spreadingcoefficient = new SpreadingCoefficient(0, this.spreadpoint.groundtype, 0.0f, this.spreadpoint.volume, 0.0f, 0.02f, k);
+                float k = SpreadingCoefficient.GetByData(db, this.spreadpoint.groundtype, this.spreadpoint.petrochemicaltype, this.spreadpoint.volume, 0.0f);
+                this.spreadingcoefficient = new SpreadingCoefficient(0, this.spreadpoint.groundtype, this.spreadpoint.petrochemicaltype, 0.0f, this.spreadpoint.volume, 0.0f, 0.02f, k);
 
             }
             if (this.spreadingcoefficient.koef <= 0.0f)

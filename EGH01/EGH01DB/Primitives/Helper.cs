@@ -580,7 +580,7 @@ namespace EGH01DB.Primitives
                         float porosity = (float)reader["КоэфПористости"];
                         float holdmigration = (float)reader["КоэфЗадержкиМиграции"];
                         float waterfilter = (float)reader["КоэфФильтрацииВоды"];
-                        float diffusion = (float)reader["КоэфДиффузии"];
+                        float diffusion = (float)reader["КоэфДиффузииГрунта"];
                         float distribution = (float)reader["КоэфРаспределения"];
                         float sorption = (float)reader["КоэфСорбции"];
                         float watercapacity = (float)reader["КоэфКапВлагоемкости"];
@@ -608,7 +608,26 @@ namespace EGH01DB.Primitives
                         float max_angle = (float)reader["МаксУклона"];
                         double koef = (double)reader["КоэффициентРазлива"];
 
-                        spreading_coefficient.Add(new SpreadingCoefficient(code, ground_type,
+                        int petrochemical_type_code = (int)reader["КодТипаНефтепродукта"];
+                        string name = (string)reader["НаименованиеТипаНефтепродукта"];
+                        float boilingtemp = (float)reader["ТемператураКипения"];
+                        float petrochemical_density = (float)reader["Плотность"];
+                        float viscosity = (float)reader["КинематическаяВязкость"];
+                        float solubility = (float)reader["Растворимость"];
+                        float tension = (float)reader["КоэфНатяжения"];
+                        float dynamicviscosity = (float)reader["ДинамическаяВязкость"];
+                        float petrochemical_diffusion = (float)reader["КоэфДиффузииНП"];
+                        PetrochemicalType petrochemical_type = new PetrochemicalType(petrochemical_type_code,
+                                                                                     name,
+                                                                                     (float)boilingtemp,
+                                                                                     (float)petrochemical_density,
+                                                                                     (float)viscosity,
+                                                                                     (float)solubility,
+                                                                                     (float)tension,
+                                                                                     (float)dynamicviscosity,
+                                                                                     (float)petrochemical_diffusion);
+
+                        spreading_coefficient.Add(new SpreadingCoefficient(code, ground_type, petrochemical_type,
                                                         (float)min_volume,
                                                         (float)max_volume,
                                                         (float)min_angle,
