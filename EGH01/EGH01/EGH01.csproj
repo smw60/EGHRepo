@@ -382,6 +382,7 @@
     <Content Include="Views\EGHRGE\EcoObjectTypeCreate.cshtml" />
     <Content Include="Views\EGHCEQ\_ChoiceForecastResult.cshtml" />
     <Content Include="Views\EGHCEQ\_ConfirmChoiceForecastResult.cshtml" />
+    <Content Include="Views\EGHCEQ\EvalutionForecast.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -9,7 +9,7 @@
     ChoiceForecastResultContext context = Model.GetViewContext("ChoiceForecastResult") as ChoiceForecastResultContext;
    
     Menu start = new Menu(
-                          new Menu.MenuItem("Подтвердить",    "ConfirmChoiceForecastResult.Confirm", true),
+                          new Menu.MenuItem("Просмтотреть",   "ConfirmChoiceForecastResult.View", true),
                           new Menu.MenuItem("Отказаться",     "ConfirmChoiceForecastResult.Cancel", true)
                           );
 
@@ -17,16 +17,16 @@
     if (context != null && context.id != null)
     {
        // GetByID
-        text = "АЗС Брестская обл. Барановичский р-н";
+        text = "224-П-2016-11-20 Нефтебаза 28";
     } 
    
 }
 
-@using (Html.BeginForm("ChoiceForecastResult", "EGHCEQ"))
+@using (Html.BeginForm("EvalutionForecast", "EGHCEQ"))
 {
 
     <div class="box">
-        <h3>Результаты прогнозирования</h3>
+       
         <div class="boxdata" style="margin:5px;">
         
            <input type="text" value="@text" disabled />

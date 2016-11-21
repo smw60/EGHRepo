@@ -1,0 +1,13 @@
+﻿@using EGH01DB.Objects;
+@using EGH01DB.Primitives;
+@using EGH01.Core;
+@using EGH01.Models.EGHCEQ;
+@using EGH01;
+@model EGH01DB.CEQContext
+
+@{
+    ViewBag.Title = "EvalutionForecast";
+    Layout = "~/Views/Shared/EGHLayout.cshtml";
+}
+
+@Html.Partial("_ConfirmChoiceForecastResult", @Model)
