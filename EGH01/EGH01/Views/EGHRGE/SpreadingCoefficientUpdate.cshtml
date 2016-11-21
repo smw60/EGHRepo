@@ -27,7 +27,23 @@
             SelectListItem si = list.FirstOrDefault(s => s.Value == Model.ground_type.type_code.ToString());
             si.Selected = true;
         }
-     
+
+    }
+
+    {
+        List<EGH01DB.Types.PetrochemicalType> list_petrochemicalType = new List<EGH01DB.Types.PetrochemicalType>();
+        List<SelectListItem> list = ViewBag.list_petrochemicalType = new List<SelectListItem>();
+
+        Helper.GetListPetrochemicalType(db, ref list_petrochemicalType);
+        list_petrochemicalType.ForEach(o => ViewBag.list_petrochemicalType.Add(new SelectListItem { Text = o.name, Value = o.code_type.ToString() }));
+
+        if (Model.petrochemical_type != null)
+        {
+            SelectListItem s = list.FirstOrDefault(si => si.Value == Model.petrochemical_type.code_type.ToString());
+            s.Selected = true;
+        }
+
+    
     }
 }
 
@@ -38,7 +54,9 @@
 
         <div class="box">
         <div class="boxdata">
-  
+            <p>
+                <label class="boxdata-label-40">Тип нефтепродукта</label>@Html.DropDownList("list_petrochemicalType")  
+            </p>  
             <p>
                 <label class="boxdata-label-40">Тип грунта</label>@Html.DropDownList("list_groundType")
                 <input type="hidden" value="@Model.code.ToString()" name="code">

@@ -22,6 +22,9 @@
     <div class="box">
         <div class="boxdata">
             <p>
+                <label class="boxdata-label-30">Тип нефтепродукта</label>@Model.petrochemical_type.name.ToString()
+            </p>
+            <p>
                 <label class="boxdata-label-30">Тип грунта</label>@Model.ground_type.name.ToString()
                 <input type="hidden" value="@Model.code.ToString()" name="code">
             </p>

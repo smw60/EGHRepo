@@ -102,11 +102,6 @@ namespace EGH01.Controllers
         }
 
 
-
-
-
-
-
         [HttpPost]
         public ActionResult SpreadingCoefficientCreate(SpreadingCoefficientView scv)
         {
@@ -124,8 +119,10 @@ namespace EGH01.Controllers
                     EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
                     if (EGH01DB.Types.GroundType.GetByCode(db, scv.list_groundType, out type_groud))
                     {
+                        EGH01DB.Types.PetrochemicalType petrochemical_type = new PetrochemicalType();
+                        if (EGH01DB.Types.PetrochemicalType.GetByCode(db,scv.list_petrochemicalType, ref petrochemical_type))
+                        { 
                         int code = scv.code;
-
 
                         string strmin_angle = this.HttpContext.Request.Params["min_angle"] ?? "Empty";
                         float min_angle;
@@ -147,7 +144,7 @@ namespace EGH01.Controllers
                         float koef;
                         Helper.FloatTryParse(strkoef, out koef);
 
-                        SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient((int)code, type_groud, new PetrochemicalType(), (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
+                        SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient((int)code, type_groud, petrochemical_type, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
                         // исправить тип нефтепродукта
                         //koef = EGH01DB.Primitives.SpreadingCoefficient.Get(db, sc);
                         //sc = new EGH01DB.Primitives.SpreadingCoefficient((int)code, type_groud, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
@@ -162,6 +159,7 @@ namespace EGH01.Controllers
                     else if (menuitem.Equals("SpreadingCoefficient.Create.Cancel")) 
                         view = View("SpreadingCoefficient", db);
                 }
+                    }
             }
             catch (RGEContext.Exception e)
             {
@@ -221,6 +219,9 @@ namespace EGH01.Controllers
                      EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
                      if (EGH01DB.Types.GroundType.GetByCode(db, scv.list_groundType, out type_groud))
                      {
+                         EGH01DB.Types.PetrochemicalType petrochemical_type = new PetrochemicalType();
+                         if (EGH01DB.Types.PetrochemicalType.GetByCode(db,scv.list_petrochemicalType, ref petrochemical_type))
+                         {
                          int code = scv.code;
 
                          string strmin_volume = this.HttpContext.Request.Params["min_volume"] ?? "Empty";
@@ -243,7 +244,7 @@ namespace EGH01.Controllers
                          float koef;
                          Helper.FloatTryParse(strkoef, out koef);
 
-                         SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient((int)code, type_groud, new PetrochemicalType(), (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
+                         SpreadingCoefficient sc = new EGH01DB.Primitives.SpreadingCoefficient((int)code, type_groud, petrochemical_type, (float)min_volume, (float)max_volume, (float)min_angle, (float)max_angle, (float)koef);
                          // исправить тип нефтепродукта
                          //koef = EGH01DB.Primitives.SpreadingCoefficient.Get(db, sc);
 
@@ -253,7 +254,7 @@ namespace EGH01.Controllers
                              view = View("SpreadingCoefficient", db);
                          }
                         
-                        
+                     }
                      }
                 }
                 else if (menuitem.Equals("SpreadingCoefficient.Update.Cancel"))
