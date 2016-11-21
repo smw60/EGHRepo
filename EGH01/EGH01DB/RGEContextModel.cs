@@ -37,6 +37,11 @@ namespace EGH01DB
             {
                 RGEContext db = new RGEContext();
                 this.id = id;
+                this.date = DateTime.Parse("1900-01-01 01:01:01");
+                this.dateconcentrationinsoil = DateTime.Parse("1900-01-01 01:01:01");
+                this.datewatercompletion = DateTime.Parse("1900-01-01 01:01:01");
+                this.datemaxwaterconc = DateTime.Parse("1900-01-01 01:01:01");
+                this.errormessage = "errormessage";
             }
             public ECOForecast(Incident incident)
             {
@@ -126,7 +131,7 @@ namespace EGH01DB
                 rc.SetAttribute("datemaxwaterconc", this.datemaxwaterconc.ToString());
                 rc.SetAttribute("errormessage", this.errormessage.ToString());
 
-                rc.AppendChild(doc.ImportNode(this.incident.toXmlNode(), true));
+                //rc.AppendChild(doc.ImportNode(this.incident.toXmlNode(), true));
                 //rc.AppendChild(doc.ImportNode(this.waterblur.toXmlNode(), true));
                 //rc.AppendChild(doc.ImportNode(this.groundblur.toXmlNode(), true));
                 return (XmlNode)rc;

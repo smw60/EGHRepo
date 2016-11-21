@@ -161,12 +161,12 @@ namespace EGH01.Controllers
         public ActionResult EF_Create()// 
         {
             RGEContext db = new RGEContext();
-            string comment = "";
-            RGEContext.ECOForecast f = new RGEContext.ECOForecast();
-            if (RGEContext.ECOForecast.GetById(db, 1, out f, out comment))
-                {
-                    int k = 1;
-                };
+            string comment = "Comment";
+            RGEContext.ECOForecast f = new RGEContext.ECOForecast(1);
+            if (RGEContext.ECOForecast.Create(db, f, comment))
+            {
+                int k = 1;
+            };
             return View();
         }
 

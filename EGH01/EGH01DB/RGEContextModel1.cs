@@ -47,13 +47,13 @@ namespace EGH01DB
                 {
                     SqlParameter parm = new SqlParameter("@Родитель", SqlDbType.Int);
                     parm.IsNullable = true;
-                    parm.Value = null;
+                    parm.Value = 0;
                     cmd.Parameters.Add(parm);
                 }
                 {
                     SqlParameter parm = new SqlParameter("@ТекстОтчета", SqlDbType.Xml);
                     parm.IsNullable = true;
-                    parm.Value = ecoforecast.toXmlNode();
+                    parm.Value = ecoforecast.toXmlNode("EcoForeCast").OuterXml;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -62,11 +62,16 @@ namespace EGH01DB
                     parm.Value = comment;
                     cmd.Parameters.Add(parm);
                 }
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
                 
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    rc = ((int)cmd.Parameters["@exitrc"].Value == ecoforecast.id);
+                    rc = ((int)cmd.Parameters["@exitrc"].Value > 0);
                 }
                 catch (Exception e)
                 {
