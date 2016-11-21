@@ -147,6 +147,8 @@ select,
 textarea {
     width:58%;
     padding:1px;
+    height:auto;
+    display: inline-flexbox;
 }
 input[type="checkbox"]{
     text-align:left;
@@ -281,6 +283,7 @@ a.dropdown-toggle.btn.btn-link {
             display: block;
             margin: 5px;
             white-space: nowrap;
+            height:auto;
         }
 
         .boxcainfo-boxitem-fieldset {
@@ -350,7 +353,7 @@ a.dropdown-toggle.btn.btn-link {
         }
         
         .boxdata label.boxdata-label-20{
-            width: 16%;
+            width: 20%;
         }
         /*#list_cadastre{
             width:80%;
@@ -364,6 +367,7 @@ a.dropdown-toggle.btn.btn-link {
         .boxdata-label-80 {
             width: 80%;
             float: left;
+
         }
 
         .box p {
@@ -406,8 +410,14 @@ a.dropdown-toggle.btn.btn-link {
         }
        .boxdata-input-80
        {
-            width:80%;
+            width:60%;
             max-width:none;
+            position:relative;
+            left: 140px;
+        }
+        .boxdata-input-50
+{
+           height:auto;
         }
         .boxdata input[disabled] {
             background-color: #f2fcbd; /*кнопки светлосалатовые);*/
@@ -494,7 +504,32 @@ a.dropdown-toggle.btn.btn-link {
     background:#c8da94;
     text-decoration: none;
 }
-
+.go-up, .go-down {
+ display: none;
+ position: fixed; /*позиционирование*/
+ z-index: 9999; /*поверх все элементов на странице*/
+ right: 15%; /*положение на странице, если слева - left*/
+ background: #4F4F4F;
+ border: 1px solid #ccc;
+ border-radius: 5px;
+ cursor: pointer;
+ color: #fff;
+ text-align: center;
+ font: normal normal 42px/42px sans-serif;
+ text-shadow: 0 1px 2px #000;
+ opacity: .5;
+ padding: 3px;
+ margin-bottom: 5px;
+ width: 42px;
+ height: 42px;
+}
+.go-up { bottom: 60px; }
+.go-down { bottom: 10px; }
+.go-down:hover,
+.go-up:hover {
+ opacity: 1;
+ box-shadow: 0 5px 0.5em -1px #666;
+}
 
 
       
