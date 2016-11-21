@@ -1,8 +1,11 @@
-﻿html, body {
+﻿html {
     padding: 0px;
     height: 100%;
 }
-
+body {
+    padding: 0px;
+    min-height: 100%;
+}
 
 /* Set width on the form input elements since they're 100% wide by default */
 /*input,
@@ -346,14 +349,17 @@ a.dropdown-toggle.btn.btn-link {
             }
                       
         .boxdata label {
-            width: 40%;
+            width: 35%;
             float: left;
             white-space: nowrap;
             margin-bottom:0;
         }
         
         .boxdata label.boxdata-label-20{
+            float: left;
+            margin-top: 5px;
             width: 20%;
+
         }
         /*#list_cadastre{
             width:80%;
@@ -365,7 +371,7 @@ a.dropdown-toggle.btn.btn-link {
             float: left;
         }
         .boxdata-label-80 {
-            width: 80%;
+            width: 70%;
             float: left;
 
         }
@@ -410,14 +416,18 @@ a.dropdown-toggle.btn.btn-link {
         }
        .boxdata-input-80
        {
-            width:60%;
+            float:left;
+            width:70%;
             max-width:none;
             position:relative;
             left: 140px;
         }
         .boxdata-input-50
-{
-           height:auto;
+        {
+            /*display:flexbox;
+            align-items:flex-start;*/
+           /*height:auto;
+           min-height: 80px;*/
         }
         .boxdata input[disabled] {
             background-color: #f2fcbd; /*кнопки светлосалатовые);*/
@@ -432,10 +442,12 @@ a.dropdown-toggle.btn.btn-link {
 
         /*строки без форм*/
         .boxdata span.boxdata-span{
-            width:58%;
+            width:60%;
+            max-width:60%;
             display:inline-block;
             text-align:justify;
-
+            word-break:break-all;
+            word-wrap:break-word;
 
         }
         .boxcontrol {

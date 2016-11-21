@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width" />
     <title>Экспертная система [EGH] </title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-      @*<link href="~/content/bootstrap.css" type="text/css" rel="stylesheet" />
-    <link href="~/content/site.css" type="text/css" rel="stylesheet" />*@
-    <script src="~/Scripts/time.js"></script> 
-    <script src="~/Scripts/top_function.js"></script>
-             @Styles.Render("~/Content/css")
-            @Scripts.Render("~/bundles/modernizr")</head>
+    @*<link href="~/content/bootstrap.css" type="text/css" rel="stylesheet" />
+        <link href="~/content/site.css" type="text/css" rel="stylesheet" />*@
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/time.js"></script>
+</head>
 <body>
          <div class="navbar navbar-default  navbar-fixed-top">
             <div class="navbar-brand col-xs-1">
@@ -408,6 +408,15 @@
         <style>
             /*Стиль для кнопки вверх Никита*/
             .btnn-top button {
+                bottom: 100px;
+                right: 40px;
+                position: fixed !important;
+                float: right !important;
+                width: 120px;
+                height: 44px;
+            }
+            /*Стиль для кнопки вверх Никита*/
+            .btnn-bot button {
                 bottom: 50px;
                 right: 40px;
                 position: fixed !important;
@@ -419,6 +428,9 @@
         </style>
         <span class="btnn-top">
             <button id="toTop">Вверх</button>
+        </span>
+        <span class="btnn-bot">
+            <button id="toBot">Вниз</button>
         </span>
     </div>
        
@@ -455,25 +467,11 @@
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)
-        @Scripts.Render("~/bundles/JavaScript")
+        
          <script type="text/javascript">
         clock();
          </script>
-    <script type="text/javascript">
-        $(function () {
-            $(window).scroll(function () {
-                if ($(this).scrollTop() != 0) {
-                    $('#toTop').fadeIn();
-                }
-                else {
-                    $('#toTop').fadeOut();
-                }
-            });
-            $('#toTop').click(function () {
-                $('body, html').animate({ scrollTop: 0 }, 800)
-            });
-        });
-    </script>
+    <script src="~/Scripts/top_function.js"></script>
 
 
         
