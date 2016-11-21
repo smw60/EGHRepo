@@ -63,6 +63,26 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
+        static public EGH01DB.Types.PetrochemicalTypeList GetListPetrochemicalType(EGH01DB.IDBContext dbcontext)
+        {
+            List<PetrochemicalType> list = new List<PetrochemicalType>();
+            EGH01DB.Types.PetrochemicalTypeList rc = new EGH01DB.Types.PetrochemicalTypeList(list);
+            if (Helper.GetListPetrochemicalType(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.PetrochemicalTypeList(list);
+            }
+            return rc;
+        }
+        static public EGH01DB.Types.CadastreTypeList GetListCadastreType(EGH01DB.IDBContext dbcontext)
+        {
+            List<CadastreType> list = new List<CadastreType>();
+            EGH01DB.Types.CadastreTypeList rc = new EGH01DB.Types.CadastreTypeList(list);
+            if (Helper.GetListCadastreType(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.CadastreTypeList(list);
+            }
+            return rc;
+        }
         static public EGH01DB.Points.AnchorPointList GetListAnchorPoint(EGH01DB.IDBContext dbcontext)
         {
             List<AnchorPoint> list = new List<AnchorPoint>();
@@ -73,7 +93,57 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
-
+        static public EGH01DB.Objects.EcoObjectsList GetListEcoObject(EGH01DB.IDBContext dbcontext)
+        {
+            List<EcoObject> list = new List<EcoObject>();
+            EGH01DB.Objects.EcoObjectsList rc = new EGH01DB.Objects.EcoObjectsList(list);
+            if (Helper.GetListEcoObject(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Objects.EcoObjectsList(list);
+            }
+            return rc;
+        }
+        static public EGH01DB.Types.EcoObjectTypeList GetListEcoObjectType(EGH01DB.IDBContext dbcontext)
+        {
+            List<EcoObjectType> list = new List<EcoObjectType>();
+            EGH01DB.Types.EcoObjectTypeList rc = new EGH01DB.Types.EcoObjectTypeList(list);
+            if (Helper.GetListEcoObjectType(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.EcoObjectTypeList(list);
+            }
+            return rc;
+        }
+        static public EGH01DB.Types.GroundTypeList GetListGroundType(EGH01DB.IDBContext dbcontext)
+        {
+            List<GroundType> list = new List<GroundType>();
+            EGH01DB.Types.GroundTypeList rc = new EGH01DB.Types.GroundTypeList(list);
+            if (Helper.GetListGroundType(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.GroundTypeList(list);
+            }
+            return rc;
+        }
+        static public EGH01DB.Primitives.WaterPropertiesList GetListWaterProperties(EGH01DB.IDBContext dbcontext)
+        {
+            List<WaterProperties> list = new List<WaterProperties>();
+            EGH01DB.Primitives.WaterPropertiesList rc = new EGH01DB.Primitives.WaterPropertiesList(list);
+            if (Helper.GetListWaterProperties(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Primitives.WaterPropertiesList(list);
+            }
+            return rc;
+        }
+        static public EGH01DB.Primitives.SpreadingCoefficientList GetListSpreadingCoefficient(EGH01DB.IDBContext dbcontext)
+        {
+            List<SpreadingCoefficient> list = new List<SpreadingCoefficient>();
+            EGH01DB.Primitives.SpreadingCoefficientList rc = new EGH01DB.Primitives.SpreadingCoefficientList(list);
+            if (Helper.GetListSpreadingCoefficient(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Primitives.SpreadingCoefficientList(list);
+            }
+            return rc;
+        }
+        
         static public bool GetListGroundType(EGH01DB.IDBContext dbcontext, ref List<GroundType> list_type)
         { 
             bool rc = false;
@@ -127,7 +197,6 @@ namespace EGH01DB.Primitives
             }
         
         }
-
         static public bool GetListCadastreType(EGH01DB.IDBContext dbcontext, ref List<CadastreType> list_type) 
         { 
             bool rc = false;
@@ -626,7 +695,6 @@ namespace EGH01DB.Primitives
                 return rc;
             }
         }
-
         static public bool GetListEcoObject(EGH01DB.IDBContext dbcontext, ref List<EcoObject> ecoobjects)
         {
             bool rc = false;
@@ -705,31 +773,31 @@ namespace EGH01DB.Primitives
             }
         }
 
-        static public float GetFloatAttribute(XmlNode n, string name, float errorvalue = 0.0f)
+        static public float     GetFloatAttribute(XmlNode n, string name, float errorvalue = 0.0f)
         {
             float rc = errorvalue;
             if (n.Attributes[name] != null)  if (!float.TryParse(n.Attributes[name].Value, out rc)) rc = errorvalue;
             return rc;
         }
-        static public int GetIntAttribute(XmlNode n, string name, int errorvalue = -1)
+        static public int       GetIntAttribute(XmlNode n, string name, int errorvalue = -1)
         {
             int rc = errorvalue;
             if (n.Attributes[name] != null) if (!int.TryParse(n.Attributes[name].Value, out rc)) rc = errorvalue;
             return rc;
         }
-        static public string  GetStringAttribute(XmlNode n, string name, string  errorvalue = "")
+        static public string    GetStringAttribute(XmlNode n, string name, string  errorvalue = "")
         {
             string rc = errorvalue;
             if (n.Attributes[name] != null) rc = n.Attributes[name].Value;
             return rc;
         }
-        static public bool GetBoolAttribute(XmlNode n, string name, bool errorvalue = false)
+        static public bool      GetBoolAttribute(XmlNode n, string name, bool errorvalue = false)
         {
             bool rc = errorvalue;
             if (n.Attributes[name] != null) if (!bool.TryParse(n.Attributes[name].Value, out rc)) rc = errorvalue;
             return rc;
         }
-        static public DateTime GetDateTimeAttribute(XmlNode n, string name, DateTime errorvalue)
+        static public DateTime  GetDateTimeAttribute(XmlNode n, string name, DateTime errorvalue)
         {
             DateTime rc = errorvalue;
             if (n.Attributes[name] != null) if (!DateTime.TryParse(n.Attributes[name].Value, out rc)) rc = errorvalue;

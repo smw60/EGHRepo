@@ -1,0 +1,90 @@
+<EcoObjectList>
+  <EcoObject id="1" name="Парк" iswaterobject="False">
+    <Point height="12,3" waterdeep="42,3">
+      <Coordinates latitude="27,6" latitude_d="27" latitude_m="36" latitude_s="0,001373291" lngitude="58,8" lngitude_d="58" lngitude_m="47" lngitude_s="59,99725" />
+      <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
+    </Point>
+    <EcoObjectType type_code="3" name="Заповедник" />
+    <CadastreType type_code="5" name="Лесного фонда" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Лесного фонда" water_doc_name="Лесного фонда" />
+  </EcoObject>
+  <EcoObject id="6" name="Тест" iswaterobject="False">
+    <Point height="1" waterdeep="1">
+      <Coordinates latitude="1,016944" latitude_d="1" latitude_m="1" latitude_s="0,9998703" lngitude="1,016944" lngitude_d="1" lngitude_m="1" lngitude_s="0,9998703" />
+      <GroundType type_code="7" name="SMW60" porosity="0,43" holdmigration="14" waterfilter="3,8E-06" diffusion="0" distribution="0" sorption="0" watercapacity="0,08" soilmoisture="0,39" аveryanovfactor="3" permeability="0" density="2100" />
+    </Point>
+    <EcoObjectType type_code="3" name="Заповедник" />
+    <CadastreType type_code="9" name="Воздушных путей сообщения" pdk_coef="30" water_pdk_coef="30" ground_doc_name="Воздушных путей сообщения" water_doc_name="Воздушных путей сообщения" />
+  </EcoObject>
+  <EcoObject id="7" name="Браславское озеро" iswaterobject="True">
+    <Point height="118" waterdeep="6">
+      <Coordinates latitude="55,11575" latitude_d="55" latitude_m="6" latitude_s="56,68396" lngitude="25,9677" lngitude_d="25" lngitude_m="58" lngitude_s="3,737183" />
+      <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
+    </Point>
+    <EcoObjectType type_code="1" name="Озеро" />
+    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+  </EcoObject>
+  <EcoObject id="8" name="q" iswaterobject="True">
+    <Point height="1" waterdeep="1">
+      <Coordinates latitude="1,016944" latitude_d="1" latitude_m="1" latitude_s="0,9998703" lngitude="2,016944" lngitude_d="2" lngitude_m="1" lngitude_s="0,9998703" />
+      <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
+    </Point>
+    <EcoObjectType type_code="1" name="Озеро" />
+    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+  </EcoObject>
+  <EcoObject id="9" name="частный дом 28, ул.Кирова, пос. Глубокое" iswaterobject="True">
+    <Point height="108" waterdeep="3">
+      <Coordinates latitude="55,11575" latitude_d="55" latitude_m="6" latitude_s="56,68396" lngitude="25,96786" lngitude_d="25" lngitude_m="58" lngitude_s="4,300232" />
+      <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
+    </Point>
+    <EcoObjectType type_code="2" name="Колодец" />
+    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+  </EcoObject>
+  <EcoObject id="10" name="Браславское озеро" iswaterobject="True">
+    <Point height="118" waterdeep="6">
+      <Coordinates latitude="55,12025" latitude_d="55" latitude_m="7" latitude_s="12,88879" lngitude="25,98131" lngitude_d="25" lngitude_m="58" lngitude_s="52,70187" />
+      <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
+    </Point>
+    <EcoObjectType type_code="1" name="Озеро" />
+    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+  </EcoObject>
+  <EcoObject id="11" name="SMW60-11" iswaterobject="True">
+    <Point height="103" waterdeep="5">
+      <Coordinates latitude="56,63366" latitude_d="56" latitude_m="38" latitude_s="1,187439" lngitude="25,1841" lngitude_d="25" lngitude_m="11" lngitude_s="2,770844" />
+      <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
+    </Point>
+    <EcoObjectType type_code="1" name="Озеро" />
+    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+  </EcoObject>
+  <EcoObject id="12" name="SMW60-12" iswaterobject="True">
+    <Point height="106" waterdeep="6">
+      <Coordinates latitude="56,63389" latitude_d="56" latitude_m="38" latitude_s="1,997681" lngitude="25,18397" lngitude_d="25" lngitude_m="11" lngitude_s="2,297058" />
+      <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
+    </Point>
+    <EcoObjectType type_code="1" name="Озеро" />
+    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+  </EcoObject>
+  <EcoObject id="13" name="SMW60-13" iswaterobject="True">
+    <Point height="106" waterdeep="6">
+      <Coordinates latitude="56,63389" latitude_d="56" latitude_m="38" latitude_s="1,997681" lngitude="25,1841" lngitude_d="25" lngitude_m="11" lngitude_s="2,770844" />
+      <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
+    </Point>
+    <EcoObjectType type_code="1" name="Озеро" />
+    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+  </EcoObject>
+  <EcoObject id="14" name="SMW60-14" iswaterobject="True">
+    <Point height="103" waterdeep="5">
+      <Coordinates latitude="56,63411" latitude_d="56" latitude_m="38" latitude_s="2,807922" lngitude="25,1841" lngitude_d="25" lngitude_m="11" lngitude_s="2,770844" />
+      <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
+    </Point>
+    <EcoObjectType type_code="1" name="Озеро" />
+    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+  </EcoObject>
+  <EcoObject id="15" name="SMW60-15" iswaterobject="True">
+    <Point height="100" waterdeep="5">
+      <Coordinates latitude="56,63411" latitude_d="56" latitude_m="38" latitude_s="2,807922" lngitude="25,1841" lngitude_d="25" lngitude_m="11" lngitude_s="2,770844" />
+      <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
+    </Point>
+    <EcoObjectType type_code="1" name="Озеро" />
+    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+  </EcoObject>
+</EcoObjectList>

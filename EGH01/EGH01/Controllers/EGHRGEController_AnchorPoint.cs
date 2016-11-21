@@ -85,7 +85,7 @@ namespace EGH01.Controllers
                     doc.Save(Server.MapPath("~/App_Data/AnchorPoint.xml"));
                     view = View("Index");
 
-                    view = File(Server.MapPath("~/App_Data/AnchorPoint.xml"), "text/plain", "AnchorPoint.xml");
+                    view = File(Server.MapPath("~/App_Data/AnchorPoint.xml"), "text/plain", "Опорные точки.xml");
 
 
                 }

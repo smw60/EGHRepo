@@ -1,0 +1,5 @@
+<EcoObjectTypeList>
+  <EcoObjectType type_code="1" name="Озеро" />
+  <EcoObjectType type_code="2" name="Колодец" />
+  <EcoObjectType type_code="3" name="Заповедник" />
+</EcoObjectTypeList>

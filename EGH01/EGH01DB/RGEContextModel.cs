@@ -10,6 +10,7 @@ using EGH01DB.Blurs;
 using EGH01DB.Types;
 using EGH01DB.Primitives;
 using EGH01DB.Points;
+using System.Xml;
 namespace EGH01DB
 {
    
@@ -32,17 +33,20 @@ namespace EGH01DB
                 RGEContext db = new RGEContext();
                 Init(db, new Incident()); 
             }
+            public ECOForecast(int id)
+            {
+                RGEContext db = new RGEContext();
+                this.id = id;
+            }
             public ECOForecast(Incident incident)
             {
                 RGEContext db = new RGEContext();
                 Init(db, incident);   
             }
-                    
             public ECOForecast(IDBContext db, Incident incident)
             {
                   Init( db, incident);      
             }
-           
             private bool Init(IDBContext db, Incident incident)
             {
                 this.errormessage = string.Empty;
@@ -93,12 +97,39 @@ namespace EGH01DB
 
                 return true;
             }
-
-
-
-            public bool toXML()   //  сериализация  в XML 
+            public ECOForecast(XmlNode node)
             {
-                return true;
+                this.id = Helper.GetIntAttribute(node, "id", -1);
+                this.date = Helper.GetDateTimeAttribute(node, "date", DateTime.MinValue);
+
+                //XmlNode incident = node.SelectSingleNode(".//Incident");
+                //if (incident != null) this.incident = new Incident(incident);
+                //else this.incident = null;
+
+                //   GroundBlur
+                //   WaterBlur
+                this.dateconcentrationinsoil = Helper.GetDateTimeAttribute(node, "dateconcentrationinsoil", DateTime.MinValue);
+                this.datewatercompletion = Helper.GetDateTimeAttribute(node, "datewatercompletion", DateTime.MinValue);
+                this.datemaxwaterconc = Helper.GetDateTimeAttribute(node, "datemaxwaterconc", DateTime.MinValue);
+                this.errormessage = Helper.GetStringAttribute(node, "errormessage", "");
+            }
+
+            public XmlNode toXmlNode(string comment = "")
+            {
+                XmlDocument doc = new XmlDocument();
+                XmlElement rc = doc.CreateElement("ECOForecast");
+                if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+                rc.SetAttribute("id", this.id.ToString());
+                rc.SetAttribute("date", this.date.ToString());
+                rc.SetAttribute("dateconcentrationinsoil", this.dateconcentrationinsoil.ToString());
+                rc.SetAttribute("datewatercompletion", this.datewatercompletion.ToString());
+                rc.SetAttribute("datemaxwaterconc", this.datemaxwaterconc.ToString());
+                rc.SetAttribute("errormessage", this.errormessage.ToString());
+
+                rc.AppendChild(doc.ImportNode(this.incident.toXmlNode(), true));
+                //rc.AppendChild(doc.ImportNode(this.waterblur.toXmlNode(), true));
+                //rc.AppendChild(doc.ImportNode(this.groundblur.toXmlNode(), true));
+                return (XmlNode)rc;
             }
 
             //public static ECOForecast Create()   //десериализация из  XML

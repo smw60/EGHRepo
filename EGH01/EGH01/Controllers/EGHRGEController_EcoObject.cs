@@ -68,17 +68,17 @@ namespace EGH01.Controllers
                         }
                     }
                 }
-                else if (menuitem.Equals("GroundType.Excel"))
+                else if (menuitem.Equals("EcoObject.Excel"))
                 {
-                    //    EGH01DB.Objects.RiskObject.RiskObjectList list = new EGH01DB.Objects.RiskObject.RiskObjectList();
-                    //    XmlNode node = list.toXmlNode();
-                    //    XmlDocument doc = new XmlDocument();
-                    //    XmlNode nnode = doc.ImportNode(node, true);
-                    //    doc.AppendChild(nnode);
-                    //    doc.Save(Server.MapPath("~/App_Data/RiskObject.xml"));
-                    //    view = View("Index");
+                    EGH01DB.Objects.EcoObjectsList list = new EGH01DB.Objects.EcoObjectsList(db);
+                    XmlNode node = list.toXmlNode();
+                    XmlDocument doc = new XmlDocument();
+                    XmlNode nnode = doc.ImportNode(node, true);
+                    doc.AppendChild(nnode);
+                    doc.Save(Server.MapPath("~/App_Data/EcoObject.xml"));
+                    view = View("Index");
 
-                    //    view = File(Server.MapPath("~/App_Data/RiskObject.xml"), "text/plain", "RiskObject.xml");
+                    view = File(Server.MapPath("~/App_Data/EcoObject.xml"), "text/plain", "Природоохранные объекты.xml");
 
 
                 }

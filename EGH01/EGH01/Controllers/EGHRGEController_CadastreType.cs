@@ -68,20 +68,20 @@ namespace EGH01.Controllers
                         }
                     }
                 }
-                //else if (menuitem.Equals("CadastreType.Excel"))
-                //{
-                   
-                //    XmlNode node = list
-                //    XmlDocument doc = new XmlDocument();
-                //    XmlNode nnode = doc.ImportNode(node, true);
-                //    doc.AppendChild(nnode);
-                //    doc.Save(Server.MapPath("~/App_Data/RiskObject.xml"));
-                //    view = View("Index");
+                else if (menuitem.Equals("CadastreType.Excel"))
+                {
+                    EGH01DB.Types.CadastreTypeList list = new EGH01DB.Types.CadastreTypeList(db);
+                    XmlNode node = list.toXmlNode();
+                    XmlDocument doc = new XmlDocument();
+                    XmlNode nnode = doc.ImportNode(node, true);
+                    doc.AppendChild(nnode);
+                    doc.Save(Server.MapPath("~/App_Data/CadastreType.xml"));
+                    view = View("Index");
 
-                //    view = File(Server.MapPath("~/App_Data/RiskObject.xml"), "text/plain", "RiskObject.xml");
+                    view = File(Server.MapPath("~/App_Data/CadastreType.xml"), "text/plain", "Категории земли.xml");
 
 
-                //}
+                }
 
             }
             catch (RGEContext.Exception e)

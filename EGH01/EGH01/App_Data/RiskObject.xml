@@ -71,8 +71,8 @@
     </District>
     <Region region_code="1" name="Брестская" />
   </RiskObject>
-  <RiskObject id="13" name="8" address="8" ownership="f" phone="8           " fax="8           " email="8           " foundationdate="01.11.2016 0:00:00" reconstractiondate="17.11.2016 0:00:00" numberofrefuel="1" volume="1" watertreatment="False" watertreatmentcollect="False" groundtank="9" undergroundtank="9" fueltype="8           " numberofthreads="0" tubediameter="0" productivity="0" geodescription="8           ">
-    <Point height="8" waterdeep="8">
+  <RiskObject id="13" name="8" address="8" ownership="f" phone="80295582395 " fax="80295582395 " email="80295582395 " foundationdate="01.11.2016 0:00:00" reconstractiondate="17.11.2016 0:00:00" numberofrefuel="1" volume="1" watertreatment="False" watertreatmentcollect="False" groundtank="18" undergroundtank="48" fueltype="80295582395  " numberofthreads="0" tubediameter="0" productivity="0" geodescription="80295582395  ">
+    <Point height="8,56" waterdeep="8,56">
       <Coordinates latitude="8,135555" latitude_d="8" latitude_m="8" latitude_s="7,998962" lngitude="8,135555" lngitude_d="8" lngitude_m="8" lngitude_s="7,998962" />
       <GroundType type_code="2" name="Глинистый" porosity="0,5" holdmigration="111,3" waterfilter="0,001" diffusion="0,1" distribution="0,2" sorption="0,2" watercapacity="0,16" soilmoisture="0,43" аveryanovfactor="3,5" permeability="0,2" density="2000" />
     </Point>
@@ -106,5 +106,41 @@
       <Region region_code="2" name="Витебская" />
     </District>
     <Region region_code="2" name="Витебская" />
+  </RiskObject>
+  <RiskObject id="17" name="Тест1 Республиканское унитарное предприятие «Производственное объединение «Белоруснефть», Республиканское дочернее унитарное предприятие по снабжению нефтепродуктами Белоруснефть-Минскоблнефтепродукт, Молодечненский филиал" address=" г. Молодечно, ул. Либаво-Роменская, 157" ownership="f" phone=" (0176) 77-7" fax=" (0176) 777-" email=" (0176) 777-" foundationdate="01.01.1900 0:00:00" reconstractiondate="01.01.1900 0:00:00" numberofrefuel="1" volume="1" watertreatment="False" watertreatmentcollect="False" groundtank="0" undergroundtank="0" fueltype=" (0176) 777-" numberofthreads="0" tubediameter="0" productivity="0" geodescription=" (0176) 777-">
+    <Point height="179,2" waterdeep="3">
+      <Coordinates latitude="54,30694" latitude_d="54" latitude_m="18" latitude_s="24,99115" lngitude="26,86167" lngitude_d="26" lngitude_m="51" lngitude_s="41,99661" />
+      <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
+    </Point>
+    <RiskObjectType type_code="2" name="Нефтебаза" />
+    <CadastreType type_code="2" name="Населенных пунктов, садоводческих товариществ, дач" pdk_coef="100" water_pdk_coef="0,3" ground_doc_name="ПДК от 12.03.2012  № 17/1" water_doc_name="ПДК от 06.10.2004 № 90" />
+    <District code="93" name="Молодечненский">
+      <Region region_code="5" name="Минская" />
+    </District>
+    <Region region_code="5" name="Минская" />
+  </RiskObject>
+  <RiskObject id="18" name="Тест2 Республиканское унитарное предприятие «Производственное объединение «Белоруснефть», Республиканское дочернее унитарное предприятие по снабжению нефтепродуктами Белоруснефть-Гроднооблнефтепродукт, Волковысский филиал " address=" г. Волковыск, ул. Октябрьская, 153" ownership="f" phone=" (1512) 5-16" fax=" -          " email=" -          " foundationdate="01.01.1900 0:00:00" reconstractiondate="01.01.1900 0:00:00" numberofrefuel="1" volume="1" watertreatment="False" watertreatmentcollect="False" groundtank="11250" undergroundtank="525" fueltype=" -" numberofthreads="0" tubediameter="0" productivity="0" geodescription=" -">
+    <Point height="141,7" waterdeep="6">
+      <Coordinates latitude="53,11805" latitude_d="53" latitude_m="7" latitude_s="4,992371" lngitude="22,37278" lngitude_d="22" lngitude_m="22" lngitude_s="22,00058" />
+      <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
+    </Point>
+    <RiskObjectType type_code="2" name="Нефтебаза" />
+    <CadastreType type_code="2" name="Населенных пунктов, садоводческих товариществ, дач" pdk_coef="100" water_pdk_coef="0,3" ground_doc_name="ПДК от 12.03.2012  № 17/1" water_doc_name="ПДК от 06.10.2004 № 90" />
+    <District code="65" name="Волковысский">
+      <Region region_code="4" name="Гродненская" />
+    </District>
+    <Region region_code="4" name="Гродненская" />
+  </RiskObject>
+  <RiskObject id="19" name=" даша" address=" минск" ownership="f" phone=" 8029558239 " fax=" 8029558239 " email=" 8029558239 " foundationdate="03.11.2016 0:00:00" reconstractiondate="17.11.2016 0:00:00" numberofrefuel="1" volume="1" watertreatment="False" watertreatmentcollect="False" groundtank="89" undergroundtank="89" fueltype=" 8029558239 " numberofthreads="0" tubediameter="0" productivity="0" geodescription=" 8029558239 ">
+    <Point height="9" waterdeep="9">
+      <Coordinates latitude="8,135612" latitude_d="8" latitude_m="8" latitude_s="8,201523" lngitude="8,135612" lngitude_d="8" lngitude_m="8" lngitude_s="8,201523" />
+      <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
+    </Point>
+    <RiskObjectType type_code="1" name="АЗС" />
+    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="0,3" ground_doc_name="ПДК от 12.03.2012  № 17/1" water_doc_name="ПДК от 06.10.2004 № 90" />
+    <District code="1" name="Барановичский">
+      <Region region_code="1" name="Брестская" />
+    </District>
+    <Region region_code="1" name="Брестская" />
   </RiskObject>
 </RiskObjectList>

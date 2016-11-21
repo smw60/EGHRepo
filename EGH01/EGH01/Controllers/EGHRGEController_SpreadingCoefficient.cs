@@ -77,7 +77,14 @@ namespace EGH01.Controllers
                 }
                 else if (menuitem.Equals("SpreadingCoefficient.Excel"))
                 {
-
+                    EGH01DB.Primitives.SpreadingCoefficientList list = new SpreadingCoefficientList(db);
+                    XmlNode node = list.toXmlNode();
+                    XmlDocument doc = new XmlDocument();
+                    XmlNode nnode = doc.ImportNode(node, true);
+                    doc.AppendChild(nnode);
+                    doc.Save(Server.MapPath("~/App_Data/SpreadingCoefficient.xml"));
+                    view = View("Index");
+                    view = File(Server.MapPath("~/App_Data/SpreadingCoefficient.xml"), "text/plain", "Коэффициент растекания.xml");
                 }
             }
 

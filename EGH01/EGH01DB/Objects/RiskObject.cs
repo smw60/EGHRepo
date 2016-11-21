@@ -904,7 +904,7 @@ namespace EGH01DB.Objects
 
     public class RiskObjectsList : List<RiskObject>    
     {
-       List<EGH01DB.Objects.RiskObject> list_rick = new List<EGH01DB.Objects.RiskObject>();
+       List<EGH01DB.Objects.RiskObject> list_risk = new List<EGH01DB.Objects.RiskObject>();
         public RiskObjectsList()
         {
 
