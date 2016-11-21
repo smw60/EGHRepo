@@ -98,7 +98,7 @@ namespace EGH01.Controllers
         public ActionResult WaterPropertiesCreate(WaterPropertiesView wpv)
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.WaterProperties";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
@@ -154,7 +154,7 @@ namespace EGH01.Controllers
         public ActionResult WaterPropertiesDelete(int water_code)
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.WaterProperties";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
@@ -185,7 +185,7 @@ namespace EGH01.Controllers
         public ActionResult WaterPropertiesUpdate(WaterPropertiesView wpv)
         {
             RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            ViewBag.EGHLayout = "RGE.WaterProperties";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
