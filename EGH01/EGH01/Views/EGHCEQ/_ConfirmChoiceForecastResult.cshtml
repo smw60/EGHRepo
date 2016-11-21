@@ -1,0 +1,38 @@
+﻿@using EGH01DB.Objects;
+@using EGH01DB.Primitives;
+@using EGH01.Core;
+@using EGH01.Models.EGHCEQ;
+@model EGH01DB.CEQContext
+@{
+    
+    
+    ChoiceForecastResultContext context = Model.GetViewContext("ChoiceForecastResult") as ChoiceForecastResultContext;
+   
+    Menu start = new Menu(
+                          new Menu.MenuItem("Подтвердить",    "ConfirmChoiceForecastResult.Confirm", true),
+                          new Menu.MenuItem("Отказаться",     "ConfirmChoiceForecastResult.Cancel", true)
+                          );
+
+    string text = "Ошибка выбора";                     
+    if (context != null && context.id != null)
+    {
+       // GetByID
+        text = "АЗС Брестская обл. Барановичский р-н";
+    } 
+   
+}
+
+@using (Html.BeginForm("ChoiceForecastResult", "EGHCEQ"))
+{
+
+    <div class="box">
+        <h3>Результаты прогнозирования</h3>
+        <div class="boxdata" style="margin:5px;">
+        
+           <input type="text" value="@text" disabled />
+        
+        </div>
+       
+        @Html.Partial("_TypeLineMenu", start)
+    </div>
+}
