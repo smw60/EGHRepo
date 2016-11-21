@@ -91,12 +91,12 @@ namespace EGH01DB.Blurs
 
             { // коэф. разлива 
 
-                SpreadingCoefficient x = new SpreadingCoefficient();
-                this.spreadingcoefficient = x = new SpreadingCoefficient();
-                if (SpreadingCoefficient.GetByParms(this.spreadpoint.groundtype, this.spreadpoint.petrochemicaltype, this.spreadpoint.volume, 0.0f, out x))
-                {
-                    this.spreadingcoefficient = x;
-                }
+                //SpreadingCoefficient x = new SpreadingCoefficient();
+                //this.spreadingcoefficient = x = new SpreadingCoefficient();
+                //if (SpreadingCoefficient.GetByParms(this.spreadpoint.groundtype, this.spreadpoint.petrochemicaltype, this.spreadpoint.volume, 0.0f, out x))
+                //{
+                //    this.spreadingcoefficient = x;
+                //}
 
                 float k = SpreadingCoefficient.GetByData(db, this.spreadpoint.groundtype, this.spreadpoint.petrochemicaltype, this.spreadpoint.volume, 0.0f);
                 this.spreadingcoefficient = new SpreadingCoefficient(0, this.spreadpoint.groundtype, this.spreadpoint.petrochemicaltype, 0.0f, this.spreadpoint.volume, 0.0f, 0.02f, k);

@@ -45,6 +45,30 @@ namespace EGH01.Controllers
             return rc;
         }
 
+        public ActionResult EvalutionForecast()
+        {
+            ViewBag.EGHLayout = "CEQ";
+            ActionResult rc = View("Index");
+            try
+            {
+                CEQContext db = new CEQContext(this);
+                rc = View(db);
+
+            }
+            catch (EGHDBException)
+            {
+                rc = View("Index");
+            }
+            catch (Exception)
+            {
+                rc = View("Index");
+            }
+            return rc;
+        }
+
+
+
+
 
          public ActionResult Index()
         {
