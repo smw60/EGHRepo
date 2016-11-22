@@ -17,10 +17,13 @@
 
         <div class="box">
             <div class="boxdata">
-               
+                @*<p><label class="boxdata-label-30">Код</label>@t.code.ToString() </p>*@
+                <p>
+                    <label class="boxdata-label-30">Тип нефтепродукта</label>@t.petrochemical_type.name.ToString()
+                </p>        
                 <p>
                     <label class="boxdata-label-30">Тип грунта</label>@t.ground_type.name.ToString()
-                    @*<p><label class="boxdata-label-30">Код</label>@t.code.ToString() </p>*@
+                   
                     <input type="hidden" value="@t.code.ToString()" name="code">
                 </p>
                 <p>
