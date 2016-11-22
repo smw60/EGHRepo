@@ -77,7 +77,8 @@ namespace EGH01.Controllers
                     {
                         ForecastViewConext viewcontext = context.GetViewContext("Forecast") as ForecastViewConext;
                         EGH01DB.RGEContext.ECOForecast forecast = viewcontext.ecoforecast;
-                        //string x = forecast.toXmlNode("Отладка").OuterXml;
+                        XmlDocument doc=  (XmlDocument)forecast.toXmlNode("Отладка");
+                        doc.Save(@"C:\Report.xml");
 
                         int id = -1;
                         if (!RGEContext.ECOForecast.GetNextId(context, out id))
