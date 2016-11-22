@@ -1,7 +1,17 @@
-﻿
+﻿@using EGH01DB.Objects;
+@using EGH01DB.Primitives;
+@using EGH01.Core;
+@using EGH01.Models.EGHCEQ;
+@using EGH01;
+@model EGH01DB.CEQContext
 @{
       Layout = "~/Views/Shared/EGHLayout.cshtml";
+      EGH01DB.CEQContext ceq = (EGH01DB.CEQContext)Model;
+      CEQViewContext context = (CEQViewContext)Model.GetViewContext("ChoiceForecastResult");
+      if (context == null) { Model.SaveViewContext("ChoiceForecastResult", context = new CEQViewContext()); };
 }
 
-
-@ViewBag.msg
+@if (context.RegimEvalution == CEQViewContext.REGIM_EVALUTION.CHOICE)
+{
+  @Html.Partial("_ConfirmChoiceForecastResult", @Model)
+}

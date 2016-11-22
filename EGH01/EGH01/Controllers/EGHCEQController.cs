@@ -23,13 +23,13 @@ namespace EGH01.Controllers
             try
             {
                 CEQContext db  = new CEQContext(this);
-                switch (ChoiceForecastResultContext.Handler(db, this.HttpContext.Request.Params))
+                switch (CEQViewContext.HandlerChoiceForecast(db, this.HttpContext.Request.Params))
                 {
-                    case ChoiceForecastResultContext.REGIM.INIT:   rc = View(db); break;
-                    case ChoiceForecastResultContext.REGIM.CHOICE: rc = View(db); break;
-                    case ChoiceForecastResultContext.REGIM.CANCEL: rc = View("Index"); break;
-                    case ChoiceForecastResultContext.REGIM.ERROR:  rc = View(db); break;
-                    case ChoiceForecastResultContext.REGIM.REPORT: rc = View(db); break;
+                    case CEQViewContext.REGIM_CHOICE.INIT:   rc = View(db); break;
+                    case CEQViewContext.REGIM_CHOICE.CHOICE: rc = View(db); break;
+                    case CEQViewContext.REGIM_CHOICE.CANCEL: rc = View("Index",db); break;
+                    case CEQViewContext.REGIM_CHOICE.ERROR: rc = View(db); break;
+                    case CEQViewContext.REGIM_CHOICE.REPORT: rc = View(db); break;
                     default: rc = View("Index"); break;
                 }
 
@@ -48,20 +48,29 @@ namespace EGH01.Controllers
         public ActionResult EvalutionForecast()
         {
             ViewBag.EGHLayout = "CEQ";
+            CEQContext db = null; 
             ActionResult rc = View("Index");
             try
             {
-                CEQContext db = new CEQContext(this);
+                db = new CEQContext(this);
+                rc = rc = View("Index",db);
+                switch (CEQViewContext.HandlerEvalutionForecast(db, this.HttpContext.Request.Params))
+                {
+                    case CEQViewContext.REGIM_EVALUTION.INIT:   rc = View(db); break;
+                    case CEQViewContext.REGIM_EVALUTION.CHOICE: rc = View(db); break;
+                    default: rc = View("Index", db); break;
+                }
+
                 rc = View(db);
 
             }
             catch (EGHDBException)
             {
-                rc = View("Index");
+                rc = View("Index",db);
             }
             catch (Exception)
             {
-                rc = View("Index");
+                rc = View("Index", db);
             }
             return rc;
         }
@@ -74,11 +83,12 @@ namespace EGH01.Controllers
         {
             ViewBag.EGHLayout = "CEQ";
             CEQContext db = null;
+            ActionResult view = View("Index", db);
             try
             {
                 db = new CEQContext();
-               // ViewBag.msg = "Соединение с базой данных установлено";
-                           }
+               
+            }
             catch (RGEContext.Exception e)
             {
                 ViewBag.msg = e.message;

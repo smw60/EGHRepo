@@ -6,8 +6,37 @@
 @model EGH01DB.CEQContext
 
 @{
-    ViewBag.Title = "EvalutionForecast";
     Layout = "~/Views/Shared/EGHLayout.cshtml";
+
+    CEQViewContext context = Model.GetViewContext("ChoiceForecastResult") as CEQViewContext;
+    if (context == null) { Model.SaveViewContext("ChoiceForecastResult", context = new CEQViewContext()); };
 }
 
-@Html.Partial("_ConfirmChoiceForecastResult", @Model)
+ @switch (context.RegimEvalution)
+ {
+     case CEQViewContext.REGIM_EVALUTION.INIT:   
+                        @Html.Partial("_ConfirmChoiceForecastResult", @Model)
+         break;
+
+     case CEQViewContext.REGIM_EVALUTION.REPORT:                             
+     case CEQViewContext.REGIM_EVALUTION.CHOICE:  
+                        @Html.Partial("_ConfirmChoiceForecastResult", @Model)
+                        using (Html.BeginForm("ChoiceForecastResult", "EGHCEQ"))
+                        {
+
+                         <div class="box">
+                            <h3>ОТЧЕТ-ОЦЕНКА</h3>
+
+                            @*@Html.Partial("_TypeLineMenu", start)*@
+                         </div>
+                        }
+                        break;
+                        
+     default: break;
+ 
+ }  
+
+
+
+
+

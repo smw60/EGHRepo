@@ -196,7 +196,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EGHCAI\RiskObject.cs" />
     <Compile Include="Models\EGHCCO\PetrochemicalTypeView.cs" />
-    <Compile Include="Models\EGHCEQ\ChoiceForecastResultViewContext.cs" />
+    <Compile Include="Models\EGHCEQ\CEQViewContext.cs" />
     <Compile Include="Models\EGHRGE\EcoObjectTypeView.cs" />
     <Compile Include="Models\EGHRGE\EcoObjectView.cs" />
     <Compile Include="Models\EGHRGE\ChoiceRiskObjectViewContext.cs" />

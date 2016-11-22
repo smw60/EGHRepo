@@ -6,15 +6,17 @@
 @{
     
     
-    ChoiceForecastResultContext context = Model.GetViewContext("ChoiceForecastResult") as ChoiceForecastResultContext;
-   
+    CEQViewContext context = Model.GetViewContext("ChoiceForecastResult") as CEQViewContext;
+    if (context == null) {Model.SaveViewContext("ChoiceForecastResult", context = new CEQViewContext()); };
+    context.RegimEvalution = CEQViewContext.REGIM_EVALUTION.CHOICE; 
+    
     Menu start = new Menu(
                           new Menu.MenuItem("Просмтотреть",   "ConfirmChoiceForecastResult.View", true),
                           new Menu.MenuItem("Отказаться",     "ConfirmChoiceForecastResult.Cancel", true)
                           );
 
     string text = "Ошибка выбора";                     
-    if (context != null && context.id != null)
+    if (context.id != null)
     {
        // GetByID
         text = "224-П-2016-11-20 Нефтебаза 28";

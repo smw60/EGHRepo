@@ -5,30 +5,31 @@
 @using EGH01;
 @model EGH01DB.CEQContext
 @{
-    ViewBag.Title = "ChoiceForecastResult";
-    Layout = "~/Views/Shared/EGHLayout.cshtml";
+     Layout = "~/Views/Shared/EGHLayout.cshtml";
 
     EGH01DB.CEQContext ceq = (EGH01DB.CEQContext)Model;
-    ChoiceForecastResultContext context = (ChoiceForecastResultContext)Model.GetViewContext("ChoiceForecastResult");
-    if (context == null) { Model.SaveViewContext("ChoiceForecastResult", context = new ChoiceForecastResultContext()); };
+    CEQViewContext context = (CEQViewContext)Model.GetViewContext("ChoiceForecastResult");
+    if (context == null) { Model.SaveViewContext("ChoiceForecastResult", context = new CEQViewContext()); };
     
 }
-@switch (context.Regim)
-{ 
-    case  ChoiceForecastResultContext.REGIM.INIT:
-                             @Html.Partial("_ChoiceForecastResult", @Model)
-                             break;   
-    case  ChoiceForecastResultContext.REGIM.CHOICE:
-                             @Html.Partial("_ConfirmChoiceForecastResult", @Model)
-                             break;                          
-    case  ChoiceForecastResultContext.REGIM.CANCEL:
-                             break;                                 
-    case ChoiceForecastResultContext.REGIM.ERROR:
-                             @Html.Partial("_ChoiceForecastResult", @Model)
-                             break;
-     case ChoiceForecastResultContext.REGIM.REPORT:
-                             <h2>REPORT</h2>
-                             break;                        
+@switch (context.RegimChoice)
+{
+    case CEQViewContext.REGIM_CHOICE.INIT:
+                                  if (context.RegimEvalution == CEQViewContext.REGIM_EVALUTION.CHOICE)
+                                  {
+                                       @Html.Partial("_ConfirmChoiceForecastResult", @Model)
+                                  }
+                                  @Html.Partial("_ChoiceForecastResult", @Model)
+                                  break;
+    case CEQViewContext.REGIM_CHOICE.CHOICE:   @Html.Partial("_ConfirmChoiceForecastResult", @Model)
+                                        
+                                  break;
+    case CEQViewContext.REGIM_CHOICE.CANCEL:
+                                  break;
+    case CEQViewContext.REGIM_CHOICE.ERROR:    @Html.Partial("_ChoiceForecastResult", @Model)
+                                  break;
+    case CEQViewContext.REGIM_CHOICE.REPORT:
+                                  break;                        
     default: break;                                                                    
 } 
     

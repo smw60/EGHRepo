@@ -8,28 +8,43 @@ using EGH01DB.Objects;
 
 namespace EGH01.Models.EGHCEQ
 {
-    public class ChoiceForecastResultContext
+    public class CEQViewContext
     {
         
-        public enum REGIM {INIT, CHOICE, CANCEL, ERROR, REPORT};
-        
-        public REGIM Regim { get; set; }
+        public enum REGIM_CHOICE {INIT, CHOICE, CANCEL, ERROR, REPORT};
+        public enum REGIM_EVALUTION{ INIT, CHOICE, CANCEL, ERROR, REPORT };
+        public REGIM_CHOICE RegimChoice { get; set; }
+        public REGIM_EVALUTION RegimEvalution { get; set; }
         public int? id     { get; set; }  
         
-        public ChoiceForecastResultContext()
+        public CEQViewContext()
         {
-            this.Regim = REGIM.INIT;
+            this.RegimChoice = REGIM_CHOICE.INIT;
+            this.RegimEvalution = REGIM_EVALUTION.INIT;
             //this.id = -1;    
 
 
         }
-        public static REGIM  Handler(CEQContext context, NameValueCollection parms)
+        
+        public static REGIM_EVALUTION HandlerEvalutionForecast(CEQContext context, NameValueCollection parms)
         {
-            REGIM rc = REGIM.INIT;
-            ChoiceForecastResultContext viewcontext = null;
-            if ((viewcontext = context.GetViewContext("ChoiceForecastResult") as ChoiceForecastResultContext) != null)
+            REGIM_EVALUTION rc = REGIM_EVALUTION.INIT;
+            CEQViewContext viewcontext = null;
+            if ((viewcontext = context.GetViewContext("ChoiceForecastResult") as CEQViewContext) != null)
             {
-                rc = viewcontext.Regim = REGIM.INIT;
+                rc = viewcontext.RegimEvalution;
+            
+            }
+            return rc;
+        }
+        
+        public static REGIM_CHOICE  HandlerChoiceForecast(CEQContext context, NameValueCollection parms)
+        {
+            REGIM_CHOICE rc = REGIM_CHOICE.INIT;
+            CEQViewContext viewcontext = null;
+            if ((viewcontext = context.GetViewContext("ChoiceForecastResult") as CEQViewContext) != null)
+            {
+                rc = viewcontext.RegimChoice = REGIM_CHOICE.INIT;
                 string menuitem = parms["menuitem"];
                 if (menuitem != null)
                 {
@@ -40,21 +55,21 @@ namespace EGH01.Models.EGHCEQ
                         if (!string.IsNullOrEmpty(formid) && int.TryParse(formid, out id))
                         {
                             viewcontext.id = id;
-                             rc = viewcontext.Regim = REGIM.CHOICE;
+                             rc = viewcontext.RegimChoice = REGIM_CHOICE.CHOICE;
                         }
-                        else rc = viewcontext.Regim = REGIM.ERROR;
+                        else rc = viewcontext.RegimChoice = REGIM_CHOICE.ERROR;
                     }
                     else if (menuitem.Equals("ChoiceForecastResult.Cancel"))
                     {
-                           rc = viewcontext.Regim = REGIM.CANCEL;
+                           rc = viewcontext.RegimChoice = REGIM_CHOICE.CANCEL;
                     }
                     else if (menuitem.Equals("ConfirmChoiceForecastResult.Confirm"))
                     {
-                        rc = viewcontext.Regim = REGIM.REPORT;
+                        rc = viewcontext.RegimChoice = REGIM_CHOICE.REPORT;
                     }
                     else if (menuitem.Equals("ConfirmChoiceForecastResult.Cancel"))
                     {
-                        rc = viewcontext.Regim = REGIM.INIT;
+                        rc = viewcontext.RegimChoice = REGIM_CHOICE.INIT;
                     }
 
                 }
