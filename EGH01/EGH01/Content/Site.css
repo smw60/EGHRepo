@@ -349,7 +349,7 @@ a.dropdown-toggle.btn.btn-link {
             }
                       
         .boxdata label {
-            width: 35%;
+            width: 40%;
             float: left;
             white-space: nowrap;
             margin-bottom:0;
@@ -442,13 +442,13 @@ a.dropdown-toggle.btn.btn-link {
 
         /*строки без форм*/
         .boxdata span.boxdata-span{
-            width:60%;
-            max-width:60%;
+            width:55%;
+            max-width:55%;
             display:inline-block;
             text-align:justify;
             word-break:break-all;
             word-wrap:break-word;
-
+          
         }
         .boxcontrol {
             margin: 1px;
