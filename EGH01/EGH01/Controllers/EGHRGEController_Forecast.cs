@@ -79,6 +79,17 @@ namespace EGH01.Controllers
                         EGH01DB.RGEContext.ECOForecast forecast = viewcontext.ecoforecast;
                         string x = forecast.toXmlNode("Отладка").OuterXml;
 
+                        int id = -1;
+                        if (!RGEContext.ECOForecast.GetNextId(context, out id))
+                        {
+                            forecast.id = id;
+                            if (RGEContext.ECOForecast.Create(context, forecast, "отладка"))
+                            {
+                                int kk = 2;
+                            }
+
+                        }
+
                         int k = 1;
                     
                     }
