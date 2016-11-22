@@ -104,8 +104,8 @@ namespace EGH01DB.Blurs
             }
             if (this.spreadingcoefficient.koef <= 0.0f)
             {
-                this.spreadingcoefficient = new SpreadingCoefficient(0, this.spreadpoint.groundtype, this.spreadpoint.petrochemicaltype, 0.0f, this.spreadpoint.volume, 0.0f, 0.02f, 5.0f);  // заглушка
-                //throw new EGHDBException(string.Format(errormssageformat, "Коэффициент разлива не может быть меньше или равен нулю"));
+                                      //this.spreadingcoefficient = new SpreadingCoefficient(0, this.spreadpoint.groundtype, this.spreadpoint.petrochemicaltype, 0.0f, this.spreadpoint.volume, 0.0f, 0.02f, 5.0f);  // заглушка
+                throw new EGHDBException(string.Format(errormssageformat, "Коэффициент разлива не может быть меньше или равен нулю"));
 
             }
                

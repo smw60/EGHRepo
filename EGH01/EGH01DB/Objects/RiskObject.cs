@@ -866,24 +866,24 @@ namespace EGH01DB.Objects
             rc.AppendChild(doc.ImportNode(n, true));
             rc.AppendChild(doc.ImportNode(this.type.toXmlNode(), true));
             rc.AppendChild(doc.ImportNode(this.cadastretype.toXmlNode(), true));
-            rc.SetAttribute("name", this.name.ToString());
-            rc.SetAttribute("address", this.address.ToString());
+            rc.SetAttribute("name", this.name.Trim());
+            rc.SetAttribute("address", this.address.Trim());
 
             rc.AppendChild(doc.ImportNode(this.district.toXmlNode(), true));
             rc.AppendChild(doc.ImportNode(this.region.toXmlNode(), true));
 
-            rc.SetAttribute("ownership", this.ownership.ToString());
-            rc.SetAttribute("phone", this.phone.ToString());
-            rc.SetAttribute("fax", this.fax.ToString());
-            rc.SetAttribute("email", this.fax.ToString());
+            rc.SetAttribute("ownership", this.ownership.Trim());
+            rc.SetAttribute("phone", this.phone.Trim());
+            rc.SetAttribute("fax", this.fax.Trim());
+            rc.SetAttribute("email", this.email.Trim());
 
-            rc.SetAttribute("foundationdate", this.foundationdate.ToString());
-            rc.SetAttribute("reconstractiondate", this.reconstractiondate.ToString());
+            rc.SetAttribute("foundationdate", this.foundationdate.ToShortDateString());
+            rc.SetAttribute("reconstractiondate", this.reconstractiondate.ToShortDateString());
             rc.SetAttribute("numberofrefuel", this.numberofrefuel.ToString());
             rc.SetAttribute("volume", this.volume.ToString());
 
-            rc.SetAttribute("watertreatment", this.watertreatment.ToString());
-            rc.SetAttribute("watertreatmentcollect", this.watertreatmentcollect.ToString());
+            rc.SetAttribute("watertreatment",  this.watertreatment?"есть":"нет");
+            rc.SetAttribute("watertreatmentcollect", this.watertreatmentcollect?"есть":"нет");
             rc.SetAttribute("numberofrefuel", this.numberofrefuel.ToString());
             rc.SetAttribute("volume", this.volume.ToString());
 
@@ -891,11 +891,11 @@ namespace EGH01DB.Objects
 
             rc.SetAttribute("groundtank", this.groundtank.ToString());
             rc.SetAttribute("undergroundtank", this.undergroundtank.ToString());
-            rc.SetAttribute("fueltype", this.fueltype.ToString());
+            rc.SetAttribute("fueltype", this.fueltype.Trim());
             rc.SetAttribute("numberofthreads", this.numberofthreads.ToString());
             rc.SetAttribute("tubediameter", this.tubediameter.ToString());
             rc.SetAttribute("productivity", this.productivity.ToString());
-            rc.SetAttribute("geodescription", this.geodescription.ToString());
+            rc.SetAttribute("geodescription", this.geodescription.Trim());
 
             return (XmlNode)rc;
         }
