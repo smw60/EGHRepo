@@ -160,13 +160,13 @@ namespace EGH01.Controllers
         // проверка процедур  Ecoforecast
         public ActionResult EF_Create()// 
         {
-            RGEContext db = new RGEContext();
-            string comment = "Comment";
-            RGEContext.ECOForecast f = new RGEContext.ECOForecast(1);
-            if (RGEContext.ECOForecast.Create(db, f, comment))
-            {
-                int k = 1;
-            };
+            //RGEContext db = new RGEContext();
+            //string comment = "Comment";
+            //RGEContext.ECOForecast f = new RGEContext.ECOForecast(1);
+            //if (RGEContext.ECOForecast.Create(db, f, comment))
+            //{
+            //    int k = 1;
+            //};
             return View();
         }
 
@@ -499,13 +499,14 @@ namespace EGH01.Controllers
         }
         public ActionResult SC_GetByData()// есть
         {
-            //RGEContext db = new RGEContext();
-            //{
-            //    GroundType gr = new GroundType(1);
-            //    SpreadingCoefficient sc = new SpreadingCoefficient(gr, 20.0f, 40.0f, 1.5f, 4.6f, 2.0f);
-            //    float koeff = SpreadingCoefficient.GetByData(db, gr, 25.0f, 2.3f);
+            RGEContext db = new RGEContext();
+            {
+                //GroundType gr = new GroundType(7);
+                //PetrochemicalType pt = new PetrochemicalType(1);
+                
+                //float koeff = SpreadingCoefficient.GetByData(db, gr, pt, 100.0f, 20.0f);
 
-            //}
+            }
             return View();
         }
         public ActionResult SC_list() // есть
