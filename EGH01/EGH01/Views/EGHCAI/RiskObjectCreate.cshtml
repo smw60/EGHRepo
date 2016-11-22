@@ -16,6 +16,8 @@
                           new Menu.MenuItem("Создать", "RiskObject.Create.Create", true),
                           new Menu.MenuItem("Отказаться", "RiskObject.Create.Cancel", true)
                         );
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDD-BQGwH6mEgOBp15GhEpzm8h1JzP-fpg"></script>
     List<EGH01DB.Types.RiskObjectType> list_type = new List<EGH01DB.Types.RiskObjectType>();
     ViewBag.selectlist = new List<SelectListItem>();
     if (db != null)
@@ -33,7 +35,7 @@
         list_cadastre.ForEach(o => ViewBag.list_cadastre.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
 
     }
-    
+
     List<EGH01DB.Types.GroundType> list_groundType = new List<EGH01DB.Types.GroundType>();
     ViewBag.list_groundType = new List<SelectListItem>();
     if (db != null)
@@ -56,7 +58,7 @@
     ViewBag.list_district = new List<SelectListItem>();
     if (@Model != null)
     {
-        Helper.GetListDistrict(@Model,ref list_district);
+        Helper.GetListDistrict(db, ref list_district);
         list_district.ForEach(o => ViewBag.list_district.Add(new SelectListItem { Text = o.name, Value = o.code.ToString() }));
 
     }
@@ -64,7 +66,13 @@
 @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCAI", Action = "RiskObject", Menu = head })
 @using (Html.BeginForm("RiskObjectCreate", "EGHCAI"))
 {
-
+   
+    <style>
+        .stationInfo {
+            height: 150px;
+            width: 250px;
+        }
+    </style>
     <div class="box">
         <div class="boxdata">
             <p>
@@ -74,7 +82,7 @@
                 <label class="boxdata-label-30">Наименование</label>
                 <textarea class="boxdata-input-50" name="Name" rows="2"></textarea>
             </p>
-            <fieldset  form="ChoiseRiskObject">
+            <fieldset  form="RiskObject">
                 <legend style="width: auto; font: inherit; border:none;">Адрес</legend>
                 <p><label class="boxdata-label-30">Область</label>@Html.DropDownList("list_region")
                 </p>
@@ -94,7 +102,7 @@
                 </p>
 
             </fieldset>
-            <fieldset  form="ChoiseRiskObject">
+            <fieldset  form="RiskObject">
                 <legend style="width: auto; font: inherit; border:none;">Объем резервуаров для хранения нефтепродутов (м3)</legend>
                 <p>
                     <label class="boxdata-label-30">Наземные</label>
@@ -105,7 +113,7 @@
                     <input class="boxdata-input-50" type="number" name="undergroundtank" value=" " min="0" step="0.1" />
                 </p>
             </fieldset>
-            <fieldset  form="ChoiseRiskObject">
+            <fieldset  form="RiskObject">
                 <legend style="width: auto; font: inherit; border:none;">Наличие очистных сооружений</legend>
                 <p>
                     <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="true">&emsp; <label>&emsp;Для дождевого стока</label>
@@ -123,28 +131,32 @@
                 <input class="boxdata-input-50" type="date" name="reconstractiondate" value=" " />
             </p>
 
-            <fieldset  form="ChoiseRiskObject">
+            <fieldset  form="RiskObject">
                 <legend style="width: auto; font: inherit; border:none;">Географические координаты</legend>
                 <p>
                     <label class="boxdata-label-30">Широта</label>
-                    <input class="boxdata-input-10" type="number" name="Latitude" value=" " min="-90" max="90" />&deg;
+                    <input class="boxdata-input-10" type="number" name="Latitude" id="Latitude" value=" " min="-90" max="90" />&deg;
                     <input class="boxdata-input-10" type="number" name="Lat_m" value=" " min="-90" max="90" />&acute;
                     <input class="boxdata-input-10" type="number" name="Lat_s" value=" " min="0" max="60" step="0.01" />&quot;
+                   
+                    @*float lngitude = EGH01DB.Primitives.Coordinates.dms_to_d(@t.coordinates.lng.d, @t.coordinates.lng.m, @t.coordinates.lng.s);*@
                 </p>
                 <p>
                 <label class="boxdata-label-30">Долгота</label>
-                    <input class="boxdata-input-10" type="number" name="Lngitude" value=" " max="180" min="0" />&deg;
+                    <input class="boxdata-input-10" type="number" name="Lngitude" id="Lngitude" value=" " max="180" min="0" />&deg;
                     <input class="boxdata-input-10" type="number" name="Lng_m" value=" " min="-90" max="90" />&acute;
                     <input class="boxdata-input-10" type="number" name="Lng_s" value=" " min="0" max="60" step="0.01" />&quot;
                 </p>
-                @*<p>
-                    <label class="boxdata-label-30">КАРТА!</label>
-                </p>
-                <input type="button" value="Загрузить карту" style="margin:10px"/>*@
-            </fieldset>
+              
+                <div id="canvas" style="height: 600px; width:600px;"></div>
 
-            <fieldset  form="ChoiseRiskObject">
+                    <input type="button" id="redraw" value="Отобразить карту по координатам">
+                    @*<button id="get_screen_button">Заскринить</button>*@
+         
+            </fieldset>
+            <fieldset form="RiskObject">
                 <legend style="width: auto; font: inherit; border:none;">Геологические данные</legend>
+
                 <p>
                     <label class="boxdata-label-30">Категория земли</label> @Html.DropDownList("list_cadastre")
                 </p>
@@ -153,7 +165,7 @@
                 </p>
                 <p>
                     <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
-                    <input class="boxdata-input-50" type="number" name="waterdeep" value=" " min="0"  step="0.01"/>
+                    <input class="boxdata-input-50" type="number" name="waterdeep" value=" " min="0" step="0.01" />
                 </p>
                 <p>
                     <label class="boxdata-label-30">Высота над уровнем моря (м)</label>
@@ -161,16 +173,66 @@
                 </p>
 
             </fieldset>
-           
-
         </div>
+       
+      @section scripts {
+    <script type="text/javascript">
 
+    $(document).ready(function () {
+        GetMap();
+    });
+
+    function GetMap() {
+
+        google.maps.visualRefresh = true;
+        var create = new google.maps.LatLng(53.8842846, 27.5526839);
+        var mapOptions = {
+            zoom: 15,
+            center: create,
+            mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
+        };
+
+        var map = new google.maps.Map(document.getElementById("canvas"), mapOptions);
+        var myLatlng = new google.maps.LatLng(53.8842846, 27.5526839);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+        });
+        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+    }
+
+    function GetMapCoordinat() {
+
+        google.maps.visualRefresh = true;
+        var create = new google.maps.LatLng(Latitude.value, Lngitude.value);
+
+        var mapOptions = {
+            zoom: 4,
+            center: create,
+            mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
+        };
+        var map = new google.maps.Map(document.getElementById("canvas"), mapOptions);
+
+        var myLatlng = new google.maps.LatLng(Latitude.value, Lngitude.value);
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+        });
+        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+    }
+    $("#redraw").click(function () {
+        GetMapCoordinat();
+    });
+
+        
+    </script>
+}
         @Html.Partial("_TypeLineMenu", create)
 
     </div>
         @*@Html.Partial("_RiskObjectType", list_type)*@
         @*@Html.Partial("_CadastreType", list_cadastreType)*@
         @*@Html.Partial("_GroundType",list_groundType)*@
+    }
 
-
-}
