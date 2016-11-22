@@ -13,7 +13,7 @@ using EGH01DB.Objects;
 
 namespace EGH01DB
 {
-    public class CEQContext : IDBContext
+    public  partial class CEQContext : IDBContext
     {
 
 

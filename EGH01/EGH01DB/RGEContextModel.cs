@@ -130,10 +130,9 @@ namespace EGH01DB
                 rc.SetAttribute("datewatercompletion", this.datewatercompletion.ToString());
                 rc.SetAttribute("datemaxwaterconc", this.datemaxwaterconc.ToString());
                 rc.SetAttribute("errormessage", this.errormessage.ToString());
-
-                //rc.AppendChild(doc.ImportNode(this.incident.toXmlNode(), true));
-                //rc.AppendChild(doc.ImportNode(this.waterblur.toXmlNode(), true));
-                //rc.AppendChild(doc.ImportNode(this.groundblur.toXmlNode(), true));
+                rc.AppendChild(doc.ImportNode(this.incident.toXmlNode(), true));
+               // rc.AppendChild(doc.ImportNode(this.waterblur.toXmlNode(), true));
+               // rc.AppendChild(doc.ImportNode(this.groundblur.toXmlNode(), true));
                 return (XmlNode)rc;
             }
 
