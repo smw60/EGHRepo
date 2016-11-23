@@ -5,8 +5,15 @@
 body {
     padding: 0px;
     min-height: 100%;
+    background:#eeffee; /*новый фон*/
 }
-
+.container{
+    padding:15px 0;
+}
+h3,h4{
+    font-weight:bold;
+    padding:0 5px;
+}
 /* Set width on the form input elements since they're 100% wide by default */
 /*input,
 select,
@@ -50,7 +57,6 @@ input[type="checkbox"].input-validation-error {
 
 .osnova {
     padding-top:10px;
-    background:#eeffee; /*новый фон*/
 }
 .navbar-brand {     /*логотип*/
     
@@ -89,7 +95,7 @@ min-height: 100%;
 height: auto !important;
 height: 100%;
 /* Negative indent footer by it's height */
-margin: 0 auto 50px;
+margin: 0 auto 150px;
 }
 
 /* Set the fixed height of the footer here */
@@ -162,6 +168,10 @@ fieldset{
 }
 fieldset legend{
     margin-bottom:0;
+    width: auto; 
+    font: inherit; 
+    border:none;
+    padding:0 5px;
 }
 .boxdata select{
     height:23.2px;
@@ -240,10 +250,10 @@ a.dropdown-toggle.btn.btn-link {
             background-color: #f7e696; /* основные верхние менюшки беж*/
             overflow: hidden;
            border: 2px solid #ffbb40; /* светло-зелен.*/
-            width: 85%;
-            margin: 12px;
+            width: 100%;
+            margin: 12px 0;
             padding: 1px;
-            min-width: 800px;
+            /*min-width: 800px;*/
         }
 
         .boxconnect, .boxcainfo {
@@ -336,11 +346,11 @@ a.dropdown-toggle.btn.btn-link {
             box-sizing: border-box; /* границу включить в размер .box*/
             overflow: hidden; /* все что вылезает за границу .box  - скрывать*/
             border: 2px solid #013d02;
-            width: 85%;
+            width: 100%;
             background-color:#f0f5ad; /* меню основные в таблицах*/
-            margin: 12px;
+            margin: 12px 0;
             padding: 1px;
-            min-width: 800px;
+            /*min-width: 800px;*/
         }
 
             .box .boxdata {
@@ -445,9 +455,7 @@ a.dropdown-toggle.btn.btn-link {
             width:55%;
             max-width:55%;
             display:inline-block;
-            text-align:justify;
-            word-break:break-all;
-            word-wrap:break-word;
+            text-align:left;
           
         }
         .boxcontrol {
@@ -545,5 +553,34 @@ a.dropdown-toggle.btn.btn-link {
 .imgCenter {
     text-align:center;
     }
+/*Карта*/
+.map{
+    height:600px;
+    width:100%;
+    margin:auto;
+    border: 1px solid #316d32;
+}
+/*Кнопка над картой*/
+.center{
+    text-align:center;
+}
+.center input[type='button']{
+    width:100%;
+    margin:2px 0;
+}
 
-      
+/*Для маленьких экранов*/
+@media (max-width:1170px){
+    .boxdata label{
+        width:50%;
+    }
+    .boxdata span.boxdata-span{
+        width:45%;
+    }
+    input, select, textarea {
+        width: 45%;
+    }
+    #wrap{
+        margin-top:50px;
+    }
+}
