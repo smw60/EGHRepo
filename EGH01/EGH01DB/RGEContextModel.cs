@@ -18,7 +18,7 @@ namespace EGH01DB
     {
         public partial class ECOForecast         //  модель прогнозирования 
         {
-            public int           id                      {get; private set;}          // идентификатор прогноза 
+            public int           id                      {get; set;}                  // идентификатор прогноза 
             public DateTime      date                    {get; private set;}          // дата формирования отчета 
             public Incident      incident                {get; private set;}          // описание ицидента 
             public GroundBlur    groundblur              {get; private set;}          // наземное пятно 
@@ -130,10 +130,9 @@ namespace EGH01DB
                 rc.SetAttribute("datewatercompletion", this.datewatercompletion.ToString());
                 rc.SetAttribute("datemaxwaterconc", this.datemaxwaterconc.ToString());
                 rc.SetAttribute("errormessage", this.errormessage.ToString());
-
-                //rc.AppendChild(doc.ImportNode(this.incident.toXmlNode(), true));
-                //rc.AppendChild(doc.ImportNode(this.waterblur.toXmlNode(), true));
-                //rc.AppendChild(doc.ImportNode(this.groundblur.toXmlNode(), true));
+                rc.AppendChild(doc.ImportNode(this.incident.toXmlNode(), true));
+               // rc.AppendChild(doc.ImportNode(this.waterblur.toXmlNode(), true));
+               // rc.AppendChild(doc.ImportNode(this.groundblur.toXmlNode(), true));
                 return (XmlNode)rc;
             }
 

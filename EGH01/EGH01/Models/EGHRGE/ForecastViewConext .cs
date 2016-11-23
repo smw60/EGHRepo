@@ -90,7 +90,7 @@ namespace EGH01.Models.EGHRGE
 
                         if (menuitem != null)
                         {
-                            rc = menuitem.Equals("Forecast.Forecast") || menuitem.Equals("Forecast.Cancel"); 
+                            rc = menuitem.Equals("Forecast.Forecast") || menuitem.Equals("Forecast.Cancel")|| menuitem.Equals("Forecast.Save"); 
                         }
                         else viewcontext.Regim = REGIM.INIT;
            }       

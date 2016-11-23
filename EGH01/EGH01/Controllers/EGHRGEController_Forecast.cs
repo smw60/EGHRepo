@@ -72,7 +72,28 @@ namespace EGH01.Controllers
                             }
                             else viewcontext.Regim = ForecastViewConext.REGIM.RUNERROR;
                     }
-                    else if (menuitem.Equals("Forecast.Cancel")) view = Redirect("Index");
+                    else if (menuitem.Equals("Forecast.Cancel")) view = View("Index",context); //view = Redirect("Index");
+                    else if (menuitem.Equals("Forecast.Save"))
+                    {
+                        ForecastViewConext viewcontext = context.GetViewContext("Forecast") as ForecastViewConext;
+                        EGH01DB.RGEContext.ECOForecast forecast = viewcontext.ecoforecast;
+                        XmlDocument doc=  (XmlDocument)forecast.toXmlNode("Отладка");
+                        doc.Save(@"C:\Report.xml");
+
+                        int id = -1;
+                        if (!RGEContext.ECOForecast.GetNextId(context, out id))
+                        {
+                            forecast.id = id;
+                            if (RGEContext.ECOForecast.Create(context, forecast, "отладка"))
+                            {
+                                int kk = 2;
+                            }
+
+                        }
+
+                        int k = 1;
+                    
+                    }
                 }
           }
           catch (RGEContext.Exception e)

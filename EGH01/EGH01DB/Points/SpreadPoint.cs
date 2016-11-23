@@ -5,6 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using EGH01DB.Types;
 using EGH01DB.Objects;
+using EGH01DB.Points;
+using System.Data.SqlClient;
+using System.Data;
+using System.Xml;
+using EGH01DB.Primitives;
 
 namespace EGH01DB.Points
 {
@@ -46,11 +51,43 @@ namespace EGH01DB.Points
         {
             this.petrochemicaltype = spreadpoint.petrochemicaltype;
             this.volume = spreadpoint.volume;
-            this.riskobject = spreadpoint.riskobject;   
-          
+            this.riskobject = spreadpoint.riskobject;
+            this.cadastretype = spreadpoint.cadastretype;
+            
         }
+        public SpreadPoint(XmlNode node)
+            : base(new Point(node.SelectSingleNode(".//Point")))
+        {
+            XmlNode petro = node.SelectSingleNode(".//PetrochemicalType");
+            if (petro != null) this.petrochemicaltype = new PetrochemicalType(petro);
+            else this.petrochemicaltype = null;
 
+            this.volume = Helper.GetFloatAttribute(node, "volume", 0.0f);
 
+            XmlNode risk_object = node.SelectSingleNode(".//RiskObject");
+            if (risk_object != null) this.riskobject = new RiskObject(risk_object);
+            else this.riskobject = null;
+
+            XmlNode cad = node.SelectSingleNode(".//CadastreType");
+            if (cad != null) this.cadastretype = new CadastreType(cad);
+            else this.cadastretype = null;
+
+            //this.isriskobject = Helper.GetBoolAttribute(node, "isriskobject", false);
+         }
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("SpreadPoint");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            rc.AppendChild(doc.ImportNode(this.petrochemicaltype.toXmlNode(), true));
+            rc.SetAttribute("volume", this.volume.ToString());
+             rc.AppendChild(doc.ImportNode(this.cadastretype.toXmlNode(), true));
+            rc.AppendChild(doc.ImportNode(this.riskobject.toXmlNode(), true));
+            XmlNode n = base.toXmlNode("");
+            rc.AppendChild(doc.ImportNode(n, true));
+// is riskobject
+            return (XmlNode)rc;
+        }
 
     }
 }

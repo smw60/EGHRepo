@@ -30,7 +30,7 @@ namespace EGH01.Controllers
                     case CEQViewContext.REGIM_CHOICE.CANCEL: rc = View("Index",db); break;
                     case CEQViewContext.REGIM_CHOICE.ERROR: rc = View(db); break;
                     case CEQViewContext.REGIM_CHOICE.REPORT: rc = View(db); break;
-                    default: rc = View("Index"); break;
+                    default: rc = View("Index",db); break;
                 }
 
             }
@@ -53,7 +53,7 @@ namespace EGH01.Controllers
             try
             {
                 db = new CEQContext(this);
-                rc = rc = View("Index",db);
+                rc = View("Index",db);
                 switch (CEQViewContext.HandlerEvalutionForecast(db, this.HttpContext.Request.Params))
                 {
                     case CEQViewContext.REGIM_EVALUTION.INIT:   rc = View(db); break;

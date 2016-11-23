@@ -200,6 +200,11 @@ namespace EGH01DB.Primitives
                     cmd.Parameters.Add(parm);
                 }
                 {
+                    SqlParameter parm = new SqlParameter("@КодТипаНефтепродукта", SqlDbType.Int);
+                    parm.Value = petrochemical_type.code_type;
+                    cmd.Parameters.Add(parm);
+                }
+                {
                     SqlParameter parm = new SqlParameter("@Объем", SqlDbType.Real);
                     parm.Value = volume;
                     cmd.Parameters.Add(parm);
@@ -209,11 +214,7 @@ namespace EGH01DB.Primitives
                     parm.Value = angle;
                     cmd.Parameters.Add(parm);
                 }
-                {
-                    SqlParameter parm = new SqlParameter("@КодТипаНефтепродукта", SqlDbType.Int);
-                    parm.Value = petrochemical_type.code_type;
-                    cmd.Parameters.Add(parm);
-                }
+              
                 {
                     SqlParameter parm = new SqlParameter("@КоэффициентРазлива", SqlDbType.Float);
                     parm.Direction = ParameterDirection.Output;

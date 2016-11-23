@@ -19,13 +19,16 @@
     {
         context.Regim = ForecastViewConext.REGIM.RUNERROR; 
     }
-          
-      
-    Menu.MenuItem mitem =  new Menu.MenuItem("Географическая точка", "Forecast.Point", false);
+
+
+    Menu.MenuItem mitemgeop = new Menu.MenuItem("Географическая точка", "Forecast.Point", false);
+    Menu.MenuItem mitemsave = new Menu.MenuItem("Сохранить отчет",      "Forecast.Save",  false);
+    
     Menu start = new Menu(
                           new Menu.MenuItem("Прогноз",    "Forecast.Forecast", true),
                           new Menu.MenuItem("Отказаться", "Forecast.Cancel",  true),
-                          mitem 
+                          mitemsave,
+                          mitemgeop 
                         );
 
      
@@ -39,17 +42,18 @@
 
 @using (Html.BeginForm("Forecast", "EGHRGE"))
 {
+    
 
     <div class="box">
         @{
 
-    string idate = DateTime.Now.ToString("yyyy-MM-dd");
-    if (context.Incident_date != null) { idate = ((DateTime)context.Incident_date).ToString("yyyy-MM-dd"); }
+            string idate = DateTime.Now.ToString("yyyy-MM-dd");
+            if (context.Incident_date != null) { idate = ((DateTime)context.Incident_date).ToString("yyyy-MM-dd"); }
 
-    <div class="boxdata">
-        <label class="boxdata-label-30"> Дата инцидента </label>
-        <input class="boxdata-input-30" type="date" name="date" value="@idate" />
-    </div>
+            <div class="boxdata">
+                <label class="boxdata-label-30"> Дата инцидента </label>
+                <input class="boxdata-input-30" type="date" name="date" value="@idate" />
+            </div>
 
         }
         @{
@@ -121,7 +125,7 @@
         }
 
 
-        @if (!mitem.Value.Equals("Forecast.Point"))
+        @if (!mitemgeop.Value.Equals("Forecast.Point"))
         {
             <fieldset style="border:1px solid black; width:95%; margin:5px">
                 <legend style="margin:10px;"></legend>
@@ -144,6 +148,12 @@
 
             @Html.Action("ChoiceRiskObject", "EGHRGE", new { controller = "EGHRGE", action = "Forecast" });
         }
+
+        @if (context.Regim == ForecastViewConext.REGIM.REPORT)
+        {
+            mitemsave.Enable();
+        }
+
         @Html.Partial("_TypeLineMenu", start)
 
         @if (context.Regim == ForecastViewConext.REGIM.ERROR)
@@ -174,7 +184,7 @@
 
     if (context.Regim == ForecastViewConext.REGIM.REPORT)
     {
-        
+       
         <div class="box">
            @Html.Partial("_ForecastReportWB", @context);
          </div>
