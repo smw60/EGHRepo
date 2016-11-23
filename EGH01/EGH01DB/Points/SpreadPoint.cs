@@ -81,11 +81,11 @@ namespace EGH01DB.Points
             if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
             rc.AppendChild(doc.ImportNode(this.petrochemicaltype.toXmlNode(), true));
             rc.SetAttribute("volume", this.volume.ToString());
-             rc.AppendChild(doc.ImportNode(this.cadastretype.toXmlNode(), true));
+            rc.AppendChild(doc.ImportNode(this.cadastretype.toXmlNode(), true));
             rc.AppendChild(doc.ImportNode(this.riskobject.toXmlNode(), true));
             XmlNode n = base.toXmlNode("");
             rc.AppendChild(doc.ImportNode(n, true));
-// is riskobject
+           // is riskobject
             return (XmlNode)rc;
         }
 
