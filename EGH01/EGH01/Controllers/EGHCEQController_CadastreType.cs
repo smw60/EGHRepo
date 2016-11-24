@@ -25,7 +25,7 @@ namespace EGH01.Controllers
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new CEQContext();
+                db = new CEQContext(this);
                 ViewBag.msg = "Соединение с базой данных установлено";
                 view = View("CadastreType", db);
 
@@ -180,7 +180,7 @@ namespace EGH01.Controllers
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new CEQContext();
+                db = new CEQContext(this);
                 view = View("CadastreType", db);
                 if (menuitem.Equals("CadastreType.Update.Update"))
                 {

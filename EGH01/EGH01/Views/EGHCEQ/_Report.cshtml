@@ -1,23 +1,26 @@
 ﻿@using EGH01.Models.EGHCEQ;
 @using EGH01DB;
+@using EGH01DB.Blurs;
 @model EGH01DB.CEQContext 
 @{
    CEQViewContext context = (CEQViewContext)Model.GetViewContext(CEQViewContext.VIEWNAME);
 
-    string s = string.Empty;
-    if (context != null)
-    {
-        s = string.Format("{0}-П-{1}", context.ecoevalution.id, context.ecoevalution.date.ToString("yyy-MM-dd"));
-     }
+    //string s = string.Empty;
+    //if (context != null && context.ecoevalution != null)
+    //{
+    //    s = string.Format("{0}-П-{1}", context.ecoevalution.id, context.ecoevalution.date.ToString("yyy-MM-dd"));
+    // }
    
     
        
 }
-<h3>ОТЧЕТ-ОЦЕНКА</h3>
 
-@if (context != null)
+
+@if (context != null && context.ecoevalution != null)
 {
-     
+    string s = string.Format("{0}-П-{1}", context.ecoevalution.id, context.ecoevalution.date.ToString("yyy-MM-dd"));
+    
+    <h3>ОТЧЕТ-ОЦЕНКА</h3>
     <div class="box">
     <fieldset>
     <legend> Прогноз @s </legend>
@@ -27,7 +30,7 @@
              @context.ecoevalution.date
         </p>
         <fieldset>
-         <legend>  @context.ecoevalution.incident.riskobject.name.Substring(0,60) </legend>
+         <legend>  @context.ecoevalution.incident.riskobject.name.Substring(30) </legend>
               <p>
                 <label class="boxdata-label-40 ">Область</label>
                  @context.ecoevalution.incident.riskobject.region.name;
@@ -73,7 +76,7 @@
         
       </fieldset>
       <fieldset>
-            <legend> Сравнение с предельно-допкстимыми концетрациями </legend>
+            <legend> Сравнение с предельно-допустимыми концетрациями </legend>
        
           <fieldset>
               <legend> Наземное пятно загрязнения </legend>
@@ -85,24 +88,49 @@
                   <label class="boxdata-label-40 "> Предельно допустимая концентрация  </label>
                   @context.ecoevalution.incident.riskobject.cadastretype.pdk_coef 
               </p>
-              @if (context.ecoevalution.groundblur.concentrationinsoil > context.ecoevalution.incident.riskobject.cadastretype.pdk_coef)
+              @if (context.ecoevalution.excessgroundconcentration > 1)
               { 
-               <p>
-                  <label class="boxdata-label-40 "> Превышение   </label>
-                    @Math.Round(context.ecoevalution.groundblur.concentrationinsoil/ context.ecoevalution.incident.riskobject.cadastretype.pdk_coef,1) 
-              </p>
+                   <p>
+                      <label class="boxdata-label-40 "> Превышение   </label>
+                        @Math.Round(context.ecoevalution.excessgroundconcentration, 1) 
+                  </p>
               }
-              <p>
-                  <label class="boxdata-label-40 "> Превышение   </label>
-                 нет превышения 
-              </p>
-              
+              else
+              { 
+                   <p>
+                      <label class="boxdata-label-40 "> Превышение   </label>
+                     нет превышения 
+                  </p>     
+              }
              
+              <fieldset form="ChoiseRiskObject">
+                  <legend> Природоохранные объекты </legend>
+                  <p>
+                      <label class="boxdata-label-40 ">Радиус поиска прирооохранных объектов (м) </label>
+                      @Math.Round(context.ecoevalution.groundblur.ecoobjectsearchradius, 0)
+                  </p>
+
+                  @foreach (GroundPollution o in context.ecoevalution.groundpollutionlist)
+                  {
+                     
+                          <fieldset form="ChoiseRiskObject">
+                              <legend>@o.comment @o.name </legend>
+                              <p>
+                                  координаты:  @Math.Round(o.coordinates.latitude, 6)
+                                  @Math.Round(o.coordinates.lngitude, 6)
+                                  расстояние:  @Math.Round(o.distance, 0) (м)
+                                  высота:      @Math.Round(o.height, 0) (м)
+                                  угол:        @Math.Round(o.angle, 1)
+                                  глубина гр.вод: @Math.Round(o.waterdeep, 1)
+                              </p>
+                          </fieldset>
+                    
+
+                  }
+
+              </fieldset>
 
 
-          </fieldset>
-
-      
       </fieldset>
 
 

@@ -7,11 +7,17 @@
 @{
       Layout = "~/Views/Shared/EGHLayout.cshtml";
       EGH01DB.CEQContext ceq = (EGH01DB.CEQContext)Model;
-      CEQViewContext context = (CEQViewContext)Model.GetViewContext("ChoiceForecastResult");
-      if (context == null) { Model.SaveViewContext("ChoiceForecastResult", context = new CEQViewContext()); };
+      CEQViewContext context = null;
+      if (Model != null)
+      {
+          context = (CEQViewContext)Model.GetViewContext(CEQViewContext.VIEWNAME);
+          if (context == null) { Model.SaveViewContext(CEQViewContext.VIEWNAME, context = new CEQViewContext()); };
+      }   
+         
+      
 }
 
-@if (context.RegimEvalution == CEQViewContext.REGIM_EVALUTION.CHOICE)
+@if (Model != null &&  context.ecoevalution!= null)
 {
   @Html.Partial("_ConfirmChoiceForecastResult", @Model)
 }

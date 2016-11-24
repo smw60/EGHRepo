@@ -8,20 +8,28 @@
 @{
     Layout = "~/Views/Shared/EGHLayout.cshtml";
 
-    CEQViewContext context = Model.GetViewContext("ChoiceForecastResult") as CEQViewContext;
-    if (context == null) { Model.SaveViewContext("ChoiceForecastResult", context = new CEQViewContext()); };
+    CEQViewContext context = Model.GetViewContext( CEQViewContext.VIEWNAME) as CEQViewContext;
+    if (context != null)
+    {
+        context.RegimEvalution = (context.ecoevalution != null ? CEQViewContext.REGIM_EVALUTION.REPORT : CEQViewContext.REGIM_EVALUTION.INIT); 
+    
+    }
+    else {Model.SaveViewContext(CEQViewContext.VIEWNAME, context = new CEQViewContext()); };
+    
 }
 
  @switch (context.RegimEvalution)
  {
      case CEQViewContext.REGIM_EVALUTION.INIT:   
-                        @Html.Partial("_ConfirmChoiceForecastResult", @Model)
-                           break;
+                        @*@Html.Partial("_ConfirmChoiceForecastResult", @Model)*@
+                        break;
 
-     case CEQViewContext.REGIM_EVALUTION.REPORT:                             
-     case CEQViewContext.REGIM_EVALUTION.CHOICE:  
+     case CEQViewContext.REGIM_EVALUTION.REPORT:     
                         @Html.Partial("_ConfirmChoiceForecastResult", @Model)
                         @Html.Partial("_Report", @Model)
+ break;                 break;     
+     case CEQViewContext.REGIM_EVALUTION.CHOICE:  
+                        @Html.Partial("_ConfirmChoiceForecastResult", @Model)
                         break;
                         
      default: break;

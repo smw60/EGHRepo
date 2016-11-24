@@ -135,6 +135,14 @@ namespace EGH01DB.Blurs
        {
             this.AddRange(center, list, petrochemicaltype, concentration, watertime);
        }
+       
+       public GroundPollutionList(List<GroundPollution> list): base(list)
+       {
+       
+       }
+
+      
+
        //public static GroundPollutionList CreatePollutionList(XmlNode node)
        //{
        //    //GroundPollutionList gpl = new GroundPollutionList();

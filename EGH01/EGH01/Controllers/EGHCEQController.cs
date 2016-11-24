@@ -23,39 +23,58 @@ namespace EGH01.Controllers
             ActionResult rc = View("Index");
             try
             {
-                CEQContext ceq  = new CEQContext(this);
-                switch (CEQViewContext.HandlerChoiceForecast(ceq, this.HttpContext.Request.Params))
-                {
-                    case CEQViewContext.REGIM_CHOICE.INIT:   rc = View(ceq); break;
-                    case CEQViewContext.REGIM_CHOICE.CHOICE:
-                        {  // отладка 
+               CEQContext ceq  = new CEQContext(this);
+               CEQViewContext.REGIM_CHOICE r = CEQViewContext.HandlerChoiceForecast(ceq, this.HttpContext.Request.Params);
+               if (r == CEQViewContext.REGIM_CHOICE.CHOICE)
+               {
+                   // отладка 
+                   RGEContext rge = new RGEContext(this);
+                   ForecastViewConext   v  = (ForecastViewConext)rge.GetViewContext(ForecastViewConext.VIEWNAME);
+                   if (v != null  && v.ecoforecast != null)
+                   {
+                       CEQViewContext vceq = ceq.GetViewContext(CEQViewContext.VIEWNAME) as CEQViewContext;
+                       vceq.ecoevalution = new CEQContext.ECOEvalution(v.ecoforecast); 
+                   }
+                   // отладка 
+                   rc = View("Index",ceq);
 
-                            RGEContext rge = new RGEContext(this);    // 
-                            ForecastViewConext forctx = (ForecastViewConext)rge.GetViewContext(ForecastViewConext.VIEWNAME);
-                            if (forctx != null)
-                            {
-                                CEQViewContext evalctx = (CEQViewContext)ceq.GetViewContext(CEQViewContext.VIEWNAME);
-                                evalctx.ecoevalution =  new CEQContext.ECOEvalution(forctx.ecoforecast);
-                            }
-                        }
-                        rc = View(ceq); break;
-                    case CEQViewContext.REGIM_CHOICE.CANCEL: rc = View("Index",ceq); break;
-                    case CEQViewContext.REGIM_CHOICE.ERROR:  rc = View(ceq); break;
-                    case CEQViewContext.REGIM_CHOICE.REPORT: rc = View(ceq); break;
-                    default: rc = View("Index",ceq); break;
-                }
+               }
+               else   rc = View(ceq);
 
             }
-            catch (EGHDBException)
+            catch (EGHDBException e)
             {
                 rc = View("Index");
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 rc = View("Index");
             }
             return rc;
         }
+
+        //switch (CEQViewContext.HandlerChoiceForecast(ceq, this.HttpContext.Request.Params))
+        //        {
+        //            case CEQViewContext.REGIM_CHOICE.INIT:   rc = View(ceq); break;
+        //            case CEQViewContext.REGIM_CHOICE.CHOICE:
+        //                {  // отладка 
+
+        //                    RGEContext rge = new RGEContext(this);    // 
+        //                    ForecastViewConext forctx = (ForecastViewConext)rge.GetViewContext(ForecastViewConext.VIEWNAME);
+        //                    if (forctx != null)
+        //                    {
+        //                        CEQViewContext evalctx = (CEQViewContext)ceq.GetViewContext(CEQViewContext.VIEWNAME);
+        //                        evalctx.ecoevalution =  new CEQContext.ECOEvalution(forctx.ecoforecast);
+        //                    }
+        //                }
+        //                rc = View(ceq); break;
+        //            case CEQViewContext.REGIM_CHOICE.CANCEL: rc = View("Index",ceq); break;
+        //            case CEQViewContext.REGIM_CHOICE.ERROR:  rc = View(ceq); break;
+        //            case CEQViewContext.REGIM_CHOICE.REPORT: rc = View(ceq); break;
+        //            default: rc = View("Index",ceq); break;
+        //        }
+
+
 
         public ActionResult EvalutionForecast()
         {
@@ -70,11 +89,10 @@ namespace EGH01.Controllers
                 {
                     case CEQViewContext.REGIM_EVALUTION.INIT:   rc = View(db); break;
                     case CEQViewContext.REGIM_EVALUTION.CHOICE: rc = View(db); break;
+                    case CEQViewContext.REGIM_EVALUTION.REPORT: rc = View(db); break;
                     default: rc = View("Index", db); break;
                 }
-
-                rc = View(db);
-
+                               
             }
             catch (EGHDBException)
             {
@@ -95,10 +113,9 @@ namespace EGH01.Controllers
         {
             ViewBag.EGHLayout = "CEQ";
             CEQContext db = null;
-            ActionResult view = View("Index", db);
             try
             {
-                db = new CEQContext();
+                db = new CEQContext(this);
                
             }
             catch (RGEContext.Exception e)

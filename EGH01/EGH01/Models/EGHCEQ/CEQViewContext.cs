@@ -32,7 +32,7 @@ namespace EGH01.Models.EGHCEQ
         {
             REGIM_EVALUTION rc = REGIM_EVALUTION.INIT;
             CEQViewContext viewcontext = null;
-            if ((viewcontext = context.GetViewContext("ChoiceForecastResult") as CEQViewContext) != null)
+            if ((viewcontext = context.GetViewContext(VIEWNAME) as CEQViewContext) != null)
             {
                 rc = viewcontext.RegimEvalution;
             
@@ -44,7 +44,7 @@ namespace EGH01.Models.EGHCEQ
         {
             REGIM_CHOICE rc = REGIM_CHOICE.INIT;
             CEQViewContext viewcontext = null;
-            if ((viewcontext = context.GetViewContext("ChoiceForecastResult") as CEQViewContext) != null)
+            if ((viewcontext = context.GetViewContext(VIEWNAME) as CEQViewContext) != null)
             {
                 rc = viewcontext.RegimChoice = REGIM_CHOICE.INIT;
                 string menuitem = parms["menuitem"];
