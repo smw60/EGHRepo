@@ -25,15 +25,15 @@ namespace EGH01.Models.EGHRGE
         public int?      Lng_degree               {get; set;}
         public int?      Lng_min                  {get; set;}
         public float?    Lng_sec                  {get; set;}
-        public RGEContext.ECOForecast ecoforecast {get; set;} 
-
+        public RGEContext.ECOForecast ecoforecast {get; set;}
+        public const string VIEWNAME = "Forecast";
 
         public static bool Handler(RGEContext context, NameValueCollection parms)
         {
             bool rc = false;
             ForecastViewConext  viewcontext = null;
             string menuitem  = parms["menuitem"];
-            if ((viewcontext = context.GetViewContext("Forecast") as ForecastViewConext) != null)
+            if ((viewcontext = context.GetViewContext(VIEWNAME) as ForecastViewConext) != null)
             {
                         viewcontext.Regim = REGIM.INIT; 
                         string date = parms["date"];

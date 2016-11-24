@@ -69,7 +69,10 @@ namespace EGH01DB.Primitives
             this.lngitude = Helper.GetFloatAttribute(node, "lngitude", 0.0f);        
         }
 
-
+        public string Line()
+        {
+            return string.Format("широта: {0} {1} {2};  долгота: {3} {4} {5}", this.lat.d, this.lat.m, this.lat.s,  this.lng.d, this.lng.m, this.lng.s);
+        }
 
 
         public struct DMS

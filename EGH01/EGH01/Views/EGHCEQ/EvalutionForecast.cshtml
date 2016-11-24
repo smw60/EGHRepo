@@ -16,20 +16,12 @@
  {
      case CEQViewContext.REGIM_EVALUTION.INIT:   
                         @Html.Partial("_ConfirmChoiceForecastResult", @Model)
-         break;
+                           break;
 
      case CEQViewContext.REGIM_EVALUTION.REPORT:                             
      case CEQViewContext.REGIM_EVALUTION.CHOICE:  
                         @Html.Partial("_ConfirmChoiceForecastResult", @Model)
-                        using (Html.BeginForm("ChoiceForecastResult", "EGHCEQ"))
-                        {
-
-                         <div class="box">
-                            <h3>ОТЧЕТ-ОЦЕНКА</h3>
-
-                            @*@Html.Partial("_TypeLineMenu", start)*@
-                         </div>
-                        }
+                        @Html.Partial("_Report", @Model)
                         break;
                         
      default: break;
