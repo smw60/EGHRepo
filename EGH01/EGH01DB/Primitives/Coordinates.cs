@@ -127,7 +127,6 @@ namespace EGH01DB.Primitives
 
     public class CoordinatesList:List<Coordinates>
     {
-        
         public static CoordinatesList CreateCoordinatesList()
         { 
          return new CoordinatesList();

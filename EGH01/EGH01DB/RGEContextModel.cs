@@ -107,10 +107,7 @@ namespace EGH01DB
                 this.id = Helper.GetIntAttribute(node, "id", -1);
                 this.date = Helper.GetDateTimeAttribute(node, "date", DateTime.MinValue);
 
-                //XmlNode incident = node.SelectSingleNode(".//Incident");
-                //if (incident != null) this.incident = new Incident(incident);
-                //else this.incident = null;
-
+                // incident
                 //   GroundBlur
                 //   WaterBlur
                 this.dateconcentrationinsoil = Helper.GetDateTimeAttribute(node, "dateconcentrationinsoil", DateTime.MinValue);
@@ -131,8 +128,8 @@ namespace EGH01DB
                 rc.SetAttribute("datemaxwaterconc", this.datemaxwaterconc.ToString());
                 rc.SetAttribute("errormessage", this.errormessage.ToString());
                 rc.AppendChild(doc.ImportNode(this.incident.toXmlNode(), true));
-               // rc.AppendChild(doc.ImportNode(this.waterblur.toXmlNode(), true));
-               // rc.AppendChild(doc.ImportNode(this.groundblur.toXmlNode(), true));
+                //rc.AppendChild(doc.ImportNode(this.waterblur.toXmlNode(), true));
+                rc.AppendChild(doc.ImportNode(this.groundblur.toXmlNode(), true));
                 return (XmlNode)rc;
             }
 

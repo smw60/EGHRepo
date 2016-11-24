@@ -406,9 +406,7 @@ namespace EGH01DB.Points
         public float sumwaterdeep
         {
             get { return (this.Count() > 0 ? this.Sum(a => a.waterdeep) : 0); }
-        } 
-
-
+        }
 
         public AnchorPointList() : base()
         {
@@ -436,6 +434,15 @@ namespace EGH01DB.Points
             //   rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
             //rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
             return (XmlNode)rc;
+        }
+        public static AnchorPointList CreateAnchorPointList(XmlNode node)
+        {
+            AnchorPointList apl = new AnchorPointList();
+            foreach (XmlElement x in node)
+            {
+                if (x.Name.Equals("AnchorPoint")) apl.Add(new AnchorPoint(x));     
+            }
+            return apl;
         }
         //  найти список точек в заданном радиусе 
         public static AnchorPointList CreateNear(Coordinates center, float distance)

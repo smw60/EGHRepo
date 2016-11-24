@@ -50,6 +50,18 @@ namespace EGH01DB.Blurs
         
         public GroundBlur(XmlNode node)
         {
+            XmlNode region = node.SelectSingleNode(".//SpreadPoint");
+            if (spreadpoint != null) this.spreadpoint = new SpreadPoint(spreadpoint);
+            else this.spreadpoint = null;
+
+            XmlNode coordinates_list = node.SelectSingleNode(".//CoordinatesList");
+            if (coordinates_list != null) this.bordercoordinateslist = CoordinatesList.CreateCoordinatesList(coordinates_list);
+            else this.bordercoordinateslist = null;
+
+            XmlNode spreading_coef = node.SelectSingleNode(".//SpreadingCoefficient");
+            if (spreading_coef != null) this.spreadingcoefficient = new SpreadingCoefficient(spreading_coef);
+            else this.spreadingcoefficient = null;
+
             this.square = Helper.GetFloatAttribute(node, "square", 0.0f);
             this.radius = Helper.GetFloatAttribute(node, "radius", 0.0f);
             this.totalmass = Helper.GetFloatAttribute(node, "totalmass", 0.0f);
@@ -71,6 +83,12 @@ namespace EGH01DB.Blurs
             this.maxconcentrationwater = Helper.GetFloatAttribute(node, "maxconcentrationwater", 0.0f);
             this.ozcorrection = Helper.GetFloatAttribute(node, "ozcorrection", 0.0f);
             this.ecoobjectsearchradius = Helper.GetFloatAttribute(node, "ecoobjectsearchradius", 0.0f);
+
+            XmlNode anchor_point_list = node.SelectSingleNode(".//AnchorPointList");
+            if (anchor_point_list != null) this.anchorpointlist = AnchorPointList.CreateAnchorPointList(anchor_point_list);
+            else this.anchorpointlist = null;
+
+
 
         }
         public GroundBlur(SpreadPoint spreadpoint)
@@ -308,7 +326,35 @@ namespace EGH01DB.Blurs
             
         }
 
-        
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("GroundBlur");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            rc.SetAttribute("square", this.square.ToString());
+            rc.SetAttribute("radius", this.radius.ToString());
+            rc.SetAttribute("totalmass", this.totalmass.ToString());
+            rc.SetAttribute("limitadsorbedmass", this.limitadsorbedmass.ToString());
+
+            rc.SetAttribute("avgdeep", this.avgdeep.ToString());
+            rc.SetAttribute("petrochemicalheight", this.petrochemicalheight.ToString());
+            rc.SetAttribute("timeconcentrationinsoil", this.timeconcentrationinsoil.ToString());
+            rc.SetAttribute("speedvertical", this.speedvertical.ToString());
+
+            rc.SetAttribute("depth", this.depth.ToString());
+            rc.SetAttribute("concentrationinsoil", this.concentrationinsoil.ToString());
+            rc.SetAttribute("adsorbedmass", this.adsorbedmass.ToString());
+            rc.SetAttribute("restmass", this.restmass.ToString());
+
+            rc.SetAttribute("timewatercomletion", this.timewatercomletion.ToString());
+            rc.SetAttribute("dtimemaxwaterconc", this.dtimemaxwaterconc.ToString());
+            rc.SetAttribute("timemaxwaterconc", this.timemaxwaterconc.ToString());
+            rc.SetAttribute("maxconcentrationwater", this.maxconcentrationwater.ToString());
+            rc.SetAttribute("ozcorrection", this.ozcorrection.ToString());
+            rc.SetAttribute("ecoobjectsearchradius", this.ecoobjectsearchradius.ToString());
+            
+            return (XmlNode)rc;
+        }
 
 
 
