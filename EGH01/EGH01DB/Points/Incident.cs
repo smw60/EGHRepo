@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Xml;
 using EGH01DB.Types;
 namespace EGH01DB.Points
 {
@@ -32,6 +33,22 @@ namespace EGH01DB.Points
             this.type = type;
  
         }
+        public new XmlNode  toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("Incident");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            rc.SetAttribute("date", this.date.ToShortDateString());
+            rc.SetAttribute("date_message", this.date_message.ToShortDateString());
+            rc.AppendChild(doc.ImportNode(this.type.toXmlNode(), true));
+            rc.AppendChild(doc.ImportNode(base.toXmlNode(), true));
+            return rc;
+
+        }
+
+
+
+
 
         //static public bool Create(EGH01DB.IDBContext dbcontext, ref Incident incident)
         //{

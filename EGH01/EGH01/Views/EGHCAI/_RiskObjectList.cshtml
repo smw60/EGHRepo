@@ -77,7 +77,7 @@
                     <p><label class="boxdata-label-30">Координаты в градусах</label>@latitude.ToString()°&nbsp;@lngitude.ToString()°</p>
                 </fieldset> 
                 <fieldset  form="RiskObject">
-                    <p><label class="boxdata-label-30">Категория земли</label>@t.cadastretype.name</p>
+                    <p><label class="boxdata-label-30">Категория земли</label><span class="boxdata-span">@t.cadastretype.name</span></p>
                     <p><label class="boxdata-label-30">Грунт</label>@t.groundtype.name</p>
                     <p><label class="boxdata-label-30">Высота над уровнем моря (м)</label> @t.height.ToString("0.00")</p>
                     <p><label class="boxdata-label-30">Глубина грунтовых вод (м)</label> @t.waterdeep.ToString("0.00")</p>

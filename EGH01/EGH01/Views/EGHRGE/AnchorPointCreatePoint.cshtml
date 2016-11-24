@@ -45,7 +45,7 @@
         <div class="boxdata">
             <label class="boxdata-label-30" value="id">Идентификатор</label>@id
             <fieldset form="ChoiseRiskObject">
-                <legend style="width: auto; font: inherit; border:none;">Координаты центра</legend>
+                <legend >Координаты центра</legend>
                 <p>
                     <label class="boxdata-label-30">Широта</label>&nbsp;<input class="boxdata-input-10" type="number" name="Lat_d" value=" " min="-90" max="90" />&deg;&nbsp;<input class="boxdata-input-10" type="number" name="Lat_m" value=" " min="-90" max="90" />&acute;&nbsp;<input class="boxdata-input-10" type="number" name="Lat_s" value=" " min="0" max="60" step="0.001" />&quot;
                 </p>
@@ -67,7 +67,7 @@
                 <label class="boxdata-label-30">Категория земли</label>@Html.DropDownList("list_cadastre")
             </div>
             <fieldset form="ChoiseRiskObject">
-                <legend style="width: auto; font: inherit; border:none;">Геологические данные</legend>
+                <legend >Геологические данные</legend>
                 <div class="boxdata">
                     <label class="boxdata-label-30">Грунт</label>@Html.DropDownList("list_groundType")
                 </div>

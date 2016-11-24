@@ -10,6 +10,7 @@ using EGH01DB;
 using EGH01DB.Primitives;
 using EGH01DB.Types;
 using EGH01.Models.EGHCEQ;
+using EGH01.Models.EGHRGE;
 
 namespace EGH01.Controllers
 {
@@ -22,15 +23,26 @@ namespace EGH01.Controllers
             ActionResult rc = View("Index");
             try
             {
-                CEQContext db  = new CEQContext(this);
-                switch (CEQViewContext.HandlerChoiceForecast(db, this.HttpContext.Request.Params))
+                CEQContext ceq  = new CEQContext(this);
+                switch (CEQViewContext.HandlerChoiceForecast(ceq, this.HttpContext.Request.Params))
                 {
-                    case CEQViewContext.REGIM_CHOICE.INIT:   rc = View(db); break;
-                    case CEQViewContext.REGIM_CHOICE.CHOICE: rc = View(db); break;
-                    case CEQViewContext.REGIM_CHOICE.CANCEL: rc = View("Index",db); break;
-                    case CEQViewContext.REGIM_CHOICE.ERROR: rc = View(db); break;
-                    case CEQViewContext.REGIM_CHOICE.REPORT: rc = View(db); break;
-                    default: rc = View("Index",db); break;
+                    case CEQViewContext.REGIM_CHOICE.INIT:   rc = View(ceq); break;
+                    case CEQViewContext.REGIM_CHOICE.CHOICE:
+                        {  // отладка 
+
+                            RGEContext rge = new RGEContext(this);    // 
+                            ForecastViewConext forctx = (ForecastViewConext)rge.GetViewContext(ForecastViewConext.VIEWNAME);
+                            if (forctx != null)
+                            {
+                                CEQViewContext evalctx = (CEQViewContext)ceq.GetViewContext(CEQViewContext.VIEWNAME);
+                                evalctx.ecoevalution =  new CEQContext.ECOEvalution(forctx.ecoforecast);
+                            }
+                        }
+                        rc = View(ceq); break;
+                    case CEQViewContext.REGIM_CHOICE.CANCEL: rc = View("Index",ceq); break;
+                    case CEQViewContext.REGIM_CHOICE.ERROR:  rc = View(ceq); break;
+                    case CEQViewContext.REGIM_CHOICE.REPORT: rc = View(ceq); break;
+                    default: rc = View("Index",ceq); break;
                 }
 
             }

@@ -28,6 +28,21 @@ namespace EGH01DB
             public DateTime      datemaxwaterconc        {get; private set;}          // дата достижения  иаксимального загрянения г на уровне рунтовых вод 
             public string        errormessage            {get; private set;}          // сообщение об ошибке 
 
+
+            public ECOForecast(ECOForecast forecast)
+            {
+                this.id = forecast.id;
+                this.date = forecast.date;
+                this.incident = forecast.incident;
+                this.groundblur = forecast.groundblur;
+                this.waterblur = forecast.waterblur;
+                this.dateconcentrationinsoil = forecast.dateconcentrationinsoil;
+                this.datewatercompletion = forecast.datewatercompletion;
+                this.datemaxwaterconc = forecast.datemaxwaterconc;
+                this.errormessage = this.errormessage;
+          }
+
+
             public ECOForecast()
             {
                 RGEContext db = new RGEContext();

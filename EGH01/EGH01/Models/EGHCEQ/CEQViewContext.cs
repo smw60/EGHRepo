@@ -15,8 +15,10 @@ namespace EGH01.Models.EGHCEQ
         public enum REGIM_EVALUTION{ INIT, CHOICE, CANCEL, ERROR, REPORT };
         public REGIM_CHOICE RegimChoice { get; set; }
         public REGIM_EVALUTION RegimEvalution { get; set; }
-        public int? id     { get; set; }  
-        
+        public const string VIEWNAME = "ChoiceForecastResult";
+        public int? id     { get; set; }
+        public CEQContext.ECOEvalution  ecoevalution { get; set;} 
+
         public CEQViewContext()
         {
             this.RegimChoice = REGIM_CHOICE.INIT;

@@ -17,12 +17,21 @@ namespace EGH01DB
     {
 
         public class ECOEvalution: RGEContext.ECOForecast
-        { 
-        
+        {
 
-        
-        
+            public ECOEvalution(RGEContext.ECOForecast  forecast): base (forecast)
+            { 
+            
+
+            
+            }
+
         }
+
+
+
+
+
         
 
 

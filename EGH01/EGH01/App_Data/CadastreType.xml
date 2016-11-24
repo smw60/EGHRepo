@@ -1,11 +1,9 @@
 <CadastreTypeList>
-  <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="0,3" ground_doc_name="ПДК от 12.03.2012  № 17/1" water_doc_name="ПДК от 06.10.2004 № 90" />
-  <CadastreType type_code="2" name="Населенных пунктов, садоводческих товариществ, дач" pdk_coef="100" water_pdk_coef="0,3" ground_doc_name="ПДК от 12.03.2012  № 17/1" water_doc_name="ПДК от 06.10.2004 № 90" />
-  <CadastreType type_code="3" name="Промышленности, транспорта, связи, энергетики, обороны и иного назначения" pdk_coef="500" water_pdk_coef="0,3" ground_doc_name="ПДК от 12.03.2012  № 17/1" water_doc_name="ПДК от 06.10.2004 № 90" />
-  <CadastreType type_code="4" name="Природоохранного, оздоровительного, рекреационного, историко-культурного назначения" pdk_coef="50" water_pdk_coef="0,3" ground_doc_name="ПДК от 12.03.2012  № 17/1" water_doc_name="ПДК от 06.10.2004 № 90" />
-  <CadastreType type_code="5" name="Лесного фонда" pdk_coef="50" water_pdk_coef="0,3" ground_doc_name="ПДК от 12.03.2012  № 17/1" water_doc_name="ПДК от 06.10.2004 № 90" />
-  <CadastreType type_code="6" name="Водного фонда" pdk_coef="50" water_pdk_coef="0,3" ground_doc_name="ПДК от 12.03.2012  № 17/1" water_doc_name="ПДК от 06.10.2004 № 90" />
-  <CadastreType type_code="7" name="Запаса" pdk_coef="50" water_pdk_coef="0,3" ground_doc_name="ПДК от 12.03.2012  № 17/1" water_doc_name="ПДК от 06.10.2004 № 90" />
-  <CadastreType type_code="8" name="Железнодорожных путей сообщения" pdk_coef="50" water_pdk_coef="0,3" ground_doc_name="ПДК" water_doc_name="ПДК" />
-  <CadastreType type_code="9" name="Воздушных путей сообщения" pdk_coef="30" water_pdk_coef="0,3" ground_doc_name="ПДК от 12.03.2012  № 17/1" water_doc_name="ПДК от 06.10.2004 № 90" />
+  <CadastreType type_code="1" name="Земли сельскохозяйственного назначения" pdk_coef="0" water_pdk_coef="0" ground_doc_name="ПДК" water_doc_name="ПДК" />
+  <CadastreType type_code="2" name="Земли населенных пунктов, садоводческих товариществ, дачных кооперативов" pdk_coef="0,0001" water_pdk_coef="0,0003" ground_doc_name="ПДК" water_doc_name="ПДК" />
+  <CadastreType type_code="3" name="Земли промышленности, транспорта, связи, энергетики, обороны и иного      &#xD;&#xA;    назначения" pdk_coef="0" water_pdk_coef="0" ground_doc_name="ПДК" water_doc_name="ПДК" />
+  <CadastreType type_code="4" name="Земли природоохранного, оздоровительного, рекреационного, историко-культурного назначения" pdk_coef="5E-05" water_pdk_coef="0,0003" ground_doc_name="ПДК" water_doc_name="ПДК" />
+  <CadastreType type_code="5" name="Земли лесного фонда" pdk_coef="5E-05" water_pdk_coef="0,0003" ground_doc_name="ПДК" water_doc_name="ПДК" />
+  <CadastreType type_code="6" name="Земли водного фонда" pdk_coef="5E-05" water_pdk_coef="0,0003" ground_doc_name="ПДК" water_doc_name="ПДК" />
+  <CadastreType type_code="7" name="Земли запаса" pdk_coef="5E-05" water_pdk_coef="0,0003" ground_doc_name="ПДК от 12.03.2012 № 17/1" water_doc_name="ПДК от 06.10.2004 № 90" />
 </CadastreTypeList>
