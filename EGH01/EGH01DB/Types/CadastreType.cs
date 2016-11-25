@@ -18,14 +18,14 @@ namespace EGH01DB.Types
         public float water_pdk_coef { get; private set; }
         public string ground_doc_name { get; private set; }   // наименование документа по земле 
         public string water_doc_name { get; private set; }   // наименование документа по воде 
-        static public CadastreType defaulttype { get { return new CadastreType(0, "Не определен", 0,0.0f,"",""); } }  // выдавать при ошибке
+        static public CadastreType defaulttype { get { return new CadastreType(0, "Не определен", 0.0f, 0.0f,"",""); } }  // выдавать при ошибке
         
         public CadastreType()
         {
             this.type_code = -1;
             this.name = string.Empty;
-            this.pdk_coef = -1;
-            this.water_pdk_coef = -1;
+            this.pdk_coef = 0.0f;
+            this.water_pdk_coef = 0.0f;
             this.ground_doc_name = string.Empty;
             this.water_doc_name = string.Empty;
         }
@@ -34,8 +34,8 @@ namespace EGH01DB.Types
         {
             this.type_code = type_code;
             this.name = "";
-            this.pdk_coef = 0;
-            this.water_pdk_coef = -1;
+            this.pdk_coef = 0.0f;
+            this.water_pdk_coef = 0.0f;
             this.ground_doc_name = string.Empty;
             this.water_doc_name = string.Empty;
         }
@@ -44,8 +44,8 @@ namespace EGH01DB.Types
         {
             this.type_code = 0;
             this.name = name;
-            this.pdk_coef = 0;
-            this.water_pdk_coef = -1;
+            this.pdk_coef = 0.0f;
+            this.water_pdk_coef = 0.0f;
             this.ground_doc_name = string.Empty;
             this.water_doc_name = string.Empty;
         }

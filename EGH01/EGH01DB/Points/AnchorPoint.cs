@@ -483,6 +483,7 @@ namespace EGH01DB.Points
 
                         GroundType ground_type = new GroundType(ground_type_code);
                         Coordinates coordinates = new Coordinates((float)x, (float)y);
+                        //string ground_type_name = (string)reader["ТипГрунта"];
                         CadastreType cadastre_type = new CadastreType (cadastre_type_code);
                         Point point = new Point(coordinates, ground_type, (float)waterdeep, (float)height);
                         //delta = (float)reader["Расстояние"];
@@ -491,6 +492,10 @@ namespace EGH01DB.Points
                     }
                     rc = anchor_point_list.Count > 0;
                     reader.Close();
+
+
+
+
                 }
                 catch (Exception e)
                 {

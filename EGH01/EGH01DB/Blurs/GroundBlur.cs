@@ -40,7 +40,7 @@ namespace EGH01DB.Blurs
        // public float                watertoobvolume       {get; private set }       // объем  
         public float                ecoobjectsearchradius   {get; private set;}       // радиус поиска  природоохранных объектов 
 
-        public AnchorPointList     anchorpointlist          {get; private set;}       // список опорных точек, попаших в наземное пятно загрязнения    
+        public AnchorPointList     anchorpointlist          {get; private set;}       // список опорных точек, попавших в наземное пятно загрязнения    
         public GroundPollutionList groundpolutionlist       {get; private set;}       // список точек загрязнения  
         public WaterProperties      waterproperties         {get; private set;}       // физико-химические свойства воды  
         public EcoObjectsList       ecoobjecstlist          {get; private set;}       // список объектов в т.ч. заглавный которые попали в наземное пятно    
@@ -95,7 +95,7 @@ namespace EGH01DB.Blurs
         {
             this.spreadpoint = spreadpoint;
             RGEContext db = new RGEContext();    // заглушка, выставить правильный контекст //blinova
-
+            this.bordercoordinateslist = new CoordinatesList();
 
             if (this.spreadpoint.groundtype.watercapacity >=  this.spreadpoint.groundtype.porosity)
                 throw new EGHDBException(string.Format(errormssageformat, "Влагоемкость грунта не может быть  больше или равна  пористости"));
@@ -331,6 +331,12 @@ namespace EGH01DB.Blurs
             XmlDocument doc = new XmlDocument();
             XmlElement rc = doc.CreateElement("GroundBlur");
             if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+
+            rc.AppendChild(doc.ImportNode(this.spreadpoint.toXmlNode(), true));
+            //coordinates list
+            rc.AppendChild(doc.ImportNode(this.bordercoordinateslist.toXmlNode(), true));
+            rc.AppendChild(doc.ImportNode(this.spreadingcoefficient.toXmlNode(), true));
+
             rc.SetAttribute("square", this.square.ToString());
             rc.SetAttribute("radius", this.radius.ToString());
             rc.SetAttribute("totalmass", this.totalmass.ToString());
@@ -352,15 +358,17 @@ namespace EGH01DB.Blurs
             rc.SetAttribute("maxconcentrationwater", this.maxconcentrationwater.ToString());
             rc.SetAttribute("ozcorrection", this.ozcorrection.ToString());
             rc.SetAttribute("ecoobjectsearchradius", this.ecoobjectsearchradius.ToString());
-            
+
+            // anchorpointlist  
+            rc.AppendChild(doc.ImportNode(this.anchorpointlist.toXmlNode(), true));
+            // groundpolutionlist 
+            rc.AppendChild(doc.ImportNode(this.groundpolutionlist.toXmlNode(), true));
+
+            rc.AppendChild(doc.ImportNode(this.waterproperties.toXmlNode(), true));
+            // ecoobjecstlist  
+            rc.AppendChild(doc.ImportNode(this.ecoobjecstlist.toXmlNode(), true));
             return (XmlNode)rc;
         }
-
-
-
-       
-
-
 
         private CoordinatesList createbordercoordinateslist() // построение граничных точек пятна загрязнения 
         {
