@@ -246,7 +246,7 @@
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings %284%29.pubxml" />
-    <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
+    <None Include="Properties\PublishProfiles\Developer.pubxml" />
     <None Include="Properties\PublishProfiles\EGH-FileSystem.pubxml" />
     <None Include="Properties\PublishProfiles\EGH01.pubxml" />
     <None Include="Properties\PublishProfiles\WebDeploy-Prod.pubxml" />
@@ -335,7 +335,6 @@
     <Content Include="Views\EGHRGE\SpreadingCoefficient.cshtml" />
     <Content Include="Views\EGHRGE\_SpreadingCoefficientList.cshtml" />
     <Content Include="Views\EGHRGE\GroundTypeDelete.cshtml" />
-    <Content Include="Views\Debug\RGECalc.cshtml" />
     <Content Include="Views\Shared\_ChoiceRiskObject.cshtml" />
     <Content Include="Views\EGHRGE\GroundTypeUpdate.cshtml" />
     <Content Include="Views\EGHRGE\_AnchorPointList.cshtml" />
@@ -363,7 +362,6 @@
     <Content Include="Views\EGHRGE\WaterPropertiesCreate.cshtml" />
     <Content Include="Views\EGHRGE\WaterPropertiesUpdate.cshtml" />
     <Content Include="Views\EGHRGE\WaterPropertiesDelete.cshtml" />
-    <Content Include="Views\Debug\Coord.cshtml" />
     <Content Include="Views\EGHRGE\_EcoObjectList.cshtml" />
     <Content Include="Views\EGHRGE\EcoObject.cshtml" />
     <Content Include="Views\EGHRGE\EcoObjectCreate.cshtml" />
@@ -386,6 +384,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Debug\" />
     <Folder Include="Views\EcoObjectTypeView\" />
   </ItemGroup>
   <ItemGroup>
@@ -421,7 +420,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51634</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
