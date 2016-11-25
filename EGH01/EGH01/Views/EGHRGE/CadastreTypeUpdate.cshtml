@@ -27,7 +27,10 @@
 
             <div class="boxdata">
                 <input type="hidden" value="@Model.type_code" name="type_code">
-            </div>
+                <input type="hidden" value="@Model.pdk_coef" name="pdk_coef" min="0.0000000000000001">
+                <input type="hidden" value="@Model.water_pdk_coef" name="water_pdk_coef">
+                <input type="hidden" value="@Model.ground_doc_name" name="ground_doc_name">
+                <input type="hidden" value="@Model.water_doc_name" name="water_doc_name"></div>
                 <p>
                     <label class="boxdata-label-30">Наименование категории земли</label>
                     <textarea class="boxdata-input-50" name="Name">@Model.name</textarea>          
