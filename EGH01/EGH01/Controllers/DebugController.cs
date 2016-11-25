@@ -470,19 +470,21 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //int t = 2;
-                //GroundType g = new GroundType(t);
-                //float v1 = 10.01f;
-                //float v2 = 50.0f;
-                //float a1 = 0.0f;
-                //float a2 = 50.0f;
-                //float k = 20.0f;
-                //SpreadingCoefficient sc = new SpreadingCoefficient(g, (float)v1, (float)v2, (float)a1, (float)a2, (float)k);
+                int t = 2;
+                int code = 2;
+                GroundType g = new GroundType(t);
+                float v1 = 0.01f;
+                float v2 = 50.0f;
+                float a1 = 97.0f;
+                float a2 = 100.0f;
+                float k = 20.0f;
+                PetrochemicalType p = new PetrochemicalType(2);
+                SpreadingCoefficient sc = new SpreadingCoefficient(code, g, p,(float)v1, (float)v2, (float)a1, (float)a2, (float)k);
 
-                //if (SpreadingCoefficient.Create(db, sc))
-                //{
-                //    int k1 = 1;
-                //};
+                if (SpreadingCoefficient.Create(db, sc))
+                {
+                    int k1 = 1;
+                };
             }
             return View();
         }

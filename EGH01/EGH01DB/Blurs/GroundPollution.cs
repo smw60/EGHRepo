@@ -7,6 +7,14 @@ using EGH01DB.Types;
 using EGH01DB.Points;
 using EGH01DB.Objects;
 using EGH01DB.Primitives;
+using System.Xml;
+
+using EGH01DB.Primitives;
+using EGH01DB.Types;
+using EGH01DB.Points;
+using System.Data.SqlClient;
+using System.Data;
+using System.Xml;
 
 namespace EGH01DB.Blurs
 {
@@ -24,7 +32,18 @@ namespace EGH01DB.Blurs
        public POINTTYPE  pointtype               { get; private set; }          // тип точки 
 
        private readonly string comment_format = "{0}-{1}:";         // тип-id:              
-       
+       public GroundPollution()
+       {
+           this.watertime = 0.0f;
+           this.concentration = 0.0f;
+           this.petrochemicatype = new PetrochemicalType();
+           this.cadastretype = new CadastreType();
+           this.distance = 0.0f;
+           this.angle = 0.0f;
+           this.name = String.Empty;
+           this.comment = String.Empty;
+           this.pointtype = POINTTYPE.UNDEF;
+       }
        public GroundPollution(AnchorPoint anchorpoint,   float distance, float angle, PetrochemicalType petrochemicatype, float concentration = 0.0f, float watertime = 0.0f)
            : base(anchorpoint) 
        {
@@ -65,11 +84,52 @@ namespace EGH01DB.Blurs
            this.angle = 0.0f;
            this.name = spreadpoint.isriskobject? spreadpoint.riskobject.name: this.comment;
        }
+       public GroundPollution(XmlNode node)
+            : base(new Point(node.SelectSingleNode(".//Point")))
+        {
+            this.watertime = Helper.GetFloatAttribute(node, "watertime", 0.0f);
+            this.concentration = Helper.GetFloatAttribute(node, "concentration", 0.0f);
+
+            XmlNode petro = node.SelectSingleNode(".//PetrochemicalType");
+            if (petro != null) this.petrochemicatype = new PetrochemicalType(petro);
+            else this.petrochemicatype = null;
+
+            XmlNode cad = node.SelectSingleNode(".//CadastreType");
+            if (cad != null) this.cadastretype = new CadastreType(cad);
+            else this.cadastretype = null;
+
+            this.distance = Helper.GetFloatAttribute(node, "distance", 0.0f);
+            this.angle = Helper.GetFloatAttribute(node, "angle", 0.0f);
+
+            this.name = Helper.GetStringAttribute(node, "name", "");
+            this.comment = Helper.GetStringAttribute(node, "comment", "");
+            string string_pointtype = Helper.GetStringAttribute(node, "pointtype", "");
+            this.pointtype = POINTTYPE.UNDEF; // поправить!!!
+        }
+       public XmlNode toXmlNode(string comment = "")
+       {
+           XmlDocument doc = new XmlDocument();
+           XmlElement rc = doc.CreateElement("GroundPollution");
+           if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+           rc.SetAttribute("watertime", this.watertime.ToString());
+           rc.SetAttribute("concentration", this.concentration.ToString());
+           XmlNode n = base.toXmlNode("");
+           rc.AppendChild(doc.ImportNode(n, true));
+           rc.AppendChild(doc.ImportNode(this.petrochemicatype.toXmlNode(), true));
+           rc.AppendChild(doc.ImportNode(this.cadastretype.toXmlNode(), true));
+
+           rc.SetAttribute("distance", this.distance.ToString());
+           rc.SetAttribute("angle", this.angle.ToString());
+
+           rc.SetAttribute("name", this.name.ToString());
+           rc.SetAttribute("comment", this.comment.ToString());
+           rc.SetAttribute("pointtype", this.pointtype.ToString());
+           return (XmlNode)rc;
+       }
     }
 
-    public class GroundPollutionList : List<GroundPollution>    //  загрязнение во всех точках   в наземном радиусе
+    public class GroundPollutionList : List<GroundPollution>    //  загрязнение во всех точках в наземном радиусе
     {
-
        public GroundPollutionList(SpreadPoint center, float concentration = 0.0f, float watertime = 0.0f)
        {
             this.Add(new GroundPollution(center, concentration, watertime));
@@ -82,6 +142,19 @@ namespace EGH01DB.Blurs
        {
             this.AddRange(center, list, petrochemicaltype, concentration, watertime);
        }
+       public GroundPollutionList(List<GroundPollution> list): base(list)
+       {
+       
+       }
+       public XmlNode toXmlNode(string comment = "")
+       {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("GroundPollutionList");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+            return (XmlNode)rc;
+       }
+
        public bool AddRange(Point center, AnchorPointList list, PetrochemicalType petrochemicaltype, float concentration = 0.0f, float watertime = 0.0f)
        {
 
@@ -95,7 +168,7 @@ namespace EGH01DB.Blurs
 
             return true;
         }
-        public bool AddRange(Point center, EcoObjectsList list, PetrochemicalType petrochemicaltype, float concentration = 0.0f, float watertime = 0.0f)
+       public bool AddRange(Point center, EcoObjectsList list, PetrochemicalType petrochemicaltype, float concentration = 0.0f, float watertime = 0.0f)
         {
 
             list.ForEach(p => this.Add(new GroundPollution(p,
@@ -108,8 +181,7 @@ namespace EGH01DB.Blurs
                                     
             return true;
         }
-
-        public bool Add(SpreadPoint center, float concentration = 0.0f, float watertime = 0.0f)
+       public bool Add(SpreadPoint center, float concentration = 0.0f, float watertime = 0.0f)
         {
            this.Add(new GroundPollution(center, concentration, watertime));
             return true;

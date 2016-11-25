@@ -28,6 +28,21 @@ namespace EGH01DB
             public DateTime      datemaxwaterconc        {get; private set;}          // дата достижения  иаксимального загрянения г на уровне рунтовых вод 
             public string        errormessage            {get; private set;}          // сообщение об ошибке 
 
+
+            public ECOForecast(ECOForecast forecast)
+            {
+                this.id = forecast.id;
+                this.date = forecast.date;
+                this.incident = forecast.incident;
+                this.groundblur = forecast.groundblur;
+                this.waterblur = forecast.waterblur;
+                this.dateconcentrationinsoil = forecast.dateconcentrationinsoil;
+                this.datewatercompletion = forecast.datewatercompletion;
+                this.datemaxwaterconc = forecast.datemaxwaterconc;
+                this.errormessage = this.errormessage;
+          }
+
+
             public ECOForecast()
             {
                 RGEContext db = new RGEContext();
@@ -107,10 +122,7 @@ namespace EGH01DB
                 this.id = Helper.GetIntAttribute(node, "id", -1);
                 this.date = Helper.GetDateTimeAttribute(node, "date", DateTime.MinValue);
 
-                //XmlNode incident = node.SelectSingleNode(".//Incident");
-                //if (incident != null) this.incident = new Incident(incident);
-                //else this.incident = null;
-
+                // incident
                 //   GroundBlur
                 //   WaterBlur
                 this.dateconcentrationinsoil = Helper.GetDateTimeAttribute(node, "dateconcentrationinsoil", DateTime.MinValue);
@@ -131,8 +143,8 @@ namespace EGH01DB
                 rc.SetAttribute("datemaxwaterconc", this.datemaxwaterconc.ToString());
                 rc.SetAttribute("errormessage", this.errormessage.ToString());
                 rc.AppendChild(doc.ImportNode(this.incident.toXmlNode(), true));
-               // rc.AppendChild(doc.ImportNode(this.waterblur.toXmlNode(), true));
-               // rc.AppendChild(doc.ImportNode(this.groundblur.toXmlNode(), true));
+                //rc.AppendChild(doc.ImportNode(this.waterblur.toXmlNode(), true));
+                rc.AppendChild(doc.ImportNode(this.groundblur.toXmlNode(), true));
                 return (XmlNode)rc;
             }
 

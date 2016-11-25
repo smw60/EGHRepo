@@ -300,7 +300,7 @@
     <Content Include="Views\EGHGEA\IndexDebug.cshtml" />
     <Content Include="Views\EGHCEQ\IndexDebug..cshtml" />
     <Content Include="Views\EGHCCO\Index.cshtml" />
-    <Content Include="Views\EGHCEQ\Report.cshtml" />
+    <Content Include="Views\EGHCEQ\_Report.cshtml" />
     <Content Include="Views\EGHGEA\Report.cshtml" />
     <Content Include="Views\EGHORT\Report.cshtml" />
     <Content Include="Views\EGHRGE\Index.cshtml" />

@@ -1,0 +1,150 @@
+﻿@using EGH01.Models.EGHCEQ;
+@using EGH01DB;
+@using EGH01DB.Blurs;
+@model EGH01DB.CEQContext 
+@{
+   CEQViewContext context = (CEQViewContext)Model.GetViewContext(CEQViewContext.VIEWNAME);
+
+    //string s = string.Empty;
+    //if (context != null && context.ecoevalution != null)
+    //{
+    //    s = string.Format("{0}-П-{1}", context.ecoevalution.id, context.ecoevalution.date.ToString("yyy-MM-dd"));
+    // }
+   
+    
+       
+}
+
+
+@if (context != null && context.ecoevalution != null)
+{
+    string s = string.Format("{0}-П-{1}", context.ecoevalution.id, context.ecoevalution.date.ToString("yyy-MM-dd"));
+    
+    <h3>ОТЧЕТ-ОЦЕНКА</h3>
+    <div class="box">
+    <fieldset>
+    <legend> Прогноз @s </legend>
+        
+        <p>
+            <label class="boxdata-label-40 "> Дата составления прогноза </label>
+             @context.ecoevalution.date
+        </p>
+        <fieldset>
+         <legend>  @context.ecoevalution.incident.riskobject.name.Substring(30) </legend>
+              <p>
+                <label class="boxdata-label-40 ">Область</label>
+                 @context.ecoevalution.incident.riskobject.region.name;
+              </p>
+              <p>  
+                <label class="boxdata-label-40 ">Район</label>
+                @context.ecoevalution.incident.riskobject.district.name;
+              </p>
+              <p>
+                <label class="boxdata-label-40 ">Район</label>
+                @context.ecoevalution.incident.riskobject.coordinates.Line();
+             </p>
+            <p>
+                <label class="boxdata-label-40 ">Категория  земли</label>
+                @context.ecoevalution.incident.riskobject.cadastretype.name;
+            </p>
+            <p>
+               <label class="boxdata-label-40 ">Документ, определяющий ПДК</label>
+                @context.ecoevalution.incident.riskobject.cadastretype.ground_doc_name;
+            </p>
+
+        </fieldset>
+
+            <p>
+                <label class="boxdata-label-40 "> Нефтепродукт</label>
+                @context.ecoevalution.incident.petrochemicaltype.name
+            </p>
+
+            <p>
+                <label class="boxdata-label-40 "> Объем пролива (м3)</label>
+                @context.ecoevalution.incident.volume
+            </p>
+
+            <p>
+                <label class="boxdata-label-40 ">  Радиус разлива (м) </label>
+                @context.ecoevalution.groundblur.radius
+            </p>
+
+            <p>
+                <label class="boxdata-label-40 ">  Радиус распрстранения  нефтепрдукта с грунтовыми водами (м)  </label>
+                @context.ecoevalution.waterblur.radius
+            </p>
+        
+      </fieldset>
+      <fieldset>
+            <legend> Сравнение с предельно-допустимыми концетрациями </legend>
+       
+          <fieldset>
+              <legend> Наземное пятно загрязнения </legend>
+              <p>
+                  <label class="boxdata-label-40 "> Средняя концентрация нефтепрдукта  в грунтах зоны аэрации </label>
+                  @context.ecoevalution.groundblur.concentrationinsoil
+              </p>
+              <p>
+                  <label class="boxdata-label-40 "> Предельно допустимая концентрация  </label>
+                  @context.ecoevalution.incident.riskobject.cadastretype.pdk_coef 
+              </p>
+              @if (context.ecoevalution.excessgroundconcentration > 1)
+              { 
+                   <p>
+                      <label class="boxdata-label-40 "> Превышение   </label>
+                        @Math.Round(context.ecoevalution.excessgroundconcentration, 1) 
+                  </p>
+              }
+              else
+              { 
+                   <p>
+                      <label class="boxdata-label-40 "> Превышение   </label>
+                     нет превышения 
+                  </p>     
+              }
+             
+              <fieldset form="ChoiseRiskObject">
+                  <legend> Природоохранные объекты </legend>
+                  <p>
+                      <label class="boxdata-label-40 ">Радиус поиска прирооохранных объектов (м) </label>
+                      @Math.Round(context.ecoevalution.groundblur.ecoobjectsearchradius, 0)
+                  </p>
+
+                  @foreach (GroundPollution o in context.ecoevalution.groundpollutionlist)
+                  {
+                     
+                          <fieldset form="ChoiseRiskObject">
+                              <legend>@o.comment @o.name </legend>
+                              <p>
+                                  координаты:  @Math.Round(o.coordinates.latitude, 6)
+                                  @Math.Round(o.coordinates.lngitude, 6)
+                                  расстояние:  @Math.Round(o.distance, 0) (м)
+                                  высота:      @Math.Round(o.height, 0) (м)
+                                  угол:        @Math.Round(o.angle, 1)
+                                  глубина гр.вод: @Math.Round(o.waterdeep, 1)
+                              </p>
+                          </fieldset>
+                    
+
+                  }
+
+              </fieldset>
+
+
+      </fieldset>
+
+
+</div>
+
+}
+else 
+{ 
+ <h2> Ошибка </h2>
+}
+
+
+@*if (context != null)
+    {
+      //  n = string.Format("{0}-П-{1}", context.ecoevalution.id, context.ecoevalution.date.ToString("yyyy-MM-dd"));
+        //int k = 1;
+    }*@

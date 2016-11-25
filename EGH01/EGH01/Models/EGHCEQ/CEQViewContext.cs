@@ -15,8 +15,10 @@ namespace EGH01.Models.EGHCEQ
         public enum REGIM_EVALUTION{ INIT, CHOICE, CANCEL, ERROR, REPORT };
         public REGIM_CHOICE RegimChoice { get; set; }
         public REGIM_EVALUTION RegimEvalution { get; set; }
-        public int? id     { get; set; }  
-        
+        public const string VIEWNAME = "ChoiceForecastResult";
+        public int? id     { get; set; }
+        public CEQContext.ECOEvalution  ecoevalution { get; set;} 
+
         public CEQViewContext()
         {
             this.RegimChoice = REGIM_CHOICE.INIT;
@@ -30,7 +32,7 @@ namespace EGH01.Models.EGHCEQ
         {
             REGIM_EVALUTION rc = REGIM_EVALUTION.INIT;
             CEQViewContext viewcontext = null;
-            if ((viewcontext = context.GetViewContext("ChoiceForecastResult") as CEQViewContext) != null)
+            if ((viewcontext = context.GetViewContext(VIEWNAME) as CEQViewContext) != null)
             {
                 rc = viewcontext.RegimEvalution;
             
@@ -42,7 +44,7 @@ namespace EGH01.Models.EGHCEQ
         {
             REGIM_CHOICE rc = REGIM_CHOICE.INIT;
             CEQViewContext viewcontext = null;
-            if ((viewcontext = context.GetViewContext("ChoiceForecastResult") as CEQViewContext) != null)
+            if ((viewcontext = context.GetViewContext(VIEWNAME) as CEQViewContext) != null)
             {
                 rc = viewcontext.RegimChoice = REGIM_CHOICE.INIT;
                 string menuitem = parms["menuitem"];

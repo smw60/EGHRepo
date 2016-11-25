@@ -83,7 +83,7 @@ namespace EGH01.Controllers
                         doc.Save(@"C:\Report.xml");
 
                         int id = -1;
-                        if (!RGEContext.ECOForecast.GetNextId(context, out id))
+                        if (RGEContext.ECOForecast.GetNextId(context, out id))
                         {
                             forecast.id = id;
                             if (RGEContext.ECOForecast.Create(context, forecast, "отладка"))

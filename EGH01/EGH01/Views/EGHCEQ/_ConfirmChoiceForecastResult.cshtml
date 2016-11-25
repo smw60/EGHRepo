@@ -8,33 +8,32 @@
     
     CEQViewContext context = Model.GetViewContext("ChoiceForecastResult") as CEQViewContext;
     if (context == null) {Model.SaveViewContext("ChoiceForecastResult", context = new CEQViewContext()); };
-    context.RegimEvalution = CEQViewContext.REGIM_EVALUTION.CHOICE; 
-    
+   
     Menu start = new Menu(
                           new Menu.MenuItem("Просмтотреть",   "ConfirmChoiceForecastResult.View", true),
                           new Menu.MenuItem("Отказаться",     "ConfirmChoiceForecastResult.Cancel", true)
                           );
 
-    string text = "Ошибка выбора";                     
-    if (context.id != null)
-    {
-       // GetByID
-        text = "224-П-2016-11-20 Нефтебаза 28";
-    } 
-   
+    
 }
 
-@using (Html.BeginForm("EvalutionForecast", "EGHCEQ"))
+@if (context.ecoevalution != null)
 {
+    string text = context.ecoevalution.id.ToString()+"-П-";          // "//224-П-2016-11-20 Нефтебаза 28";
+    using (Html.BeginForm("EvalutionForecast", "EGHCEQ"))
+    {
 
-    <div class="box">
-       
-        <div class="boxdata" style="margin:5px;">
-        
-           <input type="text" value="@text" disabled />
-        
+        <div class="box">
+
+            <div class="boxdata" style="margin:5px;">
+
+                <input type="text" value="@text" disabled />
+
+            </div>
+
+            @Html.Partial("_TypeLineMenu", start)
         </div>
-       
-        @Html.Partial("_TypeLineMenu", start)
-    </div>
+    }
+
 }
+

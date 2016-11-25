@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using EGH01DB.Objects;
-
+using EGH01DB.Blurs;
 
 namespace EGH01DB
 {
@@ -17,16 +17,41 @@ namespace EGH01DB
     {
 
         public class ECOEvalution: RGEContext.ECOForecast
-        { 
-        
+        {
 
-        
-        
+            public float excessgroundconcentration { get; set; }      // отношение значения средней конентрации к ПДК  
+            private string errormssageformat = "ECOEvalution: Ошибка в данных. {0}";
+            public GroundPollutionList groundpollutionlist   {get; set;}
+
+            public ECOEvalution(RGEContext.ECOForecast  forecast): base (forecast)
+            {
+
+                  if (this.groundblur.spreadpoint.cadastretype.pdk_coef <= 0)
+                    throw new EGHDBException(string.Format(errormssageformat, "Значение предельно-дупустимой концентрации не может быть  меньше или равно нулю"));
+
+                  this.excessgroundconcentration = this.groundblur.concentrationinsoil/this.groundblur.spreadpoint.cadastretype.pdk_coef;
+                  this.groundpollutionlist = new GroundPollutionList (this.groundblur.groundpolutionlist.Where(p => p.pointtype == Points.Point.POINTTYPE.ECO).ToList());
+                                                                          
+                      
+                      //(GroundPollutionList)this.groundblur.groundpolutionlist.Where(p => p.pointtype == Points.Point.POINTTYPE.ECO).ToList();  
+
+
+
+
+
+            }
+
         }
-        
 
 
-    }
+
+
+
+     }        
+
 
 }
+
+
+
 

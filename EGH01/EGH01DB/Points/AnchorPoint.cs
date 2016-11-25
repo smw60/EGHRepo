@@ -402,13 +402,10 @@ namespace EGH01DB.Points
         {
             get { return (this.Count() > 0 ? this.Average(a => a.waterdeep) : 0); }
         }
-
         public float sumwaterdeep
         {
             get { return (this.Count() > 0 ? this.Sum(a => a.waterdeep) : 0); }
-        } 
-
-
+        }
 
         public AnchorPointList() : base()
         {
@@ -436,6 +433,15 @@ namespace EGH01DB.Points
             //   rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
             //rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
             return (XmlNode)rc;
+        }
+        public static AnchorPointList CreateAnchorPointList(XmlNode node)
+        {
+            AnchorPointList apl = new AnchorPointList();
+            foreach (XmlElement x in node)
+            {
+                if (x.Name.Equals("AnchorPoint")) apl.Add(new AnchorPoint(x));     
+            }
+            return apl;
         }
         //  найти список точек в заданном радиусе 
         public static AnchorPointList CreateNear(Coordinates center, float distance)
@@ -477,6 +483,7 @@ namespace EGH01DB.Points
 
                         GroundType ground_type = new GroundType(ground_type_code);
                         Coordinates coordinates = new Coordinates((float)x, (float)y);
+                        //string ground_type_name = (string)reader["ТипГрунта"];
                         CadastreType cadastre_type = new CadastreType (cadastre_type_code);
                         Point point = new Point(coordinates, ground_type, (float)waterdeep, (float)height);
                         //delta = (float)reader["Расстояние"];
@@ -485,6 +492,10 @@ namespace EGH01DB.Points
                     }
                     rc = anchor_point_list.Count > 0;
                     reader.Close();
+
+
+
+
                 }
                 catch (Exception e)
                 {

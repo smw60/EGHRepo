@@ -10,7 +10,7 @@ using EGH01DB.Types;
 using EGH01DB.Objects;
 using EGH01DB.Points;
 using EGH01DB.Primitives;
-
+using EGH01DB.Blurs;
 
 namespace EGH01DB.Primitives
 {
@@ -53,6 +53,7 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
+        
         static public EGH01DB.Objects.RiskObjectsList GetListRiskObject(EGH01DB.IDBContext dbcontext)
         {
             List<RiskObject> list = new List<RiskObject>();
@@ -83,16 +84,16 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
-        static public EGH01DB.Points.AnchorPointList GetListAnchorPoint(EGH01DB.IDBContext dbcontext)
-        {
-            List<AnchorPoint> list = new List<AnchorPoint>();
-            EGH01DB.Points.AnchorPointList rc = new EGH01DB.Points.AnchorPointList(list);
-            if (Helper.GetListAnchorPoint(dbcontext, ref list))
-            {
-                rc = new EGH01DB.Points.AnchorPointList(list);
-            }
-            return rc;
-        }
+        //static public EGH01DB.Blurs.GroundPollutionList GetListGroundPollution(EGH01DB.IDBContext dbcontext)
+        //{
+        //    List<GroundPollution> list = new List<GroundPollution>();
+        //    EGH01DB.Blurs.GroundPollutionList rc = new EGH01DB.Blurs.GroundPollutionList(list);
+        //    if (Helper.GetListGroundPollution(dbcontext, ref list))
+        //    {
+        //        rc = new EGH01DB.Blurs.GroundPollutionList(list);
+        //    }
+        //    return rc;
+        //}
         static public EGH01DB.Objects.EcoObjectsList GetListEcoObject(EGH01DB.IDBContext dbcontext)
         {
             List<EcoObject> list = new List<EcoObject>();
@@ -143,7 +144,16 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
-        
+        static public EGH01DB.Points.AnchorPointList GetListAnchorPoint(EGH01DB.IDBContext dbcontext)
+        {
+            List<AnchorPoint> list = new List<AnchorPoint>();
+            EGH01DB.Points.AnchorPointList rc = new EGH01DB.Points.AnchorPointList(list);
+            if (Helper.GetListAnchorPoint(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Points.AnchorPointList(list);
+            }
+            return rc;
+        }
         static public bool GetListGroundType(EGH01DB.IDBContext dbcontext, ref List<GroundType> list_type)
         { 
             bool rc = false;
