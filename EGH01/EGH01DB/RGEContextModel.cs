@@ -122,9 +122,26 @@ namespace EGH01DB
                 this.id = Helper.GetIntAttribute(node, "id", -1);
                 this.date = Helper.GetDateTimeAttribute(node, "date", DateTime.MinValue);
 
+
                 // incident
+
+                XmlNode incident = node.SelectSingleNode(".//Incident");
+                if (incident != null) this.incident = new Incident(incident);
+                else this.incident = null;
+
                 //   GroundBlur
+
+                XmlNode ground_blur = node.SelectSingleNode(".//GroundBlur");
+                if (ground_blur != null) this.groundblur = new GroundBlur(ground_blur);
+                else this.groundblur = null;
+
                 //   WaterBlur
+
+                XmlNode water_blur = node.SelectSingleNode(".//WaterBlur");
+                if (water_blur != null) this.waterblur = new WaterBlur(water_blur);
+                else this.waterblur = null;
+
+
                 this.dateconcentrationinsoil = Helper.GetDateTimeAttribute(node, "dateconcentrationinsoil", DateTime.MinValue);
                 this.datewatercompletion = Helper.GetDateTimeAttribute(node, "datewatercompletion", DateTime.MinValue);
                 this.datemaxwaterconc = Helper.GetDateTimeAttribute(node, "datemaxwaterconc", DateTime.MinValue);
@@ -143,7 +160,7 @@ namespace EGH01DB
                 rc.SetAttribute("datemaxwaterconc", this.datemaxwaterconc.ToString());
                 rc.SetAttribute("errormessage", this.errormessage.ToString());
                 rc.AppendChild(doc.ImportNode(this.incident.toXmlNode(), true));
-                //rc.AppendChild(doc.ImportNode(this.waterblur.toXmlNode(), true));
+                rc.AppendChild(doc.ImportNode(this.waterblur.toXmlNode(), true));
                 rc.AppendChild(doc.ImportNode(this.groundblur.toXmlNode(), true));
                 return (XmlNode)rc;
             }

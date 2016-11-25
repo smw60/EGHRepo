@@ -8,13 +8,8 @@ using EGH01DB.Points;
 using EGH01DB.Objects;
 using EGH01DB.Primitives;
 using System.Xml;
-
-using EGH01DB.Primitives;
-using EGH01DB.Types;
-using EGH01DB.Points;
 using System.Data.SqlClient;
 using System.Data;
-using System.Xml;
 
 namespace EGH01DB.Blurs
 {
