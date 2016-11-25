@@ -402,7 +402,6 @@ namespace EGH01DB.Points
         {
             get { return (this.Count() > 0 ? this.Average(a => a.waterdeep) : 0); }
         }
-
         public float sumwaterdeep
         {
             get { return (this.Count() > 0 ? this.Sum(a => a.waterdeep) : 0); }

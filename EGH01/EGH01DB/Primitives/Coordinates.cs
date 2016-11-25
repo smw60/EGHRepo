@@ -130,10 +130,10 @@ namespace EGH01DB.Primitives
 
     public class CoordinatesList:List<Coordinates>
     {
-        public static CoordinatesList CreateCoordinatesList()
-        { 
-         return new CoordinatesList();
-        }
+        //public static CoordinatesList CreateCoordinatesList()
+        //{ 
+        // return new CoordinatesList();
+        //}
         public static CoordinatesList CreateCoordinatesList(XmlNode node)
         {
             CoordinatesList cl = new CoordinatesList();
