@@ -39,6 +39,12 @@ namespace EGH01DB.Types
             this.type_code = 0;
             this.name = name;
         }
+        public IncidentType(XmlNode node)
+        {
+            this.type_code = Helper.GetIntAttribute(node, "type_code", -1);
+            this.name = Helper.GetStringAttribute(node, "name", "");
+        }
+
         public XmlNode toXmlNode(string comment = "")
         {
             XmlDocument doc = new XmlDocument();

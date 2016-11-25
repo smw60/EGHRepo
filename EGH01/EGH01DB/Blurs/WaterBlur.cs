@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using EGH01DB.Objects;
 using EGH01DB.Primitives;
+using System.Xml;
+
 namespace EGH01DB.Blurs
 {
 
@@ -18,6 +20,7 @@ namespace EGH01DB.Blurs
         public EcoObjectsList     ecoobjectslist    {get; private set;}  // список природоохранных объектов в водном пятне    
         public WaterPollutionList watepollutionlist {get; private set;}  // список точек в водном пятне    
 
+       
         public WaterBlur(IDBContext db, GroundBlur groundblur)
         {
             this.groudblur = groundblur;
@@ -53,6 +56,7 @@ namespace EGH01DB.Blurs
                sv += v;                                                                            //сумма скоростей для нормирования 
                this.watepollutionlist.Add(new WaterPollution(o, d, a, this.groudblur.spreadpoint.petrochemicaltype, v, 0.0f, v>0.0f?d/v:Const.TIME_INFINITY));
            }
+           this.border = new CoordinatesList();
 
            foreach (WaterPollution p in this.watepollutionlist)
            {
@@ -62,6 +66,44 @@ namespace EGH01DB.Blurs
                }
      
            }
+        }
+
+        public WaterBlur(XmlNode node)
+        {
+            XmlNode groudblur = node.SelectSingleNode(".//GroundBlur");
+            if (groudblur != null) this.groudblur = new GroundBlur(groudblur);
+            else this.groudblur = null;
+
+            XmlNode coordinates_list = node.SelectSingleNode(".//CoordinatesList");
+            if (coordinates_list != null) this.border = CoordinatesList.CreateCoordinatesList(coordinates_list);
+            else this.border = null;
+
+            this.radius = Helper.GetFloatAttribute(node, "radius", 0.0f);
+            this.toobporosity = Helper.GetFloatAttribute(node, "toobporosity", 0.0f);
+            this.toobheight = Helper.GetFloatAttribute(node, "toobheight", 0.0f);
+
+            //XmlNode eco_objects_list = node.SelectSingleNode(".//EcoObjectsList");
+            //if (eco_objects_list != null) this.ecoobjectslist = EcoObjectsList.CreateEcoObjectsList(eco_objects_list);
+            //else this.ecoobjectslist = null;
+            // water pollution list
+        }
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("WaterBlur");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+
+            rc.AppendChild(doc.ImportNode(this.groudblur.toXmlNode(), true));
+            rc.AppendChild(doc.ImportNode(this.border.toXmlNode(), true));
+
+            rc.SetAttribute("radius", this.radius.ToString());
+            rc.SetAttribute("toobporosity", this.toobporosity.ToString());
+            rc.SetAttribute("toobheight", this.toobheight.ToString());
+
+            rc.AppendChild(doc.ImportNode(this.ecoobjectslist.toXmlNode(), true));
+            rc.AppendChild(doc.ImportNode(this.watepollutionlist.toXmlNode(), true));
+            
+            return (XmlNode)rc;
         }
     }  
 }

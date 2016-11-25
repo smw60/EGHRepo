@@ -477,14 +477,21 @@ namespace EGH01DB.Points
                         float x = (float)reader["ШиротаГрад"];
                         float y = (float)reader["ДолготаГрад"];
                         int ground_type_code = (int)reader["ТипГрунта"];
-                        int cadastre_type_code = (int)reader["КодНазначенияЗемель"];
+                        
                         float waterdeep = (float)reader["ГлубинаГрунтовыхВод"];
                         float height = (float)reader["ВысотаУровнемМоря"];
 
                         GroundType ground_type = new GroundType(ground_type_code);
                         Coordinates coordinates = new Coordinates((float)x, (float)y);
-                        //string ground_type_name = (string)reader["ТипГрунта"];
-                        CadastreType cadastre_type = new CadastreType (cadastre_type_code);
+
+                        int cadastre_type_code = (int)reader["КодНазначенияЗемель"];
+                        string ground_type_name = (string)reader["НаименованиеНазначенияЗемель"];
+                        float pdk_koef = (float)reader["ПДК"];
+                        float water_pdk_koef = (float)reader["ПДКводы"];
+	                    string pdk_korf_doc = (string)reader["НормДокументЗемля"];
+		                string water_pdk_korf_doc = (string)reader["НормДокументВода"];
+
+                        CadastreType cadastre_type = new CadastreType(cadastre_type_code, ground_type_name, pdk_koef, water_pdk_koef, pdk_korf_doc, water_pdk_korf_doc);
                         Point point = new Point(coordinates, ground_type, (float)waterdeep, (float)height);
                         //delta = (float)reader["Расстояние"];
                         AnchorPoint anchor_point = new AnchorPoint(id, point, cadastre_type);

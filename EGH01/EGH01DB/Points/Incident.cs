@@ -7,6 +7,8 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Xml;
 using EGH01DB.Types;
+using EGH01DB.Primitives;
+
 namespace EGH01DB.Points
 {
     public class Incident: SpreadPoint 
@@ -32,6 +34,16 @@ namespace EGH01DB.Points
             this.date_message = date_message;
             this.type = type;
  
+        }
+
+        public Incident(XmlNode node)
+        {
+            this.id = Helper.GetIntAttribute(node, "id", -1);
+            this.date = Helper.GetDateTimeAttribute(node, "date", DateTime.MinValue);
+            this.date_message = Helper.GetDateTimeAttribute(node, "date_message", DateTime.MinValue);
+            XmlNode incident_type = node.SelectSingleNode(".//IncidentType");
+            if (incident_type != null) this.type = new IncidentType(incident_type);
+            else this.type = null;
         }
         public new XmlNode  toXmlNode(string comment = "")
         {
