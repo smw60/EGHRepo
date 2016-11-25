@@ -186,7 +186,12 @@ namespace EGH01.Controllers
 
                     int id = cd.type_code;
                     String name = cd.name;
-                    float pdk_coef= cd.pdk_coef;
+                    float pdk_coef= 0.0f;
+                    string strpdk_coef = this.HttpContext.Request.Params["pdk_coef"] ?? "Empty";
+                    if (!Helper.FloatTryParse(strpdk_coef, out pdk_coef))
+                    {
+                        pdk_coef = 0.0f;
+                    }
                     float water_pdk_coef = cd.water_pdk_coef;
                     string ground_doc_name = cd.ground_doc_name;
                     string water_doc_name = cd.water_doc_name;
