@@ -10,34 +10,34 @@
     
     List<SelectListItem> reportlist = new List<SelectListItem>
     {
-           //new SelectListItem{ Text = "225-П-2016-11-20 АЗС № 21", Value = "221",  Selected = true},
-           //new SelectListItem{ Text = "224-П-2016-11-20 Нефтебаза 28", Value = "222",  Selected = false},
-           //new SelectListItem{ Text = "223-П-2016-11-20 АЗС № 336", Value = "223",  Selected = false},
-           //new SelectListItem{ Text = "222-П-2016-11-20 ", Value = "224",  Selected = false}
+           new SelectListItem{ Text = "225-П-2016-11-20 АЗС № 21", Value = "221",  Selected = true},
+           new SelectListItem{ Text = "224-П-2016-11-20 Нефтебаза 28", Value = "222",  Selected = false},
+           new SelectListItem{ Text = "223-П-2016-11-20 АЗС № 336", Value = "223",  Selected = false},
+           new SelectListItem{ Text = "222-П-2016-11-20 ", Value = "224",  Selected = false}
 
     };
    
-    {
-        RGEContext.ECOForecastlist flist  = new RGEContext.ECOForecastlist();
-        List<string>               clist  = new List<string>();
-        if (RGEContext.ECOForecastlist.Get(Model,"П", out flist, out clist))
-        {
-            foreach (RGEContext.ECOForecast f in flist)
-            {
+    //{
+    //    RGEContext.ECOForecastlist flist  = new RGEContext.ECOForecastlist();
+    //    List<string>               clist  = new List<string>();
+    //    if (RGEContext.ECOForecastlist.Get(Model,"П", out flist, out clist))
+    //    {
+    //        foreach (RGEContext.ECOForecast f in flist)
+    //        {
 
-                reportlist.Add(
-                                new SelectListItem { 
-                                                    Text = string.Format("{0}-{1}-{2}", f.id, f.date.ToString("yyyy-MM-dd")),
-                                                    Value = f.id.ToString()
-                                                    }
+    //            reportlist.Add(
+    //                            new SelectListItem { 
+    //                                                Text = string.Format("{0}-{1}-{2}", f.id, f.date.ToString("yyyy-MM-dd")),
+    //                                                Value = f.id.ToString()
+    //                                                }
 
-                              );  
-            }            
+    //                          );  
+    //        }            
             
-        } 
+    //    } 
            
         
-    }
+    //}
   
     
     CEQViewContext context = Model.GetViewContext("ChoiceForecastResult") as CEQViewContext;

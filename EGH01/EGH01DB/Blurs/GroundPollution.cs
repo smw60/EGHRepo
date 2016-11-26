@@ -24,6 +24,7 @@ namespace EGH01DB.Blurs
        public float angle                        { get; private set; }          // гидравлический угол наклона  
        public string comment                     { get; private set; }          // комментарий 
        public string name                        { get; private set; }          // наименование 
+      // public bool is
        public POINTTYPE  pointtype               { get; private set; }          // тип точки 
 
        private readonly string comment_format = "{0}-{1}:";         // тип-id:              

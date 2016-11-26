@@ -19,12 +19,13 @@ namespace EGH01DB.Blurs
         public float distance { get; private set; }          // расстояние до центра разлива 
         public float maxconcentration { get; set; }                  // максимальная концентрация нефтепродукта
         public float timemaxconcentration { get; private set; }          // время достижения  максимальной концентрация нефтепродукта
+        public float daymaxconcentration { get { return  (float)Math.Round(timemaxconcentration/Const.SEC_PER_DAY,1);}} // время в сутках  
         public DateTime datemaxconcentration { get; set; }                  // дата достижения  максимальной концентрация нефтепродукта
         public float speedhorizontal { get; private set; }          // горизонтальная скорость 
         public float angle { get; private set; }          // гидравлический угол наклона  
         public string comment { get; private set; }          // комментарий 
         public string name { get; private set; }          // наименование 
-        
+        public bool iswaterobject { get; private set; }   // является ли водным объектом 
         public POINTTYPE pointtype { get; private set; }          // тип точки 
         private readonly string comment_format = "{0}-{1}:";         // тип-id:
 
@@ -42,17 +43,17 @@ namespace EGH01DB.Blurs
             this.name = String.Empty;
             this.comment = String.Empty;
             this.pointtype = POINTTYPE.UNDEF;
+            this.iswaterobject = false;
         }
         public WaterPollution(XmlNode node)
+            : base(node.SelectSingleNode(".//Point"))
         {
             XmlNode petrochemical_type = node.SelectSingleNode(".//PetrochemicalType");
             if (petrochemical_type != null) this.petrochemicatype = new PetrochemicalType(petrochemical_type);
             else this.petrochemicatype = null;
-
             XmlNode cadastre_type = node.SelectSingleNode(".//CadastreType");
             if (cadastre_type != null) this.cadastretype = new CadastreType(cadastre_type);
             else this.cadastretype = null;
-
             this.distance = Helper.GetFloatAttribute(node, "distance");
             this.maxconcentration = Helper.GetFloatAttribute(node, "maxconcentration");
             this.timemaxconcentration = Helper.GetFloatAttribute(node, "timemaxconcentration");
@@ -60,6 +61,7 @@ namespace EGH01DB.Blurs
             this.speedhorizontal = Helper.GetFloatAttribute(node, "speedhorizontal");
             this.angle = Helper.GetFloatAttribute(node, "angle");
             this.comment = Helper.GetStringAttribute(node, "comment");
+            this.iswaterobject =  Helper.GetStringAttribute(node, "iswaterobject","нет").Equals("да");
                       
         }
 
@@ -77,10 +79,11 @@ namespace EGH01DB.Blurs
             this.maxconcentration = maxconcentration;
             this.timemaxconcentration = timemaxconcentration;
             this.datemaxconcentration = Const.DATE_INFINITY;
+            this.iswaterobject = ecojbject.iswaterobject;
         }
         
         
-        public XmlNode toXmlNode(string comment = "")
+        public new  XmlNode   toXmlNode(string comment = "")
         {
             XmlDocument doc = new XmlDocument();
             XmlElement rc = doc.CreateElement("WaterPollution");
@@ -90,16 +93,17 @@ namespace EGH01DB.Blurs
             rc.SetAttribute("distance", this.distance.ToString());
             rc.SetAttribute("maxconcentration", this.maxconcentration.ToString());
             rc.SetAttribute("timemaxconcentration", this.timemaxconcentration.ToString());
-            rc.SetAttribute("datemaxconcentration", this.datemaxconcentration.ToString());
+            rc.SetAttribute("daymaxconcentration", this.daymaxconcentration.ToString());
+            rc.SetAttribute("datemaxconcentration", this.datemaxconcentration.ToShortDateString());
             rc.SetAttribute("speedhorizontal", this.speedhorizontal.ToString());
-
-            XmlNode n = base.toXmlNode("");
-            rc.AppendChild(doc.ImportNode(n, true));
-
+            rc.SetAttribute("iswaterobject", this.iswaterobject ? "да" : "нет");
             rc.SetAttribute("angle", this.angle.ToString());
             rc.SetAttribute("name", this.name.ToString());
             rc.SetAttribute("comment", this.comment.ToString());
             rc.SetAttribute("pointtype", this.pointtype.ToString());
+            XmlNode n = base.toXmlNode("");
+            rc.AppendChild(doc.ImportNode(n, true));
+            
             return (XmlNode)rc;
         }
 

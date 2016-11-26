@@ -133,16 +133,30 @@
                   <label class="boxdata-label-40 ">  Радиус распрстранения  нефтепрдукта с грунтовыми водами (м)  </label>
                  @Math.Round(context.ecoevalution.waterblur.radius,0)
               </p>
-              <fieldset form="ChoiseRiskObject">
+              <fieldset >
                   <legend> Природоохранные объекты </legend>
                   <p>
                       <label class="boxdata-label-40 ">Радиус поиска прирооохранных объектов (м)  </label>
                       @Math.Round(context.ecoevalution.groundblur.radius,0) - 
                       @Math.Round(context.ecoevalution.waterblur.radius,0)
                   </p>
-              </fieldset>  
-              </fieldset>
+                  @foreach (WaterPollution o in context.ecoevalution.waterpolutionlist)
+                  {
+                     <fieldset >
+                          <legend>@o.comment @o.name </legend>
+                          <p>
+                              координаты:  @Math.Round(o.coordinates.latitude, 6)
+                              @Math.Round(o.coordinates.lngitude, 6)
+                              расстояние:  @Math.Round(o.distance, 0) (м)
+                              высота:      @Math.Round(o.height, 0) (м)
+                              угол:        @Math.Round(o.angle, 1)
+                              глубина гр.вод: @Math.Round(o.waterdeep, 1)
+                          </p>
+                      </fieldset>
+                   }
+             </fieldset>  
           </fieldset>
+      </fieldset>
 </div>
 
 }
