@@ -62,7 +62,7 @@ namespace EGH01DB.Types
         {
             this.type_code = Helper.GetIntAttribute(node, "type_code", -1);
             this.name = Helper.GetStringAttribute(node, "name", "");
-            this.pdk_coef = Helper.GetIntAttribute(node, "pdk_coef", -1);
+            this.pdk_coef = Helper.GetFloatAttribute(node, "pdk_coef", 0.0f);
             this.water_pdk_coef = Helper.GetFloatAttribute(node, "water_pdk_coef", 0.0f);
             this.ground_doc_name = Helper.GetStringAttribute(node, "ground_doc_name", "");
             this.water_doc_name = Helper.GetStringAttribute(node, "water_doc_name", "");

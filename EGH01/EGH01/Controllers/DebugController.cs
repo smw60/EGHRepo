@@ -158,18 +158,38 @@ namespace EGH01.Controllers
         }
 
         // проверка процедур  Ecoforecast
-        public ActionResult EF_Create()// 
+        public ActionResult EF_GetById()// 
         {
             //RGEContext db = new RGEContext();
             //string comment = "Comment";
-            //RGEContext.ECOForecast f = new RGEContext.ECOForecast(1);
-            //if (RGEContext.ECOForecast.Create(db, f, comment))
+            //RGEContext.ECOForecast f = new RGEContext.ECOForecast();
+            //if (RGEContext.ECOForecast.GetById(db, 35, out f, out comment))
             //{
             //    int k = 1;
             //};
             return View();
         }
-
+        public ActionResult EF_DeleteById()// 
+        {
+            //RGEContext db = new RGEContext();
+            //RGEContext.ECOForecast f = new RGEContext.ECOForecast();
+            //if (RGEContext.ECOForecast.DeleteById(db, 2))
+            //{
+            //    int k = 1;
+            //};
+            return View();
+        }
+        public ActionResult EF_UpdateCommentById()// 
+        {
+            //RGEContext db = new RGEContext();
+            //string comment = "New comment";
+            //RGEContext.ECOForecast f = new RGEContext.ECOForecast();
+            //if (RGEContext.ECOForecast.UpdateCommentById(db, 35, comment))
+            //{
+            //    int k = 1;
+            //};
+            return View();
+        }
 
         // проверка процедур  Water Properties
         public ActionResult Water_Properties_list() // yes

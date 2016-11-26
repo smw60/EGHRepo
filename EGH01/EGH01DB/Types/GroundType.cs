@@ -12,19 +12,19 @@ namespace EGH01DB.Types
 {
     public class GroundType   // тип грунта 
     {
-        public int     type_code     {get; private set;}
-        public string  name          {get; private set;}
-        public float   porosity      {get; private set;}   // пористость     >0    <1, безразмерная , доля застрявшего  в грунте нефтепрдукта       
-        public float   holdmigration {get; private set;}   // коэфф. задержки миграции нефтепродуктов 
-        public float   waterfilter   {get; private set;}   // коэфф. фильтрации воды
-        public float   diffusion     {get; private set;}   // коэфф. диффузии
-        public float   distribution  {get; private set;}   // коэфф. распределения
-        public float   sorption      {get; private set;}   // коэфф. сорбции
-        public float watercapacity { get; private set; }   // капиллярная влагоемкость (от 0 до 1)
-        public float soilmoisture { get; private set; }   // влажность грунта (от 0 до 1)
-        public float аveryanovfactor { get; private set; }   // коэффициент Аверьянова (от 4 до 9)
-        public float permeability { get; private set; }   // водопроницаемость м/с
-        public float density { get; private set; }   // водопроницаемость м/с
+        public int     type_code        {get; private set;}
+        public string  name             {get; private set;}
+        public float   porosity         {get; private set;}          // пористость     >0    <1, безразмерная , доля застрявшего  в грунте нефтепрдукта       
+        public float   holdmigration    {get; private set;}          // коэфф. задержки миграции нефтепродуктов 
+        public float   waterfilter      {get; private set;}          // коэфф. фильтрации воды
+        public float   diffusion        {get; private set;}          // коэфф. диффузии
+        public float   distribution     {get; private set;}          // коэфф. распределения
+        public float   sorption         {get; private set;}          // коэфф. сорбции
+        public float   watercapacity    {get; private set;}          // капиллярная влагоемкость (от 0 до 1)
+        public float   soilmoisture     {get; private set;}          // влажность грунта (от 0 до 1)
+        public float   аveryanovfactor  {get; private set;}          // коэффициент Аверьянова (от 4 до 9)
+        public float   permeability     {get; private set;}          // водопроницаемость м/с
+        public float   density          {get; private set;}          // водопроницаемость м/с
 
         public bool    Create()      {return true;}
         public bool    Delete()      {return true;}

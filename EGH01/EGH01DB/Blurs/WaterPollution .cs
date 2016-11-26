@@ -9,7 +9,6 @@ using EGH01DB.Primitives;
 using EGH01DB.Points;
 using System.Xml;
 
-
 namespace EGH01DB.Blurs
 {
     public partial  class WaterPollution : Point   //загрязнение в точке
@@ -44,6 +43,26 @@ namespace EGH01DB.Blurs
             this.comment = String.Empty;
             this.pointtype = POINTTYPE.UNDEF;
         }
+        public WaterPollution(XmlNode node)
+        {
+            XmlNode petrochemical_type = node.SelectSingleNode(".//PetrochemicalType");
+            if (petrochemical_type != null) this.petrochemicatype = new PetrochemicalType(petrochemical_type);
+            else this.petrochemicatype = null;
+
+            XmlNode cadastre_type = node.SelectSingleNode(".//CadastreType");
+            if (cadastre_type != null) this.cadastretype = new CadastreType(cadastre_type);
+            else this.cadastretype = null;
+
+            this.distance = Helper.GetFloatAttribute(node, "distance");
+            this.maxconcentration = Helper.GetFloatAttribute(node, "maxconcentration");
+            this.timemaxconcentration = Helper.GetFloatAttribute(node, "timemaxconcentration");
+            this.datemaxconcentration = Helper.GetDateTimeAttribute(node, "datemaxconcentration", DateTime.Parse("1900-01-01 01:01:01"));
+            this.speedhorizontal = Helper.GetFloatAttribute(node, "speedhorizontal");
+            this.angle = Helper.GetFloatAttribute(node, "angle");
+            this.comment = Helper.GetStringAttribute(node, "comment");
+                      
+        }
+
         public WaterPollution(EcoObject ecojbject, float distance, float angle, PetrochemicalType petrochemicatype, float speedhorizontal, float maxconcentration = 0.0f, float timemaxconcentration = 0.0f)
             : base(ecojbject)
         {
@@ -59,6 +78,8 @@ namespace EGH01DB.Blurs
             this.timemaxconcentration = timemaxconcentration;
             this.datemaxconcentration = Const.DATE_INFINITY;
         }
+        
+        
         public XmlNode toXmlNode(string comment = "")
         {
             XmlDocument doc = new XmlDocument();
@@ -90,6 +111,15 @@ namespace EGH01DB.Blurs
                base.Add(waterpollution);
                return true;
            }
+          public static WaterPollutionList CreateWaterPollutionList(XmlNode node)
+          {
+              WaterPollutionList water_pollution_list = new WaterPollutionList();
+              foreach (XmlElement x in node)
+              {
+                  if (x.Name.Equals("WaterPollution")) water_pollution_list.Add(new WaterPollution(x));    
+              }
+              return water_pollution_list;
+          }
           public XmlNode toXmlNode(string comment = "")
           {
               XmlDocument doc = new XmlDocument();
