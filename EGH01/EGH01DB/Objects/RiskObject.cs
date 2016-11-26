@@ -921,15 +921,10 @@ namespace EGH01DB.Objects
         }
         public XmlNode toXmlNode(string comment = "")
         {
-
             XmlDocument doc = new XmlDocument();
             XmlElement rc = doc.CreateElement("RiskObjectList");
             if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
-
             this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
-
-            //rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
-            //rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
             return (XmlNode)rc;
         }
         

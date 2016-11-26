@@ -82,10 +82,14 @@ namespace EGH01DB.Blurs
             this.toobporosity = Helper.GetFloatAttribute(node, "toobporosity", 0.0f);
             this.toobheight = Helper.GetFloatAttribute(node, "toobheight", 0.0f);
 
-            //XmlNode eco_objects_list = node.SelectSingleNode(".//EcoObjectsList");
-            //if (eco_objects_list != null) this.ecoobjectslist = EcoObjectsList.CreateEcoObjectsList(eco_objects_list);
-            //else this.ecoobjectslist = null;
-            // water pollution list
+            XmlNode eco_objects_list = node.SelectSingleNode(".//EcoObjectsList");
+            if (eco_objects_list != null) this.ecoobjectslist = EcoObjectsList.CreateEcoObjectsList(eco_objects_list);
+            else this.ecoobjectslist = null;
+
+            XmlNode water_pollution_list = node.SelectSingleNode(".//WaterPollutionList");
+            if (water_pollution_list != null) this.watepollutionlist = WaterPollutionList.CreateWaterPollutionList(water_pollution_list);
+            else this.watepollutionlist = null;
+            
         }
         public XmlNode toXmlNode(string comment = "")
         {
