@@ -132,7 +132,78 @@ namespace EGH01.Controllers
             return View();
         }
 
+        // проверка процедур  SoilPollutionCategories
+        public ActionResult SoilPollutionCategories_Create()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = -1;
+                //string name = "Test111";
+                //float min = -1.1f;
+                //float max = 1111.1f;
+                //SoilPollutionCategories t = new SoilPollutionCategories(code, name, min, max);
+                //if (SoilPollutionCategories.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilPollutionCategories_DeleteByCode()  // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //SoilPollutionCategories r = new SoilPollutionCategories();
+                
+                //if (SoilPollutionCategories.DeleteByCode(db, 2))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilPollutionCategories_GetByCode()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //SoilPollutionCategories r = new SoilPollutionCategories(1);
+                //if (SoilPollutionCategories.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilPollutionCategories_Update()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = 1;
+                //string name = "Test111222";
+                //float min = 11.1f;
+                //float max = 1111111.1f;
 
+                //SoilPollutionCategories t = new SoilPollutionCategories((int)code, (string)name, min, max);
+
+                //if (SoilPollutionCategories.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilPollutionCategories_list() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<SoilPollutionCategories> list = new List<SoilPollutionCategories>();
+                //if (Helper.GetListSoilPollutionCategories(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
 
 
         // проверка процедур  SoilCleaningMethod
