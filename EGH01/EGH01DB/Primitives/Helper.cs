@@ -845,6 +845,37 @@ namespace EGH01DB.Primitives
             return rc;
         }
 
+        static public bool GetListSoilCleaningMethods(EGH01DB.IDBContext dbcontext, ref List<SoilCleaningMethod> list_soil_clean_method)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetSoilCleaningMethodsList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    list_soil_clean_method = new List<SoilCleaningMethod>();
+                    while (reader.Read())
+                    {
+                        int code = (int)reader["КодТипаКатегории"];
+                        string name = (string)reader["НаименованиеКатегории"];
+                        string method = (string)reader["ОписаниеМетода"];
+
+                        list_soil_clean_method.Add(new SoilCleaningMethod(code, name, method));
+                    }
+                    rc = list_soil_clean_method.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+
+
         static public float     GetFloatAttribute(XmlNode n, string name, float errorvalue = 0.0f)
         {
             float rc = errorvalue;

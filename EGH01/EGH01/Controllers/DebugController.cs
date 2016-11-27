@@ -57,7 +57,79 @@ namespace EGH01.Controllers
 
             return View();
         }
+        
+        // проверка процедур  SoilCleaningMethod
+
+        public ActionResult SoilCleaningMethod_Create()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = -1;
+                //string name = "Test111";
+                //string method = "Test method";
+                //SoilCleaningMethod t = new SoilCleaningMethod(code, name, method);
+                //if (SoilCleaningMethod.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilCleaningMethodn_DeleteByCode()  // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //SoilCleaningMethod r = new SoilCleaningMethod();
+                //if (SoilCleaningMethod.DeleteByCode(db, 1))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilCleaningMethod_GetByCode()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //SoilCleaningMethod r = new SoilCleaningMethod(1);
+                //if (SoilCleaningMethod.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilCleaningMethod_Update()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int code = 1;
+                //string name = "Test111222";
+                //string method = "Test111222";
+                //SoilCleaningMethod t = new SoilCleaningMethod((int)code, (string)name, method);
+                
+                //if (SoilCleaningMethod.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilCleaningMethod_list() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<SoilCleaningMethod> list = new List<SoilCleaningMethod>();
+                //if (Helper.GetListSoilCleaningMethods(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
        
+
         // проверка процедур  XML
         public ActionResult XML_District_Region()
         {

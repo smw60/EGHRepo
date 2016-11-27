@@ -118,6 +118,7 @@
     <Compile Include="RGEContextView.cs" />
     <Compile Include="Types\Region.cs" />
     <Compile Include="Types\RiskObjectType.cs" />
+    <Compile Include="Types\SoilCleaningMethod.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

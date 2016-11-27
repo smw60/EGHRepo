@@ -85,15 +85,13 @@ go
 create procedure EGH.GetNextReportId(@IdОтчета int output)
  as begin
 	declare @rc int = -1;
-	
 	set @IdОтчета = (select max(IdОтчета)+1 from dbo.Отчет);
+	set @rc = @@ROWCOUNT;
 	if @IdОтчета is null 
 	begin
 		set @IdОтчета = 1;
 		set @rc = 1;
 	end;
-	else
-		set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
 go
