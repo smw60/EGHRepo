@@ -801,6 +801,50 @@ namespace EGH01DB.Primitives
                 return rc;
             }
         }
+        static public bool GetListEcoforecast(EGH01DB.IDBContext dbcontext, ref List<RGEContext.ECOForecast> list_eco_forecast)
+        {
+            bool rc = false;
+            list_eco_forecast = new RGEContext.ECOForecastlist();
+            using (SqlCommand cmd = new SqlCommand("EGH.GetReportList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int report_id = (int)reader ["IdОтчета"];
+                        DateTime date = (DateTime)reader["ДатаОтчета"];
+                        string stage = (string)reader["Стадия"];
+                        int predator = (int)reader["Родитель"];
+                        //comment = (string)reader["Комментарий"];
+                        //
+                        string xmlContent = (string)reader["ТекстОтчета"];
+                        XmlDocument doc = new XmlDocument();
+                        doc.LoadXml(xmlContent);
+                        XmlNode newNode = doc.DocumentElement;
+                        //
+                        RGEContext.ECOForecast  ecoforecast = new RGEContext.ECOForecast (newNode);
+                        list_eco_forecast.Add(ecoforecast);
+                        
+                    }
+                    rc = ((int)cmd.Parameters["@exitrc"].Value >0);
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+
+            }
+            return rc;
+        }
 
         static public float     GetFloatAttribute(XmlNode n, string name, float errorvalue = 0.0f)
         {

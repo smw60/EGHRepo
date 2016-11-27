@@ -169,6 +169,16 @@ namespace EGH01.Controllers
             //};
             return View();
         }
+        public ActionResult EF_GetList()// 
+        {
+            //RGEContext db = new RGEContext();  
+            //List <RGEContext.ECOForecast> flist = new List<RGEContext.ECOForecast>();
+            //if (Helper.GetListEcoforecast(db, ref flist))
+            //{
+            //    int k = 1;
+            //};
+            return View();
+        }
         public ActionResult EF_DeleteById()// 
         {
             //RGEContext db = new RGEContext();
