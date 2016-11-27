@@ -29,10 +29,12 @@ namespace EGH01DB
             public ECOEvalution(RGEContext.ECOForecast  forecast): base (forecast)
             {
                 CEQContext db = new CEQContext();    // заглушка, выставить правильный контекст //blinova
-                if (this.groundblur.spreadpoint.cadastretype.pdk_coef <= 0)
-                throw new EGHDBException(string.Format(errormssageformat, "Значение предельно-дупустимой концентрации не может быть  меньше или равно нулю"));
+                //if (this.groundblur.spreadpoint.cadastretype.pdk_coef <= 0)
+                //throw new EGHDBException(string.Format(errormssageformat, "Значение предельно-дупустимой концентрации не может быть  меньше или равно нулю"));
 
-                this.excessgroundconcentration = this.groundblur.concentrationinsoil/this.groundblur.spreadpoint.cadastretype.pdk_coef;
+                if (this.groundblur.spreadpoint.cadastretype.pdk_coef > 0) this.excessgroundconcentration = this.groundblur.concentrationinsoil / this.groundblur.spreadpoint.cadastretype.pdk_coef;
+                else this.excessgroundconcentration = 0.0f;
+
                 this.groundpollutionlist = new GroundPollutionList (this.groundblur.groundpolutionlist.Where(p => p.pointtype == Points.Point.POINTTYPE.ECO).ToList());
 
                 this.waterpolutionlist = new WaterPollutionList();

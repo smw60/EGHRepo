@@ -53,7 +53,6 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
-        
         static public EGH01DB.Objects.RiskObjectsList GetListRiskObject(EGH01DB.IDBContext dbcontext)
         {
             List<RiskObject> list = new List<RiskObject>();
@@ -774,11 +773,11 @@ namespace EGH01DB.Primitives
                         string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
                         float pdk = (float)reader["ПДК"];
                         float water_pdk_coef = (float)reader["ПДК"];
-                        string ground_doc_name = (string)reader["НаименованиеНазначенияЗемель"];
-                        string water_doc_name = (string)reader["НаименованиеНазначенияЗемель"];
-                        CadastreType cadastre_type = new CadastreType(cadastre_type_code, (string)cadastre_type_name,
+                        string ground_doc_name = (string)reader["НормДокументЗемля"];
+                        string water_doc_name = (string)reader["НормДокументВода"];
+                        CadastreType cadastre_type = new CadastreType(cadastre_type_code,cadastre_type_name,
                                                                         (float)pdk, (float)water_pdk_coef,
-                                                                        (string)ground_doc_name, (string)water_doc_name);
+                                                                        ground_doc_name, water_doc_name);
                         int ecoobject_type_code = (int)reader["КодТипаПриродоохранногоОбъекта"];
                         string ecoobject_type_name = (string)reader["НаименованиеТипаПриродоохранногоОбъекта"];
 

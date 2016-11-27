@@ -15,17 +15,30 @@ namespace EGH01DB.Blurs
     {
 
         public PetrochemicalType petrochemicatype { get; private set; }          // нефтепрдукт
-        public CadastreType cadastretype { get; private set; }          // кадастровый тип земли
-        public float distance { get; private set; }          // расстояние до центра разлива 
-        public float maxconcentration { get; set; }                  // максимальная концентрация нефтепродукта
-        public float timemaxconcentration { get; private set; }          // время достижения  максимальной концентрация нефтепродукта
-        public float daymaxconcentration { get { return  (float)Math.Round(timemaxconcentration/Const.SEC_PER_DAY,1);}} // время в сутках  
-        public DateTime datemaxconcentration { get; set; }                  // дата достижения  максимальной концентрация нефтепродукта
-        public float speedhorizontal { get; private set; }          // горизонтальная скорость 
-        public float angle { get; private set; }          // гидравлический угол наклона  
-        public string comment { get; private set; }          // комментарий 
-        public string name { get; private set; }          // наименование 
-        public bool iswaterobject { get; private set; }   // является ли водным объектом 
+        public CadastreType cadastretype          { get; private set; }          // кадастровый тип земли
+        public float distance                     { get; private set; }          // расстояние до центра разлива 
+        public float maxconcentration             { get; set; }                  // максимальная концентрация нефтепродукта
+        public float timemaxconcentration         { get; private set; }          // время достижения  максимальной концентрация нефтепродукта
+        public float daymaxconcentration          { get { return  (float)Math.Round(timemaxconcentration/Const.SEC_PER_DAY,1);}} // время в сутках  
+        public DateTime datemaxconcentration      { get; set; }                  // дата достижения  максимальной концентрация нефтепродукта
+        public float speedhorizontal              { get; private set; }          // горизонтальная скорость 
+        public float angle                        { get; private set; }          // гидравлический угол наклона  
+        public string comment                     { get; private set; }          // комментарий 
+        public string name                        { get; private set; }          // наименование 
+       
+ 
+        public bool iswaterobject                 { get; private set; }   // является ли водным объектом 
+        public float excessconcentration          {
+                                                    get
+                                                      { 
+                                                       float rc = 0.0f;
+                                                       if (iswaterobject && cadastretype.water_pdk_coef > 0) rc =  maxconcentration/cadastretype.water_pdk_coef; 
+                                                       else if (!iswaterobject && cadastretype.pdk_coef > 0) rc =  maxconcentration/cadastretype.pdk_coef; 
+                                                       return rc;
+                                                      }
+                                                 
+                                                     
+                                                  }
         public POINTTYPE pointtype { get; private set; }          // тип точки 
         private readonly string comment_format = "{0}-{1}:";         // тип-id:
 
@@ -98,9 +111,10 @@ namespace EGH01DB.Blurs
             rc.SetAttribute("speedhorizontal", this.speedhorizontal.ToString());
             rc.SetAttribute("iswaterobject", this.iswaterobject ? "да" : "нет");
             rc.SetAttribute("angle", this.angle.ToString());
-            rc.SetAttribute("name", this.name.ToString());
-            rc.SetAttribute("comment", this.comment.ToString());
+            rc.SetAttribute("name", this.name);
+            rc.SetAttribute("comment", this.comment);
             rc.SetAttribute("pointtype", this.pointtype.ToString());
+            rc.SetAttribute("excessconcentration", this.excessconcentration.ToString()); 
             XmlNode n = base.toXmlNode("");
             rc.AppendChild(doc.ImportNode(n, true));
             
