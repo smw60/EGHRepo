@@ -936,7 +936,7 @@ namespace EGH01DB.Primitives
         static public bool GetListSoilPollutionCategories(EGH01DB.IDBContext dbcontext, ref List<SoilPollutionCategories> list_soil_pollution_categories)
         {
             bool rc = false;
-            using (SqlCommand cmd = new SqlCommand("EGH.GetWaterPollutionCategoriesList", dbcontext.connection))
+            using (SqlCommand cmd = new SqlCommand("EGH.GetSoilPollutionCategoriesList", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 try
@@ -946,8 +946,8 @@ namespace EGH01DB.Primitives
                     list_soil_pollution_categories = new List<SoilPollutionCategories>();
                     while (reader.Read())
                     {
-                        int code = (int)reader["КодКатегорииЗагрязненияГВ"];
-                        string name = (string)reader["НаименованиеКатегорииЗагрязненияГВ"];
+                        int code = (int)reader["КодКатегорииЗагрязненияГрунта"];
+                        string name = (string)reader["НаименованиеКатегорииЗагрязненияГрунта"];
                         float min = (float)reader["МинДиапазон"];
                         float max = (float)reader["МаксДиапазон"];
 
@@ -963,7 +963,68 @@ namespace EGH01DB.Primitives
                 return rc;
             }
         }
-        
+        static public bool GetListEmergencyClass(EGH01DB.IDBContext dbcontext, ref List<EmergencyClass> emergency_class)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetEmergencyClassList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    emergency_class = new List<EmergencyClass>();
+                    while (reader.Read())
+                    {
+                        int code = (int)reader["КодТипаАварии"];
+                        string name = (string)reader["НаименованиеТипаАварии"];
+                        float min = (float)reader["МинМасса"];
+                        float max = (float)reader["МаксМасса"];
+
+                        emergency_class.Add(new EmergencyClass(code, name, min, max));
+                    }
+                    rc = emergency_class.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+        static public bool GetListPenetrationDepth(EGH01DB.IDBContext dbcontext, ref List<PenetrationDepth> penetration_depth)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetPenetrationDepthList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    penetration_depth = new List<PenetrationDepth>();
+                    while (reader.Read())
+                    {
+                        int code = (int)reader["КодТипаКатегории"];
+                        string name = (string)reader["НаименованиеТипаКатегории"];
+                        float min = (float)reader["МинДиапазон"];
+                        float max = (float)reader["МаксДиапазон"];
+
+                        penetration_depth.Add(new PenetrationDepth(code, name, min, max));
+                    }
+                    rc = penetration_depth.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+
+
         static public float     GetFloatAttribute(XmlNode n, string name, float errorvalue = 0.0f)
         {
             float rc = errorvalue;

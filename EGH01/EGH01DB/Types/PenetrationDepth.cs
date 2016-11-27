@@ -8,57 +8,57 @@ using System.Data;
 using System.Xml;
 using EGH01DB.Primitives;
 
-// Категории загрязнения грунтовых вод
+// 1.1.1.1.21	 Категории проникновения нефтепродукта (PenetrationDepth)
 
 namespace EGH01DB.Types
 {
-    public class SoilPollutionCategories
+   public class PenetrationDepth
     {
-        public int code { get; private set; }   // код категории
-        public string name { get; private set; }   // наименование категории
-        public float min { get; private set; }   // минимальное значение диапазона
-        public float max { get; private set; }   // максимальное значение диапазона
+        public int type_code { get; private set; }      // код категории
+        public string name { get; private set; }        // наименование категории
+        public float mindepth { get; private set; }     // минимальное значение диапазона
+        public float maxdepth { get; private set; }     // максимальное значение диапазона
 
-        static public SoilPollutionCategories defaulttype { get { return new SoilPollutionCategories (0, "Не определен", 0.0f, 0.0f); } }  // выдавать при ошибке  
+        static public PenetrationDepth defaulttype { get { return new PenetrationDepth (0, "Не определен", 0.0f, 0.0f); } }  // выдавать при ошибке  
       
-        public SoilPollutionCategories()
+        public PenetrationDepth()
         {
-            this.code = -1;
+            this.type_code = -1;
             this.name = string.Empty;
-            this.min = 0.0f;
-            this.max = 0.0f;
+            this.mindepth = 0.0f;
+            this.maxdepth = 0.0f;
         }
-        public SoilPollutionCategories(int code)
+        public PenetrationDepth(int code)
         {
-            this.code = code;
+            this.type_code = code;
             this.name = string.Empty;
-            this.min = 0.0f;
-            this.max = 0.0f;
+            this.mindepth = 0.0f;
+            this.maxdepth = 0.0f;
         }
     
-        public SoilPollutionCategories(int code, String name, float min, float max)
+        public PenetrationDepth(int code, String name, float min, float max)
         {
-            this.code = code;
+            this.type_code = code;
             this.name = name;
-            this.min = min;
-            this.max = max;
+            this.mindepth = min;
+            this.maxdepth = max;
         }
-        public SoilPollutionCategories(XmlNode node)
+        public PenetrationDepth(XmlNode node)
         {
-            this.code = Helper.GetIntAttribute(node, "code", -1);
+            this.type_code = Helper.GetIntAttribute(node, "code", -1);
             this.name = Helper.GetStringAttribute(node, "name", "");
-            this.min = Helper.GetFloatAttribute(node, "min", 0.0f);
-            this.max = Helper.GetFloatAttribute(node, "max", 0.0f);
+            this.mindepth = Helper.GetFloatAttribute(node, "mindepth", 0.0f);
+            this.maxdepth = Helper.GetFloatAttribute(node, "maxdepth", 0.0f);
         }
         static public bool GetNextCode(EGH01DB.IDBContext dbcontext, out int code)
         {
             bool rc = false;
             code = -1;
-            using (SqlCommand cmd = new SqlCommand("EGH.GetNextSoilPollutionCategoriesCode", dbcontext.connection))
+            using (SqlCommand cmd = new SqlCommand("EGH.GetNextPenetrationDepthCode", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
-                    SqlParameter parm = new SqlParameter("@КодКатегорииЗагрязненияГрунта", SqlDbType.Int);
+                    SqlParameter parm = new SqlParameter("@КодТипаКатегории", SqlDbType.Int);
                     parm.Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(parm);
                 }
@@ -70,7 +70,7 @@ namespace EGH01DB.Types
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    code = (int)cmd.Parameters["@КодКатегорииЗагрязненияГрунта"].Value;
+                    code = (int)cmd.Parameters["@КодТипаКатегории"].Value;
                     rc = (int)cmd.Parameters["@exitrc"].Value > 0;
                 }
                 catch (Exception e)
@@ -80,33 +80,33 @@ namespace EGH01DB.Types
                 return rc;
             }
         }
-        static public bool Create(EGH01DB.IDBContext dbcontext, SoilPollutionCategories soil_pollution_categories)
+        static public bool Create(EGH01DB.IDBContext dbcontext, PenetrationDepth penetration_depth)
         {
 
             bool rc = false;
-            using (SqlCommand cmd = new SqlCommand("EGH.CreateSoilPollutionCategories", dbcontext.connection))
+            using (SqlCommand cmd = new SqlCommand("EGH.CreatePenetrationDepth", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
                     int new_type_code = 0;
-                    if (GetNextCode(dbcontext, out new_type_code)) soil_pollution_categories.code = new_type_code;
-                    SqlParameter parm = new SqlParameter("@КодКатегорииЗагрязненияГрунта", SqlDbType.Int);
-                    parm.Value = soil_pollution_categories.code;
+                    if (GetNextCode(dbcontext, out new_type_code)) penetration_depth.type_code = new_type_code;
+                    SqlParameter parm = new SqlParameter("@КодТипаКатегории", SqlDbType.Int);
+                    parm.Value = penetration_depth.type_code;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@НаименованиеКатегорииЗагрязненияГрунта", SqlDbType.NVarChar);
-                    parm.Value = soil_pollution_categories.name;
+                    SqlParameter parm = new SqlParameter("@НаименованиеТипаКатегории", SqlDbType.NVarChar);
+                    parm.Value = penetration_depth.name;
                     cmd.Parameters.Add(parm);
                 }
                 {
                     SqlParameter parm = new SqlParameter("@МинДиапазон", SqlDbType.Real);
-                    parm.Value = soil_pollution_categories.min;
+                    parm.Value = penetration_depth.mindepth;
                     cmd.Parameters.Add(parm);
                 }
                 {
                     SqlParameter parm = new SqlParameter("@МаксДиапазон", SqlDbType.Real);
-                    parm.Value = soil_pollution_categories.max;
+                    parm.Value = penetration_depth.maxdepth;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -126,31 +126,31 @@ namespace EGH01DB.Types
             }
             return rc;
         }
-        static public bool Update(EGH01DB.IDBContext dbcontext, SoilPollutionCategories soil_pollution_categories)
+        static public bool Update(EGH01DB.IDBContext dbcontext, PenetrationDepth penetration_depth)
         {
 
             bool rc = false;
-            using (SqlCommand cmd = new SqlCommand("EGH.UpdateSoilPollutionCategories", dbcontext.connection))
+            using (SqlCommand cmd = new SqlCommand("EGH.UpdatePenetrationDepth", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
-                    SqlParameter parm = new SqlParameter("@КодКатегорииЗагрязненияГрунта", SqlDbType.Int);
-                    parm.Value = soil_pollution_categories.code;
+                    SqlParameter parm = new SqlParameter("@КодТипаКатегории", SqlDbType.Int);
+                    parm.Value = penetration_depth.type_code;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@НаименованиеКатегорииЗагрязненияГрунта", SqlDbType.VarChar);
-                    parm.Value = soil_pollution_categories.name;
+                    SqlParameter parm = new SqlParameter("@НаименованиеТипаКатегории", SqlDbType.VarChar);
+                    parm.Value = penetration_depth.name;
                     cmd.Parameters.Add(parm);
                 }
                 {
                     SqlParameter parm = new SqlParameter("@МинДиапазон", SqlDbType.Real);
-                    parm.Value = soil_pollution_categories.min;
+                    parm.Value = penetration_depth.mindepth;
                     cmd.Parameters.Add(parm);
                 }
                 {
                     SqlParameter parm = new SqlParameter("@МаксДиапазон", SqlDbType.Real);
-                    parm.Value = soil_pollution_categories.max;
+                    parm.Value = penetration_depth.maxdepth;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -174,18 +174,18 @@ namespace EGH01DB.Types
         }
         static public bool DeleteByCode(EGH01DB.IDBContext dbcontext, int code)
         {
-            return Delete(dbcontext, new SoilPollutionCategories(code));
+            return Delete(dbcontext, new PenetrationDepth(code));
         }
-        static public bool Delete(EGH01DB.IDBContext dbcontext, SoilPollutionCategories soil_pollution_categories)
+        static public bool Delete(EGH01DB.IDBContext dbcontext, PenetrationDepth penetration_depth)
         {
 
             bool rc = false;
-            using (SqlCommand cmd = new SqlCommand("EGH.DeleteSoilPollutionCategories", dbcontext.connection))
+            using (SqlCommand cmd = new SqlCommand("EGH.DeletePenetrationDepth", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
-                    SqlParameter parm = new SqlParameter("@КодКатегорииЗагрязненияГрунта", SqlDbType.Int);
-                    parm.Value = soil_pollution_categories.code;
+                    SqlParameter parm = new SqlParameter("@КодТипаКатегории", SqlDbType.Int);
+                    parm.Value = penetration_depth.type_code;
                     cmd.Parameters.Add(parm);
                 }
 
@@ -197,7 +197,7 @@ namespace EGH01DB.Types
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    rc =((int)cmd.Parameters["@exitrc"].Value > 0);
+                    rc = (int)cmd.Parameters["@exitrc"].Value > 0;
                 }
                 catch (Exception e)
                 {
@@ -208,15 +208,15 @@ namespace EGH01DB.Types
 
             return rc;
         }
-        static public bool GetByCode(EGH01DB.IDBContext dbcontext, int code, out SoilPollutionCategories soil_pollution_categories)
+        static public bool GetByCode(EGH01DB.IDBContext dbcontext, int code, out PenetrationDepth penetration_depth)
         {
             bool rc = false;
-            soil_pollution_categories = new SoilPollutionCategories();
-            using (SqlCommand cmd = new SqlCommand("EGH.GetSoilPollutionCategoriesByCode", dbcontext.connection))
+            penetration_depth = new PenetrationDepth();
+            using (SqlCommand cmd = new SqlCommand("EGH.GetPenetrationDepthByCode", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
-                    SqlParameter parm = new SqlParameter("@КодКатегорииЗагрязненияГрунта", SqlDbType.Int);
+                    SqlParameter parm = new SqlParameter("@КодТипаКатегории", SqlDbType.Int);
                     parm.Value = code;
                     cmd.Parameters.Add(parm);
                 }
@@ -231,11 +231,11 @@ namespace EGH01DB.Types
                     SqlDataReader reader = cmd.ExecuteReader();
                     if (reader.Read())
                     {
-                        int re_code = (int)reader["КодКатегорииЗагрязненияГрунта"];
-                        string name = (string)reader["НаименованиеКатегорииЗагрязненияГрунта"];
+                        int re_code = (int)reader["КодТипаКатегории"];
+                        string name = (string)reader["НаименованиеТипаКатегории"];
                         float min = (float)reader["МинДиапазон"];
                         float max = (float)reader["МаксДиапазон"];
-                        if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) soil_pollution_categories = new SoilPollutionCategories(code, name, min, max);
+                        if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) penetration_depth = new PenetrationDepth(code, name, min, max);
 
                     }
                     reader.Close();
@@ -252,14 +252,13 @@ namespace EGH01DB.Types
         public XmlNode toXmlNode(string comment = "")
         {
             XmlDocument doc = new XmlDocument();
-            XmlElement rc = doc.CreateElement("SoilPollutionCategories");
+            XmlElement rc = doc.CreateElement("PenetrationDepth");
             if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
-            rc.SetAttribute("code", this.code.ToString());
+            rc.SetAttribute("code", this.type_code.ToString());
             rc.SetAttribute("name", this.name.ToString());
-            rc.SetAttribute("min", this.min.ToString());
-            rc.SetAttribute("max", this.max.ToString());
+            rc.SetAttribute("mindepth", this.mindepth.ToString());
+            rc.SetAttribute("maxdepth", this.maxdepth.ToString());
             return (XmlNode)rc;
         }
-
     }
 }
