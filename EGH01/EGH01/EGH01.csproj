@@ -179,6 +179,9 @@
     <Compile Include="Controllers\EGHGEAController.cs" />
     <Compile Include="Controllers\EGHCEQController_CadastreType.cs" />
     <Compile Include="Controllers\EGHORTController.cs" />
+    <Compile Include="Controllers\EGHORTController_SoilCleaningMethod.cs" />
+    <Compile Include="Controllers\EGHORTController_PenetrationDepth.cs" />
+    <Compile Include="Controllers\EGHORTController_SoilPollutionCategories.cs" />
     <Compile Include="Controllers\EGHRGEController_AnchorPoint.cs" />
     <Compile Include="Controllers\EGHRGEController_CadastreType.cs" />
     <Compile Include="Controllers\EGHRGEController_EcoObject.cs" />
@@ -198,6 +201,9 @@
     <Compile Include="Models\EGHCAI\RiskObject.cs" />
     <Compile Include="Models\EGHCCO\PetrochemicalTypeView.cs" />
     <Compile Include="Models\EGHCEQ\CEQViewContext.cs" />
+    <Compile Include="Models\EGHORT\SoilCleaningMethodView.cs" />
+    <Compile Include="Models\EGHORT\PenetrationDepthView .cs" />
+    <Compile Include="Models\EGHORT\SoilPollutionCategoriesView.cs" />
     <Compile Include="Models\EGHRGE\EcoObjectTypeView.cs" />
     <Compile Include="Models\EGHRGE\EcoObjectView.cs" />
     <Compile Include="Models\EGHRGE\ChoiceRiskObjectViewContext.cs" />
@@ -382,11 +388,28 @@
     <Content Include="Views\EGHCEQ\_ChoiceForecastResult.cshtml" />
     <Content Include="Views\EGHCEQ\_ConfirmChoiceForecastResult.cshtml" />
     <Content Include="Views\EGHCEQ\EvalutionForecast.cshtml" />
+    <Content Include="Views\EGHORT\SoilPollutionCategories.cshtml" />
+    <Content Include="Views\EGHORT\SoilPollutionCategoriesCreate.cshtml" />
+    <Content Include="Views\EGHORT\SoilPollutionCategoriesDelete.cshtml" />
+    <Content Include="Views\EGHORT\SoilPollutionCategoriesUpdate.cshtml" />
+    <Content Include="Views\EGHORT\_SoilPollutionCategoriesList.cshtml" />
+    <Content Include="Views\EGHORT\SoilCleaningMethod.cshtml" />
+    <Content Include="Views\EGHORT\_SoilCleaningMethodList.cshtml" />
+    <Content Include="Views\EGHORT\SoilCleaningMethodCreate.cshtml" />
+    <Content Include="Views\EGHORT\SoilCleaningMethodUpdate.cshtml" />
+    <Content Include="Views\EGHORT\SoilCleaningMethodDelete.cshtml" />
+    <Content Include="Views\EGHORT\_PenetrationDepthList.cshtml" />
+    <Content Include="Views\EGHORT\PenetrationDepth.cshtml" />
+    <Content Include="Views\EGHORT\PenetrationDepthCreate.cshtml" />
+    <Content Include="Views\EGHORT\PenetrationDepthDelete.cshtml" />
+    <Content Include="Views\EGHORT\PenetrationDepthUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Debug\" />
     <Folder Include="Views\EcoObjectTypeView\" />
+    <Folder Include="Views\SoilCleaningMethodsView\" />
+    <Folder Include="Views\EGHORTController_PenetrationDepth\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

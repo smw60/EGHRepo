@@ -1,0 +1,4 @@
+<SoilPollutionCategories>
+  <SoilPollutionCategories code="1" name="Test" min="11" max="1110" />
+  <SoilPollutionCategories code="2" name="даша" min="2" max="5" />
+</SoilPollutionCategories>

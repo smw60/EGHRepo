@@ -3,17 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using EGH01DB;
 
 namespace EGH01.Controllers
 {
-   
-    public class EGHORTController : Controller
+
+    public partial class EGHORTController : Controller
     {
 
         public ActionResult Index()
         {
             ViewBag.EGHLayout = "ORT";
-            return View();
+            ORTContext db = null;
+            try
+            {
+                db = new ORTContext(this);
+
+            }
+            catch (RGEContext.Exception e)
+            {
+                ViewBag.msg = e.message;
+            }
+            finally
+            {
+                //if (db != null) db.Disconnect();
+            }
+
+            return View("Index", db);
         }
 
 
@@ -28,12 +44,12 @@ namespace EGH01.Controllers
         {
             EGH01DB.RGEContext db = new EGH01DB.RGEContext();
             OrtData oData = new OrtData();
- 		    ViewBag.RGEReport = new SelectList(oData.RGEReport);
+            ViewBag.RGEReport = new SelectList(oData.RGEReport);
             //if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
             //else ViewBag.msg = "соединение  c БД  не установлено";
             return View(oData);
         }
-        
+
         public ActionResult Report()
         {
             //if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";

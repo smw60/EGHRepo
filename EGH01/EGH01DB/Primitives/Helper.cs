@@ -123,6 +123,16 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
+        static public EGH01DB.Types.SoilPollutionCategoriesList GetListSoilPollutionCategories(EGH01DB.IDBContext dbcontext)
+        {
+            List<SoilPollutionCategories> list = new List<SoilPollutionCategories>();
+            EGH01DB.Types.SoilPollutionCategoriesList rc = new EGH01DB.Types.SoilPollutionCategoriesList(list);
+            if (Helper.GetListSoilPollutionCategories(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.SoilPollutionCategoriesList(list);
+            }
+            return rc;
+        }
         static public EGH01DB.Primitives.WaterPropertiesList GetListWaterProperties(EGH01DB.IDBContext dbcontext)
         {
             List<WaterProperties> list = new List<WaterProperties>();
@@ -844,6 +854,186 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
+
+        static public bool GetListSoilCleaningMethods(EGH01DB.IDBContext dbcontext, ref List<SoilCleaningMethod> list_soil_clean_method)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetSoilCleaningMethodsList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    list_soil_clean_method = new List<SoilCleaningMethod>();
+                    while (reader.Read())
+                    {
+                        int code = (int)reader["КодТипаКатегории"];
+                        string name = (string)reader["НаименованиеКатегории"];
+                        string method = (string)reader["ОписаниеМетода"];
+
+                        list_soil_clean_method.Add(new SoilCleaningMethod(code, name, method));
+                    }
+                    rc = list_soil_clean_method.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+        static public bool GetListWaterCleaningMethods(EGH01DB.IDBContext dbcontext, ref List<WaterCleaningMethod> list_water_clean_method)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetWaterCleaningMethodsList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    list_water_clean_method = new List<WaterCleaningMethod>();
+                    while (reader.Read())
+                    {
+                        int code = (int)reader["КодТипаКатегории"];
+                        string name = (string)reader["НаименованиеКатегории"];
+                        string method = (string)reader["ОписаниеМетода"];
+
+                        list_water_clean_method.Add(new WaterCleaningMethod(code, name, method));
+                    }
+                    rc = list_water_clean_method.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+        static public bool GetListWaterPollutionCategories(EGH01DB.IDBContext dbcontext, ref List<WaterPollutionCategories> list_water_pollution_categories)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetWaterPollutionCategoriesList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    list_water_pollution_categories = new List<WaterPollutionCategories>();
+                    while (reader.Read())
+                    {
+                        int code = (int)reader["КодКатегорииЗагрязненияГВ"];
+                        string name = (string)reader["НаименованиеКатегорииЗагрязненияГВ"];
+                        float min = (float)reader["МинДиапазон"];
+                        float max = (float)reader["МаксДиапазон"];
+
+                        list_water_pollution_categories.Add(new WaterPollutionCategories(code, name, min, max));
+                    }
+                    rc = list_water_pollution_categories.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+        static public bool GetListSoilPollutionCategories(EGH01DB.IDBContext dbcontext, ref List<SoilPollutionCategories> list_soil_pollution_categories)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetSoilPollutionCategoriesList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    list_soil_pollution_categories = new List<SoilPollutionCategories>();
+                    while (reader.Read())
+                    {
+                        int code = (int)reader["КодКатегорииЗагрязненияГрунта"];
+                        string name = (string)reader["НаименованиеКатегорииЗагрязненияГрунта"];
+                        float min = (float)reader["МинДиапазон"];
+                        float max = (float)reader["МаксДиапазон"];
+
+                        list_soil_pollution_categories.Add(new SoilPollutionCategories(code, name, min, max));
+                    }
+                    rc = list_soil_pollution_categories.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+        static public bool GetListEmergencyClass(EGH01DB.IDBContext dbcontext, ref List<EmergencyClass> emergency_class)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetEmergencyClassList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    emergency_class = new List<EmergencyClass>();
+                    while (reader.Read())
+                    {
+                        int code = (int)reader["КодТипаАварии"];
+                        string name = (string)reader["НаименованиеТипаАварии"];
+                        float min = (float)reader["МинМасса"];
+                        float max = (float)reader["МаксМасса"];
+
+                        emergency_class.Add(new EmergencyClass(code, name, min, max));
+                    }
+                    rc = emergency_class.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+        static public bool GetListPenetrationDepth(EGH01DB.IDBContext dbcontext, ref List<PenetrationDepth> penetration_depth)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetPenetrationDepthList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    penetration_depth = new List<PenetrationDepth>();
+                    while (reader.Read())
+                    {
+                        int code = (int)reader["КодТипаКатегории"];
+                        string name = (string)reader["НаименованиеТипаКатегории"];
+                        float min = (float)reader["МинДиапазон"];
+                        float max = (float)reader["МаксДиапазон"];
+
+                        penetration_depth.Add(new PenetrationDepth(code, name, min, max));
+                    }
+                    rc = penetration_depth.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+
 
         static public float     GetFloatAttribute(XmlNode n, string name, float errorvalue = 0.0f)
         {
