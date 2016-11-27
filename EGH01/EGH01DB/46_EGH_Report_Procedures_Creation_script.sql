@@ -75,12 +75,13 @@ create procedure EGH.GetReportList
 			Стадия, 
 			Родитель, 
 			ТекстОтчета, 
-			Комментарий from dbo.Отчет;
+			Комментарий from dbo.Отчет
+			order by IdОтчета desc;
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
 go
-
+exec EGH.GetReportList
 -- Получение следующего ID отчета 
 create procedure EGH.GetNextReportId(@IdОтчета int output)
  as begin

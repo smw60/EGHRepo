@@ -58,6 +58,151 @@ namespace EGH01.Controllers
             return View();
         }
 
+        // проверка процедур  PenetrationDepth
+        public ActionResult PenetrationDepth_Create()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = -1;
+                //string name = "Test111";
+                //float min = -1.1f;
+                //float max = 1111.1f;
+                //PenetrationDepth t = new PenetrationDepth(code, name, min, max);
+                //if (PenetrationDepth.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult PenetrationDepth_DeleteByCode()  // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //PenetrationDepth r = new PenetrationDepth();
+                //if (PenetrationDepth.DeleteByCode(db, 1))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult PenetrationDepth_GetByCode()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //PenetrationDepth r = new PenetrationDepth(1);
+                //if (PenetrationDepth.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult PenetrationDepth_Update()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int code = 1;
+                //string name = "Test111222";
+                //float min = 11.1f;
+                //float max = 1111111.1f;
+
+                //PenetrationDepth t = new PenetrationDepth((int)code, (string)name, min, max);
+
+                //if (PenetrationDepth.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult PenetrationDepth_list() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<PenetrationDepth> list = new List<PenetrationDepth>();
+                //if (Helper.GetListPenetrationDepth(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
+        // проверка процедур  EmergencyClass
+        public ActionResult EmergencyClass_Create()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = -1;
+                //string name = "Test111";
+                //float min = -1.1f;
+                //float max = 1111.1f;
+                //EmergencyClass t = new EmergencyClass(code, name, min, max);
+                //if (EmergencyClass.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EmergencyClass_DeleteByCode()  // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //EmergencyClass r = new EmergencyClass();
+                //if (EmergencyClass.DeleteByCode(db, 1))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EmergencyClass_GetByCode()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //EmergencyClass r = new EmergencyClass(1);
+                //if (EmergencyClass.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EmergencyClass_Update()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int code = 1;
+                //string name = "Test111222";
+                //float min = 11.1f;
+                //float max = 1111111.1f;
+
+                //EmergencyClass t = new EmergencyClass((int)code, (string)name, min, max);
+
+                //if (EmergencyClass.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EmergencyClass_list() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<EmergencyClass> list = new List<EmergencyClass>();
+                //if (Helper.GetListEmergencyClass(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
 
         // проверка процедур  WaterPollutionCategories
         public ActionResult WaterPollutionCategories_Create()// y
@@ -154,8 +299,8 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //SoilPollutionCategories r = new SoilPollutionCategories();
-                
-                //if (SoilPollutionCategories.DeleteByCode(db, 2))  // 
+
+                //if (SoilPollutionCategories.DeleteByCode(db, 1))  // 
                 //{
                 //    int k = 1;
                 //};
@@ -204,7 +349,6 @@ namespace EGH01.Controllers
             }
             return View();
         }
-
 
         // проверка процедур  SoilCleaningMethod
         public ActionResult SoilCleaningMethod_Create()// y
