@@ -44,6 +44,25 @@ namespace EGH01DB.Blurs
                         )
                      );
             
+  //this.limitadsorbedmass =                                                                     // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (кг)    
+  //                                   this.avgdeep *                                                           // средняя глубина грутовы вод 
+  //                                   this.square *                                                            // площадь пролива 
+  //                                   this.waterproperties.density *                                           // плотность воды  
+  //                                   this.spreadpoint.groundtype.porosity *                                   // пористость грунта 
+  //                                   this.spreadpoint.groundtype.watercapacity *                              // капилярная влагоемкость грунта                                                     // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (кг) 
+  //                                   (float)Math.Pow(this.spreadpoint.petrochemicaltype.dynamicviscosity, 2) *       // динамическая вязкость      
+  //                                   this.waterproperties.tension /                                           // коэфициент поверхностного натяжения воды
+  //                                   (
+  //                                   this.spreadpoint.petrochemicaltype.tension *                             // коэфициент поверхностного натяжения нефтепрдукта 
+  //                                   (float)Math.Pow(this.waterproperties.viscocity, 2)                       //  вязкость воды  
+  //                                   );
+
+
+
+
+
+
+
            this.ecoobjectslist = EcoObjectsList.CreateEcoObjectsList(db, this.groudblur.spreadpoint,  this.groudblur.radius,   this.radius);
            this.watepollutionlist = new WaterPollutionList();
            float sv = 0;
@@ -62,7 +81,8 @@ namespace EGH01DB.Blurs
            {
                if (p.speedhorizontal > 0.0f)
                {
-                   p.maxconcentration = ((p.speedhorizontal / sv) * this.groudblur.restmass) / (2.0f * this.groudblur.radius * p.distance * 1.0f);
+                  // p.maxconcentration = ((p.speedhorizontal / sv) * this.groudblur.restmass) / (2.0f * this.groudblur.radius * p.distance * 1.0f);
+                   p.maxconcentration = ((p.speedhorizontal / sv) * this.groudblur.restmass) / (2.0f * this.groudblur.radius * p.distance * 1.0f * p.groundtype.density);
                }
      
            }

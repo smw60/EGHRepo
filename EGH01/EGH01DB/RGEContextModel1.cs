@@ -79,7 +79,7 @@ namespace EGH01DB
                     return rc;
             }
             }
-            static public bool GetNextId(EGH01DB.IDBContext dbcontext, out int next_id)
+            public static bool GetNextId(EGH01DB.IDBContext dbcontext, out int next_id)
             {
                 bool rc = false;
                 next_id = -1;
@@ -109,7 +109,7 @@ namespace EGH01DB
                     return rc;
                 }
             }
-            static public bool GetById(EGH01DB.IDBContext dbcontext, int id, out ECOForecast ecoforecast, out string comment)
+            public static bool GetById(EGH01DB.IDBContext dbcontext, int id, out ECOForecast ecoforecast, out string comment)
             {
                 bool rc = false;
                 ecoforecast = new ECOForecast();
@@ -223,30 +223,37 @@ namespace EGH01DB
             }
         }
 
-        public class ECOForecastlist : List<ECOForecast>
-        {
-            public static bool Get(       //  получить списки ECOForecastlist и соотв. комментов 
-                                   IDBContext db, 
-                                   string stage,                                // стадия  
-                                   out ECOForecastlist ecoforecastlist,         // список объектов 
-                                   out List<string> comments                    // список комментов соотв. списку объектов 
-                                  )
-          {
-              ecoforecastlist = new ECOForecastlist();
-              comments = new List<string>();
+        //public class ECOForecastlist : List<ECOForecast>
+        //{
+        //    public static bool Get(       //  получить списки ECOForecastlist и соотв. комментов 
+        //                           IDBContext db, 
+        //                           string stage,                                // стадия  
+        //                           out ECOForecastlist ecoforecastlist,         // список объектов 
+        //                           out List<string> comments                    // список комментов соотв. списку объектов 
+        //                          )
+        //  {
+        //      ecoforecastlist = new ECOForecastlist();
+        //      comments = new List<string>();
               
-              return true;
-          }
-            public XmlNode toXmlNode(string comment = "")
-            {
-                XmlDocument doc = new XmlDocument();
-                XmlElement rc = doc.CreateElement("ECOForecastList");
-                if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
-                this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
-                return (XmlNode)rc;
-            }
+        //      return true;
+        //  }
+          
+        //  public ECOForecastlist()
+        //  {
+
+
+        //  } 
+          
+            //public XmlNode toXmlNode(string comment = "")
+            //{
+            //    XmlDocument doc = new XmlDocument();
+            //    XmlElement rc = doc.CreateElement("ECOForecastList");
+            //    if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            //    this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+            //    return (XmlNode)rc;
+            //}
           
         
-        }
+        ///}
      }
 }

@@ -500,7 +500,7 @@ namespace EGH01DB.Objects
                  var selx = ecolist.Where(o => o.coordinates.Distance(center.coordinates) <= distance).AsQueryable();
                  foreach (EcoObject o in selx)
                  {
-                     float x = o.coordinates.Distance(center.coordinates);
+                    // float x = o.coordinates.Distance(center.coordinates);
                      rc.Add(o);
                  }
             }       

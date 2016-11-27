@@ -772,7 +772,7 @@ namespace EGH01DB.Primitives
                         int cadastre_type_code = (int)reader["КодТипаНазначенияЗемель"];
                         string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
                         float pdk = (float)reader["ПДК"];
-                        float water_pdk_coef = (float)reader["ПДК"];
+                        float water_pdk_coef = (float)reader["ПДКводы"];
                         string ground_doc_name = (string)reader["НормДокументЗемля"];
                         string water_doc_name = (string)reader["НормДокументВода"];
                         CadastreType cadastre_type = new CadastreType(cadastre_type_code,cadastre_type_name,
@@ -800,10 +800,10 @@ namespace EGH01DB.Primitives
                 return rc;
             }
         }
-        static public bool GetListEcoforecast(EGH01DB.IDBContext dbcontext, ref List<RGEContext.ECOForecast> list_eco_forecast)
+        static public bool GetListECOForecast(EGH01DB.IDBContext dbcontext, ref List<RGEContext.ECOForecast> list_eco_forecast)
         {
             bool rc = false;
-            list_eco_forecast = new RGEContext.ECOForecastlist();
+            list_eco_forecast =   new List<RGEContext.ECOForecast>();   //   new RGEContext.ECOForecastlist();
             using (SqlCommand cmd = new SqlCommand("EGH.GetReportList", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -829,8 +829,8 @@ namespace EGH01DB.Primitives
                         doc.LoadXml(xmlContent);
                         XmlNode newNode = doc.DocumentElement;
                         //
-                        RGEContext.ECOForecast  ecoforecast = new RGEContext.ECOForecast (newNode);
-                        list_eco_forecast.Add(ecoforecast);
+                        //RGEContext.ECOForecast  ecoforecast = new RGEContext.ECOForecast (newNode);
+                        list_eco_forecast.Add(new RGEContext.ECOForecast (newNode));
                         
                     }
                     rc = ((int)cmd.Parameters["@exitrc"].Value >0);
