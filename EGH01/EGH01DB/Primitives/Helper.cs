@@ -123,6 +123,16 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
+        static public EGH01DB.Types.SoilPollutionCategoriesList GetListSoilPollutionCategories(EGH01DB.IDBContext dbcontext)
+        {
+            List<SoilPollutionCategories> list = new List<SoilPollutionCategories>();
+            EGH01DB.Types.SoilPollutionCategoriesList rc = new EGH01DB.Types.SoilPollutionCategoriesList(list);
+            if (Helper.GetListSoilPollutionCategories(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.SoilPollutionCategoriesList(list);
+            }
+            return rc;
+        }
         static public EGH01DB.Primitives.WaterPropertiesList GetListWaterProperties(EGH01DB.IDBContext dbcontext)
         {
             List<WaterProperties> list = new List<WaterProperties>();

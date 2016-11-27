@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml;
 
 namespace EGH01.Controllers
 {
@@ -63,20 +64,20 @@ namespace EGH01.Controllers
                         }
                     }
                 }
-                //else if (menuitem.Equals("SoilPollutionCategories.Excel"))
-                //{
-                //    EGH01DB.Types.GroundTypeList list = new EGH01DB.Types.GroundTypeList(db);
-                //    XmlNode node = list.toXmlNode();
-                //    XmlDocument doc = new XmlDocument();
-                //    XmlNode nnode = doc.ImportNode(node, true);
-                //    doc.AppendChild(nnode);
-                //    doc.Save(Server.MapPath("~/App_Data/GroundType.xml"));
-                //    view = View("Index");
+                else if (menuitem.Equals("SoilPollutionCategories.Excel"))
+                {
+                    EGH01DB.Types.SoilPollutionCategoriesList splist = new EGH01DB.Types.SoilPollutionCategoriesList(db);
+                    XmlNode node = splist.toXmlNode();
+                    XmlDocument doc = new XmlDocument();
+                    XmlNode nnode = doc.ImportNode(node, true);
+                    doc.AppendChild(nnode);
+                    doc.Save(Server.MapPath("~/App_Data/SoilPollutionCategories.xml"));
+                    view = View("Index");
 
-                //    view = File(Server.MapPath("~/App_Data/GroundType.xml"), "text/plain", "Типы грунтов.xml");
+                    view = File(Server.MapPath("~/App_Data/SoilPollutionCategories.xml"), "text/plain", "Категории загрязнения грунтов.xml");
 
 
-                //}
+                }
 
             }
             catch (RGEContext.Exception e)

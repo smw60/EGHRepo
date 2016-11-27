@@ -19,8 +19,8 @@ namespace EGH01DB.Types
         public float min { get; private set; }   // минимальное значение диапазона
         public float max { get; private set; }   // максимальное значение диапазона
 
-        static public SoilPollutionCategories defaulttype { get { return new SoilPollutionCategories (0, "Не определен", 0.0f, 0.0f); } }  // выдавать при ошибке  
-      
+        static public SoilPollutionCategories defaulttype { get { return new SoilPollutionCategories(0, "Не определен", 0.0f, 0.0f); } }  // выдавать при ошибке  
+
         public SoilPollutionCategories()
         {
             this.code = -1;
@@ -35,7 +35,7 @@ namespace EGH01DB.Types
             this.min = 0.0f;
             this.max = 0.0f;
         }
-    
+
         public SoilPollutionCategories(int code, String name, float min, float max)
         {
             this.code = code;
@@ -197,7 +197,7 @@ namespace EGH01DB.Types
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    rc =((int)cmd.Parameters["@exitrc"].Value > 0);
+                    rc = ((int)cmd.Parameters["@exitrc"].Value > 0);
                 }
                 catch (Exception e)
                 {
@@ -248,7 +248,7 @@ namespace EGH01DB.Types
             }
             return rc;
         }
-        
+
         public XmlNode toXmlNode(string comment = "")
         {
             XmlDocument doc = new XmlDocument();
@@ -260,6 +260,32 @@ namespace EGH01DB.Types
             rc.SetAttribute("max", this.max.ToString());
             return (XmlNode)rc;
         }
-
     }
+        public class SoilPollutionCategoriesList : List<SoilPollutionCategories>
+        {
+            List<EGH01DB.Types.SoilPollutionCategories> list_SoilPollutionCategories = new List<EGH01DB.Types.SoilPollutionCategories>();
+            public SoilPollutionCategoriesList()
+            {
+
+            }
+            public SoilPollutionCategoriesList(List<SoilPollutionCategories> list)
+                : base(list)
+            {
+
+            }
+            public SoilPollutionCategoriesList(EGH01DB.IDBContext dbcontext)
+                : base(Helper.GetListSoilPollutionCategories(dbcontext))
+            {
+
+            }
+            public XmlNode toXmlNode(string comment = "")
+            {
+                XmlDocument doc = new XmlDocument();
+                XmlElement rc = doc.CreateElement("SoilPollutionCategories");
+                if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+                this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+                return (XmlNode)rc;
+            }
+        }
+    
 }
