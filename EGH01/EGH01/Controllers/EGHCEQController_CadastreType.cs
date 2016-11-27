@@ -15,7 +15,7 @@ using EGH01DB.Points;
 
 namespace EGH01.Controllers
 {
-    public partial class EGHCEQController : Controller
+    public partial class EGHORTController : Controller
     {
         public ActionResult CadastreType()
         {

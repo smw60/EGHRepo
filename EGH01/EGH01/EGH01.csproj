@@ -179,6 +179,7 @@
     <Compile Include="Controllers\EGHGEAController.cs" />
     <Compile Include="Controllers\EGHCEQController_CadastreType.cs" />
     <Compile Include="Controllers\EGHORTController.cs" />
+    <Compile Include="Controllers\EGHORTController_SoilPollutionCategories.cs" />
     <Compile Include="Controllers\EGHRGEController_AnchorPoint.cs" />
     <Compile Include="Controllers\EGHRGEController_CadastreType.cs" />
     <Compile Include="Controllers\EGHRGEController_EcoObject.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="Models\EGHCAI\RiskObject.cs" />
     <Compile Include="Models\EGHCCO\PetrochemicalTypeView.cs" />
     <Compile Include="Models\EGHCEQ\CEQViewContext.cs" />
+    <Compile Include="Models\EGHORT\SoilPollutionCategoriesView.cs" />
     <Compile Include="Models\EGHRGE\EcoObjectTypeView.cs" />
     <Compile Include="Models\EGHRGE\EcoObjectView.cs" />
     <Compile Include="Models\EGHRGE\ChoiceRiskObjectViewContext.cs" />
@@ -382,6 +384,11 @@
     <Content Include="Views\EGHCEQ\_ChoiceForecastResult.cshtml" />
     <Content Include="Views\EGHCEQ\_ConfirmChoiceForecastResult.cshtml" />
     <Content Include="Views\EGHCEQ\EvalutionForecast.cshtml" />
+    <Content Include="Views\EGHORT\SoilPollutionCategories.cshtml" />
+    <Content Include="Views\EGHORT\SoilPollutionCategoriesCreate.cshtml" />
+    <Content Include="Views\EGHORT\SoilPollutionCategoriesDelete.cshtml" />
+    <Content Include="Views\EGHORT\SoilPollutionCategoriesUpdate.cshtml" />
+    <Content Include="Views\EGHORT\_SoilPollutionCategoriesList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
