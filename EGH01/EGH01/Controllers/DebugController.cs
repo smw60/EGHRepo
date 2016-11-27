@@ -57,9 +57,156 @@ namespace EGH01.Controllers
 
             return View();
         }
-        
-        // проверка процедур  SoilCleaningMethod
 
+
+        // проверка процедур  WaterPollutionCategories
+        public ActionResult WaterPollutionCategories_Create()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = -1;
+                //string name = "Test111";
+                //float min = -1.1f;
+                //float max = 1111.1f;
+                //WaterPollutionCategories t = new WaterPollutionCategories(code, name, min, max);
+                //if (WaterPollutionCategories.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult WaterPollutionCategories_DeleteByCode()  // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //WaterPollutionCategories r = new WaterPollutionCategories();
+                //if (WaterPollutionCategories.DeleteByCode(db, 1))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult WaterPollutionCategories_GetByCode()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //WaterPollutionCategories r = new WaterPollutionCategories(1);
+                //if (WaterPollutionCategories.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult WaterPollutionCategories_Update()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int code = 1;
+                //string name = "Test111222";
+                //float min = 11.1f;
+                //float max = 1111111.1f;
+
+                //WaterPollutionCategories t = new WaterPollutionCategories((int)code, (string)name, min, max);
+
+                //if (WaterPollutionCategories.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult WaterPollutionCategories_list() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<WaterPollutionCategories> list = new List<WaterPollutionCategories>();
+                //if (Helper.GetListWaterPollutionCategories(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
+        // проверка процедур  SoilPollutionCategories
+        public ActionResult SoilPollutionCategories_Create()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = -1;
+                //string name = "Test111";
+                //float min = -1.1f;
+                //float max = 1111.1f;
+                //SoilPollutionCategories t = new SoilPollutionCategories(code, name, min, max);
+                //if (SoilPollutionCategories.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilPollutionCategories_DeleteByCode()  // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //SoilPollutionCategories r = new SoilPollutionCategories();
+                
+                //if (SoilPollutionCategories.DeleteByCode(db, 2))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilPollutionCategories_GetByCode()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //SoilPollutionCategories r = new SoilPollutionCategories(1);
+                //if (SoilPollutionCategories.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilPollutionCategories_Update()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = 1;
+                //string name = "Test111222";
+                //float min = 11.1f;
+                //float max = 1111111.1f;
+
+                //SoilPollutionCategories t = new SoilPollutionCategories((int)code, (string)name, min, max);
+
+                //if (SoilPollutionCategories.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilPollutionCategories_list() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<SoilPollutionCategories> list = new List<SoilPollutionCategories>();
+                //if (Helper.GetListSoilPollutionCategories(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
+
+        // проверка процедур  SoilCleaningMethod
         public ActionResult SoilCleaningMethod_Create()// y
         {
             RGEContext db = new RGEContext();
@@ -128,7 +275,75 @@ namespace EGH01.Controllers
             }
             return View();
         }
-       
+
+        // проверка процедур  WaterCleaningMethod
+        public ActionResult WaterCleaningMethod_Create()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = -1;
+                //string name = "Test111";
+                //string method = "Test method";
+                //WaterCleaningMethod t = new WaterCleaningMethod(code, name, method);
+                //if (WaterCleaningMethod.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult WaterCleaningMethod_DeleteByCode()  // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //WaterCleaningMethod r = new WaterCleaningMethod();
+                //if (WaterCleaningMethod.DeleteByCode(db, 1))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult WaterCleaningMethod_GetByCode()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //WaterCleaningMethod r = new WaterCleaningMethod(1);
+                //if (WaterCleaningMethod.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult WaterCleaningMethod_Update()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = 1;
+                //string name = "Test111222";
+                //string method = "Test111222";
+                //WaterCleaningMethod t = new WaterCleaningMethod((int)code, (string)name, method);
+
+                //if (WaterCleaningMethod.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult WaterCleaningMethod_list() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<WaterCleaningMethod> list = new List<WaterCleaningMethod>();
+                //if (Helper.GetListWaterCleaningMethods(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
 
         // проверка процедур  XML
         public ActionResult XML_District_Region()

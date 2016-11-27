@@ -119,6 +119,9 @@
     <Compile Include="Types\Region.cs" />
     <Compile Include="Types\RiskObjectType.cs" />
     <Compile Include="Types\SoilCleaningMethod.cs" />
+    <Compile Include="Types\SoilPollutionCategories.cs" />
+    <Compile Include="Types\WaterCleaningMethod.cs" />
+    <Compile Include="Types\WaterPollutionCategories.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

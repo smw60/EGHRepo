@@ -874,8 +874,96 @@ namespace EGH01DB.Primitives
                 return rc;
             }
         }
+        static public bool GetListWaterCleaningMethods(EGH01DB.IDBContext dbcontext, ref List<WaterCleaningMethod> list_water_clean_method)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetWaterCleaningMethodsList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
 
+                    list_water_clean_method = new List<WaterCleaningMethod>();
+                    while (reader.Read())
+                    {
+                        int code = (int)reader["КодТипаКатегории"];
+                        string name = (string)reader["НаименованиеКатегории"];
+                        string method = (string)reader["ОписаниеМетода"];
 
+                        list_water_clean_method.Add(new WaterCleaningMethod(code, name, method));
+                    }
+                    rc = list_water_clean_method.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+        static public bool GetListWaterPollutionCategories(EGH01DB.IDBContext dbcontext, ref List<WaterPollutionCategories> list_water_pollution_categories)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetWaterPollutionCategoriesList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    list_water_pollution_categories = new List<WaterPollutionCategories>();
+                    while (reader.Read())
+                    {
+                        int code = (int)reader["КодКатегорииЗагрязненияГВ"];
+                        string name = (string)reader["НаименованиеКатегорииЗагрязненияГВ"];
+                        float min = (float)reader["МинДиапазон"];
+                        float max = (float)reader["МаксДиапазон"];
+
+                        list_water_pollution_categories.Add(new WaterPollutionCategories(code, name, min, max));
+                    }
+                    rc = list_water_pollution_categories.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+        static public bool GetListSoilPollutionCategories(EGH01DB.IDBContext dbcontext, ref List<SoilPollutionCategories> list_soil_pollution_categories)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetWaterPollutionCategoriesList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    list_soil_pollution_categories = new List<SoilPollutionCategories>();
+                    while (reader.Read())
+                    {
+                        int code = (int)reader["КодКатегорииЗагрязненияГВ"];
+                        string name = (string)reader["НаименованиеКатегорииЗагрязненияГВ"];
+                        float min = (float)reader["МинДиапазон"];
+                        float max = (float)reader["МаксДиапазон"];
+
+                        list_soil_pollution_categories.Add(new SoilPollutionCategories(code, name, min, max));
+                    }
+                    rc = list_soil_pollution_categories.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+        
         static public float     GetFloatAttribute(XmlNode n, string name, float errorvalue = 0.0f)
         {
             float rc = errorvalue;
