@@ -179,7 +179,11 @@
     <Compile Include="Controllers\EGHGEAController.cs" />
     <Compile Include="Controllers\EGHCEQController_CadastreType.cs" />
     <Compile Include="Controllers\EGHORTController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\EGHORTController_SoilCleaningMethod.cs" />
+=======
+    <Compile Include="Controllers\EGHORTController_PenetrationDepth.cs" />
+>>>>>>> 94551f6c488a53e6f1f7779a2747073630cd6c81
     <Compile Include="Controllers\EGHORTController_SoilPollutionCategories.cs" />
     <Compile Include="Controllers\EGHRGEController_AnchorPoint.cs" />
     <Compile Include="Controllers\EGHRGEController_CadastreType.cs" />
@@ -200,7 +204,11 @@
     <Compile Include="Models\EGHCAI\RiskObject.cs" />
     <Compile Include="Models\EGHCCO\PetrochemicalTypeView.cs" />
     <Compile Include="Models\EGHCEQ\CEQViewContext.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\EGHORT\SoilCleaningMethodView.cs" />
+=======
+    <Compile Include="Models\EGHORT\PenetrationDepthView .cs" />
+>>>>>>> 94551f6c488a53e6f1f7779a2747073630cd6c81
     <Compile Include="Models\EGHORT\SoilPollutionCategoriesView.cs" />
     <Compile Include="Models\EGHRGE\EcoObjectTypeView.cs" />
     <Compile Include="Models\EGHRGE\EcoObjectView.cs" />
@@ -396,12 +404,18 @@
     <Content Include="Views\EGHORT\SoilCleaningMethodCreate.cshtml" />
     <Content Include="Views\EGHORT\SoilCleaningMethodUpdate.cshtml" />
     <Content Include="Views\EGHORT\SoilCleaningMethodDelete.cshtml" />
+    <Content Include="Views\EGHORT\_PenetrationDepthList.cshtml" />
+    <Content Include="Views\EGHORT\PenetrationDepth.cshtml" />
+    <Content Include="Views\EGHORT\PenetrationDepthCreate.cshtml" />
+    <Content Include="Views\EGHORT\PenetrationDepthDelete.cshtml" />
+    <Content Include="Views\EGHORT\PenetrationDepthUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Debug\" />
     <Folder Include="Views\EcoObjectTypeView\" />
     <Folder Include="Views\SoilCleaningMethodsView\" />
+    <Folder Include="Views\EGHORTController_PenetrationDepth\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
