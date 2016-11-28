@@ -187,6 +187,7 @@
     <Compile Include="Controllers\EGHGEAController.cs" />
     <Compile Include="Controllers\EGHCEQController_CadastreType.cs" />
     <Compile Include="Controllers\EGHORTController.cs" />
+    <Compile Include="Controllers\EGHORTController_EmergencyClass.cs" />
     <Compile Include="Controllers\EGHORTController_SoilCleaningMethod.cs" />
     <Compile Include="Controllers\EGHORTController_PenetrationDepth.cs" />
     <Compile Include="Controllers\EGHORTController_SoilPollutionCategories.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="Models\EGHCAI\RiskObject.cs" />
     <Compile Include="Models\EGHCCO\PetrochemicalTypeView.cs" />
     <Compile Include="Models\EGHCEQ\CEQViewContext.cs" />
+    <Compile Include="Models\EGHORT\EmergencyClassView.cs" />
     <Compile Include="Models\EGHORT\SoilCleaningMethodView.cs" />
     <Compile Include="Models\EGHORT\PenetrationDepthView .cs" />
     <Compile Include="Models\EGHORT\SoilPollutionCategoriesView.cs" />
@@ -418,11 +420,18 @@
     <Content Include="Views\EGHORT\WaterCleaningMethodDelete.cshtml" />
     <Content Include="Views\EGHORT\WaterCleaningMethodUpdate.cshtml" />
     <Content Include="Views\EGHORT\_WaterCleaningMethodList.cshtml" />
+    <Content Include="Views\EGHORT\EmergencyClass.cshtml" />
+    <Content Include="Views\EGHORT\EmergencyClassCreate.cshtml" />
+    <Content Include="Views\EGHORT\EmergencyClassDelete.cshtml" />
+    <Content Include="Views\EGHORT\EmergencyClassUpdate.cshtml" />
+    <Content Include="Views\EGHORT\_EmergencyClassList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Debug\" />
     <Folder Include="Views\EcoObjectTypeView\" />
+    <Folder Include="Views\EGHORTController_EmergencyClass\" />
+    <Folder Include="Views\EmergencyClassView\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
