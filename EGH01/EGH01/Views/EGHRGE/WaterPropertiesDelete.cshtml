@@ -22,27 +22,22 @@
 
     <div class="box">
         <div class="boxdata">
-            <div class="boxdata">
-                <label class="boxdata-label-30">Код показателя воды</label>
-                @Model.water_code.ToString()
+            <p>
+                <label class="boxdata-label-30">Код показателя воды</label>@Model.water_code.ToString()
                 <input type="hidden" value="@Model.water_code.ToString()" name="water_code">
-            </div>
-            <div class="boxdata">
-                <label class="boxdata-label-30">Температура, <sup><small>о</small></sup>С</label>
-                @Model.temperature.ToString("0.0")
-            </div>
-            <div class="boxdata">
-                <label class="boxdata-label-30">Вязкость, кг/м*с</label>
-                @Model.viscocity.ToString("0.000000")
-            </div>
-            <div class="boxdata">
-                <label class="boxdata-label-30">Плотность, кг/м<sup><small>3</small></sup></label>
-               @Model.density.ToString("0.00")
-            </div>
-            <div class="boxdata">
-                <label class="boxdata-label-30">Коэффициент поверхностного натяжения, кг/с<sup><small>2</small></sup></label>
-                @Model.tension.ToString("0.000")
-            </div>
+            </p>
+            <p>
+                <label class="boxdata-label-30">Температура, <sup><small>о</small></sup>С</label>@Model.temperature.ToString("0.0")
+            </p>
+            <p>
+                <label class="boxdata-label-30">Вязкость, кг/м*с</label>@Model.viscocity.ToString("0.000000")
+            </p>
+            <p>
+                <label class="boxdata-label-30">Плотность, кг/м<sup><small>3</small></sup></label>@Model.density.ToString("0.00")
+            </p>
+            <p>
+                <label class="boxdata-label-30">Коэффициент поверхностного натяжения, кг/с<sup><small>2</small></sup></label>@Model.tension.ToString("0.000")
+            </p>
         </div>
 
         @Html.Partial("_TypeLineMenu", delete)
