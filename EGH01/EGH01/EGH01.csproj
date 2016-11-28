@@ -429,9 +429,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Debug\" />
-    <Folder Include="Views\EcoObjectTypeView\" />
-    <Folder Include="Views\EGHORTController_EmergencyClass\" />
-    <Folder Include="Views\EmergencyClassView\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
