@@ -141,7 +141,7 @@ namespace EGH01DB.Types
                 }
                 {
                     SqlParameter parm = new SqlParameter("@ОписаниеМетода", SqlDbType.NVarChar);
-                    parm.Value = method.name;
+                    parm.Value = method.method_description;
                     cmd.Parameters.Add(parm);
                 }
                 {
