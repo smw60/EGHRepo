@@ -19,8 +19,8 @@ namespace EGH01DB.Objects
         public int           id             {get; private set;}    // идентификатор 
         public EcoObjectType ecoobjecttype  {get; private set;}    // тип природохранного объекта 
         public CadastreType  cadastretype   {get; private set; }   // кадастровый тип земли
-        public string name                  {get; private set; }  // наименование природоохранного объекта 
-        public bool iswaterobject           {get; private set; }    // является ли водным объектом 
+        public string name                  {get; private set; }   // наименование природоохранного объекта 
+        public bool iswaterobject           {get; private set; }   // является ли водным объектом 
         public static  readonly string PREFIX = "ПО";       
         public EcoObject()
         {
@@ -469,11 +469,15 @@ namespace EGH01DB.Objects
             list.ForEach(o => this.Add(o));
         }
 
-        //public EcoObjectsList(List<EcoObject> list_xml)
-        //    : base(list_xml)
-        //{
-
-        //}
+        public static EcoObjectsList CreateEcoObjectsList(XmlNode node)
+        {
+            EcoObjectsList eco_objects_list = new EcoObjectsList();
+            foreach (XmlElement x in node)
+            {
+                if (x.Name.Equals("EcoObject")) eco_objects_list.Add(new EcoObject(x));    
+            }
+            return eco_objects_list;
+        }
         public EcoObjectsList(EGH01DB.IDBContext dbcontext)
             : base(Helper.GetListEcoObject(dbcontext))
         {
@@ -481,15 +485,10 @@ namespace EGH01DB.Objects
         }
         public XmlNode toXmlNode(string comment = "")
         {
-
             XmlDocument doc = new XmlDocument();
             XmlElement rc = doc.CreateElement("EcoObjectList");
             if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
-
             this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
-
-            //   rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
-            //rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
             return (XmlNode)rc;
         }
         public static EcoObjectsList CreateEcoObjectsList(EGH01DB.IDBContext dbcontext,  Point center, float distance = float.MaxValue)
@@ -501,7 +500,7 @@ namespace EGH01DB.Objects
                  var selx = ecolist.Where(o => o.coordinates.Distance(center.coordinates) <= distance).AsQueryable();
                  foreach (EcoObject o in selx)
                  {
-                     float x = o.coordinates.Distance(center.coordinates);
+                    // float x = o.coordinates.Distance(center.coordinates);
                      rc.Add(o);
                  }
             }       

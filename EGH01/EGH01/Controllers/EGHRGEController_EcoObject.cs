@@ -285,44 +285,6 @@ namespace EGH01.Controllers
 
 
 
-            //        //int id = ah.id;
-
-            //        //float waterdeep = 0.0f;
-            //        //int list_cadastre = ah.list_cadastre;
-            //        //float height = 0.0f;
-            //        //string strheight = this.HttpContext.Request.Params["height"] ?? "Empty";
-            //        //if (!Helper.FloatTryParse(strheight, out height))
-            //        //{
-            //        //    height = 0.0f;
-            //        //}
-            //        //string strwaterdeep = this.HttpContext.Request.Params["waterdeep"] ?? "Empty";
-            //        //if (!Helper.FloatTryParse(strwaterdeep, out waterdeep))
-            //        //{
-            //        //    waterdeep = 0.0f;
-            //        //}
-
-            //        //EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType();
-            //        //if (EGH01DB.Types.GroundType.GetByCode(db, ah.list_groundType, out ground_type))
-            //        //{
-
-            //        //    Point point = new Point(coordinates, ground_type, waterdeep, height);
-
-            //        //    CadastreType type_cadastre = new CadastreType();
-            //        //    if (EGH01DB.Types.CadastreType.GetByCode(db, ah.list_cadastre, out type_cadastre))
-            //        //    {
-            //        //        EGH01DB.Points.AnchorPoint anchor_point = new EGH01DB.Points.AnchorPoint(id, point, type_cadastre);
-
-
-            //        //        if (EGH01DB.Points.AnchorPoint.Update(db, anchor_point))
-            //        //        {
-            //        //            view = View("EcoObject", db);
-            //        //        }
-            //        //    }
-
-            //        //}
-            //        //else if (menuitem.Equals("EcoObject.Update.Cancel")) view = View("EcoObject", db);
-            //    }
-            //}
 
             catch (RGEContext.Exception e)
             {

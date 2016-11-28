@@ -133,16 +133,64 @@
                   <label class="boxdata-label-40 ">  Радиус распрстранения  нефтепрдукта с грунтовыми водами (м)  </label>
                  @Math.Round(context.ecoevalution.waterblur.radius,0)
               </p>
-              <fieldset form="ChoiseRiskObject">
+              <fieldset >
                   <legend> Природоохранные объекты </legend>
                   <p>
                       <label class="boxdata-label-40 ">Радиус поиска прирооохранных объектов (м)  </label>
                       @Math.Round(context.ecoevalution.groundblur.radius,0) - 
                       @Math.Round(context.ecoevalution.waterblur.radius,0)
                   </p>
-              </fieldset>  
-              </fieldset>
+                  @foreach (WaterPollution o in context.ecoevalution.waterpolutionlist)
+                  {
+                     <fieldset>
+                          <legend>@o.comment @o.name </legend>
+                         
+                          <p>
+                              координаты:  @Math.Round(o.coordinates.latitude, 6)
+                              @Math.Round(o.coordinates.lngitude, 6)
+                              расстояние:  @Math.Round(o.distance, 0) (м)
+                              высота:      @Math.Round(o.height, 0) (м)
+                              угол:        @Math.Round(o.angle, 1)
+                              глубина гр.вод: @Math.Round(o.waterdeep, 1)
+                          </p>
+                         @if (o.iswaterobject)
+                         {
+                             <p>
+                                 водоохранный объект
+                             </p>
+                             <p>
+                                 <label class="boxdata-label-40 ">Предельно доустимая концентрация (кг/кг) </label>
+                                 @o.cadastretype.water_pdk_coef     @o.cadastretype.water_doc_name
+                             </p>
+                         }
+                         else
+                         { 
+                             <p>
+                                 <label class="boxdata-label-40 ">Предельно доустимая концентрация (кг/кг) </label>
+                                 @o.cadastretype.pdk_coef    @o.cadastretype.ground_doc_name
+                             </p>
+                         }    
+                         <p>
+                           <label class="boxdata-label-40 ">Максимальная величина концентрации (кг/кг) </label>
+                            @o.maxconcentration    
+                         </p>
+                         
+                         <p>
+                             <label class="boxdata-label-40 ">Дата достижения максимальной концентрации  </label>
+                             @o.datemaxconcentration.ToShortDateString()  (@Math.Round(o.daymaxconcentration) сут.) 
+                         </p>
+                         <p>
+                             <label class="boxdata-label-40 "> Кратность превышения   </label>
+                             @if (o.excessconcentration > 0) { @Math.Round(o.excessconcentration, 1);}
+                             else {<span>----</span> }      
+                             
+                         </p>
+
+                      </fieldset>
+                  }
+             </fieldset>  
           </fieldset>
+      </fieldset>
 </div>
 
 }

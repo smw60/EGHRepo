@@ -10,6 +10,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using EGH01DB.Objects;
 using EGH01DB.Blurs;
+using EGH01DB.Primitives;
+
 
 namespace EGH01DB
 {
@@ -26,13 +28,32 @@ namespace EGH01DB
 
             public ECOEvalution(RGEContext.ECOForecast  forecast): base (forecast)
             {
+                CEQContext db = new CEQContext();    // заглушка, выставить правильный контекст //blinova
+                //if (this.groundblur.spreadpoint.cadastretype.pdk_coef <= 0)
+                //throw new EGHDBException(string.Format(errormssageformat, "Значение предельно-дупустимой концентрации не может быть  меньше или равно нулю"));
 
-                  if (this.groundblur.spreadpoint.cadastretype.pdk_coef <= 0)
-                    throw new EGHDBException(string.Format(errormssageformat, "Значение предельно-дупустимой концентрации не может быть  меньше или равно нулю"));
+                if (this.groundblur.spreadpoint.cadastretype.pdk_coef > 0) this.excessgroundconcentration = this.groundblur.concentrationinsoil / this.groundblur.spreadpoint.cadastretype.pdk_coef;
+                else this.excessgroundconcentration = 0.0f;
 
-                  this.excessgroundconcentration = this.groundblur.concentrationinsoil/this.groundblur.spreadpoint.cadastretype.pdk_coef;
-                  this.groundpollutionlist = new GroundPollutionList (this.groundblur.groundpolutionlist.Where(p => p.pointtype == Points.Point.POINTTYPE.ECO).ToList());
+                this.groundpollutionlist = new GroundPollutionList (this.groundblur.groundpolutionlist.Where(p => p.pointtype == Points.Point.POINTTYPE.ECO).ToList());
 
+                this.waterpolutionlist = new WaterPollutionList();
+                foreach(WaterPollution p in this.waterblur.watepollutionlist)
+                {
+                     if (p.distance >this.groundblur.radius && p.distance < this.waterblur.radius)
+                     {
+                         this.waterpolutionlist.Add(p);
+                     }
+                
+                }
+
+                 
+
+                   
+               
+                
+                
+                
                 //  this.waterpolutionlist = new WaterPollutionList(this.waterblur.watepollutionlist.Where(p => p.pointtype == Points.Point.POINTTYPE.ECO).ToList());
                 
                        

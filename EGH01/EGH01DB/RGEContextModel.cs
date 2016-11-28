@@ -28,7 +28,6 @@ namespace EGH01DB
             public DateTime      datemaxwaterconc        {get; private set;}          // дата достижения  иаксимального загрянения г на уровне рунтовых вод 
             public string        errormessage            {get; private set;}          // сообщение об ошибке 
 
-
             public ECOForecast(ECOForecast forecast)
             {
                 this.id = forecast.id;
@@ -41,8 +40,7 @@ namespace EGH01DB
                 this.datemaxwaterconc = forecast.datemaxwaterconc;
                 this.errormessage = this.errormessage;
           }
-
-
+            
             public ECOForecast()
             {
                 RGEContext db = new RGEContext();
@@ -122,25 +120,17 @@ namespace EGH01DB
                 this.id = Helper.GetIntAttribute(node, "id", -1);
                 this.date = Helper.GetDateTimeAttribute(node, "date", DateTime.MinValue);
 
-
-                // incident
-
                 XmlNode incident = node.SelectSingleNode(".//Incident");
                 if (incident != null) this.incident = new Incident(incident);
                 else this.incident = null;
-
-                //   GroundBlur
 
                 XmlNode ground_blur = node.SelectSingleNode(".//GroundBlur");
                 if (ground_blur != null) this.groundblur = new GroundBlur(ground_blur);
                 else this.groundblur = null;
 
-                //   WaterBlur
-
                 XmlNode water_blur = node.SelectSingleNode(".//WaterBlur");
                 if (water_blur != null) this.waterblur = new WaterBlur(water_blur);
                 else this.waterblur = null;
-
 
                 this.dateconcentrationinsoil = Helper.GetDateTimeAttribute(node, "dateconcentrationinsoil", DateTime.MinValue);
                 this.datewatercompletion = Helper.GetDateTimeAttribute(node, "datewatercompletion", DateTime.MinValue);
@@ -164,11 +154,6 @@ namespace EGH01DB
                 rc.AppendChild(doc.ImportNode(this.groundblur.toXmlNode(), true));
                 return (XmlNode)rc;
             }
-
-            //public static ECOForecast Create()   //десериализация из  XML
-            //{
-            //    return new ECOForecast(new Incident());
-            //}
        }    
     }
     
