@@ -953,12 +953,12 @@ namespace EGH01.Controllers
         }
         public ActionResult Anchor_Point_CreateNear() // yes
         {
-            //RGEContext db = new RGEContext();
-            //{
-            //    Coordinates coord = new Coordinates(553.678f, 27.14f);
-            //    float distance = 10000.0f;
-            //    AnchorPointList apl = AnchorPointList.CreateNear(coord, distance);
-            //}
+            RGEContext db = new RGEContext();
+            {
+                Coordinates coord = new Coordinates(553.678f, 27.14f);
+                float distance = 10000000.0f;
+                AnchorPointList apl = AnchorPointList.CreateNear(coord, distance);
+            }
             return View();
         }
         

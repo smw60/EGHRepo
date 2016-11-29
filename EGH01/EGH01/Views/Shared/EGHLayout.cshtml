@@ -103,9 +103,30 @@
               else if (ViewBag.EGHLayout == "RGE.WaterProperties")
               {
                 <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE") | Свойства воды</h2>
-             }
-             else if (ViewBag.EGHLayout == "CEQ.CadastreType")
-             {
+              }
+              else if (ViewBag.EGHLayout == "RGE.PetrochemicalCategories")
+              {
+                <h2>@Html.ActionLink("Прогноз", "Index", "EGHRGE") | Категории нефтепродукта</h2>
+              }
+              else if (ViewBag.EGHLayout == "ORT.WaterProtectionArea")
+              {
+                <h2>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") | Критерии водоохранной территории</h2>
+              }
+              else if (ViewBag.EGHLayout == "ORT.SoilCleaningMethod")
+              {
+                <h2>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") | Методы ликвидации загрязнения почвогрунтов</h2>
+              }
+              else if (ViewBag.EGHLayout == "ORT.WaterCleaningMethod")
+              {
+                <h2>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") | Методы ликвидации загрязнения грунтовых вод</h2>
+              }
+              else if (ViewBag.EGHLayout == "ORT.EmergencyClass")
+              {
+                <h2>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") | Классификация аварий</h2>
+              }
+                
+              else if (ViewBag.EGHLayout == "CEQ.CadastreType")
+              {
                  <h2>@Html.ActionLink("Оценка прогнозируемого состояния", "Index", "EGHCEQ") | Предельно-допустимые концентрации</h2>
                    <style>
                        .title h2{
@@ -168,6 +189,7 @@
                 <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                 <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                 <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>
+                <li>@Html.ActionLink("Категории нефтепродукта", "PetrochemicalCategories", "EGHRGE")</li>
             </ul>
         </li>
 
@@ -190,6 +212,7 @@
                 <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                 <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                 <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>
+                <li>@Html.ActionLink("Категории нефтепродукта", "PetrochemicalCategories", "EGHRGE")</li>
             </ul>
         </li>
     }
@@ -212,6 +235,7 @@
                 <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                 <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                 <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>
+                <li>@Html.ActionLink("Категории нефтепродукта", "PetrochemicalCategories", "EGHRGE")</li>
             </ul>
         </li>
     }
@@ -234,6 +258,7 @@
                 <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                 <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                 <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>
+                <li>@Html.ActionLink("Категории нефтепродукта", "PetrochemicalCategories", "EGHRGE")</li>
             </ul>
         </li>
     }
@@ -255,6 +280,7 @@
                 <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                 <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                 <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>
+                <li>@Html.ActionLink("Категории нефтепродукта", "PetrochemicalCategories", "EGHRGE")</li>
             </ul>
         </li>
     }
@@ -276,6 +302,7 @@
                 <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                 <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                 <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>
+                <li>@Html.ActionLink("Категории нефтепродукта", "PetrochemicalCategories", "EGHRGE")</li>
             </ul>
         </li>
     }
@@ -296,6 +323,7 @@
                             <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                             <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Категории нефтепродукта", "PetrochemicalCategories", "EGHRGE")</li>
                         </ul>
                     </li>
                 }
@@ -334,6 +362,7 @@
                 <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                 <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                 <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>
+                <li>@Html.ActionLink("Категории нефтепродукта", "PetrochemicalCategories", "EGHRGE")</li>
             </ul>
         </li>
     }
@@ -355,6 +384,7 @@
                 <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                 <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                 <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>
+                <li>@Html.ActionLink("Категории нефтепродукта", "PetrochemicalCategories", "EGHRGE")</li>
             </ul>
         </li>
     }
@@ -376,6 +406,7 @@
                 <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                 <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                 <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>
+                <li>@Html.ActionLink("Категории нефтепродукта", "PetrochemicalCategories", "EGHRGE")</li>
             </ul>
         </li>
     }
@@ -397,6 +428,7 @@
                 <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                 <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                 <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>
+                <li>@Html.ActionLink("Категории нефтепродукта", "PetrochemicalCategories", "EGHRGE")</li>
             </ul>
         </li>
     }
@@ -431,16 +463,17 @@
                 Критерии выбора технологий<span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-                <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "SoilPolutionCategories", "EGHORT")</li>
+                <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "SoilPollutionCategories", "EGHORT")</li>
                 <li>@Html.ActionLink("Категории проникновения нефтепродукта", "PenetrationDepth", "EGHORT")</li>
                 <li>@Html.ActionLink("Методы ликвидации загрязнения почвогрунтов", "SoilCleaningMethod", "EGHORT")</li>
                 <li>@Html.ActionLink("Методы ликвидации загрязнения грунтовых вод", "WaterCleaningMethod", "EGHORT")</li>
                 <li>@Html.ActionLink("Классификация аварий", "EmergencyClass", "EGHORT")</li>
                 <li>@Html.ActionLink("Cправочник категории загрязнения грунтовых вод", "WaterPollutionCategories", "EGHORT")</li>
+                <li>@Html.ActionLink("Категории водоохранной территории ", "WaterProtectionArea", "EGHORT")</li>
             </ul>
         </li>
     }
-    else if (ViewBag.EGHLayout == "ORT.SoilPolutionCategories")
+    else if (ViewBag.EGHLayout == "ORT.SoilPollutionCategories")
    {
         <li>@Html.ActionLink("Результаты классификации прогнозируемого состояния", "Index", "EGHORT")</li>
         <li>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT")</li>
@@ -450,12 +483,13 @@
                 Критерии выбора технологий<span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-                <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "SoilPolutionCategories", "EGHORT")</li>
+                <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "SoilPollutionCategories", "EGHORT")</li>
                 <li>@Html.ActionLink("Категории проникновения нефтепродукта", "PenetrationDepth", "EGHORT")</li>
                 <li>@Html.ActionLink("Методы ликвидации загрязнения почвогрунтов", "SoilCleaningMethod", "EGHORT")</li>
                 <li>@Html.ActionLink("Методы ликвидации загрязнения грунтовых вод", "WaterCleaningMethod", "EGHORT")</li>
                 <li>@Html.ActionLink("Классификация аварий", "EmergencyClass", "EGHORT")</li>
                 <li>@Html.ActionLink("Cправочник категории загрязнения грунтовых вод", "WaterPollutionCategories", "EGHORT")</li>
+                <li>@Html.ActionLink("Категории водоохранной территории ", "WaterProtectionArea", "EGHORT")</li>
             </ul>
         </li>
    }
@@ -469,12 +503,13 @@
                         Критерии выбора технологий<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "SoilPolutionCategories", "EGHORT")</li>
+                        <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "SoilPollutionCategories", "EGHORT")</li>
                         <li>@Html.ActionLink("Категории проникновения нефтепродукта", "PenetrationDepth", "EGHORT")</li>
                         <li>@Html.ActionLink("Методы ликвидации загрязнения почвогрунтов", "SoilCleaningMethod", "EGHORT")</li>
                         <li>@Html.ActionLink("Методы ликвидации загрязнения грунтовых вод", "WaterCleaningMethod", "EGHORT")</li>
                         <li>@Html.ActionLink("Классификация аварий", "EmergencyClass", "EGHORT")</li>
                         <li>@Html.ActionLink("Cправочник категории загрязнения грунтовых вод", "WaterPollutionCategories", "EGHORT")</li>
+                        <li>@Html.ActionLink("Категории водоохранной территории ", "WaterProtectionArea", "EGHORT")</li>
                     </ul>
                 </li>
        }
@@ -488,12 +523,13 @@
                         Критерии выбора технологий<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "SoilPolutionCategories", "EGHORT")</li>
+                        <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "SoilPollutionCategories", "EGHORT")</li>
                         <li>@Html.ActionLink("Категории проникновения нефтепродукта", "PenetrationDepth", "EGHORT")</li>
                         <li>@Html.ActionLink("Методы ликвидации загрязнения почвогрунтов", "SoilCleaningMethod", "EGHORT")</li>
                         <li>@Html.ActionLink("Методы ликвидации загрязнения грунтовых вод", "WaterCleaningMethod", "EGHORT")</li>
                         <li>@Html.ActionLink("Классификация аварий", "EmergencyClass", "EGHORT")</li>
                         <li>@Html.ActionLink("Cправочник категории загрязнения грунтовых вод", "WaterPollutionCategories", "EGHORT")</li>
+                        <li>@Html.ActionLink("Категории водоохранной территории ", "WaterProtectionArea", "EGHORT")</li>
                     </ul>
                 </li>
        }
@@ -507,12 +543,13 @@
                 Критерии выбора технологий<span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-                <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "SoilPolutionCategories", "EGHORT")</li>
+                <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "SoilPollutionCategories", "EGHORT")</li>
                 <li>@Html.ActionLink("Категории проникновения нефтепродукта", "PenetrationDepth", "EGHORT")</li>
                 <li>@Html.ActionLink("Методы ликвидации загрязнения почвогрунтов", "SoilCleaningMethod", "EGHORT")</li>
                 <li>@Html.ActionLink("Методы ликвидации загрязнения грунтовых вод", "WaterCleaningMethod", "EGHORT")</li>
                 <li>@Html.ActionLink("Классификация аварий", "EmergencyClass", "EGHORT")</li>
                 <li>@Html.ActionLink("Cправочник категории загрязнения грунтовых вод", "WaterPollutionCategories", "EGHORT")</li>
+                <li>@Html.ActionLink("Категории водоохранной территории ", "WaterProtectionArea", "EGHORT")</li>
             </ul>
         </li>
     }
@@ -526,12 +563,13 @@
                 Критерии выбора технологий<span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-                <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "SoilPolutionCategories", "EGHORT")</li>
+                <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "SoilPollutionCategories", "EGHORT")</li>
                 <li>@Html.ActionLink("Категории проникновения нефтепродукта", "PenetrationDepth", "EGHORT")</li>
                 <li>@Html.ActionLink("Методы ликвидации загрязнения почвогрунтов", "SoilCleaningMethod", "EGHORT")</li>
                 <li>@Html.ActionLink("Методы ликвидации загрязнения грунтовых вод", "WaterCleaningMethod", "EGHORT")</li>
                 <li>@Html.ActionLink("Классификация аварий", "EmergencyClass", "EGHORT")</li>
                 <li>@Html.ActionLink("Cправочник категории загрязнения грунтовых вод", "WaterPollutionCategories", "EGHORT")</li>
+                <li>@Html.ActionLink("Категории водоохранной территории ", "WaterProtectionArea", "EGHORT")</li>
             </ul>
         </li>
     }
@@ -545,12 +583,13 @@
                 Критерии выбора технологий<span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-                <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "SoilPolutionCategories", "EGHORT")</li>
+                <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "SoilPollutionCategories", "EGHORT")</li>
                 <li>@Html.ActionLink("Категории проникновения нефтепродукта", "PenetrationDepth", "EGHORT")</li>
                 <li>@Html.ActionLink("Методы ликвидации загрязнения почвогрунтов", "SoilCleaningMethod", "EGHORT")</li>
                 <li>@Html.ActionLink("Методы ликвидации загрязнения грунтовых вод", "WaterCleaningMethod", "EGHORT")</li>
                 <li>@Html.ActionLink("Классификация аварий", "EmergencyClass", "EGHORT")</li>
                 <li>@Html.ActionLink("Cправочник категории загрязнения грунтовых вод", "WaterPollutionCategories", "EGHORT")</li>
+                <li>@Html.ActionLink("Категории водоохранной территории ", "WaterProtectionArea", "EGHORT")</li>
             </ul>
         </li>
     }    
