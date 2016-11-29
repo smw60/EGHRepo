@@ -67,7 +67,7 @@
                 </p>
 
                 <p>
-                    <label class="boxdata-label-30">Средняя плотность грунта (кг/м3)</label>
+                    <label class="boxdata-label-30">Средняя плотность грунта (кг/м<sup>3</sup>)</label>
                     <input class="boxdata-input-50" type="number" name="density" value="@Model.density.ToString().Replace(',', '.')" step="0.1" min="0" />
                 </p>
 
@@ -75,7 +75,7 @@
           
             <fieldset  form="GroundType">
                 <p>
-                    <label class="boxdata-label-30">Коэффициент диффузии (м2/с)</label>
+                    <label class="boxdata-label-30">Коэффициент диффузии (м<sup>2</sup>/с)</label>
                     <input class="boxdata-input-50" type="number" name="diffusion" value="@Model.diffusion.ToString().Replace(',' , '.')" min="0" max="1" step="0.01" />
                 </p>
                 <p>

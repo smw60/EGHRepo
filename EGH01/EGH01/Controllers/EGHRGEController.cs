@@ -129,7 +129,7 @@ namespace EGH01.Controllers
             xmlex.Coordlongitudesec = 5;
             xmlex.density = "0.7-0.75 г/cм3";
             xmlex.solubility = "9.0-505 мг/дм3";
-            xmlex.viscosity = "0.43-0.82 мм2/с";
+            xmlex.viscosity = "0.43-0.82 мм<sup>2</sup>/с";
 
             //    XmlTextWriter textWritter = new XmlTextWriter("RGE.xml", System.Text.Encoding.UTF8);
             //    textWritter.WriteStartDocument();
@@ -232,7 +232,7 @@ namespace EGH01.Controllers
             xmlex.Coordlongitudesec = 5;
             xmlex.density = "0.7-0.75 г/cм3";
             xmlex.solubility = "9.0-505 мг/дм3";
-            xmlex.viscosity = "0.43-0.82 мм2/с";
+            xmlex.viscosity = "0.43-0.82 мм<sup>2</sup>/с";
 
             XDocument xdoc = new XDocument();
             XElement Модель = new XElement("Модель");

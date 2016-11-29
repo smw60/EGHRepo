@@ -1,60 +1,47 @@
 ﻿@using EGH01DB.Types;
-@using EGH01.Core; 
-@using EGH01DB.Points; 
+@using EGH01.Core;
+@using EGH01DB.Points;
 @model List<AnchorPoint>
 @{
-    Menu menu =  new Menu(
-                            new Menu.MenuItem("Удалить", "AnchorPoint.Delete",  true),
-                            new Menu.MenuItem("Изменить", "AnchorPoint.Update",  true)
+    Menu menu = new Menu(
+                            new Menu.MenuItem("Удалить", "AnchorPoint.Delete", true),
+                            new Menu.MenuItem("Изменить", "AnchorPoint.Update", true)
                            );
 
 }
-@foreach(AnchorPoint t in @Model)
+@foreach (AnchorPoint t in @Model)
 {
 
-    using(Html.BeginForm("AnchorPoint", "EGHRGE"))
+    using (Html.BeginForm("AnchorPoint", "EGHRGE"))
     {
-        float latitude = EGH01DB.Primitives.Coordinates.dms_to_d(@t.coordinates.lat.d, @t.coordinates.lat.m, @t.coordinates.lat.s);
-        float lngitude = EGH01DB.Primitives.Coordinates.dms_to_d(@t.coordinates.lng.d, @t.coordinates.lng.m, @t.coordinates.lng.s);
         <div class="box">
             <div class="boxdata">
 
-               
-                 <p><label class="boxdata-label-30">Идентификатор</label> @t.id.ToString()</p>
 
-                                 <fieldset  form="ChoiseRiskObject">
+                <p><label class="boxdata-label-30">Идентификатор</label> @t.id.ToString()</p>
+
+                <fieldset form="ChoiseRiskObject">
                     <legend style="width: auto; max-width: none; font: inherit; border:none;">Координаты</legend>
 
-                    <p>
-                        <label class="boxdata-label-30">Координаты.Широта</label>
-                        <input readonly="readonly" class="boxdata-input-10" type="number" name="Lat_d" value="@t.coordinates.lat.d.ToString()" min="-90" max="90" />&deg;
-                        <input readonly="readonly" class="boxdata-input-10" type="number" name="Lat_m" value="@t.coordinates.lat.m.ToString()" min="-90" max="90" />&acute;
-                        <input readonly="readonly" class="boxdata-input-10" type="number" name="Lat_s" value="@t.coordinates.lat.s.ToString("0.00").Replace(',','.')" />&quot;
-                    </p>  
-                       
-                    <p>
-                        <label class="boxdata-label-30">Координаты.Долгота</label>
-                        <input readonly="readonly" class="boxdata-input-10" type="number" name="Lngitude" value="@t.coordinates.lng.d.ToString()" max="180" min="0" />&deg;
-                        <input readonly="readonly" class="boxdata-input-10" type="number" name="Lng_m" value="@t.coordinates.lng.m.ToString()" min="-90" max="90" />&acute;
-                        <input readonly="readonly" class="boxdata-input-10" type="number" name="Lng_s" value="@t.coordinates.lng.s.ToString("0.00").Replace(',','.')" />&quot;
-                                     </p>
-                                     <p><label class="boxdata-label-30">Координаты в градусах</label>@latitude.ToString()°&nbsp;@lngitude.ToString()°</p>
-                 </fieldset>
-                                        <p><label class="boxdata-label-20">Категория земли</label> @t.cadastretype.name</p>
-                <fieldset  form="AnchorPoint">
-                    <legend >Геологические данные</legend>
+                    <p><label class="boxdata-label-30">Координаты. Широта</label>@t.coordinates.lat.d.ToString()°&nbsp;@t.coordinates.lat.m.ToString()'&nbsp;@t.coordinates.lat.s.ToString("0.00")"</p>
+                    <p><label class="boxdata-label-30">Координаты. Долгота</label>@t.coordinates.lng.d.ToString()°&nbsp;@t.coordinates.lng.m.ToString()'&nbsp;@t.coordinates.lng.s.ToString("0.00")" </p>
+                    <p><label class="boxdata-label-30">Координаты в градусах</label>@t.coordinates.latitude.ToString()°&nbsp;@t.coordinates.lngitude.ToString()°</p>
+
+                </fieldset>
+                <p><label class="boxdata-label-20">Категория земли</label> @t.cadastretype.name</p>
+                <fieldset form="AnchorPoint">
+                    <legend>Геологические данные</legend>
                     <p><label class="boxdata-label-30">Грунт</label> @t.groundtype.name </p>
                     <p><label class="boxdata-label-30">Высота над уровнем моря (м)</label> @t.height.ToString()</p>
                     <p><label class="boxdata-label-30">Глубина грунтовых вод (м)</label> @t.waterdeep.ToString() </p>
                 </fieldset>
-                   
-                    <input type="hidden" value="@t.id.ToString()" name="type_code">
 
-</div>
+                <input type="hidden" value="@t.id.ToString()" name="type_code">
+
+            </div>
             @Html.Partial("_TypeLineMenu", menu)
         </div>
 
     }
 }
 
- 
