@@ -27,8 +27,16 @@ namespace EGH01DB
             public DateTime      datewatercompletion     {get; private set;}          // дата достижения загрянения грунтовых вод 
             public DateTime      datemaxwaterconc        {get; private set;}          // дата достижения  иаксимального загрянения г на уровне рунтовых вод 
             public string        errormessage            {get; private set;}          // сообщение об ошибке 
+            public string        line                    {
+                                                          get
+                                                             {
+                                                              return  string.Format("{0}-П-{1:yyy-MM-dd}", this.id, this.date) 
+                                                                    + string.Format(": {0}, {1}, {2}", this.incident.volume, this.incident.petrochemicaltype.name, this.incident.riskobject.name) ;
+                                                             } 
+                                                          }
+        
 
-            public ECOForecast(ECOForecast forecast)
+           public ECOForecast(ECOForecast forecast)
             {
                 this.id = forecast.id;
                 this.date = forecast.date;

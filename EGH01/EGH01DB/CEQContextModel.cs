@@ -44,33 +44,11 @@ namespace EGH01DB
                      {
                          this.waterpolutionlist.Add(p);
                      }
-                
                 }
 
-                 
-
-                   
-               
-                
-                
-                
-                //  this.waterpolutionlist = new WaterPollutionList(this.waterblur.watepollutionlist.Where(p => p.pointtype == Points.Point.POINTTYPE.ECO).ToList());
-                
-                       
-                      
-                      //(GroundPollutionList)this.groundblur.groundpolutionlist.Where(p => p.pointtype == Points.Point.POINTTYPE.ECO).ToList();  
-
-
-
-
-
-            }
+           }
 
         }
-
-
-
-
 
      }        
 

@@ -50,9 +50,12 @@ namespace EGH01DB.Blurs
         
         public GroundBlur(XmlNode node)
         {
-            XmlNode region = node.SelectSingleNode(".//SpreadPoint");
-            if (spreadpoint != null) this.spreadpoint = new SpreadPoint(spreadpoint);
-            else this.spreadpoint = null;
+            {
+             XmlNode x = node.SelectSingleNode(".//SpreadPoint");
+             if (x != null) this.spreadpoint = new SpreadPoint(x);
+             else this.spreadpoint = null;
+            } 
+           
 
             XmlNode coordinates_list = node.SelectSingleNode(".//CoordinatesList");
             if (coordinates_list != null) this.bordercoordinateslist = CoordinatesList.CreateCoordinatesList(coordinates_list);
@@ -84,12 +87,28 @@ namespace EGH01DB.Blurs
             this.ozcorrection = Helper.GetFloatAttribute(node, "ozcorrection", 0.0f);
             this.ecoobjectsearchradius = Helper.GetFloatAttribute(node, "ecoobjectsearchradius", 0.0f);
 
-            XmlNode anchor_point_list = node.SelectSingleNode(".//AnchorPointList");
-            if (anchor_point_list != null) this.anchorpointlist = AnchorPointList.CreateAnchorPointList(anchor_point_list);
-            else this.anchorpointlist = null;
-
-
-
+            { 
+               XmlNode x = node.SelectSingleNode(".//AnchorPointList");
+               if (x != null) this.anchorpointlist = AnchorPointList.CreateAnchorPointList(x);
+               else this.anchorpointlist = null;
+            }
+            {
+             XmlNode x = node.SelectSingleNode(".//GroundPollutionList");
+             if (x != null) this.groundpolutionlist =  GroundPollutionList.Create(x);
+             else this.anchorpointlist = null;
+            }
+            {
+              XmlNode x = node.SelectSingleNode(".//WaterProperties");
+              if (x != null) this.waterproperties = new WaterProperties(x);
+              else this.waterproperties = null;
+            }
+            {
+              XmlNode x = node.SelectSingleNode(".//EcoObjectsList");
+              if (x != null) this.ecoobjecstlist = EcoObjectsList.CreateEcoObjectsList(x);
+              else this.waterproperties = null;
+            }
+ 
+           
         }
         public GroundBlur(SpreadPoint spreadpoint)
         {
