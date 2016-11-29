@@ -56,7 +56,7 @@ namespace EGH01DB.Points
             
         }
         public SpreadPoint(XmlNode node)
-            : base(new Point(node.SelectSingleNode(".//Point")))
+            : base(node.SelectSingleNode(".//Point"))
         {
             XmlNode petro = node.SelectSingleNode(".//PetrochemicalType");
             if (petro != null) this.petrochemicaltype = new PetrochemicalType(petro);

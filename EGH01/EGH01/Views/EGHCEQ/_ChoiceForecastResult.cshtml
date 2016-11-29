@@ -20,7 +20,7 @@
 
                 reportlist.Add(
                                 new SelectListItem { 
-                                                    Text = string.Format("{0}-П-{1}", f.id, f.date.ToShortDateString()),
+                                                    Text = f.line,
                                                     Value = f.id.ToString()
                                                     }
 
@@ -31,8 +31,8 @@
      }
      
       
-    CEQViewContext context = Model.GetViewContext("ChoiceForecastResult") as CEQViewContext;
-    if (context == null) { Model.SaveViewContext("ChoiceForecastResult", context = new CEQViewContext()); }
+    CEQViewContext context = Model.GetViewContext(CEQViewContext.VIEWNAME) as CEQViewContext;
+    if (context == null) { Model.SaveViewContext(CEQViewContext.VIEWNAME, context = new CEQViewContext()); }
    
     Menu start = new Menu(
                           new Menu.MenuItem("Выбрать",    "ChoiceForecastResult.Choice", true),
@@ -66,3 +66,5 @@
         @Html.Partial("_TypeLineMenu", start)
     </div>
 }
+
+

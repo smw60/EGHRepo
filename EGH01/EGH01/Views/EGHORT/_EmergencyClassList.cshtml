@@ -20,7 +20,7 @@
             <div class="boxdata">
                     <p><label class="boxdata-label-30">Код аварии</label>@t.type_code.ToString()</p>
                     <input type="hidden" value="@t.type_code.ToString()" name="type_code">
-                    <p><label class="boxdata-label-30">Наименование аварии</label>@t.name.ToString()</p>
+                    <p><label class="boxdata-label-30">Наименование аварии</label><span class="boxdata-span">@t.name.ToString()</span></p>
                     <p><label class="boxdata-label-30">Масса пролитого нефтепродукта от, кг</label>@t.minmass.ToString()</p>
                     <p><label class="boxdata-label-30">Масса пролитого нефтепродукта до, кг</label>@t.maxmass.ToString()</p>
                </div>

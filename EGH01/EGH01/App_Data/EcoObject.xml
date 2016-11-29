@@ -5,15 +5,7 @@
       <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
     </Point>
     <EcoObjectType type_code="3" name="Заповедник" />
-    <CadastreType type_code="5" name="Лесного фонда" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Лесного фонда" water_doc_name="Лесного фонда" />
-  </EcoObject>
-  <EcoObject id="6" name="Тест" iswaterobject="False">
-    <Point height="1" waterdeep="1">
-      <Coordinates latitude="1,016944" latitude_d="1" latitude_m="1" latitude_s="0,9998703" lngitude="1,016944" lngitude_d="1" lngitude_m="1" lngitude_s="0,9998703" />
-      <GroundType type_code="7" name="SMW60" porosity="0,43" holdmigration="14" waterfilter="3,8E-06" diffusion="0" distribution="0" sorption="0" watercapacity="0,08" soilmoisture="0,39" аveryanovfactor="3" permeability="0" density="2100" />
-    </Point>
-    <EcoObjectType type_code="3" name="Заповедник" />
-    <CadastreType type_code="9" name="Воздушных путей сообщения" pdk_coef="30" water_pdk_coef="30" ground_doc_name="Воздушных путей сообщения" water_doc_name="Воздушных путей сообщения" />
+    <CadastreType type_code="5" name="Земли лесного фонда" pdk_coef="0" water_pdk_coef="0" ground_doc_name="Земли лесного фонда" water_doc_name="Земли лесного фонда" />
   </EcoObject>
   <EcoObject id="7" name="Браславское озеро" iswaterobject="True">
     <Point height="118" waterdeep="6">
@@ -21,7 +13,7 @@
       <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
     </Point>
     <EcoObjectType type_code="1" name="Озеро" />
-    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+    <CadastreType type_code="1" name="Земли сельскохозяйственного назначения" pdk_coef="5E-05" water_pdk_coef="5E-05" ground_doc_name="Земли сельскохозяйственного назначения" water_doc_name="Земли сельскохозяйственного назначения" />
   </EcoObject>
   <EcoObject id="8" name="q" iswaterobject="True">
     <Point height="1" waterdeep="1">
@@ -29,7 +21,7 @@
       <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
     </Point>
     <EcoObjectType type_code="1" name="Озеро" />
-    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+    <CadastreType type_code="1" name="Земли сельскохозяйственного назначения" pdk_coef="5E-05" water_pdk_coef="5E-05" ground_doc_name="Земли сельскохозяйственного назначения" water_doc_name="Земли сельскохозяйственного назначения" />
   </EcoObject>
   <EcoObject id="9" name="частный дом 28, ул.Кирова, пос. Глубокое" iswaterobject="True">
     <Point height="108" waterdeep="3">
@@ -37,7 +29,7 @@
       <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
     </Point>
     <EcoObjectType type_code="2" name="Колодец" />
-    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+    <CadastreType type_code="1" name="Земли сельскохозяйственного назначения" pdk_coef="5E-05" water_pdk_coef="5E-05" ground_doc_name="Земли сельскохозяйственного назначения" water_doc_name="Земли сельскохозяйственного назначения" />
   </EcoObject>
   <EcoObject id="10" name="Браславское озеро" iswaterobject="True">
     <Point height="118" waterdeep="6">
@@ -45,7 +37,7 @@
       <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
     </Point>
     <EcoObjectType type_code="1" name="Озеро" />
-    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+    <CadastreType type_code="1" name="Земли сельскохозяйственного назначения" pdk_coef="5E-05" water_pdk_coef="5E-05" ground_doc_name="Земли сельскохозяйственного назначения" water_doc_name="Земли сельскохозяйственного назначения" />
   </EcoObject>
   <EcoObject id="11" name="SMW60-11" iswaterobject="True">
     <Point height="103" waterdeep="5">
@@ -53,7 +45,7 @@
       <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
     </Point>
     <EcoObjectType type_code="1" name="Озеро" />
-    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+    <CadastreType type_code="1" name="Земли сельскохозяйственного назначения" pdk_coef="5E-05" water_pdk_coef="5E-05" ground_doc_name="Земли сельскохозяйственного назначения" water_doc_name="Земли сельскохозяйственного назначения" />
   </EcoObject>
   <EcoObject id="12" name="SMW60-12" iswaterobject="True">
     <Point height="106" waterdeep="6">
@@ -61,7 +53,7 @@
       <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
     </Point>
     <EcoObjectType type_code="1" name="Озеро" />
-    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+    <CadastreType type_code="1" name="Земли сельскохозяйственного назначения" pdk_coef="5E-05" water_pdk_coef="5E-05" ground_doc_name="Земли сельскохозяйственного назначения" water_doc_name="Земли сельскохозяйственного назначения" />
   </EcoObject>
   <EcoObject id="13" name="SMW60-13" iswaterobject="True">
     <Point height="106" waterdeep="6">
@@ -69,7 +61,7 @@
       <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
     </Point>
     <EcoObjectType type_code="1" name="Озеро" />
-    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+    <CadastreType type_code="1" name="Земли сельскохозяйственного назначения" pdk_coef="5E-05" water_pdk_coef="5E-05" ground_doc_name="Земли сельскохозяйственного назначения" water_doc_name="Земли сельскохозяйственного назначения" />
   </EcoObject>
   <EcoObject id="14" name="SMW60-14" iswaterobject="True">
     <Point height="103" waterdeep="5">
@@ -77,7 +69,7 @@
       <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
     </Point>
     <EcoObjectType type_code="1" name="Озеро" />
-    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+    <CadastreType type_code="1" name="Земли сельскохозяйственного назначения" pdk_coef="5E-05" water_pdk_coef="5E-05" ground_doc_name="Земли сельскохозяйственного назначения" water_doc_name="Земли сельскохозяйственного назначения" />
   </EcoObject>
   <EcoObject id="15" name="SMW60-15" iswaterobject="True">
     <Point height="100" waterdeep="5">
@@ -85,6 +77,46 @@
       <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
     </Point>
     <EcoObjectType type_code="1" name="Озеро" />
-    <CadastreType type_code="1" name="Cельскохозяйственного назначения" pdk_coef="50" water_pdk_coef="50" ground_doc_name="Cельскохозяйственного назначения" water_doc_name="Cельскохозяйственного назначения" />
+    <CadastreType type_code="1" name="Земли сельскохозяйственного назначения" pdk_coef="5E-05" water_pdk_coef="5E-05" ground_doc_name="Земли сельскохозяйственного назначения" water_doc_name="Земли сельскохозяйственного назначения" />
+  </EcoObject>
+  <EcoObject id="16" name="Cельскохозяйственного назначения" iswaterobject="False">
+    <Point height="0" waterdeep="0">
+      <Coordinates latitude="0" latitude_d="0" latitude_m="0" latitude_s="0" lngitude="0" lngitude_d="0" lngitude_m="0" lngitude_s="0" />
+      <GroundType type_code="1" name="Песчаный" porosity="0,4" holdmigration="0,6" waterfilter="7E-06" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,01" soilmoisture="0,2" аveryanovfactor="5" permeability="0,2" density="2100" />
+    </Point>
+    <EcoObjectType type_code="1" name="Озеро" />
+    <CadastreType type_code="1" name="Земли сельскохозяйственного назначения" pdk_coef="5E-05" water_pdk_coef="5E-05" ground_doc_name="Земли сельскохозяйственного назначения" water_doc_name="Земли сельскохозяйственного назначения" />
+  </EcoObject>
+  <EcoObject id="17" name="Ручей б/н" iswaterobject="True">
+    <Point height="112" waterdeep="5">
+      <Coordinates latitude="54,31157" latitude_d="54" latitude_m="18" latitude_s="41,64917" lngitude="26,8711" lngitude_d="26" lngitude_m="52" lngitude_s="15,9581" />
+      <GroundType type_code="9" name="Тест1 Песок м/з" porosity="0,43" holdmigration="14" waterfilter="4,213E-05" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,08" soilmoisture="0,39" аveryanovfactor="4" permeability="0,2" density="1450" />
+    </Point>
+    <EcoObjectType type_code="4" name=" Ручей" />
+    <CadastreType type_code="6" name="Земли водного фонда" pdk_coef="0" water_pdk_coef="0" ground_doc_name="Земли водного фонда" water_doc_name="Земли водного фонда" />
+  </EcoObject>
+  <EcoObject id="18" name="Ручей б/н" iswaterobject="True">
+    <Point height="112" waterdeep="6">
+      <Coordinates latitude="54,30699" latitude_d="54" latitude_m="18" latitude_s="25,15594" lngitude="26,86176" lngitude_d="26" lngitude_m="51" lngitude_s="42,33307" />
+      <GroundType type_code="9" name="Тест1 Песок м/з" porosity="0,43" holdmigration="14" waterfilter="4,213E-05" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,08" soilmoisture="0,39" аveryanovfactor="4" permeability="0,2" density="1450" />
+    </Point>
+    <EcoObjectType type_code="4" name=" Ручей" />
+    <CadastreType type_code="6" name="Земли водного фонда" pdk_coef="0" water_pdk_coef="0" ground_doc_name="Земли водного фонда" water_doc_name="Земли водного фонда" />
+  </EcoObject>
+  <EcoObject id="19" name="р. Молодечанка" iswaterobject="True">
+    <Point height="140" waterdeep="7">
+      <Coordinates latitude="54,3071" latitude_d="54" latitude_m="18" latitude_s="25,5542" lngitude="26,86182" lngitude_d="26" lngitude_m="51" lngitude_s="42,5528" />
+      <GroundType type_code="9" name="Тест1 Песок м/з" porosity="0,43" holdmigration="14" waterfilter="4,213E-05" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,08" soilmoisture="0,39" аveryanovfactor="4" permeability="0,2" density="1450" />
+    </Point>
+    <EcoObjectType type_code="5" name=" Река" />
+    <CadastreType type_code="6" name="Земли водного фонда" pdk_coef="0" water_pdk_coef="0" ground_doc_name="Земли водного фонда" water_doc_name="Земли водного фонда" />
+  </EcoObject>
+  <EcoObject id="20" name="Водозабор «Голеново»" iswaterobject="True">
+    <Point height="120" waterdeep="3">
+      <Coordinates latitude="54,30722" latitude_d="54" latitude_m="18" latitude_s="26,00739" lngitude="26,86158" lngitude_d="26" lngitude_m="51" lngitude_s="41,68762" />
+      <GroundType type_code="9" name="Тест1 Песок м/з" porosity="0,43" holdmigration="14" waterfilter="4,213E-05" diffusion="0,2" distribution="0,2" sorption="0,2" watercapacity="0,08" soilmoisture="0,39" аveryanovfactor="4" permeability="0,2" density="1450" />
+    </Point>
+    <EcoObjectType type_code="1" name="Озеро" />
+    <CadastreType type_code="4" name="Земли природоохранного, оздоровительного, рекреационного, историко-культурного назначения" pdk_coef="0" water_pdk_coef="0" ground_doc_name="Земли природоохранного, оздоровительного, рекреационного, историко-культурного назначения" water_doc_name="Земли природоохранного, оздоровительного, рекреационного, историко-культурного назначения" />
   </EcoObject>
 </EcoObjectList>
