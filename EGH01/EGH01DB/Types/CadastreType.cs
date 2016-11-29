@@ -40,15 +40,15 @@ namespace EGH01DB.Types
             this.water_doc_name = string.Empty;
         }
 
-        public CadastreType(String name)
-        {
-            this.type_code = 0;
-            this.name = name;
-            this.pdk_coef = 0.0f;
-            this.water_pdk_coef = 0.0f;
-            this.ground_doc_name = string.Empty;
-            this.water_doc_name = string.Empty;
-        }
+        //public CadastreType(String name)
+        //{
+        //    this.type_code = 0;
+        //    this.name = name;
+        //    this.pdk_coef = 0.0f;
+        //    this.water_pdk_coef = 0.0f;
+        //    this.ground_doc_name = string.Empty;
+        //    this.water_doc_name = string.Empty;
+        //}
         public CadastreType(int type_code, String name, float pdk_coef, float water_pdk_coef, string ground_doc_name, string water_doc_name)
         {
             this.type_code = type_code;

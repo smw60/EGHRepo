@@ -21,6 +21,8 @@ namespace EGH01DB.Objects
         public CadastreType  cadastretype   {get; private set; }   // кадастровый тип земли
         public string name                  {get; private set; }   // наименование природоохранного объекта 
         public bool iswaterobject           {get; private set; }   // является ли водным объектом 
+        public float angle { get; private set; }   // Уклон грунтовых вод 
+        public float pollutionecoobject { get; private set; }  // Расстояние от центра загрязнения до точки
         public static  readonly string PREFIX = "ПО";       
         public EcoObject()
         {
@@ -29,6 +31,8 @@ namespace EGH01DB.Objects
             this.cadastretype = new CadastreType();
             this.name = string.Empty;
             this.iswaterobject = false;
+            this.angle = 0.0f;
+            this.pollutionecoobject = 0.0f;
         }
         public EcoObject(int id)
         {
@@ -37,6 +41,9 @@ namespace EGH01DB.Objects
             this.cadastretype = new CadastreType();
             this.name = string.Empty;
             this.iswaterobject = false;
+            this.pollutionecoobject = 0.0f;
+            this.angle = 0.0f;
+
         }
         public EcoObject(int id, Point point, EcoObjectType ecoobjecttype, CadastreType cadastretype, string name, bool iswaterobject)
             : base(point)
@@ -46,6 +53,19 @@ namespace EGH01DB.Objects
             this.cadastretype = cadastretype;
             this.name = name;
             this.iswaterobject = iswaterobject;
+            this.angle = 0.0f;
+            this.pollutionecoobject = 0.0f;
+        }
+        public EcoObject(int id, Point point, EcoObjectType ecoobjecttype, CadastreType cadastretype, string name, bool iswaterobject, float angle, float pollutionecoobject)
+            : base(point)
+        {
+            this.id = id;
+            this.ecoobjecttype = ecoobjecttype;
+            this.cadastretype = cadastretype;
+            this.name = name;
+            this.iswaterobject = iswaterobject;
+            this.angle = 0.0f;
+            this.pollutionecoobject = 0.0f;
         }
         public EcoObject(XmlNode node)
             : base(new Point(node.SelectSingleNode(".//Point")))
@@ -62,6 +82,8 @@ namespace EGH01DB.Objects
 
             this.name = Helper.GetStringAttribute(node, "name", "");
             this.iswaterobject = Helper.GetBoolAttribute(node, "iswaterobject", false);
+            this.angle = Helper.GetFloatAttribute(node, "angle",0.0f);
+            this.pollutionecoobject = Helper.GetFloatAttribute(node, "pollutionecoobject", 0.0f);
         }
         static public bool Create(EGH01DB.IDBContext dbcontext, EcoObject ecoobject)
         {
@@ -450,6 +472,8 @@ namespace EGH01DB.Objects
             rc.AppendChild(doc.ImportNode(this.cadastretype.toXmlNode(), true));
             rc.SetAttribute("name", this.name.ToString());
             rc.SetAttribute("iswaterobject", this.iswaterobject.ToString());
+            rc.SetAttribute("angle", this.angle.ToString());
+            rc.SetAttribute("pollutionecoobject", this.pollutionecoobject.ToString());
            
             return (XmlNode)rc;
         }
@@ -500,7 +524,7 @@ namespace EGH01DB.Objects
                  var selx = ecolist.Where(o => o.coordinates.Distance(center.coordinates) <= distance).AsQueryable();
                  foreach (EcoObject o in selx)
                  {
-                     float x = o.coordinates.Distance(center.coordinates);
+                    // float x = o.coordinates.Distance(center.coordinates);
                      rc.Add(o);
                  }
             }       

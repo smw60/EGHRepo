@@ -57,7 +57,512 @@ namespace EGH01.Controllers
 
             return View();
         }
-       
+
+        // проверка процедур PetrochemicalCategories
+        public ActionResult PetrochemicalCategories_Create()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = -1;
+                //string name = "Test111";
+                //float min = -1.1f;
+                //float max = 1111.1f;
+                //PetrochemicalCategories t = new PetrochemicalCategories(code, name, min, max);
+                //if (PetrochemicalCategories.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult PetrochemicalCategories_DeleteByCode()  // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //PetrochemicalCategories r = new PetrochemicalCategories();
+                //if (PetrochemicalCategories.DeleteByCode(db, 1))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult PetrochemicalCategories_GetByCode()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //PetrochemicalCategories r = new PetrochemicalCategories(1);
+                //if (PetrochemicalCategories.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult PetrochemicalCategories_Update()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int code = 1;
+                //string name = "Test111222";
+                //float min = 11.1f;
+                //float max = 1111111.1f;
+
+                //PetrochemicalCategories t = new PetrochemicalCategories((int)code, (string)name, min, max);
+
+                //if (PetrochemicalCategories.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult PetrochemicalCategories_list() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<PetrochemicalCategories> list = new List<PetrochemicalCategories>();
+                //if (Helper.GetListPetrochemicalCategories(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
+
+        // проверка процедур  PenetrationDepth
+        public ActionResult PenetrationDepth_Create()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = -1;
+                //string name = "Test111";
+                //float min = -1.1f;
+                //float max = 1111.1f;
+                //PenetrationDepth t = new PenetrationDepth(code, name, min, max);
+                //if (PenetrationDepth.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult PenetrationDepth_DeleteByCode()  // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //PenetrationDepth r = new PenetrationDepth();
+                //if (PenetrationDepth.DeleteByCode(db, 1))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult PenetrationDepth_GetByCode()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //PenetrationDepth r = new PenetrationDepth(1);
+                //if (PenetrationDepth.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult PenetrationDepth_Update()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int code = 1;
+                //string name = "Test111222";
+                //float min = 11.1f;
+                //float max = 1111111.1f;
+
+                //PenetrationDepth t = new PenetrationDepth((int)code, (string)name, min, max);
+
+                //if (PenetrationDepth.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult PenetrationDepth_list() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<PenetrationDepth> list = new List<PenetrationDepth>();
+                //if (Helper.GetListPenetrationDepth(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
+        // проверка процедур  EmergencyClass
+        public ActionResult EmergencyClass_Create()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = -1;
+                //string name = "Test111";
+                //float min = -1.1f;
+                //float max = 1111.1f;
+                //EmergencyClass t = new EmergencyClass(code, name, min, max);
+                //if (EmergencyClass.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EmergencyClass_DeleteByCode()  // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //EmergencyClass r = new EmergencyClass();
+                //if (EmergencyClass.DeleteByCode(db, 1))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EmergencyClass_GetByCode()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //EmergencyClass r = new EmergencyClass(1);
+                //if (EmergencyClass.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EmergencyClass_Update()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int code = 1;
+                //string name = "Test111222";
+                //float min = 11.1f;
+                //float max = 1111111.1f;
+
+                //EmergencyClass t = new EmergencyClass((int)code, (string)name, min, max);
+
+                //if (EmergencyClass.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult EmergencyClass_list() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<EmergencyClass> list = new List<EmergencyClass>();
+                //if (Helper.GetListEmergencyClass(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
+        // проверка процедур  WaterPollutionCategories
+        public ActionResult WaterPollutionCategories_Create()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = -1;
+                //string name = "Test111";
+                //float min = -1.1f;
+                //float max = 1111.1f;
+                //WaterPollutionCategories t = new WaterPollutionCategories(code, name, min, max);
+                //if (WaterPollutionCategories.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult WaterPollutionCategories_DeleteByCode()  // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //WaterPollutionCategories r = new WaterPollutionCategories();
+                //if (WaterPollutionCategories.DeleteByCode(db, 1))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult WaterPollutionCategories_GetByCode()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //WaterPollutionCategories r = new WaterPollutionCategories(1);
+                //if (WaterPollutionCategories.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult WaterPollutionCategories_Update()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int code = 1;
+                //string name = "Test111222";
+                //float min = 11.1f;
+                //float max = 1111111.1f;
+
+                //WaterPollutionCategories t = new WaterPollutionCategories((int)code, (string)name, min, max);
+
+                //if (WaterPollutionCategories.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult WaterPollutionCategories_list() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<WaterPollutionCategories> list = new List<WaterPollutionCategories>();
+                //if (Helper.GetListWaterPollutionCategories(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
+        // проверка процедур  SoilPollutionCategories
+        public ActionResult SoilPollutionCategories_Create()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = -1;
+                //string name = "Test111";
+                //float min = -1.1f;
+                //float max = 1111.1f;
+                //SoilPollutionCategories t = new SoilPollutionCategories(code, name, min, max);
+                //if (SoilPollutionCategories.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilPollutionCategories_DeleteByCode()  // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //SoilPollutionCategories r = new SoilPollutionCategories();
+
+                //if (SoilPollutionCategories.DeleteByCode(db, 1))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilPollutionCategories_GetByCode()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //SoilPollutionCategories r = new SoilPollutionCategories(1);
+                //if (SoilPollutionCategories.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilPollutionCategories_Update()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = 1;
+                //string name = "Test111222";
+                //float min = 11.1f;
+                //float max = 1111111.1f;
+
+                //SoilPollutionCategories t = new SoilPollutionCategories((int)code, (string)name, min, max);
+
+                //if (SoilPollutionCategories.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilPollutionCategories_list() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<SoilPollutionCategories> list = new List<SoilPollutionCategories>();
+                //if (Helper.GetListSoilPollutionCategories(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
+        // проверка процедур  SoilCleaningMethod
+        public ActionResult SoilCleaningMethod_Create()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = -1;
+                //string name = "Test111";
+                //string method = "Test method";
+                //SoilCleaningMethod t = new SoilCleaningMethod(code, name, method);
+                //if (SoilCleaningMethod.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilCleaningMethodn_DeleteByCode()  // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //SoilCleaningMethod r = new SoilCleaningMethod();
+                //if (SoilCleaningMethod.DeleteByCode(db, 1))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilCleaningMethod_GetByCode()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //SoilCleaningMethod r = new SoilCleaningMethod(1);
+                //if (SoilCleaningMethod.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilCleaningMethod_Update()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int code = 1;
+                //string name = "Test111222";
+                //string method = "Test111222";
+                //SoilCleaningMethod t = new SoilCleaningMethod((int)code, (string)name, method);
+                
+                //if (SoilCleaningMethod.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilCleaningMethod_list() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<SoilCleaningMethod> list = new List<SoilCleaningMethod>();
+                //if (Helper.GetListSoilCleaningMethods(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
+        // проверка процедур  WaterCleaningMethod
+        public ActionResult WaterCleaningMethod_Create()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = -1;
+                //string name = "Test111";
+                //string method = "Test method";
+                //WaterCleaningMethod t = new WaterCleaningMethod(code, name, method);
+                //if (WaterCleaningMethod.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult WaterCleaningMethod_DeleteByCode()  // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //WaterCleaningMethod r = new WaterCleaningMethod();
+                //if (WaterCleaningMethod.DeleteByCode(db, 1))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult WaterCleaningMethod_GetByCode()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //WaterCleaningMethod r = new WaterCleaningMethod(1);
+                //if (WaterCleaningMethod.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult WaterCleaningMethod_Update()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = 1;
+                //string name = "Test111222";
+                //string method = "Test111222";
+                //WaterCleaningMethod t = new WaterCleaningMethod((int)code, (string)name, method);
+
+                //if (WaterCleaningMethod.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult WaterCleaningMethod_list() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<WaterCleaningMethod> list = new List<WaterCleaningMethod>();
+                //if (Helper.GetListWaterCleaningMethods(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
         // проверка процедур  XML
         public ActionResult XML_District_Region()
         {
@@ -164,6 +669,16 @@ namespace EGH01.Controllers
             //string comment = "Comment";
             //RGEContext.ECOForecast f = new RGEContext.ECOForecast();
             //if (RGEContext.ECOForecast.GetById(db, 35, out f, out comment))
+            //{
+            //    int k = 1;
+            //};
+            return View();
+        }
+        public ActionResult EF_GetList()// 
+        {
+            //RGEContext db = new RGEContext();  
+            //List <RGEContext.ECOForecast> flist = new List<RGEContext.ECOForecast>();
+            //if (Helper.GetListEcoforecast(db, ref flist))
             //{
             //    int k = 1;
             //};

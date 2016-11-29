@@ -96,10 +96,13 @@
     <Compile Include="Types\CadastreType.cs" />
     <Compile Include="Types\District.cs" />
     <Compile Include="Types\EcoObjectType.cs" />
+    <Compile Include="Types\EmergencyClass.cs" />
     <Compile Include="Types\GroundType.cs" />
     <Compile Include="Primitives\Helper.cs" />
     <Compile Include="Points\Incident.cs" />
     <Compile Include="Types\IncidentType.cs" />
+    <Compile Include="Types\PenetrationDepth.cs" />
+    <Compile Include="Types\PetrochemicalCategories.cs" />
     <Compile Include="Types\PetrochemicalType.cs" />
     <Compile Include="Points\Point.cs" />
     <Compile Include="Objects\EcoObject.cs" />
@@ -118,6 +121,11 @@
     <Compile Include="RGEContextView.cs" />
     <Compile Include="Types\Region.cs" />
     <Compile Include="Types\RiskObjectType.cs" />
+    <Compile Include="Types\SoilCleaningMethod.cs" />
+    <Compile Include="Types\SoilPollutionCategories.cs" />
+    <Compile Include="Types\WaterCleaningMethod.cs" />
+    <Compile Include="Types\WaterPollutionCategories.cs" />
+    <Compile Include="Types\WaterProtectionArea.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

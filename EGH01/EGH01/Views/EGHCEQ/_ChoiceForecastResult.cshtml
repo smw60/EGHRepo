@@ -3,18 +3,34 @@
 @using EGH01.Core;
 @using EGH01.Models;
 @using EGH01.Models.EGHCEQ;
+@using EGH01DB;
 @model EGH01DB.CEQContext
 @{
     
-    List<SelectListItem> reportlist = new List<SelectListItem>
-    {
-           new SelectListItem{ Text = "225-П-2016-11-20 АЗС № 21", Value = "221",  Selected = true},
-           new SelectListItem{ Text = "224-П-2016-11-20 Нефтебаза 28", Value = "222",  Selected = false},
-           new SelectListItem{ Text = "223-П-2016-11-20 АЗС № 336", Value = "223",  Selected = false},
-           new SelectListItem{ Text = "222-П-2016-11-20 ", Value = "224",  Selected = false}
+    
+    
+     List<SelectListItem> reportlist = new List<SelectListItem>();
+   
+     {
+        List<EGH01DB.RGEContext.ECOForecast> flist = new List<EGH01DB.RGEContext.ECOForecast>();
+        if ( Helper.GetListECOForecast(Model,  ref flist))
+        {
+            foreach (RGEContext.ECOForecast f in flist)
+            {
 
-    };
+                reportlist.Add(
+                                new SelectListItem { 
+                                                    Text = string.Format("{0}-П-{1}", f.id, f.date.ToShortDateString()),
+                                                    Value = f.id.ToString()
+                                                    }
 
+                              );  
+            }            
+            
+        }
+     }
+     
+      
     CEQViewContext context = Model.GetViewContext("ChoiceForecastResult") as CEQViewContext;
     if (context == null) { Model.SaveViewContext("ChoiceForecastResult", context = new CEQViewContext()); }
    
@@ -23,15 +39,16 @@
                           new Menu.MenuItem("Отказаться", "ChoiceForecastResult.Cancel", true)
                           );
 
-    if (context.id != null)
+    if (context.idforecat != null)
     {
-        SelectListItem si = reportlist.FirstOrDefault(s => s.Value.Equals(context.id.ToString()));
+        SelectListItem si = reportlist.FirstOrDefault(s => s.Value.Equals(context.idforecat.ToString()));
         si.Selected = true; 
     
     } 
    
 }
-@if(context.RegimChoice == CEQViewContext.REGIM_CHOICE.CHOICE)
+
+@if( context.RegimChoice == CEQViewContext.REGIM_CHOICE.CHOICE)
 {
     @Html.Partial("_ConfirmChoiceForecastResult",Model);
 } 
