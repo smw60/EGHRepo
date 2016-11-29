@@ -8,6 +8,7 @@ using System.Configuration;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+using System.Xml;
 using EGH01DB.Objects;
 using EGH01DB.Blurs;
 using EGH01DB.Primitives;
@@ -18,10 +19,10 @@ namespace EGH01DB
     public  partial class CEQContext : IDBContext
     {
 
-        public class ECOEvalution: RGEContext.ECOForecast
+        public  partial class ECOEvalution: RGEContext.ECOForecast
         {
 
-            public float excessgroundconcentration { get; set; }      // отношение значения средней конентрации к ПДК  
+            public float excessgroundconcentration { get; set; }      // отношение значения средней конентрации в грунте к ПДК  
             private string errormssageformat = "ECOEvalution: Ошибка в данных. {0}";
             public GroundPollutionList groundpollutionlist   {get; set;}
             public WaterPollutionList waterpolutionlist      { get; set; }
@@ -47,8 +48,36 @@ namespace EGH01DB
                 }
 
            }
+            
+            public XmlNode toXmlNode(string comment = "")
+            { 
+                  XmlDocument doc = new XmlDocument();
+                  XmlElement rc = doc.CreateElement("ECOEvalution");
+                  if (!string.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+                  rc.SetAttribute("excessgroundconcentration",  this.excessgroundconcentration.ToString());
+                  {
+                    XmlNode n = this.groundpollutionlist.toXmlNode();
+                    rc.AppendChild(doc.ImportNode(n, true));
+                  }                
+                  {
+                    XmlNode n = this.waterpolutionlist.toXmlNode();
+                    rc.AppendChild(doc.ImportNode(n, true));
+                  }  
+                  {
+                    XmlNode n = base.toXmlNode();
+                    rc.AppendChild(doc.ImportNode(n, true));
+                  }  
+
+                  return (XmlNode)doc; 
+            }
+
 
         }
+
+
+        
+
+
 
      }        
 
@@ -58,3 +87,20 @@ namespace EGH01DB
 
 
 
+        //public XmlNode toXmlNode(string comment = "")
+        //{
+        //    XmlDocument doc = new XmlDocument();
+        //    XmlElement rc = doc.CreateElement("EcoObject");
+        //    if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+        //    rc.SetAttribute("id", this.id.ToString());
+        //    XmlNode n = base.toXmlNode("");
+        //    rc.AppendChild(doc.ImportNode(n, true));
+        //    rc.AppendChild(doc.ImportNode(this.ecoobjecttype.toXmlNode(), true));
+        //    rc.AppendChild(doc.ImportNode(this.cadastretype.toXmlNode(), true));
+        //    rc.SetAttribute("name", this.name.ToString());
+        //    rc.SetAttribute("iswaterobject", this.iswaterobject.ToString());
+        //    rc.SetAttribute("angle", this.angle.ToString());
+        //    rc.SetAttribute("pollutionecoobject", this.pollutionecoobject.ToString());
+           
+        //    return (XmlNode)rc;
+        //}

@@ -1,18 +1,25 @@
 ﻿@using EGH01.Models.EGHCEQ;
 @using EGH01DB;
 @using EGH01DB.Blurs;
+@using EGH01.Core;
 @model EGH01DB.CEQContext 
 @{
    CEQViewContext context = (CEQViewContext)Model.GetViewContext(CEQViewContext.VIEWNAME);
-
+  
+   Menu head = new Menu(
+                          new Menu.MenuItem("Сохранить",   "Report.Save", true),
+                          new Menu.MenuItem("Отказаться",  "Report.Cancel", true)
+                        );
          
 }
 
 
 @if (context != null && context.ecoevalution != null)
 {
-    string s = string.Format("{0}-Р-{1}", context.ecoevalution.id, context.ecoevalution.date.ToString("yyy-MM-dd"));
-    
+ string s = string.Format("{0}-Р-{1}", context.ecoevalution.id, context.ecoevalution.date.ToString("yyy-MM-dd"));
+ using (Html.BeginForm("EvalutionForecast", "EGHCEQ"))
+ {
+       
      <div class="box">
     <fieldset>
     <legend> Прогноз @s </legend>
@@ -191,17 +198,11 @@
              </fieldset>  
           </fieldset>
       </fieldset>
+      @Html.Partial("_TypeLineMenu", head)
 </div>
 
-}
-else 
-{ 
- <h2> Ошибка </h2>
-}
+ }
 
+}
+else { <h2> Ошибка </h2>}
 
-@*if (context != null)
-    {
-      //  n = string.Format("{0}-П-{1}", context.ecoevalution.id, context.ecoevalution.date.ToString("yyyy-MM-dd"));
-        //int k = 1;
-    }*@

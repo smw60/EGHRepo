@@ -12,7 +12,7 @@ namespace EGH01.Models.EGHCEQ
     {
         
         public enum REGIM_CHOICE {INIT, CHOICE, CANCEL, ERROR, REPORT};
-        public enum REGIM_EVALUTION{ INIT, CHOICE, CANCEL, ERROR, REPORT };
+        public enum REGIM_EVALUTION{ INIT, CHOICE, CANCEL, ERROR, REPORT, SAVE };
         public REGIM_CHOICE RegimChoice { get; set; }
         public REGIM_EVALUTION RegimEvalution { get; set; }
         public const string VIEWNAME = "ChoiceForecastResult";
@@ -31,6 +31,15 @@ namespace EGH01.Models.EGHCEQ
         public static CEQViewContext HandlerEvalutionForecast(CEQContext context, NameValueCollection parms)
         {
              CEQViewContext rc = context.GetViewContext(VIEWNAME) as CEQViewContext;
+             if ((rc = context.GetViewContext(VIEWNAME) as CEQViewContext) != null)
+             {
+                string menuitem = parms["menuitem"];
+                if (menuitem != null)
+                {
+                    if       (menuitem.Equals("Report.Save"))    rc.RegimEvalution = REGIM_EVALUTION.SAVE;
+                    else  if (menuitem.Equals("Report.Cancel"))  rc.RegimEvalution = REGIM_EVALUTION.CANCEL;
+                }
+             }
              return rc;
         }
         

@@ -90,15 +90,19 @@ namespace EGH01.Controllers
                     case CEQViewContext.REGIM_EVALUTION.INIT:   rc = View(db); break;
                     case CEQViewContext.REGIM_EVALUTION.CHOICE: rc = View(db); break;
                     case CEQViewContext.REGIM_EVALUTION.REPORT: rc = View(db); break;
+                    case CEQViewContext.REGIM_EVALUTION.SAVE:   rc =  View("Index",db);
+                                                               CEQContext.ECOEvalution.Create(db,context.ecoevalution,"отладка"); 
+                                                               context.RegimEvalution = CEQViewContext.REGIM_EVALUTION.CHOICE;       
+                                                               break;
                     default: rc = View("Index", db); break;
                 }
                                
             }
-            catch (EGHDBException)
+            catch (EGHDBException e)
             {
                 rc = View("Index",db);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 rc = View("Index", db);
             }

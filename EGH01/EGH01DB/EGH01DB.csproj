@@ -82,6 +82,7 @@
     <Compile Include="Blurs\GroundBlur.cs" />
     <Compile Include="Blurs\WaterBlur.cs" />
     <Compile Include="CEQContextModel.cs" />
+    <Compile Include="CEQContextModel1.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="EGHDBException.cs" />
     <Compile Include="Blurs\GroundPollution.cs" />

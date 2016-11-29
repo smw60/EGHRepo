@@ -482,6 +482,7 @@ namespace EGH01DB.Points
                         float height = (float)reader["ВысотаУровнемМоря"];
 
                         GroundType ground_type = new GroundType(ground_type_code);
+                        
                         Coordinates coordinates = new Coordinates((float)x, (float)y);
 
                         int cadastre_type_code = (int)reader["КодНазначенияЗемель"];

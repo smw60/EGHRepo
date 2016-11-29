@@ -77,23 +77,25 @@ namespace EGH01.Controllers
                     {
                         ForecastViewConext viewcontext = context.GetViewContext("Forecast") as ForecastViewConext;
                         EGH01DB.RGEContext.ECOForecast forecast = viewcontext.ecoforecast;
-                        XmlNode node =  forecast.toXmlNode("Отладка");
-                        XmlDocument doc = new XmlDocument();
-                        doc.AppendChild(doc.ImportNode(node, true));
-                        doc.Save(@"C:\Report.xml");
+                        //XmlNode node =  forecast.toXmlNode("Отладка");
+                        //XmlDocument doc = new XmlDocument();
+                        //doc.AppendChild(doc.ImportNode(node, true));
+                        //doc.Save(@"C:\Report.xml");
 
-                        int id = -1;
-                        if (RGEContext.ECOForecast.GetNextId(context, out id))
+                        if (RGEContext.ECOForecast.Create(context, forecast, "отладка"))
                         {
-                            forecast.id = id;
-                            if (RGEContext.ECOForecast.Create(context, forecast, "отладка"))
-                            {
                                 int kk = 2;
-                            }
-
                         }
 
-                        int k = 1;
+
+                        //int id = -1;
+                        //if (RGEContext.ECOForecast.GetNextId(context, out id))
+                        //{
+                        //    forecast.id = id;
+                            
+                        //}
+
+                        //int k = 1;
                     
                     }
                 }
