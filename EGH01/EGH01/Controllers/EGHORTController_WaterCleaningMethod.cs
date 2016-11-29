@@ -8,23 +8,23 @@ namespace EGH01.Controllers
 {
     public partial class EGHORTController : Controller
     {
-        public ActionResult SoilCleaningMethod()
+        public ActionResult WaterCleaningMethod()
         {
             ORTContext db = null;
             ActionResult view = View("Index");
-            ViewBag.EGHLayout = "ORT.SoilCleaningMethod";
+            ViewBag.EGHLayout = "ORT.WaterCleaningMethod";
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
                 db = new ORTContext();
                 ViewBag.msg = "Соединение с базой данных установлено";
-                view = View("SoilCleaningMethod", db);
+                view = View("WaterCleaningMethod", db);
 
-                if (menuitem.Equals("SoilCleaningMethod.Create"))
+                if (menuitem.Equals("WaterCleaningMethod.Create"))
                 {
-                    view = View("SoilCleaningMethodCreate");
+                    view = View("WaterCleaningMethodCreate");
                 }
-                else if (menuitem.Equals("SoilCleaningMethod.Delete"))
+                else if (menuitem.Equals("WaterCleaningMethod.Delete"))
                 {
                     string type_code = this.HttpContext.Request.Params["type_code"];
                     if (type_code != null)
@@ -32,15 +32,15 @@ namespace EGH01.Controllers
                         int c = 0;
                         if (int.TryParse(type_code, out c))
                         {
-                            EGH01DB.Types.SoilCleaningMethod scm = new EGH01DB.Types.SoilCleaningMethod();
-                            if (EGH01DB.Types.SoilCleaningMethod.GetByCode(db, c, out scm))
+                            EGH01DB.Types.WaterCleaningMethod scm = new EGH01DB.Types.WaterCleaningMethod();
+                            if (EGH01DB.Types.WaterCleaningMethod.GetByCode(db, c, out scm))
                             {
-                                view = View("SoilCleaningMethodDelete", scm);
+                                view = View("WaterCleaningMethodDelete", scm);
                             }
                         }
                     }
                 }
-                else if (menuitem.Equals("SoilCleaningMethod.Update"))
+                else if (menuitem.Equals("WaterCleaningMethod.Update"))
                 {
                     string type_code = this.HttpContext.Request.Params["type_code"];
 
@@ -49,16 +49,16 @@ namespace EGH01.Controllers
                         int c = 0;
                         if (int.TryParse(type_code, out c))
                         {
-                            SoilCleaningMethod scm = new EGH01DB.Types.SoilCleaningMethod();
+                            WaterCleaningMethod scm = new EGH01DB.Types.WaterCleaningMethod();
 
-                            if (EGH01DB.Types.SoilCleaningMethod.GetByCode(db, c, out scm))
+                            if (EGH01DB.Types.WaterCleaningMethod.GetByCode(db, c, out scm))
                             {
-                                view = View("SoilCleaningMethodUpdate", scm);
+                                view = View("WaterCleaningMethodUpdate", scm);
                             }
                         }
                     }
                 }
-                else if (menuitem.Equals("SoilCleaningMethod.Excel"))
+                else if (menuitem.Equals("WaterCleaningMethod.Excel"))
                 {
                     //EGH01DB.Primitives.WaterPropertiesList list = new EGH01DB.Primitives.WaterPropertiesList(db);
                     //XmlNode node = list.toXmlNode();
@@ -87,37 +87,37 @@ namespace EGH01.Controllers
         }
 
         [HttpPost]
-        public ActionResult SoilCleaningMethodCreate(SoilCleaningMethodView scmv)
+        public ActionResult WaterCleaningMethodCreate(WaterCleaningMethodView scmv)
         {
             ORTContext db = null;
-            ViewBag.EGHLayout = "ORT.SoilCleaningMethod";
+            ViewBag.EGHLayout = "ORT.WaterCleaningMethod";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
                 db = new ORTContext();
-                view = View("SoilCleaningMethod", db);
-                if (menuitem.Equals("SoilCleaningMethod.Create.Create"))
+                view = View("WaterCleaningMethod", db);
+                if (menuitem.Equals("WaterCleaningMethod.Create.Create"))
                 {
                     int id = -1;
-                    if (EGH01DB.Types.SoilCleaningMethod.GetNextCode(db, out id))
+                    if (EGH01DB.Types.WaterCleaningMethod.GetNextCode(db, out id))
                     {
                         int type_code = scmv.type_code;
                         string name = scmv.name;
                         string method_description = scmv.method_description;
 
-                        SoilCleaningMethod scm = new SoilCleaningMethod(type_code, name, method_description);
+                        WaterCleaningMethod scm = new WaterCleaningMethod(type_code, name, method_description);
 
-                        if (EGH01DB.Types.SoilCleaningMethod.Create(db, scm))
+                        if (EGH01DB.Types.WaterCleaningMethod.Create(db, scm))
                         {
-                            view = View("SoilCleaningMethod", db);
+                            view = View("WaterCleaningMethod", db);
                         }
-                        else if (menuitem.Equals("SoilCleaningMethod.Create.Cancel")) 
-                            view = View("SoilCleaningMethod", db);
+                        else if (menuitem.Equals("WaterCleaningMethod.Create.Cancel"))
+                            view = View("WaterCleaningMethod", db);
                     }
                 }
-                else if (menuitem.Equals("SoilCleaningMethod.Create.Cancel")) 
-                    view = View("SoilCleaningMethod", db);
+                else if (menuitem.Equals("WaterCleaningMethod.Create.Cancel"))
+                    view = View("WaterCleaningMethod", db);
             }
             catch (RGEContext.Exception e)
             {
@@ -132,22 +132,22 @@ namespace EGH01.Controllers
         }
 
         [HttpPost]
-        public ActionResult SoilCleaningMethodDelete(int type_code)
+        public ActionResult WaterCleaningMethodDelete(int type_code)
         {
             ORTContext db = null;
-            ViewBag.EGHLayout = "ORT.SoilCleaningMethod";
+            ViewBag.EGHLayout = "ORT.WaterCleaningMethod";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
                 db = new ORTContext();
-                if (menuitem.Equals("SoilCleaningMethod.Delete.Delete"))
+                if (menuitem.Equals("WaterCleaningMethod.Delete.Delete"))
                 {
-                    if (EGH01DB.Types.SoilCleaningMethod.DeleteByCode(db, type_code))
-                        view = View("SoilCleaningMethod", db);
+                    if (EGH01DB.Types.WaterCleaningMethod.DeleteByCode(db, type_code))
+                        view = View("WaterCleaningMethod", db);
                 }
-                else if (menuitem.Equals("SoilCleaningMethod.Delete.Cancel"))
-                    view = View("SoilCleaningMethod", db);
+                else if (menuitem.Equals("WaterCleaningMethod.Delete.Cancel"))
+                    view = View("WaterCleaningMethod", db);
 
             }
             catch (RGEContext.Exception e)
@@ -163,28 +163,28 @@ namespace EGH01.Controllers
         }
 
         [HttpPost]
-        public ActionResult SoilCleaningMethodUpdate(SoilCleaningMethodView scmv)
+        public ActionResult WaterCleaningMethodUpdate(WaterCleaningMethodView scmv)
         {
             ORTContext db = null;
-            ViewBag.EGHLayout = "ORT.SoilCleaningMethod";
+            ViewBag.EGHLayout = "ORT.WaterCleaningMethod";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
                 db = new ORTContext();
-                if (menuitem.Equals("SoilCleaningMethod.Update.Update"))
+                if (menuitem.Equals("WaterCleaningMethod.Update.Update"))
                 {
 
                     int type_code = scmv.type_code;
                     string name = scmv.name;
                     string method_description = scmv.method_description;
 
-                    SoilCleaningMethod scm = new EGH01DB.Types.SoilCleaningMethod(type_code, name, method_description);
-                    if (EGH01DB.Types.SoilCleaningMethod.Update(db,scm))
-                        view = View("SoilCleaningMethod", db);
+                    WaterCleaningMethod scm = new EGH01DB.Types.WaterCleaningMethod(type_code, name, method_description);
+                    if (EGH01DB.Types.WaterCleaningMethod.Update(db, scm))
+                        view = View("WaterCleaningMethod", db);
                 }
-                else if (menuitem.Equals("SoilCleaningMethod.Update.Cancel"))
-                    view = View("SoilCleaningMethod", db);
+                else if (menuitem.Equals("WaterCleaningMethod.Update.Cancel"))
+                    view = View("WaterCleaningMethod", db);
             }
             catch (RGEContext.Exception e)
             {
@@ -198,5 +198,5 @@ namespace EGH01.Controllers
             return view;
         }
 
-	}
+    }
 }

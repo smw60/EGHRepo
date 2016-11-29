@@ -58,6 +58,80 @@ namespace EGH01.Controllers
             return View();
         }
 
+        // проверка процедур PetrochemicalCategories
+        public ActionResult PetrochemicalCategories_Create()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = -1;
+                //string name = "Test111";
+                //float min = -1.1f;
+                //float max = 1111.1f;
+                //PetrochemicalCategories t = new PetrochemicalCategories(code, name, min, max);
+                //if (PetrochemicalCategories.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult PetrochemicalCategories_DeleteByCode()  // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //PetrochemicalCategories r = new PetrochemicalCategories();
+                //if (PetrochemicalCategories.DeleteByCode(db, 1))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult PetrochemicalCategories_GetByCode()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //PetrochemicalCategories r = new PetrochemicalCategories(1);
+                //if (PetrochemicalCategories.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult PetrochemicalCategories_Update()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int code = 1;
+                //string name = "Test111222";
+                //float min = 11.1f;
+                //float max = 1111111.1f;
+
+                //PetrochemicalCategories t = new PetrochemicalCategories((int)code, (string)name, min, max);
+
+                //if (PetrochemicalCategories.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult PetrochemicalCategories_list() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<PetrochemicalCategories> list = new List<PetrochemicalCategories>();
+                //if (Helper.GetListPetrochemicalCategories(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
+
         // проверка процедур  PenetrationDepth
         public ActionResult PenetrationDepth_Create()// y
         {

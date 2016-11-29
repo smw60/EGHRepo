@@ -2,19 +2,19 @@
 @using EGH01DB.Types;
 @using EGH01.Core;
 
-@model List<SoilCleaningMethod>
+@model List<WaterCleaningMethod>
 @{
     Menu menu = new Menu(
-                            new Menu.MenuItem("Удалить", "SoilCleaningMethod.Delete", true),
-                            new Menu.MenuItem("Изменить", "SoilCleaningMethod.Update", true)
+                            new Menu.MenuItem("Удалить", "WaterCleaningMethod.Delete", true),
+                            new Menu.MenuItem("Изменить", "WaterCleaningMethod.Update", true)
                            );
 
 }
 
-@foreach (SoilCleaningMethod t in @Model)
+@foreach (WaterCleaningMethod t in @Model)
 {
 
-    using (Html.BeginForm("SoilCleaningMethod", "EGHORT"))
+    using (Html.BeginForm("WaterCleaningMethod", "EGHORT"))
     {
 
         <div class="box">

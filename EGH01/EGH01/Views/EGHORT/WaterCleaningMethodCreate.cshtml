@@ -8,28 +8,24 @@
 
     Layout = "~/Views/Shared/EGHLayout.cshtml";
     Menu head = new Menu(
-                          new Menu.MenuItem("Создать", "SoilCleaningMethod.Create", false),
-                          new Menu.MenuItem("Excel-формат", "SoilCleaningMethod.Excel", false)
+                          new Menu.MenuItem("Создать", "WaterCleaningMethod.Create", false),
+                          new Menu.MenuItem("Excel-формат", "WaterCleaningMethod.Excel", false)
                         );
 
     Menu create = new Menu(
-                          new Menu.MenuItem("Создать", "SoilCleaningMethod.Create.Create", true),
-                          new Menu.MenuItem("Отказаться", "SoilCleaningMethod.Create.Cancel", true)
+                          new Menu.MenuItem("Создать", "WaterCleaningMethod.Create.Create", true),
+                          new Menu.MenuItem("Отказаться", "WaterCleaningMethod.Create.Cancel", true)
                         );
 
 }
 
-@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHORT", Action = "SoilCleaningMethod", Menu = head })
-@using (Html.BeginForm("SoilCleaningMethodCreate", "EGHORT"))
+@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHORT", Action = "WaterCleaningMethod", Menu = head })
+@using (Html.BeginForm("WaterCleaningMethodCreate", "EGHORT"))
 {
 
 
     <div class="box">
         <div class="boxdata">
-            @*<p>
-                <label class="boxdata-label-30">Код категории</label>
-                <input class="boxdata-input-20" type="number" name="temperature" step="0.1" value=" " />
-            </p>*@
             <p>
                 <label class="boxdata-label-30">Наименование метода</label>
                 <input class="boxdata-input-20" type="text" name="name" value=" " />

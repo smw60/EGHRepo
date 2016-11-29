@@ -6,11 +6,11 @@
 
 namespace EGH01.Models.EGHORT
 {
-    public class SoilCleaningMethodView                 // категория методов ликвидации загрязнения почвогрунтов
+    public class WaterCleaningMethodView                 // категория методов ликвидации загрязнения грунтовых вод
     {
         public int    type_code          { get; set; }   // код категории
         public string name               { get; set; }   // наименование категории
         public string method_description { get; set; }   // описание метода
 
-	}
+    }
 }

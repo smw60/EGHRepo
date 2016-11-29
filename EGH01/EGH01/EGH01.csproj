@@ -64,6 +64,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
@@ -179,9 +187,12 @@
     <Compile Include="Controllers\EGHGEAController.cs" />
     <Compile Include="Controllers\EGHCEQController_CadastreType.cs" />
     <Compile Include="Controllers\EGHORTController.cs" />
+    <Compile Include="Controllers\EGHORTController_EmergencyClass.cs" />
     <Compile Include="Controllers\EGHORTController_SoilCleaningMethod.cs" />
     <Compile Include="Controllers\EGHORTController_PenetrationDepth.cs" />
     <Compile Include="Controllers\EGHORTController_SoilPollutionCategories.cs" />
+    <Compile Include="Controllers\EGHORTController_WaterCleaningMethod.cs" />
+    <Compile Include="Controllers\EGHORTController_WaterPollutionCategories.cs" />
     <Compile Include="Controllers\EGHRGEController_AnchorPoint.cs" />
     <Compile Include="Controllers\EGHRGEController_CadastreType.cs" />
     <Compile Include="Controllers\EGHRGEController_EcoObject.cs" />
@@ -201,9 +212,12 @@
     <Compile Include="Models\EGHCAI\RiskObject.cs" />
     <Compile Include="Models\EGHCCO\PetrochemicalTypeView.cs" />
     <Compile Include="Models\EGHCEQ\CEQViewContext.cs" />
+    <Compile Include="Models\EGHORT\EmergencyClassView.cs" />
     <Compile Include="Models\EGHORT\SoilCleaningMethodView.cs" />
     <Compile Include="Models\EGHORT\PenetrationDepthView .cs" />
+    <Compile Include="Models\EGHORT\WaterPollutionCategoriesView.cs" />
     <Compile Include="Models\EGHORT\SoilPollutionCategoriesView.cs" />
+    <Compile Include="Models\EGHORT\WaterCleaningMethodView.cs" />
     <Compile Include="Models\EGHRGE\EcoObjectTypeView.cs" />
     <Compile Include="Models\EGHRGE\EcoObjectView.cs" />
     <Compile Include="Models\EGHRGE\ChoiceRiskObjectViewContext.cs" />
@@ -403,13 +417,26 @@
     <Content Include="Views\EGHORT\PenetrationDepthCreate.cshtml" />
     <Content Include="Views\EGHORT\PenetrationDepthDelete.cshtml" />
     <Content Include="Views\EGHORT\PenetrationDepthUpdate.cshtml" />
+    <Content Include="Views\EGHORT\WaterCleaningMethod.cshtml" />
+    <Content Include="Views\EGHORT\WaterCleaningMethodCreate.cshtml" />
+    <Content Include="Views\EGHORT\WaterCleaningMethodDelete.cshtml" />
+    <Content Include="Views\EGHORT\WaterCleaningMethodUpdate.cshtml" />
+    <Content Include="Views\EGHORT\_WaterCleaningMethodList.cshtml" />
+    <Content Include="Views\EGHORT\EmergencyClass.cshtml" />
+    <Content Include="Views\EGHORT\EmergencyClassCreate.cshtml" />
+    <Content Include="Views\EGHORT\EmergencyClassDelete.cshtml" />
+    <Content Include="Views\EGHORT\EmergencyClassUpdate.cshtml" />
+    <Content Include="Views\EGHORT\_EmergencyClassList.cshtml" />
+    <Content Include="Views\EGHORT\_WaterPollutionCategoriesList.cshtml" />
+    <Content Include="Views\EGHORT\WaterPollutionCategories.cshtml" />
+    <Content Include="Views\EGHORT\WaterPollutionCategoriesCreate.cshtml" />
+    <Content Include="Views\EGHORT\WaterPollutionCategoriesUpdate.cshtml" />
+    <Content Include="Views\EGHORT\WaterPollutionCategoriesDelete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Debug\" />
-    <Folder Include="Views\EcoObjectTypeView\" />
-    <Folder Include="Views\SoilCleaningMethodsView\" />
-    <Folder Include="Views\EGHORTController_PenetrationDepth\" />
+    <Folder Include="Views\EGHORTController_WaterPollutionCategories\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

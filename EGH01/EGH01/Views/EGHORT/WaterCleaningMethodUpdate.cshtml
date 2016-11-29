@@ -3,22 +3,22 @@
 @using EGH01DB.Primitives;
 @using EGH01DB.Types;
 
-@model EGH01DB.Types.SoilCleaningMethod
+@model EGH01DB.Types.WaterCleaningMethod
 @{
     Layout = "~/Views/Shared/EGHLayout.cshtml";
     Menu head = new Menu(
-                          new Menu.MenuItem("Создать", "SoilCleaningMethod.Create", false),
-                          new Menu.MenuItem("Excel-формат", "SoilCleaningMethod.Excel", false)
+                          new Menu.MenuItem("Создать", "WaterCleaningMethod.Create", false),
+                          new Menu.MenuItem("Excel-формат", "WaterCleaningMethod.Excel", false)
                         );
 
     Menu update = new Menu(
-                          new Menu.MenuItem("Изменить", "SoilCleaningMethod.Update.Update", true),
-                          new Menu.MenuItem("Отказаться", "SoilCleaningMethod.Update.Cancel", true)
+                          new Menu.MenuItem("Изменить", "WaterCleaningMethod.Update.Update", true),
+                          new Menu.MenuItem("Отказаться", "WaterCleaningMethod.Update.Cancel", true)
                         );
 
 }
-@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHORT", Action = "SoilCleaningMethod", Menu = head })
-@using (Html.BeginForm("SoilCleaningMethodUpdate", "EGHORT"))
+@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHORT", Action = "WaterCleaningMethod", Menu = head })
+@using (Html.BeginForm("WaterCleaningMethodUpdate", "EGHORT"))
 {
 
     <div class="box">

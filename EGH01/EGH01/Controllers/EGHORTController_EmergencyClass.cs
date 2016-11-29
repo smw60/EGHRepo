@@ -1,30 +1,32 @@
 ﻿using System;
-using System.Web.Mvc;
 using EGH01DB;
+using System.Web.Mvc;
 using EGH01.Models.EGHORT;
 using EGH01DB.Types;
+using EGH01DB.Primitives;
+
 
 namespace EGH01.Controllers
 {
     public partial class EGHORTController : Controller
     {
-        public ActionResult SoilCleaningMethod()
+        public ActionResult EmergencyClass()
         {
             ORTContext db = null;
             ActionResult view = View("Index");
-            ViewBag.EGHLayout = "ORT.SoilCleaningMethod";
+            ViewBag.EGHLayout = "ORT.EmergencyClass";
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
                 db = new ORTContext();
                 ViewBag.msg = "Соединение с базой данных установлено";
-                view = View("SoilCleaningMethod", db);
+                view = View("EmergencyClass", db);
 
-                if (menuitem.Equals("SoilCleaningMethod.Create"))
+                if (menuitem.Equals("EmergencyClass.Create"))
                 {
-                    view = View("SoilCleaningMethodCreate");
+                    view = View("EmergencyClassCreate");
                 }
-                else if (menuitem.Equals("SoilCleaningMethod.Delete"))
+                else if (menuitem.Equals("EmergencyClass.Delete"))
                 {
                     string type_code = this.HttpContext.Request.Params["type_code"];
                     if (type_code != null)
@@ -32,15 +34,15 @@ namespace EGH01.Controllers
                         int c = 0;
                         if (int.TryParse(type_code, out c))
                         {
-                            EGH01DB.Types.SoilCleaningMethod scm = new EGH01DB.Types.SoilCleaningMethod();
-                            if (EGH01DB.Types.SoilCleaningMethod.GetByCode(db, c, out scm))
+                            EGH01DB.Types.EmergencyClass scm = new EGH01DB.Types.EmergencyClass();
+                            if (EGH01DB.Types.EmergencyClass.GetByCode(db, c, out scm))
                             {
-                                view = View("SoilCleaningMethodDelete", scm);
+                                view = View("EmergencyClassDelete", scm);
                             }
                         }
                     }
                 }
-                else if (menuitem.Equals("SoilCleaningMethod.Update"))
+                else if (menuitem.Equals("EmergencyClass.Update"))
                 {
                     string type_code = this.HttpContext.Request.Params["type_code"];
 
@@ -49,16 +51,16 @@ namespace EGH01.Controllers
                         int c = 0;
                         if (int.TryParse(type_code, out c))
                         {
-                            SoilCleaningMethod scm = new EGH01DB.Types.SoilCleaningMethod();
+                            EmergencyClass scm = new EGH01DB.Types.EmergencyClass();
 
-                            if (EGH01DB.Types.SoilCleaningMethod.GetByCode(db, c, out scm))
+                            if (EGH01DB.Types.EmergencyClass.GetByCode(db, c, out scm))
                             {
-                                view = View("SoilCleaningMethodUpdate", scm);
+                                view = View("EmergencyClassUpdate", scm);
                             }
                         }
                     }
                 }
-                else if (menuitem.Equals("SoilCleaningMethod.Excel"))
+                else if (menuitem.Equals("EmergencyClass.Excel"))
                 {
                     //EGH01DB.Primitives.WaterPropertiesList list = new EGH01DB.Primitives.WaterPropertiesList(db);
                     //XmlNode node = list.toXmlNode();
@@ -87,37 +89,47 @@ namespace EGH01.Controllers
         }
 
         [HttpPost]
-        public ActionResult SoilCleaningMethodCreate(SoilCleaningMethodView scmv)
+        public ActionResult EmergencyClassCreate(EmergencyClassView ecv)
         {
             ORTContext db = null;
-            ViewBag.EGHLayout = "ORT.SoilCleaningMethod";
+            ViewBag.EGHLayout = "ORT.EmergencyClass";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
                 db = new ORTContext();
-                view = View("SoilCleaningMethod", db);
-                if (menuitem.Equals("SoilCleaningMethod.Create.Create"))
+                view = View("EmergencyClass", db);
+                if (menuitem.Equals("EmergencyClass.Create.Create"))
                 {
                     int id = -1;
-                    if (EGH01DB.Types.SoilCleaningMethod.GetNextCode(db, out id))
+                    if (EGH01DB.Types.EmergencyClass.GetNextCode(db, out id))
                     {
-                        int type_code = scmv.type_code;
-                        string name = scmv.name;
-                        string method_description = scmv.method_description;
+                        int type_code = ecv.type_code;
+                        string name = ecv.name;
 
-                        SoilCleaningMethod scm = new SoilCleaningMethod(type_code, name, method_description);
+                        string strminmass = this.HttpContext.Request.Params["minmass"] ?? "Empty";
+                        float minmass;
+                        Helper.FloatTryParse(strminmass, out minmass);
 
-                        if (EGH01DB.Types.SoilCleaningMethod.Create(db, scm))
+                        string strmaxmass = this.HttpContext.Request.Params["maxmass"] ?? "Empty";
+                        float maxmass;
+                        Helper.FloatTryParse(strmaxmass, out maxmass);
+
+
+
+
+                        EmergencyClass scm = new EmergencyClass(type_code, name, minmass, maxmass);
+
+                        if (EGH01DB.Types.EmergencyClass.Create(db, scm))
                         {
-                            view = View("SoilCleaningMethod", db);
+                            view = View("EmergencyClass", db);
                         }
-                        else if (menuitem.Equals("SoilCleaningMethod.Create.Cancel")) 
-                            view = View("SoilCleaningMethod", db);
+                        else if (menuitem.Equals("EmergencyClass.Create.Cancel"))
+                            view = View("EmergencyClass", db);
                     }
                 }
-                else if (menuitem.Equals("SoilCleaningMethod.Create.Cancel")) 
-                    view = View("SoilCleaningMethod", db);
+                else if (menuitem.Equals("EmergencyClass.Create.Cancel"))
+                    view = View("EmergencyClass", db);
             }
             catch (RGEContext.Exception e)
             {
@@ -132,22 +144,22 @@ namespace EGH01.Controllers
         }
 
         [HttpPost]
-        public ActionResult SoilCleaningMethodDelete(int type_code)
+        public ActionResult EmergencyClassDelete(int type_code)
         {
             ORTContext db = null;
-            ViewBag.EGHLayout = "ORT.SoilCleaningMethod";
+            ViewBag.EGHLayout = "ORT.EmergencyClass";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
                 db = new ORTContext();
-                if (menuitem.Equals("SoilCleaningMethod.Delete.Delete"))
+                if (menuitem.Equals("EmergencyClass.Delete.Delete"))
                 {
-                    if (EGH01DB.Types.SoilCleaningMethod.DeleteByCode(db, type_code))
-                        view = View("SoilCleaningMethod", db);
+                    if (EGH01DB.Types.EmergencyClass.DeleteByCode(db, type_code))
+                        view = View("EmergencyClass", db);
                 }
-                else if (menuitem.Equals("SoilCleaningMethod.Delete.Cancel"))
-                    view = View("SoilCleaningMethod", db);
+                else if (menuitem.Equals("EmergencyClass.Delete.Cancel"))
+                    view = View("EmergencyClass", db);
 
             }
             catch (RGEContext.Exception e)
@@ -163,28 +175,36 @@ namespace EGH01.Controllers
         }
 
         [HttpPost]
-        public ActionResult SoilCleaningMethodUpdate(SoilCleaningMethodView scmv)
+        public ActionResult EmergencyClassUpdate(EmergencyClassView ecv)
         {
             ORTContext db = null;
-            ViewBag.EGHLayout = "ORT.SoilCleaningMethod";
+            ViewBag.EGHLayout = "ORT.EmergencyClass";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
                 db = new ORTContext();
-                if (menuitem.Equals("SoilCleaningMethod.Update.Update"))
+                if (menuitem.Equals("EmergencyClass.Update.Update"))
                 {
 
-                    int type_code = scmv.type_code;
-                    string name = scmv.name;
-                    string method_description = scmv.method_description;
+                    int type_code = ecv.type_code;
+                    string name = ecv.name;
 
-                    SoilCleaningMethod scm = new EGH01DB.Types.SoilCleaningMethod(type_code, name, method_description);
-                    if (EGH01DB.Types.SoilCleaningMethod.Update(db,scm))
-                        view = View("SoilCleaningMethod", db);
+                    string strminmass = this.HttpContext.Request.Params["minmass"] ?? "Empty";
+                    float minmass;
+                    Helper.FloatTryParse(strminmass, out minmass);
+
+                    string strmaxmass = this.HttpContext.Request.Params["maxmass"] ?? "Empty";
+                    float maxmass;
+                    Helper.FloatTryParse(strmaxmass, out maxmass);
+
+
+                    EmergencyClass scm = new EGH01DB.Types.EmergencyClass(type_code, name, minmass, maxmass);
+                    if (EGH01DB.Types.EmergencyClass.Update(db, scm))
+                        view = View("EmergencyClass", db);
                 }
-                else if (menuitem.Equals("SoilCleaningMethod.Update.Cancel"))
-                    view = View("SoilCleaningMethod", db);
+                else if (menuitem.Equals("EmergencyClass.Update.Cancel"))
+                    view = View("EmergencyClass", db);
             }
             catch (RGEContext.Exception e)
             {
@@ -197,6 +217,5 @@ namespace EGH01.Controllers
 
             return view;
         }
-
-	}
+    }
 }
