@@ -32,8 +32,10 @@ namespace EGH01DB.Blurs
         public float                timeconcentrationinsoil {get; private set;}       // время (сек) достижения усредненной концентрации  нефтепрдукта в грунте      
         public float                speedvertical           {get; private set;}       // вертикальная скорость проникновения нефтепродукта в грунт (м/с)   
         public float                timewatercomletion      {get; private set;}       // время (сек) достижения  нефтепродуктом грунтовых вод   
+        public float                daywatercomletion       {get{return this.timewatercomletion/Const.SEC_PER_DAY;} }      // время (сут) достижения  нефтепродуктом грунтовых вод   
         public float                dtimemaxwaterconc       {get; private set;}       // время (сек) достижения  максимальной концентрации  нефтепродуктом грунтовых вод  после достиженич границы грунтовых вод 
         public float                timemaxwaterconc        {get; private set;}       // время (сек) достижения  максимальной концентрации на уровне грунтовых вод
+        public float                daymaxwaterconc         {get{return this.timemaxwaterconc/Const.SEC_PER_DAY;} }    // время (сут) достижения  максимальной концентрации  нефтепродуктом грунтовых вод  после достиженич границы грунтовых вод 
         public float                maxconcentrationwater   {get; private set;}       // максимальной концентрация на уровне грунтовых вод кг/м3
         public float                ozcorrection            {get; private set;}       // OZ-поправка
         
@@ -372,8 +374,10 @@ namespace EGH01DB.Blurs
             rc.SetAttribute("restmass", this.restmass.ToString());
 
             rc.SetAttribute("timewatercomletion", this.timewatercomletion.ToString());
+            rc.SetAttribute("daywatercomletion", this.daywatercomletion.ToString()); 
             rc.SetAttribute("dtimemaxwaterconc", this.dtimemaxwaterconc.ToString());
             rc.SetAttribute("timemaxwaterconc", this.timemaxwaterconc.ToString());
+            rc.SetAttribute("daymaxwaterconc", this.daymaxwaterconc.ToString()); 
             rc.SetAttribute("maxconcentrationwater", this.maxconcentrationwater.ToString());
             rc.SetAttribute("ozcorrection", this.ozcorrection.ToString());
             rc.SetAttribute("ecoobjectsearchradius", this.ecoobjectsearchradius.ToString());
