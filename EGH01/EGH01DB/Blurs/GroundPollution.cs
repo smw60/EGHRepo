@@ -142,6 +142,23 @@ namespace EGH01DB.Blurs
        {
        
        }
+       public GroundPollutionList(): base(new List<GroundPollution>())
+       {
+       
+       }
+       public static  GroundPollutionList Create(XmlNode node)
+       {
+           GroundPollutionList rc = new GroundPollutionList();      
+             
+           foreach(XmlElement x in node)
+           { 
+              if(x.Name.Equals("GroundPollution")) rc.Add(new GroundPollution(x));
+           }     
+           return rc; 
+       }
+     
+
+
        public XmlNode toXmlNode(string comment = "")
        {
             XmlDocument doc = new XmlDocument();

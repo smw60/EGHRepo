@@ -36,7 +36,7 @@ namespace EGH01DB.Points
  
         }
 
-        public Incident(XmlNode node)
+        public Incident(XmlNode node): base(node.SelectSingleNode(".//SpreadPoint"))
         {
             this.id = Helper.GetIntAttribute(node, "id", -1);
             this.date = Helper.GetDateTimeAttribute(node, "date", DateTime.MinValue);
