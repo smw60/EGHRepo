@@ -193,6 +193,7 @@
     <Compile Include="Controllers\EGHORTController_SoilPollutionCategories.cs" />
     <Compile Include="Controllers\EGHORTController_WaterCleaningMethod.cs" />
     <Compile Include="Controllers\EGHORTController_WaterPollutionCategories.cs" />
+    <Compile Include="Controllers\EGHORTController_WaterProtectionArea.cs" />
     <Compile Include="Controllers\EGHRGEController_AnchorPoint.cs" />
     <Compile Include="Controllers\EGHRGEController_CadastreType.cs" />
     <Compile Include="Controllers\EGHRGEController_EcoObject.cs" />
@@ -219,6 +220,7 @@
     <Compile Include="Models\EGHORT\WaterPollutionCategoriesView.cs" />
     <Compile Include="Models\EGHORT\SoilPollutionCategoriesView.cs" />
     <Compile Include="Models\EGHORT\WaterCleaningMethodView.cs" />
+    <Compile Include="Models\EGHORT\WaterProtectionAreaView.cs" />
     <Compile Include="Models\EGHRGE\EcoObjectTypeView.cs" />
     <Compile Include="Models\EGHRGE\EcoObjectView.cs" />
     <Compile Include="Models\EGHRGE\ChoiceRiskObjectViewContext.cs" />
@@ -439,11 +441,17 @@
     <Content Include="Views\EGHRGE\PetrochemicalCategories.cshtml" />
     <Content Include="Views\EGHRGE\PetrochemicalCategoriesUpdate.cshtml" />
     <Content Include="Views\EGHRGE\_PetrochemicalCategoriesList.cshtml" />
+    <Content Include="Views\Shared\Report.cshtml" />
+    <Content Include="Views\Shared\_ReportList.cshtml" />
+    <Content Include="Views\EGHORT\WaterProtectionArea.cshtml" />
+    <Content Include="Views\EGHORT\WaterProtectionAreaCreate.cshtml" />
+    <Content Include="Views\EGHORT\WaterProtectionAreaDelete.cshtml" />
+    <Content Include="Views\EGHORT\WaterProtectionAreaUpdate.cshtml" />
+    <Content Include="Views\EGHORT\_WaterProtectionAreaList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Debug\" />
-    <Folder Include="Views\PetrochemicalCategoriesView\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
