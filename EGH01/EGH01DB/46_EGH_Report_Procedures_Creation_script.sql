@@ -5,7 +5,7 @@
 ---- Добавление отчета
 ---- Удаление отчета 
 ---- Обновление отчета
----- Получениеотчета по ID 
+---- Получение отчета по ID 
 ---- Получение списка отчетов 
 ---- Получение списка отчетов по цепочке от потомка к предку
 
@@ -96,13 +96,47 @@ create procedure EGH.GetNextReportId(@IdОтчета int output)
 	return @rc;    
 end;
 go
--- Обновление типа природоохранных комментария отчета по Id 
+-- Обновление комментария отчета по ID 
 create  procedure EGH.UpdateReport(@IdОтчета int, @Комментарий nvarchar(MAX)) 
 as begin 
     declare @rc int = -1;
 	update  dbo.Отчет 
 	set Комментарий = @Комментарий 
 	where IdОтчета = @IdОтчета;  
+	set @rc = @@ROWCOUNT;
+	return @rc;    
+end;
+go
+
+-- Получение списка отчетов в определенной стадии
+create procedure EGH.GetStageReportList(@Стадия nchar(10) output)
+ as begin
+	declare @rc int = -1;
+	select IdОтчета,
+			ДатаОтчета,
+			Стадия, 
+			Родитель, 
+			ТекстОтчета, 
+			Комментарий 
+	from dbo.Отчет
+	where Родитель = @Стадия order by IdОтчета desc;
+	set @rc = @@ROWCOUNT;
+	return @rc;    
+end;
+go
+
+-- Получение списка отчетов - предков к отчету
+create procedure EGH.GetParentReportList(@IdОтчета int output)
+ as begin
+	declare @rc int = -1;
+	select IdОтчета,
+			ДатаОтчета,
+			Стадия, 
+			Родитель, 
+			ТекстОтчета, 
+			Комментарий 
+	from dbo.Отчет
+	where Родитель = @IdОтчета order by IdОтчета desc;
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;

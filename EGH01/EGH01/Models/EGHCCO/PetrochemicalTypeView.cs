@@ -10,6 +10,7 @@ namespace EGH01.Models.EGHCCO
     {
         public int    code_type { get; set; }           // код типа нефтепродукта
         public string name { get; set; }                // название нефтепродукта
+
         public float  boilingtemp { get; set; }         // температура кипения (С)
         public float  density { get; set; }             // плотность (г/см3)
         public float  viscosity { get; set; }           // кинематическая вязкость (мм2/с)
