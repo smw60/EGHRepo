@@ -15,5 +15,6 @@ namespace EGH01.Controllers
             ViewBag.EGHLayout = "EGH";
             return View();
         }
-	}
+
+    }
 }

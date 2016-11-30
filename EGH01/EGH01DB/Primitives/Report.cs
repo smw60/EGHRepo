@@ -304,7 +304,7 @@ namespace EGH01DB.Primitives
    public class ReportsList: List<Report>
    {
      
-     public  bool GetByStage(IDBContext db, string stage, out ReportsList list)
+     static public  bool GetByStage(IDBContext db, string stage, out ReportsList list)
      {
          bool rc = false;
          list = new ReportsList();

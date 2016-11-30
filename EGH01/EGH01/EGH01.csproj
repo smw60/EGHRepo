@@ -202,6 +202,7 @@
     <Compile Include="Controllers\EGHRGEController_IncidentType.cs" />
     <Compile Include="Controllers\EGHRGEController.cs" />
     <Compile Include="Controllers\EGHRGEController_PetrochemicalCategories.cs" />
+    <Compile Include="Controllers\EGHRGEController_Report.cs" />
     <Compile Include="Controllers\EGHRGEController_SpreadingCoefficient.cs" />
     <Compile Include="Controllers\EGHRGEController_WaterProperties.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="Models\EGHRGE\GroundTypeView.cs" />
     <Compile Include="Models\EGHRGE\IncidentTypeView.cs" />
     <Compile Include="Models\EGHRGE\PetrochemicalCategoriesView.cs" />
+    <Compile Include="Models\EGHRGE\ReportView.cs" />
     <Compile Include="Models\EGHRGE\SreadingCoefficientView.cs" />
     <Compile Include="Models\EGHRGE\WaterPropertiesView.cs" />
     <Compile Include="Models\EGH\TypeViewHeadMenu.cs" />
@@ -452,6 +454,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Debug\" />
+    <Folder Include="Views\ReportView\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

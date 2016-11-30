@@ -308,17 +308,17 @@ namespace EGH01.Controllers
             return RedirectToAction("Index");
         }*/
 
-        public ActionResult Report()
-        {
+        //public ActionResult Report()
+        //{
 
-            //if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
-            //else ViewBag.msg = "соединение  c БД  не установлено";
+        //    //if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
+        //    //else ViewBag.msg = "соединение  c БД  не установлено";
            
 
-            //EGH01DB.RGEContext.Report report = new EGH01DB.RGEContext.Report();
+        //    //EGH01DB.RGEContext.Report report = new EGH01DB.RGEContext.Report();
 
-            return View();
-        }
+        //    return View();
+        //}
 
 
     }
