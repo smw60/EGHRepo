@@ -5,12 +5,13 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using EGH01DB;
 using System.Collections.Specialized;
+using EGH01DB.Primitives;
 
 namespace EGH01.Models.EGHRGE
 {
     public class GroundTypeView
     {
-        static public string VIEWNAME = "GroundTypeCreate";
+        
         public enum REGIM { INIT, ERROR, RUNERROR, REPORT };
 
         public REGIM Regim { get; set; }
@@ -23,12 +24,14 @@ namespace EGH01.Models.EGHRGE
         public float waterfilter { get; set; }   // коэфф. фильтрации воды  
         public float аveryanovfactor { get; set; }   // коэффициент Аверьянова (от 4 до 9)
         public float density { get; set; }
+         public float    diffusion { get; set; }
+        static public string VIEWNAME = "GroundTypeCreate";
 
         public static bool Handler(RGEContext context, NameValueCollection parms)
         {
             bool rc = false;
             GroundTypeView viewcontext = null;
-            string menuitem = parms["menuitem"];
+            string menuitem = parms["menuitem"] ?? "Empty";
             if ((viewcontext = context.GetViewContext(VIEWNAME) as GroundTypeView) != null)
             {
                 viewcontext.Regim = REGIM.INIT;
@@ -37,6 +40,24 @@ namespace EGH01.Models.EGHRGE
                 else
                 {
                     viewcontext.name = namec;
+
+                }
+                string Diffusion = parms["diffusion"];
+                if (String.IsNullOrEmpty(Diffusion)) viewcontext.Regim = REGIM.ERROR;
+                else
+                {
+                    float d = 0.0f;
+                    if (Helper.FloatTryParse(Diffusion, out d)) { viewcontext.diffusion = d; }
+               
+
+                }
+                string Porosity = parms["porosity"];
+                if (String.IsNullOrEmpty(Porosity)) viewcontext.Regim = REGIM.ERROR;
+                else
+                {
+                    float p = 0.0f;
+                    if (Helper.FloatTryParse(Porosity, out p)) { viewcontext.porosity = p; }
+
 
                 }
             }
