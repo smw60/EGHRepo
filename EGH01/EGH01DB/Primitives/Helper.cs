@@ -828,19 +828,27 @@ namespace EGH01DB.Primitives
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        int report_id = (int)reader ["IdОтчета"];
-                        DateTime date = (DateTime)reader["ДатаОтчета"];
+                       
                         string stage = (string)reader["Стадия"];
-                        int predator = (int)reader["Родитель"];
-                        //comment = (string)reader["Комментарий"];
-                        //
-                        string xmlContent = (string)reader["ТекстОтчета"];
-                        XmlDocument doc = new XmlDocument();
-                        doc.LoadXml(xmlContent);
-                        XmlNode newNode = doc.DocumentElement;
-                        //
-                        //RGEContext.ECOForecast  ecoforecast = new RGEContext.ECOForecast (newNode);
-                        list_eco_forecast.Add(new RGEContext.ECOForecast (newNode));
+                        if (stage.Trim().Equals("П"))
+                        { 
+                         
+                         int report_id = (int)reader ["IdОтчета"];
+                         DateTime date = (DateTime)reader["ДатаОтчета"];   
+                         int predator = (int)reader["Родитель"];
+                        
+                         string xmlContent = (string)reader["ТекстОтчета"];
+                         if (!xmlContent.Trim().Equals(""))
+                         {
+                          XmlDocument doc = new XmlDocument();
+                          doc.LoadXml(xmlContent);
+                          XmlNode newNode = doc.DocumentElement;
+                          list_eco_forecast.Add(new RGEContext.ECOForecast (newNode));
+                         //comment = (string)reader["Комментарий"];
+                         }
+                       }
+
+                      
                         
                     }
                     rc = ((int)cmd.Parameters["@exitrc"].Value >0);

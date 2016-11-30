@@ -153,10 +153,10 @@ namespace EGH01DB
                 if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
                 rc.SetAttribute("id", this.id.ToString());
                 rc.SetAttribute("date", this.date.ToString());
-                rc.SetAttribute("dateconcentrationinsoil", this.dateconcentrationinsoil.ToString());
-                rc.SetAttribute("datewatercompletion", this.datewatercompletion.ToString());
-                rc.SetAttribute("datemaxwaterconc", this.datemaxwaterconc.ToString());
-                rc.SetAttribute("errormessage", this.errormessage.ToString());
+                rc.SetAttribute("dateconcentrationinsoil", this.dateconcentrationinsoil.ToShortDateString());
+                rc.SetAttribute("datewatercompletion", this.datewatercompletion.ToShortDateString());
+                rc.SetAttribute("datemaxwaterconc", this.datemaxwaterconc.ToShortDateString());
+               // rc.SetAttribute("errormessage", this.errormessage);
                 rc.AppendChild(doc.ImportNode(this.incident.toXmlNode(), true));
                 rc.AppendChild(doc.ImportNode(this.waterblur.toXmlNode(), true));
                 rc.AppendChild(doc.ImportNode(this.groundblur.toXmlNode(), true));
