@@ -24,10 +24,10 @@ namespace EGH01.Controllers
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new RGEContext();
+                db = new RGEContext(this);
                 ViewBag.msg = "Соединение с базой данных установлено";
-                view = View("GroundType", db);
-
+                //  view = View("GroundType", db);
+                view = View(db);
                 if (menuitem.Equals("GroundType.Create"))
                 {
 
