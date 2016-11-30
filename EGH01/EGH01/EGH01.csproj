@@ -448,6 +448,7 @@
     <Content Include="Views\EGHORT\WaterProtectionAreaDelete.cshtml" />
     <Content Include="Views\EGHORT\WaterProtectionAreaUpdate.cshtml" />
     <Content Include="Views\EGHORT\_WaterProtectionAreaList.cshtml" />
+    <Content Include="Views\Home\Map.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

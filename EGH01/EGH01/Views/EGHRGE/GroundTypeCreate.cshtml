@@ -1,44 +1,48 @@
 ﻿@using EGH01.Core;
-@using EGH01.Models.EGH;
+@using EGH01.Models.EGHRGE;
 @using EGH01DB.Primitives;
 @using EGH01DB.Types;
+@using EGH01.Core;
+@using EGH01.Models.EGH;
 @model EGH01DB.RGEContext
-@if (ViewBag.error != null)
-{
 
-    @ViewBag.error
-    //{
-    //    Html.RenderAction("GroundType", "EGHRGE");
-
-    //}
-
-}
 @{
 
     Layout = "~/Views/Shared/EGHLayout.cshtml";
-    Menu start = new Menu(
-                          new Menu.MenuItem("Создать", "GroundType.Create", true),
-                          new Menu.MenuItem("Отказаться", "GroundType.Cancel", true)
-                        );
 
-    Menu create = new Menu(
-                          new Menu.MenuItem("Создать", "GroundType.Create.Create", true),
-                          new Menu.MenuItem("Отказаться", "GroundType.Create.Cancel", true)
-                        );
+    GroundTypeView context = (GroundTypeView)Model.GetViewContext(GroundTypeView.VIEWNAME);
+    if (context == null) { Model.SaveViewContext(GroundTypeView.VIEWNAME, context = new GroundTypeView()); };
+   
+        Menu start = new Menu(
+                      new Menu.MenuItem("Создать", "GroundType.Create", true),
+                      new Menu.MenuItem("Отказаться", "GroundType.Cancel", true)
+                    );
 
-}
+        Menu create = new Menu(
+                              new Menu.MenuItem("Создать", "GroundType.Create.Create", true),
+                              new Menu.MenuItem("Отказаться", "GroundType.Create.Cancel", true)
+                            );
+
+    }
 
 @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHRGE", Action = "GroundType", Menu = start})
 @using (Html.BeginForm("GroundTypeCreate", "EGHRGE"))
 {
+    if (ViewBag.error != null)
+    {
+        @ViewBag.error
 
+    }
 
     <div class="box">
 
         <fieldset  form="GroundType">
             <div class="boxdata">
+               @{ string name = " ";
+                   if (context.name != null) { name = (context.name); }
                 <label class="boxdata-label-30"> Наименование </label>
-                <input class="boxdata-input-30" type="text" name="name" />
+                <input class="boxdata-input-30" type="text" name="name" value="@name" />
+                   }
             </div>
             <div class="boxdata">
                 <label class="boxdata-label-30">Пористость</label>

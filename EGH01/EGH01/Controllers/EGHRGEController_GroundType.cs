@@ -199,6 +199,7 @@ namespace EGH01.Controllers
                         }
                         else
                         {
+                            GroundTypeView viewcontext = db.GetViewContext(GroundTypeView.VIEWNAME) as GroundTypeView;
                             ViewBag.Error = "Влагоемкость грунта не может быть больше или равна пористости";
                             view = View("GroundTypeCreate", db);
                             return view;
