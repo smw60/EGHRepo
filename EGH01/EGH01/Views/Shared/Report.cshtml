@@ -2,24 +2,30 @@
 @using EGH01.Models.EGH;
 @using EGH01DB.Primitives;
 @using EGH01DB.Types;
-@model EGH01DB.RGEContext
+@using System.Web.Mvc;
+
+@model EGH01.Models.EGHRGE.ReportView
 
 
 @{
-    ViewBag.Title = "Report";
     Layout = "~/Views/Shared/EGHLayout.cshtml";
 
-    //Menu head = new Menu(
-    //                     new Menu.MenuItem("Создать", "PetrochemicalCategories.Create", true),
-    //                     new Menu.MenuItem("Excel-формат", "PetrochemicalCategories.Excel", true)
-    //                   );
-
-    //List<Report> list = new List<Report>();
-    //if (@Model != null) { Helper.GetListPetrochemicalCategories(@Model, ref list); };
+    EGH01DB.RGEContext db = new EGH01DB.RGEContext();
 
 
-}
+    ReportsList list = new ReportsList();
+    //List<ReportsList> list = new List<ReportsList>();
+    if (@Model != null)
+    {
+        ReportsList.GetByStage(db, "П", out list);
+    };
 
 
+
+    }
+
+апапапап
 @*@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHRGE", Action = "Report"})*@
 @*@Html.Partial("_ReportList", list)*@
+
+

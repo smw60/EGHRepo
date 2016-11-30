@@ -26,6 +26,7 @@ namespace EGH01.Controllers
 
             return View();
         }
+<<<<<<< HEAD
         public ActionResult Map()
         {
             ViewBag.Message = "Map";
@@ -46,5 +47,8 @@ namespace EGH01.Controllers
       
             return view;
         }
+=======
+
+>>>>>>> b6cbc93d3ad47ba444d2f02efcf9a4f6718f3684
     }
 }
