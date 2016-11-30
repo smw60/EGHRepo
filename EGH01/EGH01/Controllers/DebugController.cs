@@ -57,6 +57,33 @@ namespace EGH01.Controllers
 
             return View();
         }
+        
+        
+        // проверка процедур  Report
+        public ActionResult Report_GetById()// 
+        {
+            //RGEContext db = new RGEContext();
+            //string comment = "Comment";
+            //Report f = new Report();
+            //if (Report.GetById(db, 5, out f, out comment))
+            //{
+            //    int k = 1;
+
+            //};
+            //f.ToHTML();
+            return View();
+        }
+        public ActionResult Report_GetList()// 
+        {
+            //RGEContext db = new RGEContext();
+            //List<Report> flist = new List<Report>();
+            //if (Helper.GetListReport(db, ref flist))
+            //{
+            //    int k = 1;
+            //};
+            return View();
+        }
+        
 
         // проверка процедур PetrochemicalCategories
         public ActionResult PetrochemicalCategories_Create()// y
@@ -955,9 +982,9 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                Coordinates coord = new Coordinates(553.678f, 27.14f);
-                float distance = 10000000.0f;
-                AnchorPointList apl = AnchorPointList.CreateNear(coord, distance);
+                //Coordinates coord = new Coordinates(553.678f, 27.14f);
+                //float distance = 10000000.0f;
+                //AnchorPointList apl = AnchorPointList.CreateNear(coord, distance);
             }
             return View();
         }
