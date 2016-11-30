@@ -10,7 +10,7 @@ namespace EGH01.Models.EGHRGE
 {
     public class GroundTypeView
     {
-        static public readonly string VIEWNAME = "GroundTypeView";
+        static public string VIEWNAME = "GroundTypeCreate";
         public enum REGIM { INIT, ERROR, RUNERROR, REPORT };
 
         public REGIM Regim { get; set; }

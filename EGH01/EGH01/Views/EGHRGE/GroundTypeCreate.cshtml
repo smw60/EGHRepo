@@ -9,19 +9,19 @@
 @{
 
     Layout = "~/Views/Shared/EGHLayout.cshtml";
-
+    EGH01DB.RGEContext rge = (EGH01DB.RGEContext)Model;
     GroundTypeView context = (GroundTypeView)Model.GetViewContext(GroundTypeView.VIEWNAME);
     if (context == null) { Model.SaveViewContext(GroundTypeView.VIEWNAME, context = new GroundTypeView()); };
-   
-        Menu start = new Menu(
-                      new Menu.MenuItem("Создать", "GroundType.Create", true),
-                      new Menu.MenuItem("Отказаться", "GroundType.Cancel", true)
-                    );
 
-        Menu create = new Menu(
-                              new Menu.MenuItem("Создать", "GroundType.Create.Create", true),
-                              new Menu.MenuItem("Отказаться", "GroundType.Create.Cancel", true)
-                            );
+    Menu start = new Menu(
+                  new Menu.MenuItem("Создать", "GroundType.Create", true),
+                  new Menu.MenuItem("Отказаться", "GroundType.Cancel", true)
+                );
+
+    Menu create = new Menu(
+                          new Menu.MenuItem("Создать", "GroundType.Create.Create", true),
+                          new Menu.MenuItem("Отказаться", "GroundType.Create.Cancel", true)
+                        );
 
     }
 
