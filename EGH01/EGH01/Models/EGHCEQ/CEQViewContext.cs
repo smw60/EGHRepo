@@ -31,8 +31,10 @@ namespace EGH01.Models.EGHCEQ
         public static CEQViewContext HandlerEvalutionForecast(CEQContext context, NameValueCollection parms)
         {
              CEQViewContext rc = context.GetViewContext(VIEWNAME) as CEQViewContext;
+
              if ((rc = context.GetViewContext(VIEWNAME) as CEQViewContext) != null)
              {
+                rc.RegimEvalution =  rc.RegimEvalution == REGIM_EVALUTION.CANCEL? REGIM_EVALUTION.INIT: rc.RegimEvalution;
                 string menuitem = parms["menuitem"];
                 if (menuitem != null)
                 {

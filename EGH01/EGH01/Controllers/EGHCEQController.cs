@@ -52,29 +52,7 @@ namespace EGH01.Controllers
             return rc;
         }
 
-        //switch (CEQViewContext.HandlerChoiceForecast(ceq, this.HttpContext.Request.Params))
-        //        {
-        //            case CEQViewContext.REGIM_CHOICE.INIT:   rc = View(ceq); break;
-        //            case CEQViewContext.REGIM_CHOICE.CHOICE:
-        //                {  // отладка 
-
-        //                    RGEContext rge = new RGEContext(this);    // 
-        //                    ForecastViewConext forctx = (ForecastViewConext)rge.GetViewContext(ForecastViewConext.VIEWNAME);
-        //                    if (forctx != null)
-        //                    {
-        //                        CEQViewContext evalctx = (CEQViewContext)ceq.GetViewContext(CEQViewContext.VIEWNAME);
-        //                        evalctx.ecoevalution =  new CEQContext.ECOEvalution(forctx.ecoforecast);
-        //                    }
-        //                }
-        //                rc = View(ceq); break;
-        //            case CEQViewContext.REGIM_CHOICE.CANCEL: rc = View("Index",ceq); break;
-        //            case CEQViewContext.REGIM_CHOICE.ERROR:  rc = View(ceq); break;
-        //            case CEQViewContext.REGIM_CHOICE.REPORT: rc = View(ceq); break;
-        //            default: rc = View("Index",ceq); break;
-        //        }
-
-
-
+        
         public ActionResult EvalutionForecast()
         {
             ViewBag.EGHLayout = "CEQ";
@@ -109,11 +87,7 @@ namespace EGH01.Controllers
             return rc;
         }
 
-
-
-
-
-         public ActionResult Index()
+        public ActionResult Index()
         {
             ViewBag.EGHLayout = "CEQ";
             CEQContext db = null;
@@ -140,3 +114,23 @@ namespace EGH01.Controllers
 
 
 
+//switch (CEQViewContext.HandlerChoiceForecast(ceq, this.HttpContext.Request.Params))
+        //        {
+        //            case CEQViewContext.REGIM_CHOICE.INIT:   rc = View(ceq); break;
+        //            case CEQViewContext.REGIM_CHOICE.CHOICE:
+        //                {  // отладка 
+
+        //                    RGEContext rge = new RGEContext(this);    // 
+        //                    ForecastViewConext forctx = (ForecastViewConext)rge.GetViewContext(ForecastViewConext.VIEWNAME);
+        //                    if (forctx != null)
+        //                    {
+        //                        CEQViewContext evalctx = (CEQViewContext)ceq.GetViewContext(CEQViewContext.VIEWNAME);
+        //                        evalctx.ecoevalution =  new CEQContext.ECOEvalution(forctx.ecoforecast);
+        //                    }
+        //                }
+        //                rc = View(ceq); break;
+        //            case CEQViewContext.REGIM_CHOICE.CANCEL: rc = View("Index",ceq); break;
+        //            case CEQViewContext.REGIM_CHOICE.ERROR:  rc = View(ceq); break;
+        //            case CEQViewContext.REGIM_CHOICE.REPORT: rc = View(ceq); break;
+        //            default: rc = View("Index",ceq); break;
+        //        }

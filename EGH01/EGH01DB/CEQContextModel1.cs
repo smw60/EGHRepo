@@ -45,7 +45,7 @@ namespace EGH01DB
                     {
                         SqlParameter parm = new SqlParameter("@ТекстОтчета", SqlDbType.Xml);
                         parm.IsNullable = true;
-                        parm.Value = ecoevalution.toXmlNode("EcoForeCast").OuterXml;
+                        parm.Value = ecoevalution.toXmlNode("Отладка").OuterXml;
                         cmd.Parameters.Add(parm);
                     }
                     {

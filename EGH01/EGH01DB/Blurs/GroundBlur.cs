@@ -97,17 +97,17 @@ namespace EGH01DB.Blurs
             {
              XmlNode x = node.SelectSingleNode(".//GroundPollutionList");
              if (x != null) this.groundpolutionlist =  GroundPollutionList.Create(x);
-             else this.anchorpointlist = null;
+             else this.groundpolutionlist = null;
             }
             {
-              XmlNode x = node.SelectSingleNode(".//WaterProperties");
+              XmlNode x = node.SelectSingleNode(".//WaterProperties"      );
               if (x != null) this.waterproperties = new WaterProperties(x);
               else this.waterproperties = null;
             }
             {
               XmlNode x = node.SelectSingleNode(".//EcoObjectsList");
               if (x != null) this.ecoobjecstlist = EcoObjectsList.CreateEcoObjectsList(x);
-              else this.waterproperties = null;
+              else this.ecoobjecstlist = null;
             }
  
            
@@ -130,13 +130,7 @@ namespace EGH01DB.Blurs
 
             { // коэф. разлива 
 
-                //SpreadingCoefficient x = new SpreadingCoefficient();
-                //this.spreadingcoefficient = x = new SpreadingCoefficient();
-                //if (SpreadingCoefficient.GetByParms(this.spreadpoint.groundtype, this.spreadpoint.petrochemicaltype, this.spreadpoint.volume, 0.0f, out x))
-                //{
-                //    this.spreadingcoefficient = x;
-                //}
-
+               
                 float k = SpreadingCoefficient.GetByData(db, this.spreadpoint.groundtype, this.spreadpoint.petrochemicaltype, this.spreadpoint.volume, 0.0f);
                 this.spreadingcoefficient = new SpreadingCoefficient(0, this.spreadpoint.groundtype, this.spreadpoint.petrochemicaltype, 0.0f, this.spreadpoint.volume, 0.0f, 0.02f, k);
 
@@ -216,32 +210,7 @@ namespace EGH01DB.Blurs
             this.restmass = (this.adsorbedmass >= this.totalmass ? 0 : this.totalmass - this.adsorbedmass);             // масса нефтепродукта достигшая грунтовых вод 
 
 
-            {
-                                                                                       // радиус поиска природоохранных объектов               
-
-                //if (this.restmass > 0)
-                //{
-                //    this.ecoobjectsearchradius =
-                //                                    this.restmass /                                                               // радиус поиска природоохранных объектов 
-                //                                     (
-                //                                         1.0f *                                                                   // мощность слоя грунтовых вод (1м) 
-                //                                         2.0f * this.radius /                                                     // площадь трубы 
-                //                                         2.0f *                                                                   // треугольник
-                //                                         this.waterproperties.density *                                           // плотность воды  
-                //                                         (this.spreadpoint.groundtype.porosity) *                                 // пористость грунта /2 c водой
-                //                                         this.spreadpoint.groundtype.watercapacity *                              // капилярная влагоемкость грунта                                                      // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (кг) 
-                //                                         (float)Math.Pow(this.spreadpoint.petrochemicaltype.dynamicviscosity, 2) *       // динамическая вязкость ???      
-                //                                         this.waterproperties.tension /                                           // коэфициент поверхностного натяжения воды
-                //                                         (
-                //                                         this.spreadpoint.petrochemicaltype.tension *                             // коэфициент поверхностного натяжения нефтепрдукта 
-                //                                         (float)Math.Pow(this.waterproperties.viscocity, 2)                       //  вязкость воды  
-                //                                         )
-                //                                      );
-
-                //}
-                //else this.ecoobjectsearchradius = this.radius;
-            }
-
+           
 
             this.depth =  (this.restmass > 0 ? this.avgdeep : (float)Math.Round(this.avgdeep * (this.totalmass / this.limitadsorbedmass),3)); // глубина проникновения нефтепродукта в грунт     
 
@@ -259,11 +228,6 @@ namespace EGH01DB.Blurs
             else this.concentrationinsoil = 0.0f;
 
            
-          
-
-
-
-
 
             {   //   вертикальная скорость проникновения нефтепродукта в грунт (м/с) 
                 
@@ -382,7 +346,6 @@ namespace EGH01DB.Blurs
             rc.SetAttribute("ozcorrection", this.ozcorrection.ToString());
             rc.SetAttribute("ecoobjectsearchradius", this.ecoobjectsearchradius.ToString());
 
-            // anchorpointlist  
             rc.AppendChild(doc.ImportNode(this.anchorpointlist.toXmlNode(), true));
             // groundpolutionlist 
             rc.AppendChild(doc.ImportNode(this.groundpolutionlist.toXmlNode(), true));
@@ -417,3 +380,34 @@ namespace EGH01DB.Blurs
 
     }
 }
+ //{
+                                                                                      // радиус поиска природоохранных объектов               
+
+                //if (this.restmass > 0)
+                //{
+                //    this.ecoobjectsearchradius =
+                //                                    this.restmass /                                                               // радиус поиска природоохранных объектов 
+                //                                     (
+                //                                         1.0f *                                                                   // мощность слоя грунтовых вод (1м) 
+                //                                         2.0f * this.radius /                                                     // площадь трубы 
+                //                                         2.0f *                                                                   // треугольник
+                //                                         this.waterproperties.density *                                           // плотность воды  
+                //                                         (this.spreadpoint.groundtype.porosity) *                                 // пористость грунта /2 c водой
+                //                                         this.spreadpoint.groundtype.watercapacity *                              // капилярная влагоемкость грунта                                                      // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (кг) 
+                //                                         (float)Math.Pow(this.spreadpoint.petrochemicaltype.dynamicviscosity, 2) *       // динамическая вязкость ???      
+                //                                         this.waterproperties.tension /                                           // коэфициент поверхностного натяжения воды
+                //                                         (
+                //                                         this.spreadpoint.petrochemicaltype.tension *                             // коэфициент поверхностного натяжения нефтепрдукта 
+                //                                         (float)Math.Pow(this.waterproperties.viscocity, 2)                       //  вязкость воды  
+                //                                         )
+                //                                      );
+
+                //}
+                //else this.ecoobjectsearchradius = this.radius;
+  //   }
+ //SpreadingCoefficient x = new SpreadingCoefficient();
+                //this.spreadingcoefficient = x = new SpreadingCoefficient();
+                //if (SpreadingCoefficient.GetByParms(this.spreadpoint.groundtype, this.spreadpoint.petrochemicaltype, this.spreadpoint.volume, 0.0f, out x))
+                //{
+                //    this.spreadingcoefficient = x;
+                //}

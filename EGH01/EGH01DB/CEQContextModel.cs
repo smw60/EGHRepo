@@ -68,7 +68,7 @@ namespace EGH01DB
                     rc.AppendChild(doc.ImportNode(n, true));
                   }  
 
-                  return (XmlNode)doc; 
+                  return (XmlNode)rc; 
             }
 
 
