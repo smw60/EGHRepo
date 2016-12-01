@@ -103,7 +103,7 @@ namespace EGH01.Controllers
             ViewBag.EGHLayout = "RGE.GroundType";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"]?? "Empty";
-            if (menuitem.Equals("GroundType.Create.Cancel")) view = View("GroundType", db);
+          //  if (menuitem.Equals("GroundType.Create.Cancel")) { view = View("GroundType", db);  return view; }
             try
             {
                 db = new RGEContext(this);
@@ -206,8 +206,9 @@ namespace EGH01.Controllers
                             }
 
                     }
-                    else if (menuitem.Equals("GroundType.Create.Cancel")) view = View("GroundType", db);
+                     
                 }
+                if (menuitem.Equals("GroundType.Create.Cancel")) view = View("GroundType", db);
             }
             catch (RGEContext.Exception e)
             {
