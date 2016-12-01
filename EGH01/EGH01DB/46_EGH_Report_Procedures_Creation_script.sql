@@ -57,11 +57,13 @@ as begin
     declare @rc int = -1;
 	select IdОтчета,
 			ДатаОтчета,
-			Стадия, 
+			О.Стадия Стадия, 
 			Родитель, 
 			ТекстОтчета, 
+			СтильОтчета,
 			Комментарий
-	from dbo.Отчет where IdОтчета = @IdОтчета;  
+	from dbo.Отчет О inner join dbo.СтильОтчета С on О.Стадия = С.Стадия
+	where IdОтчета = @IdОтчета;  
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
@@ -72,16 +74,18 @@ create procedure EGH.GetReportList
 	declare @rc int = -1;
 	select IdОтчета,
 			ДатаОтчета,
-			Стадия, 
+			О.Стадия Стадия, 
 			Родитель, 
-			ТекстОтчета, 
-			Комментарий from dbo.Отчет
+			ТекстОтчета,
+			СтильОтчета,
+			Комментарий 
+	from dbo.Отчет О inner join dbo.СтильОтчета С on О.Стадия = С.Стадия
 			order by IdОтчета desc;
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
 go
-exec EGH.GetReportList
+
 -- Получение следующего ID отчета 
 create procedure EGH.GetNextReportId(@IdОтчета int output)
  as begin
@@ -112,14 +116,16 @@ go
 create procedure EGH.GetStageReportList(@Стадия nchar(10) output)
  as begin
 	declare @rc int = -1;
-	select IdОтчета,
+	select 
+			IdОтчета,
 			ДатаОтчета,
-			Стадия, 
+			О.Стадия Стадия, 
 			Родитель, 
-			ТекстОтчета, 
+			ТекстОтчета,
+			СтильОтчета,
 			Комментарий 
-	from dbo.Отчет
-	where Родитель = @Стадия order by IdОтчета desc;
+	from dbo.Отчет О inner join dbo.СтильОтчета С on О.Стадия = С.Стадия
+	where О.Стадия = @Стадия order by IdОтчета desc;
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
@@ -141,3 +147,24 @@ create procedure EGH.GetParentReportList(@IdОтчета int output)
 	return @rc;    
 end;
 go
+
+
+-- Получение списка прогнозов
+create procedure EGH.GetEcoForecastList
+ as begin
+	declare @rc int = -1;
+	select 
+			IdОтчета,
+			ДатаОтчета,
+			О.Стадия Стадия, 
+			Родитель, 
+			ТекстОтчета,
+			СтильОтчета,
+			Комментарий 
+	from dbo.Отчет О inner join dbo.СтильОтчета С on О.Стадия = С.Стадия
+	where О.Стадия = 'П' order by IdОтчета desc;
+	set @rc = @@ROWCOUNT;
+	return @rc;    
+end;
+go
+

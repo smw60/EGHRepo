@@ -24,10 +24,10 @@ namespace EGH01.Controllers
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new RGEContext();
+                db = new RGEContext(this);
                 ViewBag.msg = "Соединение с базой данных установлено";
-                view = View("GroundType", db);
-
+                //  view = View("GroundType", db);
+                view = View(db);
                 if (menuitem.Equals("GroundType.Create"))
                 {
 
@@ -98,115 +98,119 @@ namespace EGH01.Controllers
         [HttpPost]
         public ActionResult GroundTypeCreate(EGH01.Models.EGHRGE.GroundTypeView gt)
         {
+ 
             RGEContext db = null;
             ViewBag.EGHLayout = "RGE.GroundType";
             ActionResult view = View("Index");
-            string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
+            string menuitem = this.HttpContext.Request.Params["menuitem"]?? "Empty";
             try
             {
-                db = new RGEContext();
-                view = View("GroundType", db);
-                if (menuitem.Equals("GroundType.Create.Create"))
+                db = new RGEContext(this);
+                if (!GroundTypeView.Handler(db, this.HttpContext.Request.Params))
                 {
 
-                    int type_code = -1;
-                    float diffusion;
-                    string strdiffusion = this.HttpContext.Request.Params["diffusion"] ?? "Empty";
-                    if (!Helper.FloatTryParse(strdiffusion, out diffusion))
+                }
+                view = View(db);
+                if (menuitem.Equals("GroundType.Create.Create"))
+                {
+                    GroundTypeView viewcontext = db.GetViewContext(GroundTypeView.VIEWNAME) as GroundTypeView;
+                    if (viewcontext != null)
                     {
-                        diffusion = 0.0f;
-                    }
-                    float distribution;
-                    string strdistribution = this.HttpContext.Request.Params["distribution"] ?? "Empty";
-                    if (!Helper.FloatTryParse(strdistribution, out distribution))
-                    {
-                        distribution = 0.0f;
-                    }
-                    float sorption = 0.0f;
-                    string strsorption = this.HttpContext.Request.Params["sorption"] ?? "Empty";
-                    if (!Helper.FloatTryParse(strsorption, out sorption))
-                    {
-                        sorption = 0.0f;
-                    }
-                    float permeability = 0.2f;
-                    string strpermeability = this.HttpContext.Request.Params["permeability"] ?? "Empty";
-                    if (!Helper.FloatTryParse(strpermeability, out permeability))
-                    {
-                        permeability = 0.0f;
-                    }
-                    String name = gt.name;
-                    string strporosity = this.HttpContext.Request.Params["porosity"] ?? "Empty";
-                    float porosity = 0.1f;
-                    if (!Helper.FloatTryParse(strporosity, out porosity))
-                    {
-                        porosity = 0.0f;
-                    }
-                    string strsoilmoisture = this.HttpContext.Request.Params["soilmoisture"] ?? "Empty";
-                    float soilmoisture = 0.1f;//влажность
-                    if (!Helper.FloatTryParse(strsoilmoisture, out soilmoisture))
-                    {
-                        soilmoisture = 0.0f;
-                    }
-                    string strwatercapacity = this.HttpContext.Request.Params["watercapacity"] ?? "Empty";
-                    float watercapacity = 0.1f;//влагоемкость
-                    if (!Helper.FloatTryParse(strwatercapacity, out watercapacity))
-                    {
-                        watercapacity = 0.0f;
-                    }
-                    string strholdmigration = this.HttpContext.Request.Params["holdmigration"] ?? "Empty";
-                    float holdmigration = 0.1f;//задержки
-                    if (!Helper.FloatTryParse(strholdmigration, out holdmigration))
-                    {
-                        holdmigration = 0.0f;
-                    }
-                    string strwaterfilter = this.HttpContext.Request.Params["waterfilter"] ?? "Empty";
-                    float waterfilter = 0.1f;//фильтрации
-                    if (!Helper.FloatTryParse(strwaterfilter, out waterfilter))
-                    {
-                        waterfilter = 0.0f;
-                    }
-                    string strаveryanovfactor = this.HttpContext.Request.Params["аveryanovfactor"] ?? "Empty";
-                    float аveryanovfactor = 0.1f;//аверьянова коэф
-                    if (!Helper.FloatTryParse(strаveryanovfactor, out аveryanovfactor))
-                    {
-                        аveryanovfactor = 0.0f;
-                    }
-
-                    string strdensity = this.HttpContext.Request.Params["density"] ?? "Empty";
-                    float density = 0.1f;
-                    if (!Helper.FloatTryParse(strdensity, out density))
-                    {
-                        density = 0.0f;
-                    }
-
-
-                    //ViewBag.Error = "Влагоемкость грунта не может быть больше или равна пористости";
-                    //   view = View("GroundType", db);
-                    //return view;
-
-                    else
-                    //     EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability);
-                    {
-                        EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability, density); // blinova
-
-
-                        if ((watercapacity < porosity) && (soilmoisture >= watercapacity) && (soilmoisture <= porosity))
+                        int type_code = -1;
+                        float diffusion;
+                        string strdiffusion = this.HttpContext.Request.Params["diffusion"] ?? "Empty";
+                        if (!Helper.FloatTryParse(strdiffusion, out diffusion))
                         {
-                            if (EGH01DB.Types.GroundType.Create(db, ground_type))
-                            {
-                                view = View("GroundType", db);
-                            }
+                            diffusion = 0.0f;
                         }
+                        float distribution;
+                        string strdistribution = this.HttpContext.Request.Params["distribution"] ?? "Empty";
+                        if (!Helper.FloatTryParse(strdistribution, out distribution))
+                        {
+                            distribution = 0.0f;
+                        }
+                        float sorption = 0.0f;
+                        string strsorption = this.HttpContext.Request.Params["sorption"] ?? "Empty";
+                        if (!Helper.FloatTryParse(strsorption, out sorption))
+                        {
+                            sorption = 0.0f;
+                        }
+                        float permeability = 0.2f;
+                        string strpermeability = this.HttpContext.Request.Params["permeability"] ?? "Empty";
+                        if (!Helper.FloatTryParse(strpermeability, out permeability))
+                        {
+                            permeability = 0.0f;
+                        }
+                        String name = gt.name;
+                        string strporosity = this.HttpContext.Request.Params["porosity"] ?? "Empty";
+                        float porosity = 0.1f;
+                        if (!Helper.FloatTryParse(strporosity, out porosity))
+                        {
+                            porosity = 0.0f;
+                        }
+                        string strsoilmoisture = this.HttpContext.Request.Params["soilmoisture"] ?? "Empty";
+                        float soilmoisture = 0.1f;//влажность
+                        if (!Helper.FloatTryParse(strsoilmoisture, out soilmoisture))
+                        {
+                            soilmoisture = 0.0f;
+                        }
+                        string strwatercapacity = this.HttpContext.Request.Params["watercapacity"] ?? "Empty";
+                        float watercapacity = 0.1f;//влагоемкость
+                        if (!Helper.FloatTryParse(strwatercapacity, out watercapacity))
+                        {
+                            watercapacity = 0.0f;
+                        }
+                        string strholdmigration = this.HttpContext.Request.Params["holdmigration"] ?? "Empty";
+                        float holdmigration = 0.1f;//задержки
+                        if (!Helper.FloatTryParse(strholdmigration, out holdmigration))
+                        {
+                            holdmigration = 0.0f;
+                        }
+                        string strwaterfilter = this.HttpContext.Request.Params["waterfilter"] ?? "Empty";
+                        float waterfilter = 0.1f;//фильтрации
+                        if (!Helper.FloatTryParse(strwaterfilter, out waterfilter))
+                        {
+                            waterfilter = 0.0f;
+                        }
+                        string strаveryanovfactor = this.HttpContext.Request.Params["аveryanovfactor"] ?? "Empty";
+                        float аveryanovfactor = 0.1f;//аверьянова коэф
+                        if (!Helper.FloatTryParse(strаveryanovfactor, out аveryanovfactor))
+                        {
+                            аveryanovfactor = 0.0f;
+                        }
+
+                        string strdensity = this.HttpContext.Request.Params["density"] ?? "Empty";
+                        float density = 0.1f;
+                        if (!Helper.FloatTryParse(strdensity, out density))
+                        {
+                            density = 0.0f;
+                        }
+
                         else
                         {
-                            ViewBag.Error = "Влагоемкость грунта не может быть больше или равна пористости";
-                            view = View("GroundTypeCreate", db);
-                            return view;
-                        }
+                            EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability, density); // blinova
 
+
+                            if ((watercapacity < porosity) && (soilmoisture >= watercapacity) && (soilmoisture <= porosity))
+                            {
+                                if (EGH01DB.Types.GroundType.Create(db, ground_type))
+                                {
+                                    view = View("GroundType", db);
+                                }
+                            }
+                            else
+                            {
+                                GroundTypeView viewcontexts = db.GetViewContext("GroundTypeCreate") as GroundTypeView;
+                   
+                                ViewBag.Error = "Проверьте данные: влагоемкость < влажности < пористости";
+                                view = View("GroundTypeCreate",db);
+                                return view;
+                            }
+
+                        }
                     }
+                    else if (menuitem.Equals("GroundType.Create.Cancel")) view = View("GroundType", db);
                 }
-                else if (menuitem.Equals("GroundType.Create.Cancel")) view = View("GroundType", db);
             }
             catch (RGEContext.Exception e)
             {

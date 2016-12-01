@@ -115,12 +115,12 @@
 </script>
 
 
-@using (Html.BeginForm("Forecast", "EGHRGE", new {name="form1"}))
+@using (Html.BeginForm("Forecast", "EGHRGE", new { name = "form1" }))
 {
 
     <div class="box">
-     @{
-                              
+        @{
+
 
             <div class="boxdata">
                 <div id="map-canvas"></div>
@@ -141,20 +141,20 @@
                         </tr>
                     </table>
 
-                </div>   
-            
-            
+                </div>
 
-                
-                
-                
-               <button type="submit" name="ChoiceRiskObject.choicefind" value="choice">Карта</button> 
-                        
+
+
+
+
+
+                <button type="submit" name="ChoiceRiskObject.choicefind" value="choice">Карта</button>
+
             </div>
-         
 
-      }
-     </div>
-}
+
+        }
+    </div>
+            }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDD-BQGwH6mEgOBp15GhEpzm8h1JzP-fpg"></script>

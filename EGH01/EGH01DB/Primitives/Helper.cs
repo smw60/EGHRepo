@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Xml;
+using System.Xml.Xsl;
 using EGH01DB.Types;
 using EGH01DB.Objects;
 using EGH01DB.Points;
@@ -814,6 +815,51 @@ namespace EGH01DB.Primitives
         {
             bool rc = false;
             list_eco_forecast =   new List<RGEContext.ECOForecast>();   //   new RGEContext.ECOForecastlist();
+            using (SqlCommand cmd = new SqlCommand("EGH.GetEcoForecastList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                       
+                        string stage = (string)reader["Стадия"];
+                         int report_id = (int)reader ["IdОтчета"];
+                         DateTime date = (DateTime)reader["ДатаОтчета"];   
+                         int predator = (int)reader["Родитель"];
+                        
+                         string xmlContent = (string)reader["ТекстОтчета"];
+                         if (!xmlContent.Trim().Equals(""))
+                         {
+                          XmlDocument doc = new XmlDocument();
+                          doc.LoadXml(xmlContent);
+                          XmlNode newNode = doc.DocumentElement;
+                          list_eco_forecast.Add(new RGEContext.ECOForecast (newNode));
+                         //comment = (string)reader["Комментарий"];
+                         }
+                    }
+                    rc = ((int)cmd.Parameters["@exitrc"].Value >0);
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+
+            }
+            return rc;
+        }
+        static public bool GetListReport(EGH01DB.IDBContext dbcontext, ref List<Report> list)
+        {
+            bool rc = false;
+            list = new List<Report>();  
             using (SqlCommand cmd = new SqlCommand("EGH.GetReportList", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -828,22 +874,35 @@ namespace EGH01DB.Primitives
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        int report_id = (int)reader ["IdОтчета"];
-                        DateTime date = (DateTime)reader["ДатаОтчета"];
-                        string stage = (string)reader["Стадия"];
-                        int predator = (int)reader["Родитель"];
-                        //comment = (string)reader["Комментарий"];
-                        //
-                        string xmlContent = (string)reader["ТекстОтчета"];
-                        XmlDocument doc = new XmlDocument();
-                        doc.LoadXml(xmlContent);
-                        XmlNode newNode = doc.DocumentElement;
-                        //
-                        //RGEContext.ECOForecast  ecoforecast = new RGEContext.ECOForecast (newNode);
-                        list_eco_forecast.Add(new RGEContext.ECOForecast (newNode));
-                        
+
+                            string stage = (string)reader["Стадия"];
+                            int report_id = (int)reader["IdОтчета"];
+                            DateTime date = (DateTime)reader["ДатаОтчета"];
+                            int predator = (int)reader["Родитель"];
+                            Report parent_Report = new Report(predator);
+                            string comment = (string)reader["Комментарий"];
+
+                            string xmlContent = (string)reader["ТекстОтчета"];
+                            xmlContent = xmlContent.TrimEnd();
+                            xmlContent = xmlContent.TrimStart();
+                   
+                            XmlDocument doc = new XmlDocument();
+                            doc.LoadXml(xmlContent);
+                            XmlNode xml_Content_Node = doc.DocumentElement;
+                         
+                            string xlst_Content = (string)reader["СтильОтчета"];
+                            xlst_Content = xmlContent.TrimEnd();
+                            xlst_Content = xmlContent.TrimStart();
+                            //if (!xlst_Content.Trim().Equals(""))
+                           // {
+                                XmlDocument doc_xlst = new XmlDocument();
+                                doc_xlst.LoadXml(xlst_Content);
+                                XmlNode xlst_Content_Node = doc_xlst.DocumentElement;
+                           // }
+                                list.Add(new Report(report_id, parent_Report, stage, date, xml_Content_Node, xlst_Content_Node, comment));
+ 
                     }
-                    rc = ((int)cmd.Parameters["@exitrc"].Value >0);
+                    rc = ((int)cmd.Parameters["@exitrc"].Value > 0);
                     reader.Close();
                 }
                 catch (Exception e)
@@ -854,7 +913,6 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
-
         static public bool GetListSoilCleaningMethods(EGH01DB.IDBContext dbcontext, ref List<SoilCleaningMethod> list_soil_clean_method)
         {
             bool rc = false;

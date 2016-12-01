@@ -86,17 +86,31 @@ namespace EGH01DB.Primitives
        
         public string ToHTML()                                // преобразование XML-XSLT->HTML  
         { 
-          // примерно так - не проверил!!!
-          string rc = string.Empty;
-          XmlDocument xmldoc =(XmlDocument)this.xmlcontetnt;
-          XslCompiledTransform xsldoc =  new XslCompiledTransform();     
-          xsldoc.Load(xslhtmlstyle.OuterXml);
-          StringWriter sw = new StringWriter();
-          xsldoc.Transform(xmldoc.CreateNavigator(), null, sw);
-          rc = sw.ToString();
-          return rc;                              // HTML -строка 
+          //// примерно так - не проверил!!!
+          //string rc = string.Empty;
+          //XmlDocument xmldoc =(XmlDocument)this.xmlcontetnt;
+          //XslCompiledTransform xsldoc =  new XslCompiledTransform();     
+          //xsldoc.Load(xslhtmlstyle.OuterXml);
+          //StringWriter sw = new StringWriter();
+          //xsldoc.Transform(xmldoc.CreateNavigator(), null, sw);
+          //rc = sw.ToString();
+          //return rc;                              // HTML -строка 
+            string rc = string.Empty;
+
+            XslCompiledTransform xsldoc = new XslCompiledTransform();
+            xsldoc.Load(xslhtmlstyle);
+            StringWriter sw = new StringWriter();
+
+            XmlDocument xmldoc = new XmlDocument();
+            string xml_outer_string = this.xmlcontetnt.OuterXml;
+            xmldoc.LoadXml(xml_outer_string);
+
+            xsldoc.Transform(xmldoc.CreateNavigator(), null, sw);
+            rc = sw.ToString();
+            return rc;              
+
         }  
-        //
+     
         public static bool Create(IDBContext dbcontext, Report report)
         {
             bool rc = false;
@@ -213,16 +227,20 @@ namespace EGH01DB.Primitives
                         DateTime date = (DateTime)reader["ДатаОтчета"];
                         string stage = (string)reader["Стадия"];
                         int predator = (int)reader["Родитель"];
+                        Report parent_report = new Report (predator);
                         comment = (string)reader["Комментарий"];
-                        //
+              
                         string xmlContent = (string)reader["ТекстОтчета"];
                         XmlDocument doc = new XmlDocument();
                         doc.LoadXml(xmlContent);
-                        XmlNode xmlcontetnt = doc.DocumentElement;
-                        XmlNode xslhtmlstyle = null;
-                        //
+                        XmlNode xml_content = doc.DocumentElement;
 
-                        if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) report = new Report(id, stage, date, xmlcontetnt, xslhtmlstyle, comment);
+                        string xsl_htm_lstyle = (string)reader["СтильОтчета"];
+                        XmlDocument doc_xslt = new XmlDocument();
+                        doc.LoadXml(xsl_htm_lstyle);
+                        XmlNode xsl_content = doc.DocumentElement;
+         
+                        if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) report = new Report(id, stage, date, xml_content, xsl_content, comment);
                     }
                     reader.Close();
                 }
@@ -304,7 +322,7 @@ namespace EGH01DB.Primitives
    public class ReportsList: List<Report>
    {
      
-     public  bool GetByStage(IDBContext db, string stage, out ReportsList list)
+     static public  bool GetByStage(IDBContext db, string stage, out ReportsList list)
      {
          bool rc = false;
          list = new ReportsList();
@@ -331,12 +349,19 @@ namespace EGH01DB.Primitives
                      DateTime date = (DateTime)reader["ДатаОтчета"];
                      // string stage = (string)reader["Стадия"];
                      int predator = (int)reader["Родитель"];
+                     Report parent = new Report(predator);
                      string comment = (string)reader["Комментарий"];
+
                      string xmlContent = (string)reader["ТекстОтчета"];
-                     XmlDocument doc = new XmlDocument();
-                     doc.LoadXml(xmlContent);
-                     XmlNode newNode = doc.DocumentElement;
-                     Report report = new Report(report_id, stage, date, newNode, null, comment);
+                     XmlDocument doc_xml = new XmlDocument();
+                     doc_xml.LoadXml(xmlContent);
+                     XmlNode xml_Node = doc_xml.DocumentElement;
+
+                     string xslContent = (string)reader["ТекстОтчета"];
+                     XmlDocument doc_xsl = new XmlDocument();
+                     doc_xsl.LoadXml(xslContent);
+                     XmlNode xsl_Node = doc_xsl.DocumentElement;
+                     Report report = new Report(report_id, parent, stage, date, xml_Node, xsl_Node, comment);
                      
                      list.Add(report);
 

@@ -510,7 +510,7 @@ namespace EGH01DB.Objects
         public XmlNode toXmlNode(string comment = "")
         {
             XmlDocument doc = new XmlDocument();
-            XmlElement rc = doc.CreateElement("EcoObjectList");
+            XmlElement rc = doc.CreateElement("EcoObjectsList");
             if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
             this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
             return (XmlNode)rc;
