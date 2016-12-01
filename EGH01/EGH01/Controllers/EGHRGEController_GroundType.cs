@@ -103,6 +103,7 @@ namespace EGH01.Controllers
             ViewBag.EGHLayout = "RGE.GroundType";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"]?? "Empty";
+            if (menuitem.Equals("GroundType.Create.Cancel")) view = View("GroundType", db);
             try
             {
                 db = new RGEContext(this);
@@ -186,14 +187,11 @@ namespace EGH01.Controllers
                             density = 0.0f;
                         }
 
-                        else
+                            if ((watercapacity < porosity) && (soilmoisture >= watercapacity) && (soilmoisture <= porosity))
                         {
                             EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability, density); // blinova
 
-
-                            if ((watercapacity < porosity) && (soilmoisture >= watercapacity) && (soilmoisture <= porosity))
-                            {
-                                if (EGH01DB.Types.GroundType.Create(db, ground_type))
+                            if (EGH01DB.Types.GroundType.Create(db, ground_type))
                                 {
                                     view = View("GroundType", db);
                                 }
@@ -207,7 +205,6 @@ namespace EGH01.Controllers
                                 return view;
                             }
 
-                        }
                     }
                     else if (menuitem.Equals("GroundType.Create.Cancel")) view = View("GroundType", db);
                 }
