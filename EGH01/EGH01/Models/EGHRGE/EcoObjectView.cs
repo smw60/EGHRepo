@@ -23,6 +23,7 @@ namespace EGH01.Models.EGHRGE
         public int list_groundType { get; set; }
         public int list_cadastre { get; set; }  
         public int list_ecoType { get; set; }
+        public  int list_WaterProtectionArea { get; set; }
         public bool iswaterobject { get;  set; }
 
     }

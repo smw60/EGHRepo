@@ -128,7 +128,7 @@ namespace EGH01.Controllers
                             EcoObjectType eco_type = new EcoObjectType();
                             if (EGH01DB.Types.EcoObjectType.GetByCode(db, eo.list_ecoType, out eco_type))
                             {
-                                bool iswaterobject = eo.iswaterobject;
+                            //    bool iswaterobject = eo.list_WaterProtectionArea;
                                 string strlat_s = this.HttpContext.Request.Params["lat_s"] ?? "Empty";
                                 string strlng_s = this.HttpContext.Request.Params["lng_s"] ?? "Empty";
                                 string strwaterdeep = this.HttpContext.Request.Params["waterdeep"] ?? "Empty";

@@ -10,5 +10,7 @@ namespace EGH01.Models.EGHRGE
     {
         public int type_code { get; set; }    // код типа природоохранного объекта
         public string name   { get; set; }    // название природоохранного объекта 
-	}
+        public int list_WaterProtectionArea { get; set; }
+        public bool iswaterobject { get; set; }
+    }
 }
