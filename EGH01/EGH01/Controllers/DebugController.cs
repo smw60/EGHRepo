@@ -62,15 +62,15 @@ namespace EGH01.Controllers
         // проверка процедур  Report
         public ActionResult Report_GetById()// 
         {
-            //RGEContext db = new RGEContext();
-            //string comment = "Comment";
-            //Report f = new Report();
-            //if (Report.GetById(db, 5, out f, out comment))
-            //{
-            //    int k = 1;
+            RGEContext db = new RGEContext();
+            string comment = "Comment";
+            Report f = new Report();
+            if (Report.GetById(db, 5, out f, out comment))
+            {
+                int k = 1;
 
-            //};
-            //f.ToHTML();
+            };
+            f.ToHTML();
             return View();
         }
         public ActionResult Report_GetList()// 
