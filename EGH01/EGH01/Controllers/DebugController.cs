@@ -62,15 +62,15 @@ namespace EGH01.Controllers
         // проверка процедур  Report
         public ActionResult Report_GetById()// 
         {
-            //RGEContext db = new RGEContext();
-            //string comment = "Comment";
-            //Report f = new Report();
-            //if (Report.GetById(db, 5, out f, out comment))
-            //{
-            //    int k = 1;
+            RGEContext db = new RGEContext();
+            string comment = "Comment";
+            Report f = new Report();
+            if (Report.GetById(db, 5, out f, out comment))
+            {
+                int k = 1;
 
-            //};
-            //f.ToHTML();
+            };
+            f.ToHTML();
             return View();
         }
         public ActionResult Report_GetList()// 
@@ -1493,11 +1493,11 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                List<PetrochemicalType> list = new List<PetrochemicalType>();
-                if (Helper.GetListPetrochemicalType(db, ref list))    
-                {
-                    int k = 1;
-                };
+                //List<PetrochemicalType> list = new List<PetrochemicalType>();
+                //if (Helper.GetListPetrochemicalType(db, ref list))
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }

@@ -15,6 +15,7 @@ namespace EGH01DB.Types
     {
         public int type_code { get; private set; }   // код типа природоохрнного объекта объекта 
         public string name { get; private set; }     // наименование типа природоохранного  объекта
+        public bool iswaterobject { get; private set; }   // является ли водным объектом 
         static public EcoObjectType defaulttype { get { return new EcoObjectType(0, "Не определен"); } }  // выдавать при ошибке  
       
         public EcoObjectType()

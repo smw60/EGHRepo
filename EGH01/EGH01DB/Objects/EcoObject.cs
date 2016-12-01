@@ -20,7 +20,7 @@ namespace EGH01DB.Objects
         public EcoObjectType ecoobjecttype  {get; private set;}    // тип природохранного объекта 
         public CadastreType  cadastretype   {get; private set; }   // кадастровый тип земли
         public string name                  {get; private set; }   // наименование природоохранного объекта 
-        public bool iswaterobject           {get; private set; }   // является ли водным объектом 
+        public bool iswaterobject { get; private set; }   // является ли водным объектом -- на удаление? часть EcoObjectType
         public float angle { get; private set; }   // Уклон грунтовых вод 
         public float pollutionecoobject { get; private set; }  // Расстояние от центра загрязнения до точки
         public static  readonly string PREFIX = "ПО";       
