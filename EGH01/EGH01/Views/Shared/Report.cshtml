@@ -1,31 +1,16 @@
-﻿@using EGH01.Core;
-@using EGH01.Models.EGH;
-@using EGH01DB.Primitives;
-@using EGH01DB.Types;
-@using System.Web.Mvc;
-
-@model EGH01.Models.EGHRGE.ReportView
-
+﻿@using EGH01DB.Primitives;
+@model EGH01DB.RGEContext
 
 @{
+    ViewBag.Title = "Report";
     Layout = "~/Views/Shared/EGHLayout.cshtml";
 
+   
     EGH01DB.RGEContext db = new EGH01DB.RGEContext();
-
-
-    ReportsList list = new ReportsList();
-    //List<ReportsList> list = new List<ReportsList>();
-    if (@Model != null)
+    List<Report> list = new List<Report>();
+    if (db != null)
     {
-        ReportsList.GetByStage(db, "П", out list);
+        Helper.GetListReport(db, ref list);
     };
-
-
-
-    }
-
-апапапап
-@*@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHRGE", Action = "Report"})*@
-@*@Html.Partial("_ReportList", list)*@
-
-
+}
+@Html.Partial("_ReportList", list)

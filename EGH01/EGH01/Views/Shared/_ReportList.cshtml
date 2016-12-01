@@ -1,17 +1,25 @@
 ﻿@using EGH01.Core;
 @using EGH01DB.Primitives;
 
-@*@model EGH01DB.RGEContext*@
-@model List<ReportsList>
+@using EGH01DB.Objects;
+@using EGH01DB.Primitives;
+@using EGH01.Core;
+@using EGH01.Models;
+@using EGH01.Models.EGHRGE;
+@using EGH01DB;
+
+@model List<Report>
 @{
+
+   
     Menu menu = new Menu(
-                            new Menu.MenuItem("Просмотреть отчет", "Report.Watch", true),
-                            new Menu.MenuItem("Сохранить комментарий", "Report.SaveComment", true),
-                            new Menu.MenuItem("Удалить", "Report.Delete", true)
-                           );
+                    new Menu.MenuItem("Просмотреть отчет", "Report.Watch", true),
+                    new Menu.MenuItem("Сохранить комментарий", "Report.SaveComment", true),
+                    new Menu.MenuItem("Удалить", "Report.Delete", true)
+                   );
 
 }
-@foreach (ReportsList t in @Model)
+@foreach (Report t in @Model)
 {
  
     using (Html.BeginForm("Report", "EGHRGE"))
@@ -19,7 +27,11 @@
 
         <div class="box">
             <div class="boxdata">
-              qwerty
+                <p><label class="boxdata-label-40 ">@t.line.ToString()</label></p>
+                <p><input class="boxdata-input-20" type="text" name="comment" value=" " /></p>
+                <p><label class="boxdata-label-40 ">@t.comment.ToString()</label></p>
+                <input type="hidden" value="@t.id" name="id">
+
             </div>
             @Html.Partial("_TypeLineMenu", menu)
      
@@ -27,3 +39,6 @@
 
     }
 }
+
+
+
