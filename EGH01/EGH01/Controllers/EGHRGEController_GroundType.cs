@@ -200,7 +200,7 @@ namespace EGH01.Controllers
                             {
                                 GroundTypeView viewcontexts = db.GetViewContext("GroundTypeCreate") as GroundTypeView;
                    
-                                ViewBag.Error = "Проверьте данные: влагоемкость < влажности < пористости";
+                                ViewBag.Error = "Проверьте введенные данные";
                                 view = View("GroundTypeCreate",db);
                                 return view;
                             }
@@ -332,23 +332,41 @@ namespace EGH01.Controllers
                     {
                         density = 0.0f;
                     }
-                    GroundType gti = new GroundType((int)type_code,
-                                                    (string)name,
-                                                    (float)porosity,
-                                                    (float)holdmigration,
-                                                    (float)waterfilter,
-                                                    (float)diffusion,
-                                                    (float)distribution,
-                                                    (float)sorption,
-                                                    (float)watercapacity,
-                                                    (float)soilmoisture,
-                                                    (float)аveryanovfactor,
-                                                    (float)permeability,
-                                                    (float)density); 
-                    if (EGH01DB.Types.GroundType.Update(db, gti))
+
+                    if ((watercapacity < porosity) && (soilmoisture >= watercapacity) && (soilmoisture <= porosity))
                     {
-                        view = View("GroundType", db);
+                        EGH01DB.Types.GroundType ground_type = new EGH01DB.Types.GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption, watercapacity, soilmoisture, аveryanovfactor, permeability, density); // blinova
+
+                        if (EGH01DB.Types.GroundType.Update(db, ground_type))
+                        {
+                            view = View("GroundType", db);
+                        }
                     }
+                    else
+                    {
+                        GroundTypeView viewcontexts = db.GetViewContext("GroundTypeCreate") as GroundTypeView;
+
+                        ViewBag.Error = "Проверьте введенные данные";
+                        view = View("GroundTypeCreate", db);
+                        return view;
+                    }
+                    //GroundType gti = new GroundType((int)type_code,
+                    //                                (string)name,
+                    //                                (float)porosity,
+                    //                                (float)holdmigration,
+                    //                                (float)waterfilter,
+                    //                                (float)diffusion,
+                    //                                (float)distribution,
+                    //                                (float)sorption,
+                    //                                (float)watercapacity,
+                    //                                (float)soilmoisture,
+                    //                                (float)аveryanovfactor,
+                    //                                (float)permeability,
+                    //                                (float)density); 
+                    //if (EGH01DB.Types.GroundType.Update(db, gti))
+                    //{
+                    //    view = View("GroundType", db);
+                    //}
                 }
                 else if (menuitem.Equals("GroundType.Update.Cancel")) view = View("GroundType", db);
             }
