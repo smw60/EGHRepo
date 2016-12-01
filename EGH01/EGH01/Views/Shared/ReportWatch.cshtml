@@ -2,17 +2,20 @@
 @using EGH01.Models.EGH;
 @using EGH01DB.Primitives;
 
-@model EGH01DB.RGEContext
+@model EGH01DB.Primitives.Report
 @{
     Layout = "~/Views/Shared/EGHLayout.cshtml";
 
 }
+  qw
 
 @using (Html.BeginForm("ReportWatch", "EGHRGE"))
 {
 
     <div class="box">
-       qw
+       qw2
+   @Model.stage.ToString();
+     
     </div>
 }
 
