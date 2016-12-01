@@ -1493,11 +1493,11 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                List<PetrochemicalType> list = new List<PetrochemicalType>();
-                if (Helper.GetListPetrochemicalType(db, ref list))    
-                {
-                    int k = 1;
-                };
+                //List<PetrochemicalType> list = new List<PetrochemicalType>();
+                //if (Helper.GetListPetrochemicalType(db, ref list))
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }

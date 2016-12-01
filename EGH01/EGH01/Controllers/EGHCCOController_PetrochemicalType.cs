@@ -138,9 +138,9 @@ namespace EGH01.Controllers
                         string strdiffusion = this.HttpContext.Request.Params["diffusion"] ?? "Empty";
                         float diffusion;
                         Helper.FloatTryParse(strdiffusion, out diffusion);
-
+                        PetrochemicalCategories petrochemicalcategories = new PetrochemicalCategories(); //blinova
                         PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, 
-                            (float)viscosity, (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion);
+                            (float)viscosity, (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion, petrochemicalcategories);// blinova
                         if (EGH01DB.Types.PetrochemicalType.Create(db, pt))
                         {
                             view = View("PetrochemicalType", db);
@@ -235,8 +235,9 @@ namespace EGH01.Controllers
                     string strdiffusion = this.HttpContext.Request.Params["diffusion"] ?? "Empty";
                     float diffusion;
                     Helper.FloatTryParse(strdiffusion, out diffusion);
-                   
-                    PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion);
+                    PetrochemicalCategories petrochemicalcategories = new PetrochemicalCategories(); //blinova
+                    PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, (float)viscosity, 
+                                            (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion, petrochemicalcategories); // blinova
                     if (EGH01DB.Types.PetrochemicalType.Update(db, pt))
                         view = View("PetrochemicalType", db);
                 }
