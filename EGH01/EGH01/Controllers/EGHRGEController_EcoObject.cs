@@ -158,7 +158,7 @@ namespace EGH01.Controllers
                                 if (EGH01DB.Types.GroundType.GetByCode(db, eo.list_groundType, out ground_type))
                                 {
                                     Point point = new Point(coordinates, ground_type, waterdeep, height);
-                                    EGH01DB.Objects.EcoObject eco_object = new EGH01DB.Objects.EcoObject(id, point, eco_type, type_cadastre, name, iswaterobject);
+                                    EGH01DB.Objects.EcoObject eco_object = new EGH01DB.Objects.EcoObject(id, point, eco_type, type_cadastre, name);
                                     if (EGH01DB.Objects.EcoObject.Create(db, eco_object))
                                     {
                                         view = View("EcoObject", db);
@@ -267,7 +267,7 @@ namespace EGH01.Controllers
                             if (EGH01DB.Types.GroundType.GetByCode(db, eov.list_groundType, out ground_type))
                             {
                                 Point point = new Point(coordinates, ground_type, waterdeep, height);
-                                EGH01DB.Objects.EcoObject eco_object = new EGH01DB.Objects.EcoObject(id, point, eco_type, type_cadastre, name, iswaterobject);
+                                EGH01DB.Objects.EcoObject eco_object = new EGH01DB.Objects.EcoObject(id, point, eco_type, type_cadastre, name);
                                 if (EGH01DB.Objects.EcoObject.Update(db, eco_object))
                                 {
                                     view = View("EcoObject", db);
@@ -364,7 +364,7 @@ namespace EGH01.Controllers
                                 {
                                     Point point = new Point(coordinates, ground_type, waterdeep, height);
                                     //EGH01DB.Points.AnchorPoint ah = new EGH01DB.Points.AnchorPoint(); blinova
-                                    EGH01DB.Objects.EcoObject eco_object = new EGH01DB.Objects.EcoObject(id, point, eco_type, type_cadastre, name, iswaterobject);
+                                    EGH01DB.Objects.EcoObject eco_object = new EGH01DB.Objects.EcoObject(id, point, eco_type, type_cadastre, name);
                                     EGH01DB.Objects.EcoObject new_eco_object = new EGH01DB.Objects.EcoObject(); 
                                     if (EGH01DB.Objects.EcoObject.CreateNear(db, eco_object, angel, distance, out new_eco_object))
                                     {

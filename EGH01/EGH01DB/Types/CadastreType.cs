@@ -18,6 +18,7 @@ namespace EGH01DB.Types
         public float water_pdk_coef { get; private set; }
         public string ground_doc_name { get; private set; }   // наименование документа по земле 
         public string water_doc_name { get; private set; }   // наименование документа по воде 
+        public SoilPollutionCategories soilpollutioncategories { get; private set; }   // Категории загрязнения грунтов
         static public CadastreType defaulttype { get { return new CadastreType(0, "Не определен", 0.0f, 0.0f,"",""); } }  // выдавать при ошибке
         
         public CadastreType()

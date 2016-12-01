@@ -802,7 +802,7 @@ namespace EGH01DB.Primitives
                         string ecoobject_name = (string)reader["НаименованиеПриродоохранногоОбъекта"];
                         bool iswaterobject = (bool)reader["Водоохранный"];
 
-                        EcoObject ecoobject = new EcoObject(id, point, ecoobjecttype, cadastre_type, ecoobject_name, iswaterobject);
+                        EcoObject ecoobject = new EcoObject(id, point, ecoobjecttype, cadastre_type, ecoobject_name);
 
                         ecoobjects.Add(ecoobject);
                     }
