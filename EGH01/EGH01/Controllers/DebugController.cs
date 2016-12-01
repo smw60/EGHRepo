@@ -70,7 +70,7 @@ namespace EGH01.Controllers
                 int k = 1;
 
             };
-            f.ToHTML();
+            string gtm = f.ToHTML();
             return View();
         }
         public ActionResult Report_GetList()// 
