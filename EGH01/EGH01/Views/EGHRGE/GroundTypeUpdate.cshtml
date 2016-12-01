@@ -6,11 +6,11 @@
 @using EGH01.Models.EGH;
 @model EGH01DB.Types.GroundType
 @{
-
+    EGH01DB.RGEContext db = new EGH01DB.RGEContext();
     Layout = "~/Views/Shared/EGHLayout.cshtml";
-    //EGH01DB.RGEContext rge = (EGH01DB.RGEContext)Model;
-    //GroundTypeView context = (GroundTypeView)Model.GetViewContext(GroundTypeView.VIEWNAME);
-    //if (context == null) { Model.SaveViewContext(GroundTypeView.VIEWNAME, context = new GroundTypeView()); };
+    EGH01DB.RGEContext rge = (EGH01DB.RGEContext)db;
+    GroundTypeView context = (GroundTypeView)db.GetViewContext("GroundTypeUpdate");
+    if (context == null) { db.SaveViewContext("GroundTypeUpdate", context = new GroundTypeView()); };
     Menu head = new Menu(
                   new Menu.MenuItem("Создать", "GroundType.Create", false),
                   new Menu.MenuItem("Excel-формат", "GroundType.Excel", false)
@@ -28,7 +28,7 @@
     if (ViewBag.error != null)
     {
         @ViewBag.error
-        //Session.Abandon();
+        Session.Abandon();
 
     }
 
@@ -41,9 +41,17 @@
             </div>
             <fieldset  form="GroundType">
                 <p>
+@{ string name = "";
+    if (context.name != null)
+    {
+        name = (context.name);
+        <label class="boxdata-label-30"> Наименование </label>
+        <input class="boxdata-input-30" type="text" name="name" value="@name" />
+    }
+                        <label class="boxdata-label-30"> Наименование </label>
+                        <input class="boxdata-input-30" type="text" name="name" value="@Model.name" />
+                    }
 
-                    <label class="boxdata-label-30">Наименование грунта</label>
-                    <input class="boxdata-input-50" type="text" name="Name" value="@Model.name" />
                 </p>
 
                 <p>
@@ -101,12 +109,6 @@
                     <input class="boxdata-input-50" type="number" name="permeability" value="@Model.permeability.ToString().Replace(',' , '.')" min="0" max="1" step="0.01" />
                 </p>
             </fieldset>
-
-
-
-
-
-
 
 </div>
 
