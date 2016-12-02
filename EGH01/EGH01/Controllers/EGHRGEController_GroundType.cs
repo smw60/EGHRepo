@@ -261,11 +261,15 @@ namespace EGH01.Controllers
             try
             {
                 db = new RGEContext();
+                if (!GroundTypeView.Handler(db, this.HttpContext.Request.Params))
+                {
+
+                }
                 view = View("GroundType", db);
                 if (menuitem.Equals("GroundType.Update.Update"))
                 {
-
-                        int type_code = gt.type_code;
+                    GroundTypeView viewcontext = db.GetViewContext("GroundTypeUpdate") as GroundTypeView;
+                    int type_code = gt.type_code;
                     float diffusion;
                     string strdiffusion = this.HttpContext.Request.Params["diffusion"] ?? "Empty";
                     if (!Helper.FloatTryParse(strdiffusion, out diffusion))
@@ -345,7 +349,7 @@ namespace EGH01.Controllers
                     }
                     else
                     {
-                        GroundTypeView viewcontexts = db.GetViewContext("GroundTypeCreate") as GroundTypeView;
+                        GroundTypeView viewcontexts = db.GetViewContext("GroundTypeUpdate") as GroundTypeView;
 
                         ViewBag.Error = "Проверьте введенные данные";
                         view = View("GroundTypeCreate", db);

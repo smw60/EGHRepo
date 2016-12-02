@@ -7,29 +7,15 @@
     Layout = "~/Views/Shared/EGHLayout.cshtml";
     EGH01.Models.EGHRGE.ReportView rv = new EGH01.Models.EGHRGE.ReportView();
       
-   //  string k = ViewBag.msg;
+ 
                // @ViewBag.msg
 }
   
 
 @using (Html.BeginForm("ReportWatch", "EGHRGE"))
 {
-
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta name="viewport" content="width=device-width" />
-            <title>Index</title>
-        </head>
-        <body>
-            <div>
-                @ViewBag.msg
-               
-            </div>
-        </body>
-    </html>
-      
-     
-    
+   // string k = ViewBag.msg;
+    String value = ViewBag.msg;
+    @Html.Raw(value)  
 }
 

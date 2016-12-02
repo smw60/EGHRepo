@@ -1,4 +1,4 @@
-﻿using EGH01.Models.EGHCCO;
+﻿using EGH01.Models.EGHORT;
 using EGH01DB;
 using EGH01DB.Primitives;
 using System;
@@ -13,7 +13,7 @@ namespace EGH01.Controllers
     public partial class EGHORTController : Controller
     {
 
-        public ActionResult SoilPollutionCategories()  
+        public ActionResult SoilPollutionCategories()
         {
             ORTContext db = null;
             ViewBag.EGHLayout = "ORT.SoilPollutionCategories";
@@ -21,7 +21,7 @@ namespace EGH01.Controllers
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new ORTContext();
+                db = new ORTContext(this);
                 ViewBag.msg = "Соединение с базой данных установлено";
                 view = View("SoilPollutionCategories", db);
 
@@ -101,38 +101,59 @@ namespace EGH01.Controllers
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new ORTContext();
+                db = new ORTContext(this);
+                if (!SoilPollutionCategoriesView.Handler(db, this.HttpContext.Request.Params))
+                {
+                   
+                }
                 view = View("SoilPollutionCategories", db);
                 if (menuitem.Equals("SoilPollutionCategories.Create.Create"))
                 {
-
-                    int code = -1;
-                    if (EGH01DB.Types.SoilPollutionCategories.GetNextCode(db, out code)) {
-                        float min;
-                        string strmin = this.HttpContext.Request.Params["min"] ?? "Empty";
-                        if (!Helper.FloatTryParse(strmin, out min))
+                    SoilPollutionCategoriesView viewcontext = db.GetViewContext("SoilPollutionCategoriesCreate") as SoilPollutionCategoriesView;
+                    if (viewcontext != null)
+                    {
+                        int code = -1;
+                        if (EGH01DB.Types.SoilPollutionCategories.GetNextCode(db, out code))
                         {
-                            min = 0.0f;
-                        }
-                        float max;
-                        string strmax = this.HttpContext.Request.Params["max"] ?? "Empty";
-                        if (!Helper.FloatTryParse(strmax, out max))
-                        {
-                            max = 0.0f;
-                        }
-                        String name = sp.name;
-                        EGH01DB.Types.SoilPollutionCategories soil_pollution = new EGH01DB.Types.SoilPollutionCategories(code, name, min, max);
+                            float min;
+                            string strmin = this.HttpContext.Request.Params["min"] ?? "Empty";
+                            if (!Helper.FloatTryParse(strmin, out min))
+                            {
+                                min = 0.0f;
+                            }
+                            float max;
+                            string strmax = this.HttpContext.Request.Params["max"] ?? "Empty";
+                            if (!Helper.FloatTryParse(strmax, out max))
+                            {
+                                max = 0.0f;
+                            }
+                            String name = sp.name;
+                            if (min < max)
+                            {
+                                EGH01DB.Types.SoilPollutionCategories soil_pollution = new EGH01DB.Types.SoilPollutionCategories(code, name, min, max);
 
 
-                        if (EGH01DB.Types.SoilPollutionCategories.Create(db, soil_pollution))
-                        {
-                            view = View("SoilPollutionCategories", db);
-                        }
+                                if (EGH01DB.Types.SoilPollutionCategories.Create(db, soil_pollution))
+                                {
+                                    view = View("SoilPollutionCategories", db);
+                                }
+                            }
+                            else {
+                                SoilPollutionCategoriesView viewcontexts = db.GetViewContext("SoilPollutionCategoriesCreate") as SoilPollutionCategoriesView;
+                             
+                                ViewBag.Error = "Проверьте введенные данные";
+                                view = View("SoilPollutionCategoriesCreate", db);
+                                return view;
 
+
+
+                            }
+                        }
                     }
                 }
-
                 else if (menuitem.Equals("SoilPollutionCategories.Create.Cancel")) view = View("SoilPollutionCategories", db);
+            
+           
             }
             catch (RGEContext.Exception e)
             {

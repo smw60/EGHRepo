@@ -54,7 +54,7 @@ namespace EGH01DB
         }
 
         public bool SaveViewContext(ViewContextEntry viewcontextentry)
-        {
+        { 
 
             bool rc = false;
             if (rc = this.listviewcontext != null && !String.IsNullOrEmpty(viewcontextentry.viewname) && viewcontextentry.viewcontext != null)  
