@@ -102,6 +102,10 @@
             }
             else if (ViewBag.EGHLayout == "ORT.SoilPollutionCategories")
             {
+                <h2 class="double"><span>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") </span><span>Категории загрязнения грунтов</span></h2>
+            }
+            else if (ViewBag.EGHLayout == "ORT.WaterPollutionCategories")
+            {
                 <h2 class="double"><span>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") </span><span>Категории загрязнения грунтовых вод</span></h2>
             }
             else if (ViewBag.EGHLayout == "ORT.PenetrationDepth")
@@ -119,10 +123,6 @@
             else if (ViewBag.EGHLayout == "ORT.WaterCleaningMethod")
             {
                 <h2 class="double"><span>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") </span><span>Методы ликвидации загрязнения грунтовых вод</span></h2>
-            }
-            else if (ViewBag.EGHLayout == "ORT.WaterPollutionCategories")
-            {
-                <h2 class="double"><span>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") </span><span>Cправочник категории загрязнения грунтовых вод</span></h2>
             }
             else if (ViewBag.EGHLayout == "ORT.EmergencyClass")
             {
@@ -246,12 +246,12 @@
                             Критерии выбора технологий<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "SoilPollutionCategories", "EGHORT")</li>
+                            <li>@Html.ActionLink("Категории загрязнения грунтов", "SoilPollutionCategories", "EGHORT")</li>
+                            <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "WaterPollutionCategories", "EGHORT")</li>
                             <li>@Html.ActionLink("Категории проникновения нефтепродукта", "PenetrationDepth", "EGHORT")</li>
                             <li>@Html.ActionLink("Методы ликвидации загрязнения почвогрунтов", "SoilCleaningMethod", "EGHORT")</li>
                             <li>@Html.ActionLink("Методы ликвидации загрязнения грунтовых вод", "WaterCleaningMethod", "EGHORT")</li>
                             <li>@Html.ActionLink("Классификация аварий", "EmergencyClass", "EGHORT")</li>
-                            <li>@Html.ActionLink("Cправочник категории загрязнения грунтовых вод", "WaterPollutionCategories", "EGHORT")</li>
                             <li>@Html.ActionLink("Категории водоохранной территории ", "WaterProtectionArea", "EGHORT")</li>
                         </ul>
                     </li>
