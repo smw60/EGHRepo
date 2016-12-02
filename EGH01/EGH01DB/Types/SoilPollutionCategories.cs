@@ -8,7 +8,7 @@ using System.Data;
 using System.Xml;
 using EGH01DB.Primitives;
 
-// Категории загрязнения грунтовых вод
+// Категории загрязнения грунтов
 
 namespace EGH01DB.Types
 {

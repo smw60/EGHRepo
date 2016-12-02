@@ -326,7 +326,9 @@ namespace EGH01DB.Primitives
                         float tension = (float)reader["КоэфНатяжения"];
                         float dynamicviscosity = (float)reader["ДинамическаяВязкость"];
                         float diffusion = (float)reader["КоэфДиффузии"];
-
+                        int petrochemicalcategories = (int)reader["КодКатегорииНефтепродукта"];
+                        string petrochemicalcategoriesname = (string)reader["НаименованиеКатегорииНефтепродукта"];
+                        PetrochemicalCategories petro_cat = new PetrochemicalCategories(petrochemicalcategories, petrochemicalcategoriesname);
                         list_type.Add(new PetrochemicalType((int)code, 
                                                             (string)name, 
                                                             (float)boilingtemp, 
@@ -335,7 +337,7 @@ namespace EGH01DB.Primitives
                                                             (float)solubility, 
                                                             (float)tension,
                                                             (float)dynamicviscosity,
-                                                            (float)diffusion));
+                                                            (float)diffusion, petro_cat));
                     }
                     rc = list_type.Count > 0;
                     reader.Close();
@@ -637,6 +639,9 @@ namespace EGH01DB.Primitives
                         float tension = (float)reader["КоэфНатяжения"];
                         float dynamicviscosity = (float)reader["ДинамическаяВязкость"];
                         float petrochemical_diffusion = (float)reader["КоэфДиффузииНП"];
+                        int petrochemicalcategories = (int)reader["КодКатегорииНефтепродукта"];
+                        string petrochemicalcategoriesname = (string)reader["НаименованиеКатегорииНефтепродукта"];
+                        PetrochemicalCategories petro_cat = new PetrochemicalCategories(petrochemicalcategories, petrochemicalcategoriesname);
                         PetrochemicalType petrochemical_type = new PetrochemicalType(petrochemical_type_code,
                                                                                      name,
                                                                                      (float)boilingtemp,
@@ -645,7 +650,7 @@ namespace EGH01DB.Primitives
                                                                                      (float)solubility,
                                                                                      (float)tension,
                                                                                      (float)dynamicviscosity,
-                                                                                     (float)petrochemical_diffusion);
+                                                                                     (float)petrochemical_diffusion, petro_cat);
 
                         spreading_coefficient.Add(new SpreadingCoefficient(code, ground_type, petrochemical_type,
                                                         (float)min_volume,
@@ -797,7 +802,7 @@ namespace EGH01DB.Primitives
                         string ecoobject_name = (string)reader["НаименованиеПриродоохранногоОбъекта"];
                         bool iswaterobject = (bool)reader["Водоохранный"];
 
-                        EcoObject ecoobject = new EcoObject(id, point, ecoobjecttype, cadastre_type, ecoobject_name, iswaterobject);
+                        EcoObject ecoobject = new EcoObject(id, point, ecoobjecttype, cadastre_type, ecoobject_name);
 
                         ecoobjects.Add(ecoobject);
                     }

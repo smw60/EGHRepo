@@ -1,5 +1,6 @@
 ﻿@using EGH01.Core;
 @using EGH01.Models.EGH;
+@using EGH01DB.Primitives;
 
 @{
     Layout = "~/Views/Shared/EGHLayout.cshtml";
@@ -12,6 +13,15 @@
                           new Menu.MenuItem("Создать", "PetrochemicalType.Create.Create", true),
                           new Menu.MenuItem("Отказаться", "PetrochemicalType.Create.Cancel", true)
                         );
+
+    List<EGH01DB.Types.PetrochemicalCategories> list_petroCategories = new List<EGH01DB.Types.PetrochemicalCategories>();
+    ViewBag.list_petroCategories = new List<SelectListItem>();
+    if (@Model != null)
+    {
+        Helper.GetListPetrochemicalCategories(@Model, ref list_petroCategories);
+        list_petroCategories.ForEach(o => ViewBag.list_petroCategories.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+
+    }
 
 }
 @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCCO", Action = "PetrochemicalType", Menu = head })
@@ -26,6 +36,9 @@
                    <label class="boxdata-label-30">Наименование нефтепродукта</label>
                    <input class="boxdata-input-50" type="text" name="Name" value=" " />
                </p>
+           <p>
+               <label class="boxdata-label-30">Тип природохранного объекта</label>@Html.DropDownList("list_petroCategories")
+           </p>
                <p>
                    <label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С</label>
                    <input class="boxdata-input-50" type="number" name="Boilingtemp" value=" "/>

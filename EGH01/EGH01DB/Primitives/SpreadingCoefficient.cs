@@ -457,6 +457,9 @@ namespace EGH01DB.Primitives
                         float tension = (float)reader["КоэфНатяжения"];
                         float dynamicviscosity = (float)reader["ДинамическаяВязкость"];
                         float petrochemical_diffusion = (float)reader["КоэфДиффузииНП"];
+                        int petrochemicalcategories = (int)reader["КодКатегорииНефтепродукта"];
+                        string petrochemicalcategoriesname = (string)reader["НаименованиеКатегорииНефтепродукта"];
+                        PetrochemicalCategories petro_cat = new PetrochemicalCategories(petrochemicalcategories, petrochemicalcategoriesname);
                         PetrochemicalType petrochemical_type = new PetrochemicalType(petrochemical_type_code, 
                                                                                      name,
                                                                                      (float)boilingtemp,
@@ -465,7 +468,7 @@ namespace EGH01DB.Primitives
                                                                                      (float)solubility,
                                                                                      (float)tension,
                                                                                      (float)dynamicviscosity,
-                                                                                     (float)petrochemical_diffusion);
+                                                                                     (float)petrochemical_diffusion, petro_cat);
                       
                         float min_volume = (float)reader["МинПролива"];
                         float max_volume = (float)reader["МаксПролива"];

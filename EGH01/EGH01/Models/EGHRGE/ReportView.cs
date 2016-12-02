@@ -13,6 +13,7 @@ namespace EGH01.Models.EGHRGE
         public XmlNode  xmlcontetnt  { get; set; }    // отчет 
         public XmlNode  xslhtmlstyle { get; set; }    // xslt-стиль преобразования в html  // в БД?
         public string   comment      { get; set; }    // комментарий  
-        public string   line         { get; set; }
+        public string   line         { get; set; }    // название отчета
+
     }
 }
