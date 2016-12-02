@@ -20,16 +20,23 @@ h2 {
     h2 * {
         vertical-align: top;
     }
-
+    
     h2 span {
         display: inline-block;
         padding: 0 1%;
-        max-width: 45%;
+        max-width: 48%;
+    }
+        h2 span:nth-last-child(2) {
+            border-right: 4px solid #013d02;
+        }
+
+    h2 span:nth-child(2) {
+        max-width: 48%;
+    }
+    h2 span.big {
+        max-width: 78%;
     }
 
-        h2 span:nth-child(2) {
-            border-left: 4px solid #013d02;
-        }
 
 h3, h4 {
     font-weight: bold;
@@ -179,7 +186,7 @@ input[type="checkbox"].input-validation-error {
 }
 
 body {
-    padding-top: 50px;
+    padding-top: 60px;
     padding-bottom: 20px;
 }
 
@@ -254,7 +261,7 @@ input[type="checkbox"].input-validation-error {
     font-size: 30px;
     vertical-align: middle;
     font-weight: bold;
-    margin: 10px;
+    margin: 10px 0;
     text-align: left;
 }
 
@@ -631,9 +638,10 @@ element.style {
         width: 100%;
         margin: 2px 0;
     }
+    
 
 /*Для маленьких экранов*/
-@media (max-width:1170px) {
+@media (max-width:1440px) {
     .boxdata label {
         width: 50%;
     }
@@ -646,6 +654,21 @@ element.style {
         width: 45%;
     }
 
+    #wrap {
+        margin-top: 30px;
+    }
+    #wrap .navbar{
+        min-height:40px;
+    }
+    #wrap .navbar .navbar-nav li a{
+        padding: 10px;
+    }
+    h2 span {
+        font-size:90%;
+    }
+}
+/*Для маленьких экранов*/
+@media (max-width:1200px) {
     #wrap {
         margin-top: 50px;
     }

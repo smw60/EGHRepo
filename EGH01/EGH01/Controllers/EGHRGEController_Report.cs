@@ -37,7 +37,19 @@ namespace EGH01.Controllers
                             EGH01DB.Primitives.Report report = new EGH01DB.Primitives.Report();
                             if (EGH01DB.Primitives.Report.GetById(db, c, out report, out comment))
                             {
-                                view = View("ReportWatch", report);
+                                //RGEContext db = new RGEContext();
+                                //string comment = "Comment";
+                                //Report f = new Report();
+                                //if (Report.GetById(db, 5, out f, out comment))
+                                //{
+                                //    int k = 1;
+
+                                //};
+                                EGH01.Models.EGHRGE.ReportView rv = new ReportView();
+                                rv.rep = report.ToHTML();
+                                ViewBag.msg = rv.rep;
+                                //string gtm = report.ToHTML();
+                                view = View("ReportWatch",report);
                             }
                         }
                     }
