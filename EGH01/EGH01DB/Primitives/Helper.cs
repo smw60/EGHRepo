@@ -287,12 +287,23 @@ namespace EGH01DB.Primitives
                 try
                 {
                     SqlDataReader reader = cmd.ExecuteReader();
-
+                    EcoObjectType eco_object_type = new EcoObjectType();
                     list_type = new List<EcoObjectType>();
                     while (reader.Read())
                     {
-                        list_type.Add(new EcoObjectType((int)reader["КодТипаПриродоохранногоОбъекта"],
-                                                        (string)reader["НаименованиеТипаПриродоохранногоОбъекта"]));
+                        int code = (int)reader["КодТипаПриродоохранногоОбъекта"];
+                        string name = (string)reader["НаименованиеТипаПриродоохранногоОбъекта"];
+                        int? cat_water_name;
+                        cat_water_name = (reader["КатегорияВодоохрТер"] == DBNull.Value) ? null : (int?)reader["КатегорияВодоохрТер"];
+                        if (cat_water_name != null)
+                        {
+                            int category_code = (int)reader["КодТипаКатегории"];
+                            string category_name = (string)reader["НаименованиеКатегории"];
+                            WaterProtectionArea waterprotectionarea = new WaterProtectionArea(category_code, category_name);
+                            eco_object_type = new EcoObjectType(code, name, waterprotectionarea);
+                        }
+                        else eco_object_type = new EcoObjectType(code, name, null);
+                        list_type.Add(eco_object_type);
                     }
                     rc = list_type.Count > 0;
                     reader.Close();
@@ -794,15 +805,26 @@ namespace EGH01DB.Primitives
                         CadastreType cadastre_type = new CadastreType(cadastre_type_code,cadastre_type_name,
                                                                         (float)pdk, (float)water_pdk_coef,
                                                                         ground_doc_name, water_doc_name);
-                        int ecoobject_type_code = (int)reader["КодТипаПриродоохранногоОбъекта"];
-                        string ecoobject_type_name = (string)reader["НаименованиеТипаПриродоохранногоОбъекта"];
-
-                        EcoObjectType ecoobjecttype = new EcoObjectType(ecoobject_type_code, ecoobject_type_name);
-
+                        EcoObjectType eco_object_type = new EcoObjectType();
+                        bool iswaterobject;
+                        int category_code = (int)reader["КодТипаКатегории"];
+                        string category_name = (string)reader["НаименованиеКатегории"];
+                        int? cat_water_name;
+                        cat_water_name = (reader["КатегорияВодоохрТер"] == DBNull.Value) ? null : (int?)reader["КатегорияВодоохрТер"];
+                        if (cat_water_name != null)
+                        {
+                            WaterProtectionArea waterprotectionarea = new WaterProtectionArea(category_code, category_name);
+                            eco_object_type = new EcoObjectType(category_code, category_name, waterprotectionarea);
+                            iswaterobject = true;
+                        }
+                        else
+                        {
+                            eco_object_type = new EcoObjectType(category_code, category_name, null);
+                            iswaterobject = false;
+                        }
                         string ecoobject_name = (string)reader["НаименованиеПриродоохранногоОбъекта"];
-                        bool iswaterobject = (bool)reader["Водоохранный"];
 
-                        EcoObject ecoobject = new EcoObject(id, point, ecoobjecttype, cadastre_type, ecoobject_name);
+                        EcoObject ecoobject = new EcoObject(id, point, eco_object_type, cadastre_type, ecoobject_name, iswaterobject);
 
                         ecoobjects.Add(ecoobject);
                     }

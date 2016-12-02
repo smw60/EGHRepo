@@ -20,7 +20,7 @@ namespace EGH01DB.Objects
         public EcoObjectType ecoobjecttype  {get; private set;}    // тип природохранного объекта 
         public CadastreType  cadastretype   {get; private set; }   // кадастровый тип земли
         public string name                  {get; private set; }   // наименование природоохранного объекта 
-        public bool iswaterobject { get{return this.ecoobjecttype.iswaterobject;} }   // является ли водным объектом -- на удаление? часть EcoObjectType
+        public bool iswaterobject { get; private set; }    // является водным объектом, если значение EcoObjectType задано, иначе - нет
         public float angle { get; private set; }   // Уклон грунтовых вод 
         public float pollutionecoobject { get; private set; }  // Расстояние от центра загрязнения до точки
         public static  readonly string PREFIX = "ПО";       
@@ -39,30 +39,31 @@ namespace EGH01DB.Objects
             this.ecoobjecttype = new EcoObjectType();
             this.cadastretype = new CadastreType();
             this.name = string.Empty;
-            
             this.pollutionecoobject = 0.0f;
             this.angle = 0.0f;
 
         }
-        public EcoObject(int id, Point point, EcoObjectType ecoobjecttype, CadastreType cadastretype, string name)
+        public EcoObject(int id, Point point, EcoObjectType ecoobjecttype, CadastreType cadastretype, string name, bool iswaterobject)
             : base(point)
         {
             this.id = id;
             this.ecoobjecttype = ecoobjecttype;
             this.cadastretype = cadastretype;
             this.name = name;
+            this.iswaterobject = iswaterobject;
             this.angle = 0.0f;
             this.pollutionecoobject = 0.0f;
         }
-        public EcoObject(int id, Point point, EcoObjectType ecoobjecttype, CadastreType cadastretype, string name, float angle, float pollutionecoobject)
+        public EcoObject(int id, Point point, EcoObjectType ecoobjecttype, CadastreType cadastretype, string name, bool iswaterobject, float angle, float pollutionecoobject)
             : base(point)
         {
             this.id = id;
             this.ecoobjecttype = ecoobjecttype;
             this.cadastretype = cadastretype;
             this.name = name;
-            this.angle = 0.0f;
-            this.pollutionecoobject = 0.0f;
+            this.iswaterobject = iswaterobject;
+            this.angle = angle;
+            this.pollutionecoobject = pollutionecoobject;
         }
         public EcoObject(XmlNode node)
             : base(new Point(node.SelectSingleNode(".//Point")))
@@ -135,11 +136,6 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@Водоохранный", SqlDbType.Bit);
-                    parm.Value = ecoobject.iswaterobject;
-                    cmd.Parameters.Add(parm);
-                }
-                {
                     SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
                     parm.Direction = ParameterDirection.ReturnValue;
                     cmd.Parameters.Add(parm);
@@ -197,7 +193,6 @@ namespace EGH01DB.Objects
                     parm.Value = ecoobject.id;
                     cmd.Parameters.Add(parm);
                 }
-
                 {
                     SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
                     parm.Direction = ParameterDirection.ReturnValue;
@@ -231,6 +226,11 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
+                    SqlParameter parm = new SqlParameter("@НаименованиеПриродоохранногоОбъекта", SqlDbType.NVarChar);
+                    parm.Value = ecoobject.name;
+                    cmd.Parameters.Add(parm);
+                }
+                {
                     SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Real);
                     parm.Value = ecoobject.coordinates.latitude;
                     cmd.Parameters.Add(parm);
@@ -256,11 +256,6 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@Водоохранный", SqlDbType.Bit);
-                    parm.Value = ecoobject.iswaterobject;
-                    cmd.Parameters.Add(parm);
-                }
-                {
                     SqlParameter parm = new SqlParameter("@КодТипаНазначенияЗемель", SqlDbType.Int);
                     parm.Value = ecoobject.cadastretype.type_code;
                     cmd.Parameters.Add(parm);
@@ -268,11 +263,6 @@ namespace EGH01DB.Objects
                 {
                     SqlParameter parm = new SqlParameter("@КодТипаПриродоохранногоОбъекта", SqlDbType.Int);
                     parm.Value = ecoobject.ecoobjecttype.type_code;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@НаименованиеПриродоохранногоОбъекта", SqlDbType.NVarChar);
-                    parm.Value = ecoobject.name;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -351,7 +341,21 @@ namespace EGH01DB.Objects
                         int ecoobject_type_code = (int)reader["КодТипаПриродоохранногоОбъекта"];
                         string ecoobject_type_name = (string)reader["НаименованиеТипаПриродоохранногоОбъекта"];
 
-                        EcoObjectType ecoobjecttype = new EcoObjectType(ecoobject_type_code, ecoobject_type_name);
+                        int? cat_water_name;
+                        cat_water_name = (reader["КатегорияВодоохрТер"] == DBNull.Value) ? null : (int?)reader["КатегорияВодоохрТер"];
+                        bool iswaterobject;
+                        WaterProtectionArea water_protection_area = new WaterProtectionArea();
+                        if (cat_water_name != null)
+                        {
+                            water_protection_area = new WaterProtectionArea((int)cat_water_name);
+                            iswaterobject = true;
+                        }
+                        else
+                        {
+                            water_protection_area = null;
+                            iswaterobject = true;
+                        }
+                        EcoObjectType ecoobjecttype = new EcoObjectType(ecoobject_type_code, ecoobject_type_name, water_protection_area);
                         int cadastre_type_code = (int)reader["КодТипаНазначенияЗемель"];
                         string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
                         float pdk = (float)reader["ПДК"];
@@ -363,9 +367,9 @@ namespace EGH01DB.Objects
                                                                         pdk, water_pdk_coef,
                                                                         ground_doc_name, water_doc_name);
                         string ecoobject_name = (string)reader["НаименованиеПриродоохранногоОбъекта"];
-                        bool iswaterobject = (bool)reader["Водоохранный"];
-                        
-                        ecoobject = new EcoObject(id, point, ecoobjecttype, cadastre_type, ecoobject_name);
+
+
+                        ecoobject = new EcoObject(id, point, ecoobjecttype, cadastre_type, ecoobject_name, iswaterobject);
                     }
                     reader.Close();
                     rc = (int)cmd.Parameters["@exitrc"].Value > 0;
@@ -417,16 +421,10 @@ namespace EGH01DB.Objects
                     parm.Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(parm);
                 }
-                //{
-                //    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
-                //    parm.Direction = ParameterDirection.ReturnValue;
-                //    cmd.Parameters.Add(parm);
-                //}
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    // if (rc = ((int)cmd.Parameters["@exitrc"].Value) > 0)
-                    // {
+
                     float x = (float)cmd.Parameters["@lat2"].Value;
                     float y = (float)cmd.Parameters["@lng2"].Value;
                     Coordinates coordinates = new Coordinates((float)x, (float)y);
@@ -444,10 +442,8 @@ namespace EGH01DB.Objects
                     EcoObjectType ecoobjecttype = new EcoObjectType(ecoobjecttype_code);
                     CadastreType cadastretype = new CadastreType(new_cadastre_type_code);
 
-                    eco_object = new EcoObject(id, point, ecoobjecttype, cadastretype, name);
+                    eco_object = new EcoObject(id, point, ecoobjecttype, cadastretype, name, iswaterobject);
                     if (EcoObject.Create(dbcontext, eco_object)) rc = true;
-                    // }
-
                 }
                 catch (Exception e)
                 {
@@ -467,7 +463,7 @@ namespace EGH01DB.Objects
             rc.AppendChild(doc.ImportNode(this.ecoobjecttype.toXmlNode(), true));
             rc.AppendChild(doc.ImportNode(this.cadastretype.toXmlNode(), true));
             rc.SetAttribute("name", this.name.ToString());
-            rc.SetAttribute("iswaterobject", this.ecoobjecttype.iswaterobject.ToString());
+            rc.SetAttribute("iswaterobject", this.ecoobjecttype.waterprotectionarea.ToString());
             rc.SetAttribute("angle", this.angle.ToString());
             rc.SetAttribute("pollutionecoobject", this.pollutionecoobject.ToString());
            
