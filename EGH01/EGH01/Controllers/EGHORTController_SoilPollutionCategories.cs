@@ -27,8 +27,12 @@ namespace EGH01.Controllers
 
                 if (menuitem.Equals("SoilPollutionCategories.Create"))
                 {
-
                     view = View("SoilPollutionCategoriesCreate");
+                    SoilPollutionCategoriesView viewcontext = db.GetViewContext("SoilPollutionCategoriesCreate") as SoilPollutionCategoriesView;
+                    viewcontext.min = null;
+                    viewcontext.max = null;
+                    viewcontext.name = "";
+                    
 
                 }
                 else if (menuitem.Equals("SoilPollutionCategories.Delete"))
