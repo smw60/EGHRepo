@@ -1,5 +1,6 @@
 ﻿@using EGH01.Core;
 @using EGH01.Models.EGH;
+@using EGH01DB.Primitives;
 
 @model EGH01DB.Types.EcoObjectType
 @{
@@ -13,7 +14,20 @@
                           new Menu.MenuItem("Изменить", "EcoObjectType.Update.Update", true),
                           new Menu.MenuItem("Отказаться", "EcoObjectType.Update.Cancel", true)
                         );
+    EGH01DB.RGEContext db = new EGH01DB.RGEContext();
+    {
+        List<EGH01DB.Types.WaterProtectionArea> list_water = new List<EGH01DB.Types.WaterProtectionArea>();
+        List<SelectListItem> list = ViewBag.list_water = new List<SelectListItem>();
 
+        Helper.GetListWaterProtectionArea(db, ref list_water);
+        list_water.ForEach(o => ViewBag.list_water.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+
+        if (Model.waterprotectionarea != null)
+        {
+            SelectListItem si = list.FirstOrDefault(s => s.Value == Model.waterprotectionarea.type_code.ToString());
+            si.Selected = true;
+        }
+    }
 }
 @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHRGE", Action = "EcoObjectType", Menu = head })
 
@@ -27,6 +41,9 @@
             <p>
                 <label class="boxdata-label-30">Наименование типа природоохранного объекта</label>
                 <input class="boxdata-input-50" type="text" name="Name" value="@Model.name" />
+            </p>
+            <p>
+                <label class="boxdata-label-30" >Категория водоохранной территории</label>@Html.DropDownList("list_water")
             </p>
             <input type="hidden" value="@Model.type_code.ToString()" name="type_code">
 

@@ -104,12 +104,14 @@ namespace EGH01.Controllers
                 view = View("EcoObjectType", db);
                 if (menuitem.Equals("EcoObjectType.Create.Create"))
                 {
-                    if (EGH01DB.Types.EcoObjectType.Create(db, new EcoObjectType(0, itv.name, null))) // blinova
-                   {
-                       view = View("EcoObjectType", db); 
-                   }
-                    else if (menuitem.Equals("EcoObjectType.Create.Cancel")) view = View("EcoObjectType", db);
-                }
+                    EGH01DB.Types.WaterProtectionArea water = new WaterProtectionArea();
+                    if (EGH01DB.Types.WaterProtectionArea.GetByCode(db, itv.list_water, out water)) {
+                        if (EGH01DB.Types.EcoObjectType.Create(db, new EcoObjectType(0, itv.name,water)))
+                        {
+                            view = View("EcoObjectType", db);
+                        }
+                        else if (menuitem.Equals("EcoObjectType.Create.Cancel")) view = View("EcoObjectType", db);
+                    } }
             }
             catch (RGEContext.Exception e)
             {
@@ -164,7 +166,11 @@ namespace EGH01.Controllers
                 db = new RGEContext();
                 if (menuitem.Equals("EcoObjectType.Update.Update"))
                 {
-                    if (EGH01DB.Types.EcoObjectType.Update(db, new EGH01DB.Types.EcoObjectType(itv.type_code, itv.name, null))) view = View("EcoObjectType", db); // blinova
+                    EGH01DB.Types.WaterProtectionArea water = new WaterProtectionArea();
+                    if (EGH01DB.Types.WaterProtectionArea.GetByCode(db, itv.list_water, out water))
+                    {
+                        if (EGH01DB.Types.EcoObjectType.Update(db, new EGH01DB.Types.EcoObjectType(itv.type_code, itv.name, water))) view = View("EcoObjectType", db); 
+                    }
                 }
                 else if (menuitem.Equals("EcoObjectType.Update.Cancel")) view = View("EcoObjectType", db);
 

@@ -12,6 +12,7 @@ namespace EGH01.Controllers
 {
     public partial class EGHORTController : Controller
     {
+        
 
         public ActionResult SoilPollutionCategories()
         {
@@ -22,13 +23,14 @@ namespace EGH01.Controllers
             try
             {
                 db = new ORTContext(this);
+                SoilPollutionCategoriesView viewcontext = db.GetViewContext("SoilPollutionCategoriesCreate") as SoilPollutionCategoriesView;
                 ViewBag.msg = "Соединение с базой данных установлено";
                 view = View("SoilPollutionCategories", db);
 
                 if (menuitem.Equals("SoilPollutionCategories.Create"))
                 {
                     view = View("SoilPollutionCategoriesCreate");
-                    SoilPollutionCategoriesView viewcontext = db.GetViewContext("SoilPollutionCategoriesCreate") as SoilPollutionCategoriesView;
+            
                     viewcontext.min = null;
                     viewcontext.max = null;
                     viewcontext.name = "";
@@ -113,9 +115,6 @@ namespace EGH01.Controllers
                 view = View("SoilPollutionCategories", db);
                 if (menuitem.Equals("SoilPollutionCategories.Create.Create"))
                 {
-                    SoilPollutionCategoriesView viewcontext = db.GetViewContext("SoilPollutionCategoriesCreate") as SoilPollutionCategoriesView;
-                    if (viewcontext != null)
-                    {
                         int code = -1;
                         if (EGH01DB.Types.SoilPollutionCategories.GetNextCode(db, out code))
                         {
@@ -143,7 +142,7 @@ namespace EGH01.Controllers
                                 }
                             }
                             else {
-                                SoilPollutionCategoriesView viewcontexts = db.GetViewContext("SoilPollutionCategoriesCreate") as SoilPollutionCategoriesView;
+                           //     SoilPollutionCategoriesView viewcontexts = db.GetViewContext("SoilPollutionCategoriesCreate") as SoilPollutionCategoriesView;
                              
                                 ViewBag.Error = "Проверьте введенные данные";
                                 view = View("SoilPollutionCategoriesCreate", db);
@@ -154,7 +153,7 @@ namespace EGH01.Controllers
                             }
                         }
                     }
-                }
+                
                 else if (menuitem.Equals("SoilPollutionCategories.Create.Cancel")) view = View("SoilPollutionCategories", db);
             
            

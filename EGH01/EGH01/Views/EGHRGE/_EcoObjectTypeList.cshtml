@@ -20,9 +20,7 @@
 
                 <p><label class="boxdata-label-30">Код типа природоохранного объекта</label> @t.type_code.ToString()</p>
                 <p><label class="boxdata-label-50">Наименование типа природоохранного объекта</label>@t.name.ToString()</p>
-                <p>
-                    <label class="boxdata-label-30">Категория водоохранной территории</label> @t.iswaterobject.ToString()
-                </p>
+                <p> <label class="boxdata-label-50">Категория водоохранной территории</label> @t.waterprotectionarea.name.ToString()</p>
                 <input type="hidden" value="@t.type_code.ToString()" name="type_code">
 
             </div>
