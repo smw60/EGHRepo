@@ -16,7 +16,7 @@ namespace EGH01DB.Types
     {
         public int                 type_code   {get; private set; }   // код водоохранной категории 
         public string              name        {get; private set; }   // наименование водоохранной категории
-        static public PetrochemicalCategories defaulttype { get { return new PetrochemicalCategories (0, "Не определен"); } }  // выдавать при ошибке  
+        static public WaterProtectionArea defaulttype { get { return new WaterProtectionArea(0, "Не определен"); } }  // выдавать при ошибке  
       
         public WaterProtectionArea()
         {

@@ -226,8 +226,8 @@ namespace EGH01DB.Primitives
                     {
                         DateTime date = (DateTime)reader["ДатаОтчета"];
                         string stage = (string)reader["Стадия"];
-                        int predator = (int)reader["Родитель"];
-                        Report parent_report = new Report (predator);
+                        int parent = (int)reader["Родитель"];
+                        Report parent_report = new Report(parent);
                         comment = (string)reader["Комментарий"];
               
                         string xmlContent = (string)reader["ТекстОтчета"];

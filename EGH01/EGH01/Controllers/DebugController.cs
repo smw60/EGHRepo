@@ -65,7 +65,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             string comment = "Comment";
             Report f = new Report();
-            if (Report.GetById(db, 5, out f, out comment))
+            if (Report.GetById(db, 9, out f, out comment))
             {
                 int k = 1;
 
@@ -828,11 +828,12 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //EcoObject ap = new EcoObject();
-                //if (EcoObject.GetById(db, 3, ref ap))
-                //{
-                //    int k = 1;
-                //};
+                EcoObject ap = new EcoObject();
+                if (EcoObject.GetById(db, 1, ref ap))
+                {
+                    
+                    int k = 1;
+                };
             }
             return View();
         }
@@ -1819,8 +1820,8 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //EcoObjectType ct = new EcoObjectType(1);
-                //if (EcoObjectType.GetByCode(db, 1, out ct))
+                //EcoObjectType ct = new EcoObjectType();
+                //if (EcoObjectType.GetByCode(db, 3, out ct))
                 //{
                 //    int k = 1;
                 //};
@@ -1845,8 +1846,9 @@ namespace EGH01.Controllers
             {
 
                 //int type_code = 1;
-                //string name = "Заповедник";
-                //EcoObjectType ct = new EcoObjectType((int)type_code, (string)name);
+                //string name = "Заповедник1";
+                //WaterProtectionArea wpa = new WaterProtectionArea(1);
+                //EcoObjectType ct = new EcoObjectType((int)type_code, (string)name, wpa);
                 //if (EcoObjectType.Create(db, ct))
                 //{
                 //    int k = 1;

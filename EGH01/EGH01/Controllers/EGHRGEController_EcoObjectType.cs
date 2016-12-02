@@ -104,7 +104,7 @@ namespace EGH01.Controllers
                 view = View("EcoObjectType", db);
                 if (menuitem.Equals("EcoObjectType.Create.Create"))
                 {
-                    if (EGH01DB.Types.EcoObjectType.Create(db, new EcoObjectType(0, itv.name)))
+                    if (EGH01DB.Types.EcoObjectType.Create(db, new EcoObjectType(0, itv.name, null))) // blinova
                    {
                        view = View("EcoObjectType", db); 
                    }
@@ -164,7 +164,7 @@ namespace EGH01.Controllers
                 db = new RGEContext();
                 if (menuitem.Equals("EcoObjectType.Update.Update"))
                 {
-                    if (EGH01DB.Types.EcoObjectType.Update(db, new EGH01DB.Types.EcoObjectType(itv.type_code, itv.name))) view = View("EcoObjectType", db);
+                    if (EGH01DB.Types.EcoObjectType.Update(db, new EGH01DB.Types.EcoObjectType(itv.type_code, itv.name, null))) view = View("EcoObjectType", db); // blinova
                 }
                 else if (menuitem.Equals("EcoObjectType.Update.Cancel")) view = View("EcoObjectType", db);
 
