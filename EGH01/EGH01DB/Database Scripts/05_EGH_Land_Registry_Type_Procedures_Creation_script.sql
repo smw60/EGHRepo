@@ -118,9 +118,9 @@ create  procedure EGH.UpdateLandRegistryType(
 					@Наименование nvarchar(max) output,
 					@ЗначениеПДК real output,
 					@ПДКводы real output,
-					@НормДокументЗемля nvarchar(max),
-					@НормДокументВода nvarchar(max),
-					@КодКатегорииЗагрязненияГрунта int) 
+					@НормДокументЗемля nvarchar(max) output,
+					@НормДокументВода nvarchar(max) output,
+					@КодКатегорииЗагрязненияГрунта int output) 
 as begin 
     declare @rc int = -1;
 	update  dbo.НазначениеЗемель 
@@ -140,14 +140,13 @@ go
 create procedure EGH.GetNextLandRegistryTypeCode(@КодНазначенияЗемель int output)
  as begin
 	declare @rc int = -1;
-	set @КодНазначенияЗемель =(select max(КодНазначенияЗемель) from dbo.НазначениеЗемель) + 1;
-	if @КодНазначенияЗемель is null 
-	begin
-		set @КодНазначенияЗемель = 1;
-		set @rc = 1;
-	end;
-	else
+	set @КодНазначенияЗемель =(select max(КодНазначенияЗемель)+1 from dbo.НазначениеЗемель);
 	set @rc = @@ROWCOUNT;
+	if @КодНазначенияЗемель is null 
+		begin
+			set @КодНазначенияЗемель = 1;
+			set @rc = 1;
+		end;
 	return @rc;    
 end;
 go

@@ -341,31 +341,28 @@ namespace EGH01DB.Objects
                         int ecoobject_type_code = (int)reader["КодТипаПриродоохранногоОбъекта"];
                         string ecoobject_type_name = (string)reader["НаименованиеТипаПриродоохранногоОбъекта"];
 
-                        int? cat_water_name;
-                        cat_water_name = (reader["КатегорияВодоохрТер"] == DBNull.Value) ? null : (int?)reader["КатегорияВодоохрТер"];
+                        int cat_water_name = (int)reader["КатегорияВодоохрТер"];
                         bool iswaterobject;
-                        WaterProtectionArea water_protection_area = new WaterProtectionArea();
-                        if (cat_water_name != null)
-                        {
-                            water_protection_area = new WaterProtectionArea((int)cat_water_name);
-                            iswaterobject = true;
-                        }
-                        else
-                        {
-                            water_protection_area = null;
-                            iswaterobject = true;
-                        }
+                        if (cat_water_name==0 ) iswaterobject = true; else iswaterobject= false ;
+                        WaterProtectionArea water_protection_area = new WaterProtectionArea(cat_water_name);
                         EcoObjectType ecoobjecttype = new EcoObjectType(ecoobject_type_code, ecoobject_type_name, water_protection_area);
+                    
                         int cadastre_type_code = (int)reader["КодТипаНазначенияЗемель"];
                         string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
                         float pdk = (float)reader["ПДК"];
                         float water_pdk_coef = (float)reader["ПДКводы"];
                         string ground_doc_name = (string)reader["НормДокументЗемля"];
                         string water_doc_name = (string)reader["НормДокументВода"];
+                        int ground_category_code = (int)reader["КодКатегорииЗагрязненияГрунта"];
+                        string ground_category_name = (string)reader["НаименованиеКатегорииЗагрязненияГрунта"];
+                        float min = (float)reader["МинДиапазон"];
+                        float max = (float)reader["МаксДиапазон"];
+                        SoilPollutionCategories soilpollutioncategory = new SoilPollutionCategories(ground_category_code, ground_category_name, min, max);
+
 
                         CadastreType cadastre_type = new CadastreType(cadastre_type_code, (string)cadastre_type_name,
                                                                         pdk, water_pdk_coef,
-                                                                        ground_doc_name, water_doc_name);
+                                                                        ground_doc_name, water_doc_name, soilpollutioncategory);
                         string ecoobject_name = (string)reader["НаименованиеПриродоохранногоОбъекта"];
 
 

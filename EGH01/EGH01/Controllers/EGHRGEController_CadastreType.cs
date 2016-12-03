@@ -115,7 +115,7 @@ namespace EGH01.Controllers
                     {
                         String name = cd.name;
 
-                        EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id,name,0.0f,0.0f,"ПДК","ПДК");
+                        EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id,name,0.0f,0.0f,"ПДК","ПДК", null); // blinova
 
                                 if (EGH01DB.Types.CadastreType.Create(db, cadastre_type))
                                 {
@@ -195,7 +195,7 @@ namespace EGH01.Controllers
                     float water_pdk_coef = cd.water_pdk_coef;
                     string ground_doc_name = cd.ground_doc_name;
                     string water_doc_name = cd.water_doc_name;
-                    EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id, name, pdk_coef, water_pdk_coef, ground_doc_name, water_doc_name);
+                    EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id, name, pdk_coef, water_pdk_coef, ground_doc_name, water_doc_name, null); //blinova
                     if (EGH01DB.Types.CadastreType.Update(db, cadastre_type))
                     {
                         view = View("CadastreType", db);
