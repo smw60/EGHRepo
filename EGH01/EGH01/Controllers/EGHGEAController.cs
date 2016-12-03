@@ -23,8 +23,27 @@ namespace EGH01.Controllers
                 db = new GEAContext();
                 ViewBag.msg = "Соединение с базой данных установлено";
 
+            }
+            catch (RGEContext.Exception e)
+            {
+                ViewBag.msg = e.message;
+            }
+            finally
+            {
+                //if (db != null) db.Disconnect();
+            }
 
-
+            return View("CadastreType", db);
+        }
+       
+        public ActionResult XIndex()
+        {
+            ViewBag.EGHLayout = "GEA";
+            GEAContext db = null;
+            try
+            {
+                db = new GEAContext();
+                ViewBag.msg = "Соединение с базой данных установлено";
 
             }
             catch (RGEContext.Exception e)
@@ -38,6 +57,10 @@ namespace EGH01.Controllers
 
             return View("CadastreType", db);
         }
+
+
+
+
     }
 }
 

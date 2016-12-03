@@ -7,11 +7,18 @@
 @model EGH01DB.CEQContext
 @{
     
+    Menu start = new Menu(
+                         new Menu.MenuItem("Выбрать", "ChoiceForecastResult.Choice", true),
+                         new Menu.MenuItem("Отказаться", "ChoiceForecastResult.Cancel", true)
+                         );
+
+
+
+    CEQViewContext context = Model.GetViewContext(CEQViewContext.VIEWNAME) as CEQViewContext;
+    if (context == null) { Model.SaveViewContext(CEQViewContext.VIEWNAME, context = new CEQViewContext()); }
     
-    
-     List<SelectListItem> reportlist = new List<SelectListItem>();
-   
-     {
+    List<SelectListItem> reportlist = new List<SelectListItem>();
+    {
         List<EGH01DB.RGEContext.ECOForecast> flist = new List<EGH01DB.RGEContext.ECOForecast>();
         if ( Helper.GetListECOForecast(Model,  ref flist))
         {
@@ -29,16 +36,7 @@
             
         }
      }
-     
-      
-    CEQViewContext context = Model.GetViewContext(CEQViewContext.VIEWNAME) as CEQViewContext;
-    if (context == null) { Model.SaveViewContext(CEQViewContext.VIEWNAME, context = new CEQViewContext()); }
    
-    Menu start = new Menu(
-                          new Menu.MenuItem("Выбрать",    "ChoiceForecastResult.Choice", true),
-                          new Menu.MenuItem("Отказаться", "ChoiceForecastResult.Cancel", true)
-                          );
-
     if (context.idforecat != null)
     {
         SelectListItem si = reportlist.FirstOrDefault(s => s.Value.Equals(context.idforecat.ToString()));
