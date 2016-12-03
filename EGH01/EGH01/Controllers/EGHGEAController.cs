@@ -33,10 +33,10 @@ namespace EGH01.Controllers
                 //if (db != null) db.Disconnect();
             }
 
-            return View("CadastreType", db);
+            return View();
         }
        
-        public ActionResult XIndex()
+        public ActionResult ChoiceEvalutionResult()
         {
             ViewBag.EGHLayout = "GEA";
             GEAContext db = null;
@@ -44,6 +44,8 @@ namespace EGH01.Controllers
             {
                 db = new GEAContext();
                 ViewBag.msg = "Соединение с базой данных установлено";
+
+
 
             }
             catch (RGEContext.Exception e)
@@ -55,7 +57,7 @@ namespace EGH01.Controllers
                 //if (db != null) db.Disconnect();
             }
 
-            return View("CadastreType", db);
+            return View(db);
         }
 
 

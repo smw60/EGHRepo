@@ -25,6 +25,8 @@ namespace EGH01DB
 
 
         }
+
+
         List<ViewContextEntry> listviewcontext = null;
         public CEQContext(Controller controller)
         {
@@ -92,9 +94,6 @@ namespace EGH01DB
             }
             return rc;
         }
-
-
-
 
         public void Disconnect()
         {

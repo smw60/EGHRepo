@@ -71,10 +71,20 @@ namespace EGH01DB
                   return (XmlNode)rc; 
             }
 
-
         }
 
+        
+        public class ECOEvalutionList: List<ECOEvalution>
+        { 
+        
+         //public bool Get(IDBContext db, out ECOEvalutionList list)
+         //{ 
 
+
+
+         //} 
+
+        }
         
 
 
