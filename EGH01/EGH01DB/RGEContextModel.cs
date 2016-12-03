@@ -140,6 +140,7 @@ namespace EGH01DB
                 if (water_blur != null) this.waterblur = new WaterBlur(water_blur);
                 else this.waterblur = null;
 
+
                 this.dateconcentrationinsoil = Helper.GetDateTimeAttribute(node, "dateconcentrationinsoil", DateTime.MinValue);
                 this.datewatercompletion = Helper.GetDateTimeAttribute(node, "datewatercompletion", DateTime.MinValue);
                 this.datemaxwaterconc = Helper.GetDateTimeAttribute(node, "datemaxwaterconc", DateTime.MinValue);
@@ -158,8 +159,8 @@ namespace EGH01DB
                 rc.SetAttribute("datemaxwaterconc", this.datemaxwaterconc.ToShortDateString());
                // rc.SetAttribute("errormessage", this.errormessage);
                 rc.AppendChild(doc.ImportNode(this.incident.toXmlNode(), true));
-                rc.AppendChild(doc.ImportNode(this.waterblur.toXmlNode(), true));
                 rc.AppendChild(doc.ImportNode(this.groundblur.toXmlNode(), true));
+                rc.AppendChild(doc.ImportNode(this.waterblur.toXmlNode(), true));
                 return (XmlNode)rc;
             }
        }    

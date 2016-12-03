@@ -490,6 +490,11 @@ label[aria-required]::after {
     position: relative;
     left: 140px;
 }
+.boxdata-textarea-80 {
+    float: left;
+    width: 75%;
+    margin-bottom:10px;
+}
 
 .boxdata-input-50 {
     /*display:flexbox;
