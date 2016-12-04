@@ -1,0 +1,5 @@
+<WaterPollutionCategories>
+  <WaterPollutionCategories code="1" name="Слабое" min="1" max="5" />
+  <WaterPollutionCategories code="2" name="Среднее" min="5,1" max="100" />
+  <WaterPollutionCategories code="3" name="Сильное" min="100,1" max="1000" />
+</WaterPollutionCategories>

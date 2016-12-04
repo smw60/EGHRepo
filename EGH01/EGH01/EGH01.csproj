@@ -190,6 +190,7 @@
     <Compile Include="Controllers\EGHGEAController_Report.cs" />
     <Compile Include="Controllers\EGHORTController.cs" />
     <Compile Include="Controllers\EGHORTController_EmergencyClass.cs" />
+    <Compile Include="Controllers\EGHORTController_RehabilitationMethods.cs" />
     <Compile Include="Controllers\EGHORTController_Report.cs" />
     <Compile Include="Controllers\EGHORTController_SoilCleaningMethod.cs" />
     <Compile Include="Controllers\EGHORTController_PenetrationDepth.cs" />
@@ -222,6 +223,7 @@
     <Compile Include="Models\EGHCEQ\ReportView.cs" />
     <Compile Include="Models\EGHGEA\GEAContextView.cs" />
     <Compile Include="Models\EGHORT\EmergencyClassView.cs" />
+    <Compile Include="Models\EGHORT\RehabilitationMethodsView.cs" />
     <Compile Include="Models\EGHORT\SoilCleaningMethodView.cs" />
     <Compile Include="Models\EGHORT\PenetrationDepthView .cs" />
     <Compile Include="Models\EGHORT\WaterPollutionCategoriesView.cs" />
@@ -464,6 +466,11 @@
     <Content Include="Views\EGHRGE\RiskObjectTypeCreate.cshtml" />
     <Content Include="Views\EGHRGE\RiskObjectTypeDelete.cshtml" />
     <Content Include="Views\EGHRGE\RiskObjectTypeUpdate.cshtml" />
+    <Content Include="Views\EGHORT\RehabilitationMethods.cshtml" />
+    <Content Include="Views\EGHORT\RehabilitationMethodsCreate.cshtml" />
+    <Content Include="Views\EGHORT\RehabilitationMethodsDelete.cshtml" />
+    <Content Include="Views\EGHORT\RehabilitationMethodsUpdate.cshtml" />
+    <Content Include="Views\EGHORT\_RehabilitationMethods.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

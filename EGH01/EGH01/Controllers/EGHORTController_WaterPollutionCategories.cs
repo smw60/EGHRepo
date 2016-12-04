@@ -64,20 +64,20 @@ namespace EGH01.Controllers
                         }
                     }
                 }
-                //else if (menuitem.Equals("SoilPollutionCategories.Excel"))
-                //{
-                //    EGH01DB.Types.SoilPollutionCategoriesList splist = new EGH01DB.Types.SoilPollutionCategoriesList(db);
-                //    XmlNode node = splist.toXmlNode();
-                //    XmlDocument doc = new XmlDocument();
-                //    XmlNode nnode = doc.ImportNode(node, true);
-                //    doc.AppendChild(nnode);
-                //    doc.Save(Server.MapPath("~/App_Data/SoilPollutionCategories.xml"));
-                //    view = View("Index");
+                else if (menuitem.Equals("WaterPollutionCategories.Excel"))
+                {
+                    EGH01DB.Types.WaterPollutionCategoriesList wplist = new EGH01DB.Types.WaterPollutionCategoriesList(db);
+                    XmlNode node = wplist.toXmlNode();
+                    XmlDocument doc = new XmlDocument();
+                    XmlNode nnode = doc.ImportNode(node, true);
+                    doc.AppendChild(nnode);
+                    doc.Save(Server.MapPath("~/App_Data/WaterPollutionCategories.xml"));
+                    view = View("Index");
 
-                //    view = File(Server.MapPath("~/App_Data/SoilPollutionCategories.xml"), "text/plain", "Категории загрязнения грунтов.xml");
+                    view = File(Server.MapPath("~/App_Data/WaterPollutionCategories.xml"), "text/plain", "Категории загрязнения грунтовых вод.xml");
 
 
-                //}
+                }
 
             }
             catch (RGEContext.Exception e)

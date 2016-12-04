@@ -164,6 +164,38 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
+
+   static public EGH01DB.Types.WaterProtectionAreaList GetListWaterProtectionArea(EGH01DB.IDBContext dbcontext)
+        {
+            List<WaterProtectionArea> list = new List<WaterProtectionArea>();
+        EGH01DB.Types.WaterProtectionAreaList rc = new EGH01DB.Types.WaterProtectionAreaList(list);
+            if (Helper.GetListWaterProtectionArea(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.WaterProtectionAreaList(list);
+            }
+            return rc;
+        }
+        static public EGH01DB.Types.PenetrationDepthList GetListPenetrationDepth(EGH01DB.IDBContext dbcontext)
+        {
+            List<PenetrationDepth> list = new List<PenetrationDepth>();
+            EGH01DB.Types.PenetrationDepthList rc = new EGH01DB.Types.PenetrationDepthList(list);
+            if (Helper.GetListPenetrationDepth(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.PenetrationDepthList(list);
+            }
+            return rc;
+        }
+        static public EGH01DB.Types.WaterPollutionCategoriesList GetListWaterPollutionCategories(EGH01DB.IDBContext dbcontext)
+        {
+            List<WaterPollutionCategories> list = new List<WaterPollutionCategories>();
+            EGH01DB.Types.WaterPollutionCategoriesList rc = new EGH01DB.Types.WaterPollutionCategoriesList(list);
+            if (Helper.GetListWaterPollutionCategories(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.WaterPollutionCategoriesList(list);
+            }
+            return rc;
+        }
+        
         static public bool GetListGroundType(EGH01DB.IDBContext dbcontext, ref List<GroundType> list_type)
         { 
             bool rc = false;

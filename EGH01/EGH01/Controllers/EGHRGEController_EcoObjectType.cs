@@ -106,7 +106,7 @@ namespace EGH01.Controllers
                 {
                     EGH01DB.Types.WaterProtectionArea water = new WaterProtectionArea();
                     if (EGH01DB.Types.WaterProtectionArea.GetByCode(db, itv.list_water, out water)) {
-                        if (EGH01DB.Types.EcoObjectType.Create(db, new EcoObjectType(0, itv.name,water)))
+                        if (EGH01DB.Types.EcoObjectType.Create(db, new EcoObjectType(0, itv.name, water)))
                         {
                             view = View("EcoObjectType", db);
                         }
