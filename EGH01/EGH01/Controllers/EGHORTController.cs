@@ -50,13 +50,13 @@ namespace EGH01.Controllers
             return View(oData);
         }
 
-        public ActionResult Report()
-        {
-            //if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
-            //else ViewBag.msg = "соединение  c БД  не установлено";
+        //public ActionResult Report()
+        //{
+        //    //if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
+        //    //else ViewBag.msg = "соединение  c БД  не установлено";
 
-            return View();
-        }
+        //    return View();
+        //}
 
 	}
 }

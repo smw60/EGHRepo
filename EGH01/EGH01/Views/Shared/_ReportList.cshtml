@@ -54,9 +54,56 @@ foreach (Report t in @Model)
         </div>
 
     }
+}
+}
+else if (ViewBag.stage.Equals("С"))
+{
+    foreach (Report t in @Model)
+    {
+
+        using (Html.BeginForm("Report", "EGHGEA"))
+        {
+
+            <div class="box">
+                <div class="boxdata">
+                    <p>
+                        <label class="boxdata-label-20">@t.line.ToString()</label>
+                        <textarea class="boxdata-textarea-80" name="comment">@t.comment.ToString()</textarea>
+                    </p>
+                    <input type="hidden" value="@t.id" name="id">
+
+                </div>
+                @Html.Partial("_TypeLineMenu", menu)
+
+            </div>
+
+        }
     }
 }
+else if (ViewBag.stage.Equals("Т"))
+{
+    foreach (Report t in @Model)
+    {
 
+        using (Html.BeginForm("Report", "EGHORT"))
+        {
+
+            <div class="box">
+                <div class="boxdata">
+                    <p>
+                        <label class="boxdata-label-20">@t.line.ToString()</label>
+                        <textarea class="boxdata-textarea-80" name="comment">@t.comment.ToString()</textarea>
+                    </p>
+                    <input type="hidden" value="@t.id" name="id">
+
+                </div>
+                @Html.Partial("_TypeLineMenu", menu)
+
+            </div>
+
+        }
+    }
+}
 
 
 

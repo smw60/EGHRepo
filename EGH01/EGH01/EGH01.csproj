@@ -187,8 +187,10 @@
     <Compile Include="Controllers\EGHController.cs" />
     <Compile Include="Controllers\EGHGEAController.cs" />
     <Compile Include="Controllers\EGHCEQController_CadastreType.cs" />
+    <Compile Include="Controllers\EGHGEAController_Report.cs" />
     <Compile Include="Controllers\EGHORTController.cs" />
     <Compile Include="Controllers\EGHORTController_EmergencyClass.cs" />
+    <Compile Include="Controllers\EGHORTController_Report.cs" />
     <Compile Include="Controllers\EGHORTController_SoilCleaningMethod.cs" />
     <Compile Include="Controllers\EGHORTController_PenetrationDepth.cs" />
     <Compile Include="Controllers\EGHORTController_SoilPollutionCategories.cs" />
@@ -213,7 +215,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AllReportView.cs" />
     <Compile Include="Models\EGHCAI\RiskObject.cs" />
     <Compile Include="Models\EGHCCO\PetrochemicalTypeView.cs" />
     <Compile Include="Models\EGHCEQ\CEQViewContext.cs" />
@@ -332,8 +333,6 @@
     <Content Include="Views\EGHCEQ\IndexDebug..cshtml" />
     <Content Include="Views\EGHCCO\Index.cshtml" />
     <Content Include="Views\EGHCEQ\_Report.cshtml" />
-    <Content Include="Views\EGHGEA\Report.cshtml" />
-    <Content Include="Views\EGHORT\Report.cshtml" />
     <Content Include="Views\EGHRGE\Index.cshtml" />
     <Content Include="Views\EGHRGE\IncidentType.cshtml" />
     <Content Include="Views\Shared\_TypeHeadMenu.cshtml" />
@@ -379,7 +378,6 @@
     <Content Include="Views\EGHRGE\CadastreTypeCreate.cshtml" />
     <Content Include="Views\EGHRGE\CadastreTypeDelete.cshtml" />
     <Content Include="Views\EGHRGE\CadastreTypeUpdate.cshtml" />
-    <Content Include="Views\EGHGEA\Report - Копировать.cshtml" />
     <Content Include="Views\EGHGEA\CadastreType.cshtml" />
     <Content Include="Views\EGHGEA\_CadastreTypeList.cshtml" />
     <Content Include="Views\EGHGEA\CadastreTypeUpdate.cshtml" />
@@ -462,7 +460,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\AllReportView\" />
     <Folder Include="Views\Debug\" />
   </ItemGroup>
   <ItemGroup>
