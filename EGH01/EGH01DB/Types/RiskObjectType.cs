@@ -12,7 +12,7 @@ namespace EGH01DB.Types
 {
     public class RiskObjectType
     {
-        public int    type_code { get; private set; }   // код типа техногенного объекта 
+        public int    type_code { get; set; }   // код типа техногенного объекта 
         public string name { get; private set; }       // наименование типа ехногенного объекта
         static public RiskObjectType defaulttype { get { return new RiskObjectType(0, "Не определен"); } }  // выдавать при ошибке  
       
