@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using EGH01.Models.EGHORT;
 using EGH01DB.Primitives;
+using EGH01DB.Types;
+using System.Xml;
 
 namespace EGH01.Controllers
 {
@@ -63,20 +65,21 @@ namespace EGH01.Controllers
                         }
                     }
                 }
-                //else if (menuitem.Equals("SoilPollutionCategories.Excel"))
-                //{
-                //    EGH01DB.Types.SoilPollutionCategoriesList splist = new EGH01DB.Types.SoilPollutionCategoriesList(db);
-                //    XmlNode node = splist.toXmlNode();
-                //    XmlDocument doc = new XmlDocument();
-                //    XmlNode nnode = doc.ImportNode(node, true);
-                //    doc.AppendChild(nnode);
-                //    doc.Save(Server.MapPath("~/App_Data/SoilPollutionCategories.xml"));
-                //    view = View("Index");
+              
+                else if (menuitem.Equals("PenetrationDepth.Excel"))
+                {
+                    EGH01DB.Types.PenetrationDepthList pdlist = new EGH01DB.Types.PenetrationDepthList(db);
+                    XmlNode node = pdlist.toXmlNode();
+                    XmlDocument doc = new XmlDocument();
+                    XmlNode nnode = doc.ImportNode(node, true);
+                    doc.AppendChild(nnode);
+                    doc.Save(Server.MapPath("~/App_Data/PenetrationDepth.xml"));
+                    view = View("Index");
 
-                //    view = File(Server.MapPath("~/App_Data/SoilPollutionCategories.xml"), "text/plain", "Категории загрязнения грунтов.xml");
+                    view = File(Server.MapPath("~/App_Data/PenetrationDepth.xml"), "text/plain", "Категории проникновения нефтепродукт.xml");
 
 
-                //}
+                }
 
             }
             catch (RGEContext.Exception e)
@@ -232,4 +235,7 @@ namespace EGH01.Controllers
             return view;
         }
     }
+
+      
+    
 }

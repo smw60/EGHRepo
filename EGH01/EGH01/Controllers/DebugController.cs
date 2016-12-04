@@ -443,7 +443,21 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //List<SoilPollutionCategories> list = new List<SoilPollutionCategories>();
+                
                 //if (Helper.GetListSoilPollutionCategories(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult SoilPollutionCategories_Volume_Cadastre() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //SoilPollutionCategories r = new SoilPollutionCategories();
+
+                //if (SoilPollutionCategories.GetByVolume_Cadastre(db, 1.0f, 1, out r))
                 //{
                 //    int k = 1;
                 //};
@@ -816,11 +830,11 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                List<EcoObject> list = new List<EcoObject>();
-                if (Helper.GetListEcoObject(db, ref list))
-                {
-                    int k = 1;
-                };
+                //List<EcoObject> list = new List<EcoObject>();
+                //if (Helper.GetListEcoObject(db, ref list))
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -841,7 +855,7 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //if (EcoObject.DeleteById(db, 3)) // удалена
+                //if (EcoObject.DeleteById(db, 21)) // удалена
                 //{
                 //    int k = 1;
                 //};
@@ -869,11 +883,11 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
 
-                //int id = 4;
+                //int id = 21;
                 //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 150.0f, 20.0f);
                 //CadastreType cad_type = new CadastreType(1);
                 //EcoObjectType etype = new EcoObjectType(1);
-                //EcoObject ecoobj = new EcoObject(4, point, etype, cad_type, "new", false);
+                //EcoObject ecoobj = new EcoObject(21, point, etype, cad_type, "new", false);
                 //if (EcoObject.Update(db, ecoobj))
                 //{
                 //    int k = 1;

@@ -226,6 +226,17 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
+                    SqlParameter parm = new SqlParameter("@КодТипаПриродоохранногоОбъекта", SqlDbType.Int);
+                    parm.Value = ecoobject.ecoobjecttype.type_code;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КодТипаНазначенияЗемель", SqlDbType.Int);
+                    parm.Value = ecoobject.cadastretype.type_code;
+                    cmd.Parameters.Add(parm);
+                }
+
+                {
                     SqlParameter parm = new SqlParameter("@НаименованиеПриродоохранногоОбъекта", SqlDbType.NVarChar);
                     parm.Value = ecoobject.name;
                     cmd.Parameters.Add(parm);
@@ -253,16 +264,6 @@ namespace EGH01DB.Objects
                 {
                     SqlParameter parm = new SqlParameter("@ВысотаУровнемМоря", SqlDbType.Real);
                     parm.Value = ecoobject.height;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@КодТипаНазначенияЗемель", SqlDbType.Int);
-                    parm.Value = ecoobject.cadastretype.type_code;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@КодТипаПриродоохранногоОбъекта", SqlDbType.Int);
-                    parm.Value = ecoobject.ecoobjecttype.type_code;
                     cmd.Parameters.Add(parm);
                 }
                 {

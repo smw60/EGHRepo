@@ -261,4 +261,30 @@ namespace EGH01DB.Types
             return (XmlNode)rc;
         }
     }
+    public class WaterPollutionCategoriesList : List<WaterPollutionCategories>
+    {
+        List<EGH01DB.Types.WaterPollutionCategories> list_waterpropertionCategories = new List<EGH01DB.Types.WaterPollutionCategories>();
+        public WaterPollutionCategoriesList()
+        {
+
+        }
+        public WaterPollutionCategoriesList(List<WaterPollutionCategories> list)
+            : base(list)
+        {
+
+        }
+        public WaterPollutionCategoriesList(EGH01DB.IDBContext dbcontext)
+            : base(Helper.GetListWaterPollutionCategories(dbcontext))
+        {
+
+        }
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("WaterPollutionCategories");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+            return (XmlNode)rc;
+        }
+    }
 }
