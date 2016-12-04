@@ -1,16 +1,32 @@
 ﻿@using EGH01DB.Primitives;
-@model EGH01DB.RGEContext
-
 @{
     ViewBag.Title = "Report";
     Layout = "~/Views/Shared/EGHLayout.cshtml";
 
-   
-    EGH01DB.RGEContext db = new EGH01DB.RGEContext();
+
+    String stage = ViewBag.stage;
     List<Report> list = new List<Report>();
+
+    if (stage.Equals("П")) { 
+        
+    EGH01DB.RGEContext db = new EGH01DB.RGEContext();
+     
     if (db != null)
     {
-        Helper.GetListReport(db, ref list);
-    };
+
+        Helper.GetListReportByStage(db, stage, ref list);
+    }
+    }
+    else if (stage.Equals("Р")) { 
+        
+    EGH01DB.CEQContext db1 = new EGH01DB.CEQContext();
+     
+    if (db1 != null)
+    {
+        Helper.GetListReportByStage(db1, stage, ref list);
+    }
+   }
+    
 }
+
 @Html.Partial("_ReportList", list)
