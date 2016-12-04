@@ -128,11 +128,23 @@
             {
                 <h2 class="double"><span>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") </span><span>Классификация аварий</span></h2>
             }
-
+            else if (ViewBag.EGHLayout == "ORT.Report")
+            {
+                <h2 class="double"><span>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") </span><span>Отчеты</span></h2>
+            }
             else if (ViewBag.EGHLayout == "CEQ.CadastreType")
             {
                 <h2 class="double"><span>@Html.ActionLink("Оценка прогнозируемого состояния", "Index", "EGHCEQ") </span><span>Предельно-допустимые концентрации</span></h2>
             }
+            else if (ViewBag.EGHLayout == "CEQ.Report")
+            {
+                <h2 class="double"><span>@Html.ActionLink("Оценка прогнозируемого состояния", "Index", "EGHCEQ") </span><span>Отчеты</span></h2>
+            }
+            else if (ViewBag.EGHLayout == "GEA.Report")
+            {
+                <h2 class="double"><span>@Html.ActionLink("Классификация прогнозируемого состояния", "Index", "EGHCEQ") </span><span>Отчеты</span></h2>
+            }
+            
         </div>
         <div class=" col-xs-3">
             <div id="time">Текущее время: <span id="doc_time"></span><br />Последнее обновление: <span id="version">@((new FileInfo(Assembly.GetExecutingAssembly().Location)).LastWriteTime.ToString("dd.M.yyyy HH:mm"))</span></div>
@@ -164,8 +176,8 @@
             <li class="dropdown">
                 <ul class="dropdown-menu" role="menu">
                     <li>@Html.ActionLink("EGHRGE-Прогноз", "Index", "EGHRGE")  </li>
-                    <li>@Html.ActionLink("EGHGEA-Оценка прогнозируемого состояния", "Index", "EGHCEQ")  </li>
-                    <li>@Html.ActionLink("EGHORT-Классификация прогнозируемого состояния", "Index", "EGHGEA")  </li>
+                    <li>@Html.ActionLink("EGHCEQ-Оценка прогнозируемого состояния", "Index", "EGHCEQ")  </li>
+                    <li>@Html.ActionLink("EGHGEA-Классификация прогнозируемого состояния", "Index", "EGHGEA")  </li>
                     <li>@Html.ActionLink("EGHORT-Выбор технологий реабилитации", "Index", "EGHORT")  </li>
                     <li>@Html.ActionLink("EGHCCO-Химический состав нефтей", "Index", "EGHCCO")  </li>
                     <li>@Html.ActionLink("EGHCAI-Техногенные объекты", "Index", "EGHCAI")  </li>
@@ -206,7 +218,7 @@
                     <li>@Html.ActionLink("Результаты прогнозирования", "ChoiceForecastResult", "EGHCEQ")</li>
                     <li>@Html.ActionLink("Оценка прогнозируемого состояния", "EvalutionForecast", "EGHCEQ")</li>
                     <li>@Html.ActionLink("Предельно-допустимые концентрации", "CadastreType", "EGHCEQ")</li>
-                    <li>@Html.ActionLink("Отчеты", "Index", "EGHCEQ")</li>
+                    <li>@Html.ActionLink("Отчеты", "Report", "EGHCEQ")</li>
                 }
 
                 else if (ViewBag.EGHLayout == "GEA")
@@ -214,7 +226,8 @@
                     <li>@Html.ActionLink("Результаты оценки прогнозируемого  состояния", "ChoiceEvalutionResult", "EGHGEA")</li>
                     <li>@Html.ActionLink("Классификация прогнозируемого состояния", "ClassificationEvalution", "EGHGEA")</li>
                     <li>@Html.ActionLink("Критерии классификации", "Index", "EGHGEA")</li>
-                    <li>@Html.ActionLink("Отчеты", "Index", "EGHGEA")</li>
+                    <li>@Html.ActionLink("Отчеты", "Report", "EGHGEA")</li>
+                    
                 }
 
                 else if (ViewBag.EGHLayout == "CCO")
@@ -240,7 +253,7 @@
                 {
                     <li>@Html.ActionLink("Результаты классификации прогнозируемого состояния", "Index", "EGHORT")</li>
                     <li>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT")</li>
-                    <li>@Html.ActionLink("Отчеты", "Index", "EGHORT")</li>
+                    <li>@Html.ActionLink("Отчеты", "Report", "EGHORT")</li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">
                             Критерии выбора технологий<span class="caret"></span>

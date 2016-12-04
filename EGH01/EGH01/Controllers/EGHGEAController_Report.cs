@@ -2,25 +2,25 @@
 using System.Web.Mvc;
 using EGH01DB;
 using EGH01DB.Primitives;
-using EGH01.Models.EGHRGE;
+using EGH01.Models.EGHGEA;
 
 
 namespace EGH01.Controllers
 {
-    public partial class EGHRGEController : Controller
+    public partial class EGHGEAController : Controller
     {
-        // GET: EGHRGEController_Report
+        // GET: EGHGEAController_Report
         public ActionResult Report()
         {
-            RGEContext db = null;
-            ViewBag.EGHLayout = "RGE.Report";
+            GEAContext db = null;
+            ViewBag.EGHLayout = "GEA.Report";
             ActionResult view = View("Index");
-            ViewBag.stage = "П";
+            ViewBag.stage = "С";
 
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new RGEContext();
+                db = new GEAContext();
                 ViewBag.msg = "Соединение с базой данных установлено";
                 view = View("Report", db);
 
@@ -38,7 +38,7 @@ namespace EGH01.Controllers
                             EGH01DB.Primitives.Report report = new EGH01DB.Primitives.Report();
                             if (EGH01DB.Primitives.Report.GetById(db, c, out report, out comment))
                             {
-                                EGH01.Models.EGHRGE.ReportView rv = new ReportView();
+                                EGH01.Models.EGHRGE.ReportView rv = new Models.EGHRGE.ReportView();
                                 rv.rep = report.ToHTML();
                                 ViewBag.msg = rv.rep;
                                 view = View("ReportWatch", report);
@@ -108,15 +108,15 @@ namespace EGH01.Controllers
         [HttpPost]
         public ActionResult ReportDelete(int id)
         {
-            RGEContext db = null;
-            ViewBag.EGHLayout = "RGE";
+            GEAContext db = null;
+            ViewBag.EGHLayout = "GEA.Report";
             ActionResult view = View("Index");
-            ViewBag.stage = "П";
+            ViewBag.stage = "С";
 
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new RGEContext();
+                db = new GEAContext();
                 if (menuitem.Equals("Report.Delete.Delete"))
                 {
                     if (EGH01DB.Primitives.Report.DeleteById(db, id))
