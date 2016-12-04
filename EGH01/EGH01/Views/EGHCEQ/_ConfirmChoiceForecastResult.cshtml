@@ -6,15 +6,15 @@
 @{
     
     
-    CEQViewContext context = Model.GetViewContext("ChoiceForecastResult") as CEQViewContext;
-    if (context == null) {Model.SaveViewContext("ChoiceForecastResult", context = new CEQViewContext()); };
+    CEQViewContext context = Model.GetViewContext(CEQViewContext.VIEWNAME) as CEQViewContext;
+    if (context == null) {Model.SaveViewContext(CEQViewContext.VIEWNAME, context = new CEQViewContext()); };
     
 }
 
-@if (context.ecoevalution != null)
+@if (context.idforecat != null)
 {
     <div class="box">
-        <h4>@Html.ActionLink(context.ecoevalution.line, "Index")</h4>
+        <h4>@Html.ActionLink(context.ecoforecat.line, "Index")</h4>
     </div>
 }
 

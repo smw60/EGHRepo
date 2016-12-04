@@ -21,7 +21,7 @@ namespace EGH01.Controllers
             GEAContext db = null;
             try
             {
-                db = new GEAContext();
+                db = new GEAContext(this);
                
        
 
@@ -35,22 +35,23 @@ namespace EGH01.Controllers
                 //if (db != null) db.Disconnect();
             }
 
-            return View();
+            return View(db);
         }
        
         public ActionResult ChoiceEvalutionResult()
         {
             ViewBag.EGHLayout = "GEA";
-            ActionResult view = View("Index");
             GEAContext db = null;
+            ActionResult view = View("Index", db);
             try
             {
-                db = new GEAContext();
+                db = new GEAContext(this);
                 GEAContextView context = GEAContextView.HandlerChoice(db,this.Request.Params);
                 switch(context.Regim)
                 { 
-                 case GEAContextView.REGIM.CHOICE:   break;
-                 case GEAContextView.REGIM.CANCEL: context.Regim = GEAContextView.REGIM.INIT;  break; 
+                 case GEAContextView.REGIM.INIT:   view = View(db); break;
+                 case GEAContextView.REGIM.CHOICE: view = View("Index", db); context.Regim = GEAContextView.REGIM.INIT;  break;
+                 case GEAContextView.REGIM.CANCEL: view = View("Index", db); context.Regim = GEAContextView.REGIM.INIT;  break; 
                  default:  view = View(db); break;
                 }                 
 

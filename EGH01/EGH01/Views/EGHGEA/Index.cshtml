@@ -1,7 +1,10 @@
-﻿
+﻿@model EGH01DB.GEAContext
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/EGHLayout.cshtml";
 }
 
+@if (Model != null)
+{
+    @Html.Partial("_ConfirmChoiceEvalutionResult", Model)
+}
 

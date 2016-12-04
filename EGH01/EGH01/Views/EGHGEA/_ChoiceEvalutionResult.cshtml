@@ -7,7 +7,7 @@
 @model EGH01DB.GEAContext
 @{
     
-     GEAContextView context = (GEAContextView)Model.GetViewContext(GEAContextView.VIEWNAME);
+    GEAContextView context = (GEAContextView)Model.GetViewContext(GEAContextView.VIEWNAME);
     if (context == null) { Model.SaveViewContext(GEAContextView.VIEWNAME, context = new GEAContextView()); };
     
     List<SelectListItem> reportlist = new List<SelectListItem>();
@@ -40,14 +40,13 @@
 }
 
 
-@*@if( context.RegimChoice == CEQViewContext.REGIM_CHOICE.CHOICE)
-{
-    @Html.Partial("_ConfirmChoiceForecastResult",Model);
-}*@ 
 
+@Html.Partial("_ConfirmChoiceEvalutionResult", Model)
 
-@using (Html.BeginForm("ChoiceEvalutionResult", "EGHGEA"))
+@if (context.Regim == GEAContextView.REGIM.INIT)
 {
+  using (Html.BeginForm("ChoiceEvalutionResult", "EGHGEA"))  
+  {
 
     <div class="box">
         <h3>Результаты оценки результатов прогнозирования</h3>
@@ -60,6 +59,8 @@
                                                 new Menu.MenuItem("Отказаться", "ChoiceEvalutionResult.Cancel", true)
                                                ))
     </div>
+  }
+
 }
 
 

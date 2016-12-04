@@ -376,7 +376,6 @@
     <Content Include="Views\EGHRGE\CadastreTypeCreate.cshtml" />
     <Content Include="Views\EGHRGE\CadastreTypeDelete.cshtml" />
     <Content Include="Views\EGHRGE\CadastreTypeUpdate.cshtml" />
-    <Content Include="Views\EGHGEA\Report - Копировать.cshtml" />
     <Content Include="Views\EGHGEA\CadastreType.cshtml" />
     <Content Include="Views\EGHGEA\_CadastreTypeList.cshtml" />
     <Content Include="Views\EGHGEA\CadastreTypeUpdate.cshtml" />
@@ -456,6 +455,7 @@
     <Content Include="Views\Shared\ReportDelete.cshtml" />
     <Content Include="Views\EGHGEA\ChoiceEvalutionResult.cshtml" />
     <Content Include="Views\EGHGEA\_ChoiceEvalutionResult.cshtml" />
+    <Content Include="Views\EGHGEA\_ConfirmChoiceEvalutionResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

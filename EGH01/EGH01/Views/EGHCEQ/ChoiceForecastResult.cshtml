@@ -7,7 +7,7 @@
 @{
      Layout = "~/Views/Shared/EGHLayout.cshtml";
 
-    EGH01DB.CEQContext ceq = (EGH01DB.CEQContext)Model;
+    //EGH01DB.CEQContext ceq = (EGH01DB.CEQContext)Model;
     CEQViewContext context = (CEQViewContext)Model.GetViewContext("ChoiceForecastResult");
     if (context == null) { Model.SaveViewContext("ChoiceForecastResult", context = new CEQViewContext()); };
     

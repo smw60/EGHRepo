@@ -17,6 +17,7 @@ namespace EGH01.Models.EGHCEQ
         public REGIM_EVALUTION RegimEvalution { get; set; }
         public const string VIEWNAME = "ChoiceForecastResult";
         public int? idforecat     { get; set; }
+        public RGEContext.ECOForecast  ecoforecat   { get;  private set; }
         public CEQContext.ECOEvalution  ecoevalution { get; set;} 
 
         public CEQViewContext()
@@ -45,12 +46,12 @@ namespace EGH01.Models.EGHCEQ
              return rc;
         }
         
-        public static CEQViewContext  HandlerChoiceForecast(CEQContext context, NameValueCollection parms)
+        public static CEQViewContext  HandlerChoiceForecast(CEQContext db, NameValueCollection parms)
         {
                
            
             CEQViewContext rc = null;
-            if ((rc = context.GetViewContext(VIEWNAME) as CEQViewContext) != null)
+            if ((rc = db.GetViewContext(VIEWNAME) as CEQViewContext) != null)
             {
                
                 rc.RegimChoice = REGIM_CHOICE.INIT;
@@ -64,7 +65,15 @@ namespace EGH01.Models.EGHCEQ
                         if (!string.IsNullOrEmpty(formid) && int.TryParse(formid, out id))
                         {
                             rc.idforecat = id;
-                            rc.RegimChoice = REGIM_CHOICE.CHOICE;
+                            EGH01DB.RGEContext.ECOForecast ef =  rc.ecoforecat = null;
+                            string comment = string.Empty;
+                            if (EGH01DB.RGEContext.ECOForecast.GetById(db, id, out ef, out comment))
+                            { 
+                              rc.ecoforecat = ef;
+                              rc.RegimChoice = REGIM_CHOICE.CHOICE; 
+                            } 
+                            else rc.RegimChoice = REGIM_CHOICE.ERROR;
+                            
                         }
                         else rc.RegimChoice = REGIM_CHOICE.ERROR;
                     }

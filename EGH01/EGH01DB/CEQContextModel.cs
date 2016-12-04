@@ -32,7 +32,7 @@ namespace EGH01DB
            
             public string line { get
                                     {
-                                     return  string.Format("{0}-Р-{1:yyyy-MM-dd}-{2}-П-{3:yyyy-MM-dd}", this.id, this.date,base.id, base.date) 
+                                     return  string.Format("{0}-Р-{1:yyyy-MM-dd}/{2}-П-{3:yyyy-MM-dd}", this.id, this.date,base.id, base.date) 
                                            + string.Format(": {0}, {1}, {2}", this.incident.volume, this.incident.petrochemicaltype.name, this.incident.riskobject.name);
                                     }
                                 } 
@@ -139,92 +139,4 @@ namespace EGH01DB
   }        
 
 
- //public class ECOEvalutionList: List<ECOEvalution>
- //       { 
-        
-         
-
- //       }
-
-//public GroundBlur(XmlNode node)
- //       {
- //           {
- //            XmlNode x = node.SelectSingleNode(".//SpreadPoint");
- //            if (x != null) this.spreadpoint = new SpreadPoint(x);
- //            else this.spreadpoint = null;
- //           } 
-           
-
- //           XmlNode coordinates_list = node.SelectSingleNode(".//CoordinatesList");
- //           if (coordinates_list != null) this.bordercoordinateslist = CoordinatesList.CreateCoordinatesList(coordinates_list);
- //           else this.bordercoordinateslist = null;
-
- //           XmlNode spreading_coef = node.SelectSingleNode(".//SpreadingCoefficient");
- //           if (spreading_coef != null) this.spreadingcoefficient = new SpreadingCoefficient(spreading_coef);
- //           else this.spreadingcoefficient = null;
-
- //           this.square = Helper.GetFloatAttribute(node, "square", 0.0f);
- //           this.radius = Helper.GetFloatAttribute(node, "radius", 0.0f);
- //           this.totalmass = Helper.GetFloatAttribute(node, "totalmass", 0.0f);
- //           this.limitadsorbedmass = Helper.GetFloatAttribute(node, "limitadsorbedmass", 0.0f);
-
- //           this.avgdeep = Helper.GetFloatAttribute(node, "avgdeep", 0.0f);
- //           this.petrochemicalheight = Helper.GetFloatAttribute(node, "petrochemicalheight", 0.0f);
- //           this.adsorbedmass = Helper.GetFloatAttribute(node, "adsorbedmass", 0.0f);
- //           this.restmass = Helper.GetFloatAttribute(node, "restmass", 0.0f);
-
- //           this.depth = Helper.GetFloatAttribute(node, "depth", 0.0f);
- //           this.concentrationinsoil = Helper.GetFloatAttribute(node, "concentrationinsoil", 0.0f);
- //           this.timeconcentrationinsoil = Helper.GetFloatAttribute(node, "timeconcentrationinsoil", 0.0f);
- //           this.speedvertical = Helper.GetFloatAttribute(node, "speedvertical", 0.0f);
-
- //           this.timewatercomletion = Helper.GetFloatAttribute(node, "timewatercomletion", 0.0f);
- //           this.dtimemaxwaterconc = Helper.GetFloatAttribute(node, "dtimemaxwaterconc", 0.0f);
- //           this.timemaxwaterconc = Helper.GetFloatAttribute(node, "timemaxwaterconc", 0.0f);
- //           this.maxconcentrationwater = Helper.GetFloatAttribute(node, "maxconcentrationwater", 0.0f);
- //           this.ozcorrection = Helper.GetFloatAttribute(node, "ozcorrection", 0.0f);
- //           this.ecoobjectsearchradius = Helper.GetFloatAttribute(node, "ecoobjectsearchradius", 0.0f);
-
- //           { 
- //              XmlNode x = node.SelectSingleNode(".//AnchorPointList");
- //              if (x != null) this.anchorpointlist = AnchorPointList.CreateAnchorPointList(x);
- //              else this.anchorpointlist = null;
- //           }
- //           {
- //            XmlNode x = node.SelectSingleNode(".//GroundPollutionList");
- //            if (x != null) this.groundpolutionlist =  GroundPollutionList.Create(x);
- //            else this.groundpolutionlist = null;
- //           }
- //           {
- //             XmlNode x = node.SelectSingleNode(".//WaterProperties"      );
- //             if (x != null) this.waterproperties = new WaterProperties(x);
- //             else this.waterproperties = null;
- //           }
- //           {
- //             XmlNode x = node.SelectSingleNode(".//EcoObjectsList");
- //             if (x != null) this.ecoobjecstlist = EcoObjectsList.CreateEcoObjectsList(x);
- //             else this.ecoobjecstlist = null;
- //           }
  
-           
- //       }
-
-
-
-        //public XmlNode toXmlNode(string comment = "")
-        //{
-        //    XmlDocument doc = new XmlDocument();
-        //    XmlElement rc = doc.CreateElement("EcoObject");
-        //    if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
-        //    rc.SetAttribute("id", this.id.ToString());
-        //    XmlNode n = base.toXmlNode("");
-        //    rc.AppendChild(doc.ImportNode(n, true));
-        //    rc.AppendChild(doc.ImportNode(this.ecoobjecttype.toXmlNode(), true));
-        //    rc.AppendChild(doc.ImportNode(this.cadastretype.toXmlNode(), true));
-        //    rc.SetAttribute("name", this.name.ToString());
-        //    rc.SetAttribute("iswaterobject", this.iswaterobject.ToString());
-        //    rc.SetAttribute("angle", this.angle.ToString());
-        //    rc.SetAttribute("pollutionecoobject", this.pollutionecoobject.ToString());
-           
-        //    return (XmlNode)rc;
-        //}
