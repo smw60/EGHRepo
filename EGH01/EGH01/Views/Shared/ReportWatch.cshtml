@@ -20,7 +20,23 @@
       using(Html.BeginForm("ReportWatch", "EGHCEQ"))
       { 
           String value = ViewBag.msg;
-          @Html.Raw(value)  
+          @Html.Raw(value)
+      }
+  }
+  else if (ViewBag.stage.Equals("С"))
+  {
+      using (Html.BeginForm("ReportWatch", "EGHGEA"))
+      {
+          String value = ViewBag.msg;
+        @Html.Raw(value)
+      }
+  }
+  else if (ViewBag.stage.Equals("Т"))
+  {
+      using (Html.BeginForm("ReportWatch", "EGHORT"))
+      {
+          String value = ViewBag.msg;
+        @Html.Raw(value)
       }
   }
   

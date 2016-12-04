@@ -25,7 +25,27 @@
     {
         Helper.GetListReportByStage(db1, stage, ref list);
     }
-   }
+    }
+    else if (stage.Equals("С"))
+    {
+
+        EGH01DB.GEAContext db2 = new EGH01DB.GEAContext();
+
+        if (db2 != null)
+        {
+            Helper.GetListReportByStage(db2, stage, ref list);
+        }
+    }
+    else if (stage.Equals("Т"))
+    {
+
+        EGH01DB.ORTContext db3 = new EGH01DB.ORTContext();
+
+        if (db3 != null)
+        {
+            Helper.GetListReportByStage(db3, stage, ref list);
+        }
+    }
     
 }
 
