@@ -26,7 +26,10 @@
                 <input type="hidden" value="@Model.code_type.ToString()" name="type_code">
             </p>
             <p>
-                <label class="boxdata-label-30">Наименование нефтепродукта</label>@Model.name
+                <label class="boxdata-label-30">Наименование нефтепродукта</label>@Model.name.ToString()
+            </p>
+            <p>
+                <label class="boxdata-label-30">Категория нефтепродукта</label>@Model.petrochemicalcategories.name.ToString()
             </p>
             <p>
                 <label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С</label>@Model.boilingtemp

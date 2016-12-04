@@ -118,6 +118,9 @@ namespace EGH01.Controllers
                         int code = -1;
                         if (EGH01DB.Types.SoilPollutionCategories.GetNextCode(db, out code))
                         {
+                        EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType();
+                        if (EGH01DB.Types.CadastreType.GetByCode(db, sp.list_cadastre, out cadastre_type))
+                        {
                             float min;
                             string strmin = this.HttpContext.Request.Params["min"] ?? "Empty";
                             if (!Helper.FloatTryParse(strmin, out min))
@@ -133,7 +136,7 @@ namespace EGH01.Controllers
                             String name = sp.name;
                             if (min < max)
                             {
-                                EGH01DB.Types.SoilPollutionCategories soil_pollution = new EGH01DB.Types.SoilPollutionCategories(code, name, min, max);
+                                EGH01DB.Types.SoilPollutionCategories soil_pollution = new EGH01DB.Types.SoilPollutionCategories(code, name, min, max,cadastre_type); 
 
 
                                 if (EGH01DB.Types.SoilPollutionCategories.Create(db, soil_pollution))
@@ -141,9 +144,9 @@ namespace EGH01.Controllers
                                     view = View("SoilPollutionCategories", db);
                                 }
                             }
+                            }
                             else {
-                           //     SoilPollutionCategoriesView viewcontexts = db.GetViewContext("SoilPollutionCategoriesCreate") as SoilPollutionCategoriesView;
-                             
+                                                      
                                 ViewBag.Error = "Проверьте введенные данные";
                                 view = View("SoilPollutionCategoriesCreate", db);
                                 return view;
@@ -211,32 +214,35 @@ namespace EGH01.Controllers
                 view = View("SoilPollutionCategories", db);
                 if (menuitem.Equals("SoilPollutionCategories.Update.Update"))
                 {
-                    int code = sp.code;
-                    String name = sp.name; 
-                            string strmin = this.HttpContext.Request.Params["min"] ?? "Empty";
-                            string strmax = this.HttpContext.Request.Params["max"] ?? "Empty";
-
-                            float min = 0.0f;
-                            float max = 0.0f;
-
-
-                            if (!Helper.FloatTryParse(strmin, out min))
-                            {
-                                min = 0.0f;
-                            }
-
-                    if (!Helper.FloatTryParse(strmax, out max))
+                    EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType();
+                    if (EGH01DB.Types.CadastreType.GetByCode(db, sp.list_cadastre, out cadastre_type))
                     {
-                        max = 0.0f;
+                        int code = sp.code;
+                        String name = sp.name;
+                        string strmin = this.HttpContext.Request.Params["min"] ?? "Empty";
+                        string strmax = this.HttpContext.Request.Params["max"] ?? "Empty";
+
+                        float min = 0.0f;
+                        float max = 0.0f;
+
+
+                        if (!Helper.FloatTryParse(strmin, out min))
+                        {
+                            min = 0.0f;
+                        }
+
+                        if (!Helper.FloatTryParse(strmax, out max))
+                        {
+                            max = 0.0f;
+                        }
+
+                        EGH01DB.Types.SoilPollutionCategories soil_pollution = new EGH01DB.Types.SoilPollutionCategories(code, name, min, max,cadastre_type); 
+                        if (EGH01DB.Types.SoilPollutionCategories.Update(db, soil_pollution))
+                        {
+                            view = View("SoilPollutionCategories", db);
+                        }
+
                     }
-
-                    EGH01DB.Types.SoilPollutionCategories soil_pollution = new EGH01DB.Types.SoilPollutionCategories(code,name,min,max);
-                                if (EGH01DB.Types.SoilPollutionCategories.Update(db, soil_pollution))
-                                {
-                                    view = View("SoilPollutionCategories", db);
-                                }
-
-
                             }
                             else if (menuitem.Equals("SoilPollutionCategories.Update.Cancel"))
                                 view = View("SoilPollutionCategories", db);

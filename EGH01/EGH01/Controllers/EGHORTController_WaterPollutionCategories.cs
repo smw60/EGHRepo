@@ -1,4 +1,5 @@
 ﻿using EGH01.Models.EGHCCO;
+using EGH01.Models.EGHORT;
 using EGH01DB;
 using EGH01DB.Primitives;
 using System;
@@ -21,7 +22,8 @@ namespace EGH01.Controllers
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new ORTContext();
+                db = new ORTContext(this);
+                WaterPollutionCategoriesView viewcontext = db.GetViewContext("WaterPollutionCategoriesCreate") as WaterPollutionCategoriesView;
                 ViewBag.msg = "Соединение с базой данных установлено";
                 view = View("WaterPollutionCategories", db);
 
@@ -29,6 +31,9 @@ namespace EGH01.Controllers
                 {
 
                     view = View("WaterPollutionCategoriesCreate");
+                    viewcontext.min = null;
+                    viewcontext.max = null;
+                    viewcontext.name = "";
 
                 }
                 else if (menuitem.Equals("WaterPollutionCategories.Delete"))
@@ -100,7 +105,11 @@ namespace EGH01.Controllers
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new ORTContext();
+                db = new ORTContext(this);
+                if (!WaterPollutionCategoriesView.Handler(db, this.HttpContext.Request.Params))
+                {
+
+                }
                 view = View("WaterPollutionCategories", db);
                 if (menuitem.Equals("WaterPollutionCategories.Create.Create"))
                 {
@@ -121,14 +130,23 @@ namespace EGH01.Controllers
                             max = 0.0f;
                         }
                         String name = sp.name;
-                        EGH01DB.Types.WaterPollutionCategories water_pollution = new EGH01DB.Types.WaterPollutionCategories(code, name, min, max);
-
-
-                        if (EGH01DB.Types.WaterPollutionCategories.Create(db, water_pollution))
+                        if (min < max)
                         {
-                            view = View("WaterPollutionCategories", db);
-                        }
+                            EGH01DB.Types.WaterPollutionCategories water_pollution = new EGH01DB.Types.WaterPollutionCategories(code, name, min, max);
 
+
+                            if (EGH01DB.Types.WaterPollutionCategories.Create(db, water_pollution))
+                            {
+                                view = View("WaterPollutionCategories", db);
+                            }
+                        }
+                        else {
+
+                            ViewBag.Error = "Проверьте введенные данные";
+                            view = View("WaterPollutionCategoriesCreate", db);
+                            return view;
+
+                        }
                     }
                 }
 

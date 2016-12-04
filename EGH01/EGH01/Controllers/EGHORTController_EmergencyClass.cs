@@ -94,6 +94,7 @@ namespace EGH01.Controllers
             ORTContext db = null;
             ViewBag.EGHLayout = "ORT.EmergencyClass";
             ActionResult view = View("Index");
+           
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
@@ -115,17 +116,30 @@ namespace EGH01.Controllers
                         float maxmass;
                         Helper.FloatTryParse(strmaxmass, out maxmass);
 
-
-
-
-                        EmergencyClass scm = new EmergencyClass(type_code, name, minmass, maxmass);
-
-                        if (EGH01DB.Types.EmergencyClass.Create(db, scm))
+                        if (minmass < maxmass && name.Length > 0)
                         {
-                            view = View("EmergencyClass", db);
+
+                            EmergencyClass scm = new EmergencyClass(type_code, name, minmass, maxmass);
+
+                            if (EGH01DB.Types.EmergencyClass.Create(db, scm))
+                            {
+                                view = View("EmergencyClass", db);
+                            }
+                            else if (menuitem.Equals("EmergencyClass.Create.Cancel"))
+                                view = View("EmergencyClass", db);
                         }
-                        else if (menuitem.Equals("EmergencyClass.Create.Cancel"))
-                            view = View("EmergencyClass", db);
+                        else if (maxmass < minmass)
+                        {
+                            ViewBag.Error = "Минимальное значение не должно быть больше максимального";
+                            view = View("EmergencyClassCreate", db);
+                            return view;
+                        }
+                        else if (strminmass.Length.Equals(0) || strmaxmass.Length.Equals(0) || name.Length.Equals(0))
+                        {
+                            ViewBag.Error = "Все поля должны быть заполнены";
+                            view = View("EmergencyClassCreate", db);
+                            return view;
+                        }
                     }
                 }
                 else if (menuitem.Equals("EmergencyClass.Create.Cancel"))

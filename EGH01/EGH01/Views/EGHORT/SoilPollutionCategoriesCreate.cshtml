@@ -10,7 +10,8 @@
 @{
 
     Layout = "~/Views/Shared/EGHLayout.cshtml";
-    EGH01DB.ORTContext rge = (EGH01DB.ORTContext)Model;
+    EGH01DB.ORTContext ort = (EGH01DB.ORTContext)Model;
+    EGH01DB.RGEContext dbrge = new RGEContext();
     SoilPollutionCategoriesView context = (SoilPollutionCategoriesView)Model.GetViewContext("SoilPollutionCategoriesCreate");
     if (context == null) { Model.SaveViewContext("SoilPollutionCategoriesCreate", context = new SoilPollutionCategoriesView()); };
     Menu start = new Menu(
@@ -22,6 +23,14 @@
                           new Menu.MenuItem("Создать", "SoilPollutionCategories.Create.Create", true),
                           new Menu.MenuItem("Отказаться", "SoilPollutionCategories.Create.Cancel", true)
                         );
+    List<EGH01DB.Types.CadastreType> list_cadastre = new List<EGH01DB.Types.CadastreType>();
+    ViewBag.list_cadastre = new List<SelectListItem>();
+    if (dbrge != null)
+    {
+        Helper.GetListCadastreType(dbrge, ref list_cadastre);
+        list_cadastre.ForEach(o => ViewBag.list_cadastre.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+
+    }
 
 }
 
@@ -75,6 +84,9 @@
 
                     }
                    
+                </p>
+                <p>
+                    <label class="boxdata-label-30">Кадастровый тип земли</label> @Html.DropDownList("list_cadastre")
                 </p>
             </div>
         </fieldset>

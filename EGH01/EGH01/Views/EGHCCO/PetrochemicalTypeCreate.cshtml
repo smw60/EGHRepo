@@ -13,15 +13,16 @@
                           new Menu.MenuItem("Создать", "PetrochemicalType.Create.Create", true),
                           new Menu.MenuItem("Отказаться", "PetrochemicalType.Create.Cancel", true)
                         );
-
-    List<EGH01DB.Types.PetrochemicalCategories> list_petroCategories = new List<EGH01DB.Types.PetrochemicalCategories>();
-    ViewBag.list_petroCategories = new List<SelectListItem>();
+    List<EGH01DB.Types.PetrochemicalCategories> list_PetrochemicalCategories = new List<EGH01DB.Types.PetrochemicalCategories>();
+    ViewBag.list_PetrochemicalCategories = new List<SelectListItem>();
     if (@Model != null)
     {
-        Helper.GetListPetrochemicalCategories(@Model, ref list_petroCategories);
-        list_petroCategories.ForEach(o => ViewBag.list_petroCategories.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+        Helper.GetListPetrochemicalCategories(@Model, ref list_PetrochemicalCategories);
+        list_PetrochemicalCategories.ForEach(o => ViewBag.list_PetrochemicalCategories.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
 
     }
+
+   
 
 }
 @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCCO", Action = "PetrochemicalType", Menu = head })
@@ -37,7 +38,7 @@
                    <input class="boxdata-input-50" type="text" name="Name" value=" " />
                </p>
            <p>
-               <label class="boxdata-label-30">Тип природохранного объекта</label>@Html.DropDownList("list_petroCategories")
+               <label class="boxdata-label-30">Категория нефтепродукта</label>@Html.DropDownList("list_PetrochemicalCategories")
            </p>
                <p>
                    <label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С</label>

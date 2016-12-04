@@ -105,6 +105,7 @@ namespace EGH01.Controllers
                 view = View("PetrochemicalType", db);
                 if (menuitem.Equals("PetrochemicalType.Create.Create"))
                 {
+
                     int id = -1;
                     if (EGH01DB.Types.PetrochemicalType.GetNextCode(db, out id))
                     {
@@ -138,13 +139,19 @@ namespace EGH01.Controllers
                         string strdiffusion = this.HttpContext.Request.Params["diffusion"] ?? "Empty";
                         float diffusion;
                         Helper.FloatTryParse(strdiffusion, out diffusion);
-                        PetrochemicalCategories petrochemicalcategories = new PetrochemicalCategories(); //blinova
-                        PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, 
-                            (float)viscosity, (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion, petrochemicalcategories);// blinova
-                        if (EGH01DB.Types.PetrochemicalType.Create(db, pt))
+
+                        PetrochemicalCategories petrochemicalcategories = new PetrochemicalCategories(ptv.petrochemicalcategories.type_code, ptv.name.ToString()); //blinova
+                        if (EGH01DB.Types.PetrochemicalCategories.GetByCode(db, ptv.petrochemicalcategories.type_code, out petrochemicalcategories))
                         {
-                            view = View("PetrochemicalType", db);
+                            PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density,
+                               (float)viscosity, (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion, petrochemicalcategories);// blinova
+                            if (EGH01DB.Types.PetrochemicalType.Create(db, pt))
+                            {
+                                view = View("PetrochemicalType", db);
+                            }
                         }
+                           
+                        
                         else if (menuitem.Equals("PetrochemicalType.Create.Cancel")) view = View("PetrochemicalType", db);
                     }
                 }
@@ -207,7 +214,7 @@ namespace EGH01.Controllers
 
                     int type_code = ptv.code_type;
                     string name = ptv.name;
- 
+
                     string strboilingtemp = this.HttpContext.Request.Params["boilingtemp"] ?? "Empty";
                     float boilingtemp;
                     Helper.FloatTryParse(strboilingtemp, out boilingtemp);
@@ -235,13 +242,23 @@ namespace EGH01.Controllers
                     string strdiffusion = this.HttpContext.Request.Params["diffusion"] ?? "Empty";
                     float diffusion;
                     Helper.FloatTryParse(strdiffusion, out diffusion);
+
+                    
                     PetrochemicalCategories petrochemicalcategories = new PetrochemicalCategories(); //blinova
-                    PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, (float)viscosity, 
-                                            (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion, petrochemicalcategories); // blinova
-                    if (EGH01DB.Types.PetrochemicalType.Update(db, pt))
+                    if (EGH01DB.Types.PetrochemicalCategories.GetByCode(db, ptv.petrochemicalcategories.type_code, out petrochemicalcategories))
+                    {
+                        PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, (float)viscosity,
+                                               (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion, petrochemicalcategories); // blinova
+                        if (EGH01DB.Types.PetrochemicalType.Update(db, pt))
+                            view = View("PetrochemicalType", db);
+                    }
+
+
+
+                    else if (menuitem.Equals("PetrochemicalType.Update.Cancel"))
                         view = View("PetrochemicalType", db);
+
                 }
-                else if (menuitem.Equals("PetrochemicalType.Update.Cancel")) view = View("PetrochemicalType", db);
             }
             catch (RGEContext.Exception e)
             {
