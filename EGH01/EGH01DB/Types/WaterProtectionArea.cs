@@ -228,4 +228,30 @@ namespace EGH01DB.Types
             return (XmlNode)rc;
         }
     }
+    public class WaterProtectionAreaList : List<WaterProtectionArea>
+    {
+        List<EGH01DB.Types.WaterProtectionArea> list_waterpropertionArea = new List<EGH01DB.Types.WaterProtectionArea>();
+        public WaterProtectionAreaList()
+        {
+
+        }
+        public WaterProtectionAreaList(List<WaterProtectionArea> list)
+            : base(list)
+        {
+
+        }
+        public WaterProtectionAreaList(EGH01DB.IDBContext dbcontext)
+            : base(Helper.GetListWaterProtectionArea(dbcontext))
+        {
+
+        }
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("WaterProtectionArea");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+            return (XmlNode)rc;
+        }
+    }
 }
