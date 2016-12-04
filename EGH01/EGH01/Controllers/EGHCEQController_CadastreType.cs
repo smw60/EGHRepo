@@ -95,82 +95,7 @@ namespace EGH01.Controllers
 
             return view;
         }
-
-        //[HttpPost]
-        //public ActionResult CadastreTypeCreate(CadastreTypeView cd)
-        //{
-        //    RGEContext db = null;
-        //    ViewBag.EGHLayout = "RGE";
-        //    ActionResult view = View("Index");
-        //    string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
-        //    try
-        //    {
-        //        db = new RGEContext();
-        //        view = View("CadastreType", db);
-        //        if (menuitem.Equals("CadastreType.Create.Create"))
-        //        {
-
-        //            int id = -1;
-        //            if (EGH01DB.Types.CadastreType.GetNextCode(db, out id))
-        //            {
-        //                String name = cd.name;
-        //                int pdk_coef = cd.pdk_coef;
-
-        //                EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id, name, pdk_coef);
-
-        //                if (EGH01DB.Types.CadastreType.Create(db, cadastre_type))
-        //                {
-        //                    view = View("CadastreType", db);
-        //                }
-        //            }
-
-        //        }
-        //        else if (menuitem.Equals("CadastreType.Create.Cancel")) view = View("CadastreType", db);
-
-
-        //    }
-        //    catch (RGEContext.Exception e)
-        //    {
-        //        ViewBag.msg = e.message;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        ViewBag.msg = e.Message;
-        //    }
-
-        //    return view;
-        //}
-
-        //[HttpPost]
-        //public ActionResult CadastreTypeDelete(int id)
-        //{
-        //    RGEContext db = null;
-        //    ViewBag.EGHLayout = "RGE";
-        //    ActionResult view = View("Index");
-        //    string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
-        //    try
-        //    {
-        //        db = new RGEContext();
-
-        //        if (menuitem.Equals("CadastreType.Delete.Delete"))
-        //        {
-        //            if (EGH01DB.Types.CadastreType.DeleteByCode(db, id)) view = View("CadastreType", db);
-        //        }
-        //        else if (menuitem.Equals("CadastreType.Delete.Cancel")) view = View("CadastreType", db);
-
-        //    }
-        //    catch (RGEContext.Exception e)
-        //    {
-        //        ViewBag.msg = e.message;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        ViewBag.msg = e.Message;
-        //    }
-
-        //    return view;
-        //}
-
+ 
         [HttpPost]
         public ActionResult CadastreTypeUpdate(CadastreTypeView cd)
         {
@@ -201,7 +126,7 @@ namespace EGH01.Controllers
                     }
                     String water_doc_coef = cd.water_doc_name;
                     String pdk_doc_coef = cd.ground_doc_name;
-                    EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id, name, pdk_coef, water_pdk_coef,pdk_doc_coef,water_doc_coef); //blinova
+                    EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id, name, pdk_coef, water_pdk_coef,pdk_doc_coef,water_doc_coef); 
                     if (EGH01DB.Types.CadastreType.Update(db, cadastre_type))
                     {
                         view = View("CadastreType", db);
