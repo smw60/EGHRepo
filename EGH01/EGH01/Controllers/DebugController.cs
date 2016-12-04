@@ -828,12 +828,12 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                EcoObject ap = new EcoObject();
-                if (EcoObject.GetById(db, 1, ref ap))
-                {
-                    
-                    int k = 1;
-                };
+                //EcoObject ap = new EcoObject();
+                //if (EcoObject.GetById(db, 8, ref ap))
+                //{
+
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -910,6 +910,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //AnchorPoint ap = new AnchorPoint();
+
                 //if (AnchorPoint.GetById(db, 4, ref ap))
                 //{
                 //    int k = 1;

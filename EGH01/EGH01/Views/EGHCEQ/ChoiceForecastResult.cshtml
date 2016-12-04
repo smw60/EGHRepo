@@ -19,25 +19,12 @@
     case CEQViewContext.REGIM_CHOICE.INIT:     @Html.Partial("_ChoiceForecastResult", @Model)  break;
                                  
     case CEQViewContext.REGIM_CHOICE.CHOICE:   @Html.Partial("_ChoiceForecastResult", @Model)  break;
-    case CEQViewContext.REGIM_CHOICE.CANCEL:
-                                  break;
-    case CEQViewContext.REGIM_CHOICE.ERROR:   
-                                  break;
-    case CEQViewContext.REGIM_CHOICE.REPORT:
-                                  break;                        
+    case CEQViewContext.REGIM_CHOICE.CANCEL:   break;
+    case CEQViewContext.REGIM_CHOICE.ERROR:    break;
+    case CEQViewContext.REGIM_CHOICE.REPORT:   break;                        
     default: break;                                                                    
 } 
     
 
-@*if (context.Regim == ChoiceForecastResultContext.REGIM.INIT)
-{ 
-    @Html.Partial("_ChoiceForecastResult", @Model)
-}*@
-
-
-
-
-
-@ViewBag.msg
 
 

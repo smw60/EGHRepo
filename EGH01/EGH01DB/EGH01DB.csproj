@@ -86,6 +86,7 @@
     <Compile Include="DB.cs" />
     <Compile Include="EGHDBException.cs" />
     <Compile Include="Blurs\GroundPollution.cs" />
+    <Compile Include="GEAContextModel.cs" />
     <Compile Include="IDBContext.cs" />
     <Compile Include="Points\AnchorPoint.cs" />
     <Compile Include="Points\SpreadPoint.cs" />

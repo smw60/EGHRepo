@@ -9,6 +9,7 @@ using System.Xml.Linq;
 using EGH01DB;
 using EGH01DB.Primitives;
 using EGH01DB.Types;
+using EGH01.Models.EGHGEA;
 namespace EGH01.Controllers
 {
     public partial class EGHGEAController : Controller
@@ -21,10 +22,8 @@ namespace EGH01.Controllers
             try
             {
                 db = new GEAContext();
-                ViewBag.msg = "Соединение с базой данных установлено";
-
-
-
+               
+       
 
             }
             catch (RGEContext.Exception e)
@@ -36,8 +35,41 @@ namespace EGH01.Controllers
                 //if (db != null) db.Disconnect();
             }
 
-            return View("CadastreType", db);
+            return View();
         }
+       
+        public ActionResult ChoiceEvalutionResult()
+        {
+            ViewBag.EGHLayout = "GEA";
+            ActionResult view = View("Index");
+            GEAContext db = null;
+            try
+            {
+                db = new GEAContext();
+                GEAContextView context = GEAContextView.HandlerChoice(db,this.Request.Params);
+                switch(context.Regim)
+                { 
+                 case GEAContextView.REGIM.CHOICE:   break;
+                 case GEAContextView.REGIM.CANCEL: context.Regim = GEAContextView.REGIM.INIT;  break; 
+                 default:  view = View(db); break;
+                }                 
+
+            }
+            catch (RGEContext.Exception e)
+            {
+                ViewBag.msg = e.message;
+            }
+            finally
+            {
+                //if (db != null) db.Disconnect();
+            }
+
+            return view;
+        }
+
+
+
+
     }
 }
 

@@ -218,6 +218,7 @@
     <Compile Include="Models\EGHCCO\PetrochemicalTypeView.cs" />
     <Compile Include="Models\EGHCEQ\CEQViewContext.cs" />
     <Compile Include="Models\EGHCEQ\ReportView.cs" />
+    <Compile Include="Models\EGHGEA\GEAContextView.cs" />
     <Compile Include="Models\EGHORT\EmergencyClassView.cs" />
     <Compile Include="Models\EGHORT\SoilCleaningMethodView.cs" />
     <Compile Include="Models\EGHORT\PenetrationDepthView .cs" />
@@ -456,6 +457,8 @@
     <Content Include="Views\Home\Map.cshtml" />
     <Content Include="Views\Shared\ReportWatch.cshtml" />
     <Content Include="Views\Shared\ReportDelete.cshtml" />
+    <Content Include="Views\EGHGEA\ChoiceEvalutionResult.cshtml" />
+    <Content Include="Views\EGHGEA\_ChoiceEvalutionResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

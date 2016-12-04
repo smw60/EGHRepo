@@ -230,12 +230,18 @@ namespace EGH01DB.Primitives
                     list_type = new List<CadastreType>();
                     while (reader.Read())
                     {
+                        int ground_category_code = (int)reader["КодКатегорииЗагрязненияГрунта"];
+                        string ground_category_name = (string)reader["НаименованиеКатегорииЗагрязненияГрунта"];
+                        float min = (float)reader["МинДиапазон"];
+                        float max = (float)reader["МаксДиапазон"];
+                        SoilPollutionCategories soilpollutioncategory = new SoilPollutionCategories(ground_category_code, ground_category_name, min, max);
                         list_type.Add(new CadastreType((int)reader["КодНазначенияЗемель"], 
                                                         (string)reader["НаименованиеНазначенияЗемель"], 
                                                         (float)reader["ПДК"],
                                                         (float)reader["ПДКВоды"],
                                                         (string)reader["НормДокументЗемля"],
-                                                        (string)reader["НормДокументВода"]));
+                                                        (string)reader["НормДокументВода"],
+                                                        soilpollutioncategory));
                     }
                     rc = list_type.Count > 0;
                     reader.Close();
@@ -569,12 +575,18 @@ namespace EGH01DB.Primitives
                         float water_pdk_coef = (float)reader["ПДКводы"];
                         string ground_doc_name = (string)reader["НормДокументЗемля"];
                         string water_doc_name = (string)reader["НормДокументВода"];
-                        CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name,
-                                                                        (float)pdk, (float)water_pdk_coef,
-                                                                        (string)ground_doc_name, (string)water_doc_name); 
+                        
+                        int ground_category_code = (int)reader["КодКатегорииЗагрязненияГрунта"];
+                        string ground_category_name = (string)reader["НаименованиеКатегорииЗагрязненияГрунта"];
+                        float min = (float)reader["МинДиапазон"];
+                        float max = (float)reader["МаксДиапазон"];
+                        SoilPollutionCategories soilpollutioncategory = new SoilPollutionCategories(ground_category_code, ground_category_name, min, max);
+
                         string name = (string)reader["НаименованиеТехногенногоОбъекта"];
                         string address = (string)reader["АдресТехногенногоОбъекта"];
-                        
+                        CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name,
+                                                                        (float)pdk, (float)water_pdk_coef,
+                                                                        (string)ground_doc_name, (string)water_doc_name, soilpollutioncategory);
                         RiskObject risk_object = new RiskObject(id, point, risk_object_type, cadastre_type,
                                                                 name, district, region, address, ownership, phone, fax, email, 
                                                                 foundationdate, reconstractiondate,
@@ -731,11 +743,18 @@ namespace EGH01DB.Primitives
                         string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
                         float pdk = (float)reader["ПДК"];
                         float water_pdk_coef = (float)reader["ПДК"];
-                        string ground_doc_name = (string)reader["НаименованиеНазначенияЗемель"];
-                        string water_doc_name = (string)reader["НаименованиеНазначенияЗемель"];
+                        string ground_doc_name = (string)reader["НормДокументЗемля"];
+                        string water_doc_name = (string)reader["НормДокументВода"];
+
+                        int ground_category_code = (int)reader["КодКатегорииЗагрязненияГрунта"];
+                        string ground_category_name = (string)reader["НаименованиеКатегорииЗагрязненияГрунта"];
+                        float min = (float)reader["МинДиапазон"];
+                        float max = (float)reader["МаксДиапазон"];
+                        SoilPollutionCategories soilpollutioncategory = new SoilPollutionCategories(ground_category_code, ground_category_name, min, max);
+
                         CadastreType cadastre_type = new CadastreType((int)reader["КодНазначенияЗемель"], (string)cadastre_type_name,
                                                                         (float)pdk, (float)water_pdk_coef,
-                                                                        (string)ground_doc_name, (string) water_doc_name);
+                                                                        (string)ground_doc_name, (string) water_doc_name, soilpollutioncategory);
                         AnchorPoint anchor_point = new AnchorPoint(id, point, cadastre_type);
 
                         anchor_points.Add(anchor_point);
@@ -802,26 +821,26 @@ namespace EGH01DB.Primitives
                         float water_pdk_coef = (float)reader["ПДКводы"];
                         string ground_doc_name = (string)reader["НормДокументЗемля"];
                         string water_doc_name = (string)reader["НормДокументВода"];
+
+                        
+                        int ground_category_code = (int)reader["КодКатегорииЗагрязненияГрунта"];
+                        string ground_category_name = (string)reader["НаименованиеКатегорииЗагрязненияГрунта"];
+                        float min = (float)reader["МинДиапазон"];
+                        float max = (float)reader["МаксДиапазон"];
+                        SoilPollutionCategories soilpollutioncategory = new SoilPollutionCategories(ground_category_code, ground_category_name, min, max);
+
                         CadastreType cadastre_type = new CadastreType(cadastre_type_code,cadastre_type_name,
                                                                         (float)pdk, (float)water_pdk_coef,
-                                                                        ground_doc_name, water_doc_name);
-                        EcoObjectType eco_object_type = new EcoObjectType();
+                                                                        ground_doc_name, water_doc_name, soilpollutioncategory);
+                       
                         bool iswaterobject;
-                        int category_code = (int)reader["КодТипаКатегории"];
+                        int cat_water_name = (int)reader["КатегорияВодоохрТер"];
                         string category_name = (string)reader["НаименованиеКатегории"];
-                        int? cat_water_name;
-                        cat_water_name = (reader["КатегорияВодоохрТер"] == DBNull.Value) ? null : (int?)reader["КатегорияВодоохрТер"];
-                        if (cat_water_name != null)
-                        {
-                            WaterProtectionArea waterprotectionarea = new WaterProtectionArea(category_code, category_name);
-                            eco_object_type = new EcoObjectType(category_code, category_name, waterprotectionarea);
-                            iswaterobject = true;
-                        }
-                        else
-                        {
-                            eco_object_type = new EcoObjectType(category_code, category_name, null);
-                            iswaterobject = false;
-                        }
+
+                        if (cat_water_name==0 ) iswaterobject = true; else iswaterobject= false;
+                        WaterProtectionArea waterprotectionarea = new WaterProtectionArea(cat_water_name, category_name);
+                        EcoObjectType eco_object_type = new EcoObjectType(cat_water_name, category_name, waterprotectionarea);
+                          
                         string ecoobject_name = (string)reader["НаименованиеПриродоохранногоОбъекта"];
 
                         EcoObject ecoobject = new EcoObject(id, point, eco_object_type, cadastre_type, ecoobject_name, iswaterobject);
@@ -883,6 +902,50 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
+        static public bool GetListECOEvalution(EGH01DB.IDBContext dbcontext, ref List<CEQContext.ECOEvalution> list_ecoevalution)
+        {
+            bool rc = false;
+            list_ecoevalution =   new List<CEQContext.ECOEvalution>();   //   new RGEContext.ECOForecastlist();
+            using (SqlCommand cmd = new SqlCommand("EGH.GetECOEvalutionList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    // cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                       
+                        string stage = (string)reader["Стадия"];
+                         int report_id = (int)reader ["IdОтчета"];
+                         DateTime date = (DateTime)reader["ДатаОтчета"];   
+                         int predator = (int)reader["Родитель"];
+                        
+                         string xmlContent = (string)reader["ТекстОтчета"];
+                         if (!xmlContent.Trim().Equals(""))
+                         {
+                          XmlDocument doc = new XmlDocument();
+                          doc.LoadXml(xmlContent);
+                          XmlNode newNode = doc.DocumentElement;
+                          list_ecoevalution.Add(new CEQContext.ECOEvalution(newNode));
+                         }
+                    }
+                    rc = true;   //   ((int)cmd.Parameters["@exitrc"].Value >0);
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+
+            }
+            return rc;
+        } 
         static public bool GetListReport(EGH01DB.IDBContext dbcontext, ref List<Report> list)
         {
             bool rc = false;
