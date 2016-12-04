@@ -357,15 +357,9 @@ namespace EGH01DB.Points
                         string ground_doc_name = (string)reader["НормДокументЗемля"];
                         string water_doc_name = (string)reader["НормДокументВода"];
 
-                        int ground_category_code = (int)reader["КодКатегорииЗагрязненияГрунта"];
-                        string ground_category_name = (string)reader["НаименованиеКатегорииЗагрязненияГрунта"];
-                        float min = (float)reader["МинДиапазон"];
-                        float max = (float)reader["МаксДиапазон"];
-                        SoilPollutionCategories soilpollutioncategory = new SoilPollutionCategories(ground_category_code, ground_category_name, min, max);
-
                         CadastreType cadastre_type = new CadastreType((int)reader["КодНазначенияЗемель"], (string)cadastre_type_name,
                                                         (float)pdk, (float)water_pdk_coef,
-                                                        ground_doc_name, water_doc_name, soilpollutioncategory);
+                                                        ground_doc_name, water_doc_name);
 
                         anchor_point = new AnchorPoint(id, point, cadastre_type);
                     }
@@ -498,14 +492,9 @@ namespace EGH01DB.Points
                         float water_pdk_koef = (float)reader["ПДКводы"];
 	                    string pdk_korf_doc = (string)reader["НормДокументЗемля"];
 		                string water_pdk_korf_doc = (string)reader["НормДокументВода"];
-                        int ground_category_code = (int)reader["КодКатегорииЗагрязненияГрунта"];
-                        string ground_category_name = (string)reader["НаименованиеКатегорииЗагрязненияГрунта"];
-                        float min = (float)reader["МинДиапазон"];
-                        float max = (float)reader["МаксДиапазон"];
-                        SoilPollutionCategories soilpollutioncategory = new SoilPollutionCategories(ground_category_code, ground_category_name, min, max);
 
                         CadastreType cadastre_type = new CadastreType(cadastre_type_code, ground_type_name, pdk_koef, water_pdk_koef,
-                                                                        pdk_korf_doc, water_pdk_korf_doc, soilpollutioncategory);
+                                                                        pdk_korf_doc, water_pdk_korf_doc);
                         Point point = new Point(coordinates, ground_type, (float)waterdeep, (float)height);
                         //delta = (float)reader["Расстояние"];
                         AnchorPoint anchor_point = new AnchorPoint(id, point, cadastre_type);

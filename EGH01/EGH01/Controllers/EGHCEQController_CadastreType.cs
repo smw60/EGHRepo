@@ -201,7 +201,7 @@ namespace EGH01.Controllers
                     }
                     String water_doc_coef = cd.water_doc_name;
                     String pdk_doc_coef = cd.ground_doc_name;
-                    EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id, name, pdk_coef, water_pdk_coef,pdk_doc_coef,water_doc_coef, null); //blinova
+                    EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType(id, name, pdk_coef, water_pdk_coef,pdk_doc_coef,water_doc_coef); //blinova
                     if (EGH01DB.Types.CadastreType.Update(db, cadastre_type))
                     {
                         view = View("CadastreType", db);
