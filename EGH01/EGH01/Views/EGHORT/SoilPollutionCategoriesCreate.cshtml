@@ -10,7 +10,7 @@
 @{
 
     Layout = "~/Views/Shared/EGHLayout.cshtml";
-    EGH01DB.ORTContext rge = (EGH01DB.ORTContext)Model;
+    EGH01DB.ORTContext ort = (EGH01DB.ORTContext)Model;
     SoilPollutionCategoriesView context = (SoilPollutionCategoriesView)Model.GetViewContext("SoilPollutionCategoriesCreate");
     if (context == null) { Model.SaveViewContext("SoilPollutionCategoriesCreate", context = new SoilPollutionCategoriesView()); };
     Menu start = new Menu(
