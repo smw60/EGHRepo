@@ -133,7 +133,7 @@ namespace EGH01.Controllers
                             String name = sp.name;
                             if (min < max)
                             {
-                                EGH01DB.Types.SoilPollutionCategories soil_pollution = new EGH01DB.Types.SoilPollutionCategories(code, name, min, max);
+                                EGH01DB.Types.SoilPollutionCategories soil_pollution = new EGH01DB.Types.SoilPollutionCategories(code, name, min, max, null); // blinova
 
 
                                 if (EGH01DB.Types.SoilPollutionCategories.Create(db, soil_pollution))
@@ -230,7 +230,7 @@ namespace EGH01.Controllers
                         max = 0.0f;
                     }
 
-                    EGH01DB.Types.SoilPollutionCategories soil_pollution = new EGH01DB.Types.SoilPollutionCategories(code,name,min,max);
+                    EGH01DB.Types.SoilPollutionCategories soil_pollution = new EGH01DB.Types.SoilPollutionCategories(code,name,min,max, null); // blinova
                                 if (EGH01DB.Types.SoilPollutionCategories.Update(db, soil_pollution))
                                 {
                                     view = View("SoilPollutionCategories", db);

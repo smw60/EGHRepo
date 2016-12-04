@@ -845,7 +845,10 @@ namespace EGH01DB.Primitives
 
                         if (cat_water_name==0 ) iswaterobject = true; else iswaterobject= false;
                         WaterProtectionArea waterprotectionarea = new WaterProtectionArea(cat_water_name, category_name);
-                        EcoObjectType eco_object_type = new EcoObjectType(cat_water_name, category_name, waterprotectionarea);
+                        int ecoobject_type_code = (int)reader["КодТипаПриродоохранногоОбъекта"];
+                        string ecoobject_type_name = (string)reader["НаименованиеТипаПриродоохранногоОбъекта"];
+
+                        EcoObjectType eco_object_type = new EcoObjectType(ecoobject_type_code, ecoobject_type_name, waterprotectionarea);
                           
                         string ecoobject_name = (string)reader["НаименованиеПриродоохранногоОбъекта"];
 
@@ -1170,7 +1173,18 @@ namespace EGH01DB.Primitives
                         float min = (float)reader["МинДиапазон"];
                         float max = (float)reader["МаксДиапазон"];
 
-                        list_soil_pollution_categories.Add(new SoilPollutionCategories(code, name, min, max));
+                        int cadastre_type_code = (int)reader["КодНазначенияЗемель"];
+                        string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
+                        float pdk_coef = (float)reader["ПДК"];
+                        float water_pdk_coef = (float)reader["ПДКводы"];
+                        string ground_doc_name = (string)reader["НормДокументЗемля"];
+                        string water_doc_name = (string)reader["НормДокументВода"];
+                        CadastreType cadastre_type = new CadastreType(cadastre_type_code, cadastre_type_name,
+                                                                        pdk_coef, water_pdk_coef,
+                                                                        ground_doc_name, water_doc_name);
+
+
+                        list_soil_pollution_categories.Add(new SoilPollutionCategories(code, name, min, max, cadastre_type));
                     }
                     rc = list_soil_pollution_categories.Count > 0;
                     reader.Close();
