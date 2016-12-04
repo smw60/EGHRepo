@@ -8,7 +8,7 @@ namespace EGH01.Models.EGHGEA
 {
     public class GEAContextView
     {
-        public enum REGIM {INIT, CHOICE, CANCEL}
+        public enum REGIM {INIT, CHOICE, CANCEL, REPORT}
         public const string VIEWNAME = "GEAContextView";
         public int? idevalution  { get; set; }
         public CEQContext.ECOEvalution ecoevolution = null;
@@ -36,5 +36,20 @@ namespace EGH01.Models.EGHGEA
  
              return rc;     
        }
+        public static GEAContextView HandlerClassification(GEAContext db, NameValueCollection parms)
+        {
+             GEAContextView rc = db.GetViewContext(VIEWNAME) as GEAContextView;
+             if (rc == null) db.SaveViewContext(GEAContextView.VIEWNAME, rc = new GEAContextView());
+             if (rc.ecoevolution != null) rc.Regim = REGIM.REPORT;
+             string menuitem = parms["menuitem"];
+             if (menuitem != null)
+             {
+
+
+
+             }
+             return rc;  
+        }  
+
     }
 }
