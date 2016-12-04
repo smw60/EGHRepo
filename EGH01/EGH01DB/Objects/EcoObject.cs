@@ -353,16 +353,10 @@ namespace EGH01DB.Objects
                         float water_pdk_coef = (float)reader["ПДКводы"];
                         string ground_doc_name = (string)reader["НормДокументЗемля"];
                         string water_doc_name = (string)reader["НормДокументВода"];
-                        int ground_category_code = (int)reader["КодКатегорииЗагрязненияГрунта"];
-                        string ground_category_name = (string)reader["НаименованиеКатегорииЗагрязненияГрунта"];
-                        float min = (float)reader["МинДиапазон"];
-                        float max = (float)reader["МаксДиапазон"];
-                        SoilPollutionCategories soilpollutioncategory = new SoilPollutionCategories(ground_category_code, ground_category_name, min, max);
-
-
+                        
                         CadastreType cadastre_type = new CadastreType(cadastre_type_code, (string)cadastre_type_name,
                                                                         pdk, water_pdk_coef,
-                                                                        ground_doc_name, water_doc_name, soilpollutioncategory);
+                                                                        ground_doc_name, water_doc_name);
                         string ecoobject_name = (string)reader["НаименованиеПриродоохранногоОбъекта"];
 
 

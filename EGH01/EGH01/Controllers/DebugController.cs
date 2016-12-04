@@ -816,11 +816,11 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //List<EcoObject> list = new List<EcoObject>();
-                //if (Helper.GetListEcoObject(db, ref list))
-                //{
-                //    int k = 1;
-                //};
+                List<EcoObject> list = new List<EcoObject>();
+                if (Helper.GetListEcoObject(db, ref list))
+                {
+                    int k = 1;
+                };
             }
             return View();
         }

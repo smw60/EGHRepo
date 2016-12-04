@@ -18,8 +18,7 @@ namespace EGH01DB.Types
         public float water_pdk_coef { get; private set; }
         public string ground_doc_name { get; private set; }   // наименование документа по земле 
         public string water_doc_name { get; private set; }   // наименование документа по воде 
-        public SoilPollutionCategories soilpollutioncategory { get; private set; }   // Категории загрязнения грунтов
-        static public CadastreType defaulttype { get { return new CadastreType(0, "Не определен", 0.0f, 0.0f,"","", null); } }  // выдавать при ошибке
+        static public CadastreType defaulttype { get { return new CadastreType(0, "Не определен", 0.0f, 0.0f,"",""); } }  // выдавать при ошибке
         
         public CadastreType()
         {
@@ -29,7 +28,6 @@ namespace EGH01DB.Types
             this.water_pdk_coef = 0.0f;
             this.ground_doc_name = string.Empty;
             this.water_doc_name = string.Empty;
-            this.soilpollutioncategory = null;
         }
 
         public CadastreType(int type_code)
@@ -40,7 +38,6 @@ namespace EGH01DB.Types
             this.water_pdk_coef = 0.0f;
             this.ground_doc_name = string.Empty;
             this.water_doc_name = string.Empty;
-            this.soilpollutioncategory = null;
         }
 
         //public CadastreType(String name)
@@ -52,7 +49,7 @@ namespace EGH01DB.Types
         //    this.ground_doc_name = string.Empty;
         //    this.water_doc_name = string.Empty;
         //}
-        public CadastreType(int type_code, String name, float pdk_coef, float water_pdk_coef, string ground_doc_name, string water_doc_name, SoilPollutionCategories soilpollutioncategory)
+        public CadastreType(int type_code, String name, float pdk_coef, float water_pdk_coef, string ground_doc_name, string water_doc_name)
         {
             this.type_code = type_code;
             this.name = name;
@@ -60,7 +57,6 @@ namespace EGH01DB.Types
             this.water_pdk_coef = water_pdk_coef;
             this.ground_doc_name = ground_doc_name;
             this.water_doc_name = water_doc_name;
-            this.soilpollutioncategory = soilpollutioncategory;
         }
         public CadastreType(XmlNode node)
         {
@@ -70,10 +66,6 @@ namespace EGH01DB.Types
             this.water_pdk_coef = Helper.GetFloatAttribute(node, "water_pdk_coef", 0.0f);
             this.ground_doc_name = Helper.GetStringAttribute(node, "ground_doc_name", "");
             this.water_doc_name = Helper.GetStringAttribute(node, "water_doc_name", "");
-
-            XmlNode soilpollutioncategory = node.SelectSingleNode(".//SoilPollutionCategories");
-            if (soilpollutioncategory != null) this.soilpollutioncategory = new SoilPollutionCategories(soilpollutioncategory);
-            else this.soilpollutioncategory = null;
 
         }
 
@@ -118,11 +110,6 @@ namespace EGH01DB.Types
                 {
                     SqlParameter parm = new SqlParameter("@НормДокументВода", SqlDbType.NVarChar);
                     parm.Value = land_type.water_doc_name;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@КодКатегорииЗагрязненияГрунта", SqlDbType.Int);
-                    parm.Value = land_type.soilpollutioncategory.code;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -211,11 +198,7 @@ namespace EGH01DB.Types
                     parm.Value = land_type.water_doc_name;
                     cmd.Parameters.Add(parm);
                 }
-                {
-                    SqlParameter parm = new SqlParameter("@КодКатегорииЗагрязненияГрунта", SqlDbType.Int);
-                    parm.Value = land_type.soilpollutioncategory.code;
-                    cmd.Parameters.Add(parm);
-                }
+            
                 {
                     SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
                     parm.Direction = ParameterDirection.ReturnValue;
@@ -303,9 +286,8 @@ namespace EGH01DB.Types
                         string ground_category_name = (string)reader["НаименованиеКатегорииЗагрязненияГрунта"];
                         float min = (float)reader["МинДиапазон"];
                         float max = (float)reader["МаксДиапазон"];
-                        SoilPollutionCategories soilpollutioncategory = new SoilPollutionCategories(ground_category_code, ground_category_name, min, max);
                         if (rc = (int)cmd.Parameters["@exitrc"].Value > 0)
-                            type = new CadastreType(type_code, name, (float)pdk_coef, (float)water_pdk_coef, ground_doc_name, water_doc_name, soilpollutioncategory); 
+                            type = new CadastreType(type_code, name, (float)pdk_coef, (float)water_pdk_coef, ground_doc_name, water_doc_name); 
                     }
                     reader.Close();
                 }
@@ -328,7 +310,6 @@ namespace EGH01DB.Types
             rc.SetAttribute("water_pdk_coef", this.water_pdk_coef.ToString());
             rc.SetAttribute("ground_doc_name", this.ground_doc_name.ToString());
             rc.SetAttribute("water_doc_name", this.water_doc_name.ToString());
-            rc.AppendChild(doc.ImportNode(this.soilpollutioncategory.toXmlNode(), true));
             return (XmlNode)rc;
         }
     }

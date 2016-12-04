@@ -230,18 +230,12 @@ namespace EGH01DB.Primitives
                     list_type = new List<CadastreType>();
                     while (reader.Read())
                     {
-                        int ground_category_code = (int)reader["КодКатегорииЗагрязненияГрунта"];
-                        string ground_category_name = (string)reader["НаименованиеКатегорииЗагрязненияГрунта"];
-                        float min = (float)reader["МинДиапазон"];
-                        float max = (float)reader["МаксДиапазон"];
-                        SoilPollutionCategories soilpollutioncategory = new SoilPollutionCategories(ground_category_code, ground_category_name, min, max);
                         list_type.Add(new CadastreType((int)reader["КодНазначенияЗемель"], 
                                                         (string)reader["НаименованиеНазначенияЗемель"], 
                                                         (float)reader["ПДК"],
                                                         (float)reader["ПДКВоды"],
                                                         (string)reader["НормДокументЗемля"],
-                                                        (string)reader["НормДокументВода"],
-                                                        soilpollutioncategory));
+                                                        (string)reader["НормДокументВода"]));
                     }
                     rc = list_type.Count > 0;
                     reader.Close();
@@ -575,18 +569,12 @@ namespace EGH01DB.Primitives
                         float water_pdk_coef = (float)reader["ПДКводы"];
                         string ground_doc_name = (string)reader["НормДокументЗемля"];
                         string water_doc_name = (string)reader["НормДокументВода"];
-                        
-                        int ground_category_code = (int)reader["КодКатегорииЗагрязненияГрунта"];
-                        string ground_category_name = (string)reader["НаименованиеКатегорииЗагрязненияГрунта"];
-                        float min = (float)reader["МинДиапазон"];
-                        float max = (float)reader["МаксДиапазон"];
-                        SoilPollutionCategories soilpollutioncategory = new SoilPollutionCategories(ground_category_code, ground_category_name, min, max);
 
                         string name = (string)reader["НаименованиеТехногенногоОбъекта"];
                         string address = (string)reader["АдресТехногенногоОбъекта"];
                         CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name,
                                                                         (float)pdk, (float)water_pdk_coef,
-                                                                        (string)ground_doc_name, (string)water_doc_name, soilpollutioncategory);
+                                                                        (string)ground_doc_name, (string)water_doc_name);
                         RiskObject risk_object = new RiskObject(id, point, risk_object_type, cadastre_type,
                                                                 name, district, region, address, ownership, phone, fax, email, 
                                                                 foundationdate, reconstractiondate,
@@ -746,15 +734,9 @@ namespace EGH01DB.Primitives
                         string ground_doc_name = (string)reader["НормДокументЗемля"];
                         string water_doc_name = (string)reader["НормДокументВода"];
 
-                        int ground_category_code = (int)reader["КодКатегорииЗагрязненияГрунта"];
-                        string ground_category_name = (string)reader["НаименованиеКатегорииЗагрязненияГрунта"];
-                        float min = (float)reader["МинДиапазон"];
-                        float max = (float)reader["МаксДиапазон"];
-                        SoilPollutionCategories soilpollutioncategory = new SoilPollutionCategories(ground_category_code, ground_category_name, min, max);
-
                         CadastreType cadastre_type = new CadastreType((int)reader["КодНазначенияЗемель"], (string)cadastre_type_name,
                                                                         (float)pdk, (float)water_pdk_coef,
-                                                                        (string)ground_doc_name, (string) water_doc_name, soilpollutioncategory);
+                                                                        (string)ground_doc_name, (string) water_doc_name);
                         AnchorPoint anchor_point = new AnchorPoint(id, point, cadastre_type);
 
                         anchor_points.Add(anchor_point);
@@ -821,17 +803,9 @@ namespace EGH01DB.Primitives
                         float water_pdk_coef = (float)reader["ПДКводы"];
                         string ground_doc_name = (string)reader["НормДокументЗемля"];
                         string water_doc_name = (string)reader["НормДокументВода"];
-
-                        
-                        int ground_category_code = (int)reader["КодКатегорииЗагрязненияГрунта"];
-                        string ground_category_name = (string)reader["НаименованиеКатегорииЗагрязненияГрунта"];
-                        float min = (float)reader["МинДиапазон"];
-                        float max = (float)reader["МаксДиапазон"];
-                        SoilPollutionCategories soilpollutioncategory = new SoilPollutionCategories(ground_category_code, ground_category_name, min, max);
-
                         CadastreType cadastre_type = new CadastreType(cadastre_type_code,cadastre_type_name,
                                                                         (float)pdk, (float)water_pdk_coef,
-                                                                        ground_doc_name, water_doc_name, soilpollutioncategory);
+                                                                        ground_doc_name, water_doc_name);
                        
                         bool iswaterobject;
                         int cat_water_name = (int)reader["КатегорияВодоохрТер"];
