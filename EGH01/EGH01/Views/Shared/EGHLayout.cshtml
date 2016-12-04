@@ -133,6 +133,11 @@
             {
                 <h2 class="double"><span>@Html.ActionLink("Оценка прогнозируемого состояния", "Index", "EGHCEQ") </span><span>Предельно-допустимые концентрации</span></h2>
             }
+            else if (ViewBag.EGHLayout == "CEQ.Report")
+            {
+                <h2 class="double"><span>@Html.ActionLink("Оценка прогнозируемого состояния", "Index", "EGHCEQ") </span><span>Отчеты</span></h2>
+            }
+            
         </div>
         <div class=" col-xs-3">
             <div id="time">Текущее время: <span id="doc_time"></span><br />Последнее обновление: <span id="version">@((new FileInfo(Assembly.GetExecutingAssembly().Location)).LastWriteTime.ToString("dd.M.yyyy HH:mm"))</span></div>
@@ -206,7 +211,7 @@
                     <li>@Html.ActionLink("Результаты прогнозирования", "ChoiceForecastResult", "EGHCEQ")</li>
                     <li>@Html.ActionLink("Оценка прогнозируемого состояния", "EvalutionForecast", "EGHCEQ")</li>
                     <li>@Html.ActionLink("Предельно-допустимые концентрации", "CadastreType", "EGHCEQ")</li>
-                    <li>@Html.ActionLink("Отчеты", "Index", "EGHCEQ")</li>
+                    <li>@Html.ActionLink("Отчеты", "Report", "EGHCEQ")</li>
                 }
 
                 else if (ViewBag.EGHLayout == "GEA")

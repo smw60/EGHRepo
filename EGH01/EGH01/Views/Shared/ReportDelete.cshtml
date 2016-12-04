@@ -12,17 +12,32 @@
 
 }
 
-@using (Html.BeginForm("ReportDelete", "EGHRGE"))
-{
 
-    <div class="box">
+@if (ViewBag.stage.Equals("П"))
+{
+    using (Html.BeginForm("ReportDelete", "EGHRGE"))
+    {
+        <div class="box">
         <div class="boxdata">
             <input type="hidden" value="@Model.id.ToString()" name="id">
           <p>@Model.line.ToString()</p>
-          <p>@Model.comment.ToString()</p>
         </div>
         @Html.Partial("_TypeLineMenu", delete)
 
     </div>
+    }
 }
+else if (ViewBag.stage.Equals("Р"))
+{
+    using (Html.BeginForm("ReportDelete", "EGHCEQ"))
+    {
+        <div class="box">
+        <div class="boxdata">
+            <input type="hidden" value="@Model.id.ToString()" name="id">
+          <p>@Model.line.ToString()</p>
+        </div>
+        @Html.Partial("_TypeLineMenu", delete)
 
+    </div>
+    }
+}

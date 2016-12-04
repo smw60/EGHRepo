@@ -183,6 +183,7 @@
     <Compile Include="Controllers\EGHCCOController.cs" />
     <Compile Include="Controllers\EGHCCOController_PetrochemicalType.cs" />
     <Compile Include="Controllers\EGHCEQController.cs" />
+    <Compile Include="Controllers\EGHCEQController_Report.cs" />
     <Compile Include="Controllers\EGHController.cs" />
     <Compile Include="Controllers\EGHGEAController.cs" />
     <Compile Include="Controllers\EGHCEQController_CadastreType.cs" />
@@ -212,9 +213,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AllReportView.cs" />
     <Compile Include="Models\EGHCAI\RiskObject.cs" />
     <Compile Include="Models\EGHCCO\PetrochemicalTypeView.cs" />
     <Compile Include="Models\EGHCEQ\CEQViewContext.cs" />
+    <Compile Include="Models\EGHCEQ\ReportView.cs" />
     <Compile Include="Models\EGHORT\EmergencyClassView.cs" />
     <Compile Include="Models\EGHORT\SoilCleaningMethodView.cs" />
     <Compile Include="Models\EGHORT\PenetrationDepthView .cs" />
@@ -456,6 +459,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AllReportView\" />
     <Folder Include="Views\Debug\" />
   </ItemGroup>
   <ItemGroup>

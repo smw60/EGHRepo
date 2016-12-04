@@ -940,6 +940,61 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
+        static public bool GetListReportByStage(EGH01DB.IDBContext dbcontext, string stage, ref List<Report> list)
+        {
+            bool rc = false;
+            list = new ReportsList();
+            using (SqlCommand cmd = new SqlCommand("EGH.GetStageReportList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@Стадия", SqlDbType.NChar);
+                    parm.Value = stage;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int report_id = (int)reader["IdОтчета"];
+                        DateTime date = (DateTime)reader["ДатаОтчета"];
+                        // string stage = (string)reader["Стадия"];
+                        int predator = (int)reader["Родитель"];
+                        Report parent = new Report(predator);
+                        string comment = (string)reader["Комментарий"];
+
+                        string xmlContent = (string)reader["ТекстОтчета"];
+                        XmlDocument doc_xml = new XmlDocument();
+                        doc_xml.LoadXml(xmlContent);
+                        XmlNode xml_Node = doc_xml.DocumentElement;
+
+                        string xslContent = (string)reader["ТекстОтчета"];
+                        XmlDocument doc_xsl = new XmlDocument();
+                        doc_xsl.LoadXml(xslContent);
+                        XmlNode xsl_Node = doc_xsl.DocumentElement;
+                        Report report = new Report(report_id, parent, stage, date, xml_Node, xsl_Node, comment);
+
+                        list.Add(report);
+
+                    }
+                    rc = ((int)cmd.Parameters["@exitrc"].Value > 0);
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+
+            }
+            return rc;
+        }
         static public bool GetListSoilCleaningMethods(EGH01DB.IDBContext dbcontext, ref List<SoilCleaningMethod> list_soil_clean_method)
         {
             bool rc = false;

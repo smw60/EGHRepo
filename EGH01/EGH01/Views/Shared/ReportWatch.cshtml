@@ -5,17 +5,25 @@
 @model EGH01DB.Primitives.Report
 @{
     Layout = "~/Views/Shared/EGHLayout.cshtml";
-    EGH01.Models.EGHRGE.ReportView rv = new EGH01.Models.EGHRGE.ReportView();
-      
- 
-               // @ViewBag.msg
+
 }
+  @if (ViewBag.stage.Equals("П"))
+  {
+      using(Html.BeginForm("ReportWatch", "EGHRGE"))
+      {
+          String value = ViewBag.msg;
+          @Html.Raw(value)  
+      }
+  }
+  else if (ViewBag.stage.Equals("Р"))
+  { 
+      using(Html.BeginForm("ReportWatch", "EGHCEQ"))
+      { 
+          String value = ViewBag.msg;
+          @Html.Raw(value)  
+      }
+  }
   
 
-@using (Html.BeginForm("ReportWatch", "EGHRGE"))
-{
-   // string k = ViewBag.msg;
-    String value = ViewBag.msg;
-    @Html.Raw(value)  
-}
+
 
