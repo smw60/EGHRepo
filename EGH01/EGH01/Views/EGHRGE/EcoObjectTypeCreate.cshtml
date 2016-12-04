@@ -3,6 +3,11 @@
 @using EGH01.Models.EGH;
 @{
     Layout = "~/Views/Shared/EGHLayout.cshtml";
+    {
+
+        @ViewBag.Error;
+
+    }
     Menu head = new Menu(
                           new Menu.MenuItem("Создать", "EcoObjectType.Create", false),
                           new Menu.MenuItem("Excel-формат", "EcoObjectType.Excel", false)

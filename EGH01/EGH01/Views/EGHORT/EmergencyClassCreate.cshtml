@@ -4,8 +4,13 @@
 @model EGH01DB.ORTContext
 
 @{
-
+   
     Layout = "~/Views/Shared/EGHLayout.cshtml";
+
+   
+        
+
+
     Menu head = new Menu(
                           new Menu.MenuItem("Создать", "EmergencyClass.Create", false),
                           new Menu.MenuItem("Excel-формат", "EmergencyClass.Excel", false)
@@ -22,7 +27,8 @@
 @using (Html.BeginForm("EmergencyClassCreate", "EGHORT"))
 {
 
-
+    @ViewBag.Error;
+    
     <div class="box">
         <div class="boxdata">
             <p>

@@ -1,5 +1,7 @@
 ﻿@using EGH01.Core;
 @using EGH01.Models.EGH;
+@using EGH01DB.Primitives;
+@using EGH01DB.Types;
 @model EGH01DB.Types.PetrochemicalType
 @{
     Layout = "~/Views/Shared/EGHLayout.cshtml";
@@ -12,7 +14,21 @@
                           new Menu.MenuItem("Изменить", "PetrochemicalType.Update.Update", true),
                           new Menu.MenuItem("Отказаться", "PetrochemicalType.Update.Cancel", true)
                         );
+    EGH01DB.CCOContext db = new EGH01DB.CCOContext();
+    {
+        List<PetrochemicalCategories> list_PetrochemicalCategories = new List<PetrochemicalCategories>();
+        List<SelectListItem> list = ViewBag.list_PetrochemicalCategories = new List<SelectListItem>();
 
+        Helper.GetListPetrochemicalCategories(db, ref list_PetrochemicalCategories);
+        list_PetrochemicalCategories.ForEach(o => ViewBag.list_PetrochemicalCategories.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+
+        if (Model.petrochemicalcategories != null)
+        {
+            SelectListItem si = list.FirstOrDefault(s => s.Value == Model.petrochemicalcategories.type_code.ToString());
+            si.Selected = true;
+        }
+    }
+   
 }
 @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCCO", Action = "PetrochemicalType", Menu = head })
 
@@ -29,6 +45,9 @@
               <label class="boxdata-label-30">Наименование нефтепродукта</label>
               <input class="boxdata-input-50" type="text" name="Name" value="@Model.name.ToString()" />
           </p>
+            <p>
+                <label class="boxdata-label-30">Категория нефтепродукта</label>@Html.DropDownList("list_PetrochemicalCategories")
+            </p>
           <fieldset  form="PetrochemicalType">
             
               <p>

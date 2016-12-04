@@ -25,7 +25,7 @@
               
                 <p><label class="boxdata-label-30">Код типа нефтепродукта</label>@t.code_type.ToString()</p>
                 <input type="hidden" value="@t.code_type.ToString()" name="type_code">
-                <p><label class="boxdata-label-30">Наименование нефтепродукта</label>@t.name</p>
+                <p><label class="boxdata-label-30">Наименование нефтепродукта</label>@t.name.ToString()</p>
                 <p><label class="boxdata-label-30">Категория нефтепродукта</label>@t.petrochemicalcategories.name.ToString()</p>
 
                 <fieldset  form="PetrochemicalType">
