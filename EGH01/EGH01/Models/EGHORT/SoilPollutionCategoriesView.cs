@@ -18,6 +18,7 @@ namespace EGH01.Models.EGHORT
         public string name { get; set; }               
         public float?  min { get; set; }        
         public float?  max { get; set; }
+        public int list_cadastre { get; set; }
         public static bool Handler(ORTContext context, NameValueCollection parms)
         {
             bool rc = false;
