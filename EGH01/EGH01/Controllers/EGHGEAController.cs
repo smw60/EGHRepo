@@ -76,7 +76,7 @@ namespace EGH01.Controllers
           try
           {
                 db = new GEAContext(this);
-                GEAContextView context = GEAContextView.HandlerChoice(db,this.Request.Params);
+                GEAContextView context = GEAContextView.HandlerClassification(db,this.Request.Params);
                 switch(context.Regim)
                 { 
                  case GEAContextView.REGIM.REPORT:  view = View(db); break;

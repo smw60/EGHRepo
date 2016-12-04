@@ -73,7 +73,7 @@ namespace EGH01DB
                } 
                {
                 XmlNode x = node.SelectSingleNode(".//WaterPollutionList");
-                if (x != null) this.groundpollutionlist = GroundPollutionList.Create(x);
+                if (x != null) this.waterpolutionlist = WaterPollutionList.CreateWaterPollutionList(x);
                 else this.waterpolutionlist = null;
                } 
             }

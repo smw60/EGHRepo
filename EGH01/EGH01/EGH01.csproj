@@ -382,9 +382,6 @@
     <Content Include="Views\EGHRGE\CadastreTypeCreate.cshtml" />
     <Content Include="Views\EGHRGE\CadastreTypeDelete.cshtml" />
     <Content Include="Views\EGHRGE\CadastreTypeUpdate.cshtml" />
-    <Content Include="Views\EGHGEA\CadastreType.cshtml" />
-    <Content Include="Views\EGHGEA\_CadastreTypeList.cshtml" />
-    <Content Include="Views\EGHGEA\CadastreTypeUpdate.cshtml" />
     <Content Include="Views\EGHCEQ\_CadastreTypeList.cshtml" />
     <Content Include="Views\EGHCEQ\CadastreType.cshtml" />
     <Content Include="Views\EGHCEQ\CadastreTypeUpdate.cshtml" />
@@ -462,7 +459,6 @@
     <Content Include="Views\EGHGEA\ChoiceEvalutionResult.cshtml" />
     <Content Include="Views\EGHGEA\_ChoiceEvalutionResult.cshtml" />
     <Content Include="Views\EGHGEA\_ConfirmChoiceEvalutionResult.cshtml" />
-
     <Content Include="Views\EGHRGE\_RiskObjectType.cshtml" />
     <Content Include="Views\EGHRGE\RiskObjectType.cshtml" />
     <Content Include="Views\EGHRGE\RiskObjectTypeCreate.cshtml" />
@@ -473,6 +469,8 @@
     <Content Include="Views\EGHORT\RehabilitationMethodsDelete.cshtml" />
     <Content Include="Views\EGHORT\RehabilitationMethodsUpdate.cshtml" />
     <Content Include="Views\EGHORT\_RehabilitationMethods.cshtml" />
+    <Content Include="Views\EGHGEA\ClassificationEvalution.cshtml" />
+    <Content Include="Views\EGHGEA\_GEAReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

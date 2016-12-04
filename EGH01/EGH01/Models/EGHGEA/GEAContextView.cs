@@ -11,7 +11,8 @@ namespace EGH01.Models.EGHGEA
         public enum REGIM {INIT, CHOICE, CANCEL, REPORT}
         public const string VIEWNAME = "GEAContextView";
         public int? idevalution  { get; set; }
-        public CEQContext.ECOEvalution ecoevolution = null;
+        public CEQContext.ECOEvalution       ecoevolution = null;
+        public GEAContext.ECOClassification  ecoclasifiation = null;
         public REGIM Regim = REGIM.INIT;
   
         public static GEAContextView HandlerChoice(GEAContext db, NameValueCollection parms)
@@ -32,7 +33,7 @@ namespace EGH01.Models.EGHGEA
                          }
                      } 
                     else  if (menuitem.Equals("ChoiceEvalutionResult.Cancel"))    rc.Regim = REGIM.CANCEL;
-             }             
+             } else rc.Regim = REGIM.INIT;            
  
              return rc;     
        }
@@ -40,13 +41,18 @@ namespace EGH01.Models.EGHGEA
         {
              GEAContextView rc = db.GetViewContext(VIEWNAME) as GEAContextView;
              if (rc == null) db.SaveViewContext(GEAContextView.VIEWNAME, rc = new GEAContextView());
-             if (rc.ecoevolution != null) rc.Regim = REGIM.REPORT;
+           
              string menuitem = parms["menuitem"];
              if (menuitem != null)
              {
 
 
 
+             }
+             else  if (rc.ecoevolution != null) 
+             { 
+               rc.Regim = REGIM.REPORT;
+               rc.ecoclasifiation = new GEAContext.ECOClassification(rc.ecoevolution);
              }
              return rc;  
         }  
