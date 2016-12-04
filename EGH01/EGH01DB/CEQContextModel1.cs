@@ -13,7 +13,7 @@ namespace EGH01DB
     {
         public  partial class ECOEvalution: RGEContext.ECOForecast
         {
-          public  static bool Create(IDBContext dbcontext, ECOEvalution ecoevalution , string comment = "")
+         public  static bool Create(IDBContext dbcontext, ECOEvalution ecoevalution , string comment = "")
          {
                 bool rc = false;
                 using (SqlCommand cmd = new SqlCommand("EGH.CreateReport", dbcontext.connection))
@@ -71,10 +71,6 @@ namespace EGH01DB
                     };
                     return rc;
             }
-
-
-
-
 
        }      
         

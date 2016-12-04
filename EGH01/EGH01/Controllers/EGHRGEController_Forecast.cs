@@ -84,19 +84,10 @@ namespace EGH01.Controllers
 
                         if (RGEContext.ECOForecast.Create(context, forecast, "отладка"))
                         {
-                                int kk = 2;
+                                
                         }
 
-
-                        //int id = -1;
-                        //if (RGEContext.ECOForecast.GetNextId(context, out id))
-                        //{
-                        //    forecast.id = id;
-                            
-                        //}
-
-                        //int k = 1;
-                    
+                       
                     }
                 }
           }

@@ -56,7 +56,7 @@ namespace EGH01DB
             }
             public ECOForecast(int id)
             {
-                RGEContext db = new RGEContext();
+                //RGEContext db = new RGEContext();
                 this.id = id;
                 this.date = DateTime.Parse("1900-01-01 01:01:01");
                 this.dateconcentrationinsoil = DateTime.Parse("1900-01-01 01:01:01");

@@ -455,7 +455,7 @@
     <Content Include="Views\Shared\ReportWatch.cshtml" />
     <Content Include="Views\Shared\ReportDelete.cshtml" />
     <Content Include="Views\EGHGEA\ChoiceEvalutionResult.cshtml" />
-    <Content Include="Views\EGHGEA\_ChoiceEvalutiontResult.cshtml" />
+    <Content Include="Views\EGHGEA\_ChoiceEvalutionResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
