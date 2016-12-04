@@ -261,4 +261,28 @@ namespace EGH01DB.Types
             return (XmlNode)rc;
         }
     }
+    public class PenetrationDepthList : List<PenetrationDepth>
+    {
+        List<EGH01DB.Types.PenetrationDepth> list_penetrationDepth = new List<EGH01DB.Types.PenetrationDepth>();
+        public PenetrationDepthList()
+        {
+
+        }
+        public PenetrationDepthList(List<PenetrationDepth> list) : base(list)
+        {
+
+        }
+        public PenetrationDepthList(EGH01DB.IDBContext dbcontext) : base(Helper.GetListPenetrationDepth(dbcontext))
+        {
+
+        }
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("PenetrationDepthList");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+            return (XmlNode)rc;
+        }
+    }
 }

@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using EGH01.Models.EGHORT;
 using EGH01DB;
 using EGH01DB.Types;
+using System.Xml;
 
 namespace EGH01.Controllers
 {
@@ -62,15 +63,15 @@ namespace EGH01.Controllers
                 }
                 else if (menuitem.Equals("WaterProtectionArea.Excel"))
                 {
-                    //EGH01DB.Types.WaterProtectionAreaList list = new WaterProtectionAreaList(db);
-                    //XmlNode node = list.toXmlNode();
-                    //XmlDocument doc = new XmlDocument();
-                    //XmlNode nnode = doc.ImportNode(node, true);
-                    //doc.AppendChild(nnode);
-                    //doc.Save(Server.MapPath("~/App_Data/WaterProtectionArea.xml"));
-                    //view = View("Index");
+                    EGH01DB.Types.WaterProtectionAreaList list = new WaterProtectionAreaList(db);
+                    XmlNode node = list.toXmlNode();
+                    XmlDocument doc = new XmlDocument();
+                    XmlNode nnode = doc.ImportNode(node, true);
+                    doc.AppendChild(nnode);
+                    doc.Save(Server.MapPath("~/App_Data/WaterProtectionArea.xml"));
+                    view = View("Index");
 
-                    //view = File(Server.MapPath("~/App_Data/WaterProtectionArea.xml"), "text/plain", "Химический состав нефтей.xml");
+                    view = File(Server.MapPath("~/App_Data/WaterProtectionArea.xml"), "text/plain", "Категории водоохранной территории.xml");
 
                 }
             }

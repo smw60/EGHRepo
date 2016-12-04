@@ -1,7 +1,6 @@
 <SoilPollutionCategories>
-  <SoilPollutionCategories code="1" name="Test" min="11" max="1110" />
   <SoilPollutionCategories code="2" name="Допустимая" min="1" max="2" />
-  <SoilPollutionCategories code="3" name="Умеренно опасная" min="2" max="5" />
+  <SoilPollutionCategories code="3" name="Умеренно опасная" min="2,1" max="5" />
   <SoilPollutionCategories code="4" name="Опасная" min="5,1" max="1E+08" />
   <SoilPollutionCategories code="5" name="Низкая" min="1" max="5" />
   <SoilPollutionCategories code="6" name="Средняя" min="5,1" max="20" />
