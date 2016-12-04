@@ -281,11 +281,6 @@ namespace EGH01DB.Types
                         float water_pdk_coef = (float)reader["ПДКводы"];
                         string ground_doc_name = (string)reader["НормДокументЗемля"];
                         string water_doc_name = (string)reader["НормДокументВода"];
-
-                        int ground_category_code = (int)reader["КодКатегорииЗагрязненияГрунта"];
-                        string ground_category_name = (string)reader["НаименованиеКатегорииЗагрязненияГрунта"];
-                        float min = (float)reader["МинДиапазон"];
-                        float max = (float)reader["МаксДиапазон"];
                         if (rc = (int)cmd.Parameters["@exitrc"].Value > 0)
                             type = new CadastreType(type_code, name, (float)pdk_coef, (float)water_pdk_coef, ground_doc_name, water_doc_name); 
                     }
