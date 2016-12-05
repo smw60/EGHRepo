@@ -314,7 +314,8 @@ namespace EGH01.Controllers
                 //string name = "Test111";
                 //float min = -1.1f;
                 //float max = 1111.1f;
-                //WaterPollutionCategories t = new WaterPollutionCategories(code, name, min, max);
+                //CadastreType cad = new CadastreType (1);
+                //WaterPollutionCategories t = new WaterPollutionCategories(code, name, min, max, cad);
                 //if (WaterPollutionCategories.Create(db, t))
                 //{
                 //    int k = 1;
@@ -327,7 +328,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //WaterPollutionCategories r = new WaterPollutionCategories();
-                //if (WaterPollutionCategories.DeleteByCode(db, 1))  // 
+                //if (WaterPollutionCategories.DeleteByCode(db, 4))  // 
                 //{
                 //    int k = 1;
                 //};
@@ -387,7 +388,8 @@ namespace EGH01.Controllers
                 //string name = "Test111";
                 //float min = -1.1f;
                 //float max = 1111.1f;
-                //SoilPollutionCategories t = new SoilPollutionCategories(code, name, min, max);
+                //CadastreType cad = new CadastreType(1);
+                //SoilPollutionCategories t = new SoilPollutionCategories(code, name, min, max, cad);
                 //if (SoilPollutionCategories.Create(db, t))
                 //{
                 //    int k = 1;

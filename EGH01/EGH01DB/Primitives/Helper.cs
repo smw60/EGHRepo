@@ -1143,7 +1143,17 @@ namespace EGH01DB.Primitives
                         float min = (float)reader["МинДиапазон"];
                         float max = (float)reader["МаксДиапазон"];
 
-                        list_water_pollution_categories.Add(new WaterPollutionCategories(code, name, min, max));
+                        int cadastre_type_code = (int)reader["КодНазначенияЗемель"];
+                        string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
+                        float pdk_coef = (float)reader["ПДК"];
+                        float water_pdk_coef = (float)reader["ПДКводы"];
+                        string ground_doc_name = (string)reader["НормДокументЗемля"];
+                        string water_doc_name = (string)reader["НормДокументВода"];
+                        CadastreType cadastre_type = new CadastreType(cadastre_type_code, cadastre_type_name,
+                                                                        pdk_coef, water_pdk_coef,
+                                                                        ground_doc_name, water_doc_name);
+
+                        list_water_pollution_categories.Add(new WaterPollutionCategories(code, name, min, max, cadastre_type));
                     }
                     rc = list_water_pollution_categories.Count > 0;
                     reader.Close();
