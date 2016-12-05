@@ -23,6 +23,7 @@ namespace EGH01.Controllers
             try
             {
                 db = new ORTContext();
+                PenetrationDepthView viewcontext = db.GetViewContext("PenetrationDepthCreate") as PenetrationDepthView;
                 ViewBag.msg = "Соединение с базой данных установлено";
                 view = View("PenetrationDepth", db);
 
@@ -30,6 +31,9 @@ namespace EGH01.Controllers
                 {
 
                     view = View("PenetrationDepthCreate");
+                    viewcontext.mindepth = null;
+                    viewcontext.maxdepth = null;
+                    viewcontext.name = "";
 
                 }
                 else if (menuitem.Equals("PenetrationDepth.Delete"))
@@ -103,6 +107,10 @@ namespace EGH01.Controllers
             try
             {
                 db = new ORTContext();
+                if (!PenetrationDepthView.Handler(db, this.HttpContext.Request.Params))
+                {
+
+                }
                 view = View("PenetrationDepth", db);
                 if (menuitem.Equals("PenetrationDepth.Create.Create"))
                 {
@@ -123,14 +131,22 @@ namespace EGH01.Controllers
                             maxdepth = 0.0f;
                         }
                         String name = pd.name;
-                        EGH01DB.Types.PenetrationDepth penetration = new EGH01DB.Types.PenetrationDepth(code, name, mindepth, maxdepth);
-
-
-                        if (EGH01DB.Types.PenetrationDepth.Create(db, penetration))
+                        if (mindepth < maxdepth)
                         {
-                            view = View("PenetrationDepth", db);
-                        }
+                            EGH01DB.Types.PenetrationDepth penetration = new EGH01DB.Types.PenetrationDepth(code, name, mindepth, maxdepth);
 
+
+                            if (EGH01DB.Types.PenetrationDepth.Create(db, penetration))
+                            {
+                                view = View("PenetrationDepth", db);
+                            }
+                        }
+                        else
+                        {
+                                ViewBag.Error = "Проверьте введенные данные";
+                                view = View("PenetrationDepthCreate", db);
+                                return view;
+                        }
                     }
                 }
 

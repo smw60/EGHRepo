@@ -136,7 +136,7 @@ namespace EGH01.Controllers
                             String name = sp.name;
                             if (min < max)
                             {
-                                EGH01DB.Types.SoilPollutionCategories soil_pollution = new EGH01DB.Types.SoilPollutionCategories(code, name, min, max,cadastre_type); 
+                                EGH01DB.Types.SoilPollutionCategories soil_pollution = new EGH01DB.Types.SoilPollutionCategories(code, name, min, max, cadastre_type);
 
 
                                 if (EGH01DB.Types.SoilPollutionCategories.Create(db, soil_pollution))
@@ -144,14 +144,15 @@ namespace EGH01.Controllers
                                     view = View("SoilPollutionCategories", db);
                                 }
                             }
-                            }
-                            else {
-                                                      
+
+                            else
+                            {
+
                                 ViewBag.Error = "Проверьте введенные данные";
                                 view = View("SoilPollutionCategoriesCreate", db);
                                 return view;
 
-
+                            }
 
                             }
                         }
