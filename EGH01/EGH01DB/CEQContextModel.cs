@@ -25,6 +25,7 @@ namespace EGH01DB
             public int id   {get; set;}
             public DateTime date {get; set;}  
             public float excessgroundconcentration { get; set; }      // отношение значения средней конентрации в грунте к ПДК  
+            public float exesswaterconcentration   { get; set; }      // отношение значения vмакс конентрации в грунте к ПДК    
             private string errormssageformat = "ECOEvalution: Ошибка в данных. {0}";
             public GroundPollutionList groundpollutionlist   {get; set;}
             public WaterPollutionList waterpolutionlist      {get; set;}
@@ -46,6 +47,10 @@ namespace EGH01DB
                 this.date = DateTime.Now;
                 if (this.groundblur.spreadpoint.cadastretype.pdk_coef > 0) this.excessgroundconcentration = this.groundblur.concentrationinsoil / this.groundblur.spreadpoint.cadastretype.pdk_coef;
                 else this.excessgroundconcentration = 0.0f;
+
+
+                this.exesswaterconcentration = 0.0f; 
+
 
                 this.groundpollutionlist = new GroundPollutionList (this.groundblur.groundpolutionlist.Where(p => p.pointtype == Points.Point.POINTTYPE.ECO).ToList());
 
