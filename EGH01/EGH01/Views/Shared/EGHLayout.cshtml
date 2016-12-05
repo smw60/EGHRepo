@@ -226,7 +226,17 @@
                 {
                     <li>@Html.ActionLink("Результаты оценки прогнозируемого  состояния", "ChoiceEvalutionResult", "EGHGEA")</li>
                     <li>@Html.ActionLink("Классификация прогнозируемого состояния", "ClassificationEvalution", "EGHGEA")</li>
-                    <li>@Html.ActionLink("Критерии классификации", "Index", "EGHGEA")</li>
+                     <li class="dropdown">
+                        <a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">
+                           Критерии классификации<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Категории загрязнения грунтов", "SoilPollutionCategories", "EGHGEA")</li>
+                            <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "WaterPollutionCategories", "EGHGEA")</li>
+                            
+                        </ul>
+                    </li>
+                                                          
                     <li>@Html.ActionLink("Отчеты", "Report", "EGHGEA")</li>
                     
                 }
@@ -236,16 +246,16 @@
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">
-                            Справочники<span class="caret"></span>
+                            Справочник<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
+                            @*<li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы природоохранных объектов", "EcoObjectType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Категории нефтепродукта", "PetrochemicalCategories", "EGHRGE")</li>
+                            <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>*@
+                            <li>@Html.ActionLink("Категория нефтепродукта", "PetrochemicalCategories", "EGHRGE")</li>
                         </ul>
                     </li>
                 }
@@ -253,16 +263,7 @@
                 else if (ViewBag.EGHLayout.StartsWith("ORT"))
                 {
                     <li>@Html.ActionLink("Результаты классификации прогнозируемого состояния", "Index", "EGHORT")</li>
-                         <li class="dropdown">
-                        <a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">
-                            Выбор технологий реабилитации<span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Категории загрязнения грунтов", "SoilPollutionCategories", "EGHORT")</li>
-                            <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "WaterPollutionCategories", "EGHORT")</li>
-                            <li>@Html.ActionLink("Классификатор методов реабилитации", "RehabilitationMethods", "EGHORT")</li>
-                        </ul>
-                    </li>
+                     <li>@Html.ActionLink("Выбор технологий реабилитации", "@*Index*@", "EGHORT")</li>
                     <li>@Html.ActionLink("Отчеты", "Report", "EGHORT")</li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -274,6 +275,7 @@
                             <li>@Html.ActionLink("Методы ликвидации загрязнения грунтовых вод", "WaterCleaningMethod", "EGHORT")</li>
                             <li>@Html.ActionLink("Классификация аварий", "EmergencyClass", "EGHORT")</li>
                             <li>@Html.ActionLink("Категории водоохранной территории ", "WaterProtectionArea", "EGHORT")</li>
+                            <li>@Html.ActionLink("Классификатор методов реабилитации", "RehabilitationMethods", "EGHORT")</li>
                         </ul>
                     </li>
                 }
@@ -281,7 +283,7 @@
         <div class=" container mainbody">
             @RenderBody()
             <style>
-                /*Стиль для кнопки вверх Никита*/
+                /*Стиль для кнопки вверх */
                 .btnn-top button {
                     bottom: 100px;
                     right: 40px;
@@ -290,7 +292,7 @@
                     width: 120px;
                     height: 44px;
                 }
-                /*Стиль для кнопки вверх Никита*/
+                /*Стиль для кнопки вниз */
                 .btnn-bot button {
                     bottom: 50px;
                     right: 40px;
