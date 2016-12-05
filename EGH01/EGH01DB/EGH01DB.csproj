@@ -93,6 +93,7 @@
     <Compile Include="Primitives\Const.cs" />
     <Compile Include="Primitives\Coordinates.cs" />
     <Compile Include="Primitives\Helper1.cs" />
+    <Compile Include="Types\RehabilitationMethod.cs" />
     <Compile Include="Primitives\Report.cs" />
     <Compile Include="Primitives\WaterProperties.cs" />
     <Compile Include="RGEContextModel1.cs" />
