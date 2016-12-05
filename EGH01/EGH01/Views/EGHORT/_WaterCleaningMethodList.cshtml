@@ -21,7 +21,7 @@
             <div class="boxdata">
                     <p><label class="boxdata-label-30">Код метода</label>@t.type_code.ToString()</p>
                     <input type="hidden" value="@t.type_code.ToString()" name="type_code">
-                    <p><label class="boxdata-label-30">Наименование метода</label><span class="boxdata-span">@t.name.ToString()</span></p>
+                    @*<p><label class="boxdata-label-30">Наименование метода</label><span class="boxdata-span">@t.name.ToString()</span></p>*@
                     <p><label class="boxdata-label-30">Описание метода</label><span class="boxdata-span">@t.method_description.ToString()</span></p>
                </div>
             @Html.Partial("_TypeLineMenu", menu)

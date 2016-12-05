@@ -102,9 +102,7 @@ namespace EGH01.Controllers
                     if (EGH01DB.Types.SoilCleaningMethod.GetNextCode(db, out id))
                     {
                         int type_code = scmv.type_code;
-                        //string name = scmv.name; blinova
                         string method_description = scmv.method_description;
-
                         SoilCleaningMethod scm = new SoilCleaningMethod(type_code, method_description);
 
                         if (EGH01DB.Types.SoilCleaningMethod.Create(db, scm))
@@ -175,10 +173,9 @@ namespace EGH01.Controllers
                 {
 
                     int type_code = scmv.type_code;
-                    // string name = scmv.name; blinova
                     string method_description = scmv.method_description;
+                    SoilCleaningMethod scm = new SoilCleaningMethod(type_code, method_description);
 
-                    SoilCleaningMethod scm = new EGH01DB.Types.SoilCleaningMethod(type_code, method_description);
                     if (EGH01DB.Types.SoilCleaningMethod.Update(db,scm))
                         view = View("SoilCleaningMethod", db);
                 }

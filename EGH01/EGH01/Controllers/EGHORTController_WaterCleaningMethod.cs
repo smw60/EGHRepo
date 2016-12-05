@@ -102,9 +102,7 @@ namespace EGH01.Controllers
                     if (EGH01DB.Types.WaterCleaningMethod.GetNextCode(db, out id))
                     {
                         int type_code = scmv.type_code;
-                        //string name = scmv.name; blinova
                         string method_description = scmv.method_description;
-
                         WaterCleaningMethod scm = new WaterCleaningMethod(type_code, method_description);
 
                         if (EGH01DB.Types.WaterCleaningMethod.Create(db, scm))
@@ -175,7 +173,6 @@ namespace EGH01.Controllers
                 {
 
                     int type_code = scmv.type_code;
-                    //string name = scmv.name; blinova
                     string method_description = scmv.method_description;
 
                     WaterCleaningMethod scm = new EGH01DB.Types.WaterCleaningMethod(type_code, method_description);
