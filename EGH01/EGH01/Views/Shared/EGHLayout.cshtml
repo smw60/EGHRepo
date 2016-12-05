@@ -222,7 +222,7 @@
                     <li>@Html.ActionLink("Отчеты", "Report", "EGHCEQ")</li>
                 }
 
-                else if (ViewBag.EGHLayout == "GEA")
+                else if (ViewBag.EGHLayout.StartsWith("GEA"))
                 {
                     <li>@Html.ActionLink("Результаты оценки прогнозируемого  состояния", "ChoiceEvalutionResult", "EGHGEA")</li>
                     <li>@Html.ActionLink("Классификация прогнозируемого состояния", "ClassificationEvalution", "EGHGEA")</li>
@@ -246,7 +246,7 @@
 
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">
-                            Справочник<span class="caret"></span>
+                            Справочники<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             @*<li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
