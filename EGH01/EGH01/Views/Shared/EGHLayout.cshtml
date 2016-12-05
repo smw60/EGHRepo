@@ -252,15 +252,22 @@
                 else if (ViewBag.EGHLayout.StartsWith("ORT"))
                 {
                     <li>@Html.ActionLink("Результаты классификации прогнозируемого состояния", "Index", "EGHORT")</li>
-                    <li>@Html.ActionLink("Выбор технологий реабилитации", "RehabilitationMethods", "EGHORT")</li>
+                         <li class="dropdown">
+                        <a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">
+                            Выбор технологий реабилитации<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Категории загрязнения грунтов", "SoilPollutionCategories", "EGHORT")</li>
+                            <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "WaterPollutionCategories", "EGHORT")</li>
+                            <li>@Html.ActionLink("Классификатор методов реабилитации", "RehabilitationMethods", "EGHORT")</li>
+                        </ul>
+                    </li>
                     <li>@Html.ActionLink("Отчеты", "Report", "EGHORT")</li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">
                             Критерии выбора технологий<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li>@Html.ActionLink("Категории загрязнения грунтов", "SoilPollutionCategories", "EGHORT")</li>
-                            <li>@Html.ActionLink("Категории загрязнения грунтовых вод", "WaterPollutionCategories", "EGHORT")</li>
                             <li>@Html.ActionLink("Категории проникновения нефтепродукта", "PenetrationDepth", "EGHORT")</li>
                             <li>@Html.ActionLink("Методы ликвидации загрязнения почвогрунтов", "SoilCleaningMethod", "EGHORT")</li>
                             <li>@Html.ActionLink("Методы ликвидации загрязнения грунтовых вод", "WaterCleaningMethod", "EGHORT")</li>
