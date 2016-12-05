@@ -17,6 +17,7 @@ drop procedure EGH.GetWaterPollutionCategoriesByCode;
 drop procedure EGH.GetWaterPollutionCategoriesList;
 drop procedure EGH.UpdateWaterPollutionCategories;
 drop procedure EGH.GetNextWaterPollutionCategoriesCode;
+drop procedure EGH.GetSoilPollutionCategoriesByVolume_Cadastre;
 go
 ------------------------------------
 
@@ -76,7 +77,7 @@ as begin
 		НаименованиеНазначенияЗемель,
 		ПДК,
 		ПДКводы,
-		НормДокументВода,
+		НормДокументЗемля,
 		НормДокументВода
 	from dbo.КатегорияЗагрязненияГрунтовыхВод W
 	inner join dbo.НазначениеЗемель C on W.КодНазначенияЗемель = C.КодНазначенияЗемель
@@ -98,7 +99,7 @@ create procedure EGH.GetWaterPollutionCategoriesList
 			НаименованиеНазначенияЗемель,
 			ПДК,
 			ПДКводы,
-			НормДокументВода,
+			НормДокументЗемля,
 			НормДокументВода
 	from dbo.КатегорияЗагрязненияГрунтовыхВод W
 	inner join dbo.НазначениеЗемель C on W.КодНазначенияЗемель = C.КодНазначенияЗемель;
@@ -156,7 +157,7 @@ as begin
 		НаименованиеНазначенияЗемель,
 		ПДК,
 		ПДКводы,
-		НормДокументВода,
+		НормДокументЗемля,
 		НормДокументВода
 	from dbo.КатегорияЗагрязненияГрунта C
 	inner join dbo.НазначениеЗемель L on C.КодНазначенияЗемель = L.КодНазначенияЗемель

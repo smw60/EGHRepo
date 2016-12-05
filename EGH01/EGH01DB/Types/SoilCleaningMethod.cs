@@ -15,40 +15,30 @@ namespace EGH01DB.Types
     public class SoilCleaningMethod
     {
         public int                 type_code                 {get; private set; }   // код категории
-        public string              name                      {get; private set; }   // наименование категории
         public string              method_description        {get; private set; }   // описание метода
 
 
-        static public SoilCleaningMethod defaulttype { get { return new SoilCleaningMethod(0, "Не определен", "Не определен"); } }  // выдавать при ошибке  
+        static public SoilCleaningMethod defaulttype { get { return new SoilCleaningMethod(0, "Не определен"); } }  // выдавать при ошибке  
       
         public SoilCleaningMethod()
         {
             this.type_code = -1;
-            this.name = string.Empty;
             this.method_description = string.Empty;
         }
         public SoilCleaningMethod(int code)
         {
             this.type_code = code;
-            this.name = string.Empty;
             this.method_description = string.Empty;
         }
-        public SoilCleaningMethod(String name)
-        {
-            this.type_code = -1;
-            this.name = name;
-            this.method_description = string.Empty;
-        }
-        public SoilCleaningMethod(int code, String name, String method_description)
+    
+        public SoilCleaningMethod(int code, String method_description)
         {
             this.type_code = code;
-            this.name = name;
             this.method_description = method_description;
         }
         public SoilCleaningMethod(XmlNode node)
         {
             this.type_code = Helper.GetIntAttribute(node, "type_code", -1);
-            this.name = Helper.GetStringAttribute(node, "name", "");
             this.method_description = Helper.GetStringAttribute(node, "method_description", "");
         }
         static public bool GetNextCode(EGH01DB.IDBContext dbcontext, out int code)
@@ -95,11 +85,6 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@НаименованиеКатегории", SqlDbType.NVarChar);
-                    parm.Value = method.name;
-                    cmd.Parameters.Add(parm);
-                }
-                {
                    SqlParameter parm = new SqlParameter("@ОписаниеМетода", SqlDbType.NVarChar);
                    parm.Value = method.method_description;
                    cmd.Parameters.Add(parm);
@@ -131,11 +116,6 @@ namespace EGH01DB.Types
                 {
                     SqlParameter parm = new SqlParameter("@КодТипаКатегории", SqlDbType.Int);
                     parm.Value = method.type_code;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@НаименованиеКатегории", SqlDbType.NVarChar);
-                    parm.Value = method.name;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -222,9 +202,8 @@ namespace EGH01DB.Types
                     if (reader.Read())
                     {
                         int method_code = (int)reader["КодТипаКатегории"];
-                        string name = (string)reader["НаименованиеКатегории"];
                         string method_description = (string)reader["ОписаниеМетода"];
-                        if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) method = new SoilCleaningMethod(method_code, name, method_description);
+                        if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) method = new SoilCleaningMethod(method_code, method_description);
 
                     }
                     reader.Close();
@@ -242,7 +221,6 @@ namespace EGH01DB.Types
             XmlElement rc = doc.CreateElement("SoilCleaningMethod");
             if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
             rc.SetAttribute("type_code", this.type_code.ToString());
-            rc.SetAttribute("name", this.name.ToString());
             rc.SetAttribute("method_description", this.method_description.ToString());
             return (XmlNode)rc;
         }

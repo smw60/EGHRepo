@@ -23,17 +23,14 @@ go
 ---- Добавление категории методов ликвидации загрязнения грунтовых вод
 create procedure EGH.CreateWaterCleaningMethods (
 					@КодТипаКатегории int,  
-					@НаименованиеКатегории nvarchar(MAX),
 					@ОписаниеМетода nvarchar(MAX))
 as begin 
 declare @rc int  = @КодТипаКатегории;
 	begin try
 		insert into dbo.КатегорияМЛЗагрязненияГВ(
 		КодТипаКатегории, 
-		НаименованиеКатегории,
 		ОписаниеМетода) 
 		values(@КодТипаКатегории, 
-				@НаименованиеКатегории,
 				@ОписаниеМетода); 
 	end try
 	begin catch
@@ -63,7 +60,6 @@ as begin
     declare @rc int = -1;
 	select  
 		КодТипаКатегории,
-		НаименованиеКатегории,
 		ОписаниеМетода
 	from dbo.КатегорияМЛЗагрязненияГВ 
 	where КодТипаКатегории = @КодТипаКатегории;  
@@ -77,7 +73,6 @@ create procedure EGH.GetWaterCleaningMethodsList
  as begin
 	declare @rc int = -1;
 	select	КодТипаКатегории,
-			НаименованиеКатегории,
 			ОписаниеМетода
 	from dbo.КатегорияМЛЗагрязненияГВ;
 	set @rc = @@ROWCOUNT;
@@ -88,12 +83,10 @@ go
 ---- Обновление категории методов ликвидации загрязнения грунтовых вод
 create  procedure EGH.UpdateWaterCleaningMethods(
 						@КодТипаКатегории int, 
-						@НаименованиеКатегории nvarchar(max),
 						@ОписаниеМетода nvarchar(max)) 
 as begin 
     declare @rc int = -1;
 	update  dbo.КатегорияМЛЗагрязненияГВ set
-	 НаименованиеКатегории = @НаименованиеКатегории,
 	 ОписаниеМетода = @ОписаниеМетода
 	 where КодТипаКатегории = @КодТипаКатегории;  
 	set @rc = @@ROWCOUNT;
