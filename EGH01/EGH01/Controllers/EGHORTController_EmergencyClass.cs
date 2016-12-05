@@ -3,6 +3,7 @@ using EGH01DB;
 using System.Web.Mvc;
 using EGH01.Models.EGHORT;
 using EGH01DB.Types;
+using System.Xml;
 using EGH01DB.Primitives;
 
 
@@ -62,17 +63,14 @@ namespace EGH01.Controllers
                 }
                 else if (menuitem.Equals("EmergencyClass.Excel"))
                 {
-                    //EGH01DB.Primitives.WaterPropertiesList list = new EGH01DB.Primitives.WaterPropertiesList(db);
-                    //XmlNode node = list.toXmlNode();
-                    //XmlDocument doc = new XmlDocument();
-                    //XmlNode nnode = doc.ImportNode(node, true);
-                    //doc.AppendChild(nnode);
-                    //doc.Save(Server.MapPath("~/App_Data/WaterProperties.xml"));
-                    //view = View("Index");
-
-                    //view = File(Server.MapPath("~/App_Data/WaterProperties.xml"), "text/plain", "Свойства воды.xml");
-
-
+                    EGH01DB.Types.EmergencyClassList list = new EGH01DB.Types.EmergencyClassList(db);
+                    XmlNode node = list.toXmlNode();
+                    XmlDocument doc = new XmlDocument();
+                    XmlNode nnode = doc.ImportNode(node, true);
+                    doc.AppendChild(nnode);
+                    doc.Save(Server.MapPath("~/App_Data/EmergencyClass.xml"));
+                    view = View("Index");
+                    view = File(Server.MapPath("~/App_Data/EmergencyClass.xml"), "text/plain", "Классификация аварий.xml");
                 }
 
             }

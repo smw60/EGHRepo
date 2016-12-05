@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using EGH01DB;
+using System.Xml;
 using EGH01.Models.EGHORT;
 using EGH01DB.Types;
 
@@ -60,16 +61,14 @@ namespace EGH01.Controllers
                 }
                 else if (menuitem.Equals("WaterCleaningMethod.Excel"))
                 {
-                    //EGH01DB.Primitives.WaterPropertiesList list = new EGH01DB.Primitives.WaterPropertiesList(db);
-                    //XmlNode node = list.toXmlNode();
-                    //XmlDocument doc = new XmlDocument();
-                    //XmlNode nnode = doc.ImportNode(node, true);
-                    //doc.AppendChild(nnode);
-                    //doc.Save(Server.MapPath("~/App_Data/WaterProperties.xml"));
-                    //view = View("Index");
-
-                    //view = File(Server.MapPath("~/App_Data/WaterProperties.xml"), "text/plain", "Свойства воды.xml");
-
+                    EGH01DB.Types.WaterCleaningMethodList list = new EGH01DB.Types.WaterCleaningMethodList(db);
+                    XmlNode node = list.toXmlNode();
+                    XmlDocument doc = new XmlDocument();
+                    XmlNode nnode = doc.ImportNode(node, true);
+                    doc.AppendChild(nnode);
+                    doc.Save(Server.MapPath("~/App_Data/WaterCleaningMethod.xml"));
+                    view = View("Index");
+                    view = File(Server.MapPath("~/App_Data/WaterCleaningMethod.xml"), "text/plain", "Методы ликвидации загрязнения грунтовых вод.xml");
 
                 }
 

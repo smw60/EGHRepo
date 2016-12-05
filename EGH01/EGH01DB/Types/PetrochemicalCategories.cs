@@ -229,5 +229,28 @@ namespace EGH01DB.Types
         }
 
     }
+    public class PetrochemicalCategoriesList : List<PetrochemicalCategories>
+    {
+        List<EGH01DB.Types.SoilCleaningMethod> list_soil_cleaning_method = new List<EGH01DB.Types.SoilCleaningMethod>();
+        public PetrochemicalCategoriesList()
+        {
 
+        }
+        public PetrochemicalCategoriesList(List<PetrochemicalCategories> list) : base(list)
+        {
+
+        }
+        public PetrochemicalCategoriesList(EGH01DB.IDBContext dbcontext) : base(Helper.GetListPetrochemicalCategories(dbcontext))
+        {
+
+        }
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("PetrochemicalCategoriesList");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+            return (XmlNode)rc;
+        }
+    }
 }
