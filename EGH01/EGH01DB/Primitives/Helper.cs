@@ -1123,10 +1123,9 @@ namespace EGH01DB.Primitives
                     while (reader.Read())
                     {
                         int code = (int)reader["КодТипаКатегории"];
-                        string name = (string)reader["НаименованиеКатегории"];
                         string method = (string)reader["ОписаниеМетода"];
 
-                        list_soil_clean_method.Add(new SoilCleaningMethod(code, name, method));
+                        list_soil_clean_method.Add(new SoilCleaningMethod(code, method));
                     }
                     rc = list_soil_clean_method.Count > 0;
                     reader.Close();
@@ -1152,10 +1151,9 @@ namespace EGH01DB.Primitives
                     while (reader.Read())
                     {
                         int code = (int)reader["КодТипаКатегории"];
-                        string name = (string)reader["НаименованиеКатегории"];
                         string method = (string)reader["ОписаниеМетода"];
 
-                        list_water_clean_method.Add(new WaterCleaningMethod(code, name, method));
+                        list_water_clean_method.Add(new WaterCleaningMethod(code, method));
                     }
                     rc = list_water_clean_method.Count > 0;
                     reader.Close();
