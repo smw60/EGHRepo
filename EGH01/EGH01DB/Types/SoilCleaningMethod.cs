@@ -246,5 +246,33 @@ namespace EGH01DB.Types
             rc.SetAttribute("method_description", this.method_description.ToString());
             return (XmlNode)rc;
         }
+
+
     }
+    public class SoilCleaningMethodList : List<SoilCleaningMethod>
+    {
+        List<EGH01DB.Types.SoilCleaningMethod> list_soil_cleaning_method = new List<EGH01DB.Types.SoilCleaningMethod>();
+        public SoilCleaningMethodList()
+        {
+
+        }
+        public SoilCleaningMethodList(List<SoilCleaningMethod> list) : base(list)
+        {
+
+        }
+        public SoilCleaningMethodList(EGH01DB.IDBContext dbcontext) : base(Helper.GetListSoilCleaningMethod(dbcontext))
+        {
+
+        }
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("SoilCleaningMethodList");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+            return (XmlNode)rc;
+        }
+    }
+
 }
+

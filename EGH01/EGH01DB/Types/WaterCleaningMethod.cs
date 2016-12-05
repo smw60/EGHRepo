@@ -248,4 +248,29 @@ namespace EGH01DB.Types
             return (XmlNode)rc;
         }
     }
+
+    public class WaterCleaningMethodList : List<WaterCleaningMethod>
+    {
+        List<EGH01DB.Types.WaterCleaningMethod> list_water_cleaning_method = new List<EGH01DB.Types.WaterCleaningMethod>();
+        public WaterCleaningMethodList()
+        {
+
+        }
+        public WaterCleaningMethodList(List<WaterCleaningMethod> list) : base(list)
+        {
+
+        }
+        public WaterCleaningMethodList(EGH01DB.IDBContext dbcontext) : base(Helper.GetListWaterCleaningMethod(dbcontext))
+        {
+
+        }
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("WaterCleaningMethodList");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+            return (XmlNode)rc;
+        }
+    }
 }

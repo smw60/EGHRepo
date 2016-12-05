@@ -261,4 +261,28 @@ namespace EGH01DB.Types
             return (XmlNode)rc;
         }
     }
+    public class EmergencyClassList : List<EmergencyClass>
+    {
+        List<EGH01DB.Types.SoilCleaningMethod> list_soil_cleaning_method = new List<EGH01DB.Types.SoilCleaningMethod>();
+        public EmergencyClassList()
+        {
+
+        }
+        public EmergencyClassList(List<EmergencyClass> list) : base(list)
+        {
+
+        }
+        public EmergencyClassList(EGH01DB.IDBContext dbcontext) : base(Helper.GetListEmergencyClass(dbcontext))
+        {
+
+        }
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("EmergencyClassList");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+            return (XmlNode)rc;
+        }
+    }
 }

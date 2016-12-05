@@ -195,7 +195,49 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
+
+        static public EGH01DB.Types.SoilCleaningMethodList GetListSoilCleaningMethod(EGH01DB.IDBContext dbcontext)
+        {
+            List<SoilCleaningMethod> list = new List<SoilCleaningMethod>();
+            EGH01DB.Types.SoilCleaningMethodList rc = new EGH01DB.Types.SoilCleaningMethodList(list);
+            if (Helper.GetListSoilCleaningMethods(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.SoilCleaningMethodList(list);
+            }
+            return rc;
+        }
+
+        static public EGH01DB.Types.WaterCleaningMethodList GetListWaterCleaningMethod(EGH01DB.IDBContext dbcontext)
+        {
+            List<WaterCleaningMethod> list = new List<WaterCleaningMethod>();
+            EGH01DB.Types.WaterCleaningMethodList rc = new EGH01DB.Types.WaterCleaningMethodList(list);
+            if (Helper.GetListWaterCleaningMethods(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.WaterCleaningMethodList(list);
+            }
+            return rc;
+        }
+        static public EGH01DB.Types.EmergencyClassList GetListEmergencyClass(EGH01DB.IDBContext dbcontext)
+        {
+            List<EmergencyClass> list = new List<EmergencyClass>();
+            EGH01DB.Types.EmergencyClassList rc = new EGH01DB.Types.EmergencyClassList(list);
+            if (Helper.GetListEmergencyClass(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.EmergencyClassList(list);
+            }
+            return rc;
+        }
         
+        static public EGH01DB.Types.PetrochemicalCategoriesList GetListPetrochemicalCategories(EGH01DB.IDBContext dbcontext)
+        {
+            List<PetrochemicalCategories> list = new List<PetrochemicalCategories>();
+            EGH01DB.Types.PetrochemicalCategoriesList rc = new EGH01DB.Types.PetrochemicalCategoriesList(list);
+            if (Helper.GetListPetrochemicalCategories(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.PetrochemicalCategoriesList(list);
+            }
+            return rc;
+        }
         static public bool GetListGroundType(EGH01DB.IDBContext dbcontext, ref List<GroundType> list_type)
         { 
             bool rc = false;

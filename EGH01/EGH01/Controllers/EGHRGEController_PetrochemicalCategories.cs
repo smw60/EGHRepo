@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using EGH01.Models.EGHRGE;
 using EGH01DB;
-using EGH01DB.Primitives;
+using System.Xml;
 using EGH01DB.Types;
 
 
@@ -64,16 +64,14 @@ namespace EGH01.Controllers
                 }
                 else if (menuitem.Equals("PetrochemicalCategories.Excel"))
                 {
-                    //EGH01DB.Types.PetrochemicalCategoriesList list = new PetrochemicalCategoriesList(db);
-                    //XmlNode node = list.toXmlNode();
-                    //XmlDocument doc = new XmlDocument();
-                    //XmlNode nnode = doc.ImportNode(node, true);
-                    //doc.AppendChild(nnode);
-                    //doc.Save(Server.MapPath("~/App_Data/PetrochemicalCategories.xml"));
-                    //view = View("Index");
-
-                    //view = File(Server.MapPath("~/App_Data/PetrochemicalCategories.xml"), "text/plain", "Химический состав нефтей.xml");
-
+                    EGH01DB.Types.PetrochemicalCategoriesList list = new PetrochemicalCategoriesList(db);
+                    XmlNode node = list.toXmlNode();
+                    XmlDocument doc = new XmlDocument();
+                    XmlNode nnode = doc.ImportNode(node, true);
+                    doc.AppendChild(nnode);
+                    doc.Save(Server.MapPath("~/App_Data/PetrochemicalCategories.xml"));
+                    view = View("Index");
+                    view = File(Server.MapPath("~/App_Data/PetrochemicalCategories.xml"), "text/plain", "Категория нефтепродукта.xml");
                 }
             }
             catch (RGEContext.Exception e)
