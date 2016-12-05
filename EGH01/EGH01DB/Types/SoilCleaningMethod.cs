@@ -45,6 +45,11 @@ namespace EGH01DB.Types
             this.name = name;
             this.method_description = method_description;
         }
+        public SoilCleaningMethod(int code, String method_description)
+        {
+            this.type_code = code;
+            this.method_description = method_description;
+        }
         public SoilCleaningMethod(XmlNode node)
         {
             this.type_code = Helper.GetIntAttribute(node, "type_code", -1);
@@ -94,11 +99,11 @@ namespace EGH01DB.Types
                     parm.Value = method.type_code;
                     cmd.Parameters.Add(parm);
                 }
-                {
-                    SqlParameter parm = new SqlParameter("@НаименованиеКатегории", SqlDbType.NVarChar);
-                    parm.Value = method.name;
-                    cmd.Parameters.Add(parm);
-                }
+                //{
+                //    SqlParameter parm = new SqlParameter("@НаименованиеКатегории", SqlDbType.NVarChar);
+                //    parm.Value = method.name;
+                //    cmd.Parameters.Add(parm);
+                //}
                 {
                    SqlParameter parm = new SqlParameter("@ОписаниеМетода", SqlDbType.NVarChar);
                    parm.Value = method.method_description;
