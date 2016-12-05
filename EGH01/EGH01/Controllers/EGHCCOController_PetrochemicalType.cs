@@ -140,11 +140,13 @@ namespace EGH01.Controllers
                         float diffusion;
                         Helper.FloatTryParse(strdiffusion, out diffusion);
 
-                        PetrochemicalCategories petrochemicalcategories = new PetrochemicalCategories(ptv.petrochemicalcategories.type_code, ptv.name.ToString()); //blinova
-                        if (EGH01DB.Types.PetrochemicalCategories.GetByCode(db, ptv.petrochemicalcategories.type_code, out petrochemicalcategories))
+                        int petrochemicalcategories_type_code = ptv.list_PetrochemicalCategories;
+
+                        PetrochemicalCategories petrochemicalcategories = new PetrochemicalCategories((int)petrochemicalcategories_type_code);
+                        if (EGH01DB.Types.PetrochemicalCategories.GetByCode(db, petrochemicalcategories_type_code, out petrochemicalcategories))
                         {
                             PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density,
-                               (float)viscosity, (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion, petrochemicalcategories);// blinova
+                               (float)viscosity, (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion, petrochemicalcategories);
                             if (EGH01DB.Types.PetrochemicalType.Create(db, pt))
                             {
                                 view = View("PetrochemicalType", db);
@@ -243,12 +245,14 @@ namespace EGH01.Controllers
                     float diffusion;
                     Helper.FloatTryParse(strdiffusion, out diffusion);
 
-                    
-                    PetrochemicalCategories petrochemicalcategories = new PetrochemicalCategories(); //blinova
-                    if (EGH01DB.Types.PetrochemicalCategories.GetByCode(db, ptv.petrochemicalcategories.type_code, out petrochemicalcategories))
+                    int petrochemicalcategories_type_code = ptv.list_PetrochemicalCategories;
+                  
+
+                    PetrochemicalCategories petrochemicalcategories = new PetrochemicalCategories(); 
+                    if (EGH01DB.Types.PetrochemicalCategories.GetByCode(db, (int)petrochemicalcategories_type_code, out petrochemicalcategories))
                     {
                         PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, (float)viscosity,
-                                               (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion, petrochemicalcategories); // blinova
+                                               (float)solubility, (float)tension, (float)dynamicviscosity, (float)diffusion, (PetrochemicalCategories)petrochemicalcategories); 
                         if (EGH01DB.Types.PetrochemicalType.Update(db, pt))
                             view = View("PetrochemicalType", db);
                     }
