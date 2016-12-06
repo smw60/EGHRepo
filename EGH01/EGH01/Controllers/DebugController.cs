@@ -379,7 +379,20 @@ namespace EGH01.Controllers
             }
             return View();
         }
+        public ActionResult WaterPollutionCategories_GetByMult_Cadastre() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //WaterPollutionCategories r = new WaterPollutionCategories(1);
 
+                //if (WaterPollutionCategories.GetByMult_Cadastre(db, 200, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        
         // проверка процедур  SoilPollutionCategories
         public ActionResult SoilPollutionCategories_Create()// y
         {
