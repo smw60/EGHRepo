@@ -314,7 +314,7 @@ namespace EGH01.Controllers
                 //string name = "Test111";
                 //float min = -1.1f;
                 //float max = 1111.1f;
-                //CadastreType cad = new CadastreType (1);
+                //CadastreType cad = new CadastreType(1);
                 //WaterPollutionCategories t = new WaterPollutionCategories(code, name, min, max, cad);
                 //if (WaterPollutionCategories.Create(db, t))
                 //{
@@ -371,6 +371,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //List<WaterPollutionCategories> list = new List<WaterPollutionCategories>();
+                
                 //if (Helper.GetListWaterPollutionCategories(db, ref list))
                 //{
                 //    int k = 1;
