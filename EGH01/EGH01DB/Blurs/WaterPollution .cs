@@ -16,6 +16,7 @@ namespace EGH01DB.Blurs
 
         public PetrochemicalType petrochemicatype { get; private set; }          // нефтепрдукт
         public CadastreType cadastretype          { get; private set; }          // кадастровый тип земли
+        public WaterPollutionCategories   waterpollutioncategories    { get; set; }          // уровень загрязнения 
         public float distance                     { get; private set; }          // расстояние до центра разлива 
         public float maxconcentration             { get; set; }                  // максимальная концентрация нефтепродукта
         public float timemaxconcentration         { get; private set; }          // время достижения  максимальной концентрация нефтепродукта
@@ -47,6 +48,7 @@ namespace EGH01DB.Blurs
         {
             this.petrochemicatype = new PetrochemicalType();
             this.cadastretype = new CadastreType();
+            this.waterpollutioncategories = new WaterPollutionCategories();
             this.distance = 0.0f;
             this.maxconcentration = 0.0f;
             this.timemaxconcentration = 0.0f;
@@ -67,6 +69,7 @@ namespace EGH01DB.Blurs
             XmlNode cadastre_type = node.SelectSingleNode(".//CadastreType");
             if (cadastre_type != null) this.cadastretype = new CadastreType(cadastre_type);
             else this.cadastretype = null;
+           
             this.distance = Helper.GetFloatAttribute(node, "distance");
             this.maxconcentration = Helper.GetFloatAttribute(node, "maxconcentration");
             this.timemaxconcentration = Helper.GetFloatAttribute(node, "timemaxconcentration");
@@ -75,10 +78,15 @@ namespace EGH01DB.Blurs
             this.angle = Helper.GetFloatAttribute(node, "angle");
             this.comment = Helper.GetStringAttribute(node, "comment");
             this.iswaterobject =  Helper.GetStringAttribute(node, "iswaterobject","нет").Equals("да");
+            { 
+              XmlNode x = node.SelectSingleNode(".//WaterPollutionCategories");
+              if (x != null) this.waterpollutioncategories = new WaterPollutionCategories(x);
+            }   
                       
         }
 
-        public WaterPollution(EcoObject ecojbject, float distance, float angle, PetrochemicalType petrochemicatype, float speedhorizontal, float maxconcentration = 0.0f, float timemaxconcentration = 0.0f)
+        public WaterPollution(EcoObject ecojbject, float distance, float angle, PetrochemicalType petrochemicatype, float speedhorizontal, float maxconcentration = 0.0f, float timemaxconcentration = 0.0f,
+                              WaterPollutionCategories   waterpollutioncategories  = null)
             : base(ecojbject)
         {
             this.pointtype = POINTTYPE.ECO;
@@ -93,6 +101,7 @@ namespace EGH01DB.Blurs
             this.timemaxconcentration = timemaxconcentration;
             this.datemaxconcentration = Const.DATE_INFINITY;
             this.iswaterobject = ecojbject.iswaterobject;
+            this.waterpollutioncategories = waterpollutioncategories; 
         }
         
         
@@ -114,9 +123,18 @@ namespace EGH01DB.Blurs
             rc.SetAttribute("name", this.name);
             rc.SetAttribute("comment", this.comment);
             rc.SetAttribute("pointtype", this.pointtype.ToString());
-            rc.SetAttribute("excessconcentration", this.excessconcentration.ToString()); 
-            XmlNode n = base.toXmlNode("");
-            rc.AppendChild(doc.ImportNode(n, true));
+            rc.SetAttribute("excessconcentration", this.excessconcentration.ToString());
+   
+           if (this.waterpollutioncategories != null)
+           {
+              XmlNode x = this.waterpollutioncategories.toXmlNode("");   
+              rc.AppendChild(doc.ImportNode(x, true));
+           }
+           {
+              XmlNode x = base.toXmlNode("");
+              rc.AppendChild(doc.ImportNode(x, true));
+           }
+           
             
             return (XmlNode)rc;
         }

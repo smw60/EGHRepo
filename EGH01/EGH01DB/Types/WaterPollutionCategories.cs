@@ -290,7 +290,7 @@ namespace EGH01DB.Types
             rc.AppendChild(doc.ImportNode(this.cadastretype.toXmlNode(), true));
             return (XmlNode)rc;
         }
-        static public bool GetByMult_Cadastre(EGH01DB.IDBContext dbcontext, float volume, int cadatsre_type_code, out  WaterPollutionCategories  waterpollutioncategories)
+        static public bool GetByExcess_Cadastre(EGH01DB.IDBContext dbcontext, float excess, int cadatsre_type_code, out  WaterPollutionCategories  waterpollutioncategories)
         {
          CadastreType ct = null; 
          CadastreType.GetByCode(dbcontext,1, out ct);

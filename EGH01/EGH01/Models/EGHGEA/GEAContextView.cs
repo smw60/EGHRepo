@@ -12,7 +12,7 @@ namespace EGH01.Models.EGHGEA
         public const string VIEWNAME = "GEAContextView";
         public int? idevalution  { get; set; }
         public CEQContext.ECOEvalution       ecoevolution = null;
-        public GEAContext.ECOClassification  ecoclasifiation = null;
+        public GEAContext.ECOClassification  ecoclassifiation = null;
         public REGIM Regim = REGIM.INIT;
   
         public static GEAContextView HandlerChoice(GEAContext db, NameValueCollection parms)
@@ -52,7 +52,7 @@ namespace EGH01.Models.EGHGEA
              else  if (rc.ecoevolution != null) 
              { 
                rc.Regim = REGIM.REPORT;
-               rc.ecoclasifiation = new GEAContext.ECOClassification(rc.ecoevolution);
+               rc.ecoclassifiation = new GEAContext.ECOClassification(rc.ecoevolution);
              }
              return rc;  
         }  

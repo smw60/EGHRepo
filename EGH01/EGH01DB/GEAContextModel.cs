@@ -6,6 +6,7 @@ using System.Xml;
 using System.Threading.Tasks;
 using EGH01DB.Primitives;
 using EGH01DB.Types;
+using EGH01DB.Blurs;
 
 namespace EGH01DB
 {
@@ -28,6 +29,8 @@ namespace EGH01DB
                                                    + string.Format(": {0}, {1}, {2}", this.incident.volume, this.incident.petrochemicaltype.name, this.incident.riskobject.name);
                                                   }
                                                 } 
+
+
              public ECOClassification(CEQContext.ECOEvalution ecoevalution):base (ecoevalution)
              { 
                      GEAContext db = new GEAContext(); 
@@ -44,11 +47,20 @@ namespace EGH01DB
                     { 
   
                          WaterPollutionCategories wpc = this.waterpollutioncategories = null;
-                         if (WaterPollutionCategories.GetByMult_Cadastre(db, this.exesswaterconcentration, this.groundblur.spreadpoint.cadastretype.type_code,  out wpc))              
+                         if (WaterPollutionCategories.GetByExcess_Cadastre(db, this.exesswaterconcentration, this.groundblur.spreadpoint.cadastretype.type_code,  out wpc))              
                          {
                             this.waterpollutioncategories = wpc;
                          }
                      }
+                    
+                    foreach(WaterPollution wp in this.waterpolutionlist)
+                    {
+                    //     wp.waterpollutioncategories =
+                      WaterPollutionCategories x = null;  
+                      if (WaterPollutionCategories.GetByExcess_Cadastre(db, wp.excessconcentration,wp.cadastretype.type_code, out x))  wp.waterpollutioncategories = x   ;
+
+                    }  
+                   
 
              }
              public ECOClassification(XmlNode node):base (node.SelectSingleNode(".//ECOEvalution"))
@@ -66,6 +78,10 @@ namespace EGH01DB
                     else this.waterpollutioncategories = null;
                 } 
     
+
+
+
+
              }                
              public new XmlNode toXmlNode(string comment="")
              { 
