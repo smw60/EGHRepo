@@ -114,7 +114,11 @@
             }
             else if (ViewBag.EGHLayout == "ORT.WaterProtectionArea")
             {
-                <h2 class="double"><span>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") </span><span>Критерии водоохранной территории</span></h2>
+                <h2 class="double"><span>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") </span><span>Категории водоохранной территории</span></h2>
+            }
+            else if (ViewBag.EGHLayout == "ORT.RehabilitationMethods")
+            {
+                <h2 class="double"><span>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") </span><span>Классификатор методов реабилитации</span></h2>
             }
             else if (ViewBag.EGHLayout == "ORT.SoilCleaningMethod")
             {
@@ -142,9 +146,10 @@
             }
             else if (ViewBag.EGHLayout == "GEA.Report")
             {
-                <h2 class="double"><span>@Html.ActionLink("Классификация прогнозируемого состояния", "Index", "EGHCEQ") </span><span>Отчеты</span></h2>
+                <h2 class="double"><span>@Html.ActionLink("Классификация прогнозируемого состояния", "Index", "EGHCEQ") </span> <span>Отчеты</span></h2>
             }
             
+
         </div>
         <div class=" col-xs-3">
             <div id="time">Текущее время: <span id="doc_time"></span><br />Последнее обновление: <span id="version">@((new FileInfo(Assembly.GetExecutingAssembly().Location)).LastWriteTime.ToString("dd.M.yyyy HH:mm"))</span></div>
