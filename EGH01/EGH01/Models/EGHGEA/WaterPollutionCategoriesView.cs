@@ -7,7 +7,7 @@ using EGH01DB;
 using System.Collections.Specialized;
 using EGH01DB.Primitives;
 
-namespace EGH01.Models.EGHORT
+namespace EGH01.Models.EGHGEA
 {
     public class WaterPollutionCategoriesView
     {
@@ -18,10 +18,11 @@ namespace EGH01.Models.EGHORT
         public string name { get; set; }
         public float? min { get; set; }
         public float? max { get; set; }
+        public int list_cadstre { get; set; }
 
 
 
-        public static bool Handler(ORTContext context, NameValueCollection parms)
+        public static bool Handler(GEAContext context, NameValueCollection parms)
         {
             bool rc = false;
             WaterPollutionCategoriesView viewcontext = null;

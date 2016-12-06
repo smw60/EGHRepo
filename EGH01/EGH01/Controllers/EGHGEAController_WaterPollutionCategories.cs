@@ -1,5 +1,5 @@
 ﻿using EGH01.Models.EGHCCO;
-using EGH01.Models.EGHORT;
+using EGH01.Models.EGHGEA;
 using EGH01DB;
 using EGH01DB.Primitives;
 using System;
@@ -11,18 +11,18 @@ using System.Xml;
 
 namespace EGH01.Controllers
 {
-    public partial class EGHORTController : Controller
+    public partial class EGHGEAController : Controller
     {
         // GET: EGHORTController_WaterPollutionCategories
         public ActionResult WaterPollutionCategories()
         {
-            ORTContext db = null;
-            ViewBag.EGHLayout = "ORT.WaterPollutionCategories";
+            GEAContext db = null;
+            ViewBag.EGHLayout = "GEA.WaterPollutionCategories";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new ORTContext(this);
+                db = new GEAContext(this);
                 WaterPollutionCategoriesView viewcontext = db.GetViewContext("WaterPollutionCategoriesCreate") as WaterPollutionCategoriesView;
                 ViewBag.msg = "Соединение с базой данных установлено";
                 view = View("WaterPollutionCategories", db);
@@ -99,13 +99,13 @@ namespace EGH01.Controllers
         [HttpPost]
         public ActionResult WaterPollutionCategoriesCreate(WaterPollutionCategoriesView sp)
         {
-            ORTContext db = null;
-            ViewBag.EGHLayout = "ORT.WaterPollutionCategories";
+            GEAContext db = null;
+            ViewBag.EGHLayout = "GEA.WaterPollutionCategories";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new ORTContext(this);
+                db = new GEAContext(this);
                 if (!WaterPollutionCategoriesView.Handler(db, this.HttpContext.Request.Params))
                 {
 
@@ -130,9 +130,11 @@ namespace EGH01.Controllers
                             max = 0.0f;
                         }
                         String name = sp.name;
+                        EGH01DB.Types.CadastreType cadastre = new EGH01DB.Types.CadastreType();
+                        EGH01DB.Types.CadastreType.GetByCode(db,sp.list_cadstre, out cadastre);
                         if (min < max)
                         {
-                            EGH01DB.Types.WaterPollutionCategories water_pollution = new EGH01DB.Types.WaterPollutionCategories(code, name, min, max, null); //blinova
+                            EGH01DB.Types.WaterPollutionCategories water_pollution = new EGH01DB.Types.WaterPollutionCategories(code, name, min, max, cadastre); 
 
 
                             if (EGH01DB.Types.WaterPollutionCategories.Create(db, water_pollution))
@@ -166,13 +168,13 @@ namespace EGH01.Controllers
         [HttpPost]
         public ActionResult WaterPollutionCategoriesDelete(int code)
         {
-            ORTContext db = null;
-            ViewBag.EGHLayout = "ORT.WaterPollutionCategories";
+            GEAContext db = null;
+            ViewBag.EGHLayout = "GEA.WaterPollutionCategories";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new ORTContext();
+                db = new GEAContext();
 
                 if (menuitem.Equals("WaterPollutionCategories.Delete.Delete"))
                 {
@@ -195,13 +197,13 @@ namespace EGH01.Controllers
         [HttpPost]
         public ActionResult WaterPollutionCategoriesUpdate(WaterPollutionCategoriesView sp)
         {
-            ORTContext db = null;
-            ViewBag.EGHLayout = "ORT.WaterPollutionCategories";
+            GEAContext db = null;
+            ViewBag.EGHLayout = "GEA.WaterPollutionCategories";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new ORTContext();
+                db = new GEAContext();
                 view = View("WaterPollutionCategories", db);
                 if (menuitem.Equals("WaterPollutionCategories.Update.Update"))
                 {

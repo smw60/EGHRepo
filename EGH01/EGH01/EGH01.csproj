@@ -196,7 +196,7 @@
     <Compile Include="Controllers\EGHORTController_SoilCleaningMethod.cs" />
     <Compile Include="Controllers\EGHORTController_PenetrationDepth.cs" />
     <Compile Include="Controllers\EGHORTController_WaterCleaningMethod.cs" />
-    <Compile Include="Controllers\EGHORTController_WaterPollutionCategories.cs" />
+    <Compile Include="Controllers\EGHGEAController_WaterPollutionCategories.cs" />
     <Compile Include="Controllers\EGHORTController_WaterProtectionArea.cs" />
     <Compile Include="Controllers\EGHRGEController_AnchorPoint.cs" />
     <Compile Include="Controllers\EGHRGEController_CadastreType.cs" />
@@ -226,7 +226,7 @@
     <Compile Include="Models\EGHORT\RehabilitationMethodsView.cs" />
     <Compile Include="Models\EGHORT\SoilCleaningMethodView.cs" />
     <Compile Include="Models\EGHORT\PenetrationDepthView .cs" />
-    <Compile Include="Models\EGHORT\WaterPollutionCategoriesView.cs" />
+    <Compile Include="Models\EGHGEA\WaterPollutionCategoriesView.cs" />
     <Compile Include="Models\EGHGEA\SoilPollutionCategoriesView.cs" />
     <Compile Include="Models\EGHORT\WaterCleaningMethodView.cs" />
     <Compile Include="Models\EGHORT\WaterProtectionAreaView.cs" />
@@ -436,11 +436,11 @@
     <Content Include="Views\EGHORT\EmergencyClassDelete.cshtml" />
     <Content Include="Views\EGHORT\EmergencyClassUpdate.cshtml" />
     <Content Include="Views\EGHORT\_EmergencyClassList.cshtml" />
-    <Content Include="Views\EGHORT\_WaterPollutionCategoriesList.cshtml" />
-    <Content Include="Views\EGHORT\WaterPollutionCategories.cshtml" />
-    <Content Include="Views\EGHORT\WaterPollutionCategoriesCreate.cshtml" />
-    <Content Include="Views\EGHORT\WaterPollutionCategoriesUpdate.cshtml" />
-    <Content Include="Views\EGHORT\WaterPollutionCategoriesDelete.cshtml" />
+    <Content Include="Views\EGHGEA\_WaterPollutionCategoriesList.cshtml" />
+    <Content Include="Views\EGHGEA\WaterPollutionCategories.cshtml" />
+    <Content Include="Views\EGHGEA\WaterPollutionCategoriesCreate.cshtml" />
+    <Content Include="Views\EGHGEA\WaterPollutionCategoriesUpdate.cshtml" />
+    <Content Include="Views\EGHGEA\WaterPollutionCategoriesDelete.cshtml" />
     <Content Include="Views\EGHRGE\PetrochemicalCategoriesCreate.cshtml" />
     <Content Include="Views\EGHRGE\PetrochemicalCategoriesDelete.cshtml" />
     <Content Include="Views\EGHRGE\PetrochemicalCategories.cshtml" />
@@ -475,7 +475,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Debug\" />
-    <Folder Include="Views\EGHGEAController_SoilPollutionCategories2\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

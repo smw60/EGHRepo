@@ -7,6 +7,7 @@
 @{
 
     Layout = "~/Views/Shared/EGHLayout.cshtml";
+    EGH01DB.GEAContext db = new EGH01DB.GEAContext();
     Menu head = new Menu(
                           new Menu.MenuItem("Создать", "WaterPollutionCategories.Create", false),
                           new Menu.MenuItem("Excel-формат", "WaterPollutionCategories.Excel", false)
@@ -16,10 +17,24 @@
                           new Menu.MenuItem("Изменить", "WaterPollutionCategories.Update.Update", true),
                           new Menu.MenuItem("Отказаться", "WaterPollutionCategories.Update.Cancel", true)
                         );
-}
-@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHORT", Action = "WaterPollutionCategories", Menu = head })
+    {
+        List<EGH01DB.Types.CadastreType> list_cadastre = new List<EGH01DB.Types.CadastreType>();
+        List<SelectListItem> listcadastre = ViewBag.list_cadastre = new List<SelectListItem>();
 
-@using (Html.BeginForm("WaterPollutionCategoriesUpdate", "EGHORT"))
+        Helper.GetListCadastreType(db, ref list_cadastre);
+        list_cadastre.ForEach(o => ViewBag.list_cadastre.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+
+        if (@Model.cadastretype != null)
+        {
+            SelectListItem sic = listcadastre.FirstOrDefault(s => s.Value == Model.cadastretype.type_code.ToString());
+            sic.Selected = true;
+
+        }
+    }
+}
+@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHGEA", Action = "WaterPollutionCategories", Menu = head })
+
+@using (Html.BeginForm("WaterPollutionCategoriesUpdate", "EGHGEA"))
 {
 
     <div class="box">
@@ -36,6 +51,9 @@
                 <label class="boxdata-label-40">Диапазон кратности превышения показателя ПДК <sup><small></small></sup></label>
                 <input class="boxdata-input-20" type="number" step="0.1" min="0" name="min" value="@Model.min.ToString().Replace(',' , '.')" />
                 <input class="boxdata-input-20" type="number" step="0.1" min="0" name="max" value="@Model.max.ToString().Replace(',' , '.')" />
+            </p>
+            <p>
+                <label class="boxdata-label-50">Категория земли</label> @Html.DropDownList("list_cadastre")
             </p>
         </div>
 
