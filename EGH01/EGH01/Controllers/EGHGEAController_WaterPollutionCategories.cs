@@ -131,7 +131,7 @@ namespace EGH01.Controllers
                         }
                         String name = sp.name;
                         EGH01DB.Types.CadastreType cadastre = new EGH01DB.Types.CadastreType();
-                        EGH01DB.Types.CadastreType.GetByCode(db,sp.list_cadstre, out cadastre);
+                        EGH01DB.Types.CadastreType.GetByCode(db,sp.list_cadastre, out cadastre);
                         if (min < max)
                         {
                             EGH01DB.Types.WaterPollutionCategories water_pollution = new EGH01DB.Types.WaterPollutionCategories(code, name, min, max, cadastre); 
@@ -225,8 +225,9 @@ namespace EGH01.Controllers
                     {
                         max = 0.0f;
                     }
-
-                    EGH01DB.Types.WaterPollutionCategories water_pollution = new EGH01DB.Types.WaterPollutionCategories(code, name, min, max, null); //blinova
+                    EGH01DB.Types.CadastreType cadastre = new EGH01DB.Types.CadastreType();
+                    EGH01DB.Types.CadastreType.GetByCode(db, sp.list_cadastre, out cadastre);
+                    EGH01DB.Types.WaterPollutionCategories water_pollution = new EGH01DB.Types.WaterPollutionCategories(code, name, min, max, cadastre); //blinova
                     if (EGH01DB.Types.WaterPollutionCategories.Update(db, water_pollution))
                     {
                         view = View("WaterPollutionCategories", db);
