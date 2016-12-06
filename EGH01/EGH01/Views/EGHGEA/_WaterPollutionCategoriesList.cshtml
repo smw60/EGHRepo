@@ -15,7 +15,7 @@
 @foreach (WaterPollutionCategories t in @Model)
 {
 
-    using (Html.BeginForm("WaterPollutionCategories", "EGHORT"))
+    using (Html.BeginForm("WaterPollutionCategories", "EGHGEA"))
     {
 
         <div class="box">
@@ -24,6 +24,7 @@
                 <p><label class="boxdata-label-30">Код типа категории</label> @t.code.ToString()</p>
                 <p><label class="boxdata-label-30">Наименование категории загрязнения  грунтовых вод</label> <span class="boxdata-span">@t.name</span></p>
                 <p><label class="boxdata-label-30">Диапазон кратности превышения показателя ПДК от</label>@t.min.ToString()&nbsp;-&nbsp;@t.max.ToString()&nbsp;</p>
+                <p><label class="boxdata-label-30">Категория земли</label> @t.cadastretype.name</p>
 
                 <input type="hidden" value="@t.code.ToString()" name="id">
 

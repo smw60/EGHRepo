@@ -30,9 +30,9 @@ namespace EGH01.Controllers
                 {
                     view = View("SoilPollutionCategoriesCreate");
 
-                    viewcontext.min = null;
-                    viewcontext.max = null;
-                    viewcontext.name = "";
+                    //viewcontext.min = null;
+                    //viewcontext.max = null;
+                    //viewcontext.name = "";
 
 
                 }
