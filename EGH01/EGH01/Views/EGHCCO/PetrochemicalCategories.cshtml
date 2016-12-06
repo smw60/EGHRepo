@@ -2,7 +2,7 @@
 @using EGH01.Models.EGH;
 @using EGH01DB.Primitives;
 @using EGH01DB.Types;
-@model EGH01DB.RGEContext
+@model EGH01DB.CCOContext
 
 
 @{
@@ -21,6 +21,6 @@
 }
 
 
-@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHRGE", Action = "PetrochemicalCategories", Menu = head })
+@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCCO", Action = "PetrochemicalCategories", Menu = head })
 @Html.Partial("_PetrochemicalCategoriesList", list)
 

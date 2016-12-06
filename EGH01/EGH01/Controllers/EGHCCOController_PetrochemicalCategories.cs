@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
-using EGH01.Models.EGHRGE;
+using EGH01.Models.EGHCCO;
 using EGH01DB;
 using System.Xml;
 using EGH01DB.Types;
@@ -8,17 +8,17 @@ using EGH01DB.Types;
 
 namespace EGH01.Controllers
 {
-    public partial class EGHRGEController: Controller
+    public partial class EGHCCOController: Controller
     {
         public ActionResult PetrochemicalCategories()
         {
-            RGEContext db = null;
-            ViewBag.EGHLayout = "RGE.PetrochemicalCategories";
+            CCOContext db = null;
+            ViewBag.EGHLayout = "CCO.PetrochemicalCategories";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new RGEContext();
+                db = new CCOContext();
                 ViewBag.msg = "Соединение с базой данных установлено";
                 view = View("PetrochemicalCategories", db);
 
@@ -90,13 +90,13 @@ namespace EGH01.Controllers
         [HttpPost]
         public ActionResult PetrochemicalCategoriesCreate(PetrochemicalCategoriesView pcv)
         {
-            RGEContext db = null;
-            ViewBag.EGHLayout = "RGE.PetrochemicalCategories";
+            CCOContext db = null;
+            ViewBag.EGHLayout = "CCO.PetrochemicalCategories";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new RGEContext();
+                db = new CCOContext();
                 view = View("PetrochemicalCategories", db);
                 if (menuitem.Equals("PetrochemicalCategories.Create.Create"))
                 {
@@ -132,13 +132,13 @@ namespace EGH01.Controllers
         [HttpPost]
         public ActionResult PetrochemicalCategoriesDelete(int type_code)
         {
-            RGEContext db = null;
-            ViewBag.EGHLayout = "RGE.PetrochemicalCategories";
+            CCOContext db = null;
+            ViewBag.EGHLayout = "CCO.PetrochemicalCategories";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new RGEContext();
+                db = new CCOContext();
                 if (menuitem.Equals("PetrochemicalCategories.Delete.Delete"))
                 {
                     if (EGH01DB.Types.PetrochemicalCategories.DeleteByCode(db, type_code)) view = View("PetrochemicalCategories", db);
@@ -161,13 +161,13 @@ namespace EGH01.Controllers
         [HttpPost]
         public ActionResult PetrochemicalCategoriesUpdate(PetrochemicalCategoriesView pcv)
         {
-            RGEContext db = null;
-            ViewBag.EGHLayout = "RGE.PetrochemicalCategories";
+            CCOContext db = null;
+            ViewBag.EGHLayout = "CCO.PetrochemicalCategories";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new RGEContext();
+                db = new CCOContext();
                 if (menuitem.Equals("PetrochemicalCategories.Update.Update"))
                 {
 
