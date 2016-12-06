@@ -24,7 +24,7 @@ namespace EGH01.Models.EGHORT
             bool rc = false;
             PenetrationDepthView viewcontext = null;
             string menuitem = parms["menuitem"] ?? "Empty";
-            if ((viewcontext = context.GetViewContext(VIEWNAME) as PenetrationDepthView) != null)
+            if ((viewcontext = context.GetViewContext("PenetrationDepthCreate") as PenetrationDepthView) != null)
             {
                 viewcontext.Regim = REGIM.INIT;
 

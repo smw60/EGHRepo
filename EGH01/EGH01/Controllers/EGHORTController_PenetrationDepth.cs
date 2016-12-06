@@ -23,7 +23,8 @@ namespace EGH01.Controllers
             try
             {
                 db = new ORTContext();
-                PenetrationDepthView viewcontext = db.GetViewContext("PenetrationDepthCreate") as PenetrationDepthView;
+                PenetrationDepthView viewcontext = db.GetViewContext(PenetrationDepthView.VIEWNAME) as PenetrationDepthView;
+             
                 ViewBag.msg = "Соединение с базой данных установлено";
                 view = View("PenetrationDepth", db);
 
@@ -31,9 +32,9 @@ namespace EGH01.Controllers
                 {
 
                     view = View("PenetrationDepthCreate");
-                    viewcontext.mindepth = null;
-                    viewcontext.maxdepth = null;
-                    viewcontext.name = "";
+                    //viewcontext.mindepth = null;
+                    //viewcontext.maxdepth = null;
+                    //viewcontext.name = "";
 
                 }
                 else if (menuitem.Equals("PenetrationDepth.Delete"))
