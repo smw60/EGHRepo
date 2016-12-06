@@ -91,27 +91,50 @@
                         @ecoevalution.groundblur.concentrationinsoil
                     </p>
                     <p>
-                        <label class="boxdata-label-40 "> Глубина проиникновения  загрязения  </label>
-                        @Math.Round(ecoevalution.groundblur.depth,3)
+                        <label class="boxdata-label-40 "> Глубина проиникновения  загрязения (м)  </label>
+                        @Math.Round(ecoevalution.groundblur.depth, 3)
                     </p>
                     <p>
-                        <label class="boxdata-label-40 "> Предельно допустимая концентрация  </label>
+                        <label class="boxdata-label-40 "> Предельно допустимая концентрация в грунте (кг/кг)  </label>
                         @ecoevalution.incident.riskobject.cadastretype.pdk_coef
                     </p>
                     @if (ecoevalution.excessgroundconcentration > 1)
-              {
+                    {
                         <p>
                             <label class="boxdata-label-40 "> Кратность превышения   </label>
                             @Math.Round(ecoevalution.excessgroundconcentration, 1)
                         </p>
-              }
-              else
-              {
+                    }
+                    else
+                    {
                         <p>
                             <label class="boxdata-label-40 "> Превышение   </label>
                             нет превышения
                         </p>
-              }
+                    }
+                    <p>
+                        <label class="boxdata-label-40 "> Макс. концентрация на уровне (поверхности) грунтовых вод (кг/кг)</label>
+                        @ecoevalution.groundblur.maxconcentrationwater
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 "> Предельно допустимая концентрация в воде (кг/кг)  </label>
+                        @ecoevalution.incident.riskobject.cadastretype.water_pdk_coef
+                    </p>
+
+                    @if (ecoevalution.exesswaterconcentration > 1)
+                    {
+                        <p>
+                            <label class="boxdata-label-40 "> Кратность превышения   </label>
+                            @Math.Round(ecoevalution.exesswaterconcentration, 1)
+                        </p>
+                    }
+                    else
+                    {
+                        <p>
+                            <label class="boxdata-label-40 "> Превышение   </label>
+                            нет превышения
+                        </p>
+                    }
 
                     <fieldset form="ChoiseRiskObject">
                         <legend> Природоохранные объекты </legend>
@@ -156,7 +179,7 @@
                             @Math.Round(ecoevalution.waterblur.radius,0)
                         </p>
                         @foreach (WaterPollution o in ecoevalution.waterpolutionlist)
-                  {
+                        {
                             <fieldset>
                                 <legend>@o.comment @o.name </legend>
 
@@ -171,41 +194,30 @@
                                     <p><label class="boxdata-label-40">Глубина грунтовых вод (м)</label> @Math.Round(o.waterdeep, 1)</p>
                                 </fieldset>
                                 @if (o.iswaterobject)
-                         {
+                                {
                                     <p>
                                         <label class="boxdata-label-40 ">Водоохранный объект</label>&nbsp;
                                     </p>
-                                    <p>
-                                        <label class="boxdata-label-40 ">Предельно доустимая концентрация (кг/кг) </label>
-                                        @o.cadastretype.water_pdk_coef     @o.cadastretype.water_doc_name
-                                    </p>
-                         }
-                         else
-                         {
-                                    <p>
-                                        <label class="boxdata-label-40 ">Предельно доустимая концентрация (кг/кг) </label>
-                                        @o.cadastretype.pdk_coef    @o.cadastretype.ground_doc_name
-                                    </p>
-                         }
+                                }
                                 <p>
-                                    <label class="boxdata-label-40 ">Максимальная величина концентрации (кг/кг) </label>
-                                    @o.maxconcentration
+                                    <label class="boxdata-label-40 ">Предельно допустимая концентрация (кг/кг) </label>
+                                    @o.cadastretype.water_pdk_coef     @o.cadastretype.water_doc_name
                                 </p>
-
                                 <p>
                                     <label class="boxdata-label-40 ">Дата достижения максимальной концентрации  </label>
                                     @o.datemaxconcentration.ToShortDateString()  (@Math.Round(o.daymaxconcentration) сут.)
                                 </p>
                                 <p>
                                     <label class="boxdata-label-40 "> Кратность превышения   </label>
-                                    @if (o.excessconcentration > 0) { @Math.Round(o.excessconcentration, 1);}
-                             else {<span>----</span> }
-
+                                    @if (o.excessconcentration > 0)
+                                    { @Math.Round(o.excessconcentration, 1);
+                                    }
+                                    else
+                                    {<span>----</span> }
                                 </p>
-
                             </fieldset>
-                  }
-                        
+                        }
+
                     </fieldset>
                 </fieldset>
             </fieldset>

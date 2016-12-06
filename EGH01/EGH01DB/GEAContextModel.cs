@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml;
 using System.Threading.Tasks;
 using EGH01DB.Primitives;
+using EGH01DB.Types;
 
 namespace EGH01DB
 {
@@ -16,6 +17,10 @@ namespace EGH01DB
         {
               public int                  id   {get; set;}
               public DateTime             date {get; set;}  
+              public SoilPollutionCategories  soilpollutioncategories  {get; set;}
+              public WaterPollutionCategories waterpollutioncategories {get; set;}
+             
+
               private string errormssageformat = "ECOClassification: Ошибка в данных. {0}";
               public string               line { get
                                                   {
@@ -25,13 +30,42 @@ namespace EGH01DB
                                                 } 
              public ECOClassification(CEQContext.ECOEvalution ecoevalution):base (ecoevalution)
              { 
-                   this.id = 0;
-                   this.date = DateTime.Now; 
+                     GEAContext db = new GEAContext(); 
+                     this.id = 0;
+                     this.date = DateTime.Now; 
+                     {
+                           SoilPollutionCategories spc =  this.soilpollutioncategories =  null;
+                           if (SoilPollutionCategories.GetByVolume_Cadastre(db, this.excessgroundconcentration, this.groundblur.spreadpoint.cadastretype.type_code,  out spc))              
+                           {
+                             this.soilpollutioncategories = spc;
+                           }
+                     }
+                
+                    { 
+  
+                         WaterPollutionCategories wpc = this.waterpollutioncategories = null;
+                         if (WaterPollutionCategories.GetByMult_Cadastre(db, this.exesswaterconcentration, this.groundblur.spreadpoint.cadastretype.type_code,  out wpc))              
+                         {
+                            this.waterpollutioncategories = wpc;
+                         }
+                     }
+
              }
              public ECOClassification(XmlNode node):base (node.SelectSingleNode(".//ECOEvalution"))
              { 
                this.id =   Helper.GetIntAttribute(node, "id"); 
                this.date = Helper.GetDateTimeAttribute(node,"date", DateTime.Now);
+                {
+                    XmlNode x = node.SelectSingleNode(".//SoilPollutionCategories");
+                    if (x != null) this.soilpollutioncategories =  new  SoilPollutionCategories(x);
+                    else this.soilpollutioncategories = null;
+                }  
+                {
+                    XmlNode x = node.SelectSingleNode(".//WaterPollutionCategories");
+                    if (x != null) this.waterpollutioncategories =  new  WaterPollutionCategories(x);
+                    else this.waterpollutioncategories = null;
+                } 
+    
              }                
              public new XmlNode toXmlNode(string comment="")
              { 
@@ -40,7 +74,10 @@ namespace EGH01DB
                   if (!string.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
                   rc.SetAttribute("id",this.id.ToString()); 
                   rc.SetAttribute("date", this.date.ToString());
-
+                  {
+                    XmlNode n = this.soilpollutioncategories.toXmlNode();
+                    rc.AppendChild(doc.ImportNode(n, true));
+                  }    
                   {
                     XmlNode n = base.toXmlNode();
                     rc.AppendChild(doc.ImportNode(n, true));

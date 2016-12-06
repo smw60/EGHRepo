@@ -252,7 +252,8 @@ namespace EGH01DB.Blurs
                             this.spreadpoint.petrochemicaltype.density                             // плотность нефтепродукта 
                             );
                  
-                this.speedvertical = (ka / r);                                                     // вертикальная скорость проникновения нефтепродукта в грунт (м/с)                               
+                this.speedvertical =  this.petrochemicalheight *                                   //  А.Авхимович: высота слоя разлитого нефтепродукта (м)             // вы 
+                                      (ka / r);                                                     // вертикальная скорость проникновения нефтепродукта в грунт (м/с)                               
             }
 
             this.timeconcentrationinsoil =                                                         // время достижения усреднееной концентации  в грунте  

@@ -86,27 +86,51 @@
                         @context.ecoevalution.groundblur.concentrationinsoil
                     </p>
                     <p>
-                        <label class="boxdata-label-40 "> Глубина проиникновения  загрязения  </label>
+                        <label class="boxdata-label-40 "> Глубина проиникновения  загрязения (м)  </label>
                         @Math.Round(context.ecoevalution.groundblur.depth,3)
                     </p>
                     <p>
-                        <label class="boxdata-label-40 "> Предельно допустимая концентрация  </label>
+                        <label class="boxdata-label-40 "> Предельно допустимая концентрация в грунте (кг/кг)  </label>
                         @context.ecoevalution.incident.riskobject.cadastretype.pdk_coef
                     </p>
                     @if (context.ecoevalution.excessgroundconcentration > 1)
-              {
+                    {
+                                <p>
+                                    <label class="boxdata-label-40 "> Кратность превышения   </label>
+                                    @Math.Round(context.ecoevalution.excessgroundconcentration, 1)
+                                </p>
+                    }
+                    else
+                    {
+                                <p>
+                                    <label class="boxdata-label-40 "> Превышение   </label>
+                                    нет превышения
+                                </p>
+                    }
+                    <p>
+                        <label class="boxdata-label-40 "> Макс. концентрация на уровне (поверхности) грунтовых вод (кг/кг)</label>
+                        @context.ecoevalution.groundblur.maxconcentrationwater
+                    </p>
+                    <p>
+                        <label class="boxdata-label-40 "> Предельно допустимая концентрация в воде (кг/кг)  </label>
+                        @context.ecoevalution.incident.riskobject.cadastretype.water_pdk_coef 
+                    </p>
+
+                    @if (context.ecoevalution.exesswaterconcentration > 1)
+                    {
                         <p>
                             <label class="boxdata-label-40 "> Кратность превышения   </label>
-                            @Math.Round(context.ecoevalution.excessgroundconcentration, 1)
+                            @Math.Round(context.ecoevalution.exesswaterconcentration, 1)
                         </p>
-              }
-              else
-              {
+                    }
+                    else
+                    {
                         <p>
                             <label class="boxdata-label-40 "> Превышение   </label>
                             нет превышения
                         </p>
-              }
+                    }
+
 
                     <fieldset form="ChoiseRiskObject">
                         <legend> Природоохранные объекты </legend>
@@ -116,23 +140,23 @@
                         </p>
 
                         @foreach (GroundPollution o in context.ecoevalution.groundpollutionlist)
-                  {
-                            <fieldset form="ChoiseRiskObject">
-                                <legend>@o.comment @o.name </legend>
-                                <fieldset>
-                                    <p><label class="boxdata-label-40">Координаты. Широта</label>@o.coordinates.lat.d.ToString()°&nbsp;@o.coordinates.lat.m.ToString()'&nbsp;@o.coordinates.lat.s.ToString("0.00")"</p>
-                                    <p><label class="boxdata-label-40">Координаты. Долгота</label>@o.coordinates.lng.d.ToString()°&nbsp;@o.coordinates.lng.m.ToString()'&nbsp;@o.coordinates.lng.s.ToString("0.00")" </p>
-                                    <p><label class="boxdata-label-40">Координаты в градусах</label>@o.coordinates.latitude.ToString()°&nbsp;@o.coordinates.lngitude.ToString()°</p>
+                        {
+                                    <fieldset form="ChoiseRiskObject">
+                                        <legend>@o.comment @o.name </legend>
+                                        <fieldset>
+                                            <p><label class="boxdata-label-40">Координаты. Широта</label>@o.coordinates.lat.d.ToString()°&nbsp;@o.coordinates.lat.m.ToString()'&nbsp;@o.coordinates.lat.s.ToString("0.00")"</p>
+                                            <p><label class="boxdata-label-40">Координаты. Долгота</label>@o.coordinates.lng.d.ToString()°&nbsp;@o.coordinates.lng.m.ToString()'&nbsp;@o.coordinates.lng.s.ToString("0.00")" </p>
+                                            <p><label class="boxdata-label-40">Координаты в градусах</label>@o.coordinates.latitude.ToString()°&nbsp;@o.coordinates.lngitude.ToString()°</p>
 
-                                    <p><label class="boxdata-label-40">Расстояние</label><span class="boxdata-span">@Math.Round(o.distance, 0)</span></p>
-                                    <p><label class="boxdata-label-40">Высота (м)</label> @Math.Round(o.height, 0)</p>
-                                    <p><label class="boxdata-label-40">Угол</label> @Math.Round(o.angle, 1)</p>
-                                    <p><label class="boxdata-label-40">Глубина грунтовых вод (м)</label> @Math.Round(o.waterdeep, 1)</p>
-                                </fieldset>
-                            </fieldset>
+                                            <p><label class="boxdata-label-40">Расстояние</label><span class="boxdata-span">@Math.Round(o.distance, 0)</span></p>
+                                            <p><label class="boxdata-label-40">Высота (м)</label> @Math.Round(o.height, 0)</p>
+                                            <p><label class="boxdata-label-40">Угол</label> @Math.Round(o.angle, 1)</p>
+                                            <p><label class="boxdata-label-40">Глубина грунтовых вод (м)</label> @Math.Round(o.waterdeep, 1)</p>
+                                        </fieldset>
+                                    </fieldset>
 
 
-                  }
+                         }
 
                     </fieldset>
 
@@ -140,18 +164,18 @@
                 <fieldset>
                     <legend> Распространение загрязнения с грунтовыми водами  </legend>
                     <p>
-                        <label class="boxdata-label-40 ">  Радиус распрстранения  нефтепрдукта с грунтовыми водами (м)  </label>
+                        <label class="boxdata-label-40 ">  Радиус распространения  нефтепрдукта с грунтовыми водами (м)  </label>
                         @Math.Round(context.ecoevalution.waterblur.radius,0)
                     </p>
                     <fieldset>
                         <legend> Природоохранные объекты </legend>
                         <p>
-                            <label class="boxdata-label-40 ">Радиус поиска прирооохранных объектов (м)  </label>
+                            <label class="boxdata-label-40 ">Радиус поиска прироодохранных объектов (м)  </label>
                             @Math.Round(context.ecoevalution.groundblur.radius,0) -
                             @Math.Round(context.ecoevalution.waterblur.radius,0)
                         </p>
                         @foreach (WaterPollution o in context.ecoevalution.waterpolutionlist)
-                  {
+                        {
                             <fieldset>
                                 <legend>@o.comment @o.name </legend>
 
@@ -165,28 +189,16 @@
                                     <p><label class="boxdata-label-40">Угол</label> @Math.Round(o.angle, 1)</p>
                                     <p><label class="boxdata-label-40">Глубина грунтовых вод (м)</label> @Math.Round(o.waterdeep, 1)</p>
                                 </fieldset>
-                                @if (o.iswaterobject)
-                         {
-                                    <p>
-                                        <label class="boxdata-label-40 ">Водоохранный объект</label>&nbsp;
-                                    </p>
-                                    <p>
-                                        <label class="boxdata-label-40 ">Предельно доустимая концентрация (кг/кг) </label>
-                                        @o.cadastretype.water_pdk_coef     @o.cadastretype.water_doc_name
-                                    </p>
-                         }
-                         else
-                         {
-                                    <p>
-                                        <label class="boxdata-label-40 ">Предельно доустимая концентрация (кг/кг) </label>
-                                        @o.cadastretype.pdk_coef    @o.cadastretype.ground_doc_name
-                                    </p>
-                         }
+                                 @if (o.iswaterobject)
+                                 {
+                                            <p>
+                                                <label class="boxdata-label-40 ">Водоохранный объект</label>&nbsp;
+                                            </p>
+                                 }
                                 <p>
-                                    <label class="boxdata-label-40 ">Максимальная величина концентрации (кг/кг) </label>
-                                    @o.maxconcentration
+                                    <label class="boxdata-label-40 ">Предельно допустимая концентрация (кг/кг) </label>
+                                    @o.cadastretype.water_pdk_coef     @o.cadastretype.water_doc_name
                                 </p>
-
                                 <p>
                                     <label class="boxdata-label-40 ">Дата достижения максимальной концентрации  </label>
                                     @o.datemaxconcentration.ToShortDateString()  (@Math.Round(o.daymaxconcentration) сут.)
@@ -194,12 +206,11 @@
                                 <p>
                                     <label class="boxdata-label-40 "> Кратность превышения   </label>
                                     @if (o.excessconcentration > 0) { @Math.Round(o.excessconcentration, 1);}
-                             else {<span>----</span> }
-
+                                    else {<span>----</span> }
                                 </p>
-
-                            </fieldset>
-                  }
+                               
+                               </fieldset>
+                      }
                         
                     </fieldset>
                 </fieldset>

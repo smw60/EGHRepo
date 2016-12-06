@@ -11,6 +11,7 @@ using System.Xml;
 using System.Data.SqlClient;
 using System.Data;
 using EGH01DB.Objects;
+using EGH01DB.Types;
 using EGH01DB.Blurs;
 using EGH01DB.Primitives;
 
@@ -27,8 +28,8 @@ namespace EGH01DB
             public float excessgroundconcentration { get; set; }      // отношение значения средней конентрации в грунте к ПДК  
             public float exesswaterconcentration   { get; set; }      // отношение значения vмакс конентрации в грунте к ПДК    
             private string errormssageformat = "ECOEvalution: Ошибка в данных. {0}";
-            public GroundPollutionList groundpollutionlist   {get; set;}
-            public WaterPollutionList waterpolutionlist      {get; set;}
+            public GroundPollutionList      groundpollutionlist      {get; set;}
+            public WaterPollutionList       waterpolutionlist        {get; set;}
            
            
             public string line { get
@@ -40,18 +41,20 @@ namespace EGH01DB
 
             public ECOEvalution(RGEContext.ECOForecast  forecast): base (forecast)
             {
-                //CEQContext db = new CEQContext();    // заглушка, выставить правильный контекст //blinova
+                 CEQContext db = new CEQContext();    // заглушка, выставить правильный контекст //blinova
                 //if (this.groundblur.spreadpoint.cadastretype.pdk_coef <= 0)
                 //throw new EGHDBException(string.Format(errormssageformat, "Значение предельно-дупустимой концентрации не может быть  меньше или равно нулю"));
-
+               
                 this.date = DateTime.Now;
                 if (this.groundblur.spreadpoint.cadastretype.pdk_coef > 0) this.excessgroundconcentration = this.groundblur.concentrationinsoil / this.groundblur.spreadpoint.cadastretype.pdk_coef;
                 else this.excessgroundconcentration = 0.0f;
+                
+               
+              
+                if (this.groundblur.spreadpoint.cadastretype.water_pdk_coef > 0) this.exesswaterconcentration = this.groundblur.maxconcentrationwater / this.groundblur.spreadpoint.cadastretype.water_pdk_coef;
+                else this.exesswaterconcentration = 0.0f;
 
-
-                this.exesswaterconcentration = 0.0f; 
-
-
+                
                 this.groundpollutionlist = new GroundPollutionList (this.groundblur.groundpolutionlist.Where(p => p.pointtype == Points.Point.POINTTYPE.ECO).ToList());
 
                 this.waterpolutionlist = new WaterPollutionList();
@@ -71,6 +74,8 @@ namespace EGH01DB
                this.id = Helper.GetIntAttribute(node, "id"); 
                this.date = Helper.GetDateTimeAttribute(node,"date", DateTime.Now);
                this.excessgroundconcentration = Helper.GetFloatAttribute(node, "excessgroundconcentration", 0.0f);
+               this.exesswaterconcentration   = Helper.GetFloatAttribute(node, "exesswaterconcentration",   0.0f);
+
                {
                 XmlNode x = node.SelectSingleNode(".//GroundPollutionList");
                 if (x != null) this.groundpollutionlist = GroundPollutionList.Create(x);
@@ -91,6 +96,8 @@ namespace EGH01DB
                   rc.SetAttribute("id",this.id.ToString()); 
                   rc.SetAttribute("date", this.date.ToString());
                   rc.SetAttribute("excessgroundconcentration",  this.excessgroundconcentration.ToString());
+                  rc.SetAttribute("exesswaterconcentration",    this.exesswaterconcentration.ToString());                        
+                 
                   {
                     XmlNode n = this.groundpollutionlist.toXmlNode();
                     rc.AppendChild(doc.ImportNode(n, true));
@@ -106,7 +113,6 @@ namespace EGH01DB
 
                   return (XmlNode)rc; 
             }
-
 
             public static ECOEvalution GetById(IDBContext db, int id)
             { 
