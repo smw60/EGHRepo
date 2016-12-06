@@ -29,6 +29,10 @@
                 <p><label class="boxdata-label-30">Грунт</label>@t.groundtype.name</p>
                 <p><label class="boxdata-label-30">Высота над уровнем моря (м)</label> @t.height.ToString("0.00")</p>
                 <p><label class="boxdata-label-30">Глубина грунтовых вод (м)</label> @t.waterdeep.ToString("0.00")</p>
+                @if (@t.iswaterobject == true)
+                    {
+                    <label>Водный объект</label>
+                }
                 <input type="hidden" value="@t.id.ToString()" name="type_code">
 
             </div>
