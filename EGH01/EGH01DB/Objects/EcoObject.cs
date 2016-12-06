@@ -344,7 +344,7 @@ namespace EGH01DB.Objects
 
                         int cat_water_name = (int)reader["КатегорияВодоохрТер"];
                         bool iswaterobject;
-                        if (cat_water_name==0 ) iswaterobject = true; else iswaterobject= false ;
+                        if (cat_water_name!=0 ) iswaterobject = true; else iswaterobject= false ;
                         WaterProtectionArea water_protection_area = new WaterProtectionArea(cat_water_name);
                         EcoObjectType ecoobjecttype = new EcoObjectType(ecoobject_type_code, ecoobject_type_name, water_protection_area);
                     
