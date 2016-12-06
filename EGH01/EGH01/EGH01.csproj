@@ -188,13 +188,13 @@
     <Compile Include="Controllers\EGHGEAController.cs" />
     <Compile Include="Controllers\EGHCEQController_CadastreType.cs" />
     <Compile Include="Controllers\EGHGEAController_Report.cs" />
+    <Compile Include="Controllers\EGHGEAController_SoilPollutionCategories.cs" />
     <Compile Include="Controllers\EGHORTController.cs" />
     <Compile Include="Controllers\EGHORTController_EmergencyClass.cs" />
     <Compile Include="Controllers\EGHORTController_RehabilitationMethods.cs" />
     <Compile Include="Controllers\EGHORTController_Report.cs" />
     <Compile Include="Controllers\EGHORTController_SoilCleaningMethod.cs" />
     <Compile Include="Controllers\EGHORTController_PenetrationDepth.cs" />
-    <Compile Include="Controllers\EGHORTController_SoilPollutionCategories.cs" />
     <Compile Include="Controllers\EGHORTController_WaterCleaningMethod.cs" />
     <Compile Include="Controllers\EGHORTController_WaterPollutionCategories.cs" />
     <Compile Include="Controllers\EGHORTController_WaterProtectionArea.cs" />
@@ -227,7 +227,7 @@
     <Compile Include="Models\EGHORT\SoilCleaningMethodView.cs" />
     <Compile Include="Models\EGHORT\PenetrationDepthView .cs" />
     <Compile Include="Models\EGHORT\WaterPollutionCategoriesView.cs" />
-    <Compile Include="Models\EGHORT\SoilPollutionCategoriesView.cs" />
+    <Compile Include="Models\EGHGEA\SoilPollutionCategoriesView.cs" />
     <Compile Include="Models\EGHORT\WaterCleaningMethodView.cs" />
     <Compile Include="Models\EGHORT\WaterProtectionAreaView.cs" />
     <Compile Include="Models\EGHRGE\EcoObjectTypeView.cs" />
@@ -411,11 +411,11 @@
     <Content Include="Views\EGHCEQ\_ChoiceForecastResult.cshtml" />
     <Content Include="Views\EGHCEQ\_ConfirmChoiceForecastResult.cshtml" />
     <Content Include="Views\EGHCEQ\EvalutionForecast.cshtml" />
-    <Content Include="Views\EGHORT\SoilPollutionCategories.cshtml" />
-    <Content Include="Views\EGHORT\SoilPollutionCategoriesCreate.cshtml" />
-    <Content Include="Views\EGHORT\SoilPollutionCategoriesDelete.cshtml" />
-    <Content Include="Views\EGHORT\SoilPollutionCategoriesUpdate.cshtml" />
-    <Content Include="Views\EGHORT\_SoilPollutionCategoriesList.cshtml" />
+    <Content Include="Views\EGHGEA\SoilPollutionCategories.cshtml" />
+    <Content Include="Views\EGHGEA\SoilPollutionCategoriesCreate.cshtml" />
+    <Content Include="Views\EGHGEA\SoilPollutionCategoriesDelete.cshtml" />
+    <Content Include="Views\EGHGEA\SoilPollutionCategoriesUpdate.cshtml" />
+    <Content Include="Views\EGHGEA\_SoilPollutionCategoriesList.cshtml" />
     <Content Include="Views\EGHORT\SoilCleaningMethod.cshtml" />
     <Content Include="Views\EGHORT\_SoilCleaningMethodList.cshtml" />
     <Content Include="Views\EGHORT\SoilCleaningMethodCreate.cshtml" />
@@ -475,6 +475,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Debug\" />
+    <Folder Include="Views\EGHGEAController_SoilPollutionCategories2\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
