@@ -885,7 +885,7 @@ namespace EGH01DB.Primitives
                         int cat_water_name = (int)reader["КатегорияВодоохрТер"];
                         string category_name = (string)reader["НаименованиеКатегории"];
 
-                        if (cat_water_name==0 ) iswaterobject = true; else iswaterobject= false;
+                        if (cat_water_name!=0 ) iswaterobject = true; else iswaterobject= false;
                         WaterProtectionArea waterprotectionarea = new WaterProtectionArea(cat_water_name, category_name);
                         int ecoobject_type_code = (int)reader["КодТипаПриродоохранногоОбъекта"];
                         string ecoobject_type_name = (string)reader["НаименованиеТипаПриродоохранногоОбъекта"];

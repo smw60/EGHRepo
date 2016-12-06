@@ -3,7 +3,7 @@
 @using EGH01DB.Types;
 @using EGH01DB.Primitives;
 
-@model EGH01DB.ORTContext
+@model EGH01DB.GEAContext
 
 @{
 
@@ -19,5 +19,5 @@
 }
 
 
-@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHORT", Action = "WaterPollutionCategories", Menu = head })
+@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHGEA", Action = "WaterPollutionCategories", Menu = head })
 @Html.Partial("_WaterPollutionCategoriesList", list)

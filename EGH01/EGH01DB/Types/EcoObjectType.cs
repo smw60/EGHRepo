@@ -233,19 +233,13 @@ namespace EGH01DB.Types
                     {
                         int code = (int)reader["КодТипаПриродоохранногоОбъекта"];
                         string name = (string)reader["НаименованиеТипаПриродоохранногоОбъекта"];
-                        int? cat_water_name;
-                        cat_water_name = (reader["КатегорияВодоохрТер"] == DBNull.Value) ? null : (int?)reader["КатегорияВодоохрТер"];
-                        
-                        if (cat_water_name != null)
-                        {
-                            int category_code = (int)reader["КодТипаКатегории"];
-                            string category_name = (string)reader["НаименованиеКатегории"];
-                            WaterProtectionArea waterprotectionarea = new WaterProtectionArea(category_code, category_name);
-                            eco_object_type = new EcoObjectType(code, name, waterprotectionarea);
-                        }
-                        else eco_object_type = new EcoObjectType(code, name, null);
-                        
-                    }
+
+                        int cat_water_name = (int)reader["КатегорияВодоохрТер"];
+                        int category_code = (int)reader["КодТипаКатегории"];
+                        string category_name = (string)reader["НаименованиеКатегории"];
+                        WaterProtectionArea waterprotectionarea = new WaterProtectionArea(category_code, category_name);
+                        eco_object_type = new EcoObjectType(code, name, waterprotectionarea);
+                     }
                     
                     reader.Close();
                     rc = (int)cmd.Parameters["@exitrc"].Value > 0;

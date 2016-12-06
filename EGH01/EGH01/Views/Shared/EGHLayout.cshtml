@@ -96,10 +96,6 @@
             {
                 <h2><span>@Html.ActionLink("Прогноз", "Index", "EGHRGE") </span><span class="big">Свойства воды</span></h2>
             }
-            else if (ViewBag.EGHLayout == "RGE.PetrochemicalCategories")
-            {
-                <h2><span>@Html.ActionLink("Прогноз", "Index", "EGHRGE") </span><span class="big">Категории нефтепродукта</span></h2>
-            }
             else if (ViewBag.EGHLayout == "ORT.SoilPollutionCategories")
             {
                 <h2 class="double"><span>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") </span><span>Категории загрязнения грунтов</span></h2>
@@ -114,7 +110,11 @@
             }
             else if (ViewBag.EGHLayout == "ORT.WaterProtectionArea")
             {
-                <h2 class="double"><span>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") </span><span>Критерии водоохранной территории</span></h2>
+                <h2 class="double"><span>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") </span><span>Категории водоохранной территории</span></h2>
+            }
+            else if (ViewBag.EGHLayout == "ORT.RehabilitationMethods")
+            {
+                <h2 class="double"><span>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") </span><span>Классификатор методов реабилитации</span></h2>
             }
             else if (ViewBag.EGHLayout == "ORT.SoilCleaningMethod")
             {
@@ -142,9 +142,22 @@
             }
             else if (ViewBag.EGHLayout == "GEA.Report")
             {
-                <h2 class="double"><span>@Html.ActionLink("Классификация прогнозируемого состояния", "Index", "EGHCEQ") </span><span>Отчеты</span></h2>
+                <h2 class="double"><span>@Html.ActionLink("Классификация прогнозируемого состояния", "Index", "EGHCEQ") </span> <span>Отчеты</span></h2>
+            }
+            else if (ViewBag.EGHLayout == "GEA.SoilPollutionCategories")
+            {
+                <h2 class="double"><span>@Html.ActionLink("Классификация прогнозируемого состояния", "Index", "EGHCEQ") </span> <span>Категории загрязнения грунтов</span></h2>
+            }
+            else if (ViewBag.EGHLayout == "GEA.WaterPollutionCategories")
+            {
+                <h2 class="double"><span>@Html.ActionLink("Классификация прогнозируемого состояния", "Index", "EGHCEQ") </span> <span>Категории загрязнения грунтовых вод</span></h2>
+            }
+            else if (ViewBag.EGHLayout == "CCO.PetrochemicalCategories")
+            {
+                <h2><span>@Html.ActionLink("Химический состав нефтей", "Index", "EGHCCO") </span><span>Категории нефтепродукта</span></h2>
             }
             
+
         </div>
         <div class=" col-xs-3">
             <div id="time">Текущее время: <span id="doc_time"></span><br />Последнее обновление: <span id="version">@((new FileInfo(Assembly.GetExecutingAssembly().Location)).LastWriteTime.ToString("dd.M.yyyy HH:mm"))</span></div>
@@ -208,7 +221,6 @@
                             <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                             <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Категории нефтепродукта", "PetrochemicalCategories", "EGHRGE")</li>
                             <li>@Html.ActionLink("Тип техногенного объекта", "RiskObjectType", "EGHRGE")</li>
                         </ul>
                     </li>
@@ -245,18 +257,7 @@
                 {
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">
-                            Справочники<span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            @*<li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Типы природоохранных объектов", "EcoObjectType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>*@
-                            <li>@Html.ActionLink("Категория нефтепродукта", "PetrochemicalCategories", "EGHRGE")</li>
-                        </ul>
+                            @Html.ActionLink("Категория нефтепродукта", "PetrochemicalCategories", "EGHCCO")
                     </li>
                 }
 

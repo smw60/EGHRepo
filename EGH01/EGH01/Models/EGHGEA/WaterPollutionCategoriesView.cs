@@ -2,29 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using EGH01DB.Primitives;
 using System.ComponentModel.DataAnnotations;
 using EGH01DB;
 using System.Collections.Specialized;
+using EGH01DB.Primitives;
 
-namespace EGH01.Models.EGHORT
+namespace EGH01.Models.EGHGEA
 {
-    public class SoilPollutionCategoriesView
+    public class WaterPollutionCategoriesView
     {
         public enum REGIM { INIT, ERROR, RUNERROR, REPORT };
 
         public REGIM Regim { get; set; }
-        public int    code { get; set; }           
-        public string name { get; set; }               
-        public float?  min { get; set; }        
-        public float?  max { get; set; }
-        public int list_cadastre { get; set; }
-        public static bool Handler(ORTContext context, NameValueCollection parms)
+        public int code { get; set; }
+        public string name { get; set; }
+        public float? min { get; set; }
+        public float? max { get; set; }
+        public int list_cadstre { get; set; }
+
+
+
+        public static bool Handler(GEAContext context, NameValueCollection parms)
         {
             bool rc = false;
-           SoilPollutionCategoriesView viewcontext = null;
+            WaterPollutionCategoriesView viewcontext = null;
             string menuitem = parms["menuitem"] ?? "Empty";
-            if ((viewcontext = context.GetViewContext("SoilPollutionCategoriesCreate") as SoilPollutionCategoriesView) != null)
+            if ((viewcontext = context.GetViewContext("WaterPollutionCategoriesCreate") as WaterPollutionCategoriesView) != null)
             {
                 viewcontext.Regim = REGIM.INIT;
 
@@ -59,9 +62,5 @@ namespace EGH01.Models.EGHORT
             }
             return rc;
         }
-       
     }
-
-
-
 }
