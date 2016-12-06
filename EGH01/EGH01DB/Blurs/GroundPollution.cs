@@ -17,8 +17,8 @@ namespace EGH01DB.Blurs
     {
        
        public float watertime                    { get; private set; }          // время достижения грунтовых вод (с)  
-       public float concentration                { get; private set; }          // концентрация нефтепрдуктов в грунте    (кг/кг)
-       public PetrochemicalType petrochemicatype { get; private set; }          // нефтепрдукт
+       public float concentration                { get; private set; }          // концентрация нефтепродуктов в грунте    (кг/кг)
+       public PetrochemicalType petrochemicatype { get; private set; }          // нефтепродукт
        public CadastreType cadastretype          { get; private set; }          // кадастровый тип земли
        public float distance                     { get; private set; }          // расстояние до центра разлива 
        public float angle                        { get; private set; }          // гидравлический угол наклона  

@@ -87,7 +87,7 @@
                 <fieldset>
                     <legend> Наземное пятно загрязнения </legend>
                     <p>
-                        <label class="boxdata-label-40 "> Средняя концентрация нефтепрдукта  в грунтах зоны аэрации </label>
+                        <label class="boxdata-label-40 "> Средняя концентрация нефтепродукта  в грунтах зоны аэрации </label>
                         @ecoevalution.groundblur.concentrationinsoil
                     </p>
                     <p>
@@ -139,7 +139,7 @@
                     <fieldset form="ChoiseRiskObject">
                         <legend> Природоохранные объекты </legend>
                         <p>
-                            <label class="boxdata-label-40 ">Радиус поиска прирооохранных объектов (м) </label>
+                            <label class="boxdata-label-40 ">Радиус поиска природоохранных объектов (м) </label>
                             @Math.Round(ecoevalution.groundblur.ecoobjectsearchradius, 0)
                         </p>
 
@@ -168,13 +168,13 @@
                 <fieldset>
                     <legend> Распространение загрязнения с грунтовыми водами  </legend>
                     <p>
-                        <label class="boxdata-label-40 ">  Радиус распрстранения  нефтепрдукта с грунтовыми водами (м)  </label>
+                        <label class="boxdata-label-40 ">  Радиус распрстранения  нефтепродукта с грунтовыми водами (м)  </label>
                         @Math.Round(ecoevalution.waterblur.radius,0)
                     </p>
                     <fieldset>
                         <legend> Природоохранные объекты </legend>
                         <p>
-                            <label class="boxdata-label-40 ">Радиус поиска прирооохранных объектов (м)  </label>
+                            <label class="boxdata-label-40 ">Радиус поиска природоохранных объектов (м)  </label>
                             @Math.Round(ecoevalution.groundblur.radius,0) -
                             @Math.Round(ecoevalution.waterblur.radius,0)
                         </p>

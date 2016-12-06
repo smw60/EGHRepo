@@ -14,7 +14,7 @@ namespace EGH01DB.Types
     {
         public int     type_code        {get; private set;}
         public string  name             {get; private set;}
-        public float   porosity         {get; private set;}          // пористость     >0    <1, безразмерная , доля застрявшего  в грунте нефтепрдукта       
+        public float   porosity         {get; private set;}          // пористость     >0    <1, безразмерная , доля застрявшего  в грунте нефтепродукта       
         public float   holdmigration    {get; private set;}          // коэфф. задержки миграции нефтепродуктов 
         public float   waterfilter      {get; private set;}          // коэфф. фильтрации воды
         public float   diffusion        {get; private set;}          // коэфф. диффузии

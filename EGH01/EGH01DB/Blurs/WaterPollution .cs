@@ -14,7 +14,7 @@ namespace EGH01DB.Blurs
     public partial  class WaterPollution : Point   //загрязнение в точке
     {
 
-        public PetrochemicalType petrochemicatype { get; private set; }          // нефтепрдукт
+        public PetrochemicalType petrochemicatype { get; private set; }          // нефтепродукт
         public CadastreType cadastretype          { get; private set; }          // кадастровый тип земли
         public float distance                     { get; private set; }          // расстояние до центра разлива 
         public float maxconcentration             { get; set; }                  // максимальная концентрация нефтепродукта

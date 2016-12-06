@@ -16,7 +16,7 @@
 
 <div class="boxdata">
 
-    <h4>Водяное пятно</h4>
+    <h4>Очаг загрязнения грунтовых вод</h4>
     <fieldset form="ChoiseRiskObject">
         <legend> Природоохранные объекты </legend>
         
@@ -33,7 +33,7 @@
              @context.ecoforecast.groundblur.maxconcentrationwater
            </p>
            <p>
-            <label class="boxdata-label-40 ">Радиус поиска прирооохранных объектов (м) </label>
+            <label class="boxdata-label-40 ">Радиус поиска природоохранных объектов (м) </label>
             @if (context.ecoforecast.waterblur.radius > context.ecoforecast.groundblur.radius)
             {
                   <span>@Math.Round(context.ecoforecast.groundblur.radius, 0) - </span>  
@@ -64,7 +64,7 @@
                         @Math.Round(o.height, 0)
                     </p>
                     <p>
-                        <label class="boxdata-label-40 "> Угол</label>
+                        <label class="boxdata-label-40 ">Угол</label>
                         @Math.Round(o.angle, 1)
                     </p>
                     <p>
@@ -72,7 +72,7 @@
                         @Math.Round(o.waterdeep, 1)
                     </p>
                     <p>
-                        <label class="boxdata-label-40 ">Максимальная концентрация нефтепродукта (кг/кг) </label>
+                        <label class="boxdata-label-40 ">Максимальная концентрация нефтепродукта (кг/м<sup>3</sup>) </label>
                         @o.maxconcentration
                     </p>
                     <p>
