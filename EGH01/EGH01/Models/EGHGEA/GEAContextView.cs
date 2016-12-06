@@ -8,7 +8,7 @@ namespace EGH01.Models.EGHGEA
 {
     public class GEAContextView
     {
-        public enum REGIM {INIT, CHOICE, CANCEL, REPORT}
+        public enum REGIM {INIT, CHOICE, CANCEL, REPORT, SAVE}
         public const string VIEWNAME = "GEAContextView";
         public int? idevalution  { get; set; }
         public CEQContext.ECOEvalution       ecoevolution = null;
@@ -45,9 +45,11 @@ namespace EGH01.Models.EGHGEA
              string menuitem = parms["menuitem"];
              if (menuitem != null)
              {
+                if (menuitem.Equals("Report.Save")) 
+                {
+                     rc.Regim = REGIM.SAVE;
 
-
-
+                }  
              }
              else  if (rc.ecoevolution != null) 
              { 

@@ -220,7 +220,19 @@
                                 <p>
                                     <label class="boxdata-label-40 "> Кратность превышения   </label>
                                     @if (o.excessconcentration > 0)
-                                    { @Math.Round(o.excessconcentration, 1);
+                                    {
+                                        @Math.Round(o.excessconcentration, 1);
+                                    }
+                                    else
+                                    {<span>----</span> }
+
+                                </p>
+                                <p>
+                                    @if (o.waterpollutioncategories != null)
+                                    {
+                                        <label class="boxdata-label-40 "> Категория загрязнения грунтовых вод </label>
+                                        @o.waterpollutioncategories.name
+
                                     }
                                     else
                                     {<span>----</span> }

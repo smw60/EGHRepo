@@ -80,6 +80,8 @@ namespace EGH01.Controllers
                 switch(context.Regim)
                 { 
                  case GEAContextView.REGIM.REPORT:  view = View(db); break;
+                 case GEAContextView.REGIM.SAVE:    
+                                                  // GEAContext.ECOClassification.Create(db,   ECOC
                  case GEAContextView.REGIM.CANCEL:  view = View("Index", db); break; 
                  default:  view = View(db); break;
                 }                 
