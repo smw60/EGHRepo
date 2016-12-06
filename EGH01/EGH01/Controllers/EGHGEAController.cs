@@ -81,7 +81,9 @@ namespace EGH01.Controllers
                 { 
                  case GEAContextView.REGIM.REPORT:  view = View(db); break;
                  case GEAContextView.REGIM.SAVE:    
-                                                  // GEAContext.ECOClassification.Create(db,   ECOC
+                                                GEAContext.ECOClassification.Create(db, context.ecoclassifiation);
+                                                view = View("Index", db);
+                                                break;       
                  case GEAContextView.REGIM.CANCEL:  view = View("Index", db); break; 
                  default:  view = View(db); break;
                 }                 

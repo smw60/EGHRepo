@@ -39,7 +39,7 @@ namespace EGH01DB.Blurs
                         (float)Math.Pow(this.groudblur.spreadpoint.petrochemicaltype.dynamicviscosity, 2) *   // динамическая вязкость ???      
                         this.groudblur.waterproperties.tension /                                              // коэфициент поверхностного натяжения воды
                         (
-                        this.groudblur.spreadpoint.petrochemicaltype.tension *                                // коэфициент поверхностного натяжения нефтепрдукта 
+                        this.groudblur.spreadpoint.petrochemicaltype.tension *                                // коэфициент поверхностного натяжения нефтепродукта 
                         (float)Math.Pow(this.groudblur.waterproperties.viscocity, 2)                           //  вязкость воды  
                         )
                      );
@@ -53,7 +53,7 @@ namespace EGH01DB.Blurs
   //                                   (float)Math.Pow(this.spreadpoint.petrochemicaltype.dynamicviscosity, 2) *       // динамическая вязкость      
   //                                   this.waterproperties.tension /                                           // коэфициент поверхностного натяжения воды
   //                                   (
-  //                                   this.spreadpoint.petrochemicaltype.tension *                             // коэфициент поверхностного натяжения нефтепрдукта 
+  //                                   this.spreadpoint.petrochemicaltype.tension *                             // коэфициент поверхностного натяжения нефтепродукта 
   //                                   (float)Math.Pow(this.waterproperties.viscocity, 2)                       //  вязкость воды  
   //                                   );
 

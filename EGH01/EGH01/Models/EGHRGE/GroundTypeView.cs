@@ -17,7 +17,7 @@ namespace EGH01.Models.EGHRGE
         public REGIM Regim { get; set; }
         public int type_code { get; set; }    // код типа инцидента 
         public string name { get; set; }        // Наименование типа 
-        public float porosity { get; set; }   // пористость     >0    <1, безразмерная , доля застрявшего  в грунте нефтепрдукта       
+        public float porosity { get; set; }   // пористость     >0    <1, безразмерная , доля застрявшего  в грунте нефтепродукта       
         public float soilmoisture { get; set; }   // влажность грунта (от 0 до 1)
         public float watercapacity { get; set; }   // капиллярная влагоемкость (от 0 до 1)
         public float holdmigration { get; set; }   // коэфф. задержки миграции нефтепродуктов 

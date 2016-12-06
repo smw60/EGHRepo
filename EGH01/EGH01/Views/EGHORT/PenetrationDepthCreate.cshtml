@@ -10,14 +10,15 @@
 @{
 
     Layout = "~/Views/Shared/EGHLayout.cshtml";
-    EGH01DB.ORTContext ort = (EGH01DB.ORTContext)Model;
+
     EGH01DB.RGEContext dbrge = new RGEContext();
-    PenetrationDepthView context = (PenetrationDepthView)Model.GetViewContext(PenetrationDepthView.VIEWNAME);
-    if (context == null) { Model.SaveViewContext(PenetrationDepthView.VIEWNAME, context = new PenetrationDepthView()); };
+    EGH01DB.ORTContext gea = (EGH01DB.ORTContext)Model;
+    PenetrationDepthView context = (PenetrationDepthView)Model.GetViewContext("PenetrationDepthCreate");
+    if (context == null) { Model.SaveViewContext("PenetrationDepthCreate", context = new PenetrationDepthView()); };
     Menu start = new Menu(
-                  new Menu.MenuItem("Создать", "PenetrationDepth.Create", true),
-                  new Menu.MenuItem("Отказаться", "PenetrationDepth.Cancel", true)
-                );
+          new Menu.MenuItem("Создать", "PenetrationDepth.Create", true),
+          new Menu.MenuItem("Отказаться", "PenetrationDepth.Cancel", true)
+        );
 
     Menu create = new Menu(
                           new Menu.MenuItem("Создать", "PenetrationDepth.Create.Create", true),

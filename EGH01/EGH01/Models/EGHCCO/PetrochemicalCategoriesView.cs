@@ -1,5 +1,5 @@
 ﻿
-namespace EGH01.Models.EGHRGE
+namespace EGH01.Models.EGHCCO
 {
     public class PetrochemicalCategoriesView
     {

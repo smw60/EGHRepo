@@ -18,7 +18,7 @@ namespace EGH01.Models.EGHGEA
         public string name { get; set; }
         public float? min { get; set; }
         public float? max { get; set; }
-        public int list_cadstre { get; set; }
+        public int list_cadastre { get; set; }
 
 
 

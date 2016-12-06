@@ -25,11 +25,11 @@ namespace EGH01DB.Blurs
         public float                limitadsorbedmass       {get; private set;}       // максиальная маса нефтепродукта, кот. может быть адсорбирована грунтом (т) 
         public float                avgdeep                 {get; private set;}       // средняя глубина грунтовых вод по опорным точкам (м) 
         public float                petrochemicalheight     {get; private set;}       // высота слоя разлитого нефтепродукта (м) 
-        public float                adsorbedmass            {get; private set;}       // адсобированная масса нефтепрдукта грунтом (т)  
+        public float                adsorbedmass            {get; private set;}       // адсобированная масса нефтепродукта грунтом (т)  
         public float                restmass                {get; private set;}       // масса нефтепродукта достигшая грунтовых вод  (т)  
         public float                depth                   {get; private set;}       // глубина проникновения нефтепродукта в грунт (м)  
         public float                concentrationinsoil     {get; private set;}       // средняя концентрация нефтепродукта в грунте (кг/м3)   
-        public float                timeconcentrationinsoil {get; private set;}       // время (с) достижения усредненной концентрации  нефтепрдукта в грунте      
+        public float                timeconcentrationinsoil {get; private set;}       // время (с) достижения усредненной концентрации  нефтепродукта в грунте      
         public float                speedvertical           {get; private set;}       // вертикальная скорость проникновения нефтепродукта в грунт (м/с)   
         public float                timewatercomletion      {get; private set;}       // время (с) достижения  нефтепродуктом грунтовых вод   
         public float                daywatercomletion       {get{return this.timewatercomletion/Const.SEC_PER_DAY;} }      // время (сут) достижения  нефтепродуктом грунтовых вод   
@@ -196,7 +196,7 @@ namespace EGH01DB.Blurs
                                      (float)Math.Pow(this.spreadpoint.petrochemicaltype.dynamicviscosity, 2) *       // динамическая вязкость      
                                      this.waterproperties.tension /                                           // коэфициент поверхностного натяжения воды
                                      (
-                                     this.spreadpoint.petrochemicaltype.tension *                             // коэфициент поверхностного натяжения нефтепрдукта 
+                                     this.spreadpoint.petrochemicaltype.tension *                             // коэфициент поверхностного натяжения нефтепродукта 
                                      (float)Math.Pow(this.waterproperties.viscocity, 2)                       //  вязкость воды  
                                      );
             
@@ -216,7 +216,7 @@ namespace EGH01DB.Blurs
 
             if (this.depth > 0)                                                                                        // если глубина проникновения > 0
             {
-                this.concentrationinsoil =                                                                             // средняя концентрация нефтепрдуктов в грунте  
+                this.concentrationinsoil =                                                                             // средняя концентрация нефтепродуктов в грунте  
 
                                      this.adsorbedmass /                                                               // адсорбированная масса нефтепродукта в грунте 
                                      (
@@ -398,7 +398,7 @@ namespace EGH01DB.Blurs
                 //                                         (float)Math.Pow(this.spreadpoint.petrochemicaltype.dynamicviscosity, 2) *       // динамическая вязкость ???      
                 //                                         this.waterproperties.tension /                                           // коэфициент поверхностного натяжения воды
                 //                                         (
-                //                                         this.spreadpoint.petrochemicaltype.tension *                             // коэфициент поверхностного натяжения нефтепрдукта 
+                //                                         this.spreadpoint.petrochemicaltype.tension *                             // коэфициент поверхностного натяжения нефтепродукта 
                 //                                         (float)Math.Pow(this.waterproperties.viscocity, 2)                       //  вязкость воды  
                 //                                         )
                 //                                      );

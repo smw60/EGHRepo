@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using System.Data;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using EGH01DB.Primitives;
 using EGH01DB.Types;
@@ -38,27 +40,24 @@ namespace EGH01DB
                      this.date = DateTime.Now; 
                      {
                            SoilPollutionCategories spc =  this.soilpollutioncategories =  null;
-                           if (SoilPollutionCategories.GetByVolume_Cadastre(db, this.excessgroundconcentration, this.groundblur.spreadpoint.cadastretype.type_code,  out spc))              
-                           {
-                             this.soilpollutioncategories = spc;
-                           }
+                           SoilPollutionCategories.GetByVolume_Cadastre(db, this.excessgroundconcentration, this.groundblur.spreadpoint.cadastretype.type_code,  out spc);              
+                           this.soilpollutioncategories = spc;
+                           
                      }
                 
                     { 
   
                          WaterPollutionCategories wpc = this.waterpollutioncategories = null;
-                         if (WaterPollutionCategories.GetByExcess_Cadastre(db, this.exesswaterconcentration, this.groundblur.spreadpoint.cadastretype.type_code,  out wpc))              
-                         {
-                            this.waterpollutioncategories = wpc;
-                         }
+                         WaterPollutionCategories.GetByExcess_Cadastre(db, this.exesswaterconcentration, this.groundblur.spreadpoint.cadastretype.type_code,  out wpc);              
+                         this.waterpollutioncategories = wpc;
+                        
                      }
                     
                     foreach(WaterPollution wp in this.waterpolutionlist)
                     {
-                    //     wp.waterpollutioncategories =
                       WaterPollutionCategories x = null;  
-                      if (WaterPollutionCategories.GetByExcess_Cadastre(db, wp.excessconcentration,wp.cadastretype.type_code, out x))  wp.waterpollutioncategories = x   ;
-
+                      WaterPollutionCategories.GetByExcess_Cadastre(db, wp.excessconcentration,wp.cadastretype.type_code, out x);
+                      wp.waterpollutioncategories = x ;
                     }  
                    
 
@@ -79,9 +78,6 @@ namespace EGH01DB
                 } 
     
 
-
-
-
              }                
              public new XmlNode toXmlNode(string comment="")
              { 
@@ -100,9 +96,67 @@ namespace EGH01DB
                   }  
                   return (XmlNode)rc;
              } 
-            // Create
+             public  static bool Create(IDBContext dbcontext, ECOClassification classification, string comment = "")
+             {
+                    bool rc = false;
+                    using (SqlCommand cmd = new SqlCommand("EGH.CreateReport", dbcontext.connection))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        {
+                            SqlParameter parm = new SqlParameter("@IdОтчета", SqlDbType.Int);
+                            int new_report_id = 0;
+                            if (GetNextId(dbcontext, out new_report_id)) classification.id = new_report_id;
+                            parm.Value = classification.id;
+                            cmd.Parameters.Add(parm);
+                        }
+                        {
+                            SqlParameter parm = new SqlParameter("@ДатаОтчета", SqlDbType.DateTime);
+                            parm.Value = classification.date;
+                            cmd.Parameters.Add(parm);
+                        }
+                        {
+                            SqlParameter parm = new SqlParameter("@Стадия", SqlDbType.NChar);
+                            parm.Value = "С";
+                            cmd.Parameters.Add(parm);
+                        }
+                        {
+                            SqlParameter parm = new SqlParameter("@Родитель", SqlDbType.Int);
+                            parm.IsNullable = true;
+                            parm.Value = 0;
+                            cmd.Parameters.Add(parm);
+                        }
+                        {
+                            SqlParameter parm = new SqlParameter("@ТекстОтчета", SqlDbType.Xml);
+                            parm.IsNullable = true;
+                            parm.Value = classification.toXmlNode("Отладка").OuterXml;
+                            cmd.Parameters.Add(parm);
+                        }
+                        {
+                            SqlParameter parm = new SqlParameter("@Комментарий", SqlDbType.NVarChar);
+                            parm.IsNullable = true;
+                            parm.Value = comment;
+                            cmd.Parameters.Add(parm);
+                        }
+                        {
+                            SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                            parm.Direction = ParameterDirection.ReturnValue;
+                            cmd.Parameters.Add(parm);
+                        }
+                
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                            rc = ((int)cmd.Parameters["@exitrc"].Value > 0);
+                        }
+                        catch (Exception e)
+                        {
+                            rc = false;
+                        };
+                        return rc;
+                 }
 
-         }
+          }      
+       }
    }
 
        

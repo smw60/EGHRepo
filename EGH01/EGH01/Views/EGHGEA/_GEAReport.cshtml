@@ -22,7 +22,7 @@
 {
        
  string s = string.Format("{0}-Р-{1}", ecoclassifiation.id, ecoclassifiation.date.ToString("yyy-MM-dd"));
- using (Html.BeginForm("EvalutionForecast", "EGHCEQ"))
+ using (Html.BeginForm("ClassificationEvalution", "EGHGEA"))
  {
 
     <div class="box">
@@ -87,7 +87,7 @@
                 <fieldset>
                     <legend> Наземное пятно загрязнения </legend>
                     <p>
-                        <label class="boxdata-label-40 "> Средняя концентрация нефтепрдукта  в грунтах зоны аэрации </label>
+                        <label class="boxdata-label-40 "> Средняя концентрация нефтепродукта  в грунтах зоны аэрации </label>
                         @ecoclassifiation.groundblur.concentrationinsoil
                     </p>
                     <p>
@@ -142,6 +142,11 @@
                             @ecoclassifiation.soilpollutioncategories.name
                         </p>
                         <p>
+                            <label class="boxdata-label-40 ">Радиус поиска природоохранных объектов (м) </label>
+                            @Math.Round(ecoclassifiation.groundblur.ecoobjectsearchradius, 0)
+
+                        </p>
+                        <p>
                             <label class="boxdata-label-40 ">Категория загрязнения грунтовых вод </label>
                             @ecoclassifiation.waterpollutioncategories.name
                         </p>
@@ -168,8 +173,6 @@
                                             <p><label class="boxdata-label-40">Глубина грунтовых вод (м)</label> @Math.Round(o.waterdeep, 1)</p>
                                         </fieldset>
                                     </fieldset>
-
-
                                 }
 
                             </fieldset>
@@ -183,11 +186,11 @@
                     </p>
                     <fieldset>
                         <legend> Природоохранные объекты </legend>
-                        <p>
-                            <label class="boxdata-label-40 ">Радиус поиска прирооохранных объектов (м)  </label>
+                       <p>
+                            <label class="boxdata-label-40 ">Радиус поиска природоохранных объектов (м)  </label>
                             @Math.Round(ecoclassifiation.groundblur.radius,0) -
                             @Math.Round(ecoclassifiation.waterblur.radius,0)
-                        </p>
+                       </p>
                         @foreach (WaterPollution o in ecoclassifiation.waterpolutionlist)
                         {
                             <fieldset>
