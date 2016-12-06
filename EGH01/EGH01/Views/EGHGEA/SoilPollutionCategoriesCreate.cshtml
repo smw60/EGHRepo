@@ -55,14 +55,14 @@
 
                             Name = context.name;
                         }
-                        @*<textarea class="boxdata-input-50" name="Name" value=@Name></textarea>*@
-                        <input class="boxdata-input-20" type="text" name="name" value=@Name >
+                        <textarea class="boxdata-input-50" name="Name">@Name</textarea>
+                        @*<input class="boxdata-input-20" type="text" name="name" value=@Name >*@
                     }
                  
                 </p>
                 <p>
                   
-                    <label class="boxdata-label-40">Диапазон кратности превышения показателя ПДК <sup><small></small></sup></label>
+                    <label class="boxdata-label-30">Диапазон кратности превышения показателя ПДК <sup><small></small></sup></label>
                     @{
                         string Min = "";
                         if (context.min != null)
