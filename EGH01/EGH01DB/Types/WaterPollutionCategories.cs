@@ -292,10 +292,60 @@ namespace EGH01DB.Types
         }
         static public bool GetByMult_Cadastre(EGH01DB.IDBContext dbcontext, float volume, int cadatsre_type_code, out  WaterPollutionCategories  waterpollutioncategories)
         {
-         CadastreType ct = null; 
-         CadastreType.GetByCode(dbcontext,1, out ct);
-         waterpollutioncategories  = new WaterPollutionCategories(777, "Заглушка имени ЕА",0.000001f, 1000000000.0f, ct);
-         return true;
+         bool rc = false;
+         waterpollutioncategories = defaulttype;
+         using (SqlCommand cmd = new SqlCommand("EGH.GetSoilPollutionCategoriesByVolume_Cadastre", dbcontext.connection))
+         {
+             cmd.CommandType = CommandType.StoredProcedure;
+             {
+                 SqlParameter parm = new SqlParameter("@Объем", SqlDbType.Float);
+                 parm.Value = volume;
+                 cmd.Parameters.Add(parm);
+             }
+             {
+                 SqlParameter parm = new SqlParameter("@КодНазначенияЗемель", SqlDbType.Int);
+                 parm.Value = cadatsre_type_code;
+                 cmd.Parameters.Add(parm);
+             }
+             {
+                 SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                 parm.Direction = ParameterDirection.ReturnValue;
+                 cmd.Parameters.Add(parm);
+             }
+             try
+             {
+                 cmd.ExecuteNonQuery();
+                 SqlDataReader reader = cmd.ExecuteReader();
+                 if (reader.Read())
+                 {
+                     int code = (int)reader["КодКатегорииЗагрязненияГВ"];
+                     string name = (string)reader["НаименованиеКатегорииЗагрязненияГВ"];
+                     float min = (float)reader["МинДиапазон"];
+                     float max = (float)reader["МаксДиапазон"];
+
+                     int cadastre_type_code = (int)reader["КодНазначенияЗемель"];
+                     string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
+                     float pdk_coef = (float)reader["ПДК"];
+                     float water_pdk_coef = (float)reader["ПДКводы"];
+                     string ground_doc_name = (string)reader["НормДокументЗемля"];
+                     string water_doc_name = (string)reader["НормДокументВода"];
+                     CadastreType cadastre_type = new CadastreType(cadastre_type_code, cadastre_type_name,
+                                                                     pdk_coef, water_pdk_coef,
+                                                                     ground_doc_name, water_doc_name);
+
+                     if (rc = (int)cmd.Parameters["@exitrc"].Value > 0)
+                         waterpollutioncategories = new WaterPollutionCategories(code, name, min, max, cadastre_type);
+
+                 }
+                 reader.Close();
+             }
+             catch (Exception e)
+             {
+                 rc = false;
+             };
+
+         }
+         return rc;
         }
     }
     public class WaterPollutionCategoriesList : List<WaterPollutionCategories>
