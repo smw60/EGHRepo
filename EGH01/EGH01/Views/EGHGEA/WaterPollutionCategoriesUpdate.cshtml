@@ -48,12 +48,12 @@
                 <textarea class="boxdata-input-50" name="Name">@Model.name</textarea>
             </p>
             <p>
-                <label class="boxdata-label-40">Диапазон кратности превышения показателя ПДК <sup><small></small></sup></label>
+                <label class="boxdata-label-30">Диапазон кратности превышения показателя ПДК <sup><small></small></sup></label>
                 <input class="boxdata-input-20" type="number" step="0.1" min="0" name="min" value="@Model.min.ToString().Replace(',' , '.')" />
                 <input class="boxdata-input-20" type="number" step="0.1" min="0" name="max" value="@Model.max.ToString().Replace(',' , '.')" />
             </p>
             <p>
-                <label class="boxdata-label-50">Категория земли</label> @Html.DropDownList("list_cadastre")
+                <label class="boxdata-label-30">Категория земли</label> @Html.DropDownList("list_cadastre")
             </p>
         </div>
 

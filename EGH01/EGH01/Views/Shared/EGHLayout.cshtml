@@ -96,10 +96,6 @@
             {
                 <h2><span>@Html.ActionLink("Прогноз", "Index", "EGHRGE") </span><span class="big">Свойства воды</span></h2>
             }
-            else if (ViewBag.EGHLayout == "RGE.PetrochemicalCategories")
-            {
-                <h2><span>@Html.ActionLink("Прогноз", "Index", "EGHRGE") </span><span class="big">Категории нефтепродукта</span></h2>
-            }
             else if (ViewBag.EGHLayout == "ORT.SoilPollutionCategories")
             {
                 <h2 class="double"><span>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") </span><span>Категории загрязнения грунтов</span></h2>
@@ -155,6 +151,10 @@
             else if (ViewBag.EGHLayout == "GEA.WaterPollutionCategories")
             {
                 <h2 class="double"><span>@Html.ActionLink("Классификация прогнозируемого состояния", "Index", "EGHCEQ") </span> <span>Категории загрязнения грунтовых вод</span></h2>
+            }
+            else if (ViewBag.EGHLayout == "CCO.PetrochemicalCategories")
+            {
+                <h2><span>@Html.ActionLink("Химический состав нефтей", "Index", "EGHCCO") </span><span>Категории нефтепродукта</span></h2>
             }
             
 
@@ -221,7 +221,6 @@
                             <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
                             <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
                             <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Категории нефтепродукта", "PetrochemicalCategories", "EGHRGE")</li>
                             <li>@Html.ActionLink("Тип техногенного объекта", "RiskObjectType", "EGHRGE")</li>
                         </ul>
                     </li>
@@ -258,7 +257,7 @@
                 {
 
                     <li class="dropdown">
-                            @Html.ActionLink("Категория нефтепродукта", "PetrochemicalCategories", "EGHRGE")
+                            @Html.ActionLink("Категория нефтепродукта", "PetrochemicalCategories", "EGHCCO")
                     </li>
                 }
 
