@@ -228,7 +228,7 @@ namespace EGH01DB.Types
         static public bool GetByCode(EGH01DB.IDBContext dbcontext, int code, out WaterPollutionCategories water_pollution_categories)
         {
             bool rc = false;
-            water_pollution_categories = new WaterPollutionCategories();
+            water_pollution_categories = WaterPollutionCategories.defaulttype;
             using (SqlCommand cmd = new SqlCommand("EGH.GetWaterPollutionCategoriesByCode", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -293,8 +293,8 @@ namespace EGH01DB.Types
         static public bool GetByExcess_Cadastre(EGH01DB.IDBContext dbcontext, float excess, int cadatsre_type_code, out  WaterPollutionCategories  waterpollutioncategories)
         {
          bool rc = false;
-         waterpollutioncategories = defaulttype;
-         using (SqlCommand cmd = new SqlCommand("EGH.GetSoilPollutionCategoriesByVolume_Cadastre", dbcontext.connection))
+         waterpollutioncategories = WaterPollutionCategories.defaulttype;
+         using (SqlCommand cmd = new SqlCommand("EGH.GetWaterPollutionCategoriesByVolume_Cadastre", dbcontext.connection))
          {
              cmd.CommandType = CommandType.StoredProcedure;
              {
