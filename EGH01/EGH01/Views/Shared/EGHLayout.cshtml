@@ -148,6 +148,14 @@
             {
                 <h2 class="double"><span>@Html.ActionLink("Классификация прогнозируемого состояния", "Index", "EGHCEQ") </span> <span>Отчеты</span></h2>
             }
+            else if (ViewBag.EGHLayout == "GEA.SoilPollutionCategories")
+            {
+                <h2 class="double"><span>@Html.ActionLink("Классификация прогнозируемого состояния", "Index", "EGHCEQ") </span> <span>Категории загрязнения грунтов</span></h2>
+            }
+            else if (ViewBag.EGHLayout == "GEA.WaterPollutionCategories")
+            {
+                <h2 class="double"><span>@Html.ActionLink("Классификация прогнозируемого состояния", "Index", "EGHCEQ") </span> <span>Категории загрязнения грунтовых вод</span></h2>
+            }
             
 
         </div>
@@ -250,18 +258,7 @@
                 {
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">
-                            Справочники<span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            @*<li>@Html.ActionLink("Типы инцидентов", "IncidentType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Типы природоохранных объектов", "EcoObjectType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Типы грунтов", "GroundType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Категории земли", "CadastreType", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Коэффициент растекания", "SpreadingCoefficient", "EGHRGE")</li>
-                            <li>@Html.ActionLink("Свойства воды", "WaterProperties", "EGHRGE")</li>*@
-                            <li>@Html.ActionLink("Категория нефтепродукта", "PetrochemicalCategories", "EGHRGE")</li>
-                        </ul>
+                            @Html.ActionLink("Категория нефтепродукта", "PetrochemicalCategories", "EGHRGE")
                     </li>
                 }
 

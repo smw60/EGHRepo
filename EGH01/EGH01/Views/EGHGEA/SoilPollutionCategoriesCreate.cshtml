@@ -49,14 +49,14 @@
                     <label class="boxdata-label-30">Наименование категории загрязнения грунта</label>
                     @{
 
-                        String Name = " ";
+                        String Name = "";
                         if (context.name != null)
                         {
 
                             Name = context.name;
                         }
                         <textarea class="boxdata-input-50" name="Name">@Name</textarea>
-                        @*<input class="boxdata-input-20" type="text" name="name" value=@Name >*@
+                        @*<input class="boxdata-input-20" type="text" name="name" value="@Name" />*@
                     }
                  
                 </p>
@@ -70,7 +70,7 @@
                             Min = ((float?)context.min).ToString().Replace(',', '.');
 
                         }
-                        <input class="boxdata-input-20" type="number" step="0.1" min="0" name="min" value=@Min />
+                        <input class="boxdata-input-20" type="number" step="0.1" min="0" name="min" value="@Min" />
 
                     }
                     @{
@@ -80,7 +80,7 @@
                             Max = ((float?)context.max).ToString().Replace(',', '.');
 
                         }
-                        <input class="boxdata-input-20" type="number" step="0.1" min="0" name="max" value=@Max />
+                        <input class="boxdata-input-20" type="number" step="0.1" min="0" name="max" value="@Max" />
 
                     }
                    
