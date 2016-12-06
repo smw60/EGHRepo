@@ -1,4 +1,4 @@
-﻿using EGH01.Models.EGHORT;
+﻿using EGH01.Models.EGHGEA;
 using EGH01DB;
 using EGH01DB.Primitives;
 using System;
@@ -10,19 +10,18 @@ using System.Xml;
 
 namespace EGH01.Controllers
 {
-    public partial class EGHORTController : Controller
+    public partial class EGHGEAController : Controller
     {
-        
 
         public ActionResult SoilPollutionCategories()
         {
-            ORTContext db = null;
-            ViewBag.EGHLayout = "ORT.SoilPollutionCategories";
+            GEAContext db = null;
+            ViewBag.EGHLayout = "GEA.SoilPollutionCategories";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new ORTContext(this);
+                db = new GEAContext();
                 SoilPollutionCategoriesView viewcontext = db.GetViewContext("SoilPollutionCategoriesCreate") as SoilPollutionCategoriesView;
                 ViewBag.msg = "Соединение с базой данных установлено";
                 view = View("SoilPollutionCategories", db);
@@ -30,11 +29,11 @@ namespace EGH01.Controllers
                 if (menuitem.Equals("SoilPollutionCategories.Create"))
                 {
                     view = View("SoilPollutionCategoriesCreate");
-            
+
                     viewcontext.min = null;
                     viewcontext.max = null;
                     viewcontext.name = "";
-                    
+
 
                 }
                 else if (menuitem.Equals("SoilPollutionCategories.Delete"))
@@ -97,27 +96,26 @@ namespace EGH01.Controllers
 
             return view;
         }
-
         [HttpPost]
         public ActionResult SoilPollutionCategoriesCreate(SoilPollutionCategoriesView sp)
         {
-            ORTContext db = null;
-            ViewBag.EGHLayout = "ORT.SoilPollutionCategories";
+            GEAContext db = null;
+            ViewBag.EGHLayout = "GEA.SoilPollutionCategories";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new ORTContext(this);
+                db = new GEAContext(this);
                 if (!SoilPollutionCategoriesView.Handler(db, this.HttpContext.Request.Params))
                 {
-                   
+
                 }
                 view = View("SoilPollutionCategories", db);
                 if (menuitem.Equals("SoilPollutionCategories.Create.Create"))
                 {
-                        int code = -1;
-                        if (EGH01DB.Types.SoilPollutionCategories.GetNextCode(db, out code))
-                        {
+                    int code = -1;
+                    if (EGH01DB.Types.SoilPollutionCategories.GetNextCode(db, out code))
+                    {
                         EGH01DB.Types.CadastreType cadastre_type = new EGH01DB.Types.CadastreType();
                         if (EGH01DB.Types.CadastreType.GetByCode(db, sp.list_cadastre, out cadastre_type))
                         {
@@ -154,13 +152,13 @@ namespace EGH01.Controllers
 
                             }
 
-                            }
                         }
                     }
-                
+                }
+
                 else if (menuitem.Equals("SoilPollutionCategories.Create.Cancel")) view = View("SoilPollutionCategories", db);
-            
-           
+
+
             }
             catch (RGEContext.Exception e)
             {
@@ -176,13 +174,13 @@ namespace EGH01.Controllers
         [HttpPost]
         public ActionResult SoilPollutionCategoriesDelete(int code)
         {
-            ORTContext db = null;
-            ViewBag.EGHLayout = "ORT.SoilPollutionCategories";
+            GEAContext db = null;
+            ViewBag.EGHLayout = "GEA.SoilPollutionCategories";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new ORTContext();
+                db = new GEAContext();
 
                 if (menuitem.Equals("SoilPollutionCategories.Delete.Delete"))
                 {
@@ -205,13 +203,13 @@ namespace EGH01.Controllers
         [HttpPost]
         public ActionResult SoilPollutionCategoriesUpdate(SoilPollutionCategoriesView sp)
         {
-            ORTContext db = null;
-            ViewBag.EGHLayout = "ORT.SoilPollutionCategories";
+            GEAContext db = null;
+            ViewBag.EGHLayout = "GEA.SoilPollutionCategories";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new ORTContext();
+                db = new GEAContext();
                 view = View("SoilPollutionCategories", db);
                 if (menuitem.Equals("SoilPollutionCategories.Update.Update"))
                 {
@@ -237,21 +235,21 @@ namespace EGH01.Controllers
                             max = 0.0f;
                         }
 
-                        EGH01DB.Types.SoilPollutionCategories soil_pollution = new EGH01DB.Types.SoilPollutionCategories(code, name, min, max,cadastre_type); 
+                        EGH01DB.Types.SoilPollutionCategories soil_pollution = new EGH01DB.Types.SoilPollutionCategories(code, name, min, max, cadastre_type);
                         if (EGH01DB.Types.SoilPollutionCategories.Update(db, soil_pollution))
                         {
                             view = View("SoilPollutionCategories", db);
                         }
 
                     }
-                            }
-                            else if (menuitem.Equals("SoilPollutionCategories.Update.Cancel"))
-                                view = View("SoilPollutionCategories", db);
-
-
-                    
                 }
-            
+                else if (menuitem.Equals("SoilPollutionCategories.Update.Cancel"))
+                    view = View("SoilPollutionCategories", db);
+
+
+
+            }
+
             catch (RGEContext.Exception e)
             {
                 ViewBag.msg = e.message;

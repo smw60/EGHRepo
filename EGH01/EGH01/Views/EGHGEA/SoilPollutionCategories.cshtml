@@ -3,16 +3,16 @@
 @using EGH01DB.Primitives;
 @using EGH01DB.Types;
 @using EGH01DB.Objects;
-@model EGH01DB.ORTContext
+@model EGH01DB.GEAContext
 @{
 
 
     ViewBag.Title = "SoilPollutionCategories";
     Layout = "~/Views/Shared/EGHLayout.cshtml";
     Menu head = new Menu(
-                          new Menu.MenuItem("Создать", "SoilPollutionCategories.Create", true),
-                          new Menu.MenuItem("Excel-формат", "SoilPollutionCategories.Excel", true)
-                        );
+                  new Menu.MenuItem("Создать", "SoilPollutionCategories.Create", true),
+                  new Menu.MenuItem("Excel-формат", "SoilPollutionCategories.Excel", true)
+                );
 
     List<SoilPollutionCategories> list = new List<SoilPollutionCategories>();
     if (@Model != null) { Helper.GetListSoilPollutionCategories(@Model, ref list); };
@@ -20,7 +20,7 @@
 }
 
 
-@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHORT", Action = "SoilPollutionCategories", Menu = head })
+@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHGEA", Action = "SoilPollutionCategories", Menu = head })
 @Html.Partial("_SoilPollutionCategoriesList", list)
 
 
