@@ -11,7 +11,6 @@ namespace EGH01.Models.EGHORT
         public enum REGIM {INIT, CHOICE, CANCEL, REPORT, SAVE}
         public const string VIEWNAME = "ORTContextView";
         public int? idevalution  { get; set; }
-        public CEQContext.ECOEvalution       ecoevolution = null;
         public GEAContext.ECOClassification  ecoclassifiation = null;
         public REGIM Regim = REGIM.INIT;
   

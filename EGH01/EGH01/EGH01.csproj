@@ -474,6 +474,8 @@
     <Content Include="Views\EGHCCO\PetrochemicalCategoriesDelete.cshtml" />
     <Content Include="Views\EGHCCO\PetrochemicalCategoriesUpdate.cshtml" />
     <Content Include="Views\EGHCCO\_PetrochemicalCategoriesList.cshtml" />
+    <Content Include="Views\EGHORT\ChoiceClassificationResult.cshtml" />
+    <Content Include="Views\EGHORT\_ChoiceClassificationResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
