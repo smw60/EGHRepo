@@ -224,6 +224,7 @@
     <Compile Include="Models\EGHCEQ\ReportView.cs" />
     <Compile Include="Models\EGHGEA\GEAContextView.cs" />
     <Compile Include="Models\EGHORT\EmergencyClassView.cs" />
+    <Compile Include="Models\EGHORT\ORTContextView.cs" />
     <Compile Include="Models\EGHORT\RehabilitationMethodsView.cs" />
     <Compile Include="Models\EGHORT\SoilCleaningMethodView.cs" />
     <Compile Include="Models\EGHORT\PenetrationDepthView .cs" />
