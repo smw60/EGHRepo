@@ -19,7 +19,7 @@ namespace EGH01DB.Types
         public float min { get; private set; }   // минимальное значение диапазона
         public float max { get; private set; }   // максимальное значение диапазона
         public CadastreType cadastretype { get; private set; }   //  значение земельного кадастра
-        static public WaterPollutionCategories defaulttype { get { return new WaterPollutionCategories(0, "Не определен", 0.0f, 0.0f, null); } }  // выдавать при ошибке  
+        static public WaterPollutionCategories defaulttype { get { return new WaterPollutionCategories(0, "Не определен", 0.0f, 0.0f, CadastreType.defaulttype); } }  // выдавать при ошибке  
       
         public WaterPollutionCategories()
         {
@@ -228,7 +228,7 @@ namespace EGH01DB.Types
         static public bool GetByCode(EGH01DB.IDBContext dbcontext, int code, out WaterPollutionCategories water_pollution_categories)
         {
             bool rc = false;
-            water_pollution_categories = new WaterPollutionCategories();
+            water_pollution_categories = WaterPollutionCategories.defaulttype;
             using (SqlCommand cmd = new SqlCommand("EGH.GetWaterPollutionCategoriesByCode", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -290,16 +290,16 @@ namespace EGH01DB.Types
             rc.AppendChild(doc.ImportNode(this.cadastretype.toXmlNode(), true));
             return (XmlNode)rc;
         }
-        static public bool GetByMult_Cadastre(EGH01DB.IDBContext dbcontext, float volume, int cadatsre_type_code, out  WaterPollutionCategories  waterpollutioncategories)
+        static public bool GetByExcess_Cadastre(EGH01DB.IDBContext dbcontext, float excess, int cadatsre_type_code, out  WaterPollutionCategories  waterpollutioncategories)
         {
          bool rc = false;
-         waterpollutioncategories = defaulttype;
-         using (SqlCommand cmd = new SqlCommand("EGH.GetSoilPollutionCategoriesByVolume_Cadastre", dbcontext.connection))
+         waterpollutioncategories = WaterPollutionCategories.defaulttype;
+         using (SqlCommand cmd = new SqlCommand("EGH.GetWaterPollutionCategoriesByVolume_Cadastre", dbcontext.connection))
          {
              cmd.CommandType = CommandType.StoredProcedure;
              {
                  SqlParameter parm = new SqlParameter("@Объем", SqlDbType.Float);
-                 parm.Value = volume;
+                 parm.Value = excess;
                  cmd.Parameters.Add(parm);
              }
              {

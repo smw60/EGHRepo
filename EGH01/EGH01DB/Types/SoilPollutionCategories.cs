@@ -20,7 +20,7 @@ namespace EGH01DB.Types
         public float min { get; private set; }   // минимальное значение диапазона
         public float max { get; private set; }   // максимальное значение диапазона
         public CadastreType cadastretype { get; private set; }   //  значение земельного кадастра
-        static public SoilPollutionCategories defaulttype { get { return new SoilPollutionCategories(0, "Не определен", 0.0f, 0.0f, null); } }  // выдавать при ошибке  
+        static public SoilPollutionCategories defaulttype { get { return new SoilPollutionCategories(0, "Не определен", 0.0f, 0.0f, CadastreType.defaulttype); } }  // выдавать при ошибке  
 
         public SoilPollutionCategories()
         {
@@ -229,7 +229,7 @@ namespace EGH01DB.Types
         static public bool GetByCode(EGH01DB.IDBContext dbcontext, int code, out SoilPollutionCategories soil_pollution_categories)
         {
             bool rc = false;
-            soil_pollution_categories = new SoilPollutionCategories();
+            soil_pollution_categories = SoilPollutionCategories.defaulttype;
             using (SqlCommand cmd = new SqlCommand("EGH.GetSoilPollutionCategoriesByCode", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -281,7 +281,7 @@ namespace EGH01DB.Types
         static public bool GetByVolume_Cadastre(EGH01DB.IDBContext dbcontext, float volume, int cadatsre_type_code, out SoilPollutionCategories soil_pollution_categories)
         {
             bool rc = false;
-            soil_pollution_categories = new SoilPollutionCategories();
+            soil_pollution_categories = SoilPollutionCategories.defaulttype;
             using (SqlCommand cmd = new SqlCommand("EGH.GetSoilPollutionCategoriesByVolume_Cadastre", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;

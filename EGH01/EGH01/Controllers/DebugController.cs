@@ -381,15 +381,15 @@ namespace EGH01.Controllers
         }
         public ActionResult WaterPollutionCategories_GetByMult_Cadastre() // y
         {
-            RGEContext db = new RGEContext();
-            {
-                //WaterPollutionCategories r = new WaterPollutionCategories(1);
+            //RGEContext db = new RGEContext();
+            //{
+            //    WaterPollutionCategories r = new WaterPollutionCategories(1);
 
-                //if (WaterPollutionCategories.GetByMult_Cadastre(db, 200, 1, out r))
-                //{
-                //    int k = 1;
-                //};
-            }
+            //    if (WaterPollutionCategories.GetByMult_Cadastre(db, 200, 1, out r))
+            //    {
+            //        int k = 1;
+            //    };
+            //}
             return View();
         }
         
@@ -471,12 +471,12 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //SoilPollutionCategories r = new SoilPollutionCategories();
+                ////SoilPollutionCategories r = new SoilPollutionCategories();
 
-                //if (SoilPollutionCategories.GetByVolume_Cadastre(db, 1.0f, 1, out r))
-                //{
-                //    int k = 1;
-                //};
+                ////if (SoilPollutionCategories.GetByVolume_Cadastre(db, 4.0f, 1, out r))
+                ////{
+                ////    int k = 1;
+                ////};
             }
             return View();
         }
