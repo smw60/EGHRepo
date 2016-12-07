@@ -229,7 +229,7 @@ namespace EGH01DB.Types
         static public bool GetByCode(EGH01DB.IDBContext dbcontext, int code, out SoilPollutionCategories soil_pollution_categories)
         {
             bool rc = false;
-            soil_pollution_categories = new SoilPollutionCategories();
+            soil_pollution_categories = SoilPollutionCategories.defaulttype;
             using (SqlCommand cmd = new SqlCommand("EGH.GetSoilPollutionCategoriesByCode", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;

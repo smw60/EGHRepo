@@ -145,7 +145,7 @@ end;
 go
 
 --- Получение категории загрязнения грунтовых вод по объему загрязнения и типу кадастра
-create  procedure EGH.GetSoilPollutionCategoriesByVolume_Cadastre(@Объем float, @КодНазначенияЗемель int) 
+create  procedure EGH.GetWaterPollutionCategoriesByVolume_Cadastre(@Объем float, @КодНазначенияЗемель int) 
 as begin 
     declare @rc int = -1;
 	select  
@@ -162,7 +162,7 @@ as begin
 	from dbo.КатегорияЗагрязненияГрунтовыхВод C
 	inner join dbo.НазначениеЗемель L on C.КодНазначенияЗемель = L.КодНазначенияЗемель
 		where C.КодНазначенияЗемель = @КодНазначенияЗемель
-		and (@Объем between МинДиапазон and МаксДиапазон);  
+		and (@Объем >= МинДиапазон) and (@Объем <=МаксДиапазон);  
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;

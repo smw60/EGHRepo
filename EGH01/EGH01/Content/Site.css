@@ -634,6 +634,9 @@ element.style {
     margin: auto;
     border: 1px solid #316d32;
 }
+.mapList {
+    border: 1px solid #316d32;
+}
 /*Кнопка над картой*/
 .center {
     text-align: center;
