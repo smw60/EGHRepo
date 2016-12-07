@@ -120,7 +120,12 @@ namespace EGH01.Controllers
                         Boolean watertreatment = rs.watertreatment;
                         Boolean watertreatmentcollect = rs.watertreatmentcollect;
                         string base64 = rs.base64;
-                        Byte[] map = ASCIIEncoding.ASCII.GetBytes(base64);
+                        Byte[] map;
+                        if (base64 == null)
+                        {
+                            map = new byte[0];
+                        }
+                        else { map = ASCIIEncoding.ASCII.GetBytes(base64); }
 
 
                         int groundtank = rs.groundtank;
@@ -268,9 +273,14 @@ namespace EGH01.Controllers
                     int volume = 1;
                     Boolean watertreatment = itv.watertreatment;
                     Boolean watertreatmentcollect = itv.watertreatmentcollect;
-                    //    string base64 = itv.base64;
-                    //   Byte[] map = ASCIIEncoding.ASCII.GetBytes(base64);
-                    Byte[] map = new Byte[2];
+                    string base64 = itv.base64;
+                    Byte[] map;
+                    if (base64 == null)
+                    {
+                        map = new byte[0];
+                    }
+                    else { map = ASCIIEncoding.ASCII.GetBytes(base64); }
+                   
                     int groundtank = itv.groundtank;
                     int undergroundtank = itv.undergroundtank;
                     string strlat_s = this.HttpContext.Request.Params["lat_s"] ?? "Empty";
