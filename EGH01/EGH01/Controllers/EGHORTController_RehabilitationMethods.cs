@@ -65,7 +65,7 @@ namespace EGH01.Controllers
                 }
                 else if (menuitem.Equals("RehabilitationMethods.Excel"))
                 {
-                    EGH01DB.Types.RehabilitationMethodList list = new EGH01DB.Types.RehabilitationMethodList();
+                    EGH01DB.Types.RehabilitationMethodList list = new EGH01DB.Types.RehabilitationMethodList(db);
                     XmlNode node = list.toXmlNode();
                     XmlDocument doc = new XmlDocument();
                     XmlNode nnode = doc.ImportNode(node, true);
