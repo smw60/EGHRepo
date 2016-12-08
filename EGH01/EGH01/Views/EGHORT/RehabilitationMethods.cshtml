@@ -14,14 +14,13 @@
                           new Menu.MenuItem("Excel-формат", "RehabilitationMethods.Excel", true)
                         );
 
-    //List<RehabilitationMethods> list = new List<RehabilitationMethods>();
-    //if (@Model != null) { Helper.GetListRehabilitationMethods(@Model, ref list); };
+    List<RehabilitationMethod> list = new List<RehabilitationMethod>();
+    if (@Model != null) { Helper.GetListRehabilitationMethod(@Model, ref list); };
 
 }
 
-
 @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHORT", Action = "RehabilitationMethods", Menu = head })
-@*@Html.Partial("_RehabilitationMethodsList", list)*@
+@Html.Partial("_RehabilitationMethods", list)
 
 
 

@@ -2,7 +2,7 @@
 @using EGH01.Models.EGH;
 @using EGH01DB.Primitives;
 
-@*@model EGH01DB.Types*@
+@model EGH01DB.Types.RehabilitationMethod
 @{
     Layout = "~/Views/Shared/EGHLayout.cshtml";
     Menu head = new Menu(
@@ -27,10 +27,10 @@
                 @Model.type_code.ToString()
                 <input type="hidden" value="@Model.type_code.ToString()" name="type_code">
             </p>
-            <p>
+            @*<p>
                 <label class="boxdata-label-30">Наименование метода</label>
                 @Model.name.ToString()
-            </p>
+            </p>*@
         </div>
 
         @Html.Partial("_TypeLineMenu", update)

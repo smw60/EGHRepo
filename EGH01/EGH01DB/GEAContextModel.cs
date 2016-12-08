@@ -156,6 +156,38 @@ namespace EGH01DB
                  }
 
           }      
+             public static ECOClassification GetById(IDBContext db, int id)
+             { 
+               ECOClassification rc = null;
+               using (SqlCommand cmd = new SqlCommand("EGH.GetECOClassificationById", db.connection))
+               {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        {
+                            SqlParameter parm = new SqlParameter("@IdОтчета", SqlDbType.Int);
+                            parm.Value = id;
+                            cmd.Parameters.Add(parm);
+                        }
+                        try
+                        {
+                            SqlDataReader reader = cmd.ExecuteReader();
+                            if (reader.Read())
+                            {
+                                 string xmlContent = (string)reader["ТекстОтчета"];
+                                 if (!xmlContent.Trim().Equals(""))
+                                 {
+                                   XmlDocument doc = new XmlDocument();
+                                   doc.LoadXml(xmlContent);
+                                   rc =  new GEAContext.ECOClassification(doc.DocumentElement);
+                                 }
+                            } 
+                            reader.Close();
+                         } catch (Exception e)
+                         { 
+                           rc = null;
+                         };
+                }
+                return rc;
+            } 
        }
    }
 
