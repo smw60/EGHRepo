@@ -210,7 +210,7 @@
 
                 }
             }
-            <fieldset form="ChoiseRiskObject">
+            <fieldset form="RiskObject">
                 <legend >Географические координаты</legend>
                 <p>
                     <label class="boxdata-label-30">Широта </label>
@@ -227,9 +227,10 @@
                 </p>
             <p class="center"><input type="button" id="redraw" value="Отобразить карту по координатам" /></p>
             <div id="canvas" class="map"></div>
-            <input type="hidden" id="base64" name="base64" value=" " />
+            <input type="hidden" id="base64" name="base64" value="" />
             <img id="canvasImg" />
             </fieldset>
+
             <fieldset form="ChoiseRiskObject">
                 <legend >Геологические данные</legend>
                 <p>
@@ -256,12 +257,17 @@
         $(document).ready(function () {
             GetMap();
         });
+        $("#save").click(function () {
+            var data = getBase64Image(document.getElementById("canvasImg"));
+
+            document.getElementById("canvasImg2") = data;
+        });
     function GetMap() {
 
         google.maps.visualRefresh = true;
         var create = new google.maps.LatLng(@Model.coordinates.lat.d, @Model.coordinates.lng.d);
         var mapOptions = {
-            zoom: 15,
+            zoom: 5,
             center: create,
             mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
         };
@@ -274,12 +280,13 @@
         });
         marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
     }
+            
                 function getBase64Image_new(path) {
                     var imgE = document.createElement("img");
                     imgE.id = "imgE";
                     imgE.crossOrigin = 'Anonymous';
                     imgE.onload = function () {
-                        document.getElementById("canvas").appendChild(imgE);
+                    document.getElementById("canvas").appendChild(imgE);
 
                         var canvas = document.createElement("canvas");
                         canvas.width = 640;
@@ -298,7 +305,7 @@
                     var create = new google.maps.LatLng(Latitude.value, Lngitude.value);
 
                     var mapOptions = {
-                        zoom: 4,
+                        zoom: 5,
                         center: create,
                         mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
                     };
@@ -315,11 +322,11 @@
                     marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
 
                     var path = "http://maps.google.com/maps/api/staticmap?sensor=false&center=" +
-                        85 + "," + 75 +
-                      "&zoom=" + 4 +
-                      "&size=" + $("#canvas").width() + "x" + $("#canvas").height() +
-                      "&markers=color:red%7C"+85 + "," + 75 +
-                        "&key=AIzaSyCX4kdHa13iAH0dVcEm7SuV_VNcuxoUQNs";
+                       myLatlng.lat() + "," + myLatlng.lng() +
+          "&zoom=" + map.zoom +
+          "&size=" + $("#canvas").width() + "x" + $("#canvas").height() +
+          "&markers=color:red%7C"+myLatlng.lat() + "," + myLatlng.lng() +
+            "&key=AIzaSyCX4kdHa13iAH0dVcEm7SuV_VNcuxoUQNs";
                     getBase64Image_new(path);
 
                 }
