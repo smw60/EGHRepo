@@ -12,6 +12,7 @@ namespace EGH01.Models.EGHORT
         public const string VIEWNAME = "ORTContextView";
         public int? idclassification  { get; set; }
         public GEAContext.ECOClassification  ecoclassifiation = null;
+        public ORTContext.ECORehabilitation  ecorehabilitation = null; 
         public REGIM Regim = REGIM.INIT;
   
         public static ORTContextView HandlerChoice(ORTContext db, NameValueCollection parms)
@@ -52,7 +53,7 @@ namespace EGH01.Models.EGHORT
               else  if (rc.ecoclassifiation != null) 
               { 
                   rc.Regim = REGIM.REPORT;
-                  rc.ecoclassifiation = null;     //new GEAContext.ECOCRehabilitation(rc.ecoclassifiation);
+                  rc.ecorehabilitation = new  ORTContext.ECORehabilitation(rc.ecoclassifiation);
               }
               return rc;  
         }  

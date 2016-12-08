@@ -477,6 +477,8 @@
     <Content Include="Views\EGHORT\ChoiceClassificationResult.cshtml" />
     <Content Include="Views\EGHORT\_ChoiceClassificationResult.cshtml" />
     <Content Include="Views\EGHORT\_ConfirmChoiceClassificationResult.cshtml" />
+    <Content Include="Views\EGHORT\Rehabilitation.cshtml" />
+    <Content Include="Views\EGHORT\_ORTReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

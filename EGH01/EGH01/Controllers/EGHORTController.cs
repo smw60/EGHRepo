@@ -73,6 +73,19 @@ namespace EGH01.Controllers
             try
             {
                 db = new ORTContext(this);
+                ORTContextView context = ORTContextView.HandlerRehabilitation(db,this.Request.Params);
+                switch(context.Regim)
+                { 
+                  case ORTContextView.REGIM.REPORT:  view = View(db); break;
+                  case ORTContextView.REGIM.SAVE:    
+                                                ORTContext.ECORehabilitation.Create(db, context.ecorehabilitation);
+                                                view = View("Index", db);
+                                                break;       
+                 case ORTContextView.REGIM.CANCEL:  view = View("Index", db); break; 
+                 default:  view = View(db); break;
+                }                 
+
+               
             }
             catch (RGEContext.Exception e)   //ORTContext.Exception
             {
