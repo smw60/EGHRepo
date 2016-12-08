@@ -164,9 +164,9 @@
 
         list_waterCleaning.ForEach(o => ViewBag.list_waterCleaning.Add(new SelectListItem { Text = o.method_description, Value = o.type_code.ToString() }));
 
-        if (Model.waterprotectionarea != null)
+        if (Model.watercleaningmethod != null)
         {
-            SelectListItem sit = listwaterCleaning.FirstOrDefault(s => s.Value == Model.waterprotectionarea.type_code.ToString());
+            SelectListItem sit = listwaterCleaning.FirstOrDefault(s => s.Value == Model.watercleaningmethod.type_code.ToString());
             sit.Selected = true;
         }
     }
