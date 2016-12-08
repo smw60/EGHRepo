@@ -119,7 +119,7 @@ namespace EGH01DB.Objects
             this.volume = volume;
             this.watertreatment = watertreatment;
             this.watertreatmentcollect = watertreatmentcollect;
-            this.map = new byte[0];
+            this.map = map;//даша
             this.groundtank = groundtank;
             this.undergroundtank = undergroundtank;
             this.fueltype = fueltype;
@@ -756,7 +756,7 @@ namespace EGH01DB.Objects
                         string fax = (string)reader["Факс"];
                         string email = (string)reader["EMail"];
 
-                        byte[] map = new byte[0];
+                        byte[] map = (Byte[])reader["Карта"];//даша
 
                         string fueltype = (string)reader["ТипТоплива"];
                         int numberofthreads = (int)reader["КоличествоНиток"];

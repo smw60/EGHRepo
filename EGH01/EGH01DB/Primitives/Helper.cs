@@ -642,7 +642,7 @@ namespace EGH01DB.Primitives
                         float tubediameter = (float)reader["ДиаметрТрубы"];
                         string geodescription = (string)reader["ГеографическоеОписание"];
 					
-                        byte[] map = new byte[0]; // карта!
+                        byte[] map = (Byte[])reader["Карта"]; // даша
 
                         Point point = new Point(coordinates, ground_type, (float)waterdeep, (float)height);
                         string risk_object_type_name = (string)reader["НаименованиеТипаТехногенногоОбъекта"];

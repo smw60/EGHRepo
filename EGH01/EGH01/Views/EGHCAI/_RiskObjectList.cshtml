@@ -3,6 +3,7 @@
 @using EGH01DB.Primitives;
 @using EGH01DB.Types;
 @using EGH01DB.Objects;
+@using System.Text;
 @model List<RiskObject>
 @{
     Menu menu = new Menu(
@@ -19,6 +20,7 @@
     {
         float latitude = EGH01DB.Primitives.Coordinates.dms_to_d(@t.coordinates.lat.d, @t.coordinates.lat.m, @t.coordinates.lat.s);
         float lngitude = EGH01DB.Primitives.Coordinates.dms_to_d(@t.coordinates.lng.d, @t.coordinates.lng.m, @t.coordinates.lng.s);
+        string map = Encoding.UTF8.GetString(@t.map);
         <div class="box">
             <div class="boxdata">
                 
@@ -70,11 +72,13 @@
                     {
                         <p>Отсутствуют</p>
                     }
+                    
                 </fieldset>
                 <fieldset  form="RiskObject">
                     <p><label class="boxdata-label-30">Координаты. Широта</label>@t.coordinates.lat.d.ToString()°&nbsp;@t.coordinates.lat.m.ToString()'&nbsp;@t.coordinates.lat.s.ToString("0.00")"</p>
                     <p><label class="boxdata-label-30">Координаты. Долгота</label>@t.coordinates.lng.d.ToString()°&nbsp;@t.coordinates.lng.m.ToString()'&nbsp;@t.coordinates.lng.s.ToString("0.00")" </p>
                     <p><label class="boxdata-label-30">Координаты в градусах</label>@latitude.ToString()°&nbsp;@lngitude.ToString()°</p>
+                    <p class="center"><img class="mapList" src="@map"/></p>
                 </fieldset> 
                 <fieldset  form="RiskObject">
                     <p><label class="boxdata-label-30">Категория земли</label><span class="boxdata-span">@t.cadastretype.name</span></p>

@@ -19,6 +19,8 @@
                           new Menu.MenuItem("Изменить", "RiskObject.Update.Update", true),
                           new Menu.MenuItem("Отказаться", "RiskObject.Update.Cancel", true)
                         );
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDD-BQGwH6mEgOBp15GhEpzm8h1JzP-fpg"></script>
 
 
 
@@ -153,11 +155,6 @@
             </fieldset>
             <fieldset form="ChoiseRiskObject">
                 <legend >Наличие очистных сооружений</legend>
-                @*<p>   <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="true">&emsp; <label>&emsp;Для дождевого стока</label>
-                     </p>
-                     <p>
-                     <input type="checkbox" class="boxdata-label-30" name="watertreatmentcollect" value="true">&emsp; <label>&emsp;Резервуар для сбора проливов</label>
-                    </p>*@
                 <p>
                     @if (@Model.watertreatment == true)
                 {
@@ -213,40 +210,27 @@
 
                 }
             }
-
-            @*<p>
-                <label class="boxdata-label-30">Дата ввода в эксплуатацию</label>
-                <input class="boxdata-input-50" type="text" name="foundationdate" value="@Model.foundationdate.ToShortDateString()" />
-            </p>*@
-
-
-
-
-            @*<p>
-                <label class="boxdata-label-30">Дата послежней реконструкции</label>
-                <input class="boxdata-input-50" type="text" name="reconstractiondate" value="@Model.reconstractiondate.ToShortDateString()" />
-            </p>*@
-
-            <fieldset form="ChoiseRiskObject">
+            <fieldset form="RiskObject">
                 <legend >Географические координаты</legend>
                 <p>
                     <label class="boxdata-label-30">Широта </label>
 
-                    <input class="boxdata-input-10" type="number" name="Latitude" value="@Model.coordinates.lat.d.ToString()" min="-90" max="90" />&deg;
+                    <input class="boxdata-input-10" type="number" name="Latitude"  id="Latitude" value="@Model.coordinates.lat.d.ToString()" min="-90" max="90" />&deg;
                     <input class="boxdata-input-10" type="number" name="Lat_m" value="@Model.coordinates.lat.m.ToString()" min="-90" max="90" />&acute;
                     <input class="boxdata-input-10" type="number" name="Lat_s" value="@Model.coordinates.lat.s.ToString("0.00").Replace(',' , '.')" min="0" max="60" step="0.001" />&quot;
                 </p>
                 <p>
                     <label class="boxdata-label-30">Долгота</label>
-                    <input class="boxdata-input-10" type="number" name="Lngitude" value="@Model.coordinates.lng.d.ToString()" max="90" min="-90" />&deg;
+                    <input class="boxdata-input-10" type="number" name="Lngitude" id="Lngitude" value="@Model.coordinates.lng.d.ToString()" max="90" min="-90" />&deg;
                     <input class="boxdata-input-10" type="number" name="Lng_m" value="@Model.coordinates.lng.m.ToString()" min="-90" max="90" />&acute;
                     <input class="boxdata-input-10" type="number" name="Lng_s" value="@Model.coordinates.lng.s.ToString("0.00").Replace(',' , '.')" min="0" max="60" step="0.001" />&quot;
                 </p>
-                @*<p>
-                        <label class="boxdata-label-30">КАРТА!</label>
-                    </p>
-                    <input type="button" value="Загрузить карту" style="margin:10px"/>*@
+            <p class="center"><input type="button" id="redraw" value="Отобразить карту по координатам" /></p>
+            <div id="canvas" class="map"></div>
+            <input type="hidden" id="base64" name="base64" value="" />
+            <img id="canvasImg" />
             </fieldset>
+
             <fieldset form="ChoiseRiskObject">
                 <legend >Геологические данные</legend>
                 <p>
@@ -265,11 +249,92 @@
                     <input class="boxdata-input-50" type="number" name="height" value="@Model.height.ToString("0.00").Replace(',' , '.')" min="0" step="0.01" />
                 </p>
             </fieldset>
-            @*<input type="hidden" value="@Model.id.ToString()" name="type_code">*@
-
         </div>
 
+        @section scripts {
+            <script type="text/javascript">
 
+        $(document).ready(function () {
+            GetMap();
+        });
+        $("#save").click(function () {
+            var data = getBase64Image(document.getElementById("canvasImg"));
+
+            document.getElementById("canvasImg2") = data;
+        });
+    function GetMap() {
+
+        google.maps.visualRefresh = true;
+        var create = new google.maps.LatLng(@Model.coordinates.lat.d, @Model.coordinates.lng.d);
+        var mapOptions = {
+            zoom: 12,
+            center: create,
+            mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
+        };
+
+        var map = new google.maps.Map(document.getElementById("canvas"), mapOptions);
+        var myLatlng = new google.maps.LatLng(@Model.coordinates.lat.d, @Model.coordinates.lng.d);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+        });
+        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+    }
+            
+                function getBase64Image_new(path) {
+                    var imgE = document.createElement("img");
+                    imgE.id = "imgE";
+                    imgE.crossOrigin = 'Anonymous';
+                    imgE.onload = function () {
+                    document.getElementById("canvas").appendChild(imgE);
+
+                        var canvas = document.createElement("canvas");
+                        canvas.width = 640;
+                        canvas.height = 600;
+                        var ctx = canvas.getContext("2d");
+                        ctx.drawImage(imgE, 0, 0);
+                        var dataURL = canvas.toDataURL("image/png");
+                        document.getElementById("base64").value = dataURL;
+                    }
+                    imgE.src = path;
+                }
+
+                function GetMapCoordinat() {
+
+                    google.maps.visualRefresh = true;
+                    var create = new google.maps.LatLng(Latitude.value, Lngitude.value);
+
+                    var mapOptions = {
+                        zoom: 12,
+                        center: create,
+                        mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
+                    };
+     
+                    var map = new google.maps.Map(document.getElementById("canvas"), mapOptions);
+         
+                    var myLatlng = new google.maps.LatLng(Latitude.value, Lngitude.value);
+
+                    var marker = new google.maps.Marker({
+                        position: myLatlng,
+                        map: map,
+                    });
+      
+                    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
+
+                    var path = "http://maps.google.com/maps/api/staticmap?sensor=false&center=" +
+                       myLatlng.lat() + "," + myLatlng.lng() +
+          "&zoom=" + map.zoom +
+          "&size=640x600" +
+          "&markers=color:red%7C"+myLatlng.lat() + "," + myLatlng.lng() +
+            "&key=AIzaSyCX4kdHa13iAH0dVcEm7SuV_VNcuxoUQNs";
+                    getBase64Image_new(path);
+
+                }
+                $("#redraw").click(function () {
+                    GetMapCoordinat();
+                });
+            </script>
+        }
 
         @Html.Partial("_TypeLineMenu", delete)
     </div>

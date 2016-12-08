@@ -132,8 +132,6 @@
                     <input class="boxdata-input-10" type="number" name="Latitude" id="Latitude" value=" " min="-90" max="90" />&deg;
                     <input class="boxdata-input-10" type="number" name="Lat_m" value=" " min="-90" max="90" />&acute;
                     <input class="boxdata-input-10" type="number" name="Lat_s" value=" " min="0" max="60" step="0.01" />&quot;
-                   
-                    @*float lngitude = EGH01DB.Primitives.Coordinates.dms_to_d(@t.coordinates.lng.d, @t.coordinates.lng.m, @t.coordinates.lng.s);*@
                 </p>
                 <p>
                 <label class="boxdata-label-30">Долгота</label>
@@ -142,11 +140,10 @@
                     <input class="boxdata-input-10" type="number" name="Lng_s" value=" " min="0" max="60" step="0.01" />&quot;
                 </p>
                 <p class="center"><input type="button" id="redraw" value="Отобразить карту по координатам" /></p>
-              
                 <div id="canvas" class="map"></div>
+                <input type="hidden" id="base64" name="base64" value="" />
+                <img id="canvasImg" />
 
-                    @*<button id="get_screen_button">Заскринить</button>*@
-         
             </fieldset>
             <fieldset form="RiskObject">
                 <legend >Геологические данные</legend>
@@ -172,16 +169,20 @@
       @section scripts {
     <script type="text/javascript">
 
-    $(document).ready(function () {
-        GetMap();
-    });
+        $(document).ready(function () {
+            GetMap();
+        });
+        $("#save").click(function () {
+            var data = getBase64Image(document.getElementById("canvasImg"));
 
+            document.getElementById("canvasImg2") = data;
+        });
     function GetMap() {
 
         google.maps.visualRefresh = true;
         var create = new google.maps.LatLng(53.8842846, 27.5526839);
         var mapOptions = {
-            zoom: 15,
+            zoom: 12,
             center: create,
             mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
         };
@@ -195,26 +196,55 @@
         marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
     }
 
+    function getBase64Image_new(path) {
+        var imgE = document.createElement("img");
+        imgE.id = "imgE";
+        imgE.crossOrigin = 'Anonymous';
+        imgE.onload = function () {
+            document.getElementById("canvas").appendChild(imgE);
+
+            var canvas = document.createElement("canvas");
+            canvas.width = 640;
+            canvas.height = 600;
+            var ctx = canvas.getContext("2d");
+            ctx.drawImage(imgE, 0, 0);
+            var dataURL = canvas.toDataURL("image/png");
+            document.getElementById("base64").value = dataURL;
+        }
+        imgE.src = path;
+    }
+
     function GetMapCoordinat() {
 
         google.maps.visualRefresh = true;
         var create = new google.maps.LatLng(Latitude.value, Lngitude.value);
 
         var mapOptions = {
-            zoom: 4,
+            zoom: 12,
             center: create,
             mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
         };
+     
         var map = new google.maps.Map(document.getElementById("canvas"), mapOptions);
-
+         
         var myLatlng = new google.maps.LatLng(Latitude.value, Lngitude.value);
 
         var marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
         });
+      
         marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png')
-    }
+
+        var path = "http://maps.google.com/maps/api/staticmap?sensor=false&center=" +
+            myLatlng.lat() + "," + myLatlng.lng() +
+          "&zoom=" + map.zoom +
+          "&size=640x600" +
+          "&markers=color:red%7C"+myLatlng.lat() + "," + myLatlng.lng() +
+            "&key=AIzaSyCX4kdHa13iAH0dVcEm7SuV_VNcuxoUQNs";
+        getBase64Image_new(path);
+
+        }
     $("#redraw").click(function () {
         GetMapCoordinat();
     });
@@ -225,8 +255,6 @@
         @Html.Partial("_TypeLineMenu", create)
 
     </div>
-        @*@Html.Partial("_RiskObjectType", list_type)*@
-        @*@Html.Partial("_CadastreType", list_cadastreType)*@
-        @*@Html.Partial("_GroundType",list_groundType)*@
+       
     }
 
