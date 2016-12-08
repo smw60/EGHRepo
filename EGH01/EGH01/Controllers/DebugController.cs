@@ -57,7 +57,128 @@ namespace EGH01.Controllers
 
             return View();
         }
-        
+
+        // проверка процедур RehabilitationMethod
+        public ActionResult RehabilitationMethod_Create()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = 1;
+                //int code_test = 1;
+                //RiskObjectType r = new RiskObjectType(code_test);
+                //CadastreType ct = new CadastreType(code_test);
+                //PetrochemicalCategories pc = new PetrochemicalCategories(1);
+                //EmergencyClass ec = new EmergencyClass(code_test);
+                //PenetrationDepth pd = new PenetrationDepth(code_test);
+                //SoilPollutionCategories sp = new SoilPollutionCategories(2);
+                //bool waterachieved = true;
+                //WaterPollutionCategories wp = new WaterPollutionCategories(code_test);
+                //WaterProtectionArea wpa = new WaterProtectionArea(code_test);
+
+                //SoilCleaningMethod sm = new SoilCleaningMethod(code_test);
+                //WaterCleaningMethod wm = new WaterCleaningMethod(code_test);
+
+                //RehabilitationMethod t = new RehabilitationMethod(code, r, ct, pc, ec, pd, sp, waterachieved, wp, wpa, sm, wm);
+                //if (RehabilitationMethod.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult RehabilitationMethod_DeleteByCode()  // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //RehabilitationMethod r = new RehabilitationMethod();
+                //if (RehabilitationMethod.DeleteByCode(db, 1))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult RehabilitationMethod_GetByCode()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //RehabilitationMethod r = new RehabilitationMethod();
+                
+                //if (RehabilitationMethod.GetByCode(db, 1, ref r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult RehabilitationMethod_Update()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int code = 1;
+                //int code_test = 1;
+                //RiskObjectType r = new RiskObjectType(code_test);
+                //CadastreType ct = new CadastreType(code_test);
+                //PetrochemicalCategories pc = new PetrochemicalCategories(1);
+                //EmergencyClass ec = new EmergencyClass(code_test);
+                //PenetrationDepth pd = new PenetrationDepth(code_test);
+                //SoilPollutionCategories sp = new SoilPollutionCategories(3);
+                //bool waterachieved = true;
+                //WaterPollutionCategories wp = new WaterPollutionCategories(code_test);
+                //WaterProtectionArea wpa = new WaterProtectionArea(code_test);
+
+                //SoilCleaningMethod sm = new SoilCleaningMethod(code_test);
+                //WaterCleaningMethod wm = new WaterCleaningMethod(code_test);
+
+                //RehabilitationMethod t = new RehabilitationMethod(code, r, ct, pc, ec, pd, sp, waterachieved, wp, wpa, sm, wm);
+                //if (RehabilitationMethod.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult RehabilitationMethod_list() // y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<RehabilitationMethod> list = new List<RehabilitationMethod>();
+                //if (Helper.GetListRehabilitationMethod(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult RehabilitationMethod_GetByParm()// n
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int code = 1;
+                //int code_test = 1;
+                //RiskObjectType r = new RiskObjectType(code_test);
+                //CadastreType ct = new CadastreType(code_test);
+                //PetrochemicalCategories pc = new PetrochemicalCategories(1);
+                //EmergencyClass ec = new EmergencyClass(code_test);
+                //PenetrationDepth pd = new PenetrationDepth(code_test);
+                //SoilPollutionCategories sp = new SoilPollutionCategories(2);
+                //bool waterachieved = true;
+                //WaterPollutionCategories wp = new WaterPollutionCategories(code_test);
+                //WaterProtectionArea wpa = new WaterProtectionArea(code_test);
+
+                //SoilCleaningMethod sm = new SoilCleaningMethod(code_test);
+                //WaterCleaningMethod wm = new WaterCleaningMethod(code_test);
+
+                //RehabilitationMethod t = new RehabilitationMethod();
+                //if (RehabilitationMethod.GetByParm(db, 1, 1, 1, 1, 1, 3, true, 1, 1, out t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
         
         // проверка процедур  Report
         public ActionResult Report_GetById()// 
