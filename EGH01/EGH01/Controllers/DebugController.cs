@@ -63,7 +63,7 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //int code = 1;
+                //int code = -1;
                 //int code_test = 1;
                 //RiskObjectType r = new RiskObjectType(code_test);
                 //CadastreType ct = new CadastreType(code_test);
@@ -155,7 +155,7 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //int code = 1;
+                
                 //int code_test = 1;
                 //RiskObjectType r = new RiskObjectType(code_test);
                 //CadastreType ct = new CadastreType(code_test);
@@ -163,15 +163,13 @@ namespace EGH01.Controllers
                 //EmergencyClass ec = new EmergencyClass(code_test);
                 //PenetrationDepth pd = new PenetrationDepth(code_test);
                 //SoilPollutionCategories sp = new SoilPollutionCategories(2);
-                //bool waterachieved = true;
+                
                 //WaterPollutionCategories wp = new WaterPollutionCategories(code_test);
                 //WaterProtectionArea wpa = new WaterProtectionArea(code_test);
 
-                //SoilCleaningMethod sm = new SoilCleaningMethod(code_test);
-                //WaterCleaningMethod wm = new WaterCleaningMethod(code_test);
-
+              
                 //RehabilitationMethod t = new RehabilitationMethod();
-                //if (RehabilitationMethod.GetByParm(db, 1, 1, 1, 1, 1, 3, true, 1, 1, out t))
+                //if (RehabilitationMethod.GetByParm(db, 1, 1, 1, 1, 1, 2, true, 1, 1, out t))
                 //{
                 //    int k = 1;
                 //};
@@ -836,6 +834,18 @@ namespace EGH01.Controllers
                 //WaterProperties wp = new WaterProperties (12, 70.0f, 09.0f, 80.0f, 70.0f);
                 //XmlNode xml_wp = wp.toXmlNode("Water Properties");
                 //WaterProperties wp1 = new WaterProperties(xml_wp);
+            }
+            return View();
+        }
+        public ActionResult XML_RehabilitationMethod()
+        {
+            RGEContext db = new RGEContext();
+            {
+                //RehabilitationMethod wp = new RehabilitationMethod();
+
+                //RehabilitationMethod.GetByCode(db, 1, out wp);
+                //XmlNode xml_wp = wp.toXmlNode("Rehabilitation Method");
+                //RehabilitationMethod wp1 = new RehabilitationMethod(xml_wp);
             }
             return View();
         }
