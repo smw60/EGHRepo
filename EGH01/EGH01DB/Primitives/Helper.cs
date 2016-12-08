@@ -997,6 +997,51 @@ namespace EGH01DB.Primitives
             }
             return rc;
         } 
+        static public bool GetListECOClassification(EGH01DB.IDBContext dbcontext, ref List<GEAContext.ECOClassification> list_classification)
+        {
+            bool rc = false;
+            list_classification =   new  List<GEAContext.ECOClassification>();  
+            using (SqlCommand cmd = new SqlCommand("EGH.GetECOClassificationList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                     SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                       
+                        string stage = (string)reader["Стадия"];
+                         int report_id = (int)reader ["IdОтчета"];
+                         DateTime date = (DateTime)reader["ДатаОтчета"];   
+                         int predator = (int)reader["Родитель"];
+                        
+                         string xmlContent = (string)reader["ТекстОтчета"];
+                         if (!xmlContent.Trim().Equals(""))
+                         {
+                          XmlDocument doc = new XmlDocument();
+                          doc.LoadXml(xmlContent);
+                          XmlNode newNode = doc.DocumentElement;
+                          list_classification.Add(new GEAContext.ECOClassification(newNode));
+                         }
+                    }
+                    rc = true;   
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+
+            }
+            return rc;
+        } 
+
+
         static public bool GetListReport(EGH01DB.IDBContext dbcontext, ref List<Report> list)
         {
             bool rc = false;
