@@ -9,59 +9,61 @@
 @{
     
     ORTContextView context = (ORTContextView)Model.GetViewContext(ORTContextView.VIEWNAME);
-    if (context == null) { Model.SaveViewContext(ORTContextView.VIEWNAME, context = new ORTContextView()); };
+    if (context == null) {Model.SaveViewContext(ORTContextView.VIEWNAME, context = new ORTContextView()); };
     
     List<SelectListItem> reportlist = new List<SelectListItem>();
-    //{
-        List<EGH01DB.ORTContext.ECORehabilitation> list = new List<EGH01DB.ORTContext.ECORehabilitation>();
-        //if ( Helper.  .G  etListECOEvalution(Model,  ref list))
-        //{
-        //  foreach (CEQContext.ECOEvalution f in list)
-        //  {
+    {
+        List<EGH01DB.GEAContext.ECOClassification> list = new List<EGH01DB.GEAContext.ECOClassification>();
 
-        //        reportlist.Add(
-        //                        new SelectListItem { 
-        //                                             Text = f.line,
-        //                                             Value = f.id.ToString()
-        //                                             }
 
-        //                        );  
-        //   }            
+        if ( Helper.GetListECOClassification(Model,  ref list))
+        {
+         foreach (GEAContext.ECOClassification c in list)
+         {
+
+                reportlist.Add(
+                                new SelectListItem { 
+                                                     Text =  c.line,
+                                                     Value = c.id.ToString()
+                                                     }
+
+                                );  
+           }            
             
-        // }
-       //}
+         }
+       }
    
-    //if (context.idevalution != null)
-    //{
-    //    SelectListItem si = reportlist.FirstOrDefault(s => s.Value.Equals(context.idevalution.ToString()));
-    //    si.Selected = true; 
+     if (context.idclassification != null)
+    {
+        SelectListItem si = reportlist.FirstOrDefault(s => s.Value.Equals(context.idclassification.ToString()));
+        si.Selected = true; 
     
-    //} 
-   
-}
+    }
+  
+ }
 
 
 
-@*@Html.Partial("_ConfirmChoiceEvalutionResult", Model)
+@Html.Partial("_ConfirmChoiceClassificationResult", Model)
 
-@if (context.Regim == GEAContextView.REGIM.INIT)
+@if (context.Regim == ORTContextView.REGIM.INIT)
 {
-  using (Html.BeginForm("ChoiceEvalutionResult", "EGHGEA"))  
+  using (Html.BeginForm("ChoiceClassificationResult", "EGHORT"))  
   {
 
     <div class="box">
-        <h3>Результаты оценки результатов прогнозирования</h3>
+        <h3>Результаты классификации результатов прогнозирования</h3>
         <div class="boxdata" style="margin:5px;">
-            @Html.DropDownList("ChoiceEvalutionResult.id", reportlist, new { size = reportlist.Count, style = "height:100px; width:97%; padding:5px;" })
+            @Html.DropDownList("ChoiceClassification.id", reportlist, new { size = reportlist.Count, style = "height:100px; width:97%; padding:5px;" })
         </div>
        
         @Html.Partial("_TypeLineMenu",new Menu(
-                                                new Menu.MenuItem("Выбрать",    "ChoiceEvalutionResult.Choice", true),
-                                                new Menu.MenuItem("Отказаться", "ChoiceEvalutionResult.Cancel", true)
+                                                new Menu.MenuItem("Выбрать",    "ChoiceClassification.Choice", true),
+                                                new Menu.MenuItem("Отказаться", "ChoiceClassification.Cancel", true)
                                                ))
     </div>
   }
 
-}*@
+}
 
 
