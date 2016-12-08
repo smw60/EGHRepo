@@ -10,14 +10,23 @@ namespace EGH01DB
     public partial class  ORTContext: IDBContext
     {
 
-     public partial class ECORehabilitation   //:GEAContext.ECOClassification
+     public partial class ECORehabilitation: GEAContext.ECOClassification
      {
 
+         public ECORehabilitation(GEAContext.ECOClassification ecoclassification):base(ecoclassification) 
+         {
 
-         public ECORehabilitation() { }
 
 
+
+         }
 
      }  
+
+    
+
+
     }
+
+
 }

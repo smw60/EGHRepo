@@ -36,27 +36,26 @@ namespace EGH01.Models.EGHORT
  
             return rc;     
        }
-       // public static ORTontextView HandlerClassification(GEAContext db, NameValueCollection parms)
-       // {
-       //      GEAContextView rc = db.GetViewContext(VIEWNAME) as GEAContextView;
-       //      if (rc == null) db.SaveViewContext(GEAContextView.VIEWNAME, rc = new GEAContextView());
-           
-       //      string menuitem = parms["menuitem"];
-       //      if (menuitem != null)
-       //      {
-       //         if (menuitem.Equals("Report.Save")) 
-       //         {
-       //              rc.Regim = REGIM.SAVE;
+       public static ORTContextView HandlerRehabilitation(ORTContext db, NameValueCollection parms)
+       {
+               ORTContextView rc = db.GetViewContext(VIEWNAME) as ORTContextView;
+              if (rc == null) db.SaveViewContext(ORTContextView.VIEWNAME, rc = new ORTContextView());
+              string menuitem = parms["menuitem"];
+              if (menuitem != null)
+              {
+                if (menuitem.Equals("Report.Save")) 
+                {
+                     rc.Regim = REGIM.SAVE;
 
-       //         }  
-       //      }
-       //      else  if (rc.ecoevolution != null) 
-       //      { 
-       //        rc.Regim = REGIM.REPORT;
-       //        rc.ecoclassifiation = new GEAContext.ECOClassification(rc.ecoevolution);
-       //      }
-       //      return rc;  
-       // }  
+                }  
+              }
+              else  if (rc.ecoclassifiation != null) 
+              { 
+                  rc.Regim = REGIM.REPORT;
+                  rc.ecoclassifiation = null;     //new GEAContext.ECOCRehabilitation(rc.ecoclassifiation);
+              }
+              return rc;  
+        }  
 
     }
 }
