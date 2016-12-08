@@ -283,7 +283,7 @@ create procedure EGH.GetNextRehabilitationMethodCode(@КодКлассификатора int outp
 end;
 go
 
----- Получение списка строки классификатора методов реабилитации
+---- Получение методов реабилитации по параметрам классификатора 
 create procedure EGH.GetListRehabilitationMethodOnParam (@ТипТехногенногоОбъекта int,  
 														@НазначениеЗемель int,
 														@КатегорияНефтепродукта int,
