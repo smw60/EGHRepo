@@ -27,10 +27,26 @@
                 @Model.type_code.ToString()
                 <input type="hidden" value="@Model.type_code.ToString()" name="type_code">
             </p>
-            @*<p>
-                <label class="boxdata-label-30">Наименование метода</label>
-                @Model.name.ToString()
-            </p>*@
+            <p><label class="boxdata-label-30">Тип техногенного объекта</label> @Model.riskobjecttype.name</p>
+            <p><label class="boxdata-label-30">Кадастровый тип земли</label>@Model.cadastretype.name</p>
+            <p><label class="boxdata-label-30">Категория разлитого нефтепродукта</label>@Model.petrochemicalcategory.name</p>
+            <p><label class="boxdata-label-30">Классификация аварии</label>@Model.emergencyclass.name</p>
+            <p><label class="boxdata-label-30">Категория глубины проникновения нефтепродукта</label>@Model.penetrationdepth.name</p>
+        <p> 
+               @if (@Model.waterachieved == true)
+            {
+                <label class="boxdata-label-30">Достижение грунтовых вод</label>
+            }
+            else
+            {
+                <label class="boxdata-label-30">Не достиг грунтовых вод</label>
+            }
+
+            <br>
+            <p><label class="boxdata-label-30">Категория загрязнения грунтовых вод </label> @Model.waterpollutioncategories.name</p>
+            <p><label class="boxdata-label-30">Категория водоохранной территории  </label> @Model.waterprotectionarea.name</p>
+            <p><label class="boxdata-label-30">Категория методов ликвидации загрязнения почвогрунтов</label>@Model.soilpollutioncategories.name</p>
+            <p><label class="boxdata-label-30">Категория методов ликвидации загрязнения грунтовых вод  </label>@Model.watercleaningmethod.method_description</p>
         </div>
 
         @Html.Partial("_TypeLineMenu", update)

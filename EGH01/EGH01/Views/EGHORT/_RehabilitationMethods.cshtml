@@ -28,14 +28,18 @@
                     <p><label class="boxdata-label-30">Категория разлитого нефтепродукта</label>@t.petrochemicalcategory.name</p>
                     <p><label class="boxdata-label-30">Классификация аварии</label>@t.emergencyclass.name</p>
                     <p><label class="boxdata-label-30">Категория глубины проникновения нефтепродукта</label>@t.penetrationdepth.name</p>
+                <p>
                     @if (@t.waterachieved == true)
                     {
-                        <p><label class="boxdata-label-30">Достижение грунтовых вод</label></p>
+                        <label class="boxdata-label-30">Достижение грунтовых вод</label>
                     }
                     else
                     {
-                        <p><label class="boxdata-label-30">Не достиг грунтовых вод</label></p>
+
+                        <label class="boxdata-label-30">Не достиг грунтовых вод</label>
                     }
+                <br>
+
                     <p><label class="boxdata-label-30">Категория загрязнения грунтовых вод </label> @t.waterpollutioncategories.name</p>
                     <p><label class="boxdata-label-30">Категория водоохранной территории  </label> @t.waterprotectionarea.name</p>
                     <p><label class="boxdata-label-30">Категория методов ликвидации загрязнения почвогрунтов</label>@t.soilpollutioncategories.name</p>
