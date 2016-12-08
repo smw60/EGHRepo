@@ -15,6 +15,7 @@ namespace EGH01DB
         static SqlConnection con = null;
         static public SqlConnection Connect()
         {
+             
             return Connect("EGH");
         }
         static public  SqlConnection Connect(string connectname)

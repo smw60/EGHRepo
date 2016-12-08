@@ -33,6 +33,73 @@ namespace EGH01.Controllers
         }
 
 
+       public ActionResult ChoiceClassificationResult()
+        {
+            ViewBag.EGHLayout = "ORT";
+            ORTContext db = null;
+            ActionResult view = View("Index", db);
+            try
+            {
+                db = new ORTContext(this);
+                //ORTContextView context = GEAContextView.HandlerChoice(db,this.Request.Params);
+                //switch(context.Regim)
+                //{ 
+                // case GEAContextView.REGIM.INIT:   view = View(db); break;
+                // case GEAContextView.REGIM.CHOICE: view = View("Index", db); context.Regim = GEAContextView.REGIM.INIT;  break;
+                // case GEAContextView.REGIM.CANCEL: view = View("Index", db); context.Regim = GEAContextView.REGIM.INIT;  break; 
+                // default:  view = View(db); break;
+               // }                 
+
+            }
+            catch (RGEContext.Exception e)   //ORTContext.Exception
+            {
+                ViewBag.msg = e.Message;
+            }
+            finally
+            {
+                //if (db != null) db.Disconnect();
+            }
+
+            return view;
+        }
+              
+        //public ActionResult ClassificationEvalution()
+        //{
+        //  ViewBag.EGHLayout = "GEA";
+        //  ActionResult view = View("Index");
+        //  GEAContext db = null;
+        //  try
+        //  {
+        //        db = new GEAContext(this);
+        //        GEAContextView context = GEAContextView.HandlerClassification(db,this.Request.Params);
+        //        switch(context.Regim)
+        //        { 
+        //         case GEAContextView.REGIM.REPORT:  view = View(db); break;
+        //         case GEAContextView.REGIM.SAVE:    
+        //                                        GEAContext.ECOClassification.Create(db, context.ecoclassifiation);
+        //                                        view = View("Index", db);
+        //                                        break;       
+        //         case GEAContextView.REGIM.CANCEL:  view = View("Index", db); break; 
+        //         default:  view = View(db); break;
+        //        }                 
+
+        //    }
+        //    catch (RGEContext.Exception e)
+        //    {
+        //        ViewBag.msg = e.message;
+        //    }
+        //    finally
+        //    {
+        //        //if (db != null) db.Disconnect();
+        //    } 
+        //    return view;
+        //}
+
+
+
+
+
+
         public class OrtData
         {
             public List<string> RGEReport = new List<string> { "АЗС 28 - 17.09.2016", "Нефтебаза - 19.09.2016", "Хранилище 4 - 21.09.2016" };

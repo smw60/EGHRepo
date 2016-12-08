@@ -39,6 +39,8 @@ namespace EGH01.Models.EGHCAI
         public float height { get; set; }
         public bool watertreatment { get; set; }
         public bool watertreatmentcollect { get; set; }
+        public string base64 { get; set; }
+         public byte[]   maps { get; set; }
 
 
 

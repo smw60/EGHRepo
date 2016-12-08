@@ -224,6 +224,7 @@
     <Compile Include="Models\EGHCEQ\ReportView.cs" />
     <Compile Include="Models\EGHGEA\GEAContextView.cs" />
     <Compile Include="Models\EGHORT\EmergencyClassView.cs" />
+    <Compile Include="Models\EGHORT\ORTContextView.cs" />
     <Compile Include="Models\EGHORT\RehabilitationMethodsView.cs" />
     <Compile Include="Models\EGHORT\SoilCleaningMethodView.cs" />
     <Compile Include="Models\EGHORT\PenetrationDepthView .cs" />
@@ -287,6 +288,7 @@
     <None Include="Properties\PublishProfiles\EGH01.pubxml" />
     <None Include="Properties\PublishProfiles\WebDeploy-Prod.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\html2canvas.svg.js" />
     <Content Include="Scripts\time.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -472,6 +474,8 @@
     <Content Include="Views\EGHCCO\PetrochemicalCategoriesDelete.cshtml" />
     <Content Include="Views\EGHCCO\PetrochemicalCategoriesUpdate.cshtml" />
     <Content Include="Views\EGHCCO\_PetrochemicalCategoriesList.cshtml" />
+    <Content Include="Views\EGHORT\ChoiceClassificationResult.cshtml" />
+    <Content Include="Views\EGHORT\_ChoiceClassificationResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
