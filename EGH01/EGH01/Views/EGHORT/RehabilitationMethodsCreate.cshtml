@@ -93,7 +93,7 @@
     if (@Model != null)
     {
         Helper.GetListSoilCleaningMethods(@Model, ref list_soilCleaning);
-        list_soilCleaning.ForEach(o => ViewBag.list_soilCleaning.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+        list_soilCleaning.ForEach(o => ViewBag.list_soilCleaning.Add(new SelectListItem { Text = o.method_description, Value = o.type_code.ToString() }));
 
     }
 
@@ -102,7 +102,7 @@
     if (@Model != null)
     {
         Helper.GetListWaterCleaningMethods(@Model, ref list_waterCleaning);
-        list_waterCleaning.ForEach(o => ViewBag.list_waterCleaning.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+        list_waterCleaning.ForEach(o => ViewBag.list_waterCleaning.Add(new SelectListItem { Text = o.method_description, Value = o.type_code.ToString() }));
 
     }
 
@@ -112,10 +112,6 @@
 {
     <div class="box">
         <div class="boxdata">
-    <p>
-        <label class="boxdata-label-30">Наименование метода</label>
-        <textarea class="boxdata-input-50" name="name" rows="2"></textarea>
-    </p>
     <p><label class="boxdata-label-30">Тип техногенного объекта</label>@Html.DropDownList("list_type")</p>
     <p><label class="boxdata-label-30">Кадастровый тип земли</label>  @Html.DropDownList("list_cadastre")</p>
     <p><label class="boxdata-label-30">Категория разлитого нефтепродукта</label>@Html.DropDownList("list_petrochemical")</p>
