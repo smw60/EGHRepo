@@ -28,22 +28,21 @@
                     <p><label class="boxdata-label-30">Категория разлитого нефтепродукта</label>@t.petrochemicalcategory.name</p>
                     <p><label class="boxdata-label-30">Классификация аварии</label>@t.emergencyclass.name</p>
                     <p><label class="boxdata-label-30">Категория глубины проникновения нефтепродукта</label>@t.penetrationdepth.name</p>
-                <p>
-    @if (@t.waterachieved == true)
-                    {
-    <p> <label class="boxdata-label-30">Признак достижение грунтовых вод</label>Да</p>
-    }
-    else
-    {
-
-    <p><label class="boxdata-label-30">Признак достижение грунтовых вод</label>Нет</p>
-    }
-               
                     <p><label class="boxdata-label-30">Категория загрязнения грунтов</label>@t.soilpollutioncategories.name</p>
                     <p><label class="boxdata-label-30">Категория загрязнения грунтовых вод </label> @t.waterpollutioncategories.name</p>
                     <p><label class="boxdata-label-30">Категория водоохранной территории  </label> @t.waterprotectionarea.name</p>
                     <p><label class="boxdata-label-30">Метод ликвидации загрязнения почвогрунтов</label><span class="boxdata-span">@t.soilcleaningmethod.method_description &nbsp;</span></p>
+                <p>
+                    @if (@t.waterachieved == true)
+                    {
+                    <p> <label class="boxdata-label-30">Признак достижение грунтовых вод</label>Да</p>
                     <p><label class="boxdata-label-30">Метод ликвидации загрязнения грунтовых вод  </label>@t.watercleaningmethod.method_description</p>
+                    }
+                    else
+                    {
+
+                        <p><label class="boxdata-label-30">Признак достижение грунтовых вод</label>Нет</p>
+                    }
                 <input type="hidden" value="@t.type_code.ToString()" name="id">
 
             </div>
