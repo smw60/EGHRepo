@@ -182,7 +182,7 @@
         google.maps.visualRefresh = true;
         var create = new google.maps.LatLng(53.8842846, 27.5526839);
         var mapOptions = {
-            zoom: 15,
+            zoom: 12,
             center: create,
             mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
         };
@@ -220,7 +220,7 @@
         var create = new google.maps.LatLng(Latitude.value, Lngitude.value);
 
         var mapOptions = {
-            zoom: 4,
+            zoom: 12,
             center: create,
             mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
         };
@@ -239,7 +239,7 @@
         var path = "http://maps.google.com/maps/api/staticmap?sensor=false&center=" +
             myLatlng.lat() + "," + myLatlng.lng() +
           "&zoom=" + map.zoom +
-          "&size=" + $("#canvas").width() + "x" + $("#canvas").height() +
+          "&size=640x600" +
           "&markers=color:red%7C"+myLatlng.lat() + "," + myLatlng.lng() +
             "&key=AIzaSyCX4kdHa13iAH0dVcEm7SuV_VNcuxoUQNs";
         getBase64Image_new(path);

@@ -154,6 +154,16 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
+        static public EGH01DB.Types.RehabilitationMethodList GetListRehabilitationMethod(EGH01DB.IDBContext dbcontext)
+        {
+            List<RehabilitationMethod> list = new List<RehabilitationMethod>();
+            EGH01DB.Types.RehabilitationMethodList rc = new EGH01DB.Types.RehabilitationMethodList(list);
+            if (Helper.GetListRehabilitationMethod(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Types.RehabilitationMethodList(list);
+            }
+            return rc;
+        }
         static public EGH01DB.Points.AnchorPointList GetListAnchorPoint(EGH01DB.IDBContext dbcontext)
         {
             List<AnchorPoint> list = new List<AnchorPoint>();
@@ -164,7 +174,6 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
-
    static public EGH01DB.Types.WaterProtectionAreaList GetListWaterProtectionArea(EGH01DB.IDBContext dbcontext)
         {
             List<WaterProtectionArea> list = new List<WaterProtectionArea>();
@@ -997,6 +1006,51 @@ namespace EGH01DB.Primitives
             }
             return rc;
         } 
+        static public bool GetListECOClassification(EGH01DB.IDBContext dbcontext, ref List<GEAContext.ECOClassification> list_classification)
+        {
+            bool rc = false;
+            list_classification =   new  List<GEAContext.ECOClassification>();  
+            using (SqlCommand cmd = new SqlCommand("EGH.GetECOClassificationList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                     SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                       
+                        string stage = (string)reader["Стадия"];
+                         int report_id = (int)reader ["IdОтчета"];
+                         DateTime date = (DateTime)reader["ДатаОтчета"];   
+                         int predator = (int)reader["Родитель"];
+                        
+                         string xmlContent = (string)reader["ТекстОтчета"];
+                         if (!xmlContent.Trim().Equals(""))
+                         {
+                          XmlDocument doc = new XmlDocument();
+                          doc.LoadXml(xmlContent);
+                          XmlNode newNode = doc.DocumentElement;
+                          list_classification.Add(new GEAContext.ECOClassification(newNode));
+                         }
+                    }
+                    rc = true;   
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+
+            }
+            return rc;
+        } 
+
+
         static public bool GetListReport(EGH01DB.IDBContext dbcontext, ref List<Report> list)
         {
             bool rc = false;
@@ -1357,6 +1411,115 @@ namespace EGH01DB.Primitives
 
             }
         }
+        static public bool GetListRehabilitationMethod(EGH01DB.IDBContext dbcontext, ref List<RehabilitationMethod> list)
+        {
+            bool rc = false;
+            RehabilitationMethod rehabilitation_method = new RehabilitationMethod();
+            list = new List<RehabilitationMethod>();
+            using (SqlCommand cmd = new SqlCommand("EGH.GetRehabilitationMethodList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int code = (int)reader["КодКлассификатора"];
+
+                        int risk_object_type_code = (int)reader["ТипТехногенногоОбъекта"];
+                        string risk_object_type_name = (string)reader["НаименованиеТипаТехногенногоОбъекта"];
+                        RiskObjectType risk_object_type = new RiskObjectType(risk_object_type_code, risk_object_type_name);
+
+                        int cadastre_type_code = (int)reader["НазначениеЗемель"];
+                        string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
+                        float cadastre_type_pdk_coef = (float)reader["ПДК"];
+                        float cadastre_type_water_pdk_coef = (float)reader["ПДКводы"];
+                        string cadastre_type_ground_doc_name = (string)reader["НормДокументЗемля"];
+                        string cadastre_type_water_doc_name = (string)reader["НормДокументВода"];
+                        CadastreType cadastre_type = new CadastreType(cadastre_type_code, cadastre_type_name, cadastre_type_pdk_coef,
+                                            cadastre_type_water_pdk_coef, cadastre_type_ground_doc_name, cadastre_type_water_doc_name);
+
+                        int petrochemical_category_type_code = (int)reader["КатегорияНефтепродукта"];
+                        string petrochemical_category_name = (string)reader["KN_НаименованиеКатегорииНефтепродукта"];
+                        PetrochemicalCategories petrochemical_category = new PetrochemicalCategories (petrochemical_category_type_code, petrochemical_category_name);
+
+                        int emergency_class_type_code = (int)reader["КлассификацияАварий"];
+                        string emergency_class_name = (string)reader["KA_НаименованиеТипаАварии"];
+                        float emergency_class_min = (float)reader["KA_МинМасса"];
+                        float emergency_class_max = (float)reader["KA_МаксМасса"];
+                        EmergencyClass emergency_class = new EmergencyClass (emergency_class_type_code, emergency_class_name, emergency_class_min, emergency_class_max);
+                        
+                        int penetration_depth_type_code = (int)reader["КатегорияПроникновенияНефтепродукта"];
+                        string penetration_depth_name = (string)reader["PN_НаименованиеТипаКатегории"];
+                        float penetration_depth_min = (float)reader["PN_МинДиапазон"];
+                        float penetration_depth_max = (float)reader["PN_МаксДиапазон"];
+                        PenetrationDepth penetration_depth = new PenetrationDepth (penetration_depth_type_code, penetration_depth_name, penetration_depth_min, penetration_depth_max);
+
+                        int soil_pollution_categories_type_code = (int)reader["КатегорияЗагрязненияГрунта"];
+                        string soil_pollution_categories_name = (string)reader["GP_НаименованиеКатегорииЗагрязненияГрунта"];
+                        float soil_pollution_categories_min = (float)reader["GP_МинДиапазон"];
+                        float soil_pollution_categories_max = (float)reader["GP_МаксДиапазон"];
+                        int soil_pollution_categories_cadastre_type_code = (int)reader["GP_КодНазначенияЗемель"];
+                        CadastreType soil_pollution_categories_cadastre_type = new CadastreType(soil_pollution_categories_cadastre_type_code);
+                        SoilPollutionCategories soilpollution_categories = new SoilPollutionCategories(soil_pollution_categories_type_code,
+                                                                                                       soil_pollution_categories_name,
+                                                                                                       soil_pollution_categories_min,
+                                                                                                       soil_pollution_categories_max,
+                                                                                                       soil_pollution_categories_cadastre_type);
+                        bool waterachieved = (bool)reader["ДостижениеГоризонтаГрунтовыхВод"];
+                        int water_pollution_categories_type_code = (int)reader["КатегорияЗагрязненияГрунтовыхВод"];
+                        string water_pollution_categories_name = (string)reader["WG_НаименованиеКатегорииЗагрязненияГВ"];
+                        float water_pollution_categories_min = (float)reader["WG_МинДиапазон"];
+                        float water_pollution_categories_max = (float)reader["WG_МаксДиапазон"];
+                        int water_pollution_categories_cadastre_type_code = (int)reader["WG_КодНазначенияЗемель"];
+                        CadastreType water_pollution_categories_cadastre_type = new CadastreType(water_pollution_categories_cadastre_type_code);
+                        WaterPollutionCategories water_pollution_categories = new WaterPollutionCategories(water_pollution_categories_type_code,
+                                                                                                       water_pollution_categories_name,
+                                                                                                       water_pollution_categories_min,
+                                                                                                       water_pollution_categories_max,
+                                                                                                       water_pollution_categories_cadastre_type);
+                        int water_protection_area_type_code = (int)reader["КатегорияВодоохраннойТерритории"];
+                        string water_protection_area_name = (string)reader["WT_НаименованиеКатегории"];
+                        WaterProtectionArea water_protection_area = new WaterProtectionArea (water_protection_area_type_code, water_protection_area_name);
+
+                        int soil_cleaning_method_type_code = (int)reader["КатегорияМЛЗагрязненияПГ"];
+                        string soil_cleaning_method_name = (string)reader["PG_ОписаниеМетода"];
+                        SoilCleaningMethod soil_cleaning_method = new SoilCleaningMethod (soil_cleaning_method_type_code, soil_cleaning_method_name);
+
+                        int water_cleaning_method_type_code = (int)reader["КатегорияМЛЗагрязненияГВ"];
+                        string water_cleaning_method_name = (string)reader["PW_ОписаниеМетода"];
+                        WaterCleaningMethod water_cleaning_method = new WaterCleaningMethod (water_cleaning_method_type_code, water_cleaning_method_name);
+
+                        rehabilitation_method = new RehabilitationMethod(code,
+                                                                            risk_object_type,
+                                                                            cadastre_type,
+                                                                            petrochemical_category,
+                                                                            emergency_class,
+                                                                            penetration_depth,
+                                                                            soilpollution_categories,
+                                                                            waterachieved,
+                                                                            water_pollution_categories,
+                                                                            water_protection_area,
+                                                                            soil_cleaning_method, 
+                                                                            water_cleaning_method);
+                        list.Add(rehabilitation_method);
+                    }
+                    rc = (list.Count > 0); 
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+
+            }
+            return rc;
+         }
+        
+        
         static public float     GetFloatAttribute(XmlNode n, string name, float errorvalue = 0.0f)
         {
             float rc = errorvalue;
