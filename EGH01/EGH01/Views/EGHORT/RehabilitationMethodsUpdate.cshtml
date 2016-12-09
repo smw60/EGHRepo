@@ -190,7 +190,7 @@
                 <input type="hidden" value="@Model.type_code.ToString()" name="type_code">
             </div>
             <p><label class="boxdata-label-30">Тип техногенного объекта</label>@Html.DropDownList("list_type")</p>
-            <p><label class="boxdata-label-30">Кадастровый тип земли</label>  @Html.DropDownList("list_cadastre")</p>
+            <p><label class="boxdata-label-30">Категория земли</label>  @Html.DropDownList("list_cadastre")</p>
             <p><label class="boxdata-label-30">Категория разлитого нефтепродукта</label>@Html.DropDownList("list_petrochemical")</p>
             <p><label class="boxdata-label-30">Классификация аварии</label>@Html.DropDownList("list_emergency")</p>
             <p><label class="boxdata-label-30">Категория глубины проникновения</label>@Html.DropDownList("list_penetration")</p>
@@ -200,11 +200,11 @@
                 bool k = Model.waterachieved;
                 if (k == true)
                 {
-                    <input type="checkbox" id="waterachieved" class="boxdata-label-30" checked="checked" name="waterachieved" value="true"><label>Водный объект</label>
+                    <input type="checkbox" id="waterachieved" class="boxdata-label-30" checked="checked" name="waterachieved" value="true"><label>Достижение грунтовых вод</label>
                 }
                 else
                 {
-                    <input type="checkbox" id="waterachieved" class="boxdata-label-30" name="waterachieved" value="false"><label>Водный объект</label>
+                    <input type="checkbox" id="waterachieved" class="boxdata-label-30" name="waterachieved" value="false"><label>Достижение грунтовых вод</label>
                 }
             }
             <script>
