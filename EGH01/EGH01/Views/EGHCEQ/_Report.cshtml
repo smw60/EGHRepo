@@ -33,11 +33,11 @@
                     <legend>  @context.ecoevalution.incident.riskobject.name </legend>
                     <p>
                         <label class="boxdata-label-40 ">Область</label>
-                        @context.ecoevalution.incident.riskobject.region.name;
+                        @context.ecoevalution.incident.riskobject.region.name
                     </p>
                     <p>
                         <label class="boxdata-label-40 ">Район</label>
-                        @context.ecoevalution.incident.riskobject.district.name;
+                        @context.ecoevalution.incident.riskobject.district.name
                     </p>
                     
                     <p><label class="boxdata-label-40">Координаты. Широта</label>@context.ecoevalution.incident.riskobject.coordinates.lat.d.ToString()°&nbsp;@context.ecoevalution.incident.riskobject.coordinates.lat.m.ToString()'&nbsp;@context.ecoevalution.incident.riskobject.coordinates.lat.s.ToString("0.00")"</p>
@@ -46,11 +46,11 @@
 
                     <p>
                         <label class="boxdata-label-40 ">Категория  земли</label>
-                        @context.ecoevalution.incident.riskobject.cadastretype.name;
+                        <span class="boxdata-span">@context.ecoevalution.incident.riskobject.cadastretype.name</span> 
                     </p>
                     <p>
                         <label class="boxdata-label-40 ">Документ, определяющий ПДК</label>
-                        @context.ecoevalution.incident.riskobject.cadastretype.ground_doc_name;
+                        @context.ecoevalution.incident.riskobject.cadastretype.ground_doc_name
                     </p>
 
                 </fieldset>
