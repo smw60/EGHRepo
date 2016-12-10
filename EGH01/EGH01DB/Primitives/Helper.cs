@@ -1523,7 +1523,7 @@ namespace EGH01DB.Primitives
         static public float     GetFloatAttribute(XmlNode n, string name, float errorvalue = 0.0f)
         {
             float rc = errorvalue;
-            if (n.Attributes[name] != null)  if (!float.TryParse(n.Attributes[name].Value, out rc)) rc = errorvalue;
+            if (n.Attributes[name] != null)  if (!FloatTryParse(n.Attributes[name].Value, out rc)) rc = errorvalue;   
             return rc;
         }
         static public int       GetIntAttribute(XmlNode n, string name, int errorvalue = -1)
