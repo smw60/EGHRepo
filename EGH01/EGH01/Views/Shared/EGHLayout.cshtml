@@ -97,7 +97,14 @@
             else if (ViewBag.EGHLayout == "RGE.WaterProperties")
             {
                 <h2><span>@Html.ActionLink("Прогноз", "Index", "EGHRGE") </span><span class="big">Свойства воды</span></h2>
+                
             }
+             else if (ViewBag.EGHLayout == "RGE.RiskObjectType")
+            {
+                <h2><span>@Html.ActionLink("Прогноз", "Index", "EGHRGE") </span><span class="big">Тип техногенного объекта</span></h2>
+                
+            }
+            
             else if (ViewBag.EGHLayout == "ORT.SoilPollutionCategories")
             {
                 <h2 class="double"><span>@Html.ActionLink("Выбор технологий реабилитации", "Index", "EGHORT") </span><span>Категории загрязнения грунтов</span></h2>
