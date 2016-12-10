@@ -350,6 +350,18 @@ namespace EGH01.Controllers
             }
             return View();
         }
+        public ActionResult PenetrationDepth_GetByDepth()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //PenetrationDepth r = new PenetrationDepth(1);
+                //if (PenetrationDepth.GetByDepth(db, 90.0f, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
 
         // проверка процедур  EmergencyClass
         public ActionResult EmergencyClass_Create()// y
@@ -423,6 +435,19 @@ namespace EGH01.Controllers
             }
             return View();
         }
+        public ActionResult EmergencyClass_GetByMass()// y
+        {
+            RGEContext db = new RGEContext();
+            {
+                //EmergencyClass r = new EmergencyClass(1);
+                //if (EmergencyClass.GetByMass(db, 10.0f, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
 
         // проверка процедур  WaterPollutionCategories
         public ActionResult WaterPollutionCategories_Create()// y

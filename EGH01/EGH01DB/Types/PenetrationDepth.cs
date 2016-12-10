@@ -248,7 +248,46 @@ namespace EGH01DB.Types
             }
             return rc;
         }
-        
+        static public bool GetByDepth(EGH01DB.IDBContext dbcontext, float depth, out PenetrationDepth penetration_depth)
+        {
+            bool rc = false;
+            penetration_depth = new PenetrationDepth();
+            using (SqlCommand cmd = new SqlCommand("EGH.GetPenetrationDepthByDepth", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@Глубина", SqlDbType.Float);
+                    parm.Value = depth;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        int code = (int)reader["КодТипаКатегории"];
+                        string name = (string)reader["НаименованиеТипаКатегории"];
+                        float min = (float)reader["МинДиапазон"];
+                        float max = (float)reader["МаксДиапазон"];
+                        if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) penetration_depth = new PenetrationDepth(code, name, min, max);
+
+                    }
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+
+            }
+            return rc;
+        }
         public XmlNode toXmlNode(string comment = "")
         {
             XmlDocument doc = new XmlDocument();

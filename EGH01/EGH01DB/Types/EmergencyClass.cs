@@ -248,7 +248,46 @@ namespace EGH01DB.Types
             }
             return rc;
         }
-        
+        static public bool GetByMass(EGH01DB.IDBContext dbcontext, float mass,  out EmergencyClass emergency_class)
+        {
+            bool rc = false;
+            emergency_class = new EmergencyClass();
+            using (SqlCommand cmd = new SqlCommand("EGH.GetEmergencyClassByMass", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@Масса", SqlDbType.Float);
+                    parm.Value = mass;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        int code = (int)reader["КодТипаАварии"];
+                        string name = (string)reader["НаименованиеТипаАварии"];
+                        float min = (float)reader["МинМасса"];
+                        float max = (float)reader["МаксМасса"];
+                        if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) emergency_class = new EmergencyClass(code, name, min, max);
+
+                    }
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+
+            }
+            return rc;
+        }
         public XmlNode toXmlNode(string comment = "")
         {
             XmlDocument doc = new XmlDocument();
