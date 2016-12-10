@@ -10,22 +10,35 @@ namespace EGH01DB
 {
     public partial class  ORTContext: IDBContext
     {
-
-     public partial class ECORehabilitation: GEAContext.ECOClassification
+      public DateTime date {get; set;}
+      public partial class ECORehabilitation: GEAContext.ECOClassification
      {
+
+         //RiskObjectType              riskobjecttype           {get{ return this.groundblur.spreadpoint.riskobject.type;}}
+         //CadastreType                cadastretype             {get{ return this.groundblur.spreadpoint.cadastretype;}}
+         //PetrochemicalCategories     petrochemicalcategories  {get{ return this.groundblur.spreadpoint.petrochemicaltype.petrochemicalcategories;}}
+         //EmergencyClass              emergencyclass           {get; private set;}
+         //PenetrationDepth            penetrationdepth         {get; private set;}
+         //SoilPollutionCategories     soilpollutioncategories  {get; private set;}
+         //bool                        waterachieved            {get{ return this.groundblur.totalmass >= this.groundblur.adsorbedmass;}}
+         //WaterPollutionCategories    waterpollutioncategories {get; private set;}
+         //WaterProtectionArea         waterprotectionarea      {get; private set;}
+          public List<RehabilitationMethod>  rehabilitationlist =     new List<RehabilitationMethod>();   // перечень технологий и методов реабилитации     
 
          public ECORehabilitation(GEAContext.ECOClassification ecoclassification):base(ecoclassification) 
          {
-               
+             this.date = DateTime.Now;
+  
+             int mk = 0;
              ORTContext db = new ORTContext(); 
              List<RehabilitationMethod>  source =  new List<RehabilitationMethod>();
-             List<RehabilitationMethod>  result =  new List<RehabilitationMethod>();
              if (Helper.GetListRehabilitationMethod(db, ref source))
              {
+               bool rc = true;
+             
                foreach (RehabilitationMethod rm in source)
                {
-                bool rc = true;
-                 
+                
                 RiskObjectType               riskjbjecttype           = rm.riskobjecttype;
                 CadastreType                 cadastretype             = rm.cadastretype;
                 PetrochemicalCategories      petrochemicalcategories  = rm.petrochemicalcategory;
@@ -36,41 +49,36 @@ namespace EGH01DB
                 WaterPollutionCategories     waterpollutioncategories = rm.waterpollutioncategories;
                 WaterProtectionArea          waterprotectionarea      = rm.waterprotectionarea;              
                 
-                if (rc)
-                {
-                 if ( this.groundblur.spreadpoint.isriskobject)
-                 {
-                  if (riskjbjecttype.type_code  > 0 ) rc &= (riskjbjecttype.type_code  == this.groundblur.spreadpoint.riskobject.type.type_code);  
-                 }
+                 rc = true;
+                               
+                 bool r1 = ( this.groundblur.spreadpoint.isriskobject &&  riskjbjecttype.type_code  > 0 && riskjbjecttype.type_code  == this.groundblur.spreadpoint.riskobject.type.type_code);  
                  
+                 
+                 bool r2 = (cadastretype.type_code    > 0  && cadastretype.type_code == this.groundblur.spreadpoint.cadastretype.type_code);
 
-                 if (cadastretype.type_code    > 0 ) rc &= ( cadastretype.type_code == this.groundblur.spreadpoint.cadastretype.type_code);
-
-                } 
-     
-
-
-
-              //    waterachieved,
-
-
-
+                 bool r3 = (emergencyclass.type_code  > 0  && this.groundblur.totalmass >= emergencyclass.minmass  &&  this.groundblur.totalmass <=  emergencyclass.maxmass);      
                    
+                 bool r4 = (penetrationdepth.type_code > 0 && this.groundblur.depth >= penetrationdepth.mindepth   &&  this.groundblur.depth <= penetrationdepth.maxdepth); 
+                
+                 bool r5 = (soilpollutioncategories.code  == this.soilpollutioncategories.code);
+               
+                 bool r6 = (waterpollutioncategories.code == this.waterpollutioncategories.code);
+                   
+                 bool r7 = ( waterachieved == (this.groundblur.totalmass >= this.groundblur.adsorbedmass));   
+                              
+                 int k = (r1?1:0)  + (r2?1:0) + (r3?1:0) + (r3?1:0) + (r4?1:0) +(r5?1:0) + (r6?1:0) + (r7?1:0);
 
+                 mk = k > mk?k:mk; 
+
+                // if (r1 && r2 && r3 && r4 && r5 && r6 && r7 ) rehabilitationlist.Add(rm);
+                if (k >= 6) rehabilitationlist.Add(rm);
+              
                }
 
              }        
-    
          }
-
-     }  
-
-    
-
-
-    }
-
-
+      }  
+   }
 }
 
 

@@ -18,8 +18,10 @@ namespace EGH01DB.Primitives
 
         static public bool FloatTryParse(string s, out float f)
         {
-
-            return float.TryParse(s, NumberStyles.Any, new CultureInfo("en-US"), out f); 
+            f = 0.0f;            
+            CultureInfo ci = new CultureInfo("en-US");
+            if (s.IndexOf(",") >=0) ci = new CultureInfo("ru-RU");     
+            return float.TryParse(s, NumberStyles.Any,ci, out f); 
         }
         static public float GeoAngle(Point point1, Point point2)
         {
