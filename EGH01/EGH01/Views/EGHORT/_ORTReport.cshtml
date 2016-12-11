@@ -63,19 +63,22 @@
                         @ecorehabilitation.incident.riskobject.cadastretype.name
                     </p>
                     <p>
-                        <label class="boxdata-label-40 ">Категоря разлитого нефтепрдукта </label>
-                        @ecorehabilitation.incident.petrochemicaltype.petrochemicalcategories.name
+                        <label class="boxdata-label-40 ">Категоря разлитого нефтепродукта </label>
+                        @ecorehabilitation.incident.petrochemicaltype.petrochemicalcategories.name ( @ecorehabilitation.incident.petrochemicaltype.name)
                     </p>
+                 
                    <p>
-                    <label class="boxdata-label-40 "> Масса пролитого нефтепрдукта (кг)</label>
-                    @ecorehabilitation.groundblur.totalmass
+                     <label class="boxdata-label-40 ">Категоря аварии</label>
+                      @ecorehabilitation.emergencyclass.name (@ecorehabilitation.groundblur.totalmass кг)
                    </p>
-                   <p>
-                    <label class="boxdata-label-40 "> Глубина проникновения нефтепродукта (м)</label>
-                    @ecorehabilitation.groundblur.depth
-                  </p>
+                 
+                    <p>
+                      <label class="boxdata-label-40 "> Категория глубины  проникновения нефтепродукта </label>
+                      @ecorehabilitation.penetrationdepth.name (@ecorehabilitation.groundblur.depth м)
+                    </p>
 
-                <p>
+                  
+                   <p>
                     <label class="boxdata-label-40 "> Категория загрязнения грунта </label>
                     @ecorehabilitation.soilpollutioncategories.name
                 </p>
@@ -83,7 +86,12 @@
                     <label class="boxdata-label-40 "> Категория загрязнения грунтовых вод  </label>
                     @ecorehabilitation.waterpollutioncategories.name
                 </p>
-                <p>
+                 <p>
+                     <label class="boxdata-label-40 "> Категория водоохранной территории  </label>
+                     @ecorehabilitation.waterprotectionarea.name
+                  </p>
+
+                 <p>
                     <label class="boxdata-label-40 "> Достижение грунтовых вод  </label>
                     @if (ecorehabilitation.groundblur.totalmass > ecorehabilitation.groundblur.adsorbedmass)  { <span>есть</span>}
                     else { <span>нет</span> }
@@ -104,9 +112,6 @@
                  } 
 
             </fieldset>
-
-
-
 
       </fieldset>
      </div>

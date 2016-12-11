@@ -251,7 +251,7 @@ namespace EGH01DB.Types
         static public bool GetByDepth(EGH01DB.IDBContext dbcontext, float depth, out PenetrationDepth penetration_depth)
         {
             bool rc = false;
-            penetration_depth = new PenetrationDepth();
+            penetration_depth = PenetrationDepth.defaulttype; 
             using (SqlCommand cmd = new SqlCommand("EGH.GetPenetrationDepthByDepth", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
