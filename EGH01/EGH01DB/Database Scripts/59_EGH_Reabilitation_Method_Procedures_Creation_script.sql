@@ -272,7 +272,7 @@ go
 create procedure EGH.GetNextRehabilitationMethodCode(@КодКлассификатора int output)
  as begin
 	declare @rc int = -1;
-	set @КодКлассификатора = (select max(@КодКлассификатора)+1 from dbo.КлассификаторМетодов);
+	set @КодКлассификатора = (select max(КодКлассификатора)+1 from dbo.КлассификаторМетодов);
 	set @rc = @@ROWCOUNT;
 	if @КодКлассификатора is null 
 	begin
