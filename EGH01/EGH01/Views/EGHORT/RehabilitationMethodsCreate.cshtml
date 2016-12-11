@@ -76,7 +76,8 @@
     if (@Model != null)
     {
         Helper.GetListWaterPollutionCategories(@Model, ref list_water);
-        list_water.ForEach(o => ViewBag.list_water.Add(new SelectListItem { Text = o.name, Value = o.code.ToString() }));
+        
+        list_water.ForEach(o => ViewBag.list_water.Add(new SelectListItem { Text =  o.name, Value = o.code.ToString() }));
 
     }
     List<EGH01DB.Types.WaterProtectionArea> list_waterArea = new List<EGH01DB.Types.WaterProtectionArea>();

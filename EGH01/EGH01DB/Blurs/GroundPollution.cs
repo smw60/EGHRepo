@@ -100,7 +100,15 @@ namespace EGH01DB.Blurs
             this.name = Helper.GetStringAttribute(node, "name", "");
             this.comment = Helper.GetStringAttribute(node, "comment", "");
             string string_pointtype = Helper.GetStringAttribute(node, "pointtype", "");
-            this.pointtype = POINTTYPE.UNDEF; // поправить!!!
+            {
+                POINTTYPE p = POINTTYPE.UNDEF;
+                if (Enum.TryParse(string_pointtype, out p))
+                {
+                    this.pointtype  = p;
+                }
+                else this.pointtype = POINTTYPE.UNDEF;
+                         
+            } 
         }
        public XmlNode toXmlNode(string comment = "")
        {
