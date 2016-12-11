@@ -89,7 +89,11 @@ namespace EGH01DB
                   {
                     XmlNode n = this.soilpollutioncategories.toXmlNode();
                     rc.AppendChild(doc.ImportNode(n, true));
-                  }    
+                  }
+                  {
+                      XmlNode n = this.waterpollutioncategories.toXmlNode();
+                      rc.AppendChild(doc.ImportNode(n, true));
+                  } 
                   {
                     XmlNode n = base.toXmlNode();
                     rc.AppendChild(doc.ImportNode(n, true));
