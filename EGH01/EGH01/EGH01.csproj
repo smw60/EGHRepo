@@ -280,14 +280,7 @@
     <Content Include="Resources\Layout_Mobile_Whiteframe1.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\Default Settings %283%29.pubxml" />
-    <None Include="Properties\PublishProfiles\Default Settings %284%29.pubxml" />
-    <None Include="Properties\PublishProfiles\Product.pubxml" />
     <None Include="Properties\PublishProfiles\Developer.pubxml" />
-    <None Include="Properties\PublishProfiles\EGH-FileSystem.pubxml" />
-    <None Include="Properties\PublishProfiles\EGH01.pubxml" />
-    <None Include="Properties\PublishProfiles\WebDeploy-Prod.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\html2canvas.svg.js" />
     <Content Include="Scripts\time.js" />
