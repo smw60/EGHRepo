@@ -29,6 +29,7 @@ namespace EGH01DB.Types
         public bool    Create()      {return true;}
         public bool    Delete()      {return true;}
         public bool    GetByCode(int code)  {return true; }
+        public bool    GetByMap(int code) { return true; }
 
         public GroundType()
         {
@@ -182,6 +183,12 @@ namespace EGH01DB.Types
 
             }
             return rc;
+        }
+
+        static public bool GetByMap(EGH01DB.IDBContext dbcontext, int type_code, out GroundType ground_type)
+        {
+            ground_type = new GroundType(type_code);
+            return true;
         }
         static public bool GetNextCode(EGH01DB.IDBContext dbcontext, out int code)
         {
